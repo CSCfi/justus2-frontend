@@ -1,0 +1,25 @@
+<!-- vaihe 0 valitse -->
+
+<h3 data-ng-bind="i18n.content.valitse.title[lang]"></h3>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-4">
+    <button class="btn btn-block btn-lg btn-primary"
+      data-ui-sref="justus({lang:lang,id:id,vaihe:vaihe||1})">
+      <i class="fa fa-upload" aria-hidden="true"></i> {{ i18n.content.valitse.tallenna[lang] }}
+    </button>
+  </div>
+  <div class="col-xs-12 col-sm-4">
+    <a class="btn btn-block btn-lg btn-primary"
+      data-ui-sref="omat({lang:lang})">
+      <i class="fa fa-list" aria-hidden="true"></i> {{ i18n.content.valitse.omat[lang] }}
+    </a>
+  </div>
+  <div class="col-xs-12 col-sm-4">
+    <a class="btn btn-block btn-lg btn-primary"
+      data-ng-if="hasAccess('hyvaksy')"
+      data-ui-sref="hyvaksy({lang:lang})">
+      <i class="fa fa-check" aria-hidden="true"></i> {{ i18n.content.valitse.hyvaksy[lang] }}
+    </a>
+  </div>
+</div>

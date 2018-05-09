@@ -1,0 +1,11 @@
+{
+  "name": "justus",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "PTSans-Regular": "https://google-fonts.azurewebsites.net/googleFonts/ptsans?family=PT+Sans:400",
+    "PTSans-Italic": "https://google-fonts.azurewebsites.net/googleFonts/ptsans?family=PT+Sans:400i",
+    "PTSans-Bold": "https://google-fonts.azurewebsites.net/googleFonts/ptsans?family=PT+Sans:700",
+    "PTSans-BoldItalic": "https://google-fonts.azurewebsites.net/googleFonts/ptsans?family=PT+Sans:700i"
+  }
+}

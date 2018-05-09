@@ -1,0 +1,39 @@
+html,
+body {
+  background-color: $body-bg;
+  font-family: 'PT Sans', sans-serif;
+  height: 100%;
+  width: 100%;
+}
+
+.main-wrapper {
+  background-color: $body-bg;
+  height: 100%;
+}
+
+.main-container {
+  background-color: $brand-primary;
+  height: 100%;
+  padding: 0;
+}
+
+.header-wrapper {
+  padding: $padding-large-vertical 0;
+}
+
+.content-wrapper {
+  background-color: $brand-white;
+  padding: 0 $padding-large-horizontal;
+}
+
+.view-wrapper {
+  padding-top: $padding-large-vertical;
+  padding-bottom: $padding-large-vertical*10;
+}
+
+.footer {
+  background-color: $brand-primary;
+  color: $brand-white;
+  padding: $padding-large-vertical $padding-large-horizontal;
+  margin: 0;
+}

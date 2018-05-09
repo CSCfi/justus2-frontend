@@ -1,0 +1,55 @@
+extends: standard
+
+plugins:
+  - standard
+  - promise
+  - angular
+
+env: 
+  browser: 1
+
+globals:
+  angular: true
+  
+  # Remove global config rules when ngConfig or similar implemented instead of global js-variables
+  domain_organization: true
+  crossrefuri: true
+  virtauri: true
+  demoUser: true
+  i18n: true
+  codes: true
+  field_default_config: true
+  organizationFieldConfig: true
+
+rules:
+  angular/module-getter: 1
+  angular/module-setter: 1
+  angular/no-private-call: 1
+  angular/no-cookiestore: 1
+  angular/no-directive-replace: 1
+  angular/no-http-callback : 1
+  angular/di: 
+    - 1
+    - array
+  brace-style: 
+    - 1
+    - stroustrup
+  no-console: 0
+  no-unneeded-ternary: 1
+  no-unused-vars: 1
+  no-useless-return: 1
+  no-var: 1
+  object-curly-spacing:
+    - 1
+    - always
+  prefer-const: 
+    - 1
+    - destructuring: all
+      ignoreReadBeforeAssign: false
+  semi: 
+    - 1
+    - always
+  space-before-function-paren: 0
+
+settings:
+    angular: 1

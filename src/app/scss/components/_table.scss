@@ -1,0 +1,48 @@
+.table {
+  tbody,
+  thead {
+    tr {
+      th {
+        white-space: nowrap;
+      }
+      th,
+      td {
+        vertical-align: top;
+
+        &.condensed {
+          width: 1%;
+        }
+
+        &.nowrap {
+          white-space: nowrap;
+        }
+
+        &.btn-col {
+          white-space: nowrap;
+          padding: $table-cell-padding / 2 $table-cell-padding;
+
+          .btn {
+            float: none;
+            display: inline-block;
+          }
+        }
+
+        .btn {
+          padding: 3px 10px;
+        }
+      }
+    }
+  }
+}
+
+.hover-table-green {
+  &:hover {
+    cursor: pointer;
+    background-color: $brand-secondary !important;
+    color: #fff;
+    a {
+      color: #fff;
+    }
+  }
+
+}

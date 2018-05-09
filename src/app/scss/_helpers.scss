@@ -1,0 +1,39 @@
+.m-t {
+  margin-top: $padding-large-vertical;
+}
+
+.m-b {
+  margin-bottom: $padding-large-vertical;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.float-right {
+  float:right;
+}
+
+.vertical-resize {
+  resize: vertical;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.font-weight-bold {
+  font-weight: bold;
+}
+
+.bg-white {
+  background-color: #fff !important;
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+@mixin input() {
+  border-radius: $input-border-radius;
+}
