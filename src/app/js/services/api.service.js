@@ -4,6 +4,7 @@ angular.module('APIService', [])
 .service('APIService', [
   '$http', '$location', '$log', 'API_BASE_URL',
   function ($http, $location, $log, API_BASE_URL) {
+
     this.meta = {
       tables: {
         'julkaisu': {
@@ -16,7 +17,7 @@ angular.module('APIService', [])
             { name: 'julkaisuvuosi', default: '' },
             { name: 'julkaisunnimi', default: '' },
             { name: 'tekijat', default: '' },
-            { name: 'julkaisuntekijoidenlukumaara', default: null },
+            { name: 'julkaisuntekijoidenlukumaara', default: '' },
             { name: 'konferenssinvakiintunutnimi', default: '' },
             { name: 'emojulkaisunnimi', default: '' },
             { name: 'isbn', default: '' },
@@ -31,9 +32,9 @@ angular.module('APIService', [])
             { name: 'julkaisunkustannuspaikka', default: '' },
             { name: 'julkaisunkieli', default: '' },
             { name: 'julkaisunkansainvalisyys', default: '' },
-            { name: 'julkaisumaa', default: null },
-            { name: 'kansainvalinenyhteisjulkaisu', default: 0 },
-            { name: 'yhteisjulkaisuyrityksenkanssa', default: 0 },
+            { name: 'julkaisumaa', default: '' },
+            { name: 'kansainvalinenyhteisjulkaisu', default: '0' },
+            { name: 'yhteisjulkaisuyrityksenkanssa', default: '0' },
             { name: 'doitunniste', default: '' },
             { name: 'pysyvaverkkoosoite', default: '' },
             { name: 'avoinsaatavuus', default: '' },
@@ -47,27 +48,27 @@ angular.module('APIService', [])
             { name: 'modified', default: null }
           ]
         },
-        'avainsana': {
-          name: 'avainsana',
-          ui: 'avainsana', // lista
-          pkcol: 'id',
-          columns: [
-            { name: 'id' },
-            { name: 'julkaisuid' },
-            { name: 'avainsana' }
-          ]
-        },
+        // 'avainsana': {
+        //   name: 'avainsana',
+        //   ui: 'avainsana', // lista
+        //   pkcol: 'id',
+        //   columns: [
+        //     { name: 'id', default: null },
+        //     { name: 'julkaisuid', default: null },
+        //     { name: 'avainsana', default: '' }
+        //   ]
+        // },
         'organisaatiotekija': {
           name: 'organisaatiotekija',
           ui: 'organisaatiotekija', // lista
           pkcol: 'id',
           columns: [
-            { name: 'id' },
-            { name: 'julkaisuid' },
-            { name: 'etunimet' },
-            { name: 'sukunimi' },
-            { name: 'orcid' },
-            { name: 'rooli' }
+            { name: 'id', default: null },
+            // { name: 'julkaisuid', default: null },
+            { name: 'etunimet', default: '' },
+            { name: 'sukunimi', default:'' },
+            { name: 'orcid', default: '' },
+            { name: 'rooli', default: '' }
           ]
         },
         'alayksikko': {
@@ -75,9 +76,9 @@ angular.module('APIService', [])
           ui: 'alayksikko', // lista
           pkcol: 'id',
           columns: [
-            { name: 'id' },
-            { name: 'organisaatiotekijaid' },
-            { name: 'alayksikko' }
+            { name: 'id', default: null },
+            { name: 'organisaatiotekijaid', default: null },
+            { name: 'alayksikko', default: '' }
           ]
         },
         'tieteenala': {
@@ -85,10 +86,10 @@ angular.module('APIService', [])
           ui: 'tieteenala', // lista
           pkcol: 'id',
           columns: [
-            { name: 'id' },
-            { name: 'julkaisuid' },
-            { name: 'tieteenalakoodi' },
-            { name: 'jnro' }
+            { name: 'id', default: null },
+            { name: 'julkaisuid', default: null },
+            { name: 'tieteenalakoodi', default: '' },
+            { name: 'jnro', default: null }
           ]
         },
         'taiteenala': {
@@ -96,23 +97,25 @@ angular.module('APIService', [])
           ui: 'taiteenala', // lista
           pkcol: 'id',
           columns: [
-            { name: 'id' },
-            { name: 'julkaisuid' },
-            { name: 'taiteenalakoodi' },
-            { name: 'jnro' }
-          ]
-        },
-        'lisatieto': {
-          name: 'lisatieto',
-          ui: 'lisatieto',
-          pkcol: 'id',
-          columns: [
-            { name: 'id' },
-            { name: 'julkaisuid' },
-            { name: 'lisatietotyyppi' },
-            { name: 'lisatietoteksti' }
+            { name: 'id', default: null },
+            { name: 'julkaisuid', default: null },
+            { name: 'taiteenalakoodi', default: '' },
+            { name: 'jnro', default: null }
           ]
         }
+        // 'lisatieto': {
+        //   name: 'lisatieto',
+        //   ui: 'lisatieto',
+        //   pkcol: 'id',
+        //   columns: [
+        //     { name: 'id', default: null },
+        //     { name: 'julkaisuid', default: null },
+        //     { name: 'julkaisuvuodenlisatieto', default: '' },
+        //     { name: 'tapahtuma', default: '' },
+        //     { name: 'julkistamispaikkakunta', default: '' },
+        //     { name: 'muutunniste', default: '' }
+        //   ]
+        // }
       }
     };
 

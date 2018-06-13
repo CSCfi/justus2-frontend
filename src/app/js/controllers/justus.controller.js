@@ -8,7 +8,33 @@ angular.module('JustusController', [])
   JUFOService, FintoService, KoodistoService, JustusService, APIService, ValidationService, DataStoreService, DEMO_ENABLED) {
     $scope.loading = {};
     $scope.meta = APIService.meta;
-    $scope.justus = JustusService.getPublicationFormData();
+
+    // $scope.justus = JustusService.getPublicationFormData();
+
+    $scope.justus = {
+      "julkaisu": {},
+      "organisaatiotekija": [
+        {
+          "etunimet": "",
+          "sukunimi": "",
+          "orcid": "",
+          "rooli": "",
+          "alayksikko": []
+        }
+      ],
+      "tieteenala": [],
+      "taiteenala": [],
+      "lisatieto": {
+        "julkaisuvuodenlisatieto": "",
+        "tapahtuma": "",
+        "julkistamispaikkakunta": "",
+        "muutunniste": ""
+      },
+      "taidealantyyppikategoria": [],
+      "avainsanat": []
+
+    };
+
     $scope.pattern = JustusService.pattern;
 
     $scope.tekijatTags = [];
@@ -17,12 +43,13 @@ angular.module('JustusController', [])
     $scope.kustantajanimet = [];
     $scope.konferenssinimet = [];
     $scope.julkaisunnimet = [];
-    $scope.julkaisu = {};
 
     $scope.crossrefLataa = false;
     $scope.virtaLataa = false;
     $scope.requiredHighlight = false;
     $scope.invalidFields = [];
+
+   
 
     // Parses first- and lastnames from a string of names and returns them in a list of objects [{ firstName: '', lastName: '' }, ...]
     const parseNames = function(namesString) {
@@ -71,16 +98,16 @@ angular.module('JustusController', [])
         return tag;
       });
 
-      $scope.justus.tekijat = '';
-      $scope.justus.tekijat = $scope.tekijatTags.map(function(tag, index) {
+      $scope.justus.julkaisu.tekijat = '';
+      $scope.justus.julkaisu.tekijat = $scope.tekijatTags.map(function(tag, index) {
         return tag.text;
       }).join('; ');
-      $scope.justus.julkaisuntekijoidenlukumaara = $scope.tekijatTags.length;
+      $scope.justus.julkaisu.julkaisuntekijoidenlukumaara = $scope.tekijatTags.length;
     };
 
     $scope.useKopioiTekijat = function(input) {
       var tempstr = input;
-      for (var i = 0; i < $scope.justus.julkaisuntekijoidenlukumaara; i++) {
+      for (var i = 0; i < $scope.justus.julkaisu.julkaisuntekijoidenlukumaara; i++) {
         var sb = 0;
         var se = tempstr.indexOf(',');
         var eb = tempstr.indexOf(',') + 1;
@@ -94,8 +121,7 @@ angular.module('JustusController', [])
     };
 
     $scope.useOrganisaatiotekijaAlayksikko = function(parIndex, index, input) {
-      $scope.justus.organisaatiotekija[parIndex].alayksikko[index] = {};
-      $scope.justus.organisaatiotekija[parIndex].alayksikko[index].alayksikko = input;
+        $scope.justus.organisaatiotekija[parIndex].alayksikko[index] = input;
     };
 
     $scope.useOrganisaatiotekijaRooli = function(parIndex, input) {
@@ -105,6 +131,18 @@ angular.module('JustusController', [])
     $scope.useJulkaisutyyppiPaa = function(input) {
       if (!input) return;
       $scope.julkaisutyyppi_paa = input;
+    };
+
+    $scope.addOrganisaatiotekija = function () {
+      $scope.justus.organisaatiotekija.push(
+        {
+            "etunimet": "",
+            "sukunimi": "",
+            "orcid": "",
+            "rooli": "",
+            "alayksikko": []
+        }
+      )
     };
 
     $scope.refreshKanavanimet = function(tyyppi, input) {
@@ -126,15 +164,15 @@ angular.module('JustusController', [])
       if (input === null) return;
       JUFOService.kanava(input)
       .then(function (obj) {
-        $scope.justus.lehdenjulkaisusarjannimi = obj.Name;
-        $scope.justus.jufotunnus = input; // tai vastauksesta...
-        $scope.justus.jufoluokitus = obj.Level;
-        if (obj.ISSN1) $scope.justus.issn = obj.ISSN1;
-        if ($scope.justus.issn === null || $scope.justus.issn === '') {
-          if (obj.ISSN2) $scope.justus.issn = obj.ISSN2;
+        $scope.justus.julkaisu.lehdenjulkaisusarjannimi = obj.Name;
+        $scope.justus.julkaisu.jufotunnus = input; // tai vastauksesta...
+        $scope.justus.julkaisu.jufoluokitus = obj.Level;
+        if (obj.ISSN1) $scope.justus.julkaisu.issn = obj.ISSN1;
+        if ($scope.justus.julkaisu.issn === null || $scope.justus.julkaisu.issn === '') {
+          if (obj.ISSN2) $scope.justus.julkaisu.issn = obj.ISSN2;
         }
         if (obj.Publisher) {
-          $scope.justus.kustantaja = obj.Publisher
+          $scope.justus.julkaisu.kustantaja = obj.Publisher
             // 'html unescape'
             .replace(/&quot;/g, '"')
             .replace(/&#39;/g, "'")
@@ -291,7 +329,6 @@ angular.module('JustusController', [])
           }
           $scope.justus.organisaatiotekija = o;
 
-          // $scope.justus.tieteenala = [{tieteenalakoodi:'', jnro:null}];
           let t = [];
           if (robj['TieteenalaKoodit']) {
             if (robj.TieteenalaKoodit['TieteenalaKoodi']) {
@@ -345,22 +382,23 @@ angular.module('JustusController', [])
     };
 
     $scope.addAvainsana = (tag) => {
-      $scope.justus.avainsana.push({
-        avainsana: tag.prefLabel ? tag.prefLabel : tag
-      });
+      $scope.justus.avainsanat.push(
+       tag.prefLabel ? tag.prefLabel : tag
+      );
+      console.log($scope.justus.avainsanat);
     };
 
     $scope.removeAvainsana = function() {
-      $scope.justus.avainsana = [];
-      $scope.justus.avainsana = $scope.avainsanatTags.map(function(tag) {
-        return { avainsana: tag.prefLabel };
+      $scope.justus.avainsanat = [];
+      $scope.justus.avainsanat = $scope.avainsanatTags.map(function(tag) {
+        return  tag.prefLabel;
       });
     };
 
     $scope.initializeAvainsanatTags = function() {
-      if ($scope.justus.avainsana) {
+      if ($scope.justus.avainsanat) {
         $scope.avainsanatTags = [];
-        $scope.justus.avainsana.map(function(keywordObject) {
+        $scope.justus.avainsanat.map(function(keywordObject) {
           if (keywordObject.avainsana.length > 0) {
             $scope.avainsanatTags.push({
               prefLabel: keywordObject.avainsana,
@@ -372,31 +410,9 @@ angular.module('JustusController', [])
       }
     };
 
-    $scope.intializeLisatiedot = function(lisatieto) {
-      angular.forEach(lisatieto, function(value, key) {
-        if (value.lisatietotyyppi === 'tapahtuma') {
-          $scope.justus.tempLisatieto.tapahtuma = value;
-        }
-        if (value.lisatietotyyppi === 'taidealantyyppikategoria') {
-          $scope.justus.taidelisatieto.push(value);
-        }
-        if (value.lisatietotyyppi === 'julkistamispaikkakunta') {
-          $scope.justus.tempLisatieto.julkistamispaikkakunta = value;
-        }
-        if (value.lisatietotyyppi === 'julkaisuvuodenlisatieto') {
-          $scope.justus.tempLisatieto.julkaisuvuosi = value;
-        }
-        if (value.lisatietotyyppi === 'muutunniste') {
-          $scope.justus.tempLisatieto.muutunniste = value;
-        }
-      });
-    };
 
     $scope.useTieteenala = function(input) {
       if (input === null) return;
-      if (!$scope.justus.tieteenala) {
-        $scope.justus.tieteenala = [];
-      }
 
       // Selecting päätieteenala, filter alatieteenala input options
       if (input.length === 1) {
@@ -426,15 +442,10 @@ angular.module('JustusController', [])
     };
 
     $scope.useTaidelanTyyppi = function(input) {
-      if (!$scope.justus.taidealantyyppikategoria) {
-        $scope.justus.taidealantyyppikategoria = [];
-      }
-
-      if (!containsObject($scope.justus.taidealantyyppikategoria, input, 'tyyppikategoria') && $scope.justus.taidealantyyppikategoria.length < 5) {
-        $scope.justus.taidealantyyppikategoria.push({
-          'tyyppikategoria': input
-        });
-      }
+     if ($scope.justus.taidealantyyppikategoria.includes(input) || $scope.justus.taidealantyyppikategoria.length >= 5) {
+       return;
+     }
+     $scope.justus.taidealantyyppikategoria.push(input);
     };
 
     const containsObject = function(array, value, identifier) {
@@ -449,14 +460,16 @@ angular.module('JustusController', [])
 
     $scope.useVaihe = function(vaihe) {
       // Prevent user from navigating to vaihe 1 when editing a publication
-      if ($scope.justus.id && vaihe === 1) {
+      if ($scope.justus.julkaisu.id && vaihe === 1) {
         return;
       }
 
       $scope.vaihe = vaihe;
-      if ($scope.justus.julkaisutyyppi && $scope.justus.julkaisutyyppi.length > 1) {
+
+      if ($scope.justus.julkaisu.julkaisutyyppi && $scope.justus.julkaisu.julkaisutyyppi.length > 1) {
         // make sure both values are set (paa,ala):
-        $scope.useJulkaisutyyppiPaa($scope.justus.julkaisutyyppi.substring(0, 1));
+
+        $scope.useJulkaisutyyppiPaa($scope.justus.julkaisu.julkaisutyyppi.substring(0, 1));
         // Stay on stage 3 if stage form not valid
         if ($scope.vaihe === 4) {
           if (!$scope.isJustusValid()) {
@@ -465,7 +478,7 @@ angular.module('JustusController', [])
           }
           // Add user's organisaatiotunnus to the form
           // Overwrite active organization code with demo user code to allow saving in demo
-          this.justus.organisaatiotunnus = DEMO_ENABLED === true ? '00000' : domain_organization[$rootScope.user.domain].code;
+          this.justus.julkaisu.organisaatiotunnus = DEMO_ENABLED === true ? '00000' : domain_organization[$rootScope.user.domain].code;
         }
       }
       else {
@@ -480,9 +493,10 @@ angular.module('JustusController', [])
       $scope.requiredHighlight = !$scope.requiredHighlight;
     };
 
-    $scope.useField = function(field, input) {
+    $scope.useField = function(type, field, input) {
       if (input !== null && input !== undefined) {
-        $scope.justus[field] = String(input);
+        $scope.justus[type][field] = String(input);
+        console.log($scope.justus);
       }
     };
 
@@ -492,18 +506,20 @@ angular.module('JustusController', [])
     };
 
     $scope.isFieldVisible = function(field) {
-      return JustusService.isFieldVisible(field);
+      return JustusService.isFieldVisible( field);
     };
 
-    $scope.isFieldRequired = function(field) {
-      return JustusService.isFieldRequired(field);
-    };
+    // $scope.isFieldRequired = function(type, field) {
+    //   return JustusService.isFieldRequired(type, field);
+    // };
 
-    $scope.isValid = function(field) {
-      return JustusService.isValid(field);
+    $scope.isValid = function(type, field) {
+       console.log(type, field);
+      return JustusService.isValid(type, field);
     };
 
     $scope.isJustusValid = function() {
+      
       $scope.invalidFields = JustusService.getInvalidFields();
       ValidationService.setValidationErrors($scope.invalidFields);
       return $scope.invalidFields.length === 0;
@@ -551,36 +567,16 @@ angular.module('JustusController', [])
           return $scope.getCode('organization', $scope.user.organization.code).alatyypit2017;
         }
       };
-
-      if (!$scope.justus.avainsana) {
-        $scope.justus.avainsana = [{ avainsana: '' }];
-      }
-      if (!$scope.justus.tieteenala) {
-        $scope.justus.tieteenala = [];
-      }
-
-      if (!$scope.justus.taiteenala) {
-        $scope.justus.taiteenala = [];
-      }
-
-      if (!$scope.justus.taidelisatieto) {
-        $scope.justus.taidelisatieto = [];
-      }
-
       $scope.alayksikkovuosi = {};
 
-      if (!$scope.justus.organisaatiotekija) {
-        $scope.justus.organisaatiotekija = [{
-          alayksikko: [ { alayksikko: '' } ]
-        }];
-
+      if (!$scope.justus.organisaatiotekija[0].alayksikko[0]) {
         // set default organisational unit year as 2017
         $scope.alayksikkovuosi.selected = {
           id: 2017,
           label: '2017'
         };
       } else {
-        if ($scope.justus.organisaatiotekija[0].alayksikko[0].alayksikko.includes('-2017-') || $scope.justus.organisaatiotekija[0].alayksikko[0].alayksikko === '') {
+        if ($scope.justus.organisaatiotekija[0].alayksikko[1].includes('-2017-') || $scope.justus.organisaatiotekija[0].alayksikko[0].alayksikko === '') {
           $scope.alayksikkovuosi.selected = {
             id: 2017,
             label: '2017'
@@ -593,25 +589,6 @@ angular.module('JustusController', [])
         }
       }
 
-      // Initialize lisatieto fields
-      if (!$scope.justus.tempLisatieto) {
-        $scope.justus.tempLisatieto = {};
-      }
-      if (!$scope.justus.taidealantyyppikategoria) {
-        $scope.justus.taidealantyyppikategoria = [];
-      }
-      if (!$scope.justus.tempLisatieto.tapahtuma) {
-        $scope.justus.tempLisatieto.tapahtuma = { 'lisatietoteksti': '', 'lisatietotyyppi': 'tapahtuma' };
-      }
-      if (!$scope.justus.tempLisatieto.julkaisuvuosi) {
-        $scope.justus.tempLisatieto.julkaisuvuosi = { 'lisatietoteksti': '', 'lisatietotyyppi': 'julkaisuvuodenlisatieto' };
-      }
-      if (!$scope.justus.tempLisatieto.julkistamispaikkakunta) {
-        $scope.justus.tempLisatieto.julkistamispaikkakunta = { 'lisatietoteksti': '', 'lisatietotyyppi': 'julkistamispaikkakunta' };
-      }
-      if (!$scope.justus.tempLisatieto.muutunniste) {
-        $scope.justus.tempLisatieto.muutunniste = { 'lisatietoteksti': '', 'lisatietotyyppi': 'muutunniste' };
-      }
     };
 
     const populatePublicationForm = () => {
@@ -648,9 +625,6 @@ angular.module('JustusController', [])
         $scope.justus.taiteenala = taiteenala;
 
         $scope.justus.taidealantyyppikategoria = taidealantyyppikategoria;
-        $scope.justus.tempLisatieto = {};
-        $scope.justus.taidelisatieto = [];
-        $scope.intializeLisatiedot(lisatieto);
 
         return Promise.map(organisaatiotekijat, (organisaatiotekija) => {
           return APIService.get('alayksikko', organisaatiotekija.id, 'organisaatiotekijaid')
