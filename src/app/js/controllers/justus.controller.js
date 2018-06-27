@@ -145,6 +145,10 @@ angular.module('JustusController', [])
       )
     };
 
+    $scope.getSelite = function(codeset, value) {
+        return KoodistoService.getSelite(codeset, value)
+    };
+
     $scope.refreshKanavanimet = function(tyyppi, input) {
       if (tyyppi == null) return;
       if (input == null) return;
@@ -385,7 +389,6 @@ angular.module('JustusController', [])
       $scope.justus.avainsanat.push(
        tag.prefLabel ? tag.prefLabel : tag
       );
-      console.log($scope.justus.avainsanat);
     };
 
     $scope.removeAvainsana = function() {
@@ -411,18 +414,21 @@ angular.module('JustusController', [])
     };
 
 
-    $scope.useTieteenala = function(input) {
+
+
+
+      $scope.useTieteenala = function(input) {
       if (input === null) return;
 
       // Selecting päätieteenala, filter alatieteenala input options
-      if (input.length === 1) {
-        $scope.tieteenala_paa = input;
-        $scope.alatieteenalat = $scope.getCode('tieteenalat', input).alatyypit;
+      if (input.arvo.length === 1) {
+        $scope.tieteenala_paa = input.arvo;
+        $scope.alatieteenalat = input.alatyypit;
       }
       // Otherwise selecting alatieteenala, add if not already found
-      else if (!containsObject($scope.justus.tieteenala, input, 'tieteenalakoodi') && $scope.justus.tieteenala.length < 6) {
+      else if (!containsObject($scope.justus.tieteenala, input.arvo, 'tieteenalakoodi') && $scope.justus.tieteenala.length < 6) {
         $scope.justus.tieteenala.push({
-          tieteenalakoodi: input,
+          tieteenalakoodi: input.arvo,
           jnro: ''
         });
       }
@@ -496,7 +502,6 @@ angular.module('JustusController', [])
     $scope.useField = function(type, field, input) {
       if (input !== null && input !== undefined) {
         $scope.justus[type][field] = String(input);
-        console.log($scope.justus);
       }
     };
 
@@ -514,7 +519,6 @@ angular.module('JustusController', [])
     // };
 
     $scope.isValid = function(type, field) {
-       console.log(type, field);
       return JustusService.isValid(type, field);
     };
 

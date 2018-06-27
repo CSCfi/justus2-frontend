@@ -39,7 +39,7 @@
       <button type="button"
               class="btn btn-secondary pull-right"
               data-ng-if="!odottavat"
-              ng-click="showRejectedPublications()">
+              data-ng-click="showRejectedPublications()">
               <span data-ng-bind="showhide[lang]+' '+i18n.content.tarkasta.hylatyt.painike[lang]"></span>
       </button>
       <hr>
@@ -109,12 +109,12 @@
             </td>
             <td data-ng-show="state.name=='hyvaksy'" class="btn-col">
               <div class="btn-group">
-                <button data-ng-repeat="julkaisuntila in ['-1','0','1','2']"
-                  title="{{getCode('julkaisuntila',julkaisuntila).selite[lang]}}"
+                <button data-ng-repeat="julkaisuntila in codes.julkaisuntila | orderBy: 'arvo' | limitTo:4"
+                  title="{{julkaisuntila.selite}}"
                   class="btn btn-primary"
-                  data-ng-class="{'active': d.ui_julkaisuntila==julkaisuntila}"
-                  data-ng-click="d.ui_julkaisuntila = julkaisuntila; updatePublication(d, julkaisuntila)">
-                  {{ julkaisuntila }}
+                  data-ng-class="{'active': d.ui_julkaisuntila==julkaisuntila.arvo}"
+                  data-ng-click="d.ui_julkaisuntila = julkaisuntila.arvo; updatePublication(d, julkaisuntila.arvo)">
+                  {{ julkaisuntila.arvo }}
                 </button>
               </div>
             </td>
@@ -139,12 +139,12 @@
             </td>
             <td data-ng-show="state.name=='hyvaksy'" class="btn-col">
               <div class="btn-group">
-                <button data-ng-repeat="julkaisuntila in ['-1','0','1','2']"
-                  title="{{getCode('julkaisuntila',julkaisuntila).selite[lang]}}"
+                <button data-ng-repeat="julkaisuntila in codes.julkaisuntila | orderBy: 'arvo' | limitTo:4"
+                  title="{{ julkaisuntila.selite }}"
                   class="btn btn-primary"
-                  data-ng-class="{'active': d.ui_julkaisuntila==julkaisuntila}"
-                  data-ng-click="d.ui_julkaisuntila = julkaisuntila; updatePublication(d, julkaisuntila)">
-                  {{ julkaisuntila }}
+                  data-ng-class="{'active': d.ui_julkaisuntila==julkaisuntila.arvo}"
+                  data-ng-click="d.ui_julkaisuntila = julkaisuntila.arvo; updatePublication(d, julkaisuntila.arvo)">
+                  {{ julkaisuntila.arvo }}
                 </button>
               </div>
             </td>

@@ -3,11 +3,11 @@
   <table class="table table-hover">
     <tbody>
 
-      <!-- Julkaisutyyppi -->
-      <tr>
-        <td class="condensed">{{ i18n.content.form.julkaisutyyppi[lang] }}</td>
-        <td>{{ justus.julkaisu.julkaisutyyppi }}</td>
-      </tr>
+    <!-- Julkaisutyyppi -->
+    <tr>
+      <td class="condensed">{{ i18n.content.form.julkaisutyyppi[lang] }}</td>
+      <td>{{ getSelite(codes.julkaisutyypit, justus.julkaisu.julkaisutyyppi) }}</td>
+    </tr>
 
       <!-- Julkaisuvuosi -->
       <tr>
@@ -156,7 +156,7 @@
       <!-- Julkaisun kieli -->
       <tr>
         <td class="condensed">{{ i18n.content.form.julkaisunkieli[lang] }}</td>
-        <td>{{ getCode('kieli',justus.julkaisu.julkaisunkieli.toUpperCase()).selite[lang] }}</td>
+        <td>{{ getSelite(codes.kieli,justus.julkaisu.julkaisunkieli.toUpperCase()) }}</td>
       </tr>
 
       <!-- Julkaisun kansainvälisyys -->
@@ -168,7 +168,7 @@
       <!-- Julkaisumaa -->
       <tr>
         <td class="condensed">{{ i18n.content.form.julkaisumaa[lang] }}</td>
-        <td>{{ justus.julkaisu.julkaisumaa }} {{ getCode('maatjavaltiot2', justus.julkaisu.julkaisumaa).selite[lang] }}</td>
+        <td>{{ justus.julkaisu.julkaisumaa }} {{ getSelite(codes.maatjavaltiot2, justus.julkaisu.julkaisumaa) }}</td>
       </tr>
 
       <!-- Julkistamispaikkakunta -->
@@ -192,7 +192,7 @@
           <div data-ng-repeat="i in justus.tieteenala">
             {{$index + 1}}.&nbsp;
             <span data-ng-bind="i.tieteenalakoodi"></span>
-            <span data-ng-bind="getCode('tieteenalat',i.tieteenalakoodi).selite[lang]"></span>
+            <span data-ng-bind="getSelite(codes.tieteenalat,i.tieteenalakoodi)"></span>
           </div>
         </td>
       </tr>
@@ -205,7 +205,7 @@
           <div data-ng-repeat="i in justus.taiteenala">
             <span>{{$index + 1}}.&nbsp;</span>
             <span data-ng-bind="i.taiteenalakoodi"></span>
-            <span data-ng-bind="getCode('taiteenalat',i.taiteenalakoodi).selite[lang]"></span>
+            <span data-ng-bind="getSelite(codes.taiteenalat,i.taiteenalakoodi)"></span>
           </div>
         </td>
       </tr>
@@ -215,7 +215,7 @@
         <td class="condensed">{{ i18n.content.form.taidealantyyppikategoria[lang] }}</td>
         <td>
           <div data-ng-repeat="i in justus.taidealantyyppikategoria">
-            <span data-ng-bind="i+' '+getCode('taidealantyypit',i).selite[lang]"></span>
+            <span data-ng-bind="i+' '+getSelite(codes.taidealantyypit,i)"></span>
           </div>
         </td>
       </tr>
