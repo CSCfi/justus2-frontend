@@ -41,40 +41,33 @@ angular.module('IndexController', [])
     $scope.i18n = (typeof (i18n) !== 'undefined') ? i18n : {};
     $scope.codes = (typeof (codes) !== 'undefined') ? codes : {}; // config
 
-    // test before setting (development helper)
-    !$scope.codes.kieli && KoodistoService.getKoodisto('kieli').then(function(o) {
-      $scope.codes.kieli = o;
-    });
-    !$scope.codes.maatjavaltiot2 && KoodistoService.getKoodisto('maatjavaltiot2').then(function(o) {
-      $scope.codes.maatjavaltiot2 = o;
-    });
-    !$scope.codes.julkaisuntila && KoodistoService.getKoodisto('julkaisuntila').then(function(o) {
-      $scope.codes.julkaisuntila = o;
-    });
-    !$scope.codes.julkaisufoorumitaso && KoodistoService.getKoodisto('julkaisufoorumitaso').then(function(o) {
-      $scope.codes.julkaisufoorumitaso = o;
-    });
-    // tieteenalat, julkaisutyypit, ...
-    !$scope.codes.tieteenalat && KoodistoService.getLuokitus('paatieteenala').then(function(o) {
-      $scope.codes.tieteenalat = o;
-    });
-    !$scope.codes.julkaisutyypit && KoodistoService.getLuokitus('julkaisunpaaluokka').then(function(o) {
-      $scope.codes.julkaisutyypit = o;
 
-      angular.forEach($scope.codes.julkaisutyypit, function(aobj, akey) {
-        KoodistoService.getAlatyypit('julkaisunpaaluokka', aobj.arvo).then(function (o) {
-          aobj.alatyypit = o;
-        });
-      });
+    !$scope.codes.kieli && KoodistoService.getKielet().then(function(o) {
+        $scope.codes.kieli = o.data;
     });
-    !$scope.codes.julkaisuntekijanrooli && KoodistoService.getKoodisto('julkaisuntekijanrooli').then(function(o) {
-      $scope.codes.julkaisuntekijanrooli = o;
+    !$scope.codes.maatjavaltiot2 && KoodistoService.getValtiot().then(function(o) {
+        $scope.codes.maatjavaltiot2 = o.data;
     });
-    !$scope.codes.taiteenalat && KoodistoService.getKoodisto('taiteenala').then(function(o) {
-      $scope.codes.taiteenalat = o;
+    !$scope.codes.julkaisuntila && KoodistoService.getJulkaisuntila().then(function(o) {
+      $scope.codes.julkaisuntila = o.data;
+
     });
-    !$scope.codes.taidealantyypit && KoodistoService.getKoodisto('taidealantyyppikategoria').then(function(o) {
-      $scope.codes.taidealantyypit = o;
+
+    // tieteenalat, julkaisutyypit, ...
+    !$scope.codes.tieteenalat && KoodistoService.getTieteenalat().then(function(o) {
+      $scope.codes.tieteenalat = o.data;
+    });
+    !$scope.codes.julkaisutyypit && KoodistoService.getJulkaisuluokat().then(function(o) {
+      $scope.codes.julkaisutyypit = o.data;
+    });
+    !$scope.codes.julkaisuntekijanrooli && KoodistoService.getRooli().then(function(o) {
+        $scope.codes.julkaisuntekijanrooli = o.data;
+    });
+    !$scope.codes.taiteenalat && KoodistoService.getTaiteenalat().then(function(o) {
+      $scope.codes.taiteenalat = o.data;
+    });
+    !$scope.codes.taidealantyypit && KoodistoService.getTaidealantyypit().then(function(o) {
+      $scope.codes.taidealantyypit = o.data;
     });
 
 
@@ -142,20 +135,20 @@ angular.module('IndexController', [])
       $scope.organizationListFI = retFI.sort();
       $scope.organizationListSV = retSV.sort();
       $scope.organizationListEN = retEN.sort();
-  }
+  };
 
     // ugly hack to get ALL alatieteenalas in one list
-    $scope.getAlltieteenalat = function() {
-      let ret = [];
-      angular.forEach($scope.codes.tieteenalat, function(tobj, tkey) {
-        tobj.nogo = true;
-        ret.push(tobj);
-        angular.forEach(tobj.alatyypit, function(aobj, akey) {
-          ret.push(aobj);
-        });
-      });
-      return ret;
-    };
+      $scope.getAlltieteenalat = function() {
+          let ret = [];
+          angular.forEach($scope.codes.tieteenalat, function(tobj, tkey) {
+              tobj.nogo = true;
+              ret.push(tobj);
+              angular.forEach(tobj.alatyypit, function(aobj, akey) {
+                  ret.push(aobj);
+              });
+          });
+          return ret;
+      };
 
     // for knowing (save to scope) which "state" is selected (criteria+$transitions)
     let criteria = {
