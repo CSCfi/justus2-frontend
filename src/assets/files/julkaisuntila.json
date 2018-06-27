@@ -1,0 +1,27 @@
+[
+    {
+        "arvo": "1",
+        "selite": "Valmis/Juuli",
+        "kuvaus": "Julkaisun tiedot voidaan julkaista tietovarannon rajapintojen kautta ja siirtää Juuliin. Tiedoissa on kuitenkin puutteita, eikä niitä voida vielä käyttää osana OKM:n tiedonkeruuta."
+    },
+    {
+        "arvo": "-1",
+        "selite": "Hylätty",
+        "kuvaus": "Julkaisun tietoja ei siirretä tietovarantoon tai julkaisu poistetaan"
+    },
+    {
+        "arvo": "2",
+        "selite": "Valmis/OKM",
+        "kuvaus": "Julkaisu voidaan raportoida Juulissa ja se sisältää kaikki OKM-tiedonkeruussa julkaisutyypiltä vaadittavat arvot"
+    },
+    {
+        "arvo": "0",
+        "selite": "Kesken",
+        "kuvaus": "Julkaisun tietoja ei siirretä Juuliin tai raportoida OKM-tiedonkeruussa, mutta voidaan siirtää tiettyihin erikseen sovittaviin palveluihin."
+    },
+    {
+        "arvo": "9",
+        "selite": "Yhteisjulkaisu",
+        "kuvaus": "Julkaisu raportoidaan yhteisjulkaisuna. Yhteisjulkaisun tunniste arvo löytyy <Yhteisjulkaisuntunnus> elementistä"
+    }
+]

@@ -1,0 +1,106 @@
+[
+  {
+    "arvo": "5",
+    "selite": "Yhteiskuntatieteet",
+    "alatyypit": [
+      {
+        "arvo": "513",
+        "selite": "Oikeustiede"
+      },
+      {
+        "arvo": "516",
+        "selite": "Kasvatustieteet"
+      },
+      {
+        "arvo": "520",
+        "selite": "Muut yhteiskuntatieteet"
+      },
+      {
+        "arvo": "5141",
+        "selite": "Sosiologia"
+      },
+      {
+        "arvo": "517",
+        "selite": "Valtio-oppi, hallintotiede"
+      },
+      {
+        "arvo": "511",
+        "selite": "Kansantaloustiede"
+      },
+      {
+        "arvo": "5142",
+        "selite": "Sosiaali- ja yhteiskuntapolitiikka"
+      },
+      {
+        "arvo": "518",
+        "selite": "Media- ja viestintätieteet"
+      },
+      {
+        "arvo": "512",
+        "selite": "Liiketaloustiede"
+      },
+      {
+        "arvo": "515",
+        "selite": "Psykologia"
+      },
+      {
+        "arvo": "519",
+        "selite": "Yhteiskuntamaantiede, talousmaantiede"
+      }
+    ]
+  },
+  {
+    "arvo": "2",
+    "selite": "Tekniikka",
+    "alatyypit": [
+      {
+        "arvo": "211",
+        "selite": "Arkkitehtuuri"
+      },
+      {
+        "arvo": "215",
+        "selite": "Teknillinen kemia, kemian prosessitekniikka"
+      },
+      {
+        "arvo": "219",
+        "selite": "Ympäristön bioteknologia"
+      },
+      {
+        "arvo": "212",
+        "selite": "Rakennus- ja yhdyskuntatekniikka"
+      },
+      {
+        "arvo": "216",
+        "selite": "Materiaalitekniikka"
+      },
+      {
+        "arvo": "220",
+        "selite": "Teollinen bioteknologia"
+      },
+      {
+        "arvo": "213",
+        "selite": "Sähkö-, automaatio- ja tietoliikennetekniikka, elektroniikka"
+      },
+      {
+        "arvo": "217",
+        "selite": "Lääketieteen tekniikka"
+      },
+      {
+        "arvo": "221",
+        "selite": "Nanoteknologia"
+      },
+      {
+        "arvo": "214",
+        "selite": "Kone- ja valmistustekniikka"
+      },
+      {
+        "arvo": "218",
+        "selite": "Ympäristötekniikka"
+      },
+      {
+        "arvo": "222",
+        "selite": "Muu tekniikka"
+      }
+    ]
+  }
+]

@@ -75,6 +75,11 @@ const config = {
     imageSrc: [
       SOURCE_PATH + '/assets/img/*'
     ],
+	
+	// Only for developing purposes
+	 fileSrc: [
+      SOURCE_PATH + '/assets/files/*'
+    ],
 
     rootAssetSrc: [
       SOURCE_PATH + '/assets/root/*'
@@ -219,6 +224,11 @@ gulp.task('images', function () {
     .pipe(gulp.dest(buildDestinationPath + '/img'));
 });
 
+gulp.task('files', function () {
+  gulp.src(config.assets.fileSrc)
+    .pipe(gulp.dest(buildDestinationPath + '/files'));
+});
+
 gulp.task('rootAssets', function () {
   gulp.src(config.assets.rootAssetSrc)
     .pipe(gulp.dest(buildDestinationPath + '/'));
@@ -243,7 +253,7 @@ gulp.task('build', function (callback) {
     'clean',
     'generate-config',
     'templatecache',
-    ['app-js', 'lib-js', 'app-css', 'lib-css', 'fonts', 'images', 'rootAssets', 'html'],
+    ['app-js', 'lib-js', 'app-css', 'lib-css', 'fonts', 'images', 'files', 'rootAssets', 'html'],
     'rev-all',
     callback
   );
@@ -260,7 +270,7 @@ gulp.task('dev', function () {
     'clean',
     'generate-config',
     'templatecache',
-    ['app-js', 'lib-js', 'app-css', 'lib-css', 'fonts', 'images', 'rootAssets', 'html'],
+    ['app-js', 'lib-js', 'app-css', 'lib-css', 'fonts', 'images', 'files', 'rootAssets', 'html'],
     'watch',
     function() {
       gutil.log(gutil.colors.green('Build successful, waiting for changes...'));

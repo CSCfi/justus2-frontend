@@ -1,0 +1,18 @@
+[
+	{
+		"arvo": "10",
+		"selite": "kaunokirjallinen teos (runo, romaani, näytelmä, satu jne.)"
+	},
+	{
+		"arvo": "42",
+		"selite": "näytös"
+	},
+	{
+		"arvo": "74",
+		"selite": "äänikirja"
+	},
+	{
+		"arvo": "41",
+		"selite": "näyttelyn suunnittelu/kuratointi"
+	}
+]
