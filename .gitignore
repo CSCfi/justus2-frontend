@@ -42,6 +42,4 @@ bower_components
 dist/
 build/
 src/app/templates.js
-src/config.js
-src/environment_config.json
 src/app/js/environment_config.js
