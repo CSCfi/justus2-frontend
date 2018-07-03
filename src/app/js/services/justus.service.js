@@ -29,15 +29,15 @@ angular.module('JustusService', [])
   this.isFieldVisible = function(field) {
     let visible = false;
 
-    if (field_default_config[field] && field_default_config[field].visibleInPublicationTypes.indexOf(this.justus['julkaisutyyppi']) !== -1) {
+    if (field_default_config[field] && field_default_config[field].visibleInPublicationTypes.indexOf(this.justus.julkaisu['julkaisutyyppi']) !== -1) {
       visible = true;
     }
 
     // If the field is visible for the current publication type, it
     // can still be hidden by the active organization
     if (visible === true || !field_default_config[field]) {
-      let organizationConfig = this.getOrganizationFieldConfig($rootScope.user.domain, $rootScope.user.organization.code);
-      visible = organizationConfig.visibleFields.indexOf(field) !== -1;
+      let organizationConfig = $rootScope.user.visibleFields;
+      visible = organizationConfig.indexOf(field) !== -1;
     }
 
     return visible;
@@ -52,7 +52,8 @@ angular.module('JustusService', [])
       return false;
     }
 
-    let fieldRequired = field_default_config[fieldName].requiredInPublicationTypes.indexOf(this.justus['julkaisutyyppi']) !== -1 &&
+    
+    let fieldRequired = field_default_config[fieldName].requiredInPublicationTypes.indexOf(this.justus.julkaisu['julkaisutyyppi']) !== -1 &&
     this.isFieldRequiredByOrganization(fieldName);
 
     // If the field was required we need to check if the field required attribute depends on another filled field
@@ -66,7 +67,7 @@ angular.module('JustusService', [])
     // Otherwise the field can be made mandatory by another filled field
     else {
       angular.forEach(field_default_config[fieldName].requiredWithFields, function(field) {
-        if (this.fieldIsEmpty(this.justus[field]) === false && this.justus[field] !== '0') {
+        if (this.fieldIsEmpty(this.justus[field]) === false && this.justus.julkaisu[field] !== '0') {
           fieldRequired = true;
         }
       }, this);
@@ -76,8 +77,8 @@ angular.module('JustusService', [])
   };
 
   this.isFieldRequiredByOrganization = function(fieldName) {
-    let organizationConfig = this.getOrganizationFieldConfig($rootScope.user.domain, $rootScope.user.organization.code);
-    return organizationConfig.requiredFields.indexOf(fieldName) !== -1;
+    let organizationConfig = $rootScope.user.requiredFields;
+    return organizationConfig.indexOf(fieldName) !== -1;
   };
 
   this.fieldIsEmpty = function(fieldValue) {
