@@ -8,11 +8,15 @@ angular.module('IndexController', [])
     $scope.siteUrl = SITE_URL;
 
     if (typeof (AUTH_URL) !== 'undefined') {
+
       $http.get(AUTH_URL)
       .then(function(response) {
         $scope.user = response.data;
+
         // backend/auth provides but config has more info (code+mail):
-        $scope.user.organization = domain_organization[$scope.user.domain];
+
+        // $scope.user.organization = domain_organization[$scope.user.domain];
+
         $rootScope.user = $scope.user;
         $rootScope.initialUser = $scope.user;
         $scope.initialRole = $scope.user.role;
@@ -22,17 +26,63 @@ angular.module('IndexController', [])
         $scope.selectedDemoUserRole = $scope.user.role;
         $scope.selectedDemoUserOrganizationCode = $scope.user.organization.code;
       })
+
       .catch(function() {
         if (DEMO_ENABLED) {
-          $rootScope.user = demoUser;
-          $scope.user = demoUser;
-          $scope.initialRole = $scope.user.role;
-          $rootScope.initialUser = $scope.user;
-          AuthService.storeUserInfo($scope.user);
 
-          // Initialize role/organization selectors for demo user
-          $scope.selectedDemoUserRole = $scope.user.role;
-          $scope.selectedDemoUserOrganizationCode = $scope.user.organization.code;
+    /*** Demouser ***/
+
+            $http.get('files/organisaatiolistaus.json')
+                .then(function(response) {
+                    let allOrganizations = response.data;
+                    $scope.codes.organization = response.data;
+
+                    for (var i = 0; i < allOrganizations.length; i++) {
+                        if (allOrganizations[i].arvo === '00000') {
+                            $rootScope.user = allOrganizations[i];
+                            $scope.user = allOrganizations[i];
+                        }
+                    }
+
+                    $scope.user.name = demoUser.name;
+                    $scope.user.organization = demoUser.organization;
+                    $scope.user.role = demoUser.role;
+
+                    $scope.initialRole = 'admin';
+                    $rootScope.initialUser = $scope.user;
+                    AuthService.storeUserInfo($scope.user);
+
+                    // Initialize role/organization selectors for demo user
+                    $scope.selectedDemoUserRole = 'admin';
+                    $scope.selectedDemoUserOrganizationCode = '00000';
+            //         console.log(allOrganizations);
+
+
+          /*** Enf of demouser ***/
+
+
+          /*** Organisation user ***/
+
+      // $http.get('files/user.json')
+      //     .then(function(response) {
+      //
+      //         $rootScope.user = response.data;
+      //         $scope.user = response.data;
+      //
+      //         $scope.initialRole = $scope.user.role;
+      //         console.log($scope.initialRole);
+      //         $rootScope.initialUser = $scope.user;
+      //
+      //         // Initialize role/organization selectors for demo user
+      //         $scope.selectedDemoUserRole = 'admin';
+      //         $scope.selectedDemoUserOrganizationCode = '00000';
+      //
+      //         AuthService.storeUserInfo($scope.user);
+
+
+          /*** Enf of organisation user ***/
+
+        });
         }
       });
     }
@@ -72,49 +122,7 @@ angular.module('IndexController', [])
 
 
 
-    // unite organization code and alayksikkokoodi to "organization" codeset (our own!)
-    // nb! only for those organizations we've included in config. (there are a lot of them otherwise, for ex all oppilaitosnumero)
-    // reset variables
-    if (!$scope.codes.organization) {
-      $scope.codes.organization = []; // setup
-      let orgPushed = []; // collect codes which have been pushed (multiple domains cases)
-      angular.forEach(domain_organization, function(dobj, domain) {
-        if (orgPushed.indexOf(dobj.code) < 0) {
-          // nb! not entire koodisto, just one code at a time
-          // not all organizations are of type oppilaitos there are tutkimusorganisaatio also
-          let codeset = 'oppilaitosnumero';
-          if (dobj.code.length > 5) {
-            codeset = 'tutkimusorganisaatio';
-          }
-          KoodistoService.getKoodi(codeset, dobj.code).then(function(o) {
-            KoodistoService.getKoodisto('alayksikkokoodi').then(function(a) {
-              $scope.codes.alayksikkokoodi = a;
-              angular.forEach(o, function(oobj, okey) {
-                oobj.alatyypit = [];
-                oobj.alatyypit2017 = [];
-                angular.forEach(a, function(aobj, akey) {
-                  if (aobj.arvo.match('^' + oobj.arvo + '-') && !aobj.arvo.match('-2017-')) { // alayksikkokoodi koodiarvo is in form "^123-..." where 123 is organization code
-                  // if (aobj.arvo.match('^' + oobj.arvo + '-')) { // alayksikkokoodi koodiarvo is in form "^123-..." where 123 is organization code
-                    oobj.alatyypit.push(aobj);
-                  }
-                  // filter year 2017 data
-                  if (aobj.arvo.match('^' + oobj.arvo + '-' + '2017-')) {
-                    oobj.alatyypit2017.push(aobj);
-                  }
-                });
-                // store in variable by pushing one at a time now
-                $scope.codes.organization.push(oobj);
-                orgPushed.push(oobj.arvo);
-              });
-              $scope.getOrganizationList();
-            });
-          });
-        }
-      });
-    }
-  }
-
- // for ui listing unique organizations ordered by languaage!
+ // for ui listing unique organizations ordered by language!
   $scope.getOrganizationList = function() {
 
         let retFI = [];
@@ -214,17 +222,13 @@ angular.module('IndexController', [])
       AuthService.storeUserInfo($scope.user);
     };
 
-    $scope.setDemoUserOrganization = function(organizationCode) {
-      for (let key in domain_organization) {
-        if (domain_organization.hasOwnProperty(key)) {
-          if (domain_organization[key].code === organizationCode) {
-            $scope.user.organization = domain_organization[key];
-            $scope.user.domain = key;
-            $rootScope.user = $scope.user;
-            AuthService.storeUserInfo($scope.user);
-          }
-        }
-      }
+    $scope.setDemoUserOrganization = function(organization) {
+        var organizationData = JSON.parse(organization);
+        $scope.user.organization.code = organizationData.arvo;
+        $scope.user.organization.name = organizationData.selite;
+        $scope.user.visibleFields = organizationData.visibleFields;
+        $rootScope.user.visibleFields = organizationData.visibleFields;
+        $scope.user.alayksikot = organizationData.alayksikot;
     };
 
     init();

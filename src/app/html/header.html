@@ -31,7 +31,7 @@
   <div class="col-xs-12 col-md-5 pull-right text-right">
     <div  data-ng-if="state.name!='index' && user">
       <span><i>{{user.name}}</i>,&nbsp;
-        <span data-ng-if="initialRole === 'owner'">{{ user.organization.code }}:&nbsp;</span>{{ getCode('organization', user.organization.code).selite[lang] }}</span>
+        <span data-ng-if="initialRole === 'owner'">{{ user.organization.code}}:&nbsp;</span>{{ user.organization.name }}</span>
       <span>| <a href="" data-ng-href="{{ siteUrl }}/Shibboleth.sso/Logout?return={{ siteUrl }}">{{i18n.header.logout[lang]}}</a></span>
     </div>
     <div>
@@ -40,12 +40,15 @@
           <i class="fa fa-question-circle justus-info"></i> {{i18n.header.help[lang]}}
         </a>
       </span>
+      <span data-ng-if="state.name !== 'justus'">
       <span>|</span>
-      <a href data-ng-show="lang!='FI'" data-ng-click="$parent.lang='FI'">{{i18n.header.lang.FI}}</a>
+
+      <a href data-ng-show="lang!='FI'" data-ng-click="changeLang('FI')">{{i18n.header.lang.FI}}</a>
       <span data-ng-show="lang!='FI'">|</span>
-      <a href data-ng-show="lang!='SV'" data-ng-click="$parent.lang='SV'">{{i18n.header.lang.SV}}</a>
+      <a href data-ng-show="lang!='SV'" data-ng-click="changeLang('SV')">{{i18n.header.lang.SV}}</a>
       <span data-ng-show="lang=='FI'">|</span>
-      <a href data-ng-show="lang!='EN'" data-ng-click="$parent.lang='EN'">{{i18n.header.lang.EN}}</a>
+      <a href data-ng-show="lang!='EN'" data-ng-click="changeLang('EN')">{{i18n.header.lang.EN}}</a>
+        </span>
     </div>
 
     <span data-ng-if="demoEnabled || initialRole === 'owner'">
@@ -55,7 +58,7 @@
         <option value="member">Member</option>
       </select>
       <select data-ng-model="selectedDemoUserOrganizationCode" data-ng-change="setDemoUserOrganization(selectedDemoUserOrganizationCode)">
-        <option data-ng-repeat="organization in codes.organization" value="{{organization.arvo}}">{{organization.arvo}}: {{organization.selite[lang]}}</option>
+        <option data-ng-repeat="organization in codes.organization" value="{{organization}}">{{organization.arvo}}: {{organization.selite}}</option>
       </select>
       <br>
       <a href data-ng-click="resetKoodisto()">reset koodisto</a>

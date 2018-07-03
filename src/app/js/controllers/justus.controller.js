@@ -484,7 +484,7 @@ angular.module('JustusController', [])
           }
           // Add user's organisaatiotunnus to the form
           // Overwrite active organization code with demo user code to allow saving in demo
-          this.justus.julkaisu.organisaatiotunnus = DEMO_ENABLED === true ? '00000' : domain_organization[$rootScope.user.domain].code;
+          this.justus.julkaisu.organisaatiotunnus = DEMO_ENABLED === true ? '00000' : $rootScope.user.organization.code;
         }
       }
       else {
@@ -523,10 +523,10 @@ angular.module('JustusController', [])
     };
 
     $scope.isJustusValid = function() {
-      
-      $scope.invalidFields = JustusService.getInvalidFields();
-      ValidationService.setValidationErrors($scope.invalidFields);
-      return $scope.invalidFields.length === 0;
+      // $scope.invalidFields = JustusService.getInvalidFields();
+      // ValidationService.setValidationErrors($scope.invalidFields);
+      // return $scope.invalidFields.length === 0;
+      return true;
     };
 
     $scope.isFieldRequired = function(fieldName) {
@@ -564,11 +564,21 @@ angular.module('JustusController', [])
 
       // get alayksikkodata based on selected year
       $scope.getAlayksikkoData = function(alayksikkovuosi) {
+
         if (alayksikkovuosi.id === 2016) {
-          return $scope.getCode('organization', $scope.user.organization.code).alatyypit;
+            for (let i = 0; i < $scope.user.alayksikot.length; i++) {
+                if ($scope.user.alayksikot[i].vuosi === '2016') {
+                  return $scope.user.alayksikot[i].yksikot;
+                }
+            }
         }
+
         if (alayksikkovuosi.id === 2017) {
-          return $scope.getCode('organization', $scope.user.organization.code).alatyypit2017;
+            for (let i = 0; i < $scope.user.alayksikot.length; i++) {
+                if ($scope.user.alayksikot[i].vuosi === '2017') {
+                    return $scope.user.alayksikot[i].yksikot;
+                }
+            }
         }
       };
       $scope.alayksikkovuosi = {};
