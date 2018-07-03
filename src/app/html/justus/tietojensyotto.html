@@ -265,7 +265,7 @@
                 </ui-select>
             </div>
 
-            <div data-ng-if="isFieldVisible('alayksikko') && isFieldRequired('alayksikko')" class="col-xs-12 col-sm-6 form-group" id="orcidGroup">
+            <div data-ng-if="isFieldVisible('alayksikko')" class="col-xs-12 col-sm-6 form-group" id="orcidGroup">
               <input type="text" class="form-control"
                 data-ng-model="justus.organisaatiotekija[$index].orcid"
                 data-ng-pattern="pattern.orcid" data-orcid-directive=""
@@ -273,7 +273,7 @@
               <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
             </div>
 
-          <div data-ng-if="isFieldVisible('alayksikko') && isFieldRequired('alayksikko')" class="col-xs-12 form-group" id="alayksikkoGroup">
+          <div data-ng-if="isFieldVisible('alayksikko') " class="col-xs-12 form-group" id="alayksikkoGroup">
             <div ng-if="justus.organisaatiotekija[$index].alayksikko.length < 1" class="row form-group">
                <div class="col-xs-9 col-sm-9">
                   <ui-select data-ng-model="alayksikko.selected"
@@ -284,7 +284,7 @@
                       {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
                     </ui-select-match>
                     <ui-select-choices repeat="o in getAlayksikkoData(alayksikkovuosi.selected) | filter: $select.search">
-                      {{o.arvo}} {{o.selite[lang]}}
+                      {{o.arvo}} {{o.selite}}
                     </ui-select-choices>
                   </ui-select>
                </div>
@@ -316,10 +316,10 @@
                   theme="bootstrap">
                   <ui-select-match class="ui-select-match"
                     placeholder="{{ota}} {{getCode('organization',ota).selite[lang] || i18n.content.form.organisaatiotekija.alayksikko.picktip[lang]}}">
-                    {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
+                    {{ $select.selected.arvo }} {{ $select.selected.selite }}
                   </ui-select-match>
                   <ui-select-choices repeat="o in getAlayksikkoData(alayksikkovuosi.selected) | filter: $select.search">
-                    {{o.arvo}} {{o.selite[lang]}}
+                    {{o.arvo}} {{o.selite}}
                   </ui-select-choices>
                 </ui-select>
               </div>
