@@ -2,8 +2,8 @@
 
 angular.module('IndexController', [])
 .controller('IndexController', [
-  '$scope', '$rootScope', '$http', '$window', '$stateParams', '$transitions', '$location', 'KoodistoService', 'AuthService', 'AUTH_URL', 'SITE_URL', 'DEMO_ENABLED',
-  function($scope, $rootScope, $http, $window, $stateParams, $transitions, $location, KoodistoService, AuthService, AUTH_URL, SITE_URL, DEMO_ENABLED) {
+  '$scope', '$rootScope', '$http', '$window', '$stateParams', '$transitions', '$location', 'KoodistoService', 'AuthService', 'APIService', 'AUTH_URL', 'SITE_URL', 'DEMO_ENABLED',
+  function($scope, $rootScope, $http, $window, $stateParams, $transitions, $location, KoodistoService, AuthService, APIService, AUTH_URL, SITE_URL, DEMO_ENABLED) {
     $scope.demoEnabled = DEMO_ENABLED;
     $scope.siteUrl = SITE_URL;
 
@@ -88,9 +88,11 @@ angular.module('IndexController', [])
     }
 
   let init = function() {
-    $scope.i18n = (typeof (i18n) !== 'undefined') ? i18n : {};
-    $scope.codes = (typeof (codes) !== 'undefined') ? codes : {}; // config
 
+    $scope.lang = AuthService.getLanguage();
+
+    $scope.i18n = (typeof (i18n) !== 'undefined') ? i18n : {};
+    $scope.codes = {};
 
     !$scope.codes.kieli && KoodistoService.getKielet().then(function(o) {
         $scope.codes.kieli = o.data;
@@ -100,7 +102,6 @@ angular.module('IndexController', [])
     });
     !$scope.codes.julkaisuntila && KoodistoService.getJulkaisuntila().then(function(o) {
       $scope.codes.julkaisuntila = o.data;
-
     });
 
     // tieteenalat, julkaisutyypit, ...
@@ -120,7 +121,15 @@ angular.module('IndexController', [])
       $scope.codes.taidealantyypit = o.data;
     });
 
+  };
 
+    $scope.changeLang = function(lang) {
+        $scope.lang = lang;
+        $stateParams.lang = lang;
+        AuthService.storeLanguage(lang);
+    //    post language parameter to backend
+    //     APIService.post('kieli', lang);
+    };
 
  // for ui listing unique organizations ordered by language!
   $scope.getOrganizationList = function() {
@@ -168,15 +177,17 @@ angular.module('IndexController', [])
       var name = trans.to().name;
       $scope.state = { name: name };
     });
+
     // figure out selected language (part of login process)
     $transitions.onSuccess(null, function(trans) {
-      $scope.lang = $stateParams.lang || $scope.lang || 'FI';
+      $scope.lang = $scope.lang || $stateParams.lang || 'FI';
     });
 
     // ACCESSORIES (scope functions)
 
     // check that user has access to whatever the input
     $scope.hasAccess = function(input) {
+
       // hyvaksy - admin role is required
       if (input === 'hyvaksy') {
         if ($scope.user && $scope.user.name &&
@@ -192,6 +203,7 @@ angular.module('IndexController', [])
       if ($scope.user && $scope.user.name &&
         $scope.user.organization && $scope.user.organization.code &&
         ($scope.user.role === 'owner' || $scope.user.role === 'admin' || $scope.user.role === 'member')) {
+
         return true;
       }
       return false;

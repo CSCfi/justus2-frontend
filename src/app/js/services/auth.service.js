@@ -10,5 +10,13 @@ angular.module('AuthService', [])
     this.getUserInfo = () => {
       return JSON.parse(localStorage.getItem('justusUser'));
     };
+
+      this.storeLanguage = (language) => {
+          localStorage.setItem('lang', JSON.stringify(language));
+      };
+
+      this.getLanguage = () => {
+          return JSON.parse(localStorage.getItem('lang'));
+      };
   }
 ]);
