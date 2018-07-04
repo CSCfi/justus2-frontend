@@ -256,7 +256,7 @@
                          >
                   <ui-select-match class="ui-select-match"
                                    data-ng-value="justus.organisaatiotekija[$index].rooli"
-                                   placeholder="{{justus.organisaatiotekija[$index].rooli}} {{getCode('julkaisuntekijanrooli',justus.organisaatiotekija[$index].rooli).selite[lang] || i18n.content.form.organisaatiotekija.tekijanrooli.picktip[lang]}}">
+                                   placeholder="{{justus.organisaatiotekija[$index].rooli}} {{getSelite(codes.julkaisuntekijanrooli ,justus.organisaatiotekija[$index].rooli) || i18n.content.form.organisaatiotekija.tekijanrooli.picktip[lang]}}">
                     {{ $select.selected.arvo }} {{ $select.selected.selite }}
                   </ui-select-match>
                   <ui-select-choices repeat="role in codes.julkaisuntekijanrooli | orderBy: 'arvo' | filter: $select.search">
@@ -274,48 +274,15 @@
             </div>
 
           <div data-ng-if="isFieldVisible('alayksikko') " class="col-xs-12 form-group" id="alayksikkoGroup">
-            <div ng-if="justus.organisaatiotekija[$index].alayksikko.length < 1" class="row form-group">
-               <div class="col-xs-9 col-sm-9">
-                  <ui-select data-ng-model="alayksikko.selected"
-                  on-select="useOrganisaatiotekijaAlayksikko($parent.$index,0,$select.selected.arvo)"
-                  theme="bootstrap">
-                    <ui-select-match class="ui-select-match"
-                      placeholder="{{ota}} {{getCode('organization',ota).selite[lang] || i18n.content.form.organisaatiotekija.alayksikko.picktip[lang]}}">
-                      {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
-                    </ui-select-match>
-                    <ui-select-choices repeat="o in getAlayksikkoData(alayksikkovuosi.selected) | filter: $select.search">
-                      {{o.arvo}} {{o.selite}}
-                    </ui-select-choices>
-                  </ui-select>
-               </div>
-            </div>
-
-            <div ng-if="justus.organisaatiotekija[$index].alayksikko.length >= 1">
-            <!-- ng repeat antaa tyhjän -->
+            <div>
             <div data-ng-repeat="ota in justus.organisaatiotekija[$index].alayksikko track by $index"
             data-ng-init="pIx=$parent.$index" class="row form-group">
               <div class="col-xs-9 col-sm-9">
-           
-                <!--<input type="hidden"-->
-                  <!--data-ng-model="justus.organisaatiotekija[$parent.$index].alayksikko[$index].alayksikko">-->
-                <!--<input type="text"-->
-                       <!--ng-disabled="true"-->
-                  <!--class="form-control"-->
-                  <!--data-ng-model="lab_organisaatiotekija[pIx].alayksikko$index"-->
-                  <!--data-ng-value="ota.alayksikko+' '+getCode('organization',ota.alayksikko).selite[lang]"-->
-                  <!--data-ng-show="ota.alayksikko">-->
-                <!--<span class="fa fa-times form-control-feedback" aria-hidden="true"></span>-->
-
-                <!--
-                {{pIx}}-{{$index}}({{justus.organisaatiotekija[$parent.$index].alayksikko.length}})-
-                -{{justus.organisaatiotekija[$parent.$index].alayksikko|json}}-
-                -"{{justus.organisaatiotekija[$parent.$index].alayksikko[$index]}}"="{{ota}}"
-                -->
                 <ui-select data-ng-model="alayksikko.selected"
                   on-select="useOrganisaatiotekijaAlayksikko(pIx,$index,$select.selected.arvo)"
                   theme="bootstrap">
                   <ui-select-match class="ui-select-match"
-                    placeholder="{{ota}} {{getCode('organization',ota).selite[lang] || i18n.content.form.organisaatiotekija.alayksikko.picktip[lang]}}">
+                    placeholder="{{ota}} {{ getSelite(user.alayksikot, ota)|| i18n.content.form.organisaatiotekija.alayksikko.picktip[lang]}}">
                     {{ $select.selected.arvo }} {{ $select.selected.selite }}
                   </ui-select-match>
                   <ui-select-choices repeat="o in getAlayksikkoData(alayksikkovuosi.selected) | filter: $select.search">
@@ -325,11 +292,6 @@
               </div>
 
               <div class="col-xs-3 col-sm-3">
-                <!--
-                {{pIx}}-{{$index}}({{justus.organisaatiotekija[$parent.$index].alayksikko.length}})-
-                -{{justus.organisaatiotekija[$parent.$index].alayksikko}}-
-                -"{{justus.organisaatiotekija[$parent.$index].alayksikko[$index]}}"="{{a}}"
-                -->
                 <span class="btn btn-primary"
                   data-ng-click="justus.organisaatiotekija[$parent.$index].alayksikko.splice($index, 1)"
                   data-ng-hide="justus.organisaatiotekija[$parent.$index].alayksikko.length<2"
@@ -542,7 +504,7 @@
             {{i18n.content.form.jufotunnus[lang]}}: {{justus.julkaisu.jufotunnus}}</span>
             <span data-ng-show="justus.julkaisu.jufotunnus && justus.julkaisu.jufoluokitus">,</span>
           <span data-ng-show="justus.julkaisu.jufoluokitus">
-            {{i18n.content.form.jufoluokitus[lang]}}: {{getCode('julkaisufoorumitaso',justus.julkaisu.jufoluokitus).selite[lang]}}
+            {{i18n.content.form.jufoluokitus[lang]}}: {{justus.julkaisu.jufoluokitus}}
           </span>
         </div>
       </div>

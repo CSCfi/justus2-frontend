@@ -231,34 +231,8 @@ angular.module('KoodistoService', [])
       });
     };
 
-    this.getCode = function (codes, codeset, code) {
-      if (!codes || !codes[codeset]) return;
-
-      for (let len = codes[codeset].length, i = 0; i < len && i in codes[codeset]; i++) {
-        const c = codes[codeset][i];
-        if (c.arvo === code) {
-          return c;
-        }
-        if (c.alatyypit) {
-          for (let jen = c.alatyypit.length, j = 0; j < jen && j in c.alatyypit; j++) {
-            const a = c.alatyypit[j];
-            if (a.arvo === code) {
-              return a;
-            }
-          }
-        }
-        if (c.alatyypit2017) {
-          for (let jen = c.alatyypit2017.length, j = 0; j < jen && j in c.alatyypit2017; j++) {
-            const a = c.alatyypit2017[j];
-            if (a.arvo === code) {
-              return a;
-            }
-          }
-        }
-      }
-    };
-
     this.getSelite = function(codeset, value) {
+
         for (let i = 0; i < codeset.length; i++) {
             const c = codeset[i];
             if (c.arvo === value) {
@@ -267,6 +241,14 @@ angular.module('KoodistoService', [])
             if (c.alatyypit) {
                 for (let j = 0; j < codeset[i].alatyypit.length; j++) {
                     const a = codeset[i].alatyypit[j];
+                    if (a.arvo === value) {
+                        return a.selite;
+                    }
+                }
+            }
+            if (c.yksikot) {
+                for (let k = 0; k < codeset[i].yksikot.length; k++) {
+                    const a = codeset[i].yksikot[k];
                     if (a.arvo === value) {
                         return a.selite;
                     }

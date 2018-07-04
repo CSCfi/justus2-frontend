@@ -19,7 +19,7 @@ angular.module('JustusController', [])
           "sukunimi": "",
           "orcid": "",
           "rooli": "",
-          "alayksikko": []
+          "alayksikko": [null]
         }
       ],
       "tieteenala": [],
@@ -140,13 +140,9 @@ angular.module('JustusController', [])
             "sukunimi": "",
             "orcid": "",
             "rooli": "",
-            "alayksikko": []
+            "alayksikko": [null]
         }
       )
-    };
-
-    $scope.getSelite = function(codeset, value) {
-        return KoodistoService.getSelite(codeset, value)
     };
 
     $scope.refreshKanavanimet = function(tyyppi, input) {
@@ -505,9 +501,8 @@ angular.module('JustusController', [])
       }
     };
 
-    // map from service (generic) to scope
-    $scope.getCode = function(codeset, code) {
-      return KoodistoService.getCode($scope.codes, codeset, code);
+    $scope.getSelite = function(codeset, value) {
+        return KoodistoService.getSelite(codeset, value)
     };
 
     $scope.isFieldVisible = function(field) {

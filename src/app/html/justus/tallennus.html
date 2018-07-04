@@ -52,12 +52,12 @@
             </div>
             <div data-ng-if="justus.organisaatiotekija[$index].rooli && justus.organisaatiotekija[$index].rooli.length > 0">
               <span data-ng-bind="justus.organisaatiotekija[$index].rooli"></span>
-              <span data-ng-bind="getCode('julkaisuntekijanrooli',justus.organisaatiotekija[$index].rooli).selite[lang]"></span>
+              <span data-ng-bind="getSelite(codes.julkaisuntekijanrooli ,justus.organisaatiotekija[$index].rooli)"></span>
             </div>
             <div data-ng-if="justus.organisaatiotekija.length > 0 && justus.organisaatiotekija[0].alayksikko.length > 0">
               <span data-ng-repeat="a in justus.organisaatiotekija[$index].alayksikko track by $index">
                 {{ a }}
-                <span data-ng-if="a"> ({{ getCode('organization',a).selite[lang] }})</span>
+                <span data-ng-if="a"> ({{ getSelite(user.alayksikot ,a) }})</span>
                 <span data-ng-if="!$last">, </span>
               </span>
             </div>
@@ -94,9 +94,9 @@
         <td class="condensed">{{ i18n.content.form.lehdenjulkaisusarjannimi[lang] }}</td>
         <td>
           <span data-ng-bind="justus.julkaisu.lehdenjulkaisusarjannimi"></span>
-          <div class="field-info" data-ng-show="justus.jufotunnus || justus.jufoluokitus">
+          <div class="field-info" data-ng-show="justus.julkaisu.jufotunnus || justus.julkaisu.jufoluokitus">
             <span data-ng-show="justus.julkaisu.jufotunnus">{{i18n.content.form.jufotunnus[lang]}}: {{justus.julkaisu.jufotunnus}}</span><span data-ng-show="justus.julkaisu.jufotunnus && justus.julkaisu.jufoluokitus">,</span>
-            <span data-ng-show="justus.julkaisu.jufoluokitus">{{i18n.content.form.jufoluokitus[lang]}}: {{getCode('julkaisufoorumitaso',justus.julkaisu.jufoluokitus).selite[lang]}}</span>
+            <span data-ng-show="justus.julkaisu.jufoluokitus">{{i18n.content.form.jufoluokitus[lang]}}: {{ justus.julkaisu.jufoluokitus }}</span>
           </div>
         </td>
       </tr>
