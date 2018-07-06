@@ -1,0 +1,57 @@
+[
+    {
+        "id": "242",
+        "organisaatiotunnus": "00000",
+        "julkaisutyyppi": "C1",
+        "julkaisunnimi": "Testijulkaisu2",
+		"julkaisuvuosi": "2018",
+        "tekijat": "Nikkanen, Joonas; Testaaja, Testi",
+		"julkaisuntila": "",
+        "username": "Joonas Nikkanen",
+        "modified": "2017-11-13 12:20:46.036+00"
+    },
+	  {
+        "id": "243",
+        "organisaatiotunnus": "00000",
+        "julkaisutyyppi": "C1",
+        "julkaisunnimi": "Testijulkaisu",
+		"julkaisuvuosi": "2018",
+        "tekijat": "Nikkanen, Joonas; Testaaja, Testi",
+		"julkaisuntila": "",
+        "username": "Satu Suominen",
+        "modified": "2017-11-13 12:20:46.036+00"
+    },
+    {
+        "id": "246",
+        "organisaatiotunnus": "00000",
+        "julkaisutyyppi": "A1",
+        "julkaisunnimi": "Lorem Ipsum",
+		"julkaisuvuosi": "2018",
+        "tekijat": "Lorem, Ipsum", 
+        "julkaisuntila": "0",
+        "username": "Justus Demo",
+        "modified": "2017-07-07 11:11:52.772+00"
+    },
+    {
+        "id": "273",
+        "organisaatiotunnus": "00000",
+        "julkaisutyyppi": "A1",
+        "julkaisunnimi": "testi",
+		"julkaisuvuosi": "2018",
+        "tekijat": "testi, testi",
+        "julkaisuntila": "1",
+        "username": "Joonas Nikkanen",
+        "modified": "2017-11-28 07:30:53.607+00"
+    },
+    {
+        "id": "247",
+        "organisaatiotunnus": "00000",
+        "julkaisutyyppi": "A1",
+        "julkaisunnimi": "Lorem Ipsum",
+		"julkaisuvuosi": "2018",
+        "tekijat": "Lorem, Ipsum",
+		"julkaisuntila": "2",
+		"username": "Satu Suominen",
+		"modified": "2017-07-07 11:11:52.772+00"
+	}
+]

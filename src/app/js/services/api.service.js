@@ -192,5 +192,19 @@ angular.module('APIService', [])
         $log.error('delete ERROR ' + response.status + ' ' + response.data);
       });
     };
+
+
+  //  for developing purposes
+      this.getJulkaisulista = function() {
+          return $http({
+              method: 'GET',
+              url: 'files/julkaisulista.json'
+          })
+              .then(function (response) {
+                  let ret = response.data; // list always
+                  return ret;
+              })
+
+      };
   }
 ]);

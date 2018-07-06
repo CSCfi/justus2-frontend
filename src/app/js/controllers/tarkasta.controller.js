@@ -504,6 +504,7 @@ angular.module('TarkastaController', [])
         if ($scope.state.name === 'omat' && d.julkaisuntila) {
           return;
         } else {
+
           DataStoreService.storeStateData($scope.state.name)
           DataStoreService.storeBooleanforOdottavat($scope.odottavat);
           $location.path('/justus').search({lang: $scope.lang, id: d.id, vaihe: 4});
@@ -545,19 +546,20 @@ angular.module('TarkastaController', [])
         const val = $scope.user.organization.code !== '00000' ? $scope.user.organization.code : null;
         const col = $scope.user.organization.code !== '00000' ? 'organisaatiotunnus' : null;
 
-        APIService.get('julkaisu', val, col, $scope.query)
+        APIService.getJulkaisulista()
+        //   APIService.get('julkaisu', val, col, $scope.query)
           .then(function (obj) {
-            // console.log(val);
-
-            $scope.totalItems = obj.totalItems || 0;
+              $scope.totalItems = obj.totalItems || 0;
 
             return Promise.map(obj, function (o, k) {
               // NB! API returns '2017-03-24 12:37:47.18+02'
               // => convert string first (as illustrated in http://dygraphs.com/date-formats.html)
+
               if (o.modified) {
                 let m = o.modified;
                 m = m.replace(/-/g, '/'); // date separator to '/'
                 m = m.replace(/\..*$/, ''); // strip milliseconds away
+                m = m.replace(/\+.*$/, ''); // strip timezone
                 o.modified = new Date(m);
               }
               o.ui_julkaisuntila = o.julkaisuntila;
@@ -581,38 +583,6 @@ angular.module('TarkastaController', [])
       };
 
 
-      // $scope.getOtherData = function() {
-      //   Promise.all([
-      //     $scope.getData('organisaatiotekija'),
-      //     $scope.getData('alayksikko'),
-      //     $scope.getData('tieteenala'),
-      //     $scope.getData('taiteenala'),
-      //     $scope.getData('avainsana'),
-      //     $scope.getData('lisatieto'),
-      //     $scope.getData('taidealantyyppikategoria')
-      //   ])
-      //     .spread((organisaatiotekija, alayksikko, tieteenala, taiteenala, avainsana, lisatieto, taidealantyyppikategoria) => {
-      //       $scope.organisaatioData = organisaatiotekija;
-      //       $scope.alayksikkoData = alayksikko;
-      //       $scope.tieteenalaData = tieteenala;
-      //       $scope.taiteenalaData = taiteenala;
-      //       $scope.avainsanaData = avainsana;
-      //       $scope.taidelisatietoData = lisatieto;
-      //       $scope.taidealantyyppiData = taidealantyyppikategoria;
-      //     }).then(() => {
-      //     mapOrganisaatioData();
-      //     mapAlayksikkoData();
-      //     mapTieteenalaData();
-      //     mapTaiteenalaData();
-      //     mapAvainsanat();
-      //     mapTaidelisatietoData();
-      //     mapTaidealantyyppiData();
-      //   });
-      // }
-
-      // let val;
-      // let col;
-
       $scope.showRejectedPublications = function() {
 
 
@@ -625,7 +595,7 @@ angular.module('TarkastaController', [])
           $scope.showhide = $scope.i18n.content.tarkasta.hylatyt.piilota;
 
         }
-      }
+      };
 
       let init = function () {
 
