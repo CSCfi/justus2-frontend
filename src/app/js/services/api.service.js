@@ -206,5 +206,21 @@ angular.module('APIService', [])
               })
 
       };
+
+      //  for developing purposes
+      this.getJulkaisu = function() {
+          return $http({
+              method: 'GET',
+              url: 'files/julkaisu.json'
+          })
+              .then(function (response) {
+                  let ret = response.data; // list always
+                  // console.log(ret);
+                  return ret;
+              })
+
+      }
+
+
   }
 ]);
