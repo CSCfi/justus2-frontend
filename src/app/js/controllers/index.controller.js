@@ -39,8 +39,8 @@ angular.module('IndexController', [])
 
                     for (var i = 0; i < allOrganizations.length; i++) {
                         if (allOrganizations[i].arvo === '00000') {
-                            $rootScope.user = allOrganizations[i];
-                            $scope.user = allOrganizations[i];
+                            $rootScope.user = angular.copy(allOrganizations[i]);
+                            $scope.user = angular.copy(allOrganizations[i]);
                         }
                     }
 
@@ -55,7 +55,6 @@ angular.module('IndexController', [])
                     // Initialize role/organization selectors for demo user
                     $scope.selectedDemoUserRole = 'admin';
                     $scope.selectedDemoUserOrganizationCode = '00000';
-            //         console.log(allOrganizations);
 
 
           /*** Enf of demouser ***/
@@ -214,11 +213,6 @@ angular.module('IndexController', [])
       $window.location.href = SITE_URL + '/Shibboleth.sso/Login?target=' + target;
     };
 
-    // map from service (generic) to scope
-    $scope.getCode = function(codeset, code) {
-      return KoodistoService.getCode($scope.codes, codeset, code);
-    };
-
     // helper for localStorage
     $scope.resetKoodisto = function() {
       KoodistoService.reset();
@@ -234,13 +228,22 @@ angular.module('IndexController', [])
       AuthService.storeUserInfo($scope.user);
     };
 
-    $scope.setDemoUserOrganization = function(organization) {
-        var organizationData = JSON.parse(organization);
-        $scope.user.organization.code = organizationData.arvo;
-        $scope.user.organization.name = organizationData.selite;
-        $scope.user.visibleFields = organizationData.visibleFields;
-        $rootScope.user.visibleFields = organizationData.visibleFields;
-        $scope.user.alayksikot = organizationData.alayksikot;
+    $scope.setDemoUserOrganization = function(organizationCode) {
+
+        for (let i = 0; i < $scope.codes.organization.length; i++) {
+            if ($scope.codes.organization[i].arvo === organizationCode) {
+
+                $scope.user.organization.code = organizationCode;
+                $scope.user.organization.name = $scope.codes.organization[i].selite;
+
+                $scope.user.visibleFields = $scope.codes.organization[i].visibleFields;
+                $rootScope.user.visibleFields = $scope.codes.organization[i].visibleFields;
+
+                $scope.user.alayksikot = $scope.codes.organization[i].alayksikot;
+
+            }
+        }
+
     };
 
     init();
