@@ -207,6 +207,18 @@ angular.module('APIService', [])
 
       };
 
+      this.getJulkaisulistaAll = function() {
+          return $http({
+              method: 'GET',
+              url: 'files/julkaisulistaAll.json'
+          })
+              .then(function (response) {
+                  let ret = response.data; // list always
+                  return ret;
+              })
+
+      };
+
       //  for developing purposes
       this.getJulkaisu = function() {
           return $http({
