@@ -46,6 +46,7 @@ angular.module('IndexController', [])
 
                     $scope.user.name = demoUser.name;
                     $scope.user.organization = demoUser.organization;
+                    $rootScope.user.organization = demoUser.organization;
                     $scope.user.role = demoUser.role;
 
                     $scope.initialRole = 'admin';
@@ -238,6 +239,9 @@ angular.module('IndexController', [])
 
                 $scope.user.visibleFields = $scope.codes.organization[i].visibleFields;
                 $rootScope.user.visibleFields = $scope.codes.organization[i].visibleFields;
+
+                $scope.user.requiredFields = $scope.codes.organization[i].requiredFields;
+                $rootScope.user.requiredFields = $scope.codes.organization[i].requiredFields;
 
                 $scope.user.alayksikot = $scope.codes.organization[i].alayksikot;
 
