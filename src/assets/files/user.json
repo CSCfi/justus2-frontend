@@ -1,3 +1,4 @@
+
 { 
 	"domain": "@laurea.fi",
 	"name": "masa meikäläinen",
@@ -143,30 +144,25 @@
     "tekijanrooli",
     "lisatieto"
   ],
-  "requiredFields": [
-    "etunimet",
-    "sukunimi",
-    "julkaisutyyppi",
-    "julkaisuvuosi",
-    "julkaisunnimi",
-    "tekijat",
-    "julkaisuntekijoidenlukumaara",
-    "organisaatiotekija",
-    "alayksikko",
-    "konferenssinvakiintunutnimi",
-    "isbn",
-    "issn",
-    "lehdenjulkaisusarjannimi",
-    "kustantaja",
-    "julkaisunkansainvalisyys",
-    "tieteenala",
-    "tieteenalakoodi",
-    "taiteenala",
-    "taiteenalakoodi",
-    "kansainvalinenyhteisjulkaisu",
-    "yhteisjulkaisuyrityksenkanssa",
-    "avoinsaatavuus",
-    "julkaisurinnakkaistallennettu",
-    "rinnakkaistallennetunversionverkkoosoite"
-  ]
+    "requiredFields": [
+      "etunimet",
+      "sukunimi",
+      "julkaisutyyppi",
+      "julkaisuvuosi",
+      "julkaisunnimi",
+      "tekijat",
+      "julkaisuntekijoidenlukumaara",
+      "organisaatiotekija",
+      "alayksikko",
+      "konferenssinvakiintunutnimi",
+      "lehdenjulkaisusarjannimi",
+      "julkaisunkansainvalisyys",
+      "tieteenala",
+      "taiteenala",
+      "kansainvalinenyhteisjulkaisu",
+      "yhteisjulkaisuyrityksenkanssa",
+      "avoinsaatavuus",
+      "julkaisurinnakkaistallennettu",
+      "alayksikko"
+    ]
 }

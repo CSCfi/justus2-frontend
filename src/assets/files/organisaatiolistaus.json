@@ -1,5 +1,5 @@
 [
- {
+  {
     "arvo": "00000",
     "selite": "Tuntematon",
     "kuvaus": "Sovelluskäyttöä varten lisätty arvo. Kun oppilaitosnro ei ole tiedossa tai sitä ei voida päätellä, voidaan käyttää tätä",
@@ -53,9 +53,28 @@
       "muutunniste",
       "pysyvaverkkoosoite",
       "tekijanrooli",
-      "lisatieto"
+      "lisatieto",
+      "orcid"
     ],
-    "requiredFields": []
+    "requiredFields": [
+      "etunimet",
+      "sukunimi",
+      "julkaisutyyppi",
+      "julkaisuvuosi",
+      "julkaisunnimi",
+      "tekijat",
+      "julkaisuntekijoidenlukumaara",
+      "organisaatiotekija",
+      "konferenssinvakiintunutnimi",
+      "lehdenjulkaisusarjannimi",
+      "julkaisunkansainvalisyys",
+      "tieteenala",
+      "taiteenala",
+      "kansainvalinenyhteisjulkaisu",
+      "yhteisjulkaisuyrityksenkanssa",
+      "avoinsaatavuus",
+      "julkaisurinnakkaistallennettu"
+    ]
   },
   {
     "arvo": "02535",
@@ -231,8 +250,6 @@
       "tekijat",
       "julkaisuntekijoidenlukumaara",
       "organisaatiotekija",
-      "alayksikko",
-      "orcid",
       "konferenssinvakiintunutnimi",
       "isbn",
       "issn",
@@ -263,11 +280,32 @@
       "muutunniste",
       "pysyvaverkkoosoite",
       "tekijanrooli",
-      "lisatieto"
+      "lisatieto",
+      "alayksikko",
+      "orcid"
     ],
-    "requiredFields": []
+    "requiredFields": [
+      "etunimet",
+      "sukunimi",
+      "julkaisutyyppi",
+      "julkaisuvuosi",
+      "julkaisunnimi",
+      "tekijat",
+      "julkaisuntekijoidenlukumaara",
+      "organisaatiotekija",
+      "alayksikko",
+      "konferenssinvakiintunutnimi",
+      "lehdenjulkaisusarjannimi",
+      "julkaisunkansainvalisyys",
+      "tieteenala",
+      "taiteenala",
+      "kansainvalinenyhteisjulkaisu",
+      "yhteisjulkaisuyrityksenkanssa",
+      "avoinsaatavuus",
+      "julkaisurinnakkaistallennettu",
+      "alayksikko"
+    ]
   },
- 
   {
     "arvo": "02536",
     "selite": "Centria-ammattikorkeakoulu",
@@ -390,8 +428,6 @@
       "tekijat",
       "julkaisuntekijoidenlukumaara",
       "organisaatiotekija",
-		"alayksikko",
-		"orcid",
       "konferenssinvakiintunutnimi",
       "isbn",
       "issn",
@@ -422,9 +458,30 @@
       "muutunniste",
       "pysyvaverkkoosoite",
       "tekijanrooli",
-      "lisatieto"
+      "lisatieto",
+      "alayksikko"
     ],
-    "requiredFields": []
+    "requiredFields": [
+      "etunimet",
+      "sukunimi",
+      "julkaisutyyppi",
+      "julkaisuvuosi",
+      "julkaisunnimi",
+      "tekijat",
+      "julkaisuntekijoidenlukumaara",
+      "organisaatiotekija",
+      "alayksikko",
+      "konferenssinvakiintunutnimi",
+      "lehdenjulkaisusarjannimi",
+      "julkaisunkansainvalisyys",
+      "tieteenala",
+      "taiteenala",
+      "kansainvalinenyhteisjulkaisu",
+      "yhteisjulkaisuyrityksenkanssa",
+      "avoinsaatavuus",
+      "julkaisurinnakkaistallennettu",
+      "alayksikko"
+    ]
   },
   {
     "arvo": "10056",
@@ -2656,7 +2713,32 @@
       "tekijanrooli",
       "lisatieto"
     ],
-    "requiredFields": []
+    "requiredFields": [
+      "etunimet",
+      "sukunimi",
+      "julkaisutyyppi",
+      "julkaisuvuosi",
+      "julkaisunnimi",
+      "tekijat",
+      "julkaisuntekijoidenlukumaara",
+      "organisaatiotekija",
+      "alayksikko",
+      "konferenssinvakiintunutnimi",
+      "isbn",
+      "issn",
+      "lehdenjulkaisusarjannimi",
+      "kustantaja",
+      "julkaisunkansainvalisyys",
+      "tieteenala",
+      "tieteenalakoodi",
+      "taiteenala",
+      "taiteenalakoodi",
+      "kansainvalinenyhteisjulkaisu",
+      "yhteisjulkaisuyrityksenkanssa",
+      "avoinsaatavuus",
+      "julkaisurinnakkaistallennettu",
+      "rinnakkaistallennetunversionverkkoosoite"
+    ]
   },
   {
     "arvo": "10065",
@@ -4371,7 +4453,7 @@
       "julkaisunnimi",
       "tekijat",
       "julkaisuntekijoidenlukumaara",
-		"organisaatiotekija",
+      "organisaatiotekija",
       "konferenssinvakiintunutnimi",
       "isbn",
       "issn",
