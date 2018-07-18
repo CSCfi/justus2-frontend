@@ -392,7 +392,12 @@ angular.module('JustusController', [])
       $scope.useTieteenala = function(input) {
       if (input === null) return;
 
-      // Selecting päätieteenala, filter alatieteenala input options
+          if (!$scope.justus.tieteenala) {
+              $scope.justus.tieteenala = [];
+          }
+
+
+          // Selecting päätieteenala, filter alatieteenala input options
       if (input.arvo.length === 1) {
         $scope.tieteenala_paa = input.arvo;
         $scope.alatieteenalat = input.alatyypit;
@@ -481,22 +486,21 @@ angular.module('JustusController', [])
     };
 
     $scope.isFieldVisible = function(field) {
-      return JustusService.isFieldVisible( field);
+      return JustusService.isFieldVisible(field);
     };
 
-    // $scope.isFieldRequired = function(type, field) {
-    //   return JustusService.isFieldRequired(type, field);
-    // };
 
     $scope.isValid = function(type, field) {
       return JustusService.isValid(type, field);
     };
 
     $scope.isJustusValid = function() {
-      // $scope.invalidFields = JustusService.getInvalidFields();
-      // ValidationService.setValidationErrors($scope.invalidFields);
-      // return $scope.invalidFields.length === 0;
-      return true;
+
+      $scope.visibleFields = JustusService.getListOfVisibleFields();
+      $scope.invalidFields = JustusService.getInvalidFields($rootScope.user.visibleFields);
+      ValidationService.setValidationErrors($scope.invalidFields);
+      return $scope.invalidFields.length === 0;
+      // return true;
     };
 
     $scope.isFieldRequired = function(fieldName) {

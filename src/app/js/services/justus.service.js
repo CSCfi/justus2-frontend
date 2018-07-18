@@ -17,19 +17,22 @@ angular.module('JustusService', [])
     this.justus = {};
   };
 
-  this.getOrganizationFieldConfig = function(organizationDomain, organizationCode) {
-    let fieldConfigs = organizationFieldConfig;
-    let organizationConfig = fieldConfigs.filter(function(organization) {
-      return organization.domain === organizationDomain && organization.code === organizationCode;
-    });
-    return organizationConfig ? organizationConfig[0] : null;
-  };
+  // this.getOrganizationFieldConfig = function(organizationDomain, organizationCode) {
+  //   let fieldConfigs = organizationFieldConfig;
+  //   let organizationConfig = fieldConfigs.filter(function(organization) {
+  //     return organization.domain === organizationDomain && organization.code === organizationCode;
+  //   });
+  //   return organizationConfig ? organizationConfig[0] : null;
+  // };
+
 
   // Returns true if the provided field is configured to be visible, false if not
   this.isFieldVisible = function(field) {
+
     let visible = false;
 
     if (field_default_config[field] && field_default_config[field].visibleInPublicationTypes.indexOf(this.justus.julkaisu['julkaisutyyppi']) !== -1) {
+
       visible = true;
     }
 
@@ -39,27 +42,27 @@ angular.module('JustusService', [])
       let organizationConfig = $rootScope.user.visibleFields;
       visible = organizationConfig.indexOf(field) !== -1;
     }
-
     return visible;
   };
 
   this.isFieldRequired = function(fieldName) {
+
     // If the field is missing from the configuration, it cannot be mandatory unless made mandatory by organization config
-    if (!field_default_config[fieldName]) {
+      if (!field_default_config[fieldName]) {
       if (this.isFieldRequiredByOrganization(fieldName) === true) {
         return true;
       }
       return false;
     }
 
-    
-    let fieldRequired = field_default_config[fieldName].requiredInPublicationTypes.indexOf(this.justus.julkaisu['julkaisutyyppi']) !== -1 &&
-    this.isFieldRequiredByOrganization(fieldName);
+
+      let fieldRequired = field_default_config[fieldName].requiredInPublicationTypes.indexOf(this.justus.julkaisu['julkaisutyyppi']) !== -1 ||
+          this.isFieldRequiredByOrganization(fieldName);
 
     // If the field was required we need to check if the field required attribute depends on another filled field
     if (fieldRequired === true) {
       angular.forEach(field_default_config[fieldName].optionalWithFields, function(field) {
-        if (this.fieldIsEmpty(this.justus[field]) === false) {
+        if (this.fieldIsEmpty(this.justus.julkaisu[field]) === false) {
           fieldRequired = false;
         }
       }, this);
@@ -67,7 +70,7 @@ angular.module('JustusService', [])
     // Otherwise the field can be made mandatory by another filled field
     else {
       angular.forEach(field_default_config[fieldName].requiredWithFields, function(field) {
-        if (this.fieldIsEmpty(this.justus[field]) === false && this.justus.julkaisu[field] !== '0') {
+        if (this.fieldIsEmpty(this.justus.julkaisu[field]) === false && this.justus.julkaisu[field] !== '0') {
           fieldRequired = true;
         }
       }, this);
@@ -81,16 +84,38 @@ angular.module('JustusService', [])
     return organizationConfig.indexOf(fieldName) !== -1;
   };
 
-  this.fieldIsEmpty = function(fieldValue) {
-    const fieldIsEmpty = (fieldValue === '' ||
-      fieldValue === {} ||
-      fieldValue === [] ||
-      fieldValue === undefined ||
-      fieldValue === null);
-    return fieldIsEmpty;
+
+
+      this.fieldIsEmpty = function(fieldValue) {
+          const fieldIsEmpty = (fieldValue === '' ||
+              fieldValue === {} ||
+              fieldValue === [] ||
+              fieldValue === undefined ||
+              fieldValue === null);
+          return fieldIsEmpty;
+      };
+
+
+   this.getListOfVisibleFields = function () {
+
+        let visibleFields = $rootScope.user.visibleFields;
+        let indexes = [];
+
+        for (var i = 0; i <visibleFields.length; i++) {
+          if (this.isFieldVisible(visibleFields[i]) === false) {
+              indexes.push(i);
+          }
+        }
+        // remove from array if not visible in current publication type
+        for (var j = indexes.length -1; j >= 0; j--) {
+             visibleFields.splice(indexes[j], 1);
+         }
+
+        return visibleFields;
   };
 
-  this.isValid = function(fieldName) {
+    this.isValid = function(fieldName) {
+
     // Assume the field is valid, for performance we will continue validating until the field is first decided as invalid
     let valid = true;
     let reason = '';
@@ -104,20 +129,31 @@ angular.module('JustusService', [])
       return true;
     }
 
-    // If the field is empty we need to check if it is required for validation
-    if (this.fieldIsEmpty(this.justus[fieldName])) {
-      valid = this.isFieldRequired(fieldName) === true ? false : true;
-      reason = valid === false ? 'Field is empty' : '';
-    }
-    else {
-      fieldIsFilled = true;
+
+    if (field_default_config[fieldName].childnode) {
+        if (this.fieldIsEmpty(this.justus.julkaisu[fieldName])) {
+            valid = this.isFieldRequired(fieldName) === true ? false : true;
+            reason = valid === false ? 'Field is empty' : '';
+        }
+        else {
+            fieldIsFilled = true;
+        }
+    } else {
+        if (this.fieldIsEmpty(this.justus[fieldName])) {
+            valid = this.isFieldRequired(fieldName) === true ? false : true;
+            reason = valid === false ? 'Field is empty' : '';
+        }
+        else {
+            fieldIsFilled = true;
+        }
     }
 
     // Validate the field has against a possible validation pattern
     if (field_default_config[fieldName].pattern !== null && valid === true && fieldIsFilled === true) {
+
       // If trying to pattern match something else than a string the value is invalid
-      if (typeof this.justus[fieldName] === 'string') {
-        valid = this.justus[fieldName].match(field_default_config[fieldName].pattern) !== null;
+      if (typeof this.justus.julkaisu[fieldName] === 'string') {
+        valid = this.justus.julkaisu[fieldName].match(field_default_config[fieldName].pattern) !== null;
         reason = valid === false ? 'Field value is invalid' : '';
       }
     }
@@ -148,6 +184,7 @@ angular.module('JustusService', [])
       // If the field consists of a list of objects, we need to validate each index
       if (angular.isArray(this.justus[fieldName]) && subfieldIsRequired === true) {
         angular.forEach(this.justus[fieldName], function(fieldIndex, index) {
+
           // If the required amount of values is already entered, no need to validate
           // emptiness of remaining fields
           if (field_default_config[fieldName].requiredAmount <= index) {
@@ -159,7 +196,7 @@ angular.module('JustusService', [])
           }
           else if (angular.isArray(fieldIndex[subfieldName])) {
             if (fieldIndex[subfieldName].length > 0) {
-              if (!fieldIndex[subfieldName][0][subfieldName]) {
+              if (!fieldIndex[subfieldName][0]) {
                 valid = false;
               }
             }
@@ -180,19 +217,20 @@ angular.module('JustusService', [])
     return valid;
   };
 
-  this.getInvalidFields = function() {
-    const invalidFields = [];
-    const organizationConfig = this.getOrganizationFieldConfig($rootScope.user.domain, $rootScope.user.organization.code);
-    angular.forEach(organizationConfig.visibleFields, function(field) {
-      if (this.isValid(field) === false) {
-        invalidFields.push(field);
+
+  this.getInvalidFields = function(fields) {
+      const invalidFields = [];
+
+      for (var i = 0; i < fields.length; i++) {
+          if (this.isValid(fields[i]) === false) {
+              invalidFields.push(fields[i]);
+          }
       }
-    }, this);
-    return invalidFields;
+      return invalidFields;
+
   };
 
   // pattern checkers (for validity)
-
   this.pattern = {
     'orcid': /^(|[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X])$/g,
     'isbn': /^(?:ISBN(?:-1[03])?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$/g,
