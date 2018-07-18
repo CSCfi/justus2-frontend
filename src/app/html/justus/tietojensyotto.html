@@ -18,7 +18,7 @@
         data-uib-popover="{{i18n.content.form.julkaisuvuosi.tooltip[lang]}}"
         data-ng-show="i18n.content.form.julkaisuvuosi.tooltip[lang]">
       </i>
-      <span class="required-star">*</span>
+      <span class="required-star" data-ng-if="isFieldRequired('julkaisuvuosi')">*</span>
     </div>
     <div class="col-sm-8 col-xs-12 justus-data"
       data-ng-model="req_julkaisuvuosi">
@@ -265,7 +265,7 @@
                 </ui-select>
             </div>
 
-            <div data-ng-if="isFieldVisible('alayksikko')" class="col-xs-12 col-sm-6 form-group" id="orcidGroup">
+            <div data-ng-if="isFieldVisible('orcid')" class="col-xs-12 col-sm-6 form-group" id="orcidGroup">
               <input type="text" class="form-control"
                 data-ng-model="justus.organisaatiotekija[$index].orcid"
                 data-ng-pattern="pattern.orcid" data-orcid-directive=""
