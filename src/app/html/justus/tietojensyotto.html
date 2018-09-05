@@ -867,6 +867,7 @@
             data-ng-model="sel_julkaisumaa"
             data-uib-typeahead="o.arvo+' '+o.selite for o in codes['maatjavaltiot2'] | filter: $viewValue"
             data-typeahead-on-select="useField('julkaisu','julkaisumaa',$item.arvo)"
+			data-typeahead-editable="false"
             placeholder="{{ i18n.content.form.julkaisumaa.picktip[lang] }}">
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>

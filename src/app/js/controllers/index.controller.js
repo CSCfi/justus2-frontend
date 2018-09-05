@@ -2,8 +2,8 @@
 
 angular.module('IndexController', [])
 .controller('IndexController', [
-  '$scope', '$rootScope', '$http', '$window', '$stateParams', '$transitions', '$location', 'KoodistoService', 'AuthService', 'APIService', 'AUTH_URL', 'SITE_URL', 'DEMO_ENABLED',
-  function($scope, $rootScope, $http, $window, $stateParams, $transitions, $location, KoodistoService, AuthService, APIService, AUTH_URL, SITE_URL, DEMO_ENABLED) {
+  '$scope', '$rootScope', '$http', '$window', '$stateParams', '$transitions', '$location', 'KoodistoService', 'AuthService', 'APIService', 'AUTH_URL', 'SITE_URL', 'API_BASE_URL', 'DEMO_ENABLED',
+  function($scope, $rootScope, $http, $window, $stateParams, $transitions, $location, KoodistoService, AuthService, APIService, AUTH_URL, SITE_URL, API_BASE_URL, DEMO_ENABLED) {
     $scope.demoEnabled = DEMO_ENABLED;
     $scope.siteUrl = SITE_URL;
 
@@ -32,7 +32,7 @@ angular.module('IndexController', [])
 
     /*** Demouser ***/
 
-            $http.get('files/organisaatiolistaus.json')
+            $http.get(API_BASE_URL + 'organisaatiolistaus')
                 .then(function(response) {
                     let allOrganizations = response.data;
                     $scope.codes.organization = response.data;
@@ -94,32 +94,69 @@ angular.module('IndexController', [])
     $scope.i18n = (typeof (i18n) !== 'undefined') ? i18n : {};
     $scope.codes = {};
 
-    !$scope.codes.kieli && KoodistoService.getKielet().then(function(o) {
-        $scope.codes.kieli = o.data;
-    });
-    !$scope.codes.maatjavaltiot2 && KoodistoService.getValtiot().then(function(o) {
-        $scope.codes.maatjavaltiot2 = o.data;
-    });
-    !$scope.codes.julkaisuntila && KoodistoService.getJulkaisuntila().then(function(o) {
-      $scope.codes.julkaisuntila = o.data;
+    !$scope.codes.kieli && KoodistoService.getKoodistoData('kielet')
+        .then(function(o) {
+            $scope.codes.kieli = o.data;
+        }, function (error) {
+            console.log(error);
     });
 
-    // tieteenalat, julkaisutyypit, ...
-    !$scope.codes.tieteenalat && KoodistoService.getTieteenalat().then(function(o) {
-      $scope.codes.tieteenalat = o.data;
+    !$scope.codes.maatjavaltiot2 && KoodistoService.getKoodistoData('valtiot')
+        .then(function(o) {
+            $scope.codes.maatjavaltiot2 = o.data;
+        }, function (error) {
+            console.log(error);
     });
-    !$scope.codes.julkaisutyypit && KoodistoService.getJulkaisuluokat().then(function(o) {
-      $scope.codes.julkaisutyypit = o.data;
+
+    !$scope.codes.julkaisuntila && KoodistoService.getKoodistoData('julkaisuntilat')
+        .then(function(o) {
+            $scope.codes.julkaisuntila = o.data;
+        }, function (error) {
+            console.log(error);
     });
-    !$scope.codes.julkaisuntekijanrooli && KoodistoService.getRooli().then(function(o) {
-        $scope.codes.julkaisuntekijanrooli = o.data;
+
+    !$scope.codes.tieteenalat && KoodistoService.getKoodistoData('tieteenalat')
+        .then(function(o) {
+            $scope.codes.tieteenalat = o.data;
+        }, function (error) {
+            console.log(error);
+        });
+
+    !$scope.codes.julkaisutyypit && KoodistoService.getKoodistoData('julkaisunluokat')
+        .then(function(o) {
+            $scope.codes.julkaisutyypit = o.data;
+        }, function (error) {
+            console.log(error);
     });
-    !$scope.codes.taiteenalat && KoodistoService.getTaiteenalat().then(function(o) {
-      $scope.codes.taiteenalat = o.data;
+
+    !$scope.codes.julkaisuntekijanrooli && KoodistoService.getKoodistoData('tekijanrooli')
+        .then(function(o) {
+            $scope.codes.julkaisuntekijanrooli = o.data;
+        }, function (error) {
+            console.log(error);
     });
-    !$scope.codes.taidealantyypit && KoodistoService.getTaidealantyypit().then(function(o) {
-      $scope.codes.taidealantyypit = o.data;
+
+    !$scope.codes.taiteenalat && KoodistoService.getKoodistoData('taiteenalat')
+        .then(function(o) {
+            $scope.codes.taiteenalat = o.data;
+        }, function (error) {
+            console.log(error);
     });
+
+    !$scope.codes.taidealantyypit && KoodistoService.getKoodistoData('taidealantyyppikategoria')
+        .then(function(o) {
+            $scope.codes.taidealantyypit = o.data;
+        }, function (error) {
+            console.log(error);
+    });
+
+      !$scope.codes.taidealantyypit && KoodistoService.getKoodistoData('taidealantyyppikategoria')
+          .then(function(o) {
+              $scope.codes.taidealantyypit = o.data;
+          }, function (error) {
+              console.log(error);
+          });
+
 
   };
 
