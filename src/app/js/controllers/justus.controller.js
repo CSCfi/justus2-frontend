@@ -425,11 +425,27 @@ angular.module('JustusController', [])
     };
 
     $scope.useTaidelanTyyppi = function(input) {
-     if ($scope.justus.taidealantyyppikategoria.includes(input) || $scope.justus.taidealantyyppikategoria.length >= 5) {
-       return;
-     }
-     $scope.justus.taidealantyyppikategoria.push(input);
+
+        if (!$scope.justus.taidealantyyppikategoria) {
+            $scope.justus.taidealantyyppikategoria = [];
+        }
+        if (!arrayContains($scope.justus.taidealantyyppikategoria, input) && $scope.justus.taidealantyyppikategoria.length <= 5) {
+            $scope.justus.taidealantyyppikategoria.push(input);
+        }
+
     };
+
+    const arrayContains = function (array, value) {
+      console.log(array, value);
+      let elementExists = false;
+        for (let i = 0; i < array.length; i++) {
+          if(array[i].indexOf(value) !== -1 ) {
+            return true
+          }
+        }
+        return elementExists;
+    };
+
 
     const containsObject = function(array, value, identifier) {
       let elementExists = false;
