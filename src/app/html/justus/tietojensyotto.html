@@ -761,13 +761,15 @@
         data-enable-editing-last-tag="true"
         display-property="prefLabel"
         key-property="localname"
+        data-add-on-blur="false"
         data-min-length="1">
         <auto-complete
           data-source="refreshAvainsanat($query)"
           data-load-on-down-arrow="true"
           data-min-length="1"
           data-debounce-delay="200"
-          data-select-first-match="true">
+          data-select-first-match="true"
+          max-results-to-show="300">
         </auto-complete>
       </tags-input>
     </div>
