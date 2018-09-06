@@ -1,31 +1,13 @@
 'use strict';
 
 angular.module('FintoService', [])
-.service('FintoService', ['$http', '$log', function($http, $log) {
-  this.search = function(language, input) {
-    return new Promise(function(resolve, reject) {
-      let languages = [language];
-      if (language !== 'EN') {
-        languages.push('EN');
-      }
+.service('FintoService', ['$http', '$log', 'API_BASE_URL',
+    function($http, $log, API_BASE_URL) {
 
-      let requests = [];
-      languages.map(function(lang) {
-        let uri = 'https://api.finto.fi/rest/v1/yso/search?type=skos%3AConcept&unique=true&lang=' + lang + '&query=' + input + '*';
-        requests.push($http.get(uri));
-      });
+    //TODO: add language as parameter
+    this.etsiAvainsanat = function(input, lang) {
+      return $http.get(API_BASE_URL +'haku/avainsanat?q=' + input);
+      // return $http.get(API_BASE_URL +'haku/avainsanat?q=' + input + '?lang=' + lang);
+    };
 
-      Promise.all(requests)
-      .then(function(responses) {
-        let tags = [].concat.apply([], responses.map(function(response) {
-          return response.data.results;
-        }, []));
-        return resolve(tags);
-      })
-      .catch(function(err) {
-        $log.error(err);
-        return reject(err);
-      });
-    });
-  };
 }]);
