@@ -2,6 +2,10 @@
   margin-top: $padding-large-vertical;
 }
 
+.text-xl {
+  font-size: 1.2em;
+}
+
 .m-b {
   margin-bottom: $padding-large-vertical;
 }
@@ -12,6 +16,18 @@
 
 .float-right {
   float:right;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-center {
+  justify-content: center;
 }
 
 .vertical-resize {

@@ -1,0 +1,50 @@
+
+<h3 class="form-header">Syötä julkaisu</h3>
+<div class="row" style="margin-top:20px;">
+    <div class="col-md-4">
+        <p>Julkaisu</p>
+    </div>
+    <div class="col-md-8">
+        <form name="form">
+            <div ng-show="!justus.file">
+                <div class="choose-file-button d-inline-block" ngf-select ng-model="justus.file" name="file"
+                     ngf-max-size="100MB">Valitse tiedosto
+                </div>
+                <div class="d-inline-block text-right" ng-if="!justus.file">Ei valittua tiedostoa</div>
+            </div>
+            <div ng-show="!justus.file" ngf-drop ng-model="justus.file" class="drop-box"
+                 ngf-drag-over-class="'dragover'" ngf-allow-dir="true">
+                Tai vedä tiedosto tähän
+            </div>
+            <div class="row" ng-show="justus.file">
+                <div class="col-md-8">
+                    <span class="font-weight-bold text-xl">{{justus.file.name}}</span>
+                </div>
+                <div class="col-md-2" style="margin-top:5px;">
+                    <span  data-ng-bind="bytesToSize(justus.file.size)"></span>
+                </div>
+                <div class="col-md-2 text-right">
+                    <button class="btn btn-primary m-b"
+                        data-ng-click="justus.file = null">Poista
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<span class="progress" ng-show="file.progress >= 0">
+    <div style="width:{{file.progress}}%"
+         ng-bind="file.progress + '%'">
+    </div>
+</span>
+<span ng-show="file.result">Upload Successful</span>
+<span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+<div style="margin-top:70px;">
+<button
+        class="btn btn-lg btn-block btn-primary"
+        type="button"
+        data-ng-click="useJulkaisu(justus.file)">
+    Siirry esikatseluun
+</button>
+</div>

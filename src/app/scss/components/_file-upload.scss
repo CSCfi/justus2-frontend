@@ -1,0 +1,29 @@
+.choose-file-button {
+  -moz-appearance: button;
+  /* Firefox */
+  -webkit-appearance: button;
+  /* Safari and Chrome */
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+  background: $brand-primary;
+  color: #fff;
+  border: 0;
+  border-radius: 5px;
+}
+
+
+.drop-box {
+  background: #F8F8F8;
+  border: 2px dashed #218b9a;
+  height: 150px;
+  margin: 10px;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dragover {
+  border: 2px dashed gray;
+}

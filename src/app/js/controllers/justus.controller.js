@@ -2,10 +2,10 @@
 
 angular.module('JustusController', [])
     .controller('JustusController', [
-        '$rootScope', '$scope', '$log', '$http', '$state', '$stateParams', 'CrossRefService', 'VIRTAService',
-        'JUFOService', 'FintoService', 'KoodistoService', 'JustusService', 'APIService', 'ValidationService', 'DataStoreService', 'DEMO_ENABLED',
-        function($rootScope, $scope, $log, $http, $state, $stateParams, CrossRefService, VIRTAService,
-                 JUFOService, FintoService, KoodistoService, JustusService, APIService, ValidationService, DataStoreService, DEMO_ENABLED) {
+        '$rootScope', '$scope', '$log', '$http', '$state', '$stateParams', 'CrossRefService', 'VIRTAService', '$timeout',
+        'JUFOService', 'FintoService', 'KoodistoService', 'JustusService', 'APIService', 'ValidationService', 'DataStoreService', 'DEMO_ENABLED', 'Upload', '$sce',
+        function($rootScope, $scope, $log, $http, $state, $stateParams, CrossRefService, VIRTAService, $timeout,
+                 JUFOService, FintoService, KoodistoService, JustusService, APIService, ValidationService, DataStoreService, DEMO_ENABLED, Upload, $sce) {
             $scope.loading = {};
             $scope.meta = APIService.meta;
 
@@ -26,6 +26,26 @@ angular.module('JustusController', [])
             $scope.invalidFields = [];
 
             $scope.julkaisu = {};
+
+            $scope.useJulkaisu = function(file) {
+                $scope.justus.file = file;
+                $scope.useVaihe(5)
+            };
+
+            // $scope.upload = function (file) {
+            //     Upload.upload({
+            //         url: 'upload/url',
+            //         data: {file: file }
+            //     }).then(function (resp) {
+            //         console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+            //     }, function (resp) {
+            //         console.log('Error status: ' + resp.status);
+            //     }, function (evt) {
+            //         var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            //         console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+            //     });
+            // };
+
 
             // Parses first- and lastnames from a string of names and returns them in a list of objects [{ firstName: '', lastName: '' }, ...]
             const parseNames = function(namesString) {
@@ -122,9 +142,7 @@ angular.module('JustusController', [])
                 )
             };
 
-            // three different sources, 1 for julkaisusarja, 2 for kustantaja, 3 for konferenssin vakiintunut nimi
             $scope.refreshKanavanimet = function(tyyppi, input) {
-
 
                 if (tyyppi == null) return;
                 if (input == null) return;
@@ -185,11 +203,9 @@ angular.module('JustusController', [])
                     });
             };
 
-            //tätä kutsutaan kahdesta paikasta, tarkista että molemmat toimi
             $scope.fetchLehtisarja = function(input) { // issn
                 if (input == null) return;
 
-                // tämä uuteen restiin
                 JUFOService.etsiissn(input)
                     .then(function (response) {
                         var jobj = response.data;
@@ -623,6 +639,8 @@ angular.module('JustusController', [])
 
             const populatePublicationForm = () => {
 
+                console.log("meennäänkö tännee?");
+
                 if (!$stateParams.id) {
                     finalizeInit();
                     return;
@@ -673,6 +691,16 @@ angular.module('JustusController', [])
                 $scope.useVaihe($stateParams.vaihe || 1);
                 $scope.loading.publication = false;
             };
+
+
+            $scope.bytesToSize = function(a,b) {
+                {if(0==a)return"0 Bytes";
+                    let c=1024,d=b||2,e=["Bytes","KB","MB","GB","TB","PB","EB","ZB","YB"],f=Math.floor(Math.log(a)/Math.log(c));
+                    return parseFloat((a/Math.pow(c,f)).toFixed(d))+" "+e[f]}
+
+            };
+
+
 
             populatePublicationForm();
         }
