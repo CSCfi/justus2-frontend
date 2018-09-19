@@ -9,6 +9,7 @@ angular.module('JustusApp', [
   'ui.bootstrap',
   'ngTagsInput',
   'ngCsv',
+  'ngFileUpload',
 
   // App modules
   'appConfig',
