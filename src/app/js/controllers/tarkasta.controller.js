@@ -413,22 +413,22 @@ angular.module('TarkastaController', [])
                 const val = $scope.user.organization.code !== '00000' ? $scope.user.organization.code : null;
                 const col = $scope.user.organization.code !== '00000' ? 'organisaatiotunnus' : null;
 
-                APIService.getJulkaisulista()
-                //   APIService.get('julkaisu', val, col, $scope.query)
+                APIService.get("lista")
                     .then(function (obj) {
                         $scope.totalItems = obj.totalItems || 0;
 
-                        return Promise.map(obj, function (o, k) {
+                        return Promise.map(obj.julkaisut, function (o, k) {
                             // NB! API returns '2017-03-24 12:37:47.18+02'
                             // => convert string first (as illustrated in http://dygraphs.com/date-formats.html)
 
-                            if (o.modified) {
-                                let m = o.modified;
-                                m = m.replace(/-/g, '/'); // date separator to '/'
-                                m = m.replace(/\..*$/, ''); // strip milliseconds away
-                                m = m.replace(/\+.*$/, ''); // strip timezone
-                                o.modified = new Date(m);
-                            }
+                            // if (o.modified) {
+                            //     let m = o.modified;
+                            //     m = m.replace(/-/g, '/'); // date separator to '/'
+                            //     m = m.replace(/-/g, '/'); // date separator to '/'
+                            //     m = m.replace(/\..*$/, ''); // strip milliseconds away
+                            //     m = m.replace(/\+.*$/, ''); // strip timezone
+                            //     o.modified = new Date(m);
+                            // }
                             o.ui_julkaisuntila = o.julkaisuntila;
                             $scope.data['julkaisu'].push(o);
                         });
