@@ -147,19 +147,20 @@ angular.module('APIService', [])
     };
 
     /* READ :: GET */
-    this.get = function (api, id, col, query, singleResult = false) {
+    this.get = function (api, id, singleResult = false) {
+
       // id voi puuttua, jolloin palautetaan kaikki
       return $http({
         method: 'GET',
-        url: API_BASE_URL + 'justus_save.php/' + api + (col ? '/' + col : '') + '/' + id,
-        params: query
+        url:  API_BASE_URL + 'julkaisut' + '/' + api + (id ? '/' + id : ''),
+        // params: query
       })
       .then(function (response) {
         let ret = response.data; // list always
         if (singleResult === true) {
           return ret && ret.length > 0 ? ret[0] : {};
         }
-        return ret || [];
+        return ret
       });
     };
 

@@ -76,7 +76,16 @@ angular.module('JustusController', [])
                 $scope.kustantajanimet = [];
                 $scope.konferenssinimet = [];
                 $scope.julkaisunnimet = [];
-                $scope.julkaisu = {};
+                $scope.justus.julkaisu = {};
+                $scope.justus.organisaatiotekija = [
+                    {
+                        "etunimet": "",
+                        "sukunimi": "",
+                        "orcid": "",
+                        "rooli": "",
+                        "alayksikko": [null]
+                    }
+                ];
                 $scope.crossrefLataa = false;
                 $scope.virtaLataa = false;
                 $scope.requiredHighlight = false;
@@ -680,32 +689,30 @@ angular.module('JustusController', [])
 
             const populatePublicationForm = () => {
 
-                console.log("meennäänkö tännee?");
-
                 if (!$stateParams.id) {
                     finalizeInit();
                     return;
                 }
 
                 $scope.loading.publication = true;
-                const organisaatiotekijaPopulated = [];
 
-                APIService.getJulkaisu()
-                //   APIService.get('julkaisu', val, col, $scope.query)
+                  APIService.get('tiedot', $stateParams.id)
                     .then(function (obj) {
-                        $scope.justus = obj;
+
+                        $scope.justus = obj.data;
 
                         parseNames($scope.justus.julkaisu.tekijat).map((nameObject) => {
                             $scope.tekijatTags.push({ text: `${nameObject.lastName}, ${nameObject.firstName}` });
                         });
 
                         $scope.useTekijat();
+                        $scope.initializeAvainsanatTags();
+
                         finalizeInit();
                     })
                     .catch(function (err) {
                         $log.error(err);
                     });
-
 
             };
 
