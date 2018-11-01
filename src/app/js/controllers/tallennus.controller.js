@@ -72,23 +72,14 @@ angular.module('TallennusController', [])
 
       publication.taiteenala = $scope.justus.taiteenala;
 
-      console.log(JSON.stringify(publication, null, 4));
-
-      console.log($scope.justus.julkaisu.id);
-
-
-      // and send publication to backend, either post or put depending that has publication id
-
       // Update existing publication or create new depending on possible existing id
       const julkaisuPromise = $scope.justus.julkaisu.id ? APIService.put($scope.justus.julkaisu.id, publication) : APIService.post('julkaisu', publication);
       //
       // console.log(julkaisuPromise);
       julkaisuPromise.then((data) => {
-
         console.log(data);
-
-        // $state.go('omat', { lang: $scope.lang });
-        // JustusService.clearPublicationForm();
+        $state.go('omat', { lang: $scope.lang });
+        JustusService.clearPublicationForm();
       })
       .catch((error) => {
           $log.error(error);
