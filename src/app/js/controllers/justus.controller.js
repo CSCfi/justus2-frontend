@@ -579,50 +579,91 @@ angular.module('JustusController', [])
                 }
             };
 
+            // get alayksikkodata based on selected year
+            $scope.getAlayksikkoData = function(alayksikkovuosi) {
+
+                if (alayksikkovuosi.id === 2016) {
+                    for (let i = 0; i < $scope.user.alayksikot.length; i++) {
+                        if ($scope.user.alayksikot[i].vuosi === '2016') {
+                            return $scope.user.alayksikot[i].yksikot;
+                        }
+                    }
+                }
+
+                if (alayksikkovuosi.id === 2017) {
+                    for (let i = 0; i < $scope.user.alayksikot.length; i++) {
+                        if ($scope.user.alayksikot[i].vuosi === '2017') {
+                            return $scope.user.alayksikot[i].yksikot;
+                        }
+                    }
+                }
+
+                if (alayksikkovuosi.id === 2018) {
+                    for (let i = 0; i < $scope.user.alayksikot.length; i++) {
+                        if ($scope.user.alayksikot[i].vuosi === '2018') {
+                            return $scope.user.alayksikot[i].yksikot;
+                        }
+                    }
+                }
+            };
+
             // fillMissingJustusLists - for UI setup list fields if otherwise missing
             // - internal unscoped function
             // - parameter input is optional
             let fillMissingJustusLists = function() {
 
-                // default organisational unit year is 2017
-                $scope.alayksikkovuodet = [{
-                    id: 2016,
-                    label: '2016'
-                },
-                    {
-                        id: 2017,
-                        label: '2017'
-                    }];
-
-                // get alayksikkodata based on selected year
-                $scope.getAlayksikkoData = function(alayksikkovuosi) {
-
-                    if (alayksikkovuosi.id === 2016) {
-                        for (let i = 0; i < $scope.user.alayksikot.length; i++) {
-                            if ($scope.user.alayksikot[i].vuosi === '2016') {
-                                return $scope.user.alayksikot[i].yksikot;
-                            }
+                for (let i=0; i < $scope.user.alayksikot.length; i++) {
+                    if($scope.user.alayksikot[i].vuosi === '2018') {
+                        if($scope.user.alayksikot[i].yksikot.length < 1) {
+                            $scope.alayksikkovuodet = [
+                                {
+                                    id: 2016,
+                                    label: '2016'
+                                },
+                                {
+                                    id: 2017,
+                                    label: '2017'
+                                }];
+                        } else {
+                            $scope.alayksikkovuodet = [
+                                {
+                                    id: 2016,
+                                    label: '2016'
+                                },
+                                {
+                                    id: 2017,
+                                    label: '2017'
+                                },
+                                {
+                                    id: 2018,
+                                    label: '2018'
+                                },
+                            ];
                         }
                     }
+                }
 
-                    if (alayksikkovuosi.id === 2017) {
-                        for (let i = 0; i < $scope.user.alayksikot.length; i++) {
-                            if ($scope.user.alayksikot[i].vuosi === '2017') {
-                                return $scope.user.alayksikot[i].yksikot;
-                            }
-                        }
-                    }
-                };
                 $scope.alayksikkovuosi = {};
 
                 if (!$scope.justus.organisaatiotekija[0].alayksikko[0]) {
-                    // set default organisational unit year as 2017
-                    $scope.alayksikkovuosi.selected = {
-                        id: 2017,
-                        label: '2017'
-                    };
+                    if ($scope.alayksikkovuodet.length === 3) {
+                        $scope.alayksikkovuosi.selected = {
+                            id: 2018,
+                            label: '2018'
+                        };
+                    } else {
+                        $scope.alayksikkovuosi.selected = {
+                            id: 2017,
+                            label: '2017'
+                        };
+                    }
                 } else {
-                    if ($scope.justus.organisaatiotekija[0].alayksikko[1].includes('-2017-') || $scope.justus.organisaatiotekija[0].alayksikko[0].alayksikko === '') {
+                    if ($scope.justus.organisaatiotekija[0].alayksikko[0].indexOf('-2018-') !== -1) {
+                        $scope.alayksikkovuosi.selected = {
+                            id: 2018,
+                            label: '2018'
+                        };
+                    } else if ($scope.justus.organisaatiotekija[0].alayksikko[0].indexOf('-2017-') !== -1) {
                         $scope.alayksikkovuosi.selected = {
                             id: 2017,
                             label: '2017'
