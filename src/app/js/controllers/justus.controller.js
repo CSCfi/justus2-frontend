@@ -3,9 +3,9 @@
 angular.module('JustusController', [])
     .controller('JustusController', [
         '$rootScope', '$scope', '$log', '$http', '$state', '$stateParams', 'CrossRefService', 'VIRTAService', '$timeout',
-        'JUFOService', 'FintoService', 'KoodistoService', 'JustusService', 'APIService', 'ValidationService', 'DataStoreService', 'DEMO_ENABLED', 'Upload', '$sce',
+        'JUFOService', 'FintoService', 'KoodistoService', 'JustusService', 'APIService', 'ValidationService', 'DataStoreService', 'AuthService', 'DEMO_ENABLED', 'Upload', '$sce',
         function($rootScope, $scope, $log, $http, $state, $stateParams, CrossRefService, VIRTAService, $timeout,
-                 JUFOService, FintoService, KoodistoService, JustusService, APIService, ValidationService, DataStoreService, DEMO_ENABLED, Upload, $sce) {
+                 JUFOService, FintoService, KoodistoService, JustusService, APIService, ValidationService, DataStoreService, AuthService, DEMO_ENABLED, Upload, $sce) {
             $scope.loading = {};
             $scope.meta = APIService.meta;
 
@@ -726,7 +726,7 @@ angular.module('JustusController', [])
                         }
                     ]
                 }
-                $scope.justus.julkaisu.username = $rootScope.user.name;
+                $scope.justus.julkaisu.username = AuthService.getUserInfo().name;
                 fillMissingJustusLists();
                 JustusService.updatePublicationFormData($scope.justus);
                 $scope.useVaihe($stateParams.vaihe || 1);
