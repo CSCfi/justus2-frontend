@@ -575,8 +575,6 @@ angular.module('JustusController', [])
             };
 
             $scope.cancelAndGoToPublicationListing = function() {
-                // JustusService.clearPublicationForm();
-                // $state.go('omat');
                 if (!DataStoreService.getStateName()) {
                     $state.go('omat');
                     JustusService.clearPublicationForm();
