@@ -423,11 +423,11 @@ angular.module('JustusController', [])
                 if ($scope.justus.avainsanat) {
                     $scope.avainsanatTags = [];
                     $scope.justus.avainsanat.map(function(keywordObject) {
-                        if (keywordObject.avainsanat.length > 0) {
+                        if (keywordObject.length > 0) {
                             $scope.avainsanatTags.push({
-                                prefLabel: keywordObject.avainsana,
+                                prefLabel: keywordObject,
                                 // Generate a mockup localname to be used as an unique key, since actual localname is not saved
-                                localname: `${keywordObject.avainsana}_${(Math.random() * 1000).toString()}`
+                                localname: `${keywordObject}_${(Math.random() * 1000).toString()}`
                             });
                         }
                     });
