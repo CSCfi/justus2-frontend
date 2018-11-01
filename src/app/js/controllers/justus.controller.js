@@ -521,7 +521,7 @@ angular.module('JustusController', [])
 
                     $scope.useJulkaisutyyppiPaa($scope.justus.julkaisu.julkaisutyyppi.substring(0, 1));
                     // Stay on stage 3 if stage form not valid
-                    if ($scope.vaihe === 4) {
+                    if ($scope.vaihe === 5) {
                         if (!$scope.isJustusValid()) {
                             $scope.useVaihe(3);
                             return;

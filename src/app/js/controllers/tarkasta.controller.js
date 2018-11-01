@@ -373,9 +373,9 @@ angular.module('TarkastaController', [])
                 if ($scope.state.name === 'omat' && d.julkaisuntila) {
                     return;
                 } else {
-                    DataStoreService.storeStateData($scope.state.name)
+                    DataStoreService.storeStateData($scope.state.name);
                     DataStoreService.storeBooleanforOdottavat($scope.odottavat);
-                    $location.path('/justus').search({lang: $scope.lang, id: d.id, vaihe: 4});
+                    $location.path('/justus').search({lang: $scope.lang, id: d.id, vaihe: 5});
                 }
             };
 
