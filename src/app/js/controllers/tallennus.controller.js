@@ -2,8 +2,8 @@
 
 angular.module('TallennusController', [])
 .controller('TallennusController', [
-  '$scope', '$log', '$window', '$http', '$state', 'APIService', 'API_BASE_URL', 'JustusService', 'DataStoreService',
-  function($scope, $log, $window, $http, $state, APIService, API_BASE_URL, JustusService, DataStoreService) {
+  '$scope', '$rootScope', '$log', '$window', '$http', '$state', 'APIService', 'API_BASE_URL', 'JustusService', 'DataStoreService',
+  function($scope, $rootScope, $log, $window, $http, $state, APIService, API_BASE_URL, JustusService, DataStoreService) {
     // index provides: lang, ...
     // justus provides: justus
 
@@ -74,26 +74,26 @@ angular.module('TallennusController', [])
 
       console.log(JSON.stringify(publication, null, 4));
 
+      console.log($scope.justus.julkaisu.id);
+
 
       // and send publication to backend, either post or put depending that has publication id
 
-     //  // Update existing publication or create new depending on possible existing id
-     //  const julkaisuPromise = $scope.justus.id ? APIService.put('julkaisu', $scope.justus.id, publication) : APIService.post('julkaisu', publication);
-     //
-     //  julkaisuPromise.then(() => {
-     //    $state.go('omat', { lang: $scope.lang });
-     //    JustusService.clearPublicationForm();
-     //  })
-     //  .catch((error) => {
-     //      $log.error(error);
-     //
-     //    // Todo: Backend provides invalid JSON as a response which results in a baddata-error even though the save is a success
-     //    // Can be removed after the responses are fixed
-     //    if (error && error.message && error.message.indexOf('$http:baddata') !== -1) {
-     //      $state.go('omat', { lang: $scope.lang });
-     //      JustusService.clearPublicationForm();
-     //    }
-     //  });
+      // Update existing publication or create new depending on possible existing id
+      const julkaisuPromise = $scope.justus.julkaisu.id ? APIService.put($scope.justus.julkaisu.id, publication) : APIService.post('julkaisu', publication);
+      //
+      // console.log(julkaisuPromise);
+      julkaisuPromise.then((data) => {
+
+        console.log(data);
+
+        // $state.go('omat', { lang: $scope.lang });
+        // JustusService.clearPublicationForm();
+      })
+      .catch((error) => {
+          $log.error(error);
+
+      });
      };
 
       $scope.cancelAndReturnToPublicationListing = function() {

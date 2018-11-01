@@ -134,9 +134,9 @@ angular.module('APIService', [])
     this.post = function(api, str) {
       return $http({
         method: 'POST',
-        url: API_BASE_URL + 'justus_save.php/' + api,
+        url: API_BASE_URL + api,
         data: str,
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
+        headers: { 'Content-Type': 'application/json' }
       })
       .then(function (response) {
         return response.data;
@@ -165,12 +165,12 @@ angular.module('APIService', [])
     };
 
     /* UPDATE :: PUT */
-    this.put = function (api, id, str) {
+    this.put = function (id, data) {
       return $http({
         method: 'PUT',
-        url: API_BASE_URL + 'justus_save.php/' + api + '/' + id,
-        data: str,
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
+        url: API_BASE_URL + 'julkaisu/' + id,
+        data: data,
+        headers: { 'Content-Type': 'application/json' }
       })
       .then(function (response) {
         return response.data;
@@ -193,47 +193,6 @@ angular.module('APIService', [])
         $log.error('delete ERROR ' + response.status + ' ' + response.data);
       });
     };
-
-
-  //  for developing purposes
-      this.getJulkaisulista = function() {
-          return $http({
-              method: 'GET',
-              url: 'files/julkaisulista.json'
-          })
-              .then(function (response) {
-                  let ret = response.data; // list always
-                  return ret;
-              })
-
-      };
-
-      this.getJulkaisulistaAll = function() {
-          return $http({
-              method: 'GET',
-              url: 'files/julkaisulistaAll.json'
-          })
-              .then(function (response) {
-                  let ret = response.data; // list always
-                  return ret;
-              })
-
-      };
-
-      //  for developing purposes
-      this.getJulkaisu = function() {
-          return $http({
-              method: 'GET',
-              url: 'files/julkaisu.json'
-          })
-              .then(function (response) {
-                  let ret = response.data; // list always
-                  // console.log(ret);
-                  return ret;
-              })
-
-      }
-
 
   }
 ]);
