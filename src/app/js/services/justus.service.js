@@ -56,7 +56,7 @@ angular.module('JustusService', [])
     }
 
 
-      let fieldRequired = field_default_config[fieldName].requiredInPublicationTypes.indexOf(this.justus.julkaisu['julkaisutyyppi']) !== -1 ||
+      let fieldRequired = field_default_config[fieldName].requiredInPublicationTypes.indexOf(this.justus.julkaisu['julkaisutyyppi']) !== -1 &&
           this.isFieldRequiredByOrganization(fieldName);
 
     // If the field was required we need to check if the field required attribute depends on another filled field
