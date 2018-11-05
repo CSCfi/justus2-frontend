@@ -490,10 +490,8 @@ angular.module('JustusController', [])
 
             const arrayContains = function (array, value) {
                 let elementExists = false;
-                for (let i = 0; i < array.length; i++) {
-                    if(array[i].indexOf(value) !== -1 ) {
-                        return true
-                    }
+                if(array.indexOf(value) !== -1 ) {
+                    return true
                 }
                 return elementExists;
             };
