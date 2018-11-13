@@ -11,27 +11,51 @@ angular.module('IndexController', [])
 
       $http.get(AUTH_URL)
       .then(function(response) {
-        $scope.user = response.data;
 
-        // backend/auth provides but config has more info (code+mail):
+          $scope.user = {
+              "name": "",
+              "mail": "",
+              "role": "",
+              "organization": {
+                  "code": "",
+                  "name": ""
+              },
+              "visibleFields": [],
+              "requiredFields": [],
+              "alayksikot": []
+          };
 
-        // $scope.user.organization = domain_organization[$scope.user.domain];
+          $scope.user.name = response.data.perustiedot.nimi;
+          $scope.user.mail = response.data.perustiedot.email;
+          $scope.user.role = response.data.perustiedot.rooli;
+          $scope.user.organization.code = response.data.perustiedot.organisaatio;
+          $scope.user.organization.name = "";
+          $scope.user.visibleFields = response.data.visibleFields;
+          $scope.user.requiredFields = response.data.requiredFields;
+          $scope.user.alayksikot = response.data.alayksikot;
+
+            if (response.data.perustiedot.organisaatio === "00000") {
+
+                // Initialize role/organization selectors for demo user
+                $scope.selectedDemoUserRole = $scope.user.role;
+                $scope.selectedDemoUserOrganizationCode = $scope.user.organization.code;
+
+                //  if user's organization code is 00000 fetch data from all organizations
+                $http.get(API_BASE_URL + 'organisaatiolistaus')
+                    .then(function(response) {
+                        $scope.codes.organization = response.data;
+
+                });
+            }
 
         $rootScope.user = $scope.user;
         $rootScope.initialUser = $scope.user;
         $scope.initialRole = $scope.user.role;
         AuthService.storeUserInfo($scope.user);
-
-        // Initialize role/organization selectors for demo user
-        $scope.selectedDemoUserRole = $scope.user.role;
-        $scope.selectedDemoUserOrganizationCode = $scope.user.organization.code;
       })
 
       .catch(function() {
         if (DEMO_ENABLED) {
-
-    /*** Demouser ***/
-
             $http.get(API_BASE_URL + 'organisaatiolistaus')
                 .then(function(response) {
                     let allOrganizations = response.data;
@@ -57,32 +81,7 @@ angular.module('IndexController', [])
                     $scope.selectedDemoUserRole = 'admin';
                     $scope.selectedDemoUserOrganizationCode = '00000';
 
-
-          /*** Enf of demouser ***/
-
-
-          /*** Organisation user ***/
-
-      // $http.get('files/user.json')
-      //     .then(function(response) {
-      //
-      //         $rootScope.user = response.data;
-      //         $scope.user = response.data;
-      //
-      //         $scope.initialRole = $scope.user.role;
-      //         console.log($scope.initialRole);
-      //         $rootScope.initialUser = $scope.user;
-      //
-      //         // Initialize role/organization selectors for demo user
-      //         $scope.selectedDemoUserRole = 'admin';
-      //         $scope.selectedDemoUserOrganizationCode = '00000';
-      //
-      //         AuthService.storeUserInfo($scope.user);
-
-
-          /*** Enf of organisation user ***/
-
-        });
+                });
         }
       });
     }
