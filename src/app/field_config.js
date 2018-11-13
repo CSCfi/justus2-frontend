@@ -1,20 +1,20 @@
 
 
-const commonVisibleFields = [
-    'etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisuvuodenlisatieto', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara',
-    'organisaatiotekija', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero',
-    'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'taiteenala', 'taidealantyyppikategoria', 'kansainvalinenyhteisjulkaisu',
-    'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite',
-    'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat',
-    'julkaisumaa', 'julkistamispaikkakunta', 'tapahtumanlisatieto', 'julkaisunkieli', 'doitunniste', 'muutunniste', 'pysyvaverkkoosoite', 'tekijanrooli', 'lisatieto'
-];
-
-const commonRequiredFields = [
-	  'etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara',
-      'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'lehdenjulkaisusarjannimi',
-      'julkaisunkansainvalisyys', 'tieteenala', 'taiteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
-      'avoinsaatavuus', 'julkaisurinnakkaistallennettu'
-	];
+// const commonVisibleFields = [
+//     'etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisuvuodenlisatieto', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara',
+//     'organisaatiotekija', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero',
+//     'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'taiteenala', 'taidealantyyppikategoria', 'kansainvalinenyhteisjulkaisu',
+//     'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite',
+//     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat',
+//     'julkaisumaa', 'julkistamispaikkakunta', 'tapahtumanlisatieto', 'julkaisunkieli', 'doitunniste', 'muutunniste', 'pysyvaverkkoosoite', 'tekijanrooli', 'lisatieto'
+// ];
+//
+// const commonRequiredFields = [
+// 	  'etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara',
+//       'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'lehdenjulkaisusarjannimi',
+//       'julkaisunkansainvalisyys', 'tieteenala', 'taiteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+//       'avoinsaatavuus', 'julkaisurinnakkaistallennettu'
+// 	];
 
 // Depicts field settings based on selected publication type. Settings for a single field constist of the following attributes:
 // requiredInPublicationTypes: Publication type codes for which the field is mandatory

@@ -60,8 +60,6 @@
       <select data-ng-model="selectedDemoUserOrganizationCode" data-ng-change="setDemoUserOrganization(selectedDemoUserOrganizationCode)">
         <option data-ng-repeat="organization in codes.organization" value="{{organization.arvo}}">{{organization.arvo}}: {{organization.selite}}</option>
       </select>
-      <br>
-      <a href data-ng-click="resetKoodisto()">reset koodisto</a>
     </span>
     
   </div>
