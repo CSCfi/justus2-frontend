@@ -559,13 +559,11 @@ angular.module('JustusController', [])
                 return JustusService.isValid(type, field);
             };
 
-            // disabled for developing purposes
             $scope.isJustusValid = function() {
                 $scope.visibleFields = JustusService.getListOfVisibleFields();
-                // $scope.invalidFields = JustusService.getInvalidFields($rootScope.user.visibleFields);
-                // ValidationService.setValidationErrors($scope.invalidFields);
-                // return $scope.invalidFields.length === 0;
-                return true;
+                $scope.invalidFields = JustusService.getInvalidFields($rootScope.user.visibleFields);
+                ValidationService.setValidationErrors($scope.invalidFields);
+                return $scope.invalidFields.length === 0;
             };
 
             $scope.isFieldRequired = function(fieldName) {
