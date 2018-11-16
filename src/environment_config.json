@@ -6,15 +6,15 @@
     "DEMO_ENABLED": true
   },
   "qa": {
-    "SITE_URL": "https://demo.justus.csc.fi",
-    "API_BASE_URL": "https://demo.justus.csc.fi/api/",
-    "AUTH_URL": "https://demo.justus.csc.fi/api/user",
+    "SITE_URL": "",
+    "API_BASE_URL": "/api/",
+    "AUTH_URL": "/api/user/",
     "DEMO_ENABLED": false
   },
   "production": {
-    "SITE_URL": "https://justus.csc.fi",
-    "API_BASE_URL": "https://justus.csc.fi/api/",
-    "AUTH_URL": "https://justus.csc.fi/api/user",
+    "SITE_URL": "",
+    "API_BASE_URL": "/api/",
+    "AUTH_URL": "/api/user/",
     "DEMO_ENABLED": false
   }
 }
