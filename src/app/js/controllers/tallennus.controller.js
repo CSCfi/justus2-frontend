@@ -54,6 +54,13 @@ angular.module('TallennusController', [])
       publication.julkaisu.modified = new Date();
 
       publication.organisaatiotekija = $scope.justus.organisaatiotekija;
+
+      angular.forEach(publication.organisaatiotekija, function (value, key) {
+         if($scope.justus.organisaatiotekija[key].rooli) {
+           publication.organisaatiotekija[key].rooli = parseInt(publication.organisaatiotekija[key].rooli);
+         }
+      });
+
       publication.avainsanat = $scope.justus.avainsanat;
       publication.taidealantyyppikategoria = $scope.justus.taidealantyyppikategoria;
       publication.lisatieto = $scope.justus.lisatieto;

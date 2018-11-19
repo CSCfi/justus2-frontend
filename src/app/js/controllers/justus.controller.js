@@ -82,7 +82,7 @@ angular.module('JustusController', [])
                         "etunimet": "",
                         "sukunimi": "",
                         "orcid": "",
-                        "rooli": "",
+                        "rooli": null,
                         "alayksikko": [null]
                     }
                 ];
@@ -145,10 +145,10 @@ angular.module('JustusController', [])
                         "etunimet": "",
                         "sukunimi": "",
                         "orcid": "",
-                        "rooli": "",
+                        "rooli": null,
                         "alayksikko": [null]
                     }
-                )
+                );
             };
 
             $scope.refreshKanavanimet = function(tyyppi, input) {
@@ -724,7 +724,7 @@ angular.module('JustusController', [])
                             "etunimet": "",
                             "sukunimi": "",
                             "orcid": "",
-                            "rooli": "",
+                            "rooli": null,
                             "alayksikko": [null]
                         }
                     ]

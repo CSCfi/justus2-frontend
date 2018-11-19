@@ -68,7 +68,7 @@ angular.module('APIService', [])
             { name: 'etunimet', default: '' },
             { name: 'sukunimi', default:'' },
             { name: 'orcid', default: '' },
-            { name: 'rooli', default: '' }
+            { name: 'rooli', default: null }
           ]
         },
         'alayksikko': {
