@@ -648,7 +648,7 @@ angular.module('JustusController', [])
 
                 $scope.alayksikkovuosi = {};
 
-                if (!$scope.justus.organisaatiotekija) { return; }
+                if (!$scope.justus.organisaatiotekija || $scope.justus.organisaatiotekija.length < 1) { return; }
 
                 if (!$scope.justus.organisaatiotekija[0].alayksikko[0]) {
                     if ($scope.alayksikkovuodet.length === 3) {
