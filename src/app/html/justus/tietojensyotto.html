@@ -169,8 +169,8 @@
         </div>
         <div class="col-xs-5 justus-data text-right">
           <span class="btn btn-primary justus-btn"
-            data-ng-click="useKopioiTekijat(justus.tekijat)"
-            data-ng-show="justus.tekijat && !(justus.organisaatiotekija[0].sukunimi || justus.organisaatiotekija[0].etunimet)"
+            data-ng-click="useKopioiTekijat(justus.julkaisu.tekijat)"
+            data-ng-show="justus.julkaisu.tekijat && !(justus.organisaatiotekija[0].sukunimi || justus.organisaatiotekija[0].etunimet)"
             data-popover-trigger="'mouseenter'"
             tdata-popover-placement="right"
             data-uib-popover="{{i18n.content.form.organisaatiotekija.kopioi.tooltip[lang]}}"

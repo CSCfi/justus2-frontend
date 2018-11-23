@@ -121,7 +121,8 @@ angular.module('JustusController', [])
                     $scope.justus.organisaatiotekija[i] = {};
                     $scope.justus.organisaatiotekija[i].sukunimi = tempstr.substring(sb, se).trim();
                     $scope.justus.organisaatiotekija[i].etunimet = tempstr.substring(eb, ee).trim();
-                    $scope.justus.organisaatiotekija[i].alayksikko = [''];
+                    $scope.justus.organisaatiotekija[i].alayksikko = [null];
+                    $scope.justus.organisaatiotekija[i].orcid = "";
                     tempstr = tempstr.substring(ee + 1);
                 }
             };

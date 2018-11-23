@@ -58,6 +58,8 @@ angular.module('TallennusController', [])
       angular.forEach(publication.organisaatiotekija, function (value, key) {
          if($scope.justus.organisaatiotekija[key].rooli) {
            publication.organisaatiotekija[key].rooli = parseInt(publication.organisaatiotekija[key].rooli);
+         } else {
+             publication.organisaatiotekija[key].rooli = null;
          }
       });
 
