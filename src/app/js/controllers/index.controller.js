@@ -246,8 +246,8 @@ angular.module('IndexController', [])
     };
 
     $scope.login = function() {
-      let target = encodeURIComponent(SITE_URL + '/#!/valitse?lang=' + $scope.lang);
-      $window.location.href = SITE_URL + '/Shibboleth.sso/Login?target=' + target;
+      let target = encodeURIComponent(SITE_URL + '#!/valitse?lang=' + $scope.lang);
+      $window.location.href = SITE_URL + 'Shibboleth.sso/Login?target=' + target;
     };
 
     // helper for localStorage
