@@ -165,10 +165,10 @@ angular.module('APIService', [])
     };
 
     /* UPDATE :: PUT */
-    this.put = function (id, data) {
+    this.put = function (path, id, data) {
       return $http({
         method: 'PUT',
-        url: API_BASE_URL + 'julkaisu/' + id,
+        url: API_BASE_URL + path + '/' + id,
         data: data,
         headers: { 'Content-Type': 'application/json' }
       })
@@ -179,6 +179,8 @@ angular.module('APIService', [])
         $log.error('put ERROR ' + response.status + ' ' + response.data);
       });
     };
+
+
 
     /* DELETE :: DELETE */
     this.delete = function (api, id) {

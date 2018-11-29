@@ -82,9 +82,7 @@ angular.module('TallennusController', [])
       publication.taiteenala = $scope.justus.taiteenala;
 
       // Update existing publication or create new depending on possible existing id
-      const julkaisuPromise = $scope.justus.julkaisu.id ? APIService.put($scope.justus.julkaisu.id, publication) : APIService.post('julkaisu', publication);
-      //
-      // console.log(julkaisuPromise);
+      const julkaisuPromise = $scope.justus.julkaisu.id ? APIService.put('julkaisu', $scope.justus.julkaisu.id, publication) : APIService.post('julkaisu', publication);
       julkaisuPromise.then((data) => {
         console.log(data);
         $state.go('omat', { lang: $scope.lang });
