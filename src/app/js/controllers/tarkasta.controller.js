@@ -392,7 +392,8 @@ angular.module('TarkastaController', [])
                     delete julkaisuCopy.id; // api doesn't like primary key in data
                     delete julkaisuCopy.ui_julkaisuntila;
                     julkaisuCopy.julkaisuntila = julkaisuntila;
-                    APIService.put('julkaisu', julkaisu.id, JSON.stringify(julkaisuCopy));
+                    let data = { "julkaisuntila": julkaisuntila, "username": $scope.user.name, "modified": new Date() };
+                    APIService.put('julkaisuntila', julkaisu.id, data);
                 }
             };
 
