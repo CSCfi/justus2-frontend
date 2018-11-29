@@ -242,8 +242,8 @@ const field_default_config = {
     'childnode': true
   },
   'julkaisurinnakkaistallennettu': {
-    'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'F1', 'F2', 'F3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'F1', 'F2', 'F3', 'G1', 'G2', 'G3', 'G4', 'G5'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
@@ -253,7 +253,7 @@ const field_default_config = {
   },
   'rinnakkaistallennetunversionverkkoosoite': {
     'requiredInPublicationTypes': [],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'F1', 'F2', 'F3', 'G1', 'G2', 'G3', 'G4', 'G5'],
     'optionalWithFields': [],
     'requiredWithFields': ['julkaisurinnakkaistallennettu'],
     'requiredAmount': 0,
@@ -263,7 +263,7 @@ const field_default_config = {
   },
   'emojulkaisunnimi': {
     'requiredInPublicationTypes': [],
-    'visibleInPublicationTypes': ['A3', 'A4', 'B2', 'B3', 'D2', 'D3', 'F1', 'F2', 'F3',],
+    'visibleInPublicationTypes': ['A3', 'A4', 'B2', 'B3', 'D2', 'D3', 'F2'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
