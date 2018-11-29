@@ -177,18 +177,18 @@ angular.module('TarkastaController', [])
                         'Konferenssin vakiintunut nimi': publication.julkaisu.konferenssinvakiintunutnimi,
                         'Emojulkaisun nimi': publication.julkaisu.emojulkaisunnimi,
                         'Emojulkaisun toimittajat': publication.julkaisu.emojulkaisuntoimittajat,
-                        'Julkistamispaikkakunta': publication.lisatieto.julkistamispaikkakunta,
-                        'Tapahtuma': publication.lisatieto.tapahtuma,
+                        'Julkistamispaikkakunta': getLisatieto(publication, "julkistamispaikkakunta"),
+                        'Tapahtuma': getLisatieto(publication, "tapahtuma"),
                         'Julkaisun kansainvälisyys': publication.julkaisu.julkaisunkansainvalisyys,
                         'Kansainvälinen yhteisjulkaisu': publication.julkaisu.kansainvalinenyhteisjulkaisu,
                         'DOI-tunniste': publication.julkaisu.doitunniste,
-                        'Muu tunniste': publication.lisatieto.muutunniste,
+                        'Muu tunniste': getLisatieto(publication, "muutunniste"),
                         'Pysyvä verkko-osoite': publication.julkaisu.pysyvaverkkoosoite,
                         'Rinnakkaistallennetun version verkko-osoite': publication.julkaisu.rinnakkaistallennetunversionverkkoosoite,
                         'Avoin saatavuus': publication.julkaisu.avoinsaatavuus,
                         'Avainsanat': publication.avainsanat,
                         'Lisätieto': publication.julkaisu.lisatieto,
-                        'Julkaisuvuoden lisätieto': publication.lisatieto.julkaisuvuodenlisatieto,
+                        'Julkaisuvuoden lisätieto': getLisatieto(publication, "julkaisuvuodenlisatieto"),
                         'Julkaisun tieteenala 1': getTieteenala(publication.tieteenala, 1),
                         'Julkaisun tieteenala 2': getTieteenala(publication.tieteenala, 2),
                         'Julkaisun tieteenala 3': getTieteenala(publication.tieteenala, 3),
@@ -368,6 +368,15 @@ angular.module('TarkastaController', [])
                 }
             };
 
+            let getLisatieto = function (data, text) {
+                if (!data.lisatieto) {
+                    return;
+                }
+                if (!data.lisatieto[text]) { return; }
+                else {
+                    return data.lisatieto[text];
+                }
+            };
 
             $scope.editPublication = function (d) {
                 if ($scope.state.name === 'omat' && d.julkaisuntila) {
