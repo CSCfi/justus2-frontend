@@ -146,10 +146,10 @@ angular.module('TarkastaController', [])
 
                 $scope.loading.csv = true;
 
-                return APIService.getJulkaisulistaAll()
+                return APIService.get("lista/all")
                     .then(function (response) {
-                        $scope.all = response;
-                        return response;
+                        $scope.all = response.data;
+                        return response.data;
                     }).catch(function (error) {
                     console.log(error)
                 }).then(function (value) {
