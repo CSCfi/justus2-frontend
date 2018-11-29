@@ -649,8 +649,6 @@ angular.module('JustusController', [])
 
                 $scope.alayksikkovuosi = {};
 
-                if (!$scope.justus.organisaatiotekija || $scope.justus.organisaatiotekija.length < 1) { return; }
-
                 if (!$scope.justus.organisaatiotekija[0].alayksikko[0]) {
                     if ($scope.alayksikkovuodet.length === 3) {
                         $scope.alayksikkovuosi.selected = {
@@ -719,7 +717,7 @@ angular.module('JustusController', [])
                     $scope.justus.julkaisu = {};
                 }
 
-                if(!$scope.justus.organisaatiotekija) {
+                if(!$scope.justus.organisaatiotekija || $scope.justus.organisaatiotekija.length < 1) {
                     $scope.justus.organisaatiotekija = [
                         {
                             "etunimet": "",
