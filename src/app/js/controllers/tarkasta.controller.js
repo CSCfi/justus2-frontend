@@ -418,7 +418,7 @@ angular.module('TarkastaController', [])
                     .then(function (obj) {
                         $scope.totalItems = obj.totalItems || 0;
 
-                        return Promise.map(obj.julkaisut, function (o, k) {
+                        return Promise.map(obj.data, function (o, k) {
                             // NB! API returns '2017-03-24 12:37:47.18+02'
                             // => convert string first (as illustrated in http://dygraphs.com/date-formats.html)
 
@@ -430,8 +430,8 @@ angular.module('TarkastaController', [])
                             //     m = m.replace(/\+.*$/, ''); // strip timezone
                             //     o.modified = new Date(m);
                             // }
-                            o.ui_julkaisuntila = o.julkaisuntila;
-                            $scope.data['julkaisu'].push(o);
+                            o.julkaisu.ui_julkaisuntila = o.julkaisu.julkaisuntila;
+                            $scope.data['julkaisu'].push(o.julkaisu);
                         });
                     })
                     .then(function () {
