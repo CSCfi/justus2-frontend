@@ -147,12 +147,14 @@ angular.module('APIService', [])
     };
 
     /* READ :: GET */
-    this.get = function (api, id, singleResult = false) {
-
-      // id voi puuttua, jolloin palautetaan kaikki
+    this.get = function (api, code, singleResult = false) {
+      /*
+          Organisation code (second parameter) is optional, if missing return data from all organisations.
+          This functionality is possible for owners only
+       */
       return $http({
         method: 'GET',
-        url:  API_BASE_URL + 'julkaisut' + '/' + api + (id ? '/' + id : ''),
+        url:  API_BASE_URL + 'julkaisut' + '/' + api + (code ? '/' + code : ''),
         // params: query
       })
       .then(function (response) {

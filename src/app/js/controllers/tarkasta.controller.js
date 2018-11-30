@@ -420,10 +420,9 @@ angular.module('TarkastaController', [])
 
                 $scope.data['julkaisu'] = [];
                 // limit fetched rows by organisaatiotunnus
-                const val = $scope.user.organization.code !== '00000' ? $scope.user.organization.code : null;
-                const col = $scope.user.organization.code !== '00000' ? 'organisaatiotunnus' : null;
+                const organisationCode = $scope.user.organization.code !== '00000' ? $scope.user.organization.code : null;
 
-                APIService.get("lista")
+                APIService.get("lista", organisationCode)
                     .then(function (obj) {
                         $scope.totalItems = obj.totalItems || 0;
 
