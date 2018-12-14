@@ -8,7 +8,6 @@ angular.module('IndexController', [])
     $scope.siteUrl = SITE_URL;
 
     if (typeof (AUTH_URL) !== 'undefined') {
-
       $http.get(AUTH_URL)
       .then(function(response) {
 
@@ -54,35 +53,8 @@ angular.module('IndexController', [])
         AuthService.storeUserInfo($scope.user);
       })
 
-      .catch(function() {
-        if (DEMO_ENABLED) {
-            $http.get(API_BASE_URL + 'organisaatiolistaus')
-                .then(function(response) {
-                    let allOrganizations = response.data;
-                    $scope.codes.organization = response.data;
-
-                    for (var i = 0; i < allOrganizations.length; i++) {
-                        if (allOrganizations[i].arvo === '00000') {
-                            $rootScope.user = angular.copy(allOrganizations[i]);
-                            $scope.user = angular.copy(allOrganizations[i]);
-                        }
-                    }
-
-                    $scope.user.name = demoUser.name;
-                    $scope.user.organization = demoUser.organization;
-                    $rootScope.user.organization = demoUser.organization;
-                    $scope.user.role = demoUser.role;
-
-                    $scope.initialRole = 'admin';
-                    $rootScope.initialUser = $scope.user;
-                    AuthService.storeUserInfo($scope.user);
-
-                    // Initialize role/organization selectors for demo user
-                    $scope.selectedDemoUserRole = 'admin';
-                    $scope.selectedDemoUserOrganizationCode = '00000';
-
-                });
-        }
+      .catch(function(error) {
+            console.log(error);
       });
     }
 

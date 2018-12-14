@@ -39,7 +39,7 @@ angular.module('JustusService', [])
     // If the field is visible for the current publication type, it
     // can still be hidden by the active organization
     if (visible === true || !field_default_config[field]) {
-      let organizationConfig = $rootScope.user.visibleFields;
+      let organizationConfig = angular.copy($rootScope.user.visibleFields);
       visible = organizationConfig.indexOf(field) !== -1;
     }
     return visible;
@@ -80,7 +80,7 @@ angular.module('JustusService', [])
   };
 
   this.isFieldRequiredByOrganization = function(fieldName) {
-    let organizationConfig = $rootScope.user.requiredFields;
+    let organizationConfig = angular.copy($rootScope.user.requiredFields);
     return organizationConfig.indexOf(fieldName) !== -1;
   };
 
@@ -98,7 +98,7 @@ angular.module('JustusService', [])
 
    this.getListOfVisibleFields = function () {
 
-        let visibleFields = $rootScope.user.visibleFields;
+        let visibleFields = angular.copy($rootScope.user.visibleFields);
         let indexes = [];
 
         for (var i = 0; i <visibleFields.length; i++) {

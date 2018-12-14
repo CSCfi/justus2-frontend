@@ -395,13 +395,13 @@ angular.module('TarkastaController', [])
 
             $scope.updatePublication = function (julkaisu, julkaisuntila) {
                 if (julkaisu && julkaisu.id) {
-                    julkaisu.username = $scope.user.name;
+                    julkaisu.username = $rootScope.user.name;
                     julkaisu.modified = new Date();
                     const julkaisuCopy = angular.copy(julkaisu);
                     delete julkaisuCopy.id; // api doesn't like primary key in data
                     delete julkaisuCopy.ui_julkaisuntila;
                     julkaisuCopy.julkaisuntila = julkaisuntila;
-                    let data = { "julkaisuntila": julkaisuntila, "username": $scope.user.name, "modified": new Date() };
+                    let data = { "julkaisuntila": julkaisuntila, "username": $rootScope.user.name, "modified": new Date() };
                     APIService.put('julkaisuntila', julkaisu.id, data);
                 }
             };
@@ -420,7 +420,7 @@ angular.module('TarkastaController', [])
 
                 $scope.data['julkaisu'] = [];
                 // limit fetched rows by organisaatiotunnus
-                const organisationCode = $scope.user.organization.code !== '00000' ? $scope.user.organization.code : null;
+                const organisationCode = $rootScope.user.organization.code !== '00000' ? $rootScope.user.organization.code : null;
 
                 APIService.get("lista", organisationCode)
                     .then(function (obj) {

@@ -2,7 +2,7 @@
   "development": {
     "SITE_URL": "http://10.10.10.10:8080/",
     "API_BASE_URL": "http://10.10.10.10:8080/api/",
-    "AUTH_URL": "",
+    "AUTH_URL": "http://10.10.10.10:8080/api/user",
     "DEMO_ENABLED": true
   },
   "qa": {

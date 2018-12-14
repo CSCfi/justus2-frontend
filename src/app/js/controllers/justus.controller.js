@@ -587,25 +587,25 @@ angular.module('JustusController', [])
             $scope.getAlayksikkoData = function(alayksikkovuosi) {
 
                 if (alayksikkovuosi.id === 2016) {
-                    for (let i = 0; i < $scope.user.alayksikot.length; i++) {
-                        if ($scope.user.alayksikot[i].vuosi === '2016') {
-                            return $scope.user.alayksikot[i].yksikot;
+                    for (let i = 0; i < $rootScope.user.alayksikot.length; i++) {
+                        if ($rootScope.user.alayksikot[i].vuosi === '2016') {
+                            return $rootScope.user.alayksikot[i].yksikot;
                         }
                     }
                 }
 
                 if (alayksikkovuosi.id === 2017) {
-                    for (let i = 0; i < $scope.user.alayksikot.length; i++) {
-                        if ($scope.user.alayksikot[i].vuosi === '2017') {
-                            return $scope.user.alayksikot[i].yksikot;
+                    for (let i = 0; i < $rootScope.user.alayksikot.length; i++) {
+                        if ($rootScope.user.alayksikot[i].vuosi === '2017') {
+                            return $rootScope.user.alayksikot[i].yksikot;
                         }
                     }
                 }
 
                 if (alayksikkovuosi.id === 2018) {
-                    for (let i = 0; i < $scope.user.alayksikot.length; i++) {
-                        if ($scope.user.alayksikot[i].vuosi === '2018') {
-                            return $scope.user.alayksikot[i].yksikot;
+                    for (let i = 0; i < $rootScope.user.alayksikot.length; i++) {
+                        if ($rootScope.user.alayksikot[i].vuosi === '2018') {
+                            return $rootScope.user.alayksikot[i].yksikot;
                         }
                     }
                 }
@@ -616,9 +616,9 @@ angular.module('JustusController', [])
             // - parameter input is optional
             let fillMissingJustusLists = function() {
 
-                for (let i=0; i < $scope.user.alayksikot.length; i++) {
-                    if($scope.user.alayksikot[i].vuosi === '2018') {
-                        if($scope.user.alayksikot[i].yksikot.length < 1) {
+                for (let i=0; i < $rootScope.user.alayksikot.length; i++) {
+                    if($rootScope.user.alayksikot[i].vuosi === '2018') {
+                        if($rootScope.user.alayksikot[i].yksikot.length < 1) {
                             $scope.alayksikkovuodet = [
                                 {
                                     id: 2016,
