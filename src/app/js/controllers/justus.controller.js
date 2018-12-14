@@ -527,7 +527,8 @@ angular.module('JustusController', [])
                         }
                         // Add user's organisaatiotunnus to the form
                         // Overwrite active organization code with demo user code to allow saving in demo
-                        this.justus.julkaisu.organisaatiotunnus = DEMO_ENABLED === true ? '00000' : $rootScope.user.organization.code;
+                        // this.justus.julkaisu.organisaatiotunnus = DEMO_ENABLED === true ? '00000' : $rootScope.user.organization.code;
+                        this.justus.julkaisu.organisaatiotunnus =  $rootScope.user.organization.code;
                     }
                 }
                 else {
