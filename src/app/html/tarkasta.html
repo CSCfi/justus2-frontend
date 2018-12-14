@@ -22,6 +22,7 @@
     <div class="col-xs-12">
       <button type="button"
         class="btn btn-default"
+        data-ng-if="user.role === 'admin' || user.role === 'owner'"
         ng-csv="getCsvExportFile()"
         lazy-load="true"
         csv-header="csvExportHeader"
@@ -94,7 +95,7 @@
             <td class="condensed nowrap">
               <a data-ng-show="state.name=='hyvaksy' || !d.julkaisuntila"
                  data-ng-click="editPublication(d)"
-                data-ui-sref="justus({lang:lang,id:d.id,vaihe:5})">
+                data-ui-sref="justus({lang:lang,id:d.id,vaihe:4})">
                 <span data-ng-bind="d.julkaisuvuosi+'-'+d.organisaatiotunnus+'-'+d.id"></span>
               </a>
               <span data-ng-show="state.name=='omat' && d.julkaisuntila" data-ng-bind="d.julkaisuvuosi+'-'+d.organisaatiotunnus+'-'+d.id"></span>
