@@ -9,31 +9,6 @@ angular.module('TallennusController', [])
 
     $scope.meta = APIService.meta;
 
-    let saveTable = function(table, data, putid, refid) {
-      // remove primary key from data
-      let saveid = data[$scope.meta.tables[table].pkcol];
-      delete data[$scope.meta.tables[table].pkcol];
-      // set referencing key if given (only meaningful for inserting new but set anyway)
-      if (refid) {
-        if (table === 'avainsana' || table === 'tieteenala' || table === 'organisaatiotekija') {
-          data.julkaisuid = refid;
-        }
-        if (table === 'alayksikko') {
-          data.organisaatiotekijaid = refid;
-        }
-      }
-      // update (put) or insert (post)
-      if (putid) {
-        // restore id
-        data[$scope.meta.tables[table].pkcol] = saveid;
-        return APIService.put(table, putid, data);
-      }
-      else {
-        return APIService.post(table, data);
-      }
-    };
-
-
     $scope.savePublicationForm = function() {
       const publication = {};
       publication.julkaisu = {};
