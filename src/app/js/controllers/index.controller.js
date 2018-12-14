@@ -132,11 +132,15 @@ angular.module('IndexController', [])
   };
 
     $scope.changeLang = function(lang) {
-        $scope.lang = lang;
+        $scope.lang =  lang;
+        let languageObject = { "lang": lang };
         $stateParams.lang = lang;
         AuthService.storeLanguage(lang);
     //    post language parameter to backend
-    //     APIService.post('kieli', lang);
+    //     APIService.post('language',  languageObject).then(function (res) {
+    //         init();
+    //     });
+
     };
 
  // for ui listing unique organizations ordered by language!
