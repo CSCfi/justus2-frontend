@@ -1529,36 +1529,19 @@
 <!-- JATKA -->
 <div class="row form-group">
   <!-- <div class="row"> -->
-  <div class="col-md-6">
-    <button class="btn btn-lg btn-block btn-primary"
-            type="button"
-            data-ng-click="useVaihe(5)">
-      {{i18n.content.tietojensyotto.jatka[lang]}}
-    </button>
-  </div>
-  <div class="col-md-1 d-flex align-items-center justify-content-center">
-    <div class="h3">
-    TAI
-    </div>
-  </div>
-  <div class="col-md-5">
+  <div class="col-md-8">
     <button class="btn btn-lg btn-block btn-primary"
             type="button"
             data-ng-click="useVaihe(4)">
-      Syötä julkaisu
+      {{i18n.content.tietojensyotto.jatka[lang]}}
     </button>
   </div>
-</div>
-<div class="row form-group">
-  <div class="col-md-12">
-    <div class="text-right">
-      <button class="btn  btn-danger"
-              type="button"
-              data-ng-click="cancelAndGoToPublicationListing()">
-        {{i18n.content.tietojensyotto.keskeyta[lang]}}
-      </button>
-    </div>
+  <div class="col-md-4">
+    <button class="btn btn-lg btn-block btn-danger"
+            type="button"
+            data-ng-click="cancelAndGoToPublicationListing()">
+      {{i18n.content.tietojensyotto.keskeyta[lang]}}
+    </button>
   </div>
+  <!-- </div> -->
 </div>
-<!-- </div> -->
-<!--</div>-->

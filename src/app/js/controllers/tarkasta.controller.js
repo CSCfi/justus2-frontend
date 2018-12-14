@@ -384,7 +384,7 @@ angular.module('TarkastaController', [])
                 } else {
                     DataStoreService.storeStateData($scope.state.name);
                     DataStoreService.storeBooleanforOdottavat($scope.odottavat);
-                    $location.path('/justus').search({lang: $scope.lang, id: d.id, vaihe: 5});
+                    $location.path('/justus').search({lang: $scope.lang, id: d.id, vaihe: 4});
                 }
             };
 
