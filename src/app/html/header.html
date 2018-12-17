@@ -51,7 +51,7 @@
         </span>
     </div>
 
-    <span data-ng-if="demoEnabled || initialRole === 'owner'">
+    <span data-ng-if="initialRole === 'owner'">
       <select data-ng-model="selectedDemoUserRole" data-ng-change="setDemoUserRole(selectedDemoUserRole)">
         <option value="owner">Owner</option>
         <option value="admin">Admin</option>
