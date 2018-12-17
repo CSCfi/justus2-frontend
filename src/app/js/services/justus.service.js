@@ -118,6 +118,7 @@ angular.module('JustusService', [])
 
     // Assume the field is valid, for performance we will continue validating until the field is first decided as invalid
     let valid = true;
+    let orcidValid = true;
     let reason = '';
     let fieldIsFilled = false;
 
@@ -168,7 +169,19 @@ angular.module('JustusService', [])
     // Validate a field which consists of multiple subfields
     if (field_default_config[fieldName].subfields.length > 0 && valid === true && fieldIsFilled === true) {
       valid = this.validateNestedField(fieldName);
-      reason = valid === false ? `One or more subfield value is invalid for field: ${fieldName}` : '';
+      if (fieldName === 'organisaatiotekija') {
+          orcidValid = this.validateOrcid(fieldName);
+      }
+
+      if (!orcidValid && valid) {
+          reason = orcidValid === false ? `Orcid field is invalid ` : '';
+      } else {
+          reason = valid === false ? `One or more subfield value is invalid for field: ${fieldName}` : '';
+      }
+    }
+
+    if (!orcidValid) {
+      valid = false;
     }
 
     if (valid === false && reason) {
@@ -177,19 +190,43 @@ angular.module('JustusService', [])
     return valid;
   };
 
+    this.validateOrcid = function (fieldName) {
+
+      let validArray = [];
+      let valid = true;
+
+        if (angular.isArray(this.justus[fieldName])) {
+          for (let i = 0; i < this.justus[fieldName].length; i++) {
+            if (this.justus[fieldName][i].orcid === undefined || !this.justus[fieldName][i].orcid || this.justus[fieldName][i].orcid === '') {
+                validArray.push(true);
+            } else {
+              validArray.push(this.justus[fieldName][i].orcid.match(this.pattern["orcid"]) !== null);
+
+            }
+          }
+        }
+
+        if (validArray.indexOf(false) >= 0) {
+          valid = false;
+        }
+        return valid;
+    };
+
   this.validateNestedField = function(fieldName) {
     let valid = true;
     angular.forEach(field_default_config[fieldName].subfields, function(subfieldName) {
       const subfieldIsRequired = this.isFieldRequired(subfieldName);
+
       // If the field consists of a list of objects, we need to validate each index
       if (angular.isArray(this.justus[fieldName]) && subfieldIsRequired === true) {
         angular.forEach(this.justus[fieldName], function(fieldIndex, index) {
 
+
           // If the required amount of values is already entered, no need to validate
           // emptiness of remaining fields
-          if (field_default_config[fieldName].requiredAmount <= index) {
-            return;
-          }
+          // if (field_default_config[fieldName].requiredAmount <= index) {
+          //   return;
+          // }
 
           if (this.fieldIsEmpty(fieldIndex[subfieldName]) === true) {
             valid = false;
