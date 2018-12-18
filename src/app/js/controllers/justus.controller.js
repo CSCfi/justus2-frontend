@@ -539,6 +539,10 @@ angular.module('JustusController', [])
                 }
             };
 
+            $scope.eiRinnakkaisTallennettavaSelected = function () {
+                $scope.eirinnakkaistellennettava = true;
+            };
+
             $scope.useRequiredHighlight = function() {
                 $scope.requiredHighlight = !$scope.requiredHighlight;
             };
