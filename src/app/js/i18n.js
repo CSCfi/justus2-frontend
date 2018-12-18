@@ -551,9 +551,9 @@ const i18n = {
         }
       },
       julkaisurinnakkaistallennettu: {
-        FI: 'Julkaisu rinnakkaistallennettu',
-        SV: 'Publikationen har lagrats parallellt',
-        EN: 'Self-archived publication',
+        FI: 'Rinnakkaistallennettu julkaisu',
+        SV: 'Rinnakkaistallennettu julkaisu',
+        EN: 'Rinnakkaistallennettu julkaisu',
         tooltip: {
           FI: 'Julkaisu on rinnakkaistallennettu organisaatio- tai tieteenalakohtaiseen julkaisuarkistoon joko välittömästi tai kustantajan määrittämän kohtuullisen mittaisen embargoajan jälkeen. Julkaisu voi olla joko ns. kustantajan versio tai tutkijan oma viimeinen (vertaisarvioitu) versio.',
           SV: 'Publikationen har lagrats parallellt i ett organisations- eller vetenskapsområdesspecifikt publikationsarkiv antingen omedelbart eller efter en rimlig embargotid som förläggaren har fastställt. Publikationen kan vara en s.k. förläggarversion eller forskarens egen, sista (referentgranskade) version.',
@@ -577,6 +577,21 @@ const i18n = {
           EN: 'e.g. http://www.theseus.fi/handle/10024/10922'
         }
       },
+        rinnakkaistallennettumuualle: {
+            FI: 'Julkaisu rinnakkaistallennettu muualle',
+            SV: 'Julkaisu rinnakkaistallennettu muualle',
+            EN: 'Julkaisu rinnakkaistallennettu muualle'
+        },
+        eirinnakkaistallennettava: {
+            FI: 'Ei rinnakkaistallennettava',
+            SV: 'Ei rinnakkaistallennettava',
+            EN: 'Ei rinnakkaistallennettava'
+        },
+        julkaisu: {
+            FI: 'Julkaisu',
+            SV: 'Publikation',
+            EN: 'Publication'
+        },
       lisatieto: {
         FI: 'Lisätieto',
         SV: 'Tilläggsinformation',
@@ -593,7 +608,9 @@ const i18n = {
         }
       },
       jufotunnus: { FI: 'JUFO-ID', SV: 'JUFO-ID', EN: 'JUFO-ID' },
-      jufoluokitus: { FI: 'JUFO-luokitus', SV: 'JUFO-klassificering', EN: 'JUFO-classification' }
+      jufoluokitus: { FI: 'JUFO-luokitus', SV: 'JUFO-klassificering', EN: 'JUFO-classification' },
+      urntunnus: { FI: 'URN-tunnus', SV: 'URN-tunnus', EN: 'URN-tunnus'},
+      embargoaika: { FI: 'Embargo-aika', SV: 'Embargo-aika', EN: 'Embargo-aika'}
     },
     tietojensyotto: {
       yleiset: { FI: 'Yleiset julkaisutiedot', SV: 'Allmänna uppgifter', EN: 'General publication information' },
