@@ -19,14 +19,14 @@
   </div>
 
   <div class="col-md-5ths text-center" data-ng-class="{'col-xs-9':vaihe>=4, 'col-xs-1':vaihe!=4}">
-    <div class="justus-btn justus-btn-stage" data-ng-class="{selected:vaihe==4, disabled:vaihe<3}" data-ng-click="useVaihe(4)">
-      4 <span data-ng-class="{'hidden-xs':vaihe!=4}" >Syötä julkaisu</span>
+    <div class="justus-btn justus-btn-stage" data-ng-class="{selected:vaihe==4}" data-ng-click="useVaihe(4)">
+      4 <span data-ng-class="{'hidden-xs':vaihe!=4}" data-ng-bind="i18n.content.vaihevuo.julkaisunsyotto[lang]"></span>
     </div>
   </div>
 
-  <div class="col-md-5ths text-center" data-ng-class="{'col-xs-9':vaihe>=4, 'col-xs-1':vaihe!=4}">
+  <div class="col-md-5ths text-center" data-ng-class="{'col-xs-9':vaihe>=5, 'col-xs-1':vaihe!=5}">
     <div class="justus-btn justus-btn-stage" data-ng-class="{selected:vaihe==5, disabled:vaihe<5}" data-ng-click="vaihe>=5?useVaihe(5):null">
-      5 <span data-ng-class="{'hidden-xs':vaihe!=4}" data-ng-bind="i18n.content.vaihevuo.tallennus[lang]"></span>
+      5 <span data-ng-class="{'hidden-xs':vaihe!=5}" data-ng-bind="i18n.content.vaihevuo.tallennus[lang]"></span>
     </div>
   </div>
 </div>

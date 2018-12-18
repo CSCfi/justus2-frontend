@@ -634,6 +634,7 @@ const i18n = {
       julkaisutyyppi: { FI: 'Valitse julkaisutyyppi', SV: 'Välj publikationstyp', EN: 'Choose publication type' },
       esitayta: { FI: 'Esitäytä tiedot', SV: 'Sök bland publikationer', EN: 'Prefill the form' },
       tietojensyotto: { FI: 'Syötä julkaisutiedot', SV: 'Mata in uppgifter', EN: 'Enter publication information' },
+      julkaisunsyotto: { FI: 'Syötä julkaisu', SV: 'Mata in publikation', EN: 'Enter publication' },
       tallennus: { FI: 'Tarkista ja tallenna', SV: 'Granska och spara', EN: 'Verify and save' }
     },
     tarkasta: {
