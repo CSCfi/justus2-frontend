@@ -70,7 +70,10 @@ const config = {
     fontSrc: [
       SOURCE_PATH + '/assets/fonts/*',
       SOURCE_PATH + '/**/*.ttf',
-      'node_modules/font-awesome/fonts/**/*'
+      'node_modules/font-awesome/fonts/**/*',
+	  
+      'node_modules/bootstrap-sass/assets/fonts/**/*',
+	  
     ],
 
     // Define path for images
