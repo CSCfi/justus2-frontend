@@ -27,25 +27,7 @@ angular.module('JustusController', [])
 
             $scope.julkaisu = {};
 
-            $scope.useJulkaisu = function(file) {
-                $scope.justus.file = file;
-                $scope.useVaihe(5)
-            };
-
-            // $scope.upload = function (file) {
-            //     Upload.upload({
-            //         url: 'upload/url',
-            //         data: {file: file }
-            //     }).then(function (resp) {
-            //         console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-            //     }, function (resp) {
-            //         console.log('Error status: ' + resp.status);
-            //     }, function (evt) {
-            //         var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-            //         console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-            //     });
-            // };
-
+            $scope.julkaisufile = {};
 
             // Parses first- and lastnames from a string of names and returns them in a list of objects [{ firstName: '', lastName: '' }, ...]
             const parseNames = function(namesString) {
@@ -748,9 +730,59 @@ angular.module('JustusController', [])
 
             };
 
-
-
             populatePublicationForm();
+
+
+            // enter publication view
+            $scope.useJulkaisu = function(file) {
+                $scope.justus.file = file;
+                $scope.useVaihe(5)
+            };
+
+            $scope.setMonth = function() {
+                let d = new Date();
+                $scope.julkaisufile.embargo = d.setMonth(new Date().getMonth() + 6);
+            };
+
+            $scope.setYear = function() {
+                let d = new Date();
+                $scope.julkaisufile.embargo =  d.setFullYear(d.getFullYear(), d.getMonth() +12);
+            };
+
+            $scope.dateOptions = {
+                formatYear: 'yyyy',
+                minDate: new Date(),
+                startingDay: 1
+            };
+
+            $scope.openDatepicker = function() {
+                $scope.popup.opened = true;
+            };
+
+            $scope.format = 'yyyy/MM/dd';
+
+            $scope.popup = {
+                opened: false
+            };
+
+
+            // $scope.upload = function (file) {
+            //     Upload.upload({
+            //         url: 'upload/url',
+            //         data: {file: file }
+            //     }).then(function (resp) {
+            //         console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+            //     }, function (resp) {
+            //         console.log('Error status: ' + resp.status);
+            //     }, function (evt) {
+            //         var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            //         console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+            //     });
+            // };
+
+
         }
+
+
 
     ]);

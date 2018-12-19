@@ -10,6 +10,10 @@
   margin-bottom: $padding-large-vertical;
 }
 
+.pb{
+  padding: 0 0 $padding-small-vertical 0;
+}
+
 .px {
   padding: 0 $padding-large-horizontal
 };
@@ -52,6 +56,10 @@
 
 .d-inline-block {
   display: inline-block;
+}
+
+*:focus {
+  outline: none !important;
 }
 
 @mixin input() {

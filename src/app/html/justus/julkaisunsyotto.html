@@ -64,9 +64,16 @@
                                 </label>
                             </div>
                             <div class="col-md-8">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="email" placeholder="vvvv-kk-pp">
-                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <div class="input-group pb">
+                                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                                           ng-model="julkaisufile.embargo" is-open="popup.opened"
+                                           datepicker-options="dateOptions"
+                                           show-button-bar="false" placeholder="vvvv-kk-pp"/>
+                                    <span ng-click="openDatepicker()" class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-sm btn-default" ng-click="setMonth()">Puolen vuoden päähän</button>
+                                    <button type="button" class="btn btn-sm btn-default" ng-click="setYear()">Vuoden päähän</button>
                                 </div>
                             </div>
                             </div>
