@@ -2,14 +2,15 @@
     <div class="col-xs-12">
         <div class="row">
             <div class="col-xs-12">
-                <div class="col-xs-12 justus-btn justus-btn-tyyppi"
-                     data-ng-class="{'active': syotaJulkaisu}"
+                <button class="col-xs-12 justus-btn justus-btn-tyyppi"
+                     data-ng-disabled="rinnakkaistallennettumuualle"
+                     data-ng-class="{'active': syotaJulkaisu, 'disabled': rinnakkaistallennettumuualle}"
                      data-ng-click="syotaJulkaisu = !syotaJulkaisu; rinnakkaistallennettumuualle = false;
                                     eirinnakkaistellennettava = false">
                     {{ i18n.content.form.julkaisurinnakkaistallennettu[lang] }}
-                </div>
+                </button>
                 <div class="col-xs-12">
-                    <div data-ng-if="syotaJulkaisu" class="m-t m-b">
+                    <div data-ng-show="syotaJulkaisu" class="m-t m-b">
                         <div class="row">
                             <div class="col-md-4">
                                 <label class="control-label"
@@ -18,29 +19,29 @@
                             </div>
                             <div class="col-md-8">
                                 <form name="form">
-                                    <div ng-show="!justus.file">
-                                        <div class="d-inline-block" ngf-select ng-model="justus.file" name="file"
+                                    <div ng-show="!file">
+                                        <div class="d-inline-block" ngf-select ng-model="file" name="file"
                                              ngf-max-size="100MB">
                                             <button class="btn btn-primary">Valitse tiedosto</button>
                                         </div>
-                                        <div class="d-inline-block text-right px" ng-if="!justus.file">Ei valittua
+                                        <div class="d-inline-block text-right px" ng-if="!file">Ei valittua
                                             tiedostoa
                                         </div>
                                     </div>
-                                    <div ng-show="!justus.file" ngf-drop ng-model="justus.file" class="drop-box"
+                                    <div ng-show="!file" ngf-drop ng-model="file" class="drop-box"
                                          ngf-drag-over-class="'dragover'" ngf-allow-dir="true">
                                         Tai vedä tiedosto tähän
                                     </div>
-                                    <div class="row" ng-show="justus.file">
+                                    <div class="row" ng-show="file">
                                         <div class="col-md-8">
-                                            <span class="font-weight-bold text-xl">{{justus.file.name}}</span>
+                                            <span class="font-weight-bold text-xl">{{file.name}}</span>
                                         </div>
                                         <div class="col-md-2" style="margin-top:5px;">
-                                            <span data-ng-bind="bytesToSize(justus.file.size)"></span>
+                                            <span data-ng-bind="bytesToSize(file.size)"></span>
                                         </div>
                                         <div class="col-md-2 text-right">
                                             <button class="btn btn-primary m-b"
-                                                    data-ng-click="justus.file = null">Poista
+                                                    data-ng-click="removeFile(); file = null">Poista
                                             </button>
                                         </div>
                                     </div>
@@ -83,14 +84,15 @@
             </div>
         <div class="row">
             <div class="col-xs-12">
-                <div class="col-xs-12 justus-btn justus-btn-tyyppi"
-                     data-ng-class="{'active': rinnakkaistallennettumuualle}"
+                <button class="col-xs-12 justus-btn justus-btn-tyyppi"
+                     data-ng-disabled="syotaJulkaisu"
+                     data-ng-class="{'active': rinnakkaistallennettumuualle,  'disabled': syotaJulkaisu }"
                      data-ng-click="rinnakkaistallennettumuualle = !rinnakkaistallennettumuualle;
                      syotaJulkaisu = false; eirinnakkaistellennettava = false">
                     {{ i18n.content.form.rinnakkaistallennettumuualle[lang] }}
-                </div>
+                </button>
                 <div class="col-xs-12">
-                <div data-ng-if="rinnakkaistallennettumuualle" class="m-t m-b">
+                <div data-ng-show="rinnakkaistallennettumuualle" class="m-t m-b">
                     <div class="row">
                         <div class="col-xs-4">
                             <label class="control-label"
@@ -118,17 +120,29 @@
 
         <div class="row">
             <div class="col-xs-12">
-                <div class="col-xs-12 justus-btn justus-btn-tyyppi"
-                     data-ng-class="{'active': eirinnakkaistellennettava }"
-                     data-ng-click="eiRinnakkaisTallennettavaSelected(); useVaihe(5)">
-                    {{ i18n.content.form.eirinnakkaistallennettava[lang] }}
-                </div>
+                <button class="col-xs-12 justus-btn justus-btn-tyyppi"
+                        data-ng-disabled="rinnakkaistallennettumuualle || syotaJulkaisu"
+                        data-ng-class="{'active': eirinnakkaistellennettava,  'disabled': rinnakkaistallennettumuualle || syotaJulkaisu }"
+                        data-ng-click="eiRinnakkaisTallennettavaSelected(); useVaihe(5)">
+                        {{ i18n.content.form.eirinnakkaistallennettava[lang] }}
+                </button>
             </div>
         </div>
 
     </div>
+
 </div>
+<!--</div>-->
+
+   <div>
+    <button
+            class="btn btn-lg btn-block btn-primary"
+            type="button"
+            data-ng-click="updateRinnakkaistallennusData(file); useVaihe(5)">
+        {{i18n.content.tietojensyotto.jatka[lang]}}
+    </button>
 </div>
+
 
 
 <!--<span class="progress" ng-show="file.progress >= 0">-->
@@ -139,10 +153,11 @@
 <!--<span ng-show="file.result">Upload Successful</span>-->
 <!--<span class="err" ng-show="errorMsg">{{errorMsg}}</span>-->
 <!--<div style="margin-top:70px;">-->
-    <button
-            class="btn btn-lg btn-block btn-primary"
-            type="button"
-            data-ng-click="useJulkaisu(justus.file)">
-        {{i18n.content.tietojensyotto.jatka[lang]}}
-    </button>
-</div>
+
+<!--<button-->
+        <!--class="btn btn-lg btn-block btn-primary"-->
+        <!--type="button"-->
+        <!--data-ng-click="useVaihe(5)">-->
+    <!--{{i18n.content.tietojensyotto.jatka[lang]}}-->
+<!--</button>-->
+<!--</div>-->

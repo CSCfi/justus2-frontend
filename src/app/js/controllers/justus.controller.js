@@ -733,10 +733,26 @@ angular.module('JustusController', [])
             populatePublicationForm();
 
 
+            $scope.file = null;
+
             // enter publication view
-            $scope.useJulkaisu = function(file) {
-                $scope.justus.file = file;
-                $scope.useVaihe(5)
+            $scope.updateRinnakkaistallennusData = function(file) {
+                if (file) {
+                    $scope.file = file;
+                    $scope.justus.julkaisu.julkaisurinnakkaistallennettu = "1";
+                    $scope.justus.julkaisu.rinnakkaistallennetunversionverkkoosoite = "";
+                }
+                else if ($scope.justus.julkaisu.rinnakkaistallennetunversionverkkoosoite &&
+                    $scope.justus.julkaisu.julkaisurinnakkaistallennettu !== "") {
+                    $scope.justus.julkaisu.julkaisurinnakkaistallennettu = "1";
+                } else {
+                    $scope.justus.julkaisu.julkaisurinnakkaistallennettu = "0";
+                }
+
+            };
+
+            $scope.removeFile = function() {
+                $scope.file = null;
             };
 
             $scope.setMonth = function() {
