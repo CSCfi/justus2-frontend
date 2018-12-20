@@ -69,8 +69,40 @@
   cursor: pointer;
   text-align: left;
   font-size: larger;
+  border: 0
 }
 
 .justus-btn-tyyppi.active {
   background-color: $brand-primary;
 }
+.justus-btn-tyyppi.disabled {
+  &:hover {
+    background-color: $brand-primary-light;
+
+  }
+}
+
+// Datepicker
+
+.btn-info {
+  background-color: $brand-primary;
+  border-color: $brand-primary;
+  &:hover {
+    background-color: darken($brand-primary, 10%);
+  }
+}
+
+.btn-info:active, .btn-info.active, .open > .btn-info.dropdown-toggle {
+  color: #fff;
+  background-color: $brand-primary;
+  border-color: $brand-primary;
+  &:hover {
+    background-color: darken($brand-primary, 10%);
+  }
+
+}
+.text-info {
+  color: #000;
+}
+
+
