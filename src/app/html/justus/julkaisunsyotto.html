@@ -21,7 +21,7 @@
                             <div class="col-md-8">
                                 <form name="form">
                                     <div ng-show="!file">
-                                        <div class="d-inline-block" ngf-select ng-model="file" name="file"
+                                        <div class="d-inline-block" ngf-select ngf-change="getUrn()" ng-model="file" name="filename"
                                              ngf-max-size="100MB">
                                             <button class="btn btn-primary">Valitse tiedosto</button>
                                         </div>
@@ -56,7 +56,7 @@
                                 </label>
                             </div>
                             <div class="col-md-8">
-                                <p data-ng-model="filedata.urn">URN:NBN:fi-fe2018121851261</p>
+                                <p data-ng-model="filedata.urn">{{filedata.urn}}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -70,13 +70,13 @@
                                     <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
                                            data-ng-model="filedata.embargo" is-open="popup.opened"
                                            datepicker-options="dateOptions"
-                                           show-button-bar="false" placeholder="vvvv-kk-pp"/>
+                                           show-button-bar="false" placeholder="vvvv/kk/pp"/>
                                     <span ng-click="openDatepicker()" class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                 </div>
-                                <div>
-                                    <button type="button" class="btn btn-sm btn-default" ng-click="setMonth()">Puolen vuoden päähän</button>
-                                    <button type="button" class="btn btn-sm btn-default" ng-click="setYear()">Vuoden päähän</button>
-                                    <button type="button" class="btn btn-sm btn-default" ng-click="upload(file)">Tallenna</button>
+                                <div class="py">
+                                    <button type="button" class="btn btn-sm btn-primary" ng-click="setMonth()">Puolen vuoden päähän</button>
+                                    <button type="button" class="btn btn-sm btn-primary" ng-click="setYear()">Vuoden päähän</button>
+                                    <!--<button type="button" class="btn btn-sm btn-default" ng-click="upload(file)">Tallenna</button>-->
                                 </div>
                             </div>
                             </div>

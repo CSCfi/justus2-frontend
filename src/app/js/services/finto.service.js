@@ -8,4 +8,8 @@ angular.module('FintoService', [])
       return $http.get(API_BASE_URL +'haku/avainsanat?q=' + input + '&lang=' + lang);
     };
 
+    this.haeUrn = function() {
+        return $http.get(API_BASE_URL +'haku/urntunnus');
+    };
+
 }]);

@@ -2,8 +2,8 @@
 
 angular.module('JulkaisunsyottoController', [])
     .controller('JulkaisunsyottoController', [
-        '$scope', '$rootScope', '$log', 'Upload', 'JustusService',
-        function($scope, $rootScope, $log, Upload, JustusService) {
+        '$scope', '$rootScope', '$log', 'Upload', 'JustusService', 'FintoService',
+        function($scope, $rootScope, $log, Upload, JustusService, FintoService) {
 
 
         $scope.file = JustusService.fileData;
@@ -63,6 +63,12 @@ angular.module('JulkaisunsyottoController', [])
 
             $scope.popup = {
                 opened: false
+            };
+
+            $scope.getUrn = function() {
+                FintoService.haeUrn().then(response => {
+                    $scope.filedata.urn = response.data.data;
+                })
             };
 
 

@@ -18,6 +18,10 @@
   padding: 0 $padding-large-horizontal
 };
 
+.py {
+  padding: $padding-small-vertical 0;
+}
+
 .nowrap {
   white-space: nowrap;
 }
