@@ -17,6 +17,11 @@ angular.module('JustusService', [])
     this.justus = {};
   };
 
+  this.fileData = function (file) {
+      this.file = file;
+  } ;
+
+
   // this.getOrganizationFieldConfig = function(organizationDomain, organizationCode) {
   //   let fieldConfigs = organizationFieldConfig;
   //   let organizationConfig = fieldConfigs.filter(function(organization) {
