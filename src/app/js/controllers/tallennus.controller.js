@@ -2,12 +2,13 @@
 
 angular.module('TallennusController', [])
 .controller('TallennusController', [
-  '$scope', '$rootScope', '$log', '$window', '$http', '$state', 'APIService', 'API_BASE_URL', 'JustusService', 'DataStoreService',
-  function($scope, $rootScope, $log, $window, $http, $state, APIService, API_BASE_URL, JustusService, DataStoreService) {
+  '$scope', '$rootScope', '$log', '$window', '$http', '$state', 'APIService', 'API_BASE_URL', 'JustusService', 'DataStoreService', 'AuthService',
+  function($scope, $rootScope, $log, $window, $http, $state, APIService, API_BASE_URL, JustusService, DataStoreService, AuthService) {
     // index provides: lang, ...
     // justus provides: justus
 
     $scope.meta = APIService.meta;
+    $scope.file = JustusService.fileData;
 
     $scope.savePublicationForm = function() {
       const publication = {};
@@ -59,9 +60,22 @@ angular.module('TallennusController', [])
       // Update existing publication or create new depending on possible existing id
       const julkaisuPromise = $scope.justus.julkaisu.id ? APIService.put('julkaisu', $scope.justus.julkaisu.id, publication) : APIService.post('julkaisu', publication);
       julkaisuPromise.then((data) => {
-        console.log(data);
-        $state.go('omat', { lang: $scope.lang });
-        JustusService.clearPublicationForm();
+
+          // if file exists catch id and send file data to backend
+          if ($scope.file && $scope.file !== "") {
+            $scope.filedata.julkaisuid = data.id;
+            APIService.postJulkaisu($scope.file, $scope.filedata).then((response) => {
+                console.log(response);
+                $state.go('omat', { lang: $scope.lang });
+                JustusService.clearPublicationForm();
+            })
+            .catch((error) => {
+                $log.error(error);
+            });
+        } else {
+              $state.go('omat', { lang: $scope.lang });
+              JustusService.clearPublicationForm();
+          }
       })
       .catch((error) => {
           $log.error(error);
