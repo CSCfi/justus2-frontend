@@ -270,17 +270,28 @@
       <td>{{ justus.julkaisu.rinnakkaistallennetunversionverkkoosoite }}</td>
     </tr>
 
-    <!-- Julkaisu -->
-    <tr>
-      <td class="condensed"> Julkaisu </td>
-      <td>{{ file.name }}</td>
-    </tr>
-
-
     <!-- Lisätieto kenttä -->
     <tr>
       <td class="condensed">{{ i18n.content.form.lisatieto[lang] }}</td>
       <td>{{ justus.julkaisu.lisatieto }}</td>
+    </tr>
+
+    <!-- Julkaisu -->
+    <tr>
+      <td class="condensed"> Julkaisu </td>
+      <td>{{ filedata.filename }}</td>
+    </tr>
+
+    <!-- URN -->
+    <tr>
+      <td class="condensed"> URN - tunnus </td>
+      <td>{{ filedata.urn }}</td>
+    </tr>
+
+    <!-- Embargo -->
+    <tr>
+      <td class="condensed"> Embarbo </td>
+      <td>{{ filedata.embargo |  date: 'dd/MM/yyyy' }}</td>
     </tr>
 
     </tbody>
