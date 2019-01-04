@@ -18,7 +18,19 @@
                                        data-ng-bind="i18n.content.form.julkaisu[lang]">
                                 </label>
                             </div>
-                            <div class="col-md-8">
+                            <div data-ng-show="fileAlreadyExists" class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <span class="font-weight-bold text-xl">{{filedata.filename}}</span>
+                                    </div>
+                                    <div class="col-md-2 text-right">
+                                        <button class="btn btn-danger m-b"
+                                                data-ng-click="removeFileFromServer()">Poista
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-show="!fileAlreadyExists" class="col-md-8">
                                 <form name="form">
                                     <div ng-show="!file">
                                         <div class="d-inline-block" ngf-select ngf-change="getUrn()" ng-model="file" name="filename"
@@ -122,6 +134,7 @@
 
         <div class="row">
             <div class="col-xs-12">
+                <!-- TODO: disable if file exists, so user has to first remove file -->
                 <button class="col-xs-12 justus-btn justus-btn-tyyppi"
                         data-ng-disabled="rinnakkaistallennettumuualle || syotaJulkaisu"
                         data-ng-class="{'active': eirinnakkaistellennettava,  'disabled': rinnakkaistallennettumuualle || syotaJulkaisu }"
