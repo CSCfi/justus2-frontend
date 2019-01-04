@@ -4,6 +4,7 @@ angular.module('JustusService', [])
 .service('JustusService', ['$log', '$http', '$rootScope', function ($log, $http, $rootScope) {
   // in justus we keep data to be stored in database
   this.justus = {};
+  this.filedata = {};
 
   this.updatePublicationFormData = function(data) {
     this.justus = data;
@@ -17,10 +18,21 @@ angular.module('JustusService', [])
     this.justus = {};
   };
 
-  this.fileData = function (file) {
-      this.file = file;
-  } ;
+  this.getFileData = function () {
+      return this.filedata;
+  };
 
+  this.updateFileData = function(data) {
+      this.filedata = data;
+  };
+
+  this.clearFileData = function() {
+      this.filedata = {};
+  };
+
+  this.file = function (file) {
+      this.file = file;
+  };
 
   // this.getOrganizationFieldConfig = function(organizationDomain, organizationCode) {
   //   let fieldConfigs = organizationFieldConfig;
