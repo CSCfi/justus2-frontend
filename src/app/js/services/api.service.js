@@ -185,10 +185,10 @@ angular.module('APIService', [])
 
 
     /* DELETE :: DELETE */
-    this.delete = function (api, id) {
+    this.delete = function (id) {
       return $http({
         method: 'DELETE',
-        url: API_BASE_URL + 'justus_save.php/' + api + '/' + id
+        url: API_BASE_URL + 'julkaisu/poista/' + id
       })
       .then(function (response) {
         return response.status + ' ' + response.data;
@@ -198,31 +198,42 @@ angular.module('APIService', [])
       });
     };
 
-    this.postJulkaisu = function(file, data) {
-      return Upload.upload({
-          url: 'http://10.10.10.10:8080/api/upload',
-          data: { file: file, data: data },
-          method: 'POST',
-          headers: { 'Content-Type': 'multipart/form-data' }
-        })
-        .then(function (resp) {
-          console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-          return resp;
-          }, function (resp) {
-              console.log(resp);
-              $log.error('Error status: ' + resp.status);
-              $log.error('Error message: ' + resp.data);
-              // return 'Error status: ' + resp.status
-              return resp;
-          }, function (evt) {
-              // console.log(evt);
-              var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-              console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-              // return resp;
+    this.postJulkaisu = function(data, file) {
+
+      if (file) {
+          return Upload.upload({
+              url: 'http://10.10.10.10:8080/api/upload',
+              data: { file: file, data: data },
+              method: 'POST',
+              headers: { 'Content-Type': 'multipart/form-data' }
+          })
+              .then(function (resp) {
+                 return resp;
+              }, function (resp) {
+                  console.log(resp);
+                  $log.error('Error status: ' + resp.status);
+                  $log.error('Error message: ' + resp.data);
+                  return resp;
+              }, function (evt) {
+                  let progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                  console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+              });
+
+      } else {
+          return $http({
+              method: 'POST',
+              url: 'http://10.10.10.10:8080/api/upload',
+              data: data,
+              headers: { 'Content-Type': 'application/json' }
+          })
+          .then(function (response) {
+              return response.data;
+          })
+          .catch(function (response) {
+              $log.error('post ERROR ' + response.status + ' ' + response.data);
           });
+      }
 
-      };
-
-
+    };
   }
 ]);

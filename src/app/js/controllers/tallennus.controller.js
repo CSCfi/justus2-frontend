@@ -8,7 +8,8 @@ angular.module('TallennusController', [])
     // justus provides: justus
 
     $scope.meta = APIService.meta;
-    $scope.file = JustusService.fileData;
+    $scope.file = JustusService.file;
+    $scope.filedata = JustusService.getFileData();
 
     $scope.savePublicationForm = function() {
       const publication = {};
@@ -62,12 +63,14 @@ angular.module('TallennusController', [])
       julkaisuPromise.then((data) => {
 
           // if file exists catch id and send file data to backend
-          if ($scope.file && $scope.file !== "") {
-            $scope.filedata.julkaisuid = data.id;
-            APIService.postJulkaisu($scope.file, $scope.filedata).then((response) => {
+          if ($scope.filedata.filename && $scope.filedata.filename !== "") {
+              $scope.filedata.julkaisuid =  $scope.justus.julkaisu.id ? $scope.justus.julkaisu.id : data.id;
+
+              APIService.postJulkaisu($scope.filedata, $scope.file).then((response) => {
                 console.log(response);
                 $state.go('omat', { lang: $scope.lang });
                 JustusService.clearPublicationForm();
+                JustusService.clearFileData();
             })
             .catch((error) => {
                 $log.error(error);
@@ -75,6 +78,7 @@ angular.module('TallennusController', [])
         } else {
               $state.go('omat', { lang: $scope.lang });
               JustusService.clearPublicationForm();
+              JustusService.clearFileData();
           }
       })
       .catch((error) => {
@@ -87,11 +91,13 @@ angular.module('TallennusController', [])
         if (!DataStoreService.getStateName()) {
           $state.go('omat');
           JustusService.clearPublicationForm();
+          JustusService.clearFileData();
         } else {
           let state = DataStoreService.getStateName();
           $state.go(state);
           DataStoreService.storeStateData(null);
           JustusService.clearPublicationForm();
+          JustusService.clearFileData();
         }
       };
 
