@@ -224,56 +224,23 @@ angular.module('JustusController', [])
                 if (!source || !input) return;
 
                 if (source === 'CrossRef') {
-                    $scope.crossrefLataa = true;
-                    CrossRefService.works(input)
+                    $scope.crossrefTaiVirtaLataa = true;
+                    CrossRefService.works(source, input)
                         .then(function successCb(response) {
-                            angular.forEach(response.data, function(robj, rkey) {
-                                $scope.justus.julkaisu.doitunniste = input;
-                                if (robj.title) {
-                                    if (typeof robj.title === 'object' && robj.title.length > 0) {
-                                        $scope.justus.julkaisu.julkaisunnimi = robj.title[0];
-                                    }
-                                    else {
-                                        $scope.justus.julkaisu.julkaisunnimi = robj.title;
-                                    }
-                                }
-                                if (robj.ISSN) {
-                                    if (typeof robj.ISSN === 'object' && robj.ISSN.length > 0) {
-                                        $scope.justus.julkaisu.issn = robj.ISSN[0];
-                                    }
-                                    else {
-                                        $scope.justus.julkaisu.issn = robj.ISSN;
-                                    }
-                                }
-                                $scope.justus.julkaisu.volyymi = robj.volume || '';
-                                $scope.justus.julkaisu.numero = robj.issue || '';
-                                $scope.justus.julkaisu.sivut = robj.page || '';
-                                if (robj['article-number']) {
-                                    $scope.justus.julkaisu.artikkelinumero = robj['article-number'];
-                                }
 
-                                var s = '';
-                                angular.forEach(robj.author, function(aobj, akey) {
-                                    if (s.length > 0) s += '; ';
-                                    s += aobj.family + ', ' + aobj.given;
-                                });
-                                $scope.justus.julkaisu.tekijat = s;
+                            $scope.justus.julkaisu = response.data;
+                            $scope.justus.julkaisu.username = AuthService.getUserInfo().name;
 
-                                // Initialize tekijatTags input
-                                parseNames($scope.justus.julkaisu.tekijat).map(function(nameObject) {
-                                    $scope.tekijatTags.push({ text: `${nameObject.lastName}, ${nameObject.firstName}` });
-                                });
-                                $scope.useTekijat();
-                                if (robj.issued) {
-                                    if (robj.issued['date-parts']) {
-                                        s = '' + robj.issued['date-parts'];
-                                        $scope.justus.julkaisu.julkaisuvuosi = s.split(',')[0];
-                                    }
-                                }
-                                $scope.fetchLehtisarja($scope.justus.julkaisu.issn);
-                                $scope.julkaisuhaettu = true;
+                            // Initialize tekijatTags input
+                            parseNames($scope.justus.julkaisu.tekijat).map(function(nameObject) {
+                                $scope.tekijatTags.push({ text: `${nameObject.lastName}, ${nameObject.firstName}` });
                             });
-                            $scope.crossrefLataa = false;
+                            $scope.useTekijat();
+
+                            $scope.fetchLehtisarja($scope.justus.julkaisu.issn);
+                            $scope.julkaisuhaettu = true;
+
+                            $scope.crossrefTaiVirtaLataa = false;
                             $scope.useVaihe(3); // ->tietojen syöttöön
                         }, function errorCb(response) {
                             $scope.julkaisuhaettu = false;
@@ -282,7 +249,7 @@ angular.module('JustusController', [])
                 }
                 // Prefill publication from VIRTA
                 if (source === 'VIRTA') {
-                    $scope.virtaLataa = true;
+                    $scope.crossrefTaiVirtaLataa = true;
                     VIRTAService.get(input)
                         .then(function successCb(response) {
                             let robj = response.data;
