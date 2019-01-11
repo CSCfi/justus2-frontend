@@ -50,6 +50,10 @@
   display: inline-block;
 }
 
+*:focus {
+  outline: none !important;
+}
+
 @mixin input() {
   border-radius: $input-border-radius;
 }
