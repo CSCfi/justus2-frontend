@@ -2,9 +2,9 @@
 
 angular.module('APIService', [])
 .service('APIService', [
-  '$http', '$location', '$log', 'API_BASE_URL',
-  function ($http, $location, $log, API_BASE_URL) {
 
+  '$http', '$location', '$log', 'AuthService', 'API_BASE_URL', 'Upload',
+  function ($http, $location, $log, AuthService, API_BASE_URL, Upload) {
     this.meta = {
       tables: {
         'julkaisu': {
@@ -44,7 +44,7 @@ angular.module('APIService', [])
             { name: 'jufotunnus', default: '' },
             { name: 'jufoluokitus', default: '' },
             { name: 'julkaisuntila', default: '' },
-            { name: 'username', default: '' },
+            { name: 'username', default: AuthService.getUserInfo().name },
             { name: 'modified', default: null }
           ]
         },
