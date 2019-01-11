@@ -20,32 +20,11 @@ angular.module('JustusController', [])
             $scope.konferenssinimet = [];
             $scope.julkaisunnimet = [];
 
-            $scope.crossrefLataa = false;
-            $scope.virtaLataa = false;
+            $scope.crossrefTaiVirtaLataa = false;
             $scope.requiredHighlight = false;
             $scope.invalidFields = [];
 
             $scope.julkaisu = {};
-
-            $scope.useJulkaisu = function(file) {
-                $scope.justus.file = file;
-                $scope.useVaihe(5)
-            };
-
-            // $scope.upload = function (file) {
-            //     Upload.upload({
-            //         url: 'upload/url',
-            //         data: {file: file }
-            //     }).then(function (resp) {
-            //         console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-            //     }, function (resp) {
-            //         console.log('Error status: ' + resp.status);
-            //     }, function (evt) {
-            //         var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-            //         console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-            //     });
-            // };
-
 
             // Parses first- and lastnames from a string of names and returns them in a list of objects [{ firstName: '', lastName: '' }, ...]
             const parseNames = function(namesString) {
@@ -86,8 +65,7 @@ angular.module('JustusController', [])
                         "alayksikko": [null]
                     }
                 ];
-                $scope.crossrefLataa = false;
-                $scope.virtaLataa = false;
+                $scope.crossrefTaiVirtaLataa = false;
                 $scope.requiredHighlight = false;
                 $scope.invalidFields = [];
                 fillMissingJustusLists();
@@ -227,24 +205,18 @@ angular.module('JustusController', [])
 
             $scope.refreshJulkaisunnimet = function(input, tekija) {
                 if (input === null) return;
-                if (input.length < 3) return;
+                if (input.length < 5) return;
 
                 $scope.julkaisunnimet = [];
-                // CrossRef :: haku julkaisun nimellä, mutta voi olla myös tekijän nimi
-                $scope.crossrefLataa = true;
+                $scope.crossrefTaiVirtaLataa = true;
+
+                // Haku julkaisun nimellä, tekijän nimi rajaa hakua
                 CrossRefService.worksquery(input, tekija)
                     .then(function(obj) {
-                        $scope.julkaisunnimet = $scope.julkaisunnimet.concat(obj);
-                        $scope.crossrefLataa = false;
+                        $scope.julkaisunnimet = $scope.julkaisunnimet.concat(obj.data);
+                        $scope.crossrefTaiVirtaLataa = false;
                     });
 
-                // VIRTA :: haku julkaisun nimellä, mutta voi olla myös tekijän nimi
-                $scope.virtaLataa = true;
-                VIRTAService.fetch(input, tekija)
-                    .then(function (obj) {
-                        $scope.julkaisunnimet = $scope.julkaisunnimet.concat(obj);
-                        $scope.virtaLataa = false;
-                    });
             };
 
             $scope.useJulkaisunnimi = function(source, input) { // input == identifier
@@ -383,7 +355,7 @@ angular.module('JustusController', [])
 
                             $scope.julkaisuhaettu = true;
 
-                            $scope.virtaLataa = false;
+                            $scope.crossrefTaiVirtaLataa = false;
                             $scope.useVaihe(3); // ->tietojen syöttöön
                         }, function errorCb(response) {
                             $log.debug('useJulkaisunnimi ' + source + ' ' + input + ' ei löytynyt!');
