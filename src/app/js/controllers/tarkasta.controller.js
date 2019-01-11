@@ -298,7 +298,7 @@ angular.module('TarkastaController', [])
                 if (typeof data === 'undefined') {
                     return;
                 } else if (data[val - 1]) {
-                    return data[val - 1].sukunimi + ',' + data[val - 1].etunimet;
+                    return data[val - 1].sukunimi + ', ' + data[val - 1].etunimet;
                 } else {
                     return;
                 }
