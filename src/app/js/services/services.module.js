@@ -1,12 +1,9 @@
 angular.module('ServicesModule', [
   'APIService',
-  'CrossRefService',
-  'FintoService',
-  'JUFOService',
+  'ExternalServicesService',
   'JustusService',
   'KoodistoService',
   'DataStoreService',
   'ValidationService',
-  'VIRTAService',
   'AuthService'
 ]);
