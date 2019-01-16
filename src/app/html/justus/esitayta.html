@@ -57,7 +57,7 @@
         </ui-select-match>
         <ui-select-choices repeat="o in julkaisunnimet | filter: $select.search"
           refresh="refreshJulkaisunnimet($select.search,julkaisunhakutekija)"
-          refresh-delay="200">
+          refresh-delay="3000">
           <div>
             <span class="justus-dim-sm">{{o.source}} {{o.doi}}</span>
             <br>{{o.title}}
@@ -80,7 +80,7 @@
   </div>
 </div>
 
-<div class="row" data-ng-show="julkaisu.selected.organisaatiotunnus == user.organization.code">
+<div class="row" data-ng-show="julkaisu.selected.organisation == user.organization.code">
   <div class="col-xs-12">
     <h3 class="form-header">
       *Mahdollinen duplikaatti*

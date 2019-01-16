@@ -360,7 +360,7 @@
             data-ng-model="justus.julkaisu.konferenssinvakiintunutnimi"
             data-uib-typeahead="konferenssinimet.Name for konferenssinimet in refreshKanavanimet(3,$viewValue)"
             data-typeahead-loading="jufoKonferenssiLataa" data-typeahead-no-results="jufoNoResults"
-            data-typeahead-wait-ms="300"
+            data-typeahead-wait-ms="2000"
             placeholder="{{i18n.content.form.konferenssinvakiintunutnimi.picktip[lang]}}">
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
@@ -480,7 +480,7 @@
             data-uib-typeahead="nimet.Name for nimet in refreshKanavanimet(1,$viewValue)"
             data-typeahead-loading="jufoLataa"
             data-typeahead-no-results="jufoNoResults"
-            data-typeahead-wait-ms="300"
+            data-typeahead-wait-ms="2000"
             placeholder="{{i18n.content.form.lehdenjulkaisusarjannimi.picktip[lang]}}"
             data-typeahead-on-select="useLehtisarja($item.Jufo_ID)">
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
@@ -687,7 +687,7 @@
             data-uib-typeahead="kustantajanimet.Name for kustantajanimet in refreshKanavanimet(2,$viewValue)"
             data-typeahead-loading="jufoKustantajaLataa"
             data-typeahead-no-results="jufoNoResults"
-            data-typeahead-wait-ms="300"
+            data-typeahead-wait-ms="2000"
             placeholder="{{i18n.content.form.kustantaja.picktip[lang]}}">
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
