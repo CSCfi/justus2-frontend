@@ -50,8 +50,8 @@
 
     <div class="form-group">
       <ui-select data-ng-model="julkaisu.selected"
-        theme="bootstrap">
-        <ui-select-match class="ui-select-match" 
+        theme="bootstrap" uis-open-close="onOpenClose(isOpen, $select.selected.title)">
+        <ui-select-match  class="ui-select-match"
           placeholder="{{i18n.content.esitayta.etsijulkaisu.picktip[lang]}}">
           {{$select.selected.title}}
         </ui-select-match>

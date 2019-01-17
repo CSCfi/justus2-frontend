@@ -218,6 +218,13 @@ angular.module('JustusController', [])
                     });
             };
 
+            // reset julkaisunnimet on blur
+            $scope.onOpenClose = function(isOpen, title) {
+              if (!title && isOpen === false) {
+                  $scope.julkaisunnimet = [];
+              }
+            };
+
             $scope.useJulkaisunnimi = function(source, input) { // input == identifier
                 if (!source || !input) return;
 
