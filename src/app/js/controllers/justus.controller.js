@@ -56,6 +56,8 @@ angular.module('JustusController', [])
                 $scope.konferenssinimet = [];
                 $scope.julkaisunnimet = [];
                 $scope.justus.julkaisu = {};
+                $scope.justus.julkaisu.issn = [""];
+                $scope.justus.julkaisu.isbn = [""];
                 $scope.justus.organisaatiotekija = [
                     {
                         "etunimet": "",
@@ -612,6 +614,8 @@ angular.module('JustusController', [])
 
                 if (!$scope.justus.julkaisu) {
                     $scope.justus.julkaisu = {};
+                    $scope.justus.julkaisu.issn = [""];
+                    $scope.justus.julkaisu.isbn = [""];
                 }
 
                 if(!$scope.justus.organisaatiotekija || $scope.justus.organisaatiotekija.length < 1) {
