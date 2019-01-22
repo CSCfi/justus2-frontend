@@ -415,19 +415,39 @@
     </div>
     <div class="col-sm-8 col-xs-12 justus-data">
       <div class="row">
-        <div class="col-xs-10">
-          <input type="text" class="form-control"
-            data-ng-model="justus.julkaisu.isbn"
-            placeholder="{{ i18n.content.form.isbn.picktip[lang] }}">
-          <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+        <div class="col-xs-8" >
+          <div data-ng-repeat="isbn in justus.julkaisu.isbn track by $index" data-ng-class="{'p-b':$first}">
+            <input type="text"
+                   class="form-control"
+                   data-ng-model="justus.julkaisu.isbn[$index]">
+            <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+          </div>
         </div>
-        <div class="col-xs-2">
-          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"
-            data-ng-if="requiredHighlight && !isValid('isbn')">
-          </i>
+        <div class="col-xs-4">
+          <div class="p-b">
+          <span class="btn btn-primary"
+                data-ng-click="justus.julkaisu.isbn.push('')"
+                data-ng-disabled="justus.julkaisu.isbn.length>1"
+                title="{{i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]}}"
+                data-ng-bind="i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]">
+          </span>
+            </div>
+          <div>
+            <span class="btn btn-primary"
+                  data-ng-click="justus.julkaisu.isbn.splice(justus.julkaisu.isbn.length-1, 1)"
+                  data-ng-hide="justus.julkaisu.isbn.length<2 || $index === '0'"
+                  title="{{i18n.content.form.organisaatiotekija.poista.tooltip[lang]}}"
+                  data-ng-bind="i18n.content.form.organisaatiotekija.poista.tooltip[lang]">
+          </span>
+            </div>
         </div>
+        <!--<div class="col-xs-2">-->
+        <!--<i class="fa fa-arrow-left pull-right form-control-feedback-extra"-->
+        <!--data-ng-if="requiredHighlight && !isValid('issn[0]')">-->
+        <!--</i>-->
+        <!--</div>-->
       </div>
-    </div>
+  </div>
   </div>
 
   <!-- Kenttä: Emojulkaisun toimittajat -->
@@ -529,22 +549,40 @@
     </div>
     <div class="col-sm-8 col-xs-12 justus-data">
       <div class="row">
-        <div class="col-xs-4">
+        <div class="col-xs-4" >
+          <div data-ng-repeat="issn in justus.julkaisu.issn track by $index" data-ng-class="{'p-b':$first}">
           <input type="text"
             class="form-control"
-            data-ng-model="justus.julkaisu.issn"
+            data-ng-model="justus.julkaisu.issn[$index]"
             placeholder="1234-567X">
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+            </div>
         </div>
         <div class="col-xs-6">
+          <div class="p-b">
+          <span class="btn btn-primary"
+                data-ng-click="justus.julkaisu.issn.push('')"
+                data-ng-disabled="justus.julkaisu.issn.length>1"
+                title="{{i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]}}"
+                data-ng-bind="i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]">
+          </span>
+            </div>
+          <div>
+            <span class="btn btn-primary"
+                  data-ng-click="justus.julkaisu.issn.splice(justus.julkaisu.issn.length-1, 1)"
+                  data-ng-hide="justus.julkaisu.issn.length<2 || $index === '0'"
+                  title="{{i18n.content.form.organisaatiotekija.poista.tooltip[lang]}}"
+                  data-ng-bind="i18n.content.form.organisaatiotekija.poista.tooltip[lang]">
+          </span>
+            </div>
         </div>
-        <div class="col-xs-2">
-          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"
-            data-ng-if="requiredHighlight && !isValid('issn')">
-          </i>
-        </div>
+        <!--<div class="col-xs-2">-->
+          <!--<i class="fa fa-arrow-left pull-right form-control-feedback-extra"-->
+            <!--data-ng-if="requiredHighlight && !isValid('issn[0]')">-->
+          <!--</i>-->
+        <!--</div>-->
       </div>
-    </div>
+  </div>
   </div>
 
   <!-- Kenttä: Volyymi :: näkyy aina -->

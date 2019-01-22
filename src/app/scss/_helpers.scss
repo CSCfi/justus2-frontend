@@ -10,6 +10,10 @@
   margin-bottom: $padding-large-vertical;
 }
 
+.p-b {
+  padding-bottom: $padding-small-vertical;;
+}
+
 .nowrap {
   white-space: nowrap;
 }
@@ -52,6 +56,12 @@
 
 *:focus {
   outline: none !important;
+}
+
+.issn-list {
+  &:first-child {
+
+  }
 }
 
 @mixin input() {
