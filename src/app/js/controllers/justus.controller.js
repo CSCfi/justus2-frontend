@@ -177,10 +177,6 @@ angular.module('JustusController', [])
                         $scope.justus.julkaisu.lehdenjulkaisusarjannimi = obj.Name;
                         $scope.justus.julkaisu.jufotunnus = input; // tai vastauksesta...
                         $scope.justus.julkaisu.jufoluokitus = obj.Level;
-                        if (obj.ISSN1) $scope.justus.julkaisu.issn = obj.ISSN1;
-                        if ($scope.justus.julkaisu.issn === null || $scope.justus.julkaisu.issn === '') {
-                            if (obj.ISSN2) $scope.justus.julkaisu.issn = obj.ISSN2;
-                        }
                         if (obj.Publisher) {
                             $scope.justus.julkaisu.kustantaja = obj.Publisher
                             // 'html unescape'
@@ -194,9 +190,9 @@ angular.module('JustusController', [])
             };
 
             $scope.fetchLehtisarja = function(input) { // issn
-                if (input == null) return;
 
-                ExternalServicesService.etsiissn(input)
+                if (input == null || input === "") return;
+                ExternalServicesService.etsiissn(input[0])
                     .then(function (response) {
                         var jobj = response.data;
                         var jufotunnus = jobj && jobj.length > 0 ? jobj[0].Jufo_ID : null; // voisi asettaa jo scopeen, mutta seuraavassa kutsussa
