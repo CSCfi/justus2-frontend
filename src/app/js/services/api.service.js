@@ -44,7 +44,7 @@ angular.module('APIService', [])
             { name: 'jufotunnus', default: '' },
             { name: 'jufoluokitus', default: '' },
             { name: 'julkaisuntila', default: '' },
-            { name: 'username', default: AuthService.getUserInfo().name },
+            { name: 'username', default: ''},
             { name: 'modified', default: null }
           ]
         },
