@@ -10,7 +10,6 @@ angular.module('IndexController', [])
     if (typeof (AUTH_URL) !== 'undefined') {
       $http.get(AUTH_URL)
       .then(function(response) {
-
           $scope.user = {
               "name": "",
               "mail": "",
@@ -33,19 +32,13 @@ angular.module('IndexController', [])
           $scope.user.requiredFields = response.data.requiredFields;
           $scope.user.alayksikot = response.data.alayksikot;
 
-            if (response.data.perustiedot.organisaatio === "00000") {
+          $scope.lang = response.data.perustiedot.kieli;
 
-                // Initialize role/organization selectors for demo user
-                $scope.selectedDemoUserRole = $scope.user.role;
-                $scope.selectedDemoUserOrganizationCode = $scope.user.organization.code;
 
-                //  if user's organization code is 00000 fetch data from all organizations
-                $http.get(API_BASE_URL + 'organisaatiolistaus')
-                    .then(function(response) {
-                        $scope.codes.organization = response.data;
-
-                });
-            }
+          //  if user's organization code is 00000 fetch data from all organizations
+          if (response.data.perustiedot.organisaatio === "00000") {
+                getDemoOrganisationList($scope.user);
+        }
 
         $rootScope.user = $scope.user;
         $rootScope.initialUser = $scope.user;
@@ -58,12 +51,24 @@ angular.module('IndexController', [])
       });
     }
 
+
+   let getDemoOrganisationList = function(user) {
+         // Initialize role/organization selectors for demo user
+         $scope.selectedDemoUserRole = user.role;
+         $scope.selectedDemoUserOrganizationCode = user.organization.code;
+
+         $http.get(API_BASE_URL + 'organisaatiolistaus')
+             .then(function(response) {
+                 $scope.organisationList = response.data;
+
+      });
+
+     };
+
   let init = function() {
 
-    $scope.lang = AuthService.getLanguage();
-
-    $scope.i18n = (typeof (i18n) !== 'undefined') ? i18n : {};
     $scope.codes = {};
+    $scope.i18n = (typeof (i18n) !== 'undefined') ? i18n : {};
 
     !$scope.codes.kieli && KoodistoService.getKoodistoData('kielet')
         .then(function(o) {
@@ -127,19 +132,21 @@ angular.module('IndexController', [])
           }, function (error) {
               console.log(error);
           });
-
-
   };
 
     $scope.changeLang = function(lang) {
-        $scope.lang =  lang;
+
         let languageObject = { "lang": lang };
-        $stateParams.lang = lang;
-        AuthService.storeLanguage(lang);
-    //    post language parameter to backend
-    //     APIService.post('language',  languageObject).then(function (res) {
-    //         init();
-    //     });
+       // post language parameter to backend
+        APIService.post('language',  languageObject).then(function (res) {
+            console.log(res);
+            $scope.lang =  lang;
+            $stateParams.lang = lang;
+            // initialize data with new language
+            init();
+        }).catch(function (err) {
+            console.log(err);
+        });
 
     };
 
@@ -190,11 +197,6 @@ angular.module('IndexController', [])
       $scope.state = { name: name };
     });
 
-    // figure out selected language (part of login process)
-    $transitions.onSuccess(null, function(trans) {
-      $scope.lang = $scope.lang || $stateParams.lang || 'FI';
-    });
-
     // ACCESSORIES (scope functions)
 
     // check that user has access to whatever the input
@@ -226,11 +228,6 @@ angular.module('IndexController', [])
       $window.location.href = SITE_URL + 'Shibboleth.sso/Login?target=' + target;
     };
 
-    // helper for localStorage
-    $scope.resetKoodisto = function() {
-      KoodistoService.reset();
-    };
-
     $scope.getMenuClass = function(menuPath) {
       return ($location.path().indexOf(menuPath) !== -1) ? 'active' : '';
     };
@@ -243,19 +240,19 @@ angular.module('IndexController', [])
 
     $scope.setDemoUserOrganization = function(organizationCode) {
 
-        for (let i = 0; i < $scope.codes.organization.length; i++) {
-            if ($scope.codes.organization[i].arvo === organizationCode) {
+        for (let i = 0; i < $scope.organisationList.length; i++) {
+            if ($scope.organisationList[i].arvo === organizationCode) {
 
                 $scope.user.organization.code = organizationCode;
-                $scope.user.organization.name = $scope.codes.organization[i].selite;
+                $scope.user.organization.name = $scope.organisationList[i].selite;
 
-                $scope.user.visibleFields = $scope.codes.organization[i].visibleFields;
-                $rootScope.user.visibleFields = $scope.codes.organization[i].visibleFields;
+                $scope.user.visibleFields = $scope.organisationList[i].visibleFields;
+                $rootScope.user.visibleFields = $scope.organisationList[i].visibleFields;
 
-                $scope.user.requiredFields = $scope.codes.organization[i].requiredFields;
-                $rootScope.user.requiredFields = $scope.codes.organization[i].requiredFields;
+                $scope.user.requiredFields = $scope.organisationList[i].requiredFields;
+                $rootScope.user.requiredFields = $scope.organisationList[i].requiredFields;
 
-                $scope.user.alayksikot = $scope.codes.organization[i].alayksikot;
+                $scope.user.alayksikot = $scope.organisationList[i].alayksikot;
 
             }
         }
