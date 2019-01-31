@@ -70,6 +70,12 @@ angular.module('IndexController', [])
     $scope.codes = {};
     $scope.i18n = (typeof (i18n) !== 'undefined') ? i18n : {};
 
+    if (!$scope.lang) {
+        $scope.lang = "FI";
+    }
+
+    $scope.getOrganizationList();
+
     !$scope.codes.kieli && KoodistoService.getKoodistoData('kielet')
         .then(function(o) {
             $scope.codes.kieli = o.data;
@@ -153,24 +159,26 @@ angular.module('IndexController', [])
  // for ui listing unique organizations ordered by language!
   $scope.getOrganizationList = function() {
 
-        let retFI = [];
-        let retSV = [];
-        let retEN = [];
+      $http.get(API_BASE_URL + 'organisaationimet')
+          .then(function(response) {
 
-      angular.forEach($scope.codes.organization, function(oobj, okey) {
-        if (oobj.arvo !== '00000' && retFI.indexOf(oobj.selite['FI']) < 0) {
-          retFI.push(oobj.selite['FI']);
-        }
-        if (oobj.arvo !== '00000' && retSV.indexOf(oobj.selite['SV']) < 0) {
-          retSV.push(oobj.selite['SV']);
-        }
-        if (oobj.arvo !== '00000' && retEN.indexOf(oobj.selite['EN']) < 0) {
-          retEN.push(oobj.selite['EN']);
-        }
-      });
-      $scope.organizationListFI = retFI.sort();
-      $scope.organizationListSV = retSV.sort();
-      $scope.organizationListEN = retEN.sort();
+              $scope.organisationNameList = response.data;
+
+              let indexFI = response.data.indexOf("Tuntematon");
+              let indexSV = response.data.indexOf("Okänd");
+              let indexEN = response.data.indexOf("Unknown");
+
+              if (indexFI > -1) {
+                  $scope.organisationNameList .splice(indexFI, 1);
+              }
+              if (indexSV > -1) {
+                  $scope.organisationNameList .splice(indexSV, 1);
+              }
+              if (indexEN > -1) {
+                  $scope.organisationNameList .splice(indexEN, 1);
+              }
+
+          });
   };
 
     // ugly hack to get ALL alatieteenalas in one list
