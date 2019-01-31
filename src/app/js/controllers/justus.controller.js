@@ -219,21 +219,14 @@ angular.module('JustusController', [])
                 // Haku julkaisun nimellä, tekijän nimi rajaa hakua
                 ExternalServicesService.worksquery(input, tekija)
                     .then(function(obj) {
-                        console.log($scope.julkaisunnimet);
-                        console.log(obj.data);
                         $scope.julkaisunnimet = $scope.julkaisunnimet.concat(obj.data);
-                        console.log($scope.julkaisunnimet);
                         $scope.crossrefTaiVirtaLataa = false;
                     });
             };
 
             // reset julkaisunnimet on blur
             $scope.onOpenClose = function(isOpen, title) {
-                console.log("morooo");
-                console.log(isOpen);
-                console.log(title);
               if (!title && isOpen === false) {
-                  console.log("häh");
                   $scope.julkaisunnimet = [];
               }
             };
@@ -245,13 +238,9 @@ angular.module('JustusController', [])
                     $scope.crossrefTaiVirtaLataa = true;
                     ExternalServicesService.works(source, input)
                         .then(function successCb(response) {
-                            console.log(response.data);
 
                             $scope.justus.julkaisu = response.data;
-
                             $scope.justus.julkaisu.username = AuthService.getUserInfo().name;
-
-
 
                             // Initialize tekijatTags input
                             parseNames($scope.justus.julkaisu.tekijat).map(function(nameObject) {
@@ -273,17 +262,11 @@ angular.module('JustusController', [])
                 if (source === 'VIRTA') {
                     $scope.crossrefTaiVirtaLataa = true;
 
-                    console.log(input);
-
                     ExternalServicesService.works(source.toLowerCase(), input)
                         .then(function successVirta(response) {
 
-                            console.log(response.data.julkaisu);
-
                             $scope.justus.julkaisu = response.data.julkaisu;
                             $scope.justus.julkaisu.username = AuthService.getUserInfo().name;
-
-                            console.log($scope.justus.julkaisu);
 
                             if (response.data.tieteenala) {
                                 $scope.justus.tieteenala = response.data.tieteenala;
@@ -429,9 +412,6 @@ angular.module('JustusController', [])
 
             $scope.useVaihe = function(vaihe) {
 
-                console.log($scope.justus);
-                console.log($scope.codes);
-
                 // Prevent user from navigating to vaihe 1 when editing a publication
                 if ($scope.justus.julkaisu.id && vaihe === 1) {
                     return;
@@ -473,8 +453,6 @@ angular.module('JustusController', [])
             };
 
             $scope.getSelite = function(codeset, value) {
-                // console.log(codeset);
-                // console.log(value);
                 return KoodistoService.getSelite(codeset, value)
             };
 
@@ -622,8 +600,6 @@ angular.module('JustusController', [])
                     .then(function (obj) {
 
                         $scope.justus = obj.data;
-                        console.log($scope.justus);
-
                         parseNames($scope.justus.julkaisu.tekijat).map((nameObject) => {
                             $scope.tekijatTags.push({ text: `${nameObject.lastName}, ${nameObject.firstName}` });
                         });
