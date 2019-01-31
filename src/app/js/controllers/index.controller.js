@@ -147,7 +147,6 @@ angular.module('IndexController', [])
         APIService.post('language',  languageObject).then(function (res) {
             console.log(res);
             $scope.lang =  lang;
-            $stateParams.lang = lang;
             // initialize data with new language
             init();
         }).catch(function (err) {
@@ -232,7 +231,7 @@ angular.module('IndexController', [])
     };
 
     $scope.login = function() {
-      let target = encodeURIComponent(SITE_URL + '#!/valitse?lang=' + $scope.lang);
+      let target = encodeURIComponent(SITE_URL + '#!/valitse');
       $window.location.href = SITE_URL + 'Shibboleth.sso/Login?target=' + target;
     };
 

@@ -60,7 +60,7 @@ angular.module('TallennusController', [])
       const julkaisuPromise = $scope.justus.julkaisu.id ? APIService.put('julkaisu', $scope.justus.julkaisu.id, publication) : APIService.post('julkaisu', publication);
       julkaisuPromise.then((data) => {
         console.log(data);
-        $state.go('omat', { lang: $scope.lang });
+        $state.go('omat');
         JustusService.clearPublicationForm();
       })
       .catch((error) => {
