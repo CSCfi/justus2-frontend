@@ -164,7 +164,17 @@ angular.module('JustusService', [])
       // If trying to pattern match something else than a string the value is invalid
       if (typeof this.justus.julkaisu[fieldName] === 'string') {
         valid = this.justus.julkaisu[fieldName].match(field_default_config[fieldName].pattern) !== null;
-        reason = valid === false ? 'Field value is invalid' : '';
+          reason = valid === false ? `Field value is invalid for field: ${fieldName}` : '';
+      }
+
+      // Field that contains pattern may also be array
+      if (typeof this.justus.julkaisu[fieldName] === 'object') {
+          let i = 0;
+          while (valid && i < this.justus.julkaisu[fieldName].length ) {
+              valid = this.justus.julkaisu[fieldName][i].match(field_default_config[fieldName].pattern) !== null;
+              reason = valid === false ? `Field value is invalid for field: ${fieldName}` : '';
+              i++;
+          }
       }
     }
 
