@@ -425,20 +425,20 @@
         </div>
         <div class="col-xs-4">
           <div class="p-b">
-          <span class="btn btn-primary"
+          <button class="btn btn-primary"
                 data-ng-click="justus.julkaisu.isbn.push('')"
                 data-ng-disabled="justus.julkaisu.isbn.length>1"
                 title="{{i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]}}"
                 data-ng-bind="i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]">
-          </span>
+          </button>
             </div>
           <div>
-            <span class="btn btn-primary"
+            <button class="btn btn-primary"
                   data-ng-click="justus.julkaisu.isbn.splice(justus.julkaisu.isbn.length-1, 1)"
                   data-ng-hide="justus.julkaisu.isbn.length<2 || $index === '0'"
                   title="{{i18n.content.form.organisaatiotekija.poista.tooltip[lang]}}"
                   data-ng-bind="i18n.content.form.organisaatiotekija.poista.tooltip[lang]">
-          </span>
+          </button>
             </div>
         </div>
         <!--<div class="col-xs-2">-->
@@ -560,21 +560,21 @@
         </div>
         <div class="col-xs-6">
           <div class="p-b">
-          <span class="btn btn-primary"
-                data-ng-click="justus.julkaisu.issn.push('')"
-                data-ng-disabled="justus.julkaisu.issn.length>1"
-                title="{{i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]}}"
-                data-ng-bind="i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]">
-          </span>
-            </div>
+            <button class="btn btn-primary"
+                  data-ng-click="justus.julkaisu.issn.push('')"
+                  data-ng-disabled="justus.julkaisu.issn.length>1"
+                  title="{{i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]}}"
+                  data-ng-bind="i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]">
+            </button>
+          </div>
           <div>
-            <span class="btn btn-primary"
+            <button class="btn btn-primary"
                   data-ng-click="justus.julkaisu.issn.splice(justus.julkaisu.issn.length-1, 1)"
                   data-ng-hide="justus.julkaisu.issn.length<2 || $index === '0'"
                   title="{{i18n.content.form.organisaatiotekija.poista.tooltip[lang]}}"
                   data-ng-bind="i18n.content.form.organisaatiotekija.poista.tooltip[lang]">
-          </span>
-            </div>
+            </button>
+          </div>
         </div>
         <!--<div class="col-xs-2">-->
           <!--<i class="fa fa-arrow-left pull-right form-control-feedback-extra"-->
