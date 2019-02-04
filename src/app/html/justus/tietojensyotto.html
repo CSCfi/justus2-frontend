@@ -15,8 +15,7 @@
       <label class="control-label" data-ng-bind="i18n.content.form.julkaisuvuosi[lang]"></label>
       <i class="fa fa-info-circle justus-info justus-color"
         data-popover-trigger="'mouseenter'" data-popover-placement="right"
-        data-uib-popover="{{i18n.content.form.julkaisuvuosi.tooltip[lang]}}"
-        data-ng-show="i18n.content.form.julkaisuvuosi.tooltip[lang]">
+        data-uib-popover="{{ julkaisutyyppi_paa == 'F' ? i18n.content.form.julkaisuvuosi.tooltipF[lang] : i18n.content.form.julkaisuvuosi.tooltip[lang] }}">
       </i>
       <span class="required-star" data-ng-if="isFieldRequired('julkaisuvuosi')">*</span>
     </div>
@@ -29,7 +28,7 @@
             maxlength="4"
             pattern="^[0-9]{4}$"
             placeholder="{{ i18n.content.form.julkaisuvuosi.picktip[lang] }}"
-            title="{{i18n.content.form.julkaisuvuosi.tooltip[lang]}}">
+            title="{{ julkaisutyyppi_paa == 'F' ? i18n.content.form.julkaisuvuosi.tooltipF[lang] : i18n.content.form.julkaisuvuosi.tooltip[lang] }}">
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
         <div class="col-xs-2">
@@ -85,7 +84,7 @@
       <i class="fa fa-info-circle justus-info"
         data-popover-trigger="'mouseenter'"
         data-popover-placement="right"
-        data-uib-popover="{{i18n.content.form.julkaisunnimi.tooltip[lang]}}"
+        data-uib-popover="{{ julkaisutyyppi_paa == 'F' ? i18n.content.form.julkaisunnimi.tooltipF[lang] : i18n.content.form.julkaisunnimi.tooltip[lang] }}"
         data-ng-show="i18n.content.form.julkaisunnimi.tooltip[lang]">
       </i>
       <span data-ng-if="isFieldRequired('julkaisunnimi')" class="required-star">*</span>
@@ -154,7 +153,7 @@
       </label>
       <i class="fa fa-info-circle justus-info"
       data-popover-trigger="'mouseenter'" data-popover-placement="right"
-      data-uib-popover="{{i18n.content.form.julkaisuntekijoidenlukumaara.tooltip[lang]}}"
+      data-uib-popover="{{julkaisutyyppi_paa == 'F' ? i18n.content.form.julkaisuntekijoidenlukumaara.tooltipF[lang] : i18n.content.form.julkaisuntekijoidenlukumaara.tooltip[lang]}}"
       data-ng-show="i18n.content.form.julkaisuntekijoidenlukumaara.tooltip[lang]"></i>
       <span data-ng-if="isFieldRequired('julkaisuntekijoidenlukumaara')" class="required-star">*</span>
     </div>
@@ -222,7 +221,7 @@
       <label class="control-label" data-ng-bind="i18n.content.form.organisaatiotekija[lang]"></label>
       <i class="fa fa-info-circle justus-info"
         data-popover-trigger="'mouseenter'" data-popover-placement="right"
-        data-uib-popover="{{i18n.content.form.organisaatiotekija.tooltip[lang]}}"
+        data-uib-popover="{{julkaisutyyppi_paa == 'F' ? i18n.content.form.organisaatiotekija.tooltipF[lang] : i18n.content.form.organisaatiotekija.tooltip[lang]}}"
         data-ng-show="i18n.content.form.organisaatiotekija.tooltip[lang]">
       </i>
       <span data-ng-if="isFieldRequired('organisaatiotekija')" class="required-star">*</span>
@@ -232,7 +231,7 @@
         class="row"
         data-ng-model="req_organisaatiotekija[$index]">
         <div class="col-xs-10">
-          <div class="row form-group" id="organisaatiotekijaGroup">
+          <div class="row form-group" id="organisaatiotekijaRow">
             <div class="col-xs-12 col-sm-6">
               <input type="text" class="form-control"
                 data-ng-model="justus.organisaatiotekija[$index].sukunimi"
@@ -382,7 +381,7 @@
       <label class="control-label" data-ng-bind="i18n.content.form.emojulkaisunnimi[lang]"></label>
       <i class="fa fa-info-circle justus-info"
         data-popover-trigger="'mouseenter'" data-popover-placement="right"
-        data-uib-popover="{{i18n.content.form.emojulkaisunnimi.tooltip[lang]}}"
+        data-uib-popover="{{ julkaisutyyppi_paa == 'F' ? i18n.content.form.emojulkaisunnimi.tooltipF[lang] : i18n.content.form.emojulkaisunnimi.tooltip[lang] }}"
         data-ng-show="i18n.content.form.emojulkaisunnimi.tooltip[lang]">
       </i>
       <span data-ng-if="isFieldRequired('emojulkaisunnimi')" class="required-star">*</span>
@@ -409,7 +408,7 @@
       <label class="control-label" data-ng-bind="i18n.content.form.isbn[lang]"></label>
       <i class="fa fa-info-circle justus-info"
         data-popover-trigger="'mouseenter'" data-popover-placement="right"
-        data-uib-popover="{{i18n.content.form.isbn.tooltip[lang]}}"
+         data-uib-popover="{{julkaisutyyppi_paa == 'F' ? i18n.content.form.isbn.tooltipF[lang] : i18n.content.form.isbn.tooltip[lang]}}"
         data-ng-show="i18n.content.form.isbn.tooltip[lang]"></i>
       <span data-ng-if="isFieldRequired('isbn')" class="required-star">*</span>
     </div>
@@ -542,7 +541,7 @@
       <i class="fa fa-info-circle justus-info"
         data-popover-trigger="'mouseenter'"
         data-popover-placement="right"
-        data-uib-popover="{{i18n.content.form.issn.tooltip[lang]}}"
+        data-uib-popover="{{ julkaisutyyppi_paa == 'F' ? i18n.content.form.issn.tooltipF[lang] : i18n.content.form.issn.tooltip[lang] }}"
         data-ng-show="i18n.content.form.issn.tooltip[lang]">
       </i>
       <span data-ng-if="isFieldRequired('issn')" class="required-star">*</span>
@@ -711,7 +710,7 @@
       <label class="control-label" data-ng-bind="i18n.content.form.kustantaja[lang]"></label>
       <i class="fa fa-info-circle justus-info"
         data-popover-trigger="'mouseenter'" data-popover-placement="right"
-        data-uib-popover="{{i18n.content.form.kustantaja.tooltip[lang]}}"
+        data-uib-popover="{{julkaisutyyppi_paa == 'F' ? i18n.content.form.kustantaja.tooltipF[lang] : i18n.content.form.kustantaja.tooltip[lang]}}"
         data-ng-show="i18n.content.form.kustantaja.tooltip[lang]">
       </i>
       <span data-ng-if="isFieldRequired('kustantaja')" class="required-star">*</span>
@@ -750,7 +749,7 @@
       <i class="fa fa-info-circle justus-info"
         data-popover-trigger="'mouseenter'"
         data-popover-placement="right"
-        data-uib-popover="{{i18n.content.form.julkaisunkustannuspaikka.tooltip[lang]}}"
+        data-uib-popover="{{julkaisutyyppi_paa == 'F' ? i18n.content.form.julkaisunkustannuspaikka.tooltipF[lang] : i18n.content.form.julkaisunkustannuspaikka.tooltip[lang]}}"
         data-ng-show="i18n.content.form.julkaisunkustannuspaikka.tooltip[lang]">
       </i>
       <span data-ng-if="isFieldRequired('julkaisunkustannuspaikka')" class="required-star">*</span>
@@ -819,7 +818,7 @@
       <label class="control-label" data-ng-bind="i18n.content.form.julkaisunkieli[lang]"></label>
       <i class="fa fa-info-circle justus-info"
         data-popover-trigger="'mouseenter'" data-popover-placement="right"
-        data-uib-popover="{{i18n.content.form.julkaisunkieli.tooltip[lang]}}"
+        data-uib-popover="{{julkaisutyyppi_paa == 'F' ? i18n.content.form.julkaisunkieli.tooltipF[lang] : i18n.content.form.julkaisunkieli.tooltip[lang]}}"
         data-ng-show="i18n.content.form.julkaisunkieli.tooltip[lang]">
       </i>
       <span data-ng-if="isFieldRequired('julkaisunkieli')" class="required-star">*</span>
@@ -854,7 +853,7 @@
       <i class="fa fa-info-circle justus-info"
         data-popover-trigger="'mouseenter'"
         data-popover-placement="right"
-        data-uib-popover="{{i18n.content.form.julkaisunkansainvalisyys.tooltip[lang]}}"
+        data-uib-popover="{{julkaisutyyppi_paa == 'F' ? i18n.content.form.julkaisunkansainvalisyys.tooltipF[lang] : i18n.content.form.julkaisunkansainvalisyys.tooltip[lang]}}"
         data-ng-show="i18n.content.form.julkaisunkansainvalisyys.tooltip[lang]">
       </i>
       <span data-ng-if="isFieldRequired('julkaisunkansainvalisyys')" class="required-star">*</span>
@@ -893,7 +892,7 @@
       <label class="control-label" data-ng-bind="i18n.content.form.julkaisumaa[lang]"></label>
       <i class="fa fa-info-circle justus-info"
         data-popover-trigger="'mouseenter'" data-popover-placement="right"
-        data-uib-popover="{{i18n.content.form.julkaisumaa.tooltip[lang]}}"
+        data-uib-popover="{{julkaisutyyppi_paa == 'F' ? i18n.content.form.julkaisumaa.tooltipF[lang] : i18n.content.form.julkaisumaa.tooltip[lang]}}"
         data-ng-show="i18n.content.form.julkaisumaa.tooltip[lang]">
       </i>
       <span data-ng-if="isFieldRequired('julkaisumaa')" class="required-star">*</span>
@@ -995,7 +994,7 @@
       <i class="fa fa-info-circle justus-info"
         data-popover-trigger="'mouseenter'"
         data-popover-placement="right"
-        data-uib-popover="{{i18n.content.form.tieteenala.tooltip[lang]}}"
+        data-uib-popover="{{julkaisutyyppi_paa == 'F' ? i18n.content.form.tieteenala.tooltipF[lang] : i18n.content.form.tieteenala.tooltip[lang]}}"
         data-ng-show="i18n.content.form.tieteenala.tooltip[lang]">
       </i>
       <span data-ng-if="isFieldRequired('tieteenala')" class="required-star">*</span>
@@ -1201,7 +1200,7 @@
       <i class="fa fa-info-circle justus-info"
         data-popover-trigger="'mouseenter'"
         data-popover-placement="right"
-        data-uib-popover="{{i18n.content.form.kansainvalinenyhteisjulkaisu.tooltip[lang]}}"
+        data-uib-popover="{{julkaisutyyppi_paa == 'F' ? i18n.content.form.kansainvalinenyhteisjulkaisu.tooltipF[lang] : i18n.content.form.kansainvalinenyhteisjulkaisu.tooltip[lang]}}"
         data-ng-show="i18n.content.form.kansainvalinenyhteisjulkaisu.tooltip[lang]">
       </i>
       <span data-ng-if="isFieldRequired('kansainvalinenyhteisjulkaisu')" class="required-star">*</span>
