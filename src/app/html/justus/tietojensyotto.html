@@ -9,6 +9,20 @@
 <span data-ng-if="!loading.publication">
   <h3 class="form-header">{{i18n.content.tietojensyotto.yleiset[lang]}}</h3>
 
+  <!-- Kenttä: Julkaisutyyppi -->
+  <div class="row form-group" id="julkaisutyyppiGroup">
+    <div class="col-sm-4 col-xs-12">
+      <label class="control-label" data-ng-bind="i18n.content.form.julkaisutyyppi[lang]"></label>
+    </div>
+    <div class="col-sm-8 col-xs-12 justus-data"
+         data-ng-model="req_julkaisutyyppi">
+      <div class="row">
+        <div class="col-xs-10">
+          <p class="font-weight-bold">{{ getSelite(codes.julkaisutyypit, justus.julkaisu.julkaisutyyppi) }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- Kenttä: Julkaisuvuosi -->
   <div class="row form-group" id="julkaisuvuosiGroup" data-ng-if="isFieldVisible('julkaisuvuosi')">
     <div class="col-sm-4 col-xs-12">
