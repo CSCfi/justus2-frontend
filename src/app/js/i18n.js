@@ -612,7 +612,7 @@ const i18n = {
         },
         '2': {
           FI: 'Hybridijulkaisukanavassa ilmestynyt avoin julkaisu',
-          SV: 'Publicerad i hybridtidskrift',
+          SV: 'Öppet publicerad artikel i hybridtidskrift',
           EN: 'Published in hybrid open access journal',
           tooltip: {
             FI: 'Julkaisukanavassa on sekä avoimesti että ei-avoimesti saatavilla olevia julkaisuja.',
