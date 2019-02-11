@@ -4,9 +4,9 @@
         <div class="row">
             <div class="col-xs-12">
                 <button class="col-xs-12 justus-btn justus-btn-tyyppi"
-                     data-ng-disabled="rinnakkaistallennettumuualle"
-                     data-ng-class="{'active': syotaJulkaisu, 'disabled': rinnakkaistallennettumuualle}"
-                     data-ng-click="syotaJulkaisu = !syotaJulkaisu; rinnakkaistallennettumuualle = false;
+                        data-ng-disabled="rinnakkaistallennettumuualle"
+                        data-ng-class="{'active': syotaJulkaisu, 'disabled': rinnakkaistallennettumuualle}"
+                        data-ng-click="syotaJulkaisu = !syotaJulkaisu; rinnakkaistallennettumuualle = false;
                                     eirinnakkaistellennettava = false">
                     {{ i18n.content.form.julkaisurinnakkaistallennettu[lang] }}
                 </button>
@@ -91,45 +91,45 @@
                                     <!--<button type="button" class="btn btn-sm btn-default" ng-click="upload(file)">Tallenna</button>-->
                                 </div>
                             </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <button class="col-xs-12 justus-btn justus-btn-tyyppi"
-                     data-ng-disabled="syotaJulkaisu"
-                     data-ng-class="{'active': rinnakkaistallennettumuualle,  'disabled': syotaJulkaisu }"
-                     data-ng-click="rinnakkaistallennettumuualle = !rinnakkaistallennettumuualle;
-                     syotaJulkaisu = false; eirinnakkaistellennettava = false">
-                    {{ i18n.content.form.rinnakkaistallennettumuualle[lang] }}
-                </button>
-                <div class="col-xs-12">
-                <div data-ng-show="rinnakkaistallennettumuualle" class="m-t m-b">
-                    <div class="row">
-                        <div class="col-xs-4">
-                            <label class="control-label"
-                                   data-ng-bind="i18n.content.form.rinnakkaistallennetunversionverkkoosoite[lang]">
-                            </label>
-                            <i class="fa fa-info-circle justus-info"
-                               data-popover-trigger="'mouseenter'"
-                               data-popover-placement="right"
-                               data-uib-popover="{{i18n.content.form.rinnakkaistallennetunversionverkkoosoite.tooltip[lang]}}"
-                               data-ng-show="i18n.content.form.rinnakkaistallennetunversionverkkoosoite.tooltip[lang]">
-                            </i>
-                        </div>
-                        <div class="col-xs-8">
-                            <input type="text"
-                                   class="form-control"
-                                   data-ng-model="justus.julkaisu.rinnakkaistallennetunversionverkkoosoite"
-                                   placeholder="{{ i18n.content.form.rinnakkaistallennetunversionverkkoosoite.picktip[lang] }}">
-                            <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <button class="col-xs-12 justus-btn justus-btn-tyyppi"
+                        data-ng-disabled="syotaJulkaisu"
+                        data-ng-class="{'active': rinnakkaistallennettumuualle,  'disabled': syotaJulkaisu }"
+                        data-ng-click="rinnakkaistallennettumuualle = !rinnakkaistallennettumuualle;
+                     syotaJulkaisu = false; eirinnakkaistellennettava = false">
+                    {{ i18n.content.form.rinnakkaistallennettumuualle[lang] }}
+                </button>
+                <div class="col-xs-12">
+                    <div data-ng-show="rinnakkaistallennettumuualle" class="m-t m-b">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <label class="control-label"
+                                       data-ng-bind="i18n.content.form.rinnakkaistallennetunversionverkkoosoite[lang]">
+                                </label>
+                                <i class="fa fa-info-circle justus-info"
+                                   data-popover-trigger="'mouseenter'"
+                                   data-popover-placement="right"
+                                   data-uib-popover="{{i18n.content.form.rinnakkaistallennetunversionverkkoosoite.tooltip[lang]}}"
+                                   data-ng-show="i18n.content.form.rinnakkaistallennetunversionverkkoosoite.tooltip[lang]">
+                                </i>
+                            </div>
+                            <div class="col-xs-8">
+                                <input type="text"
+                                       class="form-control"
+                                       data-ng-model="justus.julkaisu.rinnakkaistallennetunversionverkkoosoite"
+                                       placeholder="{{ i18n.content.form.rinnakkaistallennetunversionverkkoosoite.picktip[lang] }}">
+                                <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="row">
@@ -139,7 +139,7 @@
                         data-ng-disabled="rinnakkaistallennettumuualle || syotaJulkaisu"
                         data-ng-class="{'active': eirinnakkaistellennettava,  'disabled': rinnakkaistallennettumuualle || syotaJulkaisu }"
                         data-ng-click="eiRinnakkaisTallennettavaSelected(); useVaihe(5)">
-                        {{ i18n.content.form.eirinnakkaistallennettava[lang] }}
+                    {{ i18n.content.form.eirinnakkaistallennettava[lang] }}
                 </button>
             </div>
         </div>
@@ -149,7 +149,7 @@
 </div>
 <!--</div>-->
 
-   <div>
+<div>
     <button
             class="btn btn-lg btn-block btn-primary"
             type="button"
@@ -161,18 +161,18 @@
 </div>
 
 <!--<span class="progress" ng-show="file.progress >= 0">-->
-    <!--<div style="width:{{file.progress}}%"-->
-         <!--ng-bind="file.progress + '%'">-->
-    <!--</div>-->
+<!--<div style="width:{{file.progress}}%"-->
+<!--ng-bind="file.progress + '%'">-->
+<!--</div>-->
 <!--</span>-->
 <!--<span ng-show="file.result">Upload Successful</span>-->
 <!--<span class="err" ng-show="errorMsg">{{errorMsg}}</span>-->
 <!--<div style="margin-top:70px;">-->
 
 <!--<button-->
-        <!--class="btn btn-lg btn-block btn-primary"-->
-        <!--type="button"-->
-        <!--data-ng-click="useVaihe(5)">-->
-    <!--{{i18n.content.tietojensyotto.jatka[lang]}}-->
+<!--class="btn btn-lg btn-block btn-primary"-->
+<!--type="button"-->
+<!--data-ng-click="useVaihe(5)">-->
+<!--{{i18n.content.tietojensyotto.jatka[lang]}}-->
 <!--</button>-->
 <!--</div>-->

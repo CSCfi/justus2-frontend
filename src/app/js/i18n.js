@@ -128,6 +128,11 @@ const i18n = {
           SV: 'Det år anges då publikationen för första gången har utgetts som en version med fullständiga referensuppgifter.',
           EN: 'The year in which the publication was published for the first time as a version with full reference data.'
         },
+		tooltipF: {
+          FI: 'Vuosi, jolloin julkaisu on julkaistu ensimmäistä kertaa. Esimerkiksi ensi-illan tai näyttelyn avajaisten päivämäärä. Julkaisuvuoteen liittyvää tarkempaa lisätietoa voi kertoa Julkaisuvuoden lisätieto -kentässä.',
+          SV: '*SV',
+          EN: '*EN'
+        },
         picktip: { FI: 'esim. 2017', SV: 't.ex. 2017', EN: 'e.g. 2017' }
       },
       julkaisuvuodenlisatieto: {
@@ -135,7 +140,7 @@ const i18n = {
         SV: 'Mer information av publikationens utgivningsår',
         EN: 'Additional information to publication year',
         tooltip: {
-          FI: 'Päivämäärät (esimerkiksi aikavälit), näytösten määrä jne.',
+          FI: 'Päivämäärät (esimerkiksi aikavälit), näytösten määrä jne. Esimerkki: Julkaisuvuosi = 2017, Julkaisuvuoden lisätieto = 20 näytöstä, 1.2-31.3.2017',
           SV: 'Datum',
           EN: 'Dates (e.g. time frame), amount of presentations/shows'
         },
@@ -152,6 +157,11 @@ const i18n = {
           FI: 'Julkaisun nimi siten kuin se on artikkelissa tai teoksessa mainittu. Vieraskielisen julkaisun nimi voidaan kirjoittaa translitteroituna versiona.',
           SV: 'Publikationens namn/titel såsom den nämns i artikeln eller verket. Namnet på en publikation på ett främmande språk kan vid behov sparas som en translittererad version.',
           EN: 'Publication name as given in the article or the book. If necessary, the name of a foreign-language publication may be reported on as a transliterated version.'
+        },
+		tooltipF: {
+          FI: 'Taidealan julkaisun tai osatoteutuksen (F2) nimi siten kuin se on mainittu esimerkiksi näyttelyn yhteydessä.',
+          SV: '*SV',
+          EN: '*EN'
         },
         picktip: { FI: 'Kirjoita julkaisun nimi kokonaisuudessaan', SV: 'Skriv publikationens namn/titel i helhet', EN: 'Publication name in its entirety' }
       },
@@ -174,17 +184,28 @@ const i18n = {
           FI: 'Julkaisun tekijöiden kokonaislukumäärä.',
           SV: 'Det totala antalet upphovsmän vad gäller publikationen.',
           EN: 'The total number of authors in the publication.'
+        },
+	    tooltipF: {
+          FI: 'Julkaisun tekijätietoja vastaava tekijöiden kokonaislukumäärä.',
+          SV: '*SV',
+          EN: '*EN'
         }
       },
       organisaatiotekija: {
         FI: 'Organisaation tekijät',
         SV: 'Organisationens upphovsmän',
         EN: 'Organisations authors',
-        tooltip: {
+		tooltip: {
           FI: 'Organisaatioon kuuluvat tutkijat, jotka ovat osallistuneet julkaisun tekemiseen. Organisaation tiedekunta, osasto, laitos tai yksikkö, jonka henkilöstöön julkaisun tekijä kuuluu. Tekijän ORCID-tunniste esim. 0000-0000-0000-0000, ks. http://www.orcid.org',
           SV: 'Forskare, som har varit med om att göra publikationen och som hör till organisationen. Organisationens fakulteter, avdelningar, institutioner eller enheter inom vilka publikationens upphovsmän är anställda. ORCID-identifieringsnumren, t.ex. 0000-0000-0000-0000, på den rapporterande organisationens egna upphovsmän, se http://www.orcid.org',
           EN: 'Researchers at the organisation involved in producing the publication. Faculties, departments or units of the organisation whose staff includes the authors of the publication. The ORCID identifiers of authors from the reporting organisation, e.g. 0000-0000-0000-0000, refer to http://www.orcid.org'
         },
+        tooltipF: {
+          FI: 'Organisaatioon kuuluvat tutkijat, jotka ovat osallistuneet julkaisun tekemiseen. Organisaation tiedekunta, osasto, laitos tai yksikkö, jonka henkilöstöön julkaisun tekijä kuuluu. Tekijän ORCID-tunniste esim. 0000-0000-0000-0000, ks. http://www.orcid.org. ORCID-tunniste suositellaan kerrottavaksi aina, jos sellainen on tekijällä olemassa. Rooli-kentässä ilmoitetaan raportoivan organisaation tekijän tai tekijöiden roolit. Erityisesti osatoteutusten tapauksessa tekijän rooli on tärkeä. Esimerkiksi teatteriesityksen lavastaja, taidenäyttelyn kuraattori, yhtyeen laulaja, jne.',
+          SV: 'Forskare, som har varit med om att göra publikationen och som hör till organisationen. Organisationens fakulteter, avdelningar, institutioner eller enheter inom vilka publikationens upphovsmän är anställda. ORCID-identifieringsnumren, t.ex. 0000-0000-0000-0000, på den rapporterande organisationens egna upphovsmän, se http://www.orcid.org',
+          EN: 'Researchers at the organisation involved in producing the publication. Faculties, departments or units of the organisation whose staff includes the authors of the publication. The ORCID identifiers of authors from the reporting organisation, e.g. 0000-0000-0000-0000, refer to http://www.orcid.org'
+        },
+	
         sukunimi: { FI: 'Sukunimi', SV: 'Efternamn', EN: 'Surname', picktip: { FI: 'Sukunimi', SV: 'Efternamn', EN: 'Surname' } },
         etunimet: { FI: 'Etunimet', SV: 'Förnamn', EN: 'First names', picktip: { FI: 'Etunimet', SV: 'Förnamn', EN: 'First names' } },
         alayksikko: { FI: 'Alayksikkö', SV: 'Enhet', EN: 'Organisational unit', picktip: { FI: 'Alayksikkö', SV: 'Enhet', EN: 'Organisational unit' } },
@@ -230,6 +251,11 @@ const i18n = {
           SV: 'Namn på den moderpublikationen där artikeln har publicerats.',
           EN: 'Name of the parent publication in which the article was published.'
         },
+		tooltipF: {
+          FI: 'Taidealan julkaisun nimi, jonka osatoteutus raportoitava julkaisu on (jos raportoidaan F2). Tieto kerrotaan, jos se on tiedossa.',
+          SV: '*SV',
+          EN: '*EN'
+        },
         picktip: { FI: 'Kirjoita emojulkaisun nimi kokonaisuudessaan', SV: 'Skriv moderpublikationens namn i helhet', EN: 'Parent publication name in its entirety' }
       },
       isbn: {
@@ -240,6 +266,11 @@ const i18n = {
           FI: 'Monografian tai emojulkaisun ISBN-numero ensisijaisesti painetun version mukaisesti. Jos painettua versiota ei ole, ilmoitetaan elektronisen version ISBN-numero.',
           SV: 'ISBN-numret för den serie i vilken monografin eller moderpublikationen har publicerats i första hand i enlighet med den tryckta versionen. Om en tryckt version saknas, meddelas den elektroniska versionens ISBN-nummer.',
           EN: 'Monograph or parent publication ISBN number according to the primary printed version. If there is no printed version, the ISBN number of the electronic version will be indicated.'
+        },
+		tooltipF: {
+          FI: 'Julkaisun ISBN-tunniste. Tunnisteen oikeellisuus tarkistetaan. Huom. Nuoteissa, CD:ssä jne. on muitakin tuotetunnuksia.',
+          SV: '*SV',
+          EN: '*EN'
         },
         picktip: { FI: 'esim. 978-952-245-683-0', SV: 't.ex. 978-952-245-683-0', EN: 'e.g. 978-952-245-683-0' }
       },
@@ -272,6 +303,11 @@ const i18n = {
           FI: 'Lehden tai sarjan ISSN-numero ensisijaisesti painetun version mukaisesti. Jos painettua versiota ei ole, ilmoitetaan elektronisen version ISSN-numero.',
           SV: 'ISSN-numret för den serie i vilken tidskriften, monografin eller moderpublikationen har publicerats i första hand i enlighet med den tryckta versionen. Om en tryckt version saknas, meddelas den elektroniska versionens ISSN-nummer.',
           EN: 'The ISSN number of the series or of the journal according to the primary printed version. If there is no printed version, the ISSN number of the electronic version will be indicated.'
+        },
+		tooltipF: {
+          FI: 'Raportoidaan mikäli taidealan julkaisulla on ISSN-numero. Jos painettua versiota ei ole, ilmoitetaan elektronisen version ISSN-numero.',
+          SV: '*SV',
+          EN: '*EN'
         },
         picktip: { FI: 'esim. 1234-567X', SV: 't.ex. 1234-567X', EN: 'e.g. 1234-567X' }
       },
@@ -328,6 +364,11 @@ const i18n = {
           SV: 'Namnet på publikationens förläggare så fullständigt som möjligt och helt utskrivet (inga förkortningar).',
           EN: 'Publisher’s name, as complete as possible, and spelled out (no abbreviations).'
         },
+		tooltipF: {
+          FI: 'Julkaisijan nimi mahdollisimman täydellisenä ja auki kirjoitettuna. Vastaa tieteellisten julkaisujen kustantajaa. Kustantaja tai julkaisija on se ulkopuolinen taho, joka on mahdollistanut taiteellisen toiminnan tuloksen julkiseksi tekemisen. Esimerkiksi tuottaja, galleristi tai kustantaja. Yhteystiedot raportoidaan tarvittaessa.',
+          SV: '*SV',
+          EN: '*EN'
+        },
         picktip: { FI: 'Kirjoita kustantajan nimi', SV: 'Skriv publikationens förläggare', EN: 'Write the publisher\'s name' }
       },
       julkaisunkustannuspaikka: {
@@ -338,6 +379,11 @@ const i18n = {
           FI: 'Julkaisun kustantajan nimen yhteydessä ilmoitettu paikkakunta tai paikkakunnat.',
           SV: 'Ort eller orter som angetts i anslutning till namnet på publikationens förläggare.',
           EN: 'The place or places given in connection with the publication’s publisher.'
+        },
+		tooltipF: {
+          FI: 'Julkaisijan / kustantajan nimen yhteydessä ilmoitettu paikkakunta tai paikkakunnat.',
+          SV: '*SV',
+          EN: '*EN'
         },
         picktip: { FI: 'esim. Helsinki', SV: 't.ex. Helsinki', EN: 'e.g. Helsinki' }
       },
@@ -363,6 +409,11 @@ const i18n = {
           SV: 'Det språk på vilket publikationen är skriven i enlighet med klassificeringen Statistikcentralens språk 2003.',
           EN: 'The language used to write the publication according to the Lan-guages 2003 classification of Statistics Finland.'
         },
+		tooltipF: {
+          FI: '	Kieli, jolla julkaisu on tehty (jos se on määriteltävissä raportoitavan julkaisun tapauksessa). Vuoden 2003 TK:n kielikoodiston mukainen arvo.',
+          SV: '*SV',
+          EN: '*EN'
+        },
         picktip: { FI: 'Valitse kieli, esim. suomi', SV: 'Välj språk, t.ex. finska', EN: 'Choose language, e.g. Finnish' }
       },
       julkaisunkansainvalisyys: {
@@ -373,6 +424,11 @@ const i18n = {
           FI: 'Kotimaisen julkaisun julkaisija on suomalainen tai se on ensisijaisesti julkaistu Suomessa. Kansainvälisen julkaisun julkaisija ei ole suomalainen ja se on ensisijaisesti julkaistu muualla kuin Suomessa. Huom. Konferenssijulkaisun julkaisijalla tarkoitetaan sen kustantajaa.',
           SV: 'Utgivaren av en inhemsk publikation är finländsk eller publikationen har i första hand publicerats i Finland. Utgivaren av en utländsk publikation är inte finländsk eller publikationen har i första hand publicerats någon annanstans än i Finland. Utgivaren av en konferenspublikation avser förläggaren.',
           EN: 'The publisher of a Finnish publication is Finnish, or it was mainly pub-lished in Finland. The publisher of an international publication is not Finnish, or it was mainly published outside Finland. The publisher of a conference publication refers to the publishing house.'
+        },
+	    tooltipF: {
+          FI: 'Kotimaisen julkaisun julkaisija on suomalainen tai se on ensisijaisesti julkaistu Suomessa. Kansainvälisen julkaisun julkaisija ei ole suomalainen tai se on ensisijaisesti julkaistu muualla kuin Suomessa. Esimerkiksi julkaisumaa ei ole Suomi.',
+          SV: '*SV',
+          EN: '*EN'
         },
         '0': { FI: 'Kotimainen', SV: 'Inhemsk', EN: 'Domestic' },
         '1': { FI: 'Kansainvälinen', SV: 'Utländsk', EN: 'International' }
@@ -385,6 +441,11 @@ const i18n = {
           FI: 'Julkaisumaa Tilastokeskuksen valtiot ja maat 2007 -luokituksen mukaisesti.',
           SV: 'Tidskriftens, seriens, monografins eller moderpublikationens utgivningsland enligt klassificeringen Statistikcentralens stater och länder 2007.',
           EN: 'Country of publication according to the countries 2007 classification of Statistics Finland.'
+        },
+		tooltipF: {
+          FI: 'Taidealan julkaisun ensimmäinen julkistamismaa ja joka vastaa raportoitua julkaisuvuotta. Kentässä kerrotaan julkaisumaa. Lisätietona voi toimittaa tarkemmat tiedot, kuten paikkakunnan julkaisumaassa. Ks. julkistamispaikkakunta alla.',
+          SV: '*SV',
+          EN: '*EN'
         },
         picktip: { FI: 'Valitse maa, esim. Suomi', SV: 'Välj land, t.ex. Finland', EN: 'Choose country, e.g. Finland' }
       },
@@ -427,6 +488,11 @@ const i18n = {
           SV: '1–6 vetenskapsområden enligt Statistikcentralens klassificering av vetenskapsområden med det vetenskapsområde först som publikationen i första hand berör. Det första, s.k. primära, vetenskapsområdet måste anges.',
           EN: 'One to six fields of science according to the field of science classification of Statistics Finland in the order of relevance of each field to the publication. The first, so-called primary field of science is mandatory.'
         },
+		tooltipF: {
+          FI: 'Käytetään sopivinta tieteenalaa johdettuna taiteenalasta. 1-6 tieteenalaa Tilastokeskuksen tieteenalaluokituksen mukaan siinä järjestyksessä, mitä tieteenalaa julkaisu eniten koskee. Ensimmäinen, ns. ensisijainen tieteenala, on pakollinen tieto.',
+          SV: '*SV',
+          EN: '*EN'
+        },
         lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
         poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
         paa: { picktip: { FI: 'Valitse päätieteenala', SV: 'Välj primära vetenskapsområdet', EN: 'Choose primary field of science' } },
@@ -437,9 +503,9 @@ const i18n = {
         SV: 'Publikationens konstområden',
         EN: 'Field of art of the publication',
         tooltip: {
-          FI: 'Julkaisulle voidaan raportoida 1-7 taiteenalaa.',
-          SV: 'Det är möjligt att ange 1-7 konstområden för publikationen.',
-          EN: 'It is possible to report 1–7 fields or art per publication'
+          FI: 'Taideala viittaa julkaisun ensisijaiseen ilmenemismuotoon. Tapauksissa joissa ilmenemismuotoa ei voida määritellä taiteenaloittain, valitaan se taiteenala mihin taidejulkaisu liittyy. Esimerkiksi äänitaide voi kirjautua musiikin, elokuvan, nykytaiteen tai esittävän taiteen alle. Taiteenalat perustuvat JURE-projektin taiteellisen toiminnan työryhmän luokitteluun.',
+          SV: '*SV',
+          EN: '*EN'
         },
         lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
         poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
@@ -466,6 +532,11 @@ const i18n = {
           FI: 'Kansainvälisen yhteisjulkaisun tekijöistä vähintään yksi on affilioitunut muuhun kuin suomalaisen organisaatioon (myös jos tekijällä on affiliaatio sekä suomalainen että ulkomaalaiseen organisaatioon).',
           SV: 'Minst en av den internationella sampublikationens upphovsmän har anknytning till en annan organisation än en finländsk (också om upphovsmannen har anknytning till både en finländsk och en utländsk organisation).',
           EN: 'At least one author of the international co-publication is affiliated to a non-Finnish organisation (the author may also be affiliated to both a Finnish and foreign organisation).'
+        },
+		tooltipF: {
+          FI: 'Mikäli julkaisun tekijöistä vähintään yksi on affilioitunut muuhun kuin suomalaiseen organisaatioon. Raportoidaan myös, jos tekijällä on affiliaatio sekä suomalaiseen että ulkomaalaiseen organisaatioon.',
+          SV: '*SV',
+          EN: '*EN'
         },
         '1': { FI: 'Kyllä', SV: 'Ja', EN: 'Yes' },
         '0': { FI: 'Ei', SV: 'Nej', EN: 'No' }
@@ -541,7 +612,7 @@ const i18n = {
         },
         '2': {
           FI: 'Hybridijulkaisukanavassa ilmestynyt avoin julkaisu',
-          SV: 'Publicerad i hybridtidskrift',
+          SV: 'Öppet publicerad artikel i hybridtidskrift',
           EN: 'Published in hybrid open access journal',
           tooltip: {
             FI: 'Julkaisukanavassa on sekä avoimesti että ei-avoimesti saatavilla olevia julkaisuja.',

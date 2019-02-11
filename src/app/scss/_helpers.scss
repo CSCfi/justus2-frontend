@@ -66,6 +66,12 @@
   outline: none !important;
 }
 
+.issn-list {
+  &:first-child {
+
+  }
+}
+
 @mixin input() {
   border-radius: $input-border-radius;
 }

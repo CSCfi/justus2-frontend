@@ -298,7 +298,7 @@ angular.module('TarkastaController', [])
                 if (typeof data === 'undefined') {
                     return;
                 } else if (data[val - 1]) {
-                    return data[val - 1].sukunimi + ',' + data[val - 1].etunimet;
+                    return data[val - 1].sukunimi + ', ' + data[val - 1].etunimet;
                 } else {
                     return;
                 }
@@ -384,7 +384,7 @@ angular.module('TarkastaController', [])
                 } else {
                     DataStoreService.storeStateData($scope.state.name);
                     DataStoreService.storeBooleanforOdottavat($scope.odottavat);
-                    $location.path('/justus').search({lang: $scope.lang, id: d.id, vaihe: 5});
+                    $location.path('/justus').search({id: d.id, vaihe: 4});
                 }
             };
 
@@ -475,7 +475,7 @@ angular.module('TarkastaController', [])
             let init = function () {
                 // at very first test that user object is accessible
                 if (!$scope.hasAccess($scope.state.name)) {
-                    $state.go('index', {lang: $scope.lang});
+                    $state.go('index');
                     // stop initializing
                     return;
                 }

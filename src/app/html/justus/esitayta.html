@@ -50,14 +50,14 @@
 
     <div class="form-group">
       <ui-select data-ng-model="julkaisu.selected"
-        theme="bootstrap">
-        <ui-select-match class="ui-select-match" 
+        theme="bootstrap" uis-open-close="onOpenClose(isOpen, $select.selected.title)">
+        <ui-select-match  class="ui-select-match"
           placeholder="{{i18n.content.esitayta.etsijulkaisu.picktip[lang]}}">
           {{$select.selected.title}}
         </ui-select-match>
         <ui-select-choices repeat="o in julkaisunnimet | filter: $select.search"
           refresh="refreshJulkaisunnimet($select.search,julkaisunhakutekija)"
-          refresh-delay="200">
+          refresh-delay="3000">
           <div>
             <span class="justus-dim-sm">{{o.source}} {{o.doi}}</span>
             <br>{{o.title}}
@@ -76,11 +76,11 @@
 
   </div>
   <div class="text-center">
-    <i class="fa fa-spinner fa-spin fa-2x" data-ng-show="crossrefLataa||virtaLataa"></i>
+    <i class="fa fa-spinner fa-spin fa-2x" data-ng-show="crossrefTaiVirtaLataa"></i>
   </div>
 </div>
 
-<div class="row" data-ng-show="julkaisu.selected.organisaatiotunnus == user.organization.code">
+<div class="row" data-ng-show="julkaisu.selected.organisation == user.organization.code">
   <div class="col-xs-12">
     <h3 class="form-header">
       *Mahdollinen duplikaatti*

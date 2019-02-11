@@ -27,40 +27,33 @@ angular.module('JustusApp', [
 
     const indexState = {
       name: 'index',
-      url: '/?lang',
+      url: '/',
       views: {
         '': {
           templateUrl: 'html/index_part.html'
         }
-      },
-      params: {
-        lang: null
       }
     };
 
     const valitseState = {
       name: 'valitse',
-      url: '/valitse?lang',
+      url: '/valitse',
       views: {
         '': {
           templateUrl: 'html/valitse.html'
         }
-      },
-      params: {
-        lang: null
       }
     };
 
     const justusState = {
       name: 'justus',
-      url: '/justus?lang&vaihe&id',
+      url: '/justus?vaihe&id',
       views: {
         '': {
           templateUrl: 'html/justus.html'
         }
       },
       params: {
-        lang: null,
         vaihe: null,
         id: null
       }
@@ -68,29 +61,23 @@ angular.module('JustusApp', [
 
     const omatState = {
       name: 'omat',
-      url: '/omat?lang',
+      url: '/omat',
       views: {
         '': {
           templateUrl: 'html/tarkasta.html',
           controller: 'TarkastaController'
         }
-      },
-      params: {
-        lang: null
       }
     };
 
     const hyvaksyState = {
       name: 'hyvaksy',
-      url: '/hyvaksy?lang',
+      url: '/hyvaksy',
       views: {
         '': {
           templateUrl: 'html/tarkasta.html',
           controller: 'TarkastaController'
         }
-      },
-      params: {
-        lang: null
       }
     };
 
