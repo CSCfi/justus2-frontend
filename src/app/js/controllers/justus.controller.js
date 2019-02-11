@@ -3,9 +3,9 @@
 angular.module('JustusController', [])
     .controller('JustusController', [
         '$rootScope', '$scope', '$log', '$http', '$state', '$stateParams', 'ExternalServicesService', '$timeout',
-         'KoodistoService', 'JustusService', 'APIService', 'ValidationService', 'DataStoreService', 'AuthService', 'DEMO_ENABLED', 'Upload', '$sce',
+         'KoodistoService', 'JustusService', 'APIService', 'ValidationService', 'DataStoreService', 'AuthService',
         function($rootScope, $scope, $log, $http, $state, $stateParams, ExternalServicesService, $timeout,
-                 KoodistoService, JustusService, APIService, ValidationService, DataStoreService, AuthService, DEMO_ENABLED, Upload, $sce) {
+                 KoodistoService, JustusService, APIService, ValidationService, DataStoreService, AuthService) {
             $scope.loading = {};
             $scope.meta = APIService.meta;
 
@@ -25,6 +25,8 @@ angular.module('JustusController', [])
             $scope.invalidFields = [];
 
             $scope.julkaisu = {};
+
+            $scope.showPublicationInput = $rootScope.user.organization.showPublicationInput;
 
             $scope.fileAlreadyExists = false;
             $scope.filedata = JustusService.getFileData();

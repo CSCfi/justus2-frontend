@@ -1,17 +1,19 @@
+<!-- columnien leveys ng classiksi, lisäksi nb bind numero -->
+
 <div class="row no-gutter m-b" data-ng-show="vaihe>=0">
-  <div class="col-md-5ths text-center" data-ng-class="{'col-xs-9':vaihe==1, 'col-xs-1':vaihe!=1}">
+  <div class="text-center col-md-5ths" data-ng-class="{'col-xs-9':vaihe==1, 'col-xs-1':vaihe!=1}">
     <div class="justus-btn justus-btn-stage" data-ng-class="{selected:vaihe==1, disabled: justus.id}" data-ng-click="useVaihe(1)">
       1 <span data-ng-class="{'hidden-xs':vaihe!=1}" data-ng-bind="i18n.content.vaihevuo.esitayta[lang]"></span>
     </div>
   </div>
 
-  <div class="col-md-5ths text-center" data-ng-class="{'col-xs-9':vaihe==2, 'col-xs-1':vaihe!=2}">
+  <div class="text-center col-md-5ths" data-ng-class="{'col-xs-9':vaihe==2, 'col-xs-1':vaihe!=2}">
     <div class="justus-btn justus-btn-stage" data-ng-class="{selected:vaihe==2}" data-ng-click="useVaihe(2)">
       2 <span data-ng-class="{'hidden-xs':vaihe!=2}" data-ng-bind="i18n.content.vaihevuo.julkaisutyyppi[lang]"></span>
     </div>
   </div>
 
-  <div class="col-md-5ths text-center" data-ng-class="{'col-xs-9':vaihe==3, 'col-xs-1':vaihe!=3}">
+  <div class="text-center col-md-5ths" data-ng-class="{'col-xs-9':vaihe==3, 'col-xs-1':vaihe!=3}">
     <div class="justus-btn justus-btn-stage" data-ng-class="{selected:vaihe==3, disabled:vaihe<3}"
          data-ng-click="vaihe>=3?useVaihe(3):null">
       3 <span data-ng-class="{'hidden-xs':vaihe!=3}" data-ng-bind="i18n.content.vaihevuo.tietojensyotto[lang]"></span>
@@ -20,7 +22,9 @@
 
   <div class="col-md-5ths text-center" data-ng-class="{'col-xs-9':vaihe>=4, 'col-xs-1':vaihe!=4}">
     <div class="justus-btn justus-btn-stage" data-ng-class="{selected:vaihe==4}" data-ng-click="useVaihe(4)">
-      4 <span data-ng-class="{'hidden-xs':vaihe!=4}" data-ng-bind="i18n.content.vaihevuo.julkaisunsyotto[lang]"></span>
+      4 <span data-ng-if="showPublicationInput" data-ng-class="{'hidden-xs':vaihe!=4}" data-ng-bind="i18n.content.vaihevuo.julkaisunsyotto[lang]"></span>
+      <span data-ng-if="!showPublicationInput" data-ng-class="{'hidden-xs':vaihe!=3}" data-ng-bind="i18n.content.vaihevuo.rinnakkaistallennus[lang]"></span>
+
     </div>
   </div>
 

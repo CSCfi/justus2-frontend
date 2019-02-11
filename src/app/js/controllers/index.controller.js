@@ -28,6 +28,7 @@ angular.module('IndexController', [])
           $scope.user.role = response.data.perustiedot.rooli;
           $scope.user.organization.code = response.data.perustiedot.organisaatio;
           $scope.user.organization.name = response.data.perustiedot.organisaationimi;
+          $scope.user.organization.showPublicationInput = response.data.perustiedot.showPublicationInput;
           $scope.user.visibleFields = response.data.visibleFields;
           $scope.user.requiredFields = response.data.requiredFields;
           $scope.user.alayksikot = response.data.alayksikot;
