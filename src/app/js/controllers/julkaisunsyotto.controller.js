@@ -2,8 +2,8 @@
 
 angular.module('JulkaisunsyottoController', [])
     .controller('JulkaisunsyottoController', [
-        '$scope', '$rootScope', '$stateParams', '$log', 'Upload', 'JustusService', 'APIService', 'FintoService',
-        function($scope, $rootScope, $stateParams, $log, Upload, JustusService, APIService, FintoService) {
+        '$scope', '$rootScope', '$stateParams', '$log', 'Upload', 'JustusService', 'APIService', 'ExternalServicesService',
+        function($scope, $rootScope, $stateParams, $log, Upload, JustusService, APIService, ExternalServicesService) {
 
         $scope.file = JustusService.file;
         $scope.filedata = JustusService.getFileData();
@@ -87,7 +87,7 @@ angular.module('JulkaisunsyottoController', [])
             };
 
             $scope.getUrn = function() {
-                FintoService.haeUrn().then(response => {
+                ExternalServicesService.haeUrn().then(response => {
                     $scope.filedata.urn = response.data.data;
                 })
             };

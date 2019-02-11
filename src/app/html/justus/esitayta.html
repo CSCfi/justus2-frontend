@@ -26,14 +26,14 @@
     <h3 class="form-header">{{i18n.content.esitayta.doihaku.title[lang]}}</h3>
     <p data-ng-bind="i18n.content.esitayta.doihaku.info[lang]"></p>
     <div class="input-group">
-      <input type="text" 
-        data-ng-model="julkaisunhakudoi" 
-        class="form-control"
-        placeholder='{{i18n.content.esitayta.doihaku.tunniste.tooltip[lang]}}'>
+      <input type="text"
+             data-ng-model="julkaisunhakudoi"
+             class="form-control"
+             placeholder='{{i18n.content.esitayta.doihaku.tunniste.tooltip[lang]}}'>
       <span class="input-group-btn">
-        <button class="btn btn-primary" 
-          data-ng-click="useJulkaisunnimi('CrossRef',julkaisunhakudoi)"
-          data-ng-bind="i18n.content.esitayta.doihaku.hae[lang]">
+        <button class="btn btn-primary"
+                data-ng-click="useJulkaisunnimi('CrossRef',julkaisunhakudoi)"
+                data-ng-bind="i18n.content.esitayta.doihaku.hae[lang]">
         </button>
       </span>
     </div>
@@ -45,19 +45,19 @@
     <!-- {{i18n.content.esitayta.etsijulkaisu.tekija[lang]}} -->
     <div class="form-group">
       <input type="text" class="form-control" data-ng-model="julkaisunhakutekija"
-        placeholder="{{i18n.content.esitayta.etsijulkaisu.tekija.tooltip[lang]}}">
+             placeholder="{{i18n.content.esitayta.etsijulkaisu.tekija.tooltip[lang]}}">
     </div>
 
     <div class="form-group">
       <ui-select data-ng-model="julkaisu.selected"
-        theme="bootstrap" uis-open-close="onOpenClose(isOpen, $select.selected.title)">
+                 theme="bootstrap" uis-open-close="onOpenClose(isOpen, $select.selected.title)">
         <ui-select-match  class="ui-select-match"
-          placeholder="{{i18n.content.esitayta.etsijulkaisu.picktip[lang]}}">
+                          placeholder="{{i18n.content.esitayta.etsijulkaisu.picktip[lang]}}">
           {{$select.selected.title}}
         </ui-select-match>
         <ui-select-choices repeat="o in julkaisunnimet | filter: $select.search"
-          refresh="refreshJulkaisunnimet($select.search,julkaisunhakutekija)"
-          refresh-delay="3000">
+                           refresh="refreshJulkaisunnimet($select.search,julkaisunhakutekija)"
+                           refresh-delay="3000">
           <div>
             <span class="justus-dim-sm">{{o.source}} {{o.doi}}</span>
             <br>{{o.title}}
@@ -69,8 +69,8 @@
 
     <div class="text-right">
       <button class="btn btn-primary"
-        data-ng-click="useJulkaisunnimi(julkaisu.selected.source, julkaisu.selected.identifier)"
-        data-ng-bind="i18n.content.esitayta.hae[lang]">
+              data-ng-click="useJulkaisunnimi(julkaisu.selected.source, julkaisu.selected.identifier)"
+              data-ng-bind="i18n.content.esitayta.hae[lang]">
       </button>
     </div>
 

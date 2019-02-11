@@ -24,7 +24,7 @@ angular.module('JustusController', [])
             $scope.requiredHighlight = false;
             $scope.invalidFields = [];
 
-            $scope.justus = {};
+            $scope.julkaisu = {};
 
             $scope.fileAlreadyExists = false;
             $scope.filedata = JustusService.getFileData();

@@ -78,21 +78,9 @@
         <td>{{ justus.julkaisu.emojulkaisunnimi }}</td>
       </tr>
 
-      <!-- ISBN -->
+    <!-- ISBN -->
     <tr>
       <td class="condensed">{{ i18n.content.form.isbn[lang] }}</td>
-      <td>{{ justus.julkaisu.isbn }}</td>
-    </tr>
-
-    <!-- Emojulkaisun toimittajat -->
-    <tr>
-      <td class="condensed">{{ i18n.content.form.emojulkaisuntoimittajat[lang] }}</td>
-      <td>{{ justus.julkaisu.emojulkaisuntoimittajat }}</td>
-    </tr>
-
-    <!-- Lehden / julkaisusarjan nimi -->
-    <tr>
-      <td class="condensed">{{ i18n.content.form.lehdenjulkaisusarjannimi[lang] }}</td>
       <td>
         <div data-ng-repeat="isbn in justus.julkaisu.isbn track by $index">
           {{ isbn }}
@@ -100,7 +88,7 @@
       </td>
     </tr>
 
-      <!-- Emojulkaisun toimittajat -->
+    <!-- Emojulkaisun toimittajat -->
       <tr>
         <td class="condensed">{{ i18n.content.form.emojulkaisuntoimittajat[lang] }}</td>
         <td>{{ justus.julkaisu.emojulkaisuntoimittajat }}</td>
