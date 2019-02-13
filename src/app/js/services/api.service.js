@@ -3,8 +3,8 @@
 angular.module('APIService', [])
 .service('APIService', [
 
-  '$http', '$location', '$log', 'AuthService', 'API_BASE_URL', 'Upload',
-  function ($http, $location, $log, AuthService, API_BASE_URL, Upload) {
+  '$http', '$location', '$log', 'API_BASE_URL',
+  function ($http, $location, $log, API_BASE_URL) {
     this.meta = {
       tables: {
         'julkaisu': {
