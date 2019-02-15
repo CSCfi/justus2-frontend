@@ -44,6 +44,8 @@ angular.module('IndexController', [])
         $rootScope.initialUser = $scope.user;
         $scope.initialRole = $scope.user.role;
         AuthService.storeUserInfo($scope.user);
+
+        console.log("Testing CI...");
       })
 
       .catch(function(error) {
