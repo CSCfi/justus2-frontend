@@ -514,6 +514,14 @@ angular.module('JustusController', [])
                         }
                     }
                 }
+
+                if (alayksikkovuosi.id === 2019) {
+                    for (let i = 0; i < $rootScope.user.alayksikot.length; i++) {
+                        if ($rootScope.user.alayksikot[i].vuosi === '2019') {
+                            return $rootScope.user.alayksikot[i].yksikot;
+                        }
+                    }
+                }
             };
 
             // fillMissingJustusLists - for UI setup list fields if otherwise missing
@@ -522,7 +530,7 @@ angular.module('JustusController', [])
             let fillMissingJustusLists = function() {
 
                 for (let i=0; i < $rootScope.user.alayksikot.length; i++) {
-                    if($rootScope.user.alayksikot[i].vuosi === '2018') {
+                    if($rootScope.user.alayksikot[i].vuosi === '2019') {
                         if($rootScope.user.alayksikot[i].yksikot.length < 1) {
                             $scope.alayksikkovuodet = [
                                 {
@@ -532,7 +540,12 @@ angular.module('JustusController', [])
                                 {
                                     id: 2017,
                                     label: '2017'
-                                }];
+                                },
+                                {
+                                    id: 2018,
+                                    label: '2018'
+                                }
+                            ];
                         } else {
                             $scope.alayksikkovuodet = [
                                 {
@@ -547,6 +560,10 @@ angular.module('JustusController', [])
                                     id: 2018,
                                     label: '2018'
                                 },
+                                {
+                                    id: 2019,
+                                    label: '2019'
+                                }
                             ];
                         }
                     }
@@ -555,19 +572,25 @@ angular.module('JustusController', [])
                 $scope.alayksikkovuosi = {};
 
                 if (!$scope.justus.organisaatiotekija[0].alayksikko[0]) {
-                    if ($scope.alayksikkovuodet.length === 3) {
+                    if ($scope.alayksikkovuodet.length === 4) {
+                        $scope.alayksikkovuosi.selected = {
+                            id: 2019,
+                            label: '2019'
+                        };
+                    } else {
                         $scope.alayksikkovuosi.selected = {
                             id: 2018,
                             label: '2018'
                         };
-                    } else {
-                        $scope.alayksikkovuosi.selected = {
-                            id: 2017,
-                            label: '2017'
-                        };
                     }
                 } else {
-                    if ($scope.justus.organisaatiotekija[0].alayksikko[0].indexOf('-2018-') !== -1) {
+                    if ($scope.justus.organisaatiotekija[0].alayksikko[0].indexOf('-2019-') !== -1) {
+                        $scope.alayksikkovuosi.selected = {
+                            id: 2019,
+                            label: '2019'
+                        };
+                    }
+                    else if ($scope.justus.organisaatiotekija[0].alayksikko[0].indexOf('-2018-') !== -1) {
                         $scope.alayksikkovuosi.selected = {
                             id: 2018,
                             label: '2018'
