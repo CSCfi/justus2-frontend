@@ -45,6 +45,8 @@ angular.module('IndexController', [])
         $scope.initialRole = $scope.user.role;
         AuthService.storeUserInfo($scope.user);
 
+        fetchKoodistoData();
+
       })
 
       .catch(function(error) {
@@ -66,7 +68,7 @@ angular.module('IndexController', [])
 
      };
 
-  let init = function() {
+    let init = function() {
 
     $scope.codes = {};
     $scope.i18n = (typeof (i18n) !== 'undefined') ? i18n : {};
@@ -77,78 +79,82 @@ angular.module('IndexController', [])
 
     $scope.getOrganizationList();
 
-    !$scope.codes.kieli && KoodistoService.getKoodistoData('kielet')
-        .then(function(o) {
-            $scope.codes.kieli = o.data;
-        }, function (error) {
-            console.log(error);
-    });
-
-    !$scope.codes.maatjavaltiot2 && KoodistoService.getKoodistoData('valtiot')
-        .then(function(o) {
-            $scope.codes.maatjavaltiot2 = o.data;
-        }, function (error) {
-            console.log(error);
-    });
-
-    !$scope.codes.julkaisuntila && KoodistoService.getKoodistoData('julkaisuntilat')
-        .then(function(o) {
-            $scope.codes.julkaisuntila = o.data;
-        }, function (error) {
-            console.log(error);
-    });
-
-    !$scope.codes.tieteenalat && KoodistoService.getKoodistoData('tieteenalat')
-        .then(function(o) {
-            $scope.codes.tieteenalat = o.data;
-        }, function (error) {
-            console.log(error);
-        });
-
-    !$scope.codes.julkaisutyypit && KoodistoService.getKoodistoData('julkaisunluokat')
-        .then(function(o) {
-            $scope.codes.julkaisutyypit = o.data;
-        }, function (error) {
-            console.log(error);
-    });
-
-    !$scope.codes.julkaisuntekijanrooli && KoodistoService.getKoodistoData('tekijanrooli')
-        .then(function(o) {
-            $scope.codes.julkaisuntekijanrooli = o.data;
-        }, function (error) {
-            console.log(error);
-    });
-
-    !$scope.codes.taiteenalat && KoodistoService.getKoodistoData('taiteenalat')
-        .then(function(o) {
-            $scope.codes.taiteenalat = o.data;
-        }, function (error) {
-            console.log(error);
-    });
-
-    !$scope.codes.taidealantyypit && KoodistoService.getKoodistoData('taidealantyyppikategoria')
-        .then(function(o) {
-            $scope.codes.taidealantyypit = o.data;
-        }, function (error) {
-            console.log(error);
-    });
-
-      !$scope.codes.taidealantyypit && KoodistoService.getKoodistoData('taidealantyyppikategoria')
-          .then(function(o) {
-              $scope.codes.taidealantyypit = o.data;
-          }, function (error) {
-              console.log(error);
-          });
   };
 
-    $scope.changeLang = function(lang) {
+    let fetchKoodistoData = function() {
 
+        !$scope.codes.kieli && KoodistoService.getKoodistoData('kielet')
+            .then(function(o) {
+                $scope.codes.kieli = o.data;
+            }, function (error) {
+                console.log(error);
+        });
+
+        !$scope.codes.maatjavaltiot2 && KoodistoService.getKoodistoData('valtiot')
+            .then(function(o) {
+                $scope.codes.maatjavaltiot2 = o.data;
+            }, function (error) {
+                console.log(error);
+        });
+
+        !$scope.codes.julkaisuntila && KoodistoService.getKoodistoData('julkaisuntilat')
+            .then(function(o) {
+                $scope.codes.julkaisuntila = o.data;
+            }, function (error) {
+                console.log(error);
+        });
+
+        !$scope.codes.tieteenalat && KoodistoService.getKoodistoData('tieteenalat')
+            .then(function(o) {
+                $scope.codes.tieteenalat = o.data;
+            }, function (error) {
+                console.log(error);
+            });
+
+        !$scope.codes.julkaisutyypit && KoodistoService.getKoodistoData('julkaisunluokat')
+            .then(function(o) {
+                $scope.codes.julkaisutyypit = o.data;
+            }, function (error) {
+                console.log(error);
+        });
+
+        !$scope.codes.julkaisuntekijanrooli && KoodistoService.getKoodistoData('tekijanrooli')
+            .then(function(o) {
+                $scope.codes.julkaisuntekijanrooli = o.data;
+            }, function (error) {
+                console.log(error);
+        });
+
+        !$scope.codes.taiteenalat && KoodistoService.getKoodistoData('taiteenalat')
+            .then(function(o) {
+                $scope.codes.taiteenalat = o.data;
+            }, function (error) {
+                console.log(error);
+        });
+
+        !$scope.codes.taidealantyypit && KoodistoService.getKoodistoData('taidealantyyppikategoria')
+            .then(function(o) {
+                $scope.codes.taidealantyypit = o.data;
+            }, function (error) {
+                console.log(error);
+        });
+
+          !$scope.codes.taidealantyypit && KoodistoService.getKoodistoData('taidealantyyppikategoria')
+              .then(function(o) {
+                  $scope.codes.taidealantyypit = o.data;
+              }, function (error) {
+                  console.log(error);
+              });
+    };
+
+    $scope.changeLang = function(lang) {
         let languageObject = { "lang": lang };
        // post language parameter to backend
         APIService.post('language',  languageObject).then(function (res) {
             console.log(res);
             $scope.lang =  lang;
             // initialize data with new language
+            fetchKoodistoData();
             init();
         }).catch(function (err) {
             console.log(err);
@@ -159,7 +165,7 @@ angular.module('IndexController', [])
  // for ui listing unique organizations ordered by language!
   $scope.getOrganizationList = function() {
 
-      $http.get(API_BASE_URL + 'organisaationimet')
+      $http.get(API_BASE_URL + 'public/organisaationimet')
           .then(function(response) {
 
               $scope.organisationNameList = response.data;
