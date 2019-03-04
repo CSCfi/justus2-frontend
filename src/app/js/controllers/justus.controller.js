@@ -2,9 +2,9 @@
 
 angular.module('JustusController', [])
     .controller('JustusController', [
-        '$rootScope', '$scope', '$log', '$http', '$state', '$stateParams', 'ExternalServicesService', '$timeout',
+        '$rootScope', '$scope', '$log', '$http', '$state', '$stateParams', 'ExternalServicesService', '$timeout', '$location',
          'KoodistoService', 'JustusService', 'APIService', 'ValidationService', 'DataStoreService', 'AuthService', 'DEMO_ENABLED', 'Upload', '$sce',
-        function($rootScope, $scope, $log, $http, $state, $stateParams, ExternalServicesService, $timeout,
+        function($rootScope, $scope, $log, $http, $state, $stateParams, ExternalServicesService, $timeout, $location,
                  KoodistoService, JustusService, APIService, ValidationService, DataStoreService, AuthService, DEMO_ENABLED, Upload, $sce) {
             $scope.loading = {};
             $scope.meta = APIService.meta;
@@ -611,6 +611,13 @@ angular.module('JustusController', [])
             };
 
             const populatePublicationForm = () => {
+
+                // redirect to login page if user is not authenticated
+                if (!AuthService.getUserInfo()) {
+                    $location.search({});
+                    $location.path('/');
+                    return;
+                }
 
                 if (!$stateParams.id) {
                     finalizeInit();
