@@ -149,7 +149,13 @@ angular.module('IndexController', [])
 
     $scope.changeLang = function(lang) {
         let languageObject = { "lang": lang };
-       // post language parameter to backend
+
+        if (!AuthService.getUserInfo()) {
+            $scope.lang =  lang;
+            init();
+            return;
+        }
+
         APIService.post('language',  languageObject).then(function (res) {
             console.log(res);
             $scope.lang =  lang;
