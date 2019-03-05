@@ -83,63 +83,63 @@ angular.module('IndexController', [])
 
     let fetchKoodistoData = function() {
 
-        !$scope.codes.kieli && KoodistoService.getKoodistoData('kielet')
+        KoodistoService.getKoodistoData('kielet')
             .then(function(o) {
                 $scope.codes.kieli = o.data;
             }, function (error) {
                 console.log(error);
         });
 
-        !$scope.codes.maatjavaltiot2 && KoodistoService.getKoodistoData('valtiot')
+        KoodistoService.getKoodistoData('valtiot')
             .then(function(o) {
                 $scope.codes.maatjavaltiot2 = o.data;
             }, function (error) {
                 console.log(error);
         });
 
-        !$scope.codes.julkaisuntila && KoodistoService.getKoodistoData('julkaisuntilat')
+        KoodistoService.getKoodistoData('julkaisuntilat')
             .then(function(o) {
                 $scope.codes.julkaisuntila = o.data;
             }, function (error) {
                 console.log(error);
         });
 
-        !$scope.codes.tieteenalat && KoodistoService.getKoodistoData('tieteenalat')
+        KoodistoService.getKoodistoData('tieteenalat')
             .then(function(o) {
                 $scope.codes.tieteenalat = o.data;
             }, function (error) {
                 console.log(error);
             });
 
-        !$scope.codes.julkaisutyypit && KoodistoService.getKoodistoData('julkaisunluokat')
+        KoodistoService.getKoodistoData('julkaisunluokat')
             .then(function(o) {
                 $scope.codes.julkaisutyypit = o.data;
             }, function (error) {
                 console.log(error);
         });
 
-        !$scope.codes.julkaisuntekijanrooli && KoodistoService.getKoodistoData('tekijanrooli')
+        KoodistoService.getKoodistoData('tekijanrooli')
             .then(function(o) {
                 $scope.codes.julkaisuntekijanrooli = o.data;
             }, function (error) {
                 console.log(error);
         });
 
-        !$scope.codes.taiteenalat && KoodistoService.getKoodistoData('taiteenalat')
+        KoodistoService.getKoodistoData('taiteenalat')
             .then(function(o) {
                 $scope.codes.taiteenalat = o.data;
             }, function (error) {
                 console.log(error);
         });
 
-        !$scope.codes.taidealantyypit && KoodistoService.getKoodistoData('taidealantyyppikategoria')
+        KoodistoService.getKoodistoData('taidealantyyppikategoria')
             .then(function(o) {
                 $scope.codes.taidealantyypit = o.data;
             }, function (error) {
                 console.log(error);
         });
 
-          !$scope.codes.taidealantyypit && KoodistoService.getKoodistoData('taidealantyyppikategoria')
+         KoodistoService.getKoodistoData('taidealantyyppikategoria')
               .then(function(o) {
                   $scope.codes.taidealantyypit = o.data;
               }, function (error) {
