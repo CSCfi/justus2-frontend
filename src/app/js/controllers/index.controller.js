@@ -171,9 +171,8 @@ angular.module('IndexController', [])
  // for ui listing unique organizations ordered by language!
   $scope.getOrganizationList = function() {
 
-      $http.get(API_BASE_URL + 'public/organisaationimet')
+      $http.get(API_BASE_URL + 'public/organisaationimet?lang=' + $scope.lang)
           .then(function(response) {
-
               $scope.organisationNameList = response.data;
 
               let indexFI = response.data.indexOf("Tuntematon");
