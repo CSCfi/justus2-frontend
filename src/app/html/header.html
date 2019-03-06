@@ -8,20 +8,20 @@
         <a href data-ui-sref="valitse({lang:lang})"><img src="img/justus2.png" alt="{{i18n.header.logotext[lang]}" class="img-responsive"></a>
       </div>
       <div class="navigation">
-        <a href data-ui-sref="valitse({lang:lang})" 
+        <a href data-ui-sref="valitse()"
           data-ng-class="getMenuClass('/valitse')"
           data-ng-bind="i18n.content.valitse.etusivu[lang]">
         </a>
-        <a href data-ui-sref="justus({lang:lang,id:id,vaihe:vaihe||1})"
+        <a href data-ui-sref="justus({id:id,vaihe:vaihe||1})"
           data-ng-class="getMenuClass('/justus')"
           data-ng-bind="i18n.content.valitse.tallenna[lang]">
         </a>
-        <a href data-ui-sref="omat({lang:lang})"
+        <a href data-ui-sref="omat()"
           data-ng-class="getMenuClass('/omat')"
           data-ng-bind="i18n.content.valitse.omat[lang]">
         </a>
         <a data-ng-if="hasAccess('hyvaksy')" 
-          href data-ui-sref="hyvaksy({lang:lang})"
+          href data-ui-sref="hyvaksy()"
           data-ng-class="getMenuClass('/hyvaksy')"
           data-ng-bind="i18n.content.valitse.hyvaksy[lang]">
         </a>
