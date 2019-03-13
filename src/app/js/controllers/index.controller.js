@@ -2,10 +2,11 @@
 
 angular.module('IndexController', [])
     .controller('IndexController', [
-        '$q', '$scope', '$rootScope', '$http', '$window', '$stateParams', '$transitions', '$location', 'KoodistoService', 'AuthService', 'APIService', 'AUTH_URL', 'SITE_URL', 'API_BASE_URL', 'DEMO_ENABLED',
-        function($q, $scope, $rootScope, $http, $window, $stateParams, $transitions, $location, KoodistoService, AuthService, APIService, AUTH_URL, SITE_URL, API_BASE_URL, DEMO_ENABLED) {
+        '$state', '$q', '$scope', '$rootScope', '$http', '$window', '$stateParams', '$transitions', '$location', 'KoodistoService', 'AuthService', 'APIService', 'AUTH_URL', 'SITE_URL', 'API_BASE_URL', 'DEMO_ENABLED',
+        function($state, $q, $scope, $rootScope, $http, $window, $stateParams, $transitions, $location, KoodistoService, AuthService, APIService, AUTH_URL, SITE_URL, API_BASE_URL, DEMO_ENABLED) {
             $scope.demoEnabled = DEMO_ENABLED;
             $scope.siteUrl = SITE_URL;
+
 
             if (typeof (AUTH_URL) !== 'undefined') {
 
@@ -25,7 +26,11 @@ angular.module('IndexController', [])
                         $scope.initialRole = $scope.user.role;
 
                         fetchKoodistoData();
-                    });
+
+                         }).catch(function (err) {
+                            console.log(err);
+                            $state.go('index');
+                        });
 
                 }
 
@@ -190,31 +195,18 @@ angular.module('IndexController', [])
                 $scope.state = { name: name };
             });
 
-            // ACCESSORIES (scope functions)
-
             // check that user has access to whatever the input
-            $scope.hasAccess = function(input) {
-
-                // hyvaksy - admin role is required
-                if (input === 'hyvaksy') {
-                    if ($scope.user && $scope.user.name &&
-                        $scope.user.organization && $scope.user.organization.code &&
-                        ($scope.user.role === 'owner' || $scope.user.role === 'admin')) {
-                        return true;
-                    }
-                    else {
-                        return false;
-                    }
-                }
-                // basically all states - name, organization (with code) and a role are required
+            $scope.hasAccessToApprove = function() {
                 if ($scope.user && $scope.user.name &&
                     $scope.user.organization && $scope.user.organization.code &&
-                    ($scope.user.role === 'owner' || $scope.user.role === 'admin' || $scope.user.role === 'member')) {
-
+                    ($scope.user.role === 'owner' || $scope.user.role === 'admin')) {
                     return true;
                 }
-                return false;
+                else {
+                    return false;
+                }
             };
+
 
             $scope.login = function() {
                 let target = encodeURIComponent(SITE_URL + '#!/valitse');

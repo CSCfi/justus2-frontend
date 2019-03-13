@@ -679,8 +679,24 @@ angular.module('JustusController', [])
 
             };
 
+            let verifyAccess = function() {
+                if (AuthService.isLoggedIn()) {
+                    populatePublicationForm();
 
-            populatePublicationForm();
+                } else {
+                    AuthService.getUserInfo().then(function (res) {
+                        $scope.user = res;
+                        populatePublicationForm();
+
+                    }).catch(function (err) {
+                        console.log(err);
+                        $state.go('index');
+
+                    });
+                }
+            };
+
+            verifyAccess();
         }
 
     ]);

@@ -26,6 +26,7 @@ angular.module('TallennusController', [])
       });
 
       delete publication.julkaisu.id;
+      publication.julkaisu.username = $rootScope.user.name;
       publication.julkaisu.modified = new Date();
 
       publication.organisaatiotekija = $scope.justus.organisaatiotekija;
