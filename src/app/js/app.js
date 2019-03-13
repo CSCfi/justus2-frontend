@@ -101,8 +101,6 @@ angular.module('JustusApp', [
     e.preventDefault();
     $log.error(e.detail.reason);
   });
-}])
-
-.run(['$rootScope', 'AuthService', function($rootScope, AuthService) {
-  $rootScope.user = AuthService.getUserInfo();
 }]);
+
+

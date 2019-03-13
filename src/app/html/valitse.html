@@ -17,7 +17,7 @@
   </div>
   <div class="col-xs-12 col-sm-4">
     <a class="btn btn-block btn-lg btn-primary"
-      data-ng-if="hasAccess('hyvaksy')"
+      data-ng-if="hasAccessToApprove()"
       data-ui-sref="hyvaksy({lang:lang})">
       <i class="fa fa-check" aria-hidden="true"></i> {{ i18n.content.valitse.hyvaksy[lang] }}
     </a>

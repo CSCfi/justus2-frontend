@@ -2,8 +2,8 @@
 
 angular.module('TarkastaController', [])
     .controller('TarkastaController', [
-        '$rootScope', '$scope', '$http', '$state', '$location', '$log', '$timeout', 'APIService', 'KoodistoService', 'DataStoreService',
-        function ($rootScope, $scope, $http, $state, $location, $log, $timeout, APIService, KoodistoService, DataStoreService) {
+        '$rootScope', '$scope', '$http', '$state', '$location', '$log', '$timeout', 'APIService', 'KoodistoService', 'DataStoreService', 'AuthService',
+        function ($rootScope, $scope, $http, $state, $location, $log, $timeout, APIService, KoodistoService, DataStoreService, AuthService) {
             $scope.meta = APIService.meta;
             $scope.data = [];
             $scope.colOrder = 'modified';
@@ -420,44 +420,41 @@ angular.module('TarkastaController', [])
                 // Update current query to url and restore any missing parameters
                 $location.search($scope.query);
 
-                $scope.data['julkaisu'] = [];
-                // limit fetched rows by organisaatiotunnus
-                const organisationCode = $rootScope.user.organization.code !== '00000' ? $rootScope.user.organization.code : null;
+                    $scope.data['julkaisu'] = [];
+                    // limit fetched rows by organisaatiotunnus
+                    const organisationCode = $rootScope.user.organization.code !== '00000' ? $rootScope.user.organization.code : null;
 
-                APIService.get("lista", organisationCode)
-                    .then(function (obj) {
-                        $scope.totalItems = obj.totalItems || 0;
+                    APIService.get("lista", organisationCode)
+                        .then(function (obj) {
 
-                        return Promise.map(obj.data, function (o, k) {
-                            // NB! API returns '2017-03-24 12:37:47.18+02'
-                            // => convert string first (as illustrated in http://dygraphs.com/date-formats.html)
+                            console.log(obj);
+                            $scope.totalItems = obj.totalItems || 0;
 
-                            // if (o.modified) {
-                            //     let m = o.modified;
-                            //     m = m.replace(/-/g, '/'); // date separator to '/'
-                            //     m = m.replace(/-/g, '/'); // date separator to '/'
-                            //     m = m.replace(/\..*$/, ''); // strip milliseconds away
-                            //     m = m.replace(/\+.*$/, ''); // strip timezone
-                            //     o.modified = new Date(m);
-                            // }
-                            o.julkaisu.ui_julkaisuntila = o.julkaisu.julkaisuntila;
-                            $scope.data['julkaisu'].push(o.julkaisu);
+                            return Promise.map(obj.data, function (o, k) {
+                                // NB! API returns '2017-03-24 12:37:47.18+02'
+                                // => convert string first (as illustrated in http://dygraphs.com/date-formats.html)
+
+                                // if (o.modified) {
+                                //     let m = o.modified;
+                                //     m = m.replace(/-/g, '/'); // date separator to '/'
+                                //     m = m.replace(/-/g, '/'); // date separator to '/'
+                                //     m = m.replace(/\..*$/, ''); // strip milliseconds away
+                                //     m = m.replace(/\+.*$/, ''); // strip timezone
+                                //     o.modified = new Date(m);
+                                // }
+                                o.julkaisu.ui_julkaisuntila = o.julkaisu.julkaisuntila;
+                                $scope.data['julkaisu'].push(o.julkaisu);
+                            });
+                        })
+                        .then(function () {
+                            $scope.loading.publications = false;
+                        })
+                        .catch(function (err) {
+                            $log.error(err);
                         });
-                    })
-                    .then(function () {
-                        $scope.loading.publications = false;
-                    })
-                    .catch(function (err) {
-                        $log.error(err);
-                    });
-
 
 
             };
-
-            // $scope.getData = function (table) {
-            //   return APIService.get(table, val, col, null);
-            // };
 
             $scope.resetData = function () {
                 $scope.loadPublications();
@@ -474,13 +471,24 @@ angular.module('TarkastaController', [])
                 }
             };
 
-            let init = function () {
-                // at very first test that user object is accessible
-                if (!$scope.hasAccess($scope.state.name)) {
-                    $state.go('index');
-                    // stop initializing
-                    return;
+            // at very first test that user object is accessible
+            let verifyAccess = function() {
+                if (AuthService.isLoggedIn()) {
+                    init();
+                } else {
+                    AuthService.getUserInfo().then(function (res) {
+                        $scope.user = res;
+                        init();
+
+                    }).catch(function (err) {
+                        console.log(err);
+                        $state.go('index');
+
+                    });
                 }
+            };
+
+            let init = function () {
                 $scope.resetData();
                 $scope.showRejected = false;
                 $scope.showhide = $scope.i18n.content.tarkasta.hylatyt.nayta;
@@ -493,6 +501,6 @@ angular.module('TarkastaController', [])
                 }
             };
 
-            init();
+            verifyAccess();
         }
     ]);

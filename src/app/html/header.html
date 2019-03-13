@@ -20,7 +20,7 @@
           data-ng-class="getMenuClass('/omat')"
           data-ng-bind="i18n.content.valitse.omat[lang]">
         </a>
-        <a data-ng-if="hasAccess('hyvaksy')" 
+        <a data-ng-if="hasAccessToApprove()"
           href data-ui-sref="hyvaksy()"
           data-ng-class="getMenuClass('/hyvaksy')"
           data-ng-bind="i18n.content.valitse.hyvaksy[lang]">
