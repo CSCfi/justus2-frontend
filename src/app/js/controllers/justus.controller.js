@@ -249,7 +249,7 @@ angular.module('JustusController', [])
                         .then(function successCb(response) {
 
                             $scope.justus.julkaisu = response.data;
-                            $scope.justus.julkaisu.username = AuthService.getUserInfo().name;
+                            $scope.justus.julkaisu.username = $rootScope.user.name;
 
                             // Initialize tekijatTags input
                             parseNames($scope.justus.julkaisu.tekijat).map(function(nameObject) {
@@ -275,7 +275,7 @@ angular.module('JustusController', [])
                         .then(function successVirta(response) {
 
                             $scope.justus.julkaisu = response.data.julkaisu;
-                            $scope.justus.julkaisu.username = AuthService.getUserInfo().name;
+                            $scope.justus.julkaisu.username = $rootScope.user.name;
 
                             if (response.data.tieteenala) {
                                 $scope.justus.tieteenala = response.data.tieteenala;
@@ -628,13 +628,6 @@ angular.module('JustusController', [])
 
             const populatePublicationForm = () => {
 
-                // redirect to login page if user is not authenticated
-                if (!AuthService.getUserInfo()) {
-                    $location.search({});
-                    $location.path('/');
-                    return;
-                }
-
                 if (!$stateParams.id) {
                     finalizeInit();
                     return;
@@ -689,7 +682,7 @@ angular.module('JustusController', [])
                         }
                     ]
                 }
-                $scope.justus.julkaisu.username = AuthService.getUserInfo().name;
+                $scope.justus.julkaisu.username = $rootScope.user.name;
                 fillMissingJustusLists();
                 JustusService.updatePublicationFormData($scope.justus);
                 $scope.useVaihe($stateParams.vaihe || 1);
@@ -703,7 +696,6 @@ angular.module('JustusController', [])
                     return parseFloat((a/Math.pow(c,f)).toFixed(d))+" "+e[f]}
 
             };
-
 
             let verifyAccess = function() {
                 if (AuthService.isLoggedIn()) {
