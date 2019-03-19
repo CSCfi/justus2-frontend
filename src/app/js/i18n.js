@@ -719,6 +719,7 @@ const i18n = {
         tila: { FI: 'Tila', SV: 'Status', EN: 'Status' },
         muokattu: { FI: 'Muokattu', SV: 'Ändrad', EN: 'Edited' },
         viimeisinmuokkaaja: { FI: 'Viimeisin muokkaaja', SV: 'Senast ändrad av', EN: 'Last edit by' },
+        julkaisu: { FI: 'Julkaisu', SV: 'Publikation', EN: 'Publication' },
         toiminnot: { FI: 'Toiminnot', SV: 'Funktioner', EN: 'Functions' },
         hyvaksy: { FI: 'Hyväksy', SV: 'Godkänd', EN: 'Approve' }
       },

@@ -52,35 +52,36 @@
       <table class="table table-striped table-hover">
         <thead>
         <tr>
-          <th data-ng-click="colOrderReverse=!(colOrder=='id'?colOrderReverse:true); colOrder='id'">
+          <th data-ng-click="colOrderReverse=!(colOrder=='julkaisu.id'?colOrderReverse:true); colOrder='julkaisu.id'">
             <span data-ng-bind="i18n.content.tarkasta.table.julkaisuid[lang]"></span>
-            <span class="fa fa-sort-desc" data-ng-if="colOrder=='id' && !(colOrderReverse)"></span>
-            <span class="fa fa-sort-asc" data-ng-if="colOrder=='id' && (colOrderReverse)"></span>
+            <span class="fa fa-sort-desc" data-ng-if="colOrder=='julkaisu.id' && !(colOrderReverse)"></span>
+            <span class="fa fa-sort-asc" data-ng-if="colOrder=='julkaisu.id' && (colOrderReverse)"></span>
           </th>
-          <th data-ng-click="colOrderReverse=!(colOrder=='julkaisunnimi'?colOrderReverse:true); colOrder='julkaisunnimi'">
+          <th data-ng-click="colOrderReverse=!(colOrder=='julkaisu.julkaisunnimi'?colOrderReverse:true); colOrder='julkaisu.julkaisunnimi'">
             <span data-ng-bind="i18n.content.tarkasta.table.julkaisunnimi[lang]"></span>
-            <span class="fa fa-sort-desc" data-ng-if="colOrder=='julkaisunnimi' && !(colOrderReverse)"></span>
-            <span class="fa fa-sort-asc" data-ng-if="colOrder=='julkaisunnimi' && (colOrderReverse)"></span>
+            <span class="fa fa-sort-desc" data-ng-if="colOrder=='julkaisu.julkaisunnimi' && !(colOrderReverse)"></span>
+            <span class="fa fa-sort-asc" data-ng-if="colOrder=='julkaisu.julkaisunnimi' && (colOrderReverse)"></span>
           </th>
-          <th data-ng-click="colOrderReverse=!(colOrder=='tekijat'?colOrderReverse:true); colOrder='tekijat'">
+          <th data-ng-click="colOrderReverse=!(colOrder=='julkaisu.tekijat'?colOrderReverse:true); colOrder='julkaisu.tekijat'">
             <span data-ng-bind="i18n.content.tarkasta.table.julkaisuntekijat[lang]"></span>
-            <span class="fa fa-sort-desc" data-ng-if="colOrder=='tekijat' && !(colOrderReverse)"></span>
-            <span class="fa fa-sort-asc" data-ng-if="colOrder=='tekijat' && (colOrderReverse)"></span>
+            <span class="fa fa-sort-desc" data-ng-if="colOrder=='julkaisu.tekijat' && !(colOrderReverse)"></span>
+            <span class="fa fa-sort-asc" data-ng-if="colOrder=='julkaisu.tekijat' && (colOrderReverse)"></span>
           </th>
           <th class="hidden-xs"
-              data-ng-click="colOrderReverse=!(colOrder=='modified'?colOrderReverse:true); colOrder='modified'">
+              data-ng-click="colOrderReverse=!(colOrder=='julkaisu.modified'?colOrderReverse:true); colOrder='julkaisu.modified'">
             <span data-ng-bind="i18n.content.tarkasta.table.muokattu[lang]"></span>
-            <span class="fa fa-sort-desc" data-ng-if="colOrder=='modified' && !(colOrderReverse)"></span>
-            <span class="fa fa-sort-asc" data-ng-if="colOrder=='modified' && (colOrderReverse)"></span>
+            <span class="fa fa-sort-desc" data-ng-if="colOrder=='julkaisu.modified' && !(colOrderReverse)"></span>
+            <span class="fa fa-sort-asc" data-ng-if="colOrder=='julkaisu.modified' && (colOrderReverse)"></span>
           </th>
           <th class="hidden-xs"
-              data-ng-click="colOrderReverse=!(colOrder=='username'?colOrderReverse:true); colOrder='username'">
+              data-ng-click="colOrderReverse=!(colOrder=='julkaisu.username'?colOrderReverse:true); colOrder='julkaisu.username'">
             <span data-ng-bind="i18n.content.tarkasta.table.viimeisinmuokkaaja[lang]"></span>
-            <span class="fa fa-sort-desc" data-ng-if="colOrder=='username' && !(colOrderReverse)"></span>
-            <span class="fa fa-sort-asc" data-ng-if="colOrder=='username' && (colOrderReverse)"></span>
+            <span class="fa fa-sort-desc" data-ng-if="colOrder=='julkaisu.username' && !(colOrderReverse)"></span>
+            <span class="fa fa-sort-asc" data-ng-if="colOrder=='julkaisu.username' && (colOrderReverse)"></span>
           </th>
-          <th>
-            Julkaisu
+          <th data-ng-if="showPublicationLink">
+            <span data-ng-bind="i18n.content.tarkasta.table.julkaisu[lang]">
+            </span>
           </th>
           <th data-ng-show="state.name=='hyvaksy'"
               data-ng-click="colOrderReverse=!(colOrder=='julkaisuntila'?colOrderReverse:false); colOrder='julkaisuntila'"
@@ -91,65 +92,70 @@
         </tr>
         </thead>
         <tbody>
-        <tr data-ng-repeat="d in data.julkaisu | orderBy:colOrder:colOrderReverse track by d.id"
-            data-ng-if="(odottavat && !d.julkaisuntila) || (!odottavat && d.julkaisuntila)"
-            data-ng-hide="d.julkaisuntila === '-1'"
-            data-ng-class="{'hover-table-green': !d.julkaisuntila || state.name=='hyvaksy'}">
+        <tr data-ng-repeat="d in data | orderBy:colOrder:colOrderReverse track by d.julkaisu.id"
+            data-ng-if="(odottavat && !d.julkaisu.julkaisuntila) || (!odottavat && d.julkaisu.julkaisuntila)"
+            data-ng-hide="d.julkaisu.julkaisuntila === '-1'"
+            data-ng-class="{'hover-table-green': !d.julkaisu.julkaisuntila || state.name=='hyvaksy'}">
           <td class="condensed nowrap">
-            <a data-ng-show="state.name=='hyvaksy' || !d.julkaisuntila"
-               data-ng-click="editPublication(d)"
+            <a data-ng-show="state.name=='hyvaksy' || !d.julkaisu.julkaisuntila"
+               data-ng-click="editPublication(d.julkaisu)"
                data-ui-sref="justus({lang:lang,id:d.id,vaihe:5})">
-              <span data-ng-bind="d.julkaisuvuosi+'-'+d.organisaatiotunnus+'-'+d.id"></span>
+              <span data-ng-bind="d.julkaisu.julkaisuvuosi+'-'+d.julkaisu.organisaatiotunnus+'-'+d.julkaisu.id"></span>
             </a>
-            <span data-ng-show="state.name=='omat' && d.julkaisuntila" data-ng-bind="d.julkaisuvuosi+'-'+d.organisaatiotunnus+'-'+d.id"></span>
+            <span data-ng-show="state.name=='omat' && d.julkaisu.julkaisuntila" data-ng-bind="d.julkaisu.julkaisuvuosi+'-'+d.julkaisu.organisaatiotunnus+'-'+d.julkaisu.id"></span>
           </td>
-          <td data-ng-click="editPublication(d)">{{ d.julkaisunnimi | truncate:true:180:'...' }}</td>
-          <td data-ng-click="editPublication(d)">{{ d.tekijat | truncate:true:180:'...' }}</td>
-          <td data-ng-click="editPublication(d)" class="hidden-xs nowrap">
-            <span data-ng-bind="d.modified | date:'d.M.yyyy HH:mm'"></span>
+          <td data-ng-click="editPublication(d.julkaisu)">{{ d.julkaisu.julkaisunnimi | truncate:true:180:'...' }}</td>
+          <td data-ng-click="editPublication(d.julkaisu)">{{ d.julkaisu.tekijat | truncate:true:180:'...' }}</td>
+          <td data-ng-click="editPublication(d.julkaisu)" class="hidden-xs nowrap">
+            <span data-ng-bind="d.julkaisu.modified | date:'d.M.yyyy HH:mm'"></span>
           </td>
-          <td data-ng-click="editPublication(d)" class="hidden-xs">
-            <span data-ng-bind="d.username"></span>
+          <td data-ng-click="editPublication(d.julkaisu)" class="hidden-xs">
+            <span data-ng-bind="d.julkaisu.username"></span>
           </td>
-          <td><i class="fa fa-save"></i></td>
+          <td data-ng-if="showPublicationLink">
+            <span data-ng-show="d.filedata">
+              <a data-ng-href="{{d.filedata.handle}}" target="_blank">
+               <i class="fa fa-save" ng-class="{'text-gray': !d.filedata.handle }"> </i>
+              </a>
+            </span>
+          </td>
           <td data-ng-show="state.name=='hyvaksy'" class="btn-col">
             <div class="btn-group">
               <button data-ng-repeat="julkaisuntila in codes.julkaisuntila | orderBy: 'arvo' | limitTo:4"
                       title="{{julkaisuntila.selite}}"
                       class="btn btn-primary"
-                      data-ng-class="{'active': d.ui_julkaisuntila==julkaisuntila.arvo}"
-                      data-ng-click="d.ui_julkaisuntila = julkaisuntila.arvo; updatePublication(d, julkaisuntila.arvo)">
+                      data-ng-class="{'active': d.julkaisu.ui_julkaisuntila==julkaisuntila.arvo}"
+                      data-ng-click="d.julkaisu.ui_julkaisuntila = julkaisuntila.arvo; updatePublication(d.julkaisu, julkaisuntila.arvo)">
                 {{ julkaisuntila.arvo }}
               </button>
             </div>
           </td>
         </tr>
         <tr data-ng-if="odottavat === false"
-            data-ng-show="showRejected && data.julkaisu.length > 0" class="bg-white">
+            data-ng-show="showRejected && data.length > 0" class="bg-white">
           <td colspan="6"><h4><span class="font-weight-bold" data-ng-bind="i18n.content.tarkasta.hylatyt.otsikko[lang]"></span></h4></td>
         </tr>
-        <tr data-ng-repeat="d in data.julkaisu | orderBy:colOrder:colOrderReverse track by d.id"
-            data-ng-if="d.julkaisuntila === '-1' && odottavat === false"
+        <tr data-ng-repeat="d in data | orderBy:colOrder:colOrderReverse track by d.julkaisu.id"
+            data-ng-if="d.julkaisu.julkaisuntila === '-1' && odottavat === false"
             data-ng-show="showRejected">
           <td class="condensed nowrap">
-            <span data-ng-bind="d.julkaisuvuosi+'-'+d.organisaatiotunnus+'-'+d.id"></span>
+            <span data-ng-bind="d.julkaisu.julkaisuvuosi+'-'+d.julkaisu.organisaatiotunnus+'-'+d.julkaisu.id"></span>
           </td>
-          <td>{{ d.julkaisunnimi | truncate:true:180:'...' }}</td>
-          <td>{{ d.tekijat | truncate:true:180:'...' }}</td>
+          <td>{{ d.julkaisu.julkaisunnimi | truncate:true:180:'...' }}</td>
+          <td>{{ d.julkaisu.tekijat | truncate:true:180:'...' }}</td>
           <td>
-            <span data-ng-bind="d.modified | date:'d.M.yyyy HH:mm'"></span>
+            <span data-ng-bind="d.julkaisu.modified | date:'d.M.yyyy HH:mm'"></span>
           </td>
           <td >
-            <span data-ng-bind="d.username"></span>
+            <span data-ng-bind="d.julkaisu.username"></span>
           </td>
-          <!--<td>julkaisulinkki</td>-->
           <td data-ng-show="state.name=='hyvaksy'" class="btn-col">
             <div class="btn-group">
               <button data-ng-repeat="julkaisuntila in codes.julkaisuntila | orderBy: 'arvo' | limitTo:4"
                       title="{{ julkaisuntila.selite }}"
                       class="btn btn-primary"
-                      data-ng-class="{'active': d.ui_julkaisuntila==julkaisuntila.arvo}"
-                      data-ng-click="d.ui_julkaisuntila = julkaisuntila.arvo; updatePublication(d, julkaisuntila.arvo)">
+                      data-ng-class="{'active': d.julkaisu.ui_julkaisuntila==julkaisuntila.arvo}"
+                      data-ng-click="d.julkaisu.ui_julkaisuntila = julkaisuntila.arvo; updatePublication(d.julkaisu, julkaisuntila.arvo)">
                 {{ julkaisuntila.arvo }}
               </button>
             </div>

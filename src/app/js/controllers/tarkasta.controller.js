@@ -6,7 +6,7 @@ angular.module('TarkastaController', [])
         function ($rootScope, $scope, $http, $state, $location, $log, $timeout, APIService, KoodistoService, DataStoreService, AuthService) {
             $scope.meta = APIService.meta;
             $scope.data = [];
-            $scope.colOrder = 'modified';
+            $scope.colOrder = 'julkaisu.modified';
             $scope.colOrderReverse = true;
             $scope.totalItems = 0;
             $scope.query = APIService.restoreQuery();
@@ -386,7 +386,7 @@ angular.module('TarkastaController', [])
                 } else {
                     DataStoreService.storeStateData($scope.state.name);
                     DataStoreService.storeBooleanforOdottavat($scope.odottavat);
-                    $location.path('/justus').search({id: d.id, vaihe: 4});
+                    $location.path('/justus').search({id: d.id, vaihe: 5});
                 }
             };
 
@@ -396,6 +396,7 @@ angular.module('TarkastaController', [])
             };
 
             $scope.updatePublication = function (julkaisu, julkaisuntila) {
+
                 if (julkaisu && julkaisu.id) {
                     julkaisu.username = $rootScope.user.name;
                     julkaisu.modified = new Date();
@@ -408,26 +409,21 @@ angular.module('TarkastaController', [])
                 }
             };
 
-            $scope.usePoista = function (table, id) {
-                APIService.delete(table, id);
-                // delete from scope
-                delete $scope.data[table][id];
-            };
-
             $scope.loadPublications = function () {
                 $scope.loading.publications = true;
+
+                $scope.showPublicationLink =  $rootScope.user.organization.showPublicationInput;
 
                 // Update current query to url and restore any missing parameters
                 $location.search($scope.query);
 
-                    $scope.data['julkaisu'] = [];
+                    $scope.data = [];
                     // limit fetched rows by organisaatiotunnus
                     const organisationCode = $rootScope.user.organization.code !== '00000' ? $rootScope.user.organization.code : null;
 
                     APIService.get("lista", organisationCode)
                         .then(function (obj) {
 
-                            console.log(obj);
                             $scope.totalItems = obj.totalItems || 0;
 
                             return Promise.map(obj.data, function (o, k) {
@@ -443,7 +439,13 @@ angular.module('TarkastaController', [])
                                 //     o.modified = new Date(m);
                                 // }
                                 o.julkaisu.ui_julkaisuntila = o.julkaisu.julkaisuntila;
-                                $scope.data['julkaisu'].push(o.julkaisu);
+
+                                if (o.filedata) {
+                                    $scope.data.push( { "julkaisu"  :o.julkaisu, "filedata": o.filedata });
+                                } else {
+                                    $scope.data.push( { "julkaisu"  :o.julkaisu });
+                                }
+
                             });
                         })
                         .then(function () {
