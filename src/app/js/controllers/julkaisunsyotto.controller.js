@@ -103,13 +103,15 @@ angular.module('JulkaisunsyottoController', [])
             $scope.removeFileFromServer = function() {
                 APIService.delete($stateParams.id)
                     .then((response) => {
-                        JustusService.file = null;
-                        JustusService.clearFileData();
-                        $scope.fileAlreadyExists = false;
-                        $scope.filedata = {};
-                        console.log(response);
-                    }).catch((error) => {
-                        console.log(error);
+                        if (response.status !== 500) {
+                            JustusService.file = null;
+                            JustusService.clearFileData();
+                            $scope.fileAlreadyExists = false;
+                            $scope.filedata = {};
+                            console.log(response.data);
+                        } else {
+                            $log.error('delete ERROR ' + response.data);
+                        }
                     })
             };
 

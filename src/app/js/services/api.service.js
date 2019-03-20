@@ -191,10 +191,11 @@ angular.module('APIService', [])
         url: API_BASE_URL + 'julkaisu/poista/' + id
       })
       .then(function (response) {
-        return response.status + ' ' + response.data;
+        return response;
       })
       .catch(function (response) {
-        $log.error('delete ERROR ' + response.status + ' ' + response.data);
+        // $log.error('delete ERROR ' + response.status + ' ' + response.data);
+        return response;
       });
     };
 
