@@ -8,15 +8,25 @@
                         data-ng-class="{'active': syotaJulkaisu, 'disabled': rinnakkaistallennettumuualle}"
                         data-ng-click="syotaJulkaisu = !syotaJulkaisu; rinnakkaistallennettumuualle = false;
                                     eirinnakkaistellennettava = false">
-                    {{ i18n.content.form.julkaisurinnakkaistallennettu[lang] }}
+                    {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.otsikko[lang] }}
+                    <i class="fa fa-info-circle"
+                       data-popover-trigger="'mouseenter'" data-popover-placement="right"
+                       data-popover-class="justus-info-bw"
+                       data-uib-popover="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.otsikko.tooltip[lang]}}"
+                       data-ng-show="true"></i>
                 </button>
                 <div class="col-xs-12">
                     <div data-ng-show="syotaJulkaisu" class="m-t m-b">
                         <div class="row">
                             <div class="col-md-4">
                                 <label class="control-label"
-                                       data-ng-bind="i18n.content.form.julkaisu[lang]">
+                                       data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu[lang]">
                                 </label>
+                                <i class="fa fa-info-circle justus-info"
+                                   data-popover-trigger="'mouseenter'" data-popover-placement="right"
+                                   data-uib-popover="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tooltip[lang]}}"
+                                   data-ng-show="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tooltip[lang]">
+                                </i>
                             </div>
                             <div data-ng-show="fileAlreadyExists" class="col-md-8">
                                 <div class="row">
@@ -64,8 +74,13 @@
                         <div class="row m-b">
                             <div class="col-md-4">
                                 <label class="control-label"
-                                       data-ng-bind="i18n.content.form.urntunnus[lang]">
+                                       data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.urn[lang]">
                                 </label>
+                                <i class="fa fa-info-circle justus-info"
+                                   data-popover-trigger="'mouseenter'" data-popover-placement="right"
+                                   data-uib-popover="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.urn.tooltip[lang]}}"
+                                   data-ng-show="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.urn.tooltip[lang]">
+                                </i>
                             </div>
                             <div class="col-md-8">
                                 <p data-ng-model="filedata.urn">{{filedata.urn}}</p>
@@ -74,8 +89,13 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <label class="control-label"
-                                       data-ng-bind="i18n.content.form.embargoaika[lang]">
+                                       data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo[lang]">
                                 </label>
+                                <i class="fa fa-info-circle justus-info"
+                                   data-popover-trigger="'mouseenter'" data-popover-placement="right"
+                                   data-uib-popover="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo.tooltip[lang]}}"
+                                   data-ng-show="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo.tooltip[lang]">
+                                </i>
                             </div>
                             <div class="col-md-8">
                                 <div class="input-group pb">
@@ -103,27 +123,31 @@
                         data-ng-class="{'active': rinnakkaistallennettumuualle,  'disabled': syotaJulkaisu }"
                         data-ng-click="rinnakkaistallennettumuualle = !rinnakkaistallennettumuualle;
                      syotaJulkaisu = false; eirinnakkaistellennettava = false">
-                    {{ i18n.content.form.rinnakkaistallennettumuualle[lang] }}
+                    {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettumuualle.otsikko[lang] }}
+                    <i class="fa fa-info-circle"
+                       data-popover-trigger="'mouseenter'" data-popover-placement="right"
+                       data-popover-class="justus-info-bw"
+                       data-uib-popover="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettumuualle.otsikko.tooltip[lang]}}"
+                       data-ng-show="true"></i>
                 </button>
                 <div class="col-xs-12">
                     <div data-ng-show="rinnakkaistallennettumuualle" class="m-t m-b">
                         <div class="row">
                             <div class="col-xs-4">
                                 <label class="control-label"
-                                       data-ng-bind="i18n.content.form.rinnakkaistallennetunversionverkkoosoite[lang]">
+                                       data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettumuualle.form.rinnakkaistallennetunversionverkkoosoite[lang]">
                                 </label>
                                 <i class="fa fa-info-circle justus-info"
                                    data-popover-trigger="'mouseenter'"
                                    data-popover-placement="right"
-                                   data-uib-popover="{{i18n.content.form.rinnakkaistallennetunversionverkkoosoite.tooltip[lang]}}"
-                                   data-ng-show="i18n.content.form.rinnakkaistallennetunversionverkkoosoite.tooltip[lang]">
+                                   data-uib-popover="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettumuualle.form.rinnakkaistallennetunversionverkkoosoite.tooltip[lang]}}"
+                                   data-ng-show="i18n.content.rinnakkaistallennusform.rinnakkaistallennettumuualle.form.rinnakkaistallennetunversionverkkoosoite.tooltip[lang]">
                                 </i>
                             </div>
                             <div class="col-xs-8">
                                 <input type="text"
                                        class="form-control"
-                                       data-ng-model="justus.julkaisu.rinnakkaistallennetunversionverkkoosoite"
-                                       placeholder="{{ i18n.content.form.rinnakkaistallennetunversionverkkoosoite.picktip[lang] }}">
+                                       data-ng-model="justus.julkaisu.rinnakkaistallennetunversionverkkoosoite">
                                 <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
                             </div>
                         </div>
@@ -139,7 +163,13 @@
                         data-ng-disabled="rinnakkaistallennettumuualle || syotaJulkaisu"
                         data-ng-class="{'active': eirinnakkaistellennettava,  'disabled': rinnakkaistallennettumuualle || syotaJulkaisu }"
                         data-ng-click="eiRinnakkaisTallennettavaSelected(); useVaihe(5)">
-                    {{ i18n.content.form.eirinnakkaistallennettava[lang] }}
+                    {{ i18n.content.rinnakkaistallennusform.eirinnakkaistallennettava[lang] }}
+                    <i class="fa fa-info-circle justus-info"
+                       data-popover-trigger="'mouseenter'"
+                       data-popover-placement="right"
+                       data-uib-popover="{{i18n.content.rinnakkaistallennusform.eirinnakkaistallennettava.tooltip[lang]}}"
+                       data-ng-show="i18n.content.rinnakkaistallennusform.eirinnakkaistallennettava.tooltip[lang]">
+                    </i>
                 </button>
             </div>
         </div>

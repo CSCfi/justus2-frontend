@@ -622,47 +622,12 @@ const i18n = {
         }
       },
       julkaisurinnakkaistallennettu: {
-        FI: 'Rinnakkaistallennettu julkaisu',
-        SV: 'Rinnakkaistallennettu julkaisu',
-        EN: 'Rinnakkaistallennettu julkaisu',
-        tooltip: {
-          FI: 'Julkaisu on rinnakkaistallennettu organisaatio- tai tieteenalakohtaiseen julkaisuarkistoon joko välittömästi tai kustantajan määrittämän kohtuullisen mittaisen embargoajan jälkeen. Julkaisu voi olla joko ns. kustantajan versio tai tutkijan oma viimeinen (vertaisarvioitu) versio.',
-          SV: 'Publikationen har lagrats parallellt i ett organisations- eller vetenskapsområdesspecifikt publikationsarkiv antingen omedelbart eller efter en rimlig embargotid som förläggaren har fastställt. Publikationen kan vara en s.k. förläggarversion eller forskarens egen, sista (referentgranskade) version.',
-          EN: 'The publication is self-archived in the publication archive of the organisation or the field of science, whether immediately or after a reasonable embargo specified by the publisher. The publication may be a so-called publisher’s version or the author’s final (refereed) version.'
-        },
-        '1': { FI: 'Kyllä', SV: 'Ja', EN: 'Yes' },
-        '0': { FI: 'Ei', SV: 'Nej', EN: 'No' }
+          FI: 'Julkaisu rinnakkaistallennettu',
+          SV: 'Publikationen har lagrats parallelt',
+          EN: 'Self-archived publication',
+              '1': { FI: 'Kyllä', SV: 'Ja', EN: 'Yes' },
+              '0': { FI: 'Ei', SV: 'Nej', EN: 'No' }
       },
-      rinnakkaistallennetunversionverkkoosoite: {
-        FI: 'Rinnakkaistallennetun version verkko-osoite',
-        SV: 'Den parallellt lagrade versionens webbadress',
-        EN: 'Website address of the self-archived version',
-        tooltip: {
-          FI: 'Julkaisun organisaatio- tai tieteenalakohtaiseen julkaisuarkistoon rinnakkaistallennetun version verkko-osoite (esim. URN).',
-          SV: 'Webbadressen (t.ex. URN) på den version av publikationen som har lagrats parallellt i ett organisations- eller vetenskapsområdesspecifikt publikationsarkiv.',
-          EN: 'The website address of the self-archived version of the publication stored in the organisation- or field-specific archive (e.g. URN).'
-        },
-        picktip: {
-          FI: 'esim. http://www.theseus.fi/handle/10024/10922',
-          SV: 't.ex. http://www.theseus.fi/handle/10024/10922',
-          EN: 'e.g. http://www.theseus.fi/handle/10024/10922'
-        }
-      },
-        rinnakkaistallennettumuualle: {
-            FI: 'Julkaisu rinnakkaistallennettu muualle',
-            SV: 'Julkaisu rinnakkaistallennettu muualle',
-            EN: 'Julkaisu rinnakkaistallennettu muualle'
-        },
-        eirinnakkaistallennettava: {
-            FI: 'Ei rinnakkaistallennettava',
-            SV: 'Ei rinnakkaistallennettava',
-            EN: 'Ei rinnakkaistallennettava'
-        },
-        julkaisu: {
-            FI: 'Julkaisu',
-            SV: 'Publikation',
-            EN: 'Publication'
-        },
       lisatieto: {
         FI: 'Lisätieto',
         SV: 'Tilläggsinformation',
@@ -679,9 +644,87 @@ const i18n = {
         }
       },
       jufotunnus: { FI: 'JUFO-ID', SV: 'JUFO-ID', EN: 'JUFO-ID' },
-      jufoluokitus: { FI: 'JUFO-luokitus', SV: 'JUFO-klassificering', EN: 'JUFO-classification' },
-      urntunnus: { FI: 'URN-tunnus', SV: 'URN-tunnus', EN: 'URN-tunnus'},
-      embargoaika: { FI: 'Embargo-aika', SV: 'Embargo-aika', EN: 'Embargo-aika'}
+      jufoluokitus: { FI: 'JUFO-luokitus', SV: 'JUFO-klassificering', EN: 'JUFO-classification' }
+    },
+    rinnakkaistallennusform: {
+        rinnakkaistallennettava: {
+            otsikko: {
+               FI: 'Rinnakkaistallenna julkaisu',
+               SV: '*SV',
+               EN: 'Self-archive publication',
+               tooltip : {
+                 FI: 'Rinnakkaistallenna julkaisuun liittyvä tiedosto suoraan julkaisuarkistoon, mikäli mahdollinen kustantaja on sen sallinut sekä kaikilta julkaisun tekoon osallistuneilta tekijöiltä on siihen lupa. Julkaisuun liittyvä tiedosto tulee tällöin avoimesti saataville julkaisuarkistoon organisaation pääkäyttäjän hyväksyttyä sen. Mikäli olet epävarma rinnakkaistallentamisen mahdollisuudesta, ole yhteydessä oman organisaatiosi käyttötukeen.',
+                 SV: '*SV',
+                 EN: 'You can self-archive publication file if the possible publisher has allowed it and you have permission from all the authors to do so. The publication file will be then be made publicly available at publication archive when administrator has approved it. If you are unsure about the possibility to self-archive the publication, be in contact with the help desk.'
+               }
+            },
+            form: {
+                julkaisu: {
+                  FI: 'Julkaisu',
+                  SV: '*SV',
+                  EN: 'Publication',
+                  tooltip: {
+                    FI: 'Valitse julkaisuun liittyvä tiedosto, joka siirtyy avoimesti saataville julkaisuarkistoon.',
+                    SV: '*SV',
+                    EN: 'Choose and upload the correct publication file which will be made publicly available at publication archive.',
+                  }
+                },
+                urn: {
+                  FI: 'URN-tunnus',
+                  SV: '*SV',
+                  EN: 'URN identifier',
+                  tooltip: {
+                      FI: 'Julkaisulle luotava URN:NBN -pohjainen URN-tunnus, joka luodaan automaattisesti julkaisulle julkaisarkistoon siirron yhteydessä.',
+                      SV: '*SV',
+                      EN: 'Publication will be automatically assigned with a URN:NBN based URN identifier when it is transferred to publication archive.',
+                  }
+              },
+              embargo: {
+                FI: 'Embargo-aika',
+                SV: '*SV',
+                EN: 'Embargo date',
+                tooltip: {
+                    FI: 'Ajankohta, jonka jälkeen julkaisu tulee avoimesti saataville julkaisuarkistossa. Voidaan jättää ilmoittamatta, jolloin julkaisu on pääkäyttäjän hyväksynnän jälkeen välittömästi avoimena saatavilla julkaisuarkistossa.',
+                    SV: '*SV',
+                    EN: 'Date after which the publication will be made publicly available at the publication archive. It can be left empty so that the publication is made immediately publicly available when the administrator has approved it.',
+                }
+              }
+            }
+      },
+      rinnakkaistallennettumuualle: {
+          otsikko: {
+            FI: 'Julkaisu rinnakkaistallennettu muualle',
+            SV: 'Publikationen har lagrats parallelt',
+            EN: 'Publication self-archived elsewhere',
+            tooltip : {
+                FI: 'Julkaisu on rinnakkaistallennettu organisaatio- tai tieteenalakohtaiseen julkaisuarkistoon joko välittömästi tai kustantajan määrittämän kohtuullisen mittaisen embargoajan jälkeen. Julkaisu voi olla joko ns. kustantajan versio tai tutkijan oma viimeinen (vertaisarvioitu) versio.',
+                SV: 'Publikationen har lagrats parallellt i ett organisations- eller vetenskapsområdesspecifikt publikationsarkiv antingen omedelbart eller efter en rimlig embargotid som förläggaren har fastställt. Publikationen kan vara en s.k. förläggarversion eller forskarens egen, sista (referentgranskade) version.',
+                EN: 'The publication is self-archived in the publication archive of the organisation or the  field  of  science,  whether  immediately  or  after a reasonable embargo specified by the publisher. The publication may be a so called publisher’s version or the author’s final (refereed) version.'
+            }
+          },
+          form: {
+            rinnakkaistallennetunversionverkkoosoite: {
+                FI: 'Rinnakkaistallennetun version verkko-osoite',
+                SV: 'Den parallellt lagrade versionens webbadress',
+                EN: 'Website address of the self-archived version',
+                tooltip: {
+                    FI: 'Organisaatio- tai tieteenalakohtaiseen julkaisuarkistoon rinnakkaistallennetun version verkko-osoite (esim. URN).',
+                    SV: 'Webbadressen (t.ex. URN) på den version av publikationen som har lagrats parallellt i ett organisations- eller vetenskapsområdesspecifikt publikationsarkiv.',
+                    EN: 'The website address of the self-archived version of the publication stored in the organisation- or field-specific archive (e.g. URN).'
+                }
+            },
+          }
+      },
+      eirinnakkaistallennettava: {
+          FI: 'Ei rinnakkaistallennattava julkaisu',
+          SV: '*SV Ei rinnakkaistallennattava julkaisu',
+          EN: 'Not self-archivable publication',
+          tooltip: {
+            FI: 'Julkaisu ei ole rinnakkaistallennettava, sitä ei ole tarve rinnakkaistallentaa tai rinnakkaistallennus tehdään myöhemmin. Siirry suoraan esikatseluun.',
+            SV: '*SV',
+            EN: 'Publication is not self-archivable, there is no need to self-archive or the self-archiving will be done later. Proceed to preview.'
+          }
+      }
     },
     tietojensyotto: {
       yleiset: { FI: 'Yleiset julkaisutiedot', SV: 'Allmänna uppgifter', EN: 'General publication information' },
