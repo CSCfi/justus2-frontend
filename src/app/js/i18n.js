@@ -669,6 +669,16 @@ const i18n = {
                     EN: 'Choose and upload the correct publication file which will be made publicly available at publication archive.',
                   }
                 },
+                abstrakti: {
+                    FI: 'Abstrakti',
+                    SV: '*SV',
+                    EN: 'Abstract',
+                    tooltip: {
+                        FI: 'Julkaisun abstrakti tai tiivistelmä. Siirtyy julkaisun mukana julkaisuarkistoon ja näkyy siellä julkaisun kuvailutekstinä.',
+                        SV: '*SV',
+                        EN: 'Abstract or summary. Transferred to publication archive and shown as a description for the publication.',
+                    }
+                },
                 urn: {
                   FI: 'URN-tunnus',
                   SV: '*SV',

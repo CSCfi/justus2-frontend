@@ -74,6 +74,25 @@
                         <div class="row m-b">
                             <div class="col-md-4">
                                 <label class="control-label"
+                                       data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.abstrakti[lang]">
+                                </label>
+                                <i class="fa fa-info-circle justus-info"
+                                   data-popover-trigger="'mouseenter'" data-popover-placement="right"
+                                   data-uib-popover="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.abstrakti.tooltip[lang]}}"
+                                   data-ng-show="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.abstrakti.tooltip[lang]">
+                                </i>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="">
+                                  <textarea type="text" class="form-control vertical-resize min-height-300"
+                                            data-ng-model="filedata.abstract">
+                                  </textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-b">
+                            <div class="col-md-4">
+                                <label class="control-label"
                                        data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.urn[lang]">
                                 </label>
                                 <i class="fa fa-info-circle justus-info"
@@ -108,7 +127,6 @@
                                 <div class="py">
                                     <button type="button" class="btn btn-sm btn-primary" ng-click="setMonth()">Puolen vuoden päähän</button>
                                     <button type="button" class="btn btn-sm btn-primary" ng-click="setYear()">Vuoden päähän</button>
-                                    <!--<button type="button" class="btn btn-sm btn-default" ng-click="upload(file)">Tallenna</button>-->
                                 </div>
                             </div>
                         </div>
