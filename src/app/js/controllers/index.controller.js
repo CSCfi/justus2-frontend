@@ -26,6 +26,8 @@ angular.module('IndexController', [])
                         $rootScope.initialUser = $scope.user;
                         $scope.initialRole = $scope.user.role;
 
+                        console.log("Testing CI");
+
                         fetchKoodistoData();
 
                          }).catch(function (err) {
