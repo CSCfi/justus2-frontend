@@ -203,7 +203,7 @@ angular.module('APIService', [])
 
       if (file) {
           return Upload.upload({
-              url: 'http://10.10.10.10:8080/api/upload',
+              url: API_BASE_URL + 'api/upload',
               data: { file: file, data: data },
               method: 'POST',
               headers: { 'Content-Type': 'multipart/form-data' }
@@ -223,7 +223,7 @@ angular.module('APIService', [])
       } else {
           return $http({
               method: 'POST',
-              url: 'http://10.10.10.10:8080/api/upload',
+              url: API_BASE_URL + 'api/upload',
               data: data,
               headers: { 'Content-Type': 'application/json' }
           })
