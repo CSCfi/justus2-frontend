@@ -167,7 +167,11 @@ angular.module('APIService', [])
     };
 
     /* UPDATE :: PUT */
-    this.put = function (path, id, data) {
+    this.put = function (path, id, data, filedata) {
+
+      if (filedata) {
+        data["filedata"] = filedata;
+      }
       return $http({
         method: 'PUT',
         url: API_BASE_URL + path + '/' + id,
@@ -201,39 +205,23 @@ angular.module('APIService', [])
 
     this.postJulkaisu = function(data, file) {
 
-      if (file) {
           return Upload.upload({
               url: API_BASE_URL + 'upload',
               data: { file: file, data: data },
               method: 'POST',
               headers: { 'Content-Type': 'multipart/form-data' }
           })
-              .then(function (resp) {
-                 return resp;
-              }, function (resp) {
-                  console.log(resp);
-                  $log.error('Error status: ' + resp.status);
-                  $log.error('Error message: ' + resp.data);
-                  return resp;
-              }, function (evt) {
-                  let progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                  console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-              });
-
-      } else {
-          return $http({
-              method: 'POST',
-              url: API_BASE_URL + 'upload',
-              data: data,
-              headers: { 'Content-Type': 'application/json' }
-          })
-          .then(function (response) {
-              return response.data;
-          })
-          .catch(function (response) {
-              $log.error('post ERROR ' + response.status + ' ' + response.data);
+          .then(function (resp) {
+             return resp;
+          }, function (resp) {
+              console.log(resp);
+              $log.error('Error status: ' + resp.status);
+              $log.error('Error message: ' + resp.data);
+              return resp;
+          }, function (evt) {
+              let progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+              console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
           });
-      }
 
     };
   }

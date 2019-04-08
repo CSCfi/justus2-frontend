@@ -59,34 +59,70 @@ angular.module('TallennusController', [])
 
       publication.taiteenala = $scope.justus.taiteenala;
 
-      // Update existing publication or create new depending on possible existing id
-      const julkaisuPromise = $scope.justus.julkaisu.id ? APIService.put('julkaisu', $scope.justus.julkaisu.id, publication) : APIService.post('julkaisu', publication);
-      julkaisuPromise.then((data) => {
+        if (!$scope.justus.julkaisu.id) {
 
-          // if file exists catch id and send file data to backend
-          if ($scope.filedata.filename && $scope.filedata.filename !== "") {
-              $scope.filedata.julkaisuid =  $scope.justus.julkaisu.id ? $scope.justus.julkaisu.id : data.id;
+            APIService.post('julkaisu', publication).then((data) => {
+                if ($scope.filedata.filename && $scope.filedata.filename !== "") {
+                    $scope.filedata.julkaisuid =  data.id;
 
-              APIService.postJulkaisu($scope.filedata, $scope.file).then((response) => {
-                console.log(response);
-                $state.go('omat', { lang: $scope.lang });
-                JustusService.clearPublicationForm();
-                JustusService.clearFileData();
-            })
-            .catch((error) => {
-                $log.error(error);
-            });
+                    APIService.postJulkaisu($scope.filedata, $scope.file).then((response) => {
+                        console.log(response);
+                        $state.go('omat');
+                        JustusService.clearPublicationForm();
+                        JustusService.clearFileData();
+                    })
+                        .catch((error) => {
+                            $log.error(error);
+                        });
+                } else {
+                    $state.go('omat');
+                    JustusService.clearPublicationForm();
+                    JustusService.clearFileData();
+                }
+            }).catch((error) => {
+                    $log.error(error);
+
+        });
         } else {
-              $state.go('omat', { lang: $scope.lang });
-              JustusService.clearPublicationForm();
-              JustusService.clearFileData();
-          }
-      })
-      .catch((error) => {
-          $log.error(error);
 
-      });
-     };
+            let promise;
+
+            if ($scope.file) {
+                $scope.filedata.julkaisuid = $scope.justus.julkaisu.id;
+                APIService.put('julkaisu', $scope.justus.julkaisu.id, publication)
+                    .then((response) => {
+                        console.log(response);
+                        promise = APIService.postJulkaisu($scope.filedata, $scope.file);
+                        clearDataAndNavigateToNextPage(promise);
+
+                    });
+            } else if (!$scope.file && $scope.filedata.filename) {
+                $scope.filedata.julkaisuid = $scope.justus.julkaisu.id;
+                promise =  APIService.put('julkaisu', $scope.justus.julkaisu.id, publication, $scope.filedata);
+                clearDataAndNavigateToNextPage(promise);
+
+            } else {
+                promise = APIService.put('julkaisu', $scope.justus.julkaisu.id, publication);
+                clearDataAndNavigateToNextPage(promise);
+            }
+
+        }
+
+  };
+
+      function clearDataAndNavigateToNextPage(promise) {
+          promise
+              .then((res) => {
+                  console.log(res);
+                  $state.go('omat');
+                  JustusService.clearPublicationForm();
+                  JustusService.clearFileData();
+              })
+              .catch((error) => {
+                  $log.error(error);
+              });
+      }
+
 
       $scope.cancelAndReturnToPublicationListing = function() {
         if (!DataStoreService.getStateName()) {
