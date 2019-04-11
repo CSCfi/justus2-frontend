@@ -115,6 +115,21 @@ angular.module('JulkaisunsyottoController', [])
                     })
             };
 
+            $scope.version = [
+            "0", "1", "2"
+            ];
+
+            $scope.rights = [
+                "All rights reserved",
+                "CC BY 4.0",
+                "CC BY-SA 4.0",
+                "CC BY-NC 4.0",
+                "CC BY-ND 4.0",
+                "CC BY-NC-SA 4.0",
+                "CC BY-NC-ND 4.0"
+
+            ];
+
             // for developing purposes
             $scope.upload = function (file) {
 

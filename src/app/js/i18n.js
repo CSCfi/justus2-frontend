@@ -698,8 +698,52 @@ const i18n = {
                     SV: '*SV',
                     EN: 'Date after which the publication will be made publicly available at the publication archive. It can be left empty so that the publication is made immediately publicly available when the administrator has approved it.',
                 }
-              }
-            }
+              },
+              julkaisusarja: {
+                  FI: 'Julkaisusarja',
+                  SV: '*SV',
+                  EN: '*EN',
+                  tooltip: {
+                      FI: 'Lorem ipsum.',
+                      SV: '*SV',
+                      EN: '*EN',
+                  }
+              },
+              oikeudet: {
+                  FI: 'Oikeudet',
+                  SV: 'Rättigheter',
+                  EN: 'Rights',
+                  value: {
+                    'All rights reserved': { FI: "Kaikki oikeudet pidätetään", SV: "All rights reserved", EN: 'All rights reserved' },
+                     'CC BY 4.0': { FI: "Nimeä", SV: "Erkännande", EN: "Attribution" },
+                     'CC BY-SA 4.0': { FI: "Nimeä - Jaa samoin", SV: "Dela lika", EN: "Share-alike" },
+                     'CC BY-NC 4.0':  { FI: "Nimeä-Eikaupallinen", SV: "Erkännande-Icke-Kommersiell", EN: "Attribution-NonCommercial" },
+                     'CC BY-ND 4.0':  { FI: "Nimeä-EiMuutoksia", SV: "Erkännande-IngaBearbetningar 4.0 Internationell", EN: "Attribution-NoDerivatives 4.0 International" },
+                     'CC BY-NC-SA 4.0':  { FI: "Nimeä-EiKaupallinen-JaaSamoin", SV: "Erkännande-Icke-Kommersiell-DelaPåSammaVillkor 4.0 Internationell", EN: "Attribution-NonCommercial-ShareAlike 4.0 International" },
+                     'CC BY-NC-ND 4.0':  { FI: "Nimeä-EiKaupallinen-EiMuutoksia", SV: "Erkännande-Ickekommersiell-IngaBearbetningar 4.0 Internationell", EN: "Attribution-NonCommercial-NoDerivatives 4.0 International" }
+                  },
+                  tooltip: { FI: 'Lorem ipsum.', SV: '*SV', EN: '*EN' },
+                  picktip: { FI: '-- Valitse lorem ipsum --', SV: '-- Välj lorem ipsum --', EN: '-- Choose lorem ipsum --' }
+
+              },
+                versio: {
+                    FI: 'Versio',
+                    SV: 'Version',
+                    EN: 'Version',
+                    value: {
+                        '0': {FI: 'Final draft', SV: 'Final draft', EN: 'Final draft'},
+                        '1': {FI: 'Kustantajan versio', SV: 'Publisher\'s version', EN: 'Publisher\'s version'},
+                        '2': {FI: 'Pre-print versio', SV: 'Pre-print', EN: 'Pre-print'}
+                    },
+                    tooltip: { FI: 'Lorem ipsum.', SV: '*SV', EN: '*EN' },
+                    picktip: { FI: '-- Valitse lorem ipsum --', SV: '-- Välj lorem ipsum --', EN: '-- Choose lorem ipsum --' }
+
+                },
+                tyhjenna: {
+                  FI: 'Tyhjennä', SV: 'Ta bort', EN: 'Remove'
+
+                }
+          }
       },
       rinnakkaistallennettumuualle: {
           otsikko: {

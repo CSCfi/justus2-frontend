@@ -71,7 +71,7 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="row m-b">
+                        <div class="row form-group">
                             <div class="col-md-4">
                                 <label class="control-label"
                                        data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.abstrakti[lang]">
@@ -90,7 +90,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row m-b">
+                        <div class="row form-group">
                             <div class="col-md-4">
                                 <label class="control-label"
                                        data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.urn[lang]">
@@ -105,7 +105,7 @@
                                 <p data-ng-model="filedata.urn">{{filedata.urn}}</p>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row form-group">
                             <div class="col-md-4">
                                 <label class="control-label"
                                        data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo[lang]">
@@ -127,6 +127,78 @@
                                 <div class="py">
                                     <button type="button" class="btn btn-sm btn-primary" ng-click="setMonth()">Puolen vuoden päähän</button>
                                     <button type="button" class="btn btn-sm btn-primary" ng-click="setYear()">Vuoden päähän</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-4">
+                                <label class="control-label"
+                                       data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.oikeudet[lang]">
+                                </label>
+                            </div>
+                            <div class="col-md-6 col-xs-12 form-group">
+                                <ui-select data-ng-model="filedata.oikeudet"
+                                           theme="bootstrap">
+                                    <ui-select-match class="ui-select-match"
+                                                     placeholder="{{filedata.oikeudet.koodi }} {{ filedata.oikeudet.selite[lang] || i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.oikeudet.picktip[lang] }}">
+                                        {{ $select.selected }} {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.oikeudet.value[$select.selected][lang] }}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="o in rights">
+                                        {{o}}  {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.oikeudet.value[o][lang] }}
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary m-b"
+                                        data-ng-click="filedata.oikeudet = null"
+                                        data-ng-if="filedata.oikeudet"
+                                        title="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]"
+                                        data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]">
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-4">
+                                <label class="control-label"
+                                       data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.versio[lang]">
+                                </label>
+                            </div>
+                            <div class="col-md-6 col-xs-12 form-group">
+                                <ui-select data-ng-model="filedata.versio"
+                                           theme="bootstrap">
+                                    <ui-select-match class="ui-select-match"
+                                                     placeholder=" {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.versio.value[filedata.versio][lang] || i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.versio.picktip[lang] }}">
+                                        {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.versio.value[$select.selected][lang] }}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="v in version">
+                                        {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.versio.value[v][lang] }}
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary m-b"
+                                        data-ng-click="filedata.versio = null"
+                                        data-ng-if="filedata.versio"
+                                        title="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]"
+                                        data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]">
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-4">
+                                <label class="control-label"
+                                       data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisusarja[lang]">
+                                </label>
+                            </div>
+                            <div class="col-md-6 col-xs-12">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <input type="text"
+                                               class="form-control"
+                                               data-ng-model="filedata.julkaisusarja"
+                                               placeholder="">
+                                        <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
