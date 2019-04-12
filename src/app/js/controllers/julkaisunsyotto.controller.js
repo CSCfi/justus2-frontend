@@ -115,6 +115,11 @@ angular.module('JulkaisunsyottoController', [])
                     })
             };
 
+            $scope.getLink = function() {
+                return "http://10.10.10.10:8080/api/download/" + $stateParams.id ;
+            };
+
+
             $scope.version = [
             "0", "1", "2"
             ];

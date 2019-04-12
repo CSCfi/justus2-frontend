@@ -31,7 +31,10 @@
                             <div data-ng-show="fileAlreadyExists" class="col-md-8">
                                 <div class="row">
                                     <div class="col-md-10">
-                                        <span class="font-weight-bold text-xl">{{filedata.filename}}</span>
+                                        <span class="font-weight-bold text-xl">
+                                          <a data-ng-if="filedata.handle === ''" data-ng-href="{{ getLink()}}" target="_blank" download> {{filedata.filename}} </a>
+                                          <span data-ng-if="filedata.handle !== ''"> {{filedata.filename}} </span>
+                                        </span>
                                     </div>
                                     <div class="col-md-2 text-right">
                                         <button class="btn btn-danger m-b"
