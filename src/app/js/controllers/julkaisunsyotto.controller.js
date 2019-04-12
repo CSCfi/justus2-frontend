@@ -2,8 +2,8 @@
 
 angular.module('JulkaisunsyottoController', [])
     .controller('JulkaisunsyottoController', [
-        '$scope', '$rootScope', '$stateParams', '$log', 'Upload', 'JustusService', 'APIService', 'ExternalServicesService',
-        function($scope, $rootScope, $stateParams, $log, Upload, JustusService, APIService, ExternalServicesService) {
+        '$scope', '$rootScope', '$stateParams', '$log', 'Upload', 'JustusService', 'APIService', 'ExternalServicesService', 'API_BASE_URL',
+        function($scope, $rootScope, $stateParams, $log, Upload, JustusService, APIService, ExternalServicesService, API_BASE_URL) {
 
         $scope.file = JustusService.file;
         $scope.filedata = JustusService.getFileData();
@@ -116,7 +116,7 @@ angular.module('JulkaisunsyottoController', [])
             };
 
             $scope.getLink = function() {
-                return "http://10.10.10.10:8080/api/download/" + $stateParams.id ;
+                return API_BASE_URL + "download/" + $stateParams.id ;
             };
 
 
