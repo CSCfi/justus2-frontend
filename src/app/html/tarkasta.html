@@ -149,6 +149,13 @@
           <td >
             <span data-ng-bind="d.julkaisu.username"></span>
           </td>
+          <td data-ng-if="showPublicationLink">
+            <span data-ng-show="d.filedata">
+              <a data-ng-href="{{d.filedata.handle}}" target="_blank">
+               <i class="fa fa-save" ng-class="{'text-gray': !d.filedata.handle }"> </i>
+              </a>
+            </span>
+          </td>
           <td data-ng-show="state.name=='hyvaksy'" class="btn-col">
             <div class="btn-group">
               <button data-ng-repeat="julkaisuntila in codes.julkaisuntila | orderBy: 'arvo' | limitTo:4"
