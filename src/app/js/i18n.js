@@ -170,9 +170,9 @@ const i18n = {
         SV: 'Publikationens upphovsmän',
         EN: 'Publication authors',
         tooltip: {
-          FI: 'Julkaisun täydelliset tekijätiedot (ml. ulkomaiset tekijät) muodossa Sukunimi, Etunimi. Paina enter vahvistaaksesi nimi. 20 ensimmäistä tekijää riittää.',
+          FI: 'Julkaisun täydelliset tekijätiedot (ml. ulkomaiset tekijät) muodossa Sukunimi, Etunimi. Paina enter vahvistaaksesi nimi. Tekijät siinä järjestyksessä, kuin ne ovat julkaisussa ilmoitettu. 20 ensimmäistä tekijää riittää.',
           SV: 'Fullständig information om publikationens upphovsmän anges i den form och i den ordning som de nämns i den ursprungliga publikationen eller källdatabasen (högst 20 st.).',
-          EN: 'Authors of the original publication in the following format: Surname, Firstname. Press enter to confirm. Max. 20 authors is sufficient.'
+          EN: 'Authors of the original publication in the following format: Surname, Firstname. Press enter to confirm. Authors in the same order as was in the original publication. Max. 20 authors is sufficient.'
         },
         picktip: { FI: 'Syötä muodossa Sukunimi, Etunimi ja paina enter', SV: 'Skriv i formatet Efternamn, Förnamn och tryck enter', EN: 'Type in format Lastname, Firstname and press enter' }
       },
@@ -217,7 +217,7 @@ const i18n = {
             EN: 'Choose the organisational units based on the Koodisto service by year. The service uses the most recent organisational units by default, but if necessary, older organisational units can be used as well.'
           }
         },
-        orcid: { FI: 'ORCID', SV: 'ORCID', EN: 'ORCID', picktip: { FI: 'ORCID', SV: 'ORCID', EN: 'ORCID' } },
+        orcid: { FI: 'ORCID', SV: 'ORCID', EN: 'ORCID', picktip: { FI: 'ORCID-numero', SV: 'ORCID iD', EN: 'ORCID iD' } },
         tekijanrooli: { FI: 'Rooli', SV: 'Roll', EN: 'Role', picktip: { FI: 'Rooli', SV: 'Roll', EN: 'Role' } },
         lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
         poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
