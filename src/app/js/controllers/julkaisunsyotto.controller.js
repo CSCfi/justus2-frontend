@@ -89,6 +89,8 @@ angular.module('JulkaisunsyottoController', [])
             $scope.getUrn = function() {
                 ExternalServicesService.haeUrn().then(response => {
                     $scope.filedata.urn = response.data.data;
+                }).catch((error) => {
+                  console.log(error);
                 })
             };
 
