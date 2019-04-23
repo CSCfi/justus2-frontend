@@ -661,7 +661,7 @@ const i18n = {
             form: {
                 julkaisu: {
                   FI: 'Julkaisu',
-                  SV: '*SV',
+                  SV: 'Publikation',
                   EN: 'Publication',
                   tooltip: {
                     FI: 'Valitse julkaisuun liittyvä tiedosto, joka siirtyy avoimesti saataville julkaisuarkistoon.',
@@ -671,7 +671,7 @@ const i18n = {
                 },
                 abstrakti: {
                     FI: 'Abstrakti',
-                    SV: '*SV',
+                    SV: 'Abstrakt',
                     EN: 'Abstract',
                     tooltip: {
                         FI: 'Julkaisun abstrakti tai tiivistelmä. Siirtyy julkaisun mukana julkaisuarkistoon ja näkyy siellä julkaisun kuvailutekstinä.',
@@ -702,16 +702,16 @@ const i18n = {
               julkaisusarja: {
                   FI: 'Julkaisusarja',
                   SV: '*SV',
-                  EN: '*EN',
+                  EN: 'Publications category',
                   tooltip: {
-                      FI: 'Lorem ipsum.',
+                      FI: 'Vapaasanakenttä, jossa voidaan määritellä julkaisulle esimerkiksi organisaatiokohtainen julkaisusarja. Tieto välittyy julkaisuarkistoon ja sitä käytetään julkaisusarjojen näyttämiseen.',
                       SV: '*SV',
-                      EN: '*EN',
+                      EN: 'Field which can be used to determine e.g. organization specific publication series. Transferred to publication archive and is used to display publication series.',
                   }
               },
               oikeudet: {
                   FI: 'Oikeudet',
-                  SV: 'Rättigheter',
+                  SV: '*SV',
                   EN: 'Rights',
                   value: {
                     'All rights reserved': { FI: "Kaikki oikeudet pidätetään", SV: "All rights reserved", EN: 'All rights reserved' },
@@ -722,8 +722,12 @@ const i18n = {
                      'CC BY-NC-SA 4.0':  { FI: "Nimeä-EiKaupallinen-JaaSamoin", SV: "Erkännande-Icke-Kommersiell-DelaPåSammaVillkor 4.0 Internationell", EN: "Attribution-NonCommercial-ShareAlike 4.0 International" },
                      'CC BY-NC-ND 4.0':  { FI: "Nimeä-EiKaupallinen-EiMuutoksia", SV: "Erkännande-Ickekommersiell-IngaBearbetningar 4.0 Internationell", EN: "Attribution-NonCommercial-NoDerivatives 4.0 International" }
                   },
-                  tooltip: { FI: 'Lorem ipsum.', SV: '*SV', EN: '*EN' },
-                  picktip: { FI: '-- Valitse lorem ipsum --', SV: '-- Välj lorem ipsum --', EN: '-- Choose lorem ipsum --' }
+                  tooltip: {
+                    FI: 'Määrittele oikeudet tai mahdollinen lisenssitieto julkaisulle. Tieto oikeuksista tai lisenssistä siirtyy julkaisun mukana julkaisuarkistoon ja näkyy siellä julkaisun ohessa.',
+                    SV: '*SV',
+                    EN: 'Choose rights or possible license for the publication. Information on rights is transferred to publication archive and shown with the publication.'
+                  },
+                  picktip: { FI: '-- Valitse --', SV: '-- Välj --', EN: '-- Choose --' }
 
               },
                 versio: {
@@ -735,8 +739,12 @@ const i18n = {
                         '1': {FI: 'Kustantajan versio', SV: 'Publisher\'s version', EN: 'Publisher\'s version'},
                         '2': {FI: 'Pre-print versio', SV: 'Pre-print', EN: 'Pre-print'}
                     },
-                    tooltip: { FI: 'Lorem ipsum.', SV: '*SV', EN: '*EN' },
-                    picktip: { FI: '-- Valitse lorem ipsum --', SV: '-- Välj lorem ipsum --', EN: '-- Choose lorem ipsum --' }
+                    tooltip: {
+                      FI: 'Valitse tallennetun julkaisun versio. Final draft: Vastaa sisällöltään täysin valmista kustantajan julkaisemaa versiota, mutta tätä versiota ei yleensä ole taitettu lopulliseen ulkoasuun eli siitä puuttuvat lopullisessa kustantajan julkaisemassa versiossa olevat logot, sivunumerot eli lehden ilme. Kustantajan versio: Kustantajan tuottama taitettu ja visuaalisesti valmis versio. Pre-print: Käsikirjoitusversio, jonka kirjoittaja on lähettänyt kustantajalle ja jota ei ole vertaisarvioitu. Ei siis välttämättä sisällöltään lopullinen versio artikkelista.',
+                      SV: '*SV',
+                      EN: 'Choose the correct version of publication. Final draft: Corresponds to fully-edited version of the publisher\'s version, but is not finalized (e.g. is missing logos, page numbers, look of the publisher\'s version). Publisher\'s version: Publication that is the final publisher\'s version with the correct layout and look. Pre-print: Manuscript version, which has been sent to publisher but not yet peer-reviewed.'
+                    },
+                    picktip: { FI: '-- Valitse --', SV: '-- Välj --', EN: '-- Choose --' }
 
                 },
                 tyhjenna: {
