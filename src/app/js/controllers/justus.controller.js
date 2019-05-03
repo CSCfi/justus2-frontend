@@ -27,7 +27,6 @@ angular.module('JustusController', [])
 
             $scope.julkaisu = {};
 
-            $scope.showPublicationInput = $rootScope.user.organization.showPublicationInput;
 
             $scope.fileAlreadyExists = false;
             $scope.filedata = JustusService.getFileData();
