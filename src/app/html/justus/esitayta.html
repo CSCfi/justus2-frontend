@@ -21,6 +21,12 @@
   </div>
 </div -->
 
+<div class="alert alert-transparent text-center" data-ng-if="justus.julkaisu.id">
+  <h4>Muokkaat julkaisua {{ justus.julkaisu.id }}, {{ justus.julkaisu.julkaisunnimi }}</h4>
+  <button class="btn btn-primary" data-ng-click="clearFormAndReturnToStart()">Hylkää muutokset</button>
+</div>
+
+
 <div class="row m-b">
   <div class="col-sm-6 col-xs-12">
     <h3 class="form-header">{{i18n.content.esitayta.doihaku.title[lang]}}</h3>
