@@ -27,10 +27,7 @@ angular.module('JustusController', [])
 
             $scope.julkaisu = {};
 
-
             $scope.fileAlreadyExists = false;
-            $scope.filedata = JustusService.getFileData();
-            // As default file is null
             JustusService.file = null;
 
             // Parses first- and lastnames from a string of names and returns them in a list of objects [{ firstName: '', lastName: '' }, ...]
@@ -53,7 +50,10 @@ angular.module('JustusController', [])
 
             $scope.clearFormAndReturnToStart = function() {
                 JustusService.clearPublicationForm();
-                JustusService.clearFileData();
+                delete $rootScope.filedata;
+                $rootScope.filedata = {};
+                JustusService.file = null;
+                $scope.fileAlreadyExists = false;
                 $scope.justus = JustusService.getPublicationFormData();
                 $scope.julkaisutyyppi = null;
                 $scope.julkaisutyyppi_paa = null;
@@ -453,7 +453,8 @@ angular.module('JustusController', [])
             $scope.eiRinnakkaisTallennettavaSelected = function () {
                 $scope.justus.julkaisu.julkaisurinnakkaistallennettu = "0";
                 JustusService.file = null;
-                JustusService.clearFileData();
+                delete $rootScope.filedata;
+                $rootScope.filedata = {};
                 $scope.eirinnakkaistellennettava = true;
             };
 
@@ -638,13 +639,12 @@ angular.module('JustusController', [])
                     .then(function (obj) {
                         $scope.justus = obj.data;
                         if (obj.data.filedata) {
-                            $scope.filedata = obj.data.filedata;
+                            $rootScope.filedata = obj.data.filedata;
                             $scope.fileAlreadyExists = true;
-                            JustusService.updateFileData(obj.data.filedata);
                             delete $scope.justus["filedata"];
                         } else {
-                            JustusService.clearFileData();
-                            $scope.filedata = {};
+                            delete $rootScope.filedata;
+                            $rootScope.filedata = {};
                             $scope.fileAlreadyExists = false;
                         }
                         parseNames($scope.justus.julkaisu.tekijat).map((nameObject) => {
@@ -668,6 +668,10 @@ angular.module('JustusController', [])
                     $scope.justus.julkaisu = {};
                     $scope.justus.julkaisu.issn = [""];
                     $scope.justus.julkaisu.isbn = [""];
+                }
+
+                if (!$rootScope.filedata) {
+                    $rootScope.filedata = {};
                 }
 
                 if(!$scope.justus.organisaatiotekija || $scope.justus.organisaatiotekija.length < 1) {

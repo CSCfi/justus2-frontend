@@ -18,18 +18,6 @@ angular.module('JustusService', [])
     this.justus = {};
   };
 
-  this.getFileData = function () {
-      return this.filedata;
-  };
-
-  this.updateFileData = function(data) {
-      this.filedata = data;
-  };
-
-  this.clearFileData = function() {
-      this.filedata = {};
-  };
-
   this.file = function (file) {
       this.file = file;
   };

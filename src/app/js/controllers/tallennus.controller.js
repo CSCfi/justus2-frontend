@@ -9,7 +9,6 @@ angular.module('TallennusController', [])
 
     $scope.meta = APIService.meta;
     $scope.file = JustusService.file;
-    $scope.filedata = JustusService.getFileData();
 
     $scope.savePublicationForm = function() {
       const publication = {};
@@ -62,14 +61,15 @@ angular.module('TallennusController', [])
         if (!$scope.justus.julkaisu.id) {
 
             APIService.post('julkaisu', publication).then((data) => {
-                if ($scope.filedata.filename && $scope.filedata.filename !== "") {
-                    $scope.filedata.julkaisuid =  data.id;
+                if ($rootScope.filedata.filename && $rootScope.filedata.filename !== "") {
+                    $rootScope.filedata.julkaisuid =  data.id;
 
-                    APIService.postJulkaisu($scope.filedata, $scope.file).then((response) => {
+                    APIService.postJulkaisu($rootScope.filedata, $scope.file).then((response) => {
                         console.log(response);
                         $state.go('omat');
                         JustusService.clearPublicationForm();
-                        JustusService.clearFileData();
+                        delete $rootScope.filedata;
+                        $rootScope.filedata = {};
                     })
                         .catch((error) => {
                             $log.error(error);
@@ -77,7 +77,8 @@ angular.module('TallennusController', [])
                 } else {
                     $state.go('omat');
                     JustusService.clearPublicationForm();
-                    JustusService.clearFileData();
+                    delete $rootScope.filedata;
+                    $rootScope.filedata = {};
                 }
             }).catch((error) => {
                     $log.error(error);
@@ -88,17 +89,17 @@ angular.module('TallennusController', [])
             let promise;
 
             if ($scope.file) {
-                $scope.filedata.julkaisuid = $scope.justus.julkaisu.id;
+                $rootScope.filedata.julkaisuid = $scope.justus.julkaisu.id;
                 APIService.put('julkaisu', $scope.justus.julkaisu.id, publication)
                     .then((response) => {
                         console.log(response);
-                        promise = APIService.postJulkaisu($scope.filedata, $scope.file);
+                        promise = APIService.postJulkaisu($rootScope.filedata, $scope.file);
                         clearDataAndNavigateToNextPage(promise);
 
                     });
-            } else if (!$scope.file && $scope.filedata.filename) {
-                $scope.filedata.julkaisuid = $scope.justus.julkaisu.id;
-                promise =  APIService.put('julkaisu', $scope.justus.julkaisu.id, publication, $scope.filedata);
+            } else if (!$scope.file && $rootScope.filedata.filename) {
+                $rootScope.filedata.julkaisuid = $scope.justus.julkaisu.id;
+                promise =  APIService.put('julkaisu', $scope.justus.julkaisu.id, publication, $rootScope.filedata);
                 clearDataAndNavigateToNextPage(promise);
 
             } else {
@@ -116,7 +117,8 @@ angular.module('TallennusController', [])
                   console.log(res);
                   $state.go('omat');
                   JustusService.clearPublicationForm();
-                  JustusService.clearFileData();
+                  delete $rootScope.filedata;
+                  $rootScope.filedata = {};
               })
               .catch((error) => {
                   $log.error(error);
@@ -128,13 +130,15 @@ angular.module('TallennusController', [])
         if (!DataStoreService.getStateName()) {
           $state.go('omat');
           JustusService.clearPublicationForm();
-          JustusService.clearFileData();
+          delete $rootScope.filedata;
+          $rootScope.filedata = {};
         } else {
           let state = DataStoreService.getStateName();
           $state.go(state);
           DataStoreService.storeStateData(null);
           JustusService.clearPublicationForm();
-          JustusService.clearFileData();
+          delete $rootScope.filedata;
+          $rootScope.filedata = {};
         }
       };
 
