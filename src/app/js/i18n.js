@@ -650,11 +650,11 @@ const i18n = {
         rinnakkaistallennettava: {
             otsikko: {
                FI: 'Rinnakkaistallenna julkaisu',
-               SV: '*SV',
+               SV: '*SV Rinnakkaistallenna julkaisu',
                EN: 'Self-archive publication',
                tooltip : {
                  FI: 'Rinnakkaistallenna julkaisuun liittyvä tiedosto suoraan julkaisuarkistoon, mikäli mahdollinen kustantaja on sen sallinut sekä kaikilta julkaisun tekoon osallistuneilta tekijöiltä on siihen lupa. Julkaisuun liittyvä tiedosto tulee tällöin avoimesti saataville julkaisuarkistoon organisaation pääkäyttäjän hyväksyttyä sen. Mikäli olet epävarma rinnakkaistallentamisen mahdollisuudesta, ole yhteydessä oman organisaatiosi käyttötukeen.',
-                 SV: '*SV',
+                 SV: '*SV Rinnakkaistallenna julkaisuun liittyvä tiedosto suoraan julkaisuarkistoon, mikäli mahdollinen kustantaja on sen sallinut sekä kaikilta julkaisun tekoon osallistuneilta tekijöiltä on siihen lupa. Julkaisuun liittyvä tiedosto tulee tällöin avoimesti saataville julkaisuarkistoon organisaation pääkäyttäjän hyväksyttyä sen. Mikäli olet epävarma rinnakkaistallentamisen mahdollisuudesta, ole yhteydessä oman organisaatiosi käyttötukeen.',
                  EN: 'You can self-archive publication file if the possible publisher has allowed it and you have permission from all the authors to do so. The publication file will be then be made publicly available at publication archive when administrator has approved it. If you are unsure about the possibility to self-archive the publication, be in contact with the help desk.'
                }
             },
@@ -665,7 +665,7 @@ const i18n = {
                   EN: 'Publication',
                   tooltip: {
                     FI: 'Valitse julkaisuun liittyvä tiedosto, joka siirtyy avoimesti saataville julkaisuarkistoon.',
-                    SV: '*SV',
+                    SV: '*SV Valitse julkaisuun liittyvä tiedosto, joka siirtyy avoimesti saataville julkaisuarkistoon.',
                     EN: 'Choose and upload the correct publication file which will be made publicly available at publication archive.',
                   }
                 },
@@ -675,43 +675,43 @@ const i18n = {
                     EN: 'Abstract',
                     tooltip: {
                         FI: 'Julkaisun abstrakti tai tiivistelmä. Siirtyy julkaisun mukana julkaisuarkistoon ja näkyy siellä julkaisun kuvailutekstinä.',
-                        SV: '*SV',
+                        SV: '*SV Julkaisun abstrakti tai tiivistelmä. Siirtyy julkaisun mukana julkaisuarkistoon ja näkyy siellä julkaisun kuvailutekstinä.',
                         EN: 'Abstract or summary. Transferred to publication archive and shown as a description for the publication.',
                     }
                 },
                 urn: {
                   FI: 'URN-tunnus',
-                  SV: '*SV',
+                  SV: '*SV URN-tunnus',
                   EN: 'URN identifier',
                   tooltip: {
                       FI: 'Julkaisulle luotava URN:NBN -pohjainen URN-tunnus, joka luodaan automaattisesti julkaisulle julkaisarkistoon siirron yhteydessä.',
-                      SV: '*SV',
+                      SV: '*SV Julkaisulle luotava URN:NBN -pohjainen URN-tunnus, joka luodaan automaattisesti julkaisulle julkaisarkistoon siirron yhteydessä.',
                       EN: 'Publication will be automatically assigned with a URN:NBN based URN identifier when it is transferred to publication archive.',
                   }
               },
               embargo: {
                 FI: 'Embargo-aika',
-                SV: '*SV',
+                SV: '*SV Embargo-aika',
                 EN: 'Embargo date',
                 tooltip: {
                     FI: 'Ajankohta, jonka jälkeen julkaisu tulee avoimesti saataville julkaisuarkistossa. Voidaan jättää ilmoittamatta, jolloin julkaisu on pääkäyttäjän hyväksynnän jälkeen välittömästi avoimena saatavilla julkaisuarkistossa.',
-                    SV: '*SV',
+                    SV: '*SV Ajankohta, jonka jälkeen julkaisu tulee avoimesti saataville julkaisuarkistossa. Voidaan jättää ilmoittamatta, jolloin julkaisu on pääkäyttäjän hyväksynnän jälkeen välittömästi avoimena saatavilla julkaisuarkistossa.',
                     EN: 'Date after which the publication will be made publicly available at the publication archive. It can be left empty so that the publication is made immediately publicly available when the administrator has approved it.',
                 }
               },
               julkaisusarja: {
                   FI: 'Julkaisusarja',
-                  SV: '*SV',
+                  SV: '*SV Julkaisusarja',
                   EN: 'Publications category',
                   tooltip: {
                       FI: 'Vapaasanakenttä, jossa voidaan määritellä julkaisulle esimerkiksi organisaatiokohtainen julkaisusarja. Tieto välittyy julkaisuarkistoon ja sitä käytetään julkaisusarjojen näyttämiseen.',
-                      SV: '*SV',
+                      SV: '*SV Vapaasanakenttä, jossa voidaan määritellä julkaisulle esimerkiksi organisaatiokohtainen julkaisusarja. Tieto välittyy julkaisuarkistoon ja sitä käytetään julkaisusarjojen näyttämiseen.',
                       EN: 'Field which can be used to determine e.g. organization specific publication series. Transferred to publication archive and is used to display publication series.',
                   }
               },
               oikeudet: {
                   FI: 'Oikeudet',
-                  SV: '*SV',
+                  SV: '*SV Oikeudet',
                   EN: 'Rights',
                   value: {
                     'All rights reserved': { FI: "Kaikki oikeudet pidätetään", SV: "All rights reserved", EN: 'All rights reserved' },
@@ -724,7 +724,7 @@ const i18n = {
                   },
                   tooltip: {
                     FI: 'Määrittele oikeudet tai mahdollinen lisenssitieto julkaisulle. Tieto oikeuksista tai lisenssistä siirtyy julkaisun mukana julkaisuarkistoon ja näkyy siellä julkaisun ohessa.',
-                    SV: '*SV',
+                    SV: '*SV Määrittele oikeudet tai mahdollinen lisenssitieto julkaisulle. Tieto oikeuksista tai lisenssistä siirtyy julkaisun mukana julkaisuarkistoon ja näkyy siellä julkaisun ohessa.',
                     EN: 'Choose rights or possible license for the publication. Information on rights is transferred to publication archive and shown with the publication.'
                   },
                   picktip: { FI: '-- Valitse --', SV: '-- Välj --', EN: '-- Choose --' }
@@ -741,7 +741,7 @@ const i18n = {
                     },
                     tooltip: {
                       FI: 'Valitse tallennetun julkaisun versio. Final draft: Vastaa sisällöltään täysin valmista kustantajan julkaisemaa versiota, mutta tätä versiota ei yleensä ole taitettu lopulliseen ulkoasuun eli siitä puuttuvat lopullisessa kustantajan julkaisemassa versiossa olevat logot, sivunumerot eli lehden ilme. Kustantajan versio: Kustantajan tuottama taitettu ja visuaalisesti valmis versio. Pre-print: Käsikirjoitusversio, jonka kirjoittaja on lähettänyt kustantajalle ja jota ei ole vertaisarvioitu. Ei siis välttämättä sisällöltään lopullinen versio artikkelista.',
-                      SV: '*SV',
+                      SV: '*SV Valitse tallennetun julkaisun versio. Final draft: Vastaa sisällöltään täysin valmista kustantajan julkaisemaa versiota, mutta tätä versiota ei yleensä ole taitettu lopulliseen ulkoasuun eli siitä puuttuvat lopullisessa kustantajan julkaisemassa versiossa olevat logot, sivunumerot eli lehden ilme. Kustantajan versio: Kustantajan tuottama taitettu ja visuaalisesti valmis versio. Pre-print: Käsikirjoitusversio, jonka kirjoittaja on lähettänyt kustantajalle ja jota ei ole vertaisarvioitu. Ei siis välttämättä sisällöltään lopullinen versio artikkelista.',
                       EN: 'Choose the correct version of publication. Final draft: Corresponds to fully-edited version of the publisher\'s version, but is not finalized (e.g. is missing logos, page numbers, look of the publisher\'s version). Publisher\'s version: Publication that is the final publisher\'s version with the correct layout and look. Pre-print: Manuscript version, which has been sent to publisher but not yet peer-reviewed.'
                     },
                     picktip: { FI: '-- Valitse --', SV: '-- Välj --', EN: '-- Choose --' }
@@ -783,7 +783,7 @@ const i18n = {
           EN: 'Not self-archivable publication',
           tooltip: {
             FI: 'Julkaisu ei ole rinnakkaistallennettava, sitä ei ole tarve rinnakkaistallentaa tai rinnakkaistallennus tehdään myöhemmin. Siirry suoraan esikatseluun.',
-            SV: '*SV',
+            SV: '*SV Julkaisu ei ole rinnakkaistallennettava, sitä ei ole tarve rinnakkaistallentaa tai rinnakkaistallennus tehdään myöhemmin. Siirry suoraan esikatseluun.',
             EN: 'Publication is not self-archivable, there is no need to self-archive or the self-archiving will be done later. Proceed to preview.'
           }
       }
