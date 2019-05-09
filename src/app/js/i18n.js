@@ -667,6 +667,11 @@ const i18n = {
                     FI: 'Valitse julkaisuun liittyvä tiedosto, joka siirtyy avoimesti saataville julkaisuarkistoon.',
                     SV: '*SV Valitse julkaisuun liittyvä tiedosto, joka siirtyy avoimesti saataville julkaisuarkistoon.',
                     EN: 'Choose and upload the correct publication file which will be made publicly available at publication archive.',
+                  },
+                  tiedosto: { 
+                    valitse: { FI: 'Valitse tiedosto', SV: '*SV Valitse tiedosto', EN: 'Select file' },
+                    eivalittu: { FI: 'Ei valittua tiedostoa', SV: '*SV Ei valittua tiedostoa', EN: 'No file selected' },
+                    veda: { FI: 'Tai vedä tiedosto tähän', SV: '*SV Tai vedä tiedosto tähän', EN: 'Or drag file here' }
                   }
                 },
                 abstrakti: {
@@ -693,11 +698,14 @@ const i18n = {
                 FI: 'Embargo-aika',
                 SV: '*SV Embargo-aika',
                 EN: 'Embargo date',
+                picktip: { FI: 'vvvv/kk/pp', SV: 'yyyy/mm/dd', EN: 'yyyy/mm/dd' },
                 tooltip: {
                     FI: 'Ajankohta, jonka jälkeen julkaisu tulee avoimesti saataville julkaisuarkistossa. Voidaan jättää ilmoittamatta, jolloin julkaisu on pääkäyttäjän hyväksynnän jälkeen välittömästi avoimena saatavilla julkaisuarkistossa.',
                     SV: '*SV Ajankohta, jonka jälkeen julkaisu tulee avoimesti saataville julkaisuarkistossa. Voidaan jättää ilmoittamatta, jolloin julkaisu on pääkäyttäjän hyväksynnän jälkeen välittömästi avoimena saatavilla julkaisuarkistossa.',
                     EN: 'Date after which the publication will be made publicly available at the publication archive. It can be left empty so that the publication is made immediately publicly available when the administrator has approved it.',
-                }
+                },
+                puolivuotta: { FI: 'Puolen vuoden päähän', SV: '*SV Puolen vuoden päähän', EN: 'Set six months' },
+                vuosi: { FI: 'Vuoden päähän', SV: '*SV Vuoden päähän', EN: 'Set one year' }
               },
               julkaisusarja: {
                   FI: 'Julkaisusarja',
@@ -799,6 +807,7 @@ const i18n = {
         korosta: { FI: 'korosta', SV: 'markera', EN: 'highlight' },
         poistakorostus: { FI: 'poista korostus', SV: 'ta bort markeringen', EN: 'remove highlight' }
       },
+      rinnakkaistallennusvalinta: { FI: 'Siirry rinnakaistallennuksen valintaan', SV: '*SV Siirry rinnakkaistallennuksen valintaan', EN: 'Proceed to self-archived selection' },
       jatka: { FI: 'Siirry esikatseluun', SV: 'Förhandsgranska', EN: 'Preview' },
       keskeyta: { FI: 'Hylkää ja mene omiin tallennuksiin', SV: 'Avbryt och go till egna publikationer ', EN: 'Discard and go to saved publications' }
     },

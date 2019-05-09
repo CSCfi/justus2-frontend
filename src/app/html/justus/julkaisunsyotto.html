@@ -48,15 +48,15 @@
                                     <div ng-show="!file">
                                         <div class="d-inline-block" ngf-select ngf-change="getUrn()" ng-model="file" name="filename"
                                              ngf-max-size="100MB">
-                                            <button class="btn btn-primary">Valitse tiedosto</button>
+                                            <button class="btn btn-primary">{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.valitse[lang]}}</button>
                                         </div>
-                                        <div class="d-inline-block text-right px" ng-if="!file">Ei valittua
-                                            tiedostoa
+                                        <div class="d-inline-block text-right px" ng-if="!file">
+                                            {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.eivalittu[lang]}}
                                         </div>
                                     </div>
                                     <div ng-show="!file" ngf-drop ng-model="file" class="drop-box"
                                          ngf-drag-over-class="'dragover'" ngf-allow-dir="true">
-                                        Tai vedä tiedosto tähän
+                                         {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.veda[lang]}}
                                     </div>
                                     <div class="row" ng-show="file">
                                         <div class="col-md-8">
@@ -124,12 +124,12 @@
                                     <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
                                            data-ng-model="filedata.embargo" is-open="popup.opened"
                                            datepicker-options="dateOptions"
-                                           show-button-bar="false" placeholder="vvvv/kk/pp"/>
+                                           show-button-bar="false" placeholder="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo.picktip[lang]}}"/>
                                     <span ng-click="openDatepicker()" class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                 </div>
                                 <div class="py">
-                                    <button type="button" class="btn btn-sm btn-primary" ng-click="setMonth()">Puolen vuoden päähän</button>
-                                    <button type="button" class="btn btn-sm btn-primary" ng-click="setYear()">Vuoden päähän</button>
+                                    <button type="button" class="btn btn-sm btn-primary" ng-click="setMonth()">{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo.puolivuotta[lang]}}</button>
+                                    <button type="button" class="btn btn-sm btn-primary" ng-click="setYear()">{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo.vuosi[lang]}}</button>
                                 </div>
                             </div>
                         </div>
