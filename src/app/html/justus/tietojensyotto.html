@@ -428,7 +428,7 @@
     <div class="col-sm-8 col-xs-12 justus-data">
       <div class="row">
         <div class="col-xs-8" >
-          <div data-ng-repeat="isbn in justus.julkaisu.isbn track by $index" data-ng-class="{'p-b':$first}">
+          <div data-ng-repeat="isbn in justus.julkaisu.isbn track by $index" data-ng-class="{'mb-x':$first}">
             <input type="text"
                    class="form-control"
                    data-ng-model="justus.julkaisu.isbn[$index]">
@@ -436,7 +436,7 @@
           </div>
         </div>
         <div class="col-xs-4">
-          <div class="p-b">
+          <div class="p-b mb-x">
           <button class="btn btn-primary"
                 data-ng-click="justus.julkaisu.isbn.push('')"
                 data-ng-disabled="justus.julkaisu.isbn.length>1"
@@ -562,16 +562,16 @@
     <div class="col-sm-8 col-xs-12 justus-data">
       <div class="row">
         <div class="col-xs-4" >
-          <div data-ng-repeat="issn in justus.julkaisu.issn track by $index" data-ng-class="{'p-b':$first}">
-          <input type="text"
-            class="form-control"
-            data-ng-model="justus.julkaisu.issn[$index]"
-            placeholder="1234-567X">
-          <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
-            </div>
+          <div data-ng-repeat="issn in justus.julkaisu.issn track by $index" data-ng-class="{'mb-x':$first}">
+            <input type="text"
+              class="form-control"
+              data-ng-model="justus.julkaisu.issn[$index]"
+              placeholder="1234-567X">
+            <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+          </div>
         </div>
         <div class="col-xs-6">
-          <div class="p-b">
+          <div class="p-b mb-x">
             <button class="btn btn-primary"
                   data-ng-click="justus.julkaisu.issn.push('')"
                   data-ng-disabled="justus.julkaisu.issn.length>1"
