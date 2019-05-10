@@ -101,7 +101,7 @@ angular.module('IndexController', [])
                         console.log(error);
                     });
 
-                !KoodistoService.getKoodistoData('tekijanrooli')
+                KoodistoService.getKoodistoData('tekijanrooli')
                     .then(function(o) {
                         $scope.codes.julkaisuntekijanrooli = o.data;
                     }, function (error) {
