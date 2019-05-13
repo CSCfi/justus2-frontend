@@ -121,13 +121,6 @@ angular.module('IndexController', [])
                     }, function (error) {
                         console.log(error);
                     });
-
-                KoodistoService.getKoodistoData('taidealantyyppikategoria')
-                    .then(function(o) {
-                        $scope.codes.taidealantyypit = o.data;
-                    }, function (error) {
-                        console.log(error);
-                    });
             };
 
             $scope.changeLang = function(lang) {
