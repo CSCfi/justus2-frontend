@@ -99,7 +99,7 @@
           <td class="condensed nowrap">
             <a data-ng-show="state.name=='hyvaksy' || !d.julkaisu.julkaisuntila"
                data-ng-click="editPublication(d.julkaisu)"
-               data-ui-sref="justus({id:d.id,vaihe:5})">
+               data-ui-sref="justus({id:d.julkaisu.id,vaihe:5})">
               <span data-ng-bind="d.julkaisu.julkaisuvuosi+'-'+d.julkaisu.organisaatiotunnus+'-'+d.julkaisu.id"></span>
             </a>
             <span data-ng-show="state.name=='omat' && d.julkaisu.julkaisuntila" data-ng-bind="d.julkaisu.julkaisuvuosi+'-'+d.julkaisu.organisaatiotunnus+'-'+d.julkaisu.id"></span>
