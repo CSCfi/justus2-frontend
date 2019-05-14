@@ -30,9 +30,6 @@ angular.module('JustusController', [])
             $scope.fileAlreadyExists = false;
             JustusService.file = null;
 
-            console.log($state);
-            console.log($stateParams);
-
             // Parses first- and lastnames from a string of names and returns them in a list of objects [{ firstName: '', lastName: '' }, ...]
             const parseNames = function(namesString) {
                 const parsedNames = [];
@@ -631,11 +628,7 @@ angular.module('JustusController', [])
 
             const populatePublicationForm = () => {
 
-                console.log("populatePublicationForm function");
-                console.log($stateParams.id);
-
                 if (!$stateParams.id) {
-                    console.log("No id in stateParams");
                     finalizeInit();
                     return;
                 }
@@ -670,8 +663,6 @@ angular.module('JustusController', [])
             };
 
             const finalizeInit = () => {
-
-                console.log("finalizeInit function");
 
                 if (!$scope.justus.julkaisu) {
                     $scope.justus.julkaisu = {};
