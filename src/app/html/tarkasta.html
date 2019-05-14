@@ -99,7 +99,7 @@
           <td class="condensed nowrap">
             <a data-ng-show="state.name=='hyvaksy' || !d.julkaisu.julkaisuntila"
                data-ng-click="editPublication(d.julkaisu)"
-               data-ui-sref="justus({lang:lang,id:d.id,vaihe:5})">
+               data-ui-sref="justus({id:d.id,vaihe:5})">
               <span data-ng-bind="d.julkaisu.julkaisuvuosi+'-'+d.julkaisu.organisaatiotunnus+'-'+d.julkaisu.id"></span>
             </a>
             <span data-ng-show="state.name=='omat' && d.julkaisu.julkaisuntila" data-ng-bind="d.julkaisu.julkaisuvuosi+'-'+d.julkaisu.organisaatiotunnus+'-'+d.julkaisu.id"></span>
@@ -192,7 +192,7 @@
 <div class="row">
   <div class="col-xs-12">
     <button class="btn btn-lg btn-block btn-primary"
-            data-ui-sref="justus({lang:lang,vaihe:1})"
+            data-ui-sref="justus({vaihe:1})"
             data-ng-bind="i18n.content.tarkasta.uusi[lang]">
     </button>
   </div>
