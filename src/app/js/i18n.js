@@ -218,6 +218,7 @@ const i18n = {
           }
         },
         orcid: { FI: 'ORCID', SV: 'ORCID', EN: 'ORCID', picktip: { FI: 'ORCID-numero', SV: 'ORCID iD', EN: 'ORCID iD' } },
+        hrnumero: { FI: 'HRNUMERO', SV: 'HRNUMERO', EN: 'HRNUMERO', picktip: { FI: 'HR-numero', SV: 'HR numret', EN: 'HR number' } },
         tekijanrooli: { FI: 'Rooli', SV: 'Roll', EN: 'Role', picktip: { FI: 'Rooli', SV: 'Roll', EN: 'Role' } },
         lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
         poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },

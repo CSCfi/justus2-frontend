@@ -45,16 +45,19 @@
       <td class="condensed">{{ i18n.content.form.organisaatiotekija[lang] }}</td>
       <td>
         <div data-ng-repeat="i in justus.organisaatiotekija track by $index" class="field-info-partial">
-          {{ justus.organisaatiotekija[$index].sukunimi }},
+          {{ justus.organisaatiotekija[$index].sukunimi }}, 
           {{ justus.organisaatiotekija[$index].etunimet }}
           <div data-ng-if="justus.organisaatiotekija[$index].orcid && justus.organisaatiotekija[$index].orcid.length > 0">
             {{ justus.organisaatiotekija[$index].orcid }}
+          </div>
+          <div data-ng-if="justus.organisaatiotekija[$index].hrnumero" >
+            {{ justus.organisaatiotekija[$index].hrnumero }}
           </div>
           <div data-ng-if="justus.organisaatiotekija[$index].rooli">
             <span data-ng-bind="justus.organisaatiotekija[$index].rooli"></span>
             <span data-ng-bind="getSelite(codes.julkaisuntekijanrooli ,justus.organisaatiotekija[$index].rooli)"></span>
           </div>
-          <div data-ng-if="justus.organisaatiotekija.length > 0 && justus.organisaatiotekija[0].alayksikko.length > 0">
+            <div data-ng-if="justus.organisaatiotekija.length > 0 && justus.organisaatiotekija[0].alayksikko.length > 0">
               <span data-ng-repeat="a in justus.organisaatiotekija[$index].alayksikko track by $index">
                 {{ a }}
                 <span data-ng-if="a"> ({{ getSelite(user.alayksikot ,a) }})</span>

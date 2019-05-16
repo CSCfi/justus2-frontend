@@ -21,7 +21,7 @@ angular.module('TallennusController', [])
       publication.lisatieto = {};
 
       // Replace user entered values in schema and set default values for
-      // not entered fields
+      // not entered fields in julkaisu objecct
       angular.forEach($scope.meta.tables.julkaisu.columns, (field) => {
         publication.julkaisu[field.name] = $scope.justus.julkaisu[field.name] || field.default;
       });
@@ -30,15 +30,18 @@ angular.module('TallennusController', [])
       publication.julkaisu.username = $rootScope.user.name;
       publication.julkaisu.modified = new Date();
 
-      publication.organisaatiotekija = $scope.justus.organisaatiotekija;
+      // Replace user entered values in schema and set default values for
+      // not entered fields in organisaatiotekija array
+      for (let i = 0; i < $scope.justus.organisaatiotekija.length; i++) {
+        publication.organisaatiotekija.push({
+          "etunimet": "", "sukunimi": "", "orcid": "", "hrnumero": "", "rooli": ""
+        })
+        angular.forEach($scope.meta.tables.organisaatiotekija.columns, (field) => {
+          publication.organisaatiotekija[i][field.name] = $scope.justus.organisaatiotekija[i][field.name] || field.default;
 
-      angular.forEach(publication.organisaatiotekija, function (value, key) {
-         if($scope.justus.organisaatiotekija[key].rooli) {
-           publication.organisaatiotekija[key].rooli = parseInt(publication.organisaatiotekija[key].rooli);
-         } else {
-             publication.organisaatiotekija[key].rooli = null;
-         }
-      });
+        });
+        publication.organisaatiotekija[i].alayksikko = $scope.justus.organisaatiotekija[i].alayksikko;
+      }
 
       publication.avainsanat = $scope.justus.avainsanat;
       publication.taidealantyyppikategoria = $scope.justus.taidealantyyppikategoria;
@@ -49,7 +52,7 @@ angular.module('TallennusController', [])
             $scope.justus.tieteenala[key].jnro = key + 1;
         });
 
-        publication.tieteenala = $scope.justus.tieteenala;
+      publication.tieteenala = $scope.justus.tieteenala;
 
           // Loop through taiteenala array and add order number
       angular.forEach($scope.justus.taiteenala, function(value, key) {

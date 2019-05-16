@@ -226,7 +226,6 @@
     </div>
   </div>
 
-
   <!-- Kenttä: Organisaation tekijät -->
   <div class="row form-group"
        id="organisaatiotekijaGroup"
@@ -259,31 +258,37 @@
               <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
             </div>
           </div>
-          <!-- Kenttä: Tekijän rooli taidejulkaisuille -->
+         
           <div class="row form-group">
-            <div data-ng-if="isFieldVisible('tekijanrooli')" id="rooliGroup" class="col-xs-12 col-sm-6 form-group">
-            <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
-               <ui-select data-ng-model="rooli.selected"
-                          on-select="useOrganisaatiotekijaRooli($index,$select.selected)"
-                          theme="bootstrap"
-               >
-                  <ui-select-match class="ui-select-match"
-                                   data-ng-value="justus.organisaatiotekija[$index].rooli"
-                                   placeholder="{{justus.organisaatiotekija[$index].rooli}} {{getSelite(codes.julkaisuntekijanrooli ,justus.organisaatiotekija[$index].rooli) || i18n.content.form.organisaatiotekija.tekijanrooli.picktip[lang]}}">
-                    {{ $select.selected.arvo }} {{ $select.selected.selite }}
-                  </ui-select-match>
-                  <ui-select-choices repeat="role in codes.julkaisuntekijanrooli | orderBy: 'arvo' | filter: $select.search">
-                    {{role.arvo}} {{role.selite }}
-                  </ui-select-choices>
-                </ui-select>
-            </div>
-
-            <div data-ng-if="isFieldVisible('alayksikko') && isFieldRequired('alayksikko')"  class="col-xs-12 col-sm-6 form-group" id="orcidGroup">
+              <div data-ng-if="isFieldVisible('alayksikko') && isFieldRequired('alayksikko')"  class="col-xs-12 col-sm-6 form-group" id="orcidGroup">
+                  <input type="text" class="form-control"
+                         data-ng-model="justus.organisaatiotekija[$index].orcid"
+                         placeholder="{{i18n.content.form.organisaatiotekija.orcid.picktip[lang]}}">
+                  <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+              </div>
+            <!-- Kenttä hr numero, currently visible only for Luonnonvarakeskus -->
+            <div data-ng-if="isFieldVisible('hrnumero')" id="hrGroup" class="col-xs-12 col-sm-6 form-group">
               <input type="text" class="form-control"
-                     data-ng-model="justus.organisaatiotekija[$index].orcid"
-                     placeholder="{{i18n.content.form.organisaatiotekija.orcid.picktip[lang]}}">
+              data-ng-model="justus.organisaatiotekija[$index].hrnumero"
+              placeholder="{{i18n.content.form.organisaatiotekija.hrnumero.picktip[lang]}}">
               <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
             </div>
+             <!-- Kenttä: Tekijän rooli taidejulkaisuille -->
+            <div data-ng-if="isFieldVisible('tekijanrooli')" id="rooliGroup" class="col-xs-12 col-sm-6 form-group">
+              <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+                 <ui-select data-ng-model="rooli.selected"
+                            on-select="useOrganisaatiotekijaRooli($index,$select.selected)"
+                            theme="bootstrap">
+                    <ui-select-match class="ui-select-match"
+                                     data-ng-value="justus.organisaatiotekija[$index].rooli"
+                                     placeholder="{{justus.organisaatiotekija[$index].rooli}} {{getSelite(codes.julkaisuntekijanrooli ,justus.organisaatiotekija[$index].rooli) || i18n.content.form.organisaatiotekija.tekijanrooli.picktip[lang]}}">
+                      {{ $select.selected.arvo }} {{ $select.selected.selite }}
+                    </ui-select-match>
+                    <ui-select-choices repeat="role in codes.julkaisuntekijanrooli | orderBy: 'arvo' | filter: $select.search">
+                      {{role.arvo}} {{role.selite }}
+                    </ui-select-choices>
+                  </ui-select>
+              </div>
 
           <div data-ng-if="isFieldVisible('alayksikko') " class="col-xs-12 form-group" id="alayksikkoGroup">
             <div>

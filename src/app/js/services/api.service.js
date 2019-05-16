@@ -68,6 +68,7 @@ angular.module('APIService', [])
             { name: 'etunimet', default: '' },
             { name: 'sukunimi', default:'' },
             { name: 'orcid', default: '' },
+            { name: 'hrnumero', default: null },
             { name: 'rooli', default: null }
           ]
         },
