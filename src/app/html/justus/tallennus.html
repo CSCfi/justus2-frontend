@@ -5,44 +5,44 @@
 
     <!-- Julkaisutyyppi -->
     <tr>
-      <td class="condensed">{{ i18n.content.form.julkaisutyyppi[lang] }}</td>
+      <td class="condensed font-weight-bold">{{ i18n.content.form.julkaisutyyppi[lang] }}</td>
       <td>{{ getSelite(codes.julkaisutyypit, justus.julkaisu.julkaisutyyppi) }}</td>
     </tr>
 
     <!-- Julkaisuvuosi -->
     <tr>
-      <td class="condensed">{{ i18n.content.form.julkaisuvuosi[lang] }}</td>
+      <td class="condensed font-weight-bold">{{ i18n.content.form.julkaisuvuosi[lang] }}</td>
       <td>{{ justus.julkaisu.julkaisuvuosi }}</td>
     </tr>
 
     <!-- Julkaisuvuoden lisätieto -->
     <!-- Show this field only when art publication is selected -->
     <tr ng-if="justus.taiteenala.length > 0">
-      <td class="condensed">{{ i18n.content.form.julkaisuvuodenlisatieto[lang] }}</td>
+      <td class="condensed font-weight-bold">{{ i18n.content.form.julkaisuvuodenlisatieto[lang] }}</td>
       <td>{{ justus.lisatieto.julkaisuvuodenlisatieto }}</td>
     </tr>
 
     <!-- Julkaisun nimi -->
     <tr>
-      <td class="condensed">{{ i18n.content.form.julkaisunnimi[lang] }}</td>
+      <td class="condensed font-weight-bold">{{ i18n.content.form.julkaisunnimi[lang] }}</td>
       <td>{{ justus.julkaisu.julkaisunnimi }}</td>
     </tr>
 
     <!-- Tekijät -->
     <tr>
-      <td class="condensed">{{ i18n.content.form.tekijat[lang] }}</td>
+      <td class="condensed font-weight-bold">{{ i18n.content.form.tekijat[lang] }}</td>
       <td>{{ justus.julkaisu.tekijat }}</td>
     </tr>
 
     <!-- Julkaisun tekijöiden lukumäärä -->
     <tr>
-      <td class="condensed">{{ i18n.content.form.julkaisuntekijoidenlukumaara[lang] }}</td>
+      <td class="condensed font-weight-bold">{{ i18n.content.form.julkaisuntekijoidenlukumaara[lang] }}</td>
       <td>{{ justus.julkaisu.julkaisuntekijoidenlukumaara }}</td>
     </tr>
 
     <!-- Organisaation tekijät -->
     <tr>
-      <td class="condensed">{{ i18n.content.form.organisaatiotekija[lang] }}</td>
+      <td class="condensed font-weight-bold">{{ i18n.content.form.organisaatiotekija[lang] }}</td>
       <td>
         <div data-ng-repeat="i in justus.organisaatiotekija track by $index" class="field-info-partial">
           {{ justus.organisaatiotekija[$index].sukunimi }}, 
@@ -76,19 +76,19 @@
 
       <!-- Konferenssin vakiintunut nimi -->
       <tr>
-        <td class="condensed">{{ i18n.content.form.konferenssinvakiintunutnimi[lang] }}</td>
+        <td class="condensed font-weight-bold">{{ i18n.content.form.konferenssinvakiintunutnimi[lang] }}</td>
         <td>{{ justus.julkaisu.konferenssinvakiintunutnimi }}</td>
       </tr>
 
       <!-- Emojulkaisun nimi -->
       <tr>
-        <td class="condensed">{{ i18n.content.form.emojulkaisunnimi[lang] }}</td>
+        <td class="condensed font-weight-bold">{{ i18n.content.form.emojulkaisunnimi[lang] }}</td>
         <td>{{ justus.julkaisu.emojulkaisunnimi }}</td>
       </tr>
 
     <!-- ISBN -->
     <tr>
-      <td class="condensed">{{ i18n.content.form.isbn[lang] }}</td>
+      <td class="condensed font-weight-bold">{{ i18n.content.form.isbn[lang] }}</td>
       <td>
         <div data-ng-repeat="isbn in justus.julkaisu.isbn track by $index">
           {{ isbn }}
@@ -98,13 +98,13 @@
 
     <!-- Emojulkaisun toimittajat -->
       <tr>
-        <td class="condensed">{{ i18n.content.form.emojulkaisuntoimittajat[lang] }}</td>
+        <td class="condensed font-weight-bold">{{ i18n.content.form.emojulkaisuntoimittajat[lang] }}</td>
         <td>{{ justus.julkaisu.emojulkaisuntoimittajat }}</td>
       </tr>
 
       <!-- Lehden / julkaisusarjan nimi -->
       <tr>
-        <td class="condensed">{{ i18n.content.form.lehdenjulkaisusarjannimi[lang] }}</td>
+        <td class="condensed font-weight-bold">{{ i18n.content.form.lehdenjulkaisusarjannimi[lang] }}</td>
         <td>
           <span data-ng-bind="justus.julkaisu.lehdenjulkaisusarjannimi"></span>
           <div class="field-info" data-ng-show="justus.julkaisu.jufotunnus || justus.julkaisu.jufoluokitus">
@@ -116,7 +116,7 @@
 
       <!-- ISSN -->
       <tr>
-        <td class="condensed">{{ i18n.content.form.issn[lang] }}</td>
+        <td class="condensed font-weight-bold">{{ i18n.content.form.issn[lang] }}</td>
         <td>
           <div data-ng-repeat="issn in justus.julkaisu.issn track by $index">
             {{ issn }}
@@ -126,43 +126,43 @@
 
       <!-- Volyymi -->
       <tr>
-        <td class="condensed">{{ i18n.content.form.volyymi[lang] }}</td>
+        <td class="condensed font-weight-bold">{{ i18n.content.form.volyymi[lang] }}</td>
         <td>{{ justus.julkaisu.volyymi }}</td>
       </tr>
 
       <!-- Numero -->
       <tr>
-        <td class="condensed">{{ i18n.content.form.numero[lang] }}</td>
+        <td class="condensed font-weight-bold">{{ i18n.content.form.numero[lang] }}</td>
         <td>{{ justus.julkaisu.numero }}</td>
       </tr>
 
       <!-- Sivut -->
       <tr>
-        <td class="condensed">{{ i18n.content.form.sivut[lang] }}</td>
+        <td class="condensed font-weight-bold">{{ i18n.content.form.sivut[lang] }}</td>
         <td>{{ justus.julkaisu.sivut }}</td>
       </tr>
 
       <!-- Artikkelinumero -->
       <tr>
-        <td class="condensed">{{ i18n.content.form.artikkelinumero[lang] }}</td>
+        <td class="condensed font-weight-bold">{{ i18n.content.form.artikkelinumero[lang] }}</td>
         <td>{{ justus.julkaisu.artikkelinumero }}</td>
       </tr>
 
       <!-- Kustantaja -->
       <tr>
-        <td class="condensed">{{ i18n.content.form.kustantaja[lang] }}</td>
+        <td class="condensed font-weight-bold">{{ i18n.content.form.kustantaja[lang] }}</td>
         <td>{{ justus.julkaisu.kustantaja }}</td>
       </tr>
 
       <!-- Julkaisun kustannuspaikka -->
       <tr>
-        <td class="condensed">{{ i18n.content.form.julkaisunkustannuspaikka[lang] }}</td>
+        <td class="condensed font-weight-bold">{{ i18n.content.form.julkaisunkustannuspaikka[lang] }}</td>
         <td>{{ justus.julkaisu.julkaisunkustannuspaikka }}</td>
       </tr>
 
       <!-- Julkaisun Avainsanat -->
       <tr>
-        <td class="condensed">{{ i18n.content.form.avainsanat[lang] }}</td>
+        <td class="condensed font-weight-bold">{{ i18n.content.form.avainsanat[lang] }}</td>
         <td>
           <span data-ng-repeat="i in justus.avainsanat">
             <span class="label label-primary">{{i}}</span>
@@ -172,39 +172,39 @@
 
     <!-- Julkaisun kieli -->
     <tr>
-      <td class="condensed">{{ i18n.content.form.julkaisunkieli[lang] }}</td>
+      <td class="condensed font-weight-bold">{{ i18n.content.form.julkaisunkieli[lang] }}</td>
       <td>{{ getSelite(codes.kieli,justus.julkaisu.julkaisunkieli.toUpperCase()) }}</td>
     </tr>
 
     <!-- Julkaisun kansainvälisyys -->
     <tr>
-      <td class="condensed">{{ i18n.content.form.julkaisunkansainvalisyys[lang] }}</td>
+      <td class="condensed font-weight-bold">{{ i18n.content.form.julkaisunkansainvalisyys[lang] }}</td>
       <td>{{ i18n.content.form.julkaisunkansainvalisyys[justus.julkaisu.julkaisunkansainvalisyys][lang] }}</td>
     </tr>
 
     <!-- Julkaisumaa -->
     <tr>
-      <td class="condensed">{{ i18n.content.form.julkaisumaa[lang] }}</td>
+      <td class="condensed font-weight-bold">{{ i18n.content.form.julkaisumaa[lang] }}</td>
       <td>{{ justus.julkaisu.julkaisumaa }} {{ getSelite(codes.maatjavaltiot2, justus.julkaisu.julkaisumaa) }}</td>
     </tr>
 
     <!-- Julkistamispaikkakunta -->
     <!-- Show this field only when art publication is selected -->
     <tr ng-if="justus.taiteenala.length > 0">
-      <td class="condensed">{{ i18n.content.form.julkistamispaikkakunta[lang] }}</td>
+      <td class="condensed font-weight-bold">{{ i18n.content.form.julkistamispaikkakunta[lang] }}</td>
       <td>{{ justus.lisatieto.julkistamispaikkakunta }}</td>
     </tr>
 
     <!-- Tapahtuman lisätieto -->
     <!-- Show this field only when art publication is selected -->
     <tr ng-if="justus.taiteenala.length > 0">
-      <td class="condensed">{{ i18n.content.form.tapahtumanlisatieto[lang] }}</td>
+      <td class="condensed font-weight-bold">{{ i18n.content.form.tapahtumanlisatieto[lang] }}</td>
       <td>{{ justus.lisatieto.tapahtuma }}</td>
     </tr>
 
     <!-- Julkaisun tieteenala -->
     <tr>
-      <td class="condensed">{{ i18n.content.form.tieteenala[lang] }}</td>
+      <td class="condensed font-weight-bold">{{ i18n.content.form.tieteenala[lang] }}</td>
       <td>
         <div data-ng-repeat="i in justus.tieteenala">
           {{$index + 1}}.&nbsp;
@@ -217,7 +217,7 @@
     <!-- Julkaisun taiteenala -->
     <!-- Show this field only when art publication is selected -->
     <tr ng-if="justus.taiteenala.length > 0">
-      <td class="condensed">{{ i18n.content.form.taiteenala[lang] }}</td>
+      <td class="condensed font-weight-bold">{{ i18n.content.form.taiteenala[lang] }}</td>
       <td>
         <div data-ng-repeat="i in justus.taiteenala">
           <span>{{$index + 1}}.&nbsp;</span>
@@ -229,7 +229,7 @@
 
     <!-- Taidealan tyyppikategoria -->
     <tr ng-if="justus.taiteenala.length > 0">
-      <td class="condensed">{{ i18n.content.form.taidealantyyppikategoria[lang] }}</td>
+      <td class="condensed font-weight-bold">{{ i18n.content.form.taidealantyyppikategoria[lang] }}</td>
       <td>
         <div data-ng-repeat="i in justus.taidealantyyppikategoria">
           <span data-ng-bind="i+' '+getSelite(codes.taidealantyypit,i)"></span>
@@ -239,102 +239,101 @@
 
     <!-- Kansainvälinen yhteisjulkaisu -->
     <tr>
-      <td class="condensed">{{ i18n.content.form.kansainvalinenyhteisjulkaisu[lang] }}</td>
+      <td class="condensed font-weight-bold">{{ i18n.content.form.kansainvalinenyhteisjulkaisu[lang] }}</td>
       <td>{{ i18n.content.form.kansainvalinenyhteisjulkaisu[justus.julkaisu.kansainvalinenyhteisjulkaisu][lang] }}</td>
     </tr>
 
     <!-- Yhteisjulkaisu yrityksen kanssa -->
     <tr>
-      <td class="condensed">{{ i18n.content.form.yhteisjulkaisuyrityksenkanssa[lang] }}</td>
+      <td class="condensed font-weight-bold">{{ i18n.content.form.yhteisjulkaisuyrityksenkanssa[lang] }}</td>
       <td>{{ i18n.content.form.yhteisjulkaisuyrityksenkanssa[justus.julkaisu.yhteisjulkaisuyrityksenkanssa][lang] }}</td>
     </tr>
 
     <!-- DOI-tunniste -->
     <tr>
-      <td class="condensed">{{ i18n.content.form.doitunniste[lang] }}</td>
+      <td class="condensed font-weight-bold">{{ i18n.content.form.doitunniste[lang] }}</td>
       <td>{{ justus.julkaisu.doitunniste }}</td>
     </tr>
 
     <!-- Muu tunniste lisätieto -->
     <!-- Show this field only when art publication is selected -->
     <tr ng-if="justus.taiteenala.length > 0">
-      <td class="condensed">{{ i18n.content.form.muutunniste[lang] }}</td>
+      <td class="condensed font-weight-bold">{{ i18n.content.form.muutunniste[lang] }}</td>
       <td>{{ justus.lisatieto.muutunniste  }}</td>
     </tr>
 
     <!-- Pysyvä verkko-osoite -->
     <tr>
-      <td class="condensed">{{ i18n.content.form.pysyvaverkkoosoite[lang] }}</td>
+      <td class="condensed font-weight-bold">{{ i18n.content.form.pysyvaverkkoosoite[lang] }}</td>
       <td>{{ justus.julkaisu.pysyvaverkkoosoite }}</td>
     </tr>
 
     <!-- Avoin saatavuus -->
     <tr>
-      <td class="condensed">{{ i18n.content.form.avoinsaatavuus[lang] }}</td>
+      <td class="condensed font-weight-bold">{{ i18n.content.form.avoinsaatavuus[lang] }}</td>
       <td>{{ i18n.content.form.avoinsaatavuus[justus.julkaisu.avoinsaatavuus][lang] }}</td>
     </tr>
 
     <!-- Julkaisu rinnakkaistallennettu -->
     <tr>
-      <td class="condensed">{{ i18n.content.form.julkaisurinnakkaistallennettu[lang] }}</td>
+      <td class="condensed font-weight-bold">{{ i18n.content.form.julkaisurinnakkaistallennettu[lang] }}</td>
       <td>{{ i18n.content.form.julkaisurinnakkaistallennettu[justus.julkaisu.julkaisurinnakkaistallennettu][lang] }}</td>
     </tr>
 
     <!-- Rinnakkaistallennetun version verkko-osoite -->
     <tr>
-      <td class="condensed">{{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettumuualle.form.rinnakkaistallennetunversionverkkoosoite[lang]}}</td>
+      <td class="condensed font-weight-bold">{{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettumuualle.form.rinnakkaistallennetunversionverkkoosoite[lang]}}</td>
       <td>{{ justus.julkaisu.rinnakkaistallennetunversionverkkoosoite }}</td>
     </tr>
 
     <!-- Lisätieto kenttä -->
     <tr>
-      <td class="condensed">{{ i18n.content.form.lisatieto[lang] }}</td>
+      <td class="condensed font-weight-bold">{{ i18n.content.form.lisatieto[lang] }}</td>
       <td>{{ justus.julkaisu.lisatieto }}</td>
     </tr>
 
     <!-- Tiedoston syöttöön liittyvä data -->
     <!-- Julkaisu -->
-    <tr>
-      <td class="condensed"> {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu[lang] }} </td>
-      <td>{{ filedata.filename }}</td>
-    </tr>
+      <tr data-ng-show="showPublicationInput">
+        <td class="condensed font-weight-bold"> {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu[lang] }} </td>
+        <td>{{ filedata.filename }}</td>
+      </tr>
 
-    <!-- Abstrakti -->
-    <tr>
-      <td class="condensed"> {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.abstrakti[lang] }} </td>
-      <td>{{ filedata.abstract }} </td>
-    </tr>
+      <!-- Abstrakti -->
+      <tr data-ng-show="showPublicationInput">
+        <td class="condensed font-weight-bold"> {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.abstrakti[lang] }} </td>
+        <td>{{ filedata.abstract }} </td>
+      </tr>
 
-    <!-- URN -->
-    <tr>
-      <td class="condensed"> {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.urn[lang] }} </td>
-      <td>{{ filedata.urn }}</td>
-    </tr>
+      <!-- URN -->
+      <tr data-ng-show="showPublicationInput">
+        <td class="condensed font-weight-bold"> {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.urn[lang] }} </td>
+        <td>{{ filedata.urn }}</td>
+      </tr>
 
-    <!-- Embargo -->
-    <tr>
-      <td class="condensed"> {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo[lang] }} </td>
-      <td>{{ filedata.embargo |  date: 'dd/MM/yyyy' }}</td>
-    </tr>
+      <!-- Embargo -->
+      <tr data-ng-show="showPublicationInput">
+        <td class="condensed font-weight-bold"> {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo[lang] }} </td>
+        <td>{{ filedata.embargo |  date: 'dd/MM/yyyy' }}</td>
+      </tr>
 
-    <!-- Oikeudet -->
-    <tr>
-      <td class="condensed"> {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.oikeudet[lang] }} </td>
-      <td>{{ filedata.oikeudet }}  {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.oikeudet.value[filedata.oikeudet][lang] }}</td>
-    </tr>
+      <!-- Oikeudet -->
+      <tr data-ng-show="showPublicationInput">
+        <td class="condensed font-weight-bold"> {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.oikeudet[lang] }} </td>
+        <td>{{ filedata.oikeudet }}  {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.oikeudet.value[filedata.oikeudet][lang] }}</td>
+      </tr>
 
-    <!-- Versio -->
-    <tr>
-      <td class="condensed"> {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.versio[lang] }} </td>
-      <td>{{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.versio.value[filedata.versio][lang] }}</td>
-    </tr>
+      <!-- Versio -->
+      <tr data-ng-show="showPublicationInput">
+        <td class="condensed font-weight-bold"> {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.versio[lang] }} </td>
+        <td>{{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.versio.value[filedata.versio][lang] }}</td>
+      </tr>
 
-    <!-- Julkaisusarja -->
-    <tr>
-      <td class="condensed"> {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisusarja[lang] }} </td>
-      <td>{{ filedata.julkaisusarja }}</td>
-    </tr>
-
+      <!-- Julkaisusarja -->
+      <tr data-ng-show="showPublicationInput">
+        <td class="condensed font-weight-bold"> {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisusarja[lang] }} </td>
+        <td>{{ filedata.julkaisusarja }}</td>
+      </tr>
     </tbody>
   </table>
 
