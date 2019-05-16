@@ -232,6 +232,14 @@ const i18n = {
           }
         }
       },
+      projektinumero: {
+        FI: "Projektinumero", SV: "Projektnummer", EN: "Project number",
+        tooltip: { 
+          FI: "Sen projektin numero, jossa julkaisu on tuotettu.", 
+          SV: "Projektnummer där publikationen producerades.", 
+          EN: "Project number in which the publication was produced." 
+        }
+      },
       konferenssinvakiintunutnimi: {
         FI: 'Konferenssin vakiintunut nimi',
         SV: 'Konferensens vedertagna namn',

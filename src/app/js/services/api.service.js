@@ -45,7 +45,8 @@ angular.module('APIService', [])
             { name: 'jufoluokitus', default: '' },
             { name: 'julkaisuntila', default: '' },
             { name: 'username', default: ''},
-            { name: 'modified', default: null }
+            { name: 'modified', default: null },
+            { name: 'projektinumero', default: null }
           ]
         },
         // 'avainsana': {
