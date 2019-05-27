@@ -23,7 +23,15 @@ angular.module('TallennusController', [])
       // Replace user entered values in schema and set default values for
       // not entered fields in julkaisu objecct
       angular.forEach($scope.meta.tables.julkaisu.columns, (field) => {
-        publication.julkaisu[field.name] = $scope.justus.julkaisu[field.name] || field.default;
+        if (!angular.isArray($scope.justus.julkaisu[field.name])) {
+          publication.julkaisu[field.name] = $scope.justus.julkaisu[field.name] || field.default;
+        } else {
+            if ($scope.justus.julkaisu[field.name][0] || $scope.justus.julkaisu[field.name][1])  {
+              publication.julkaisu[field.name] = $scope.justus.julkaisu[field.name];
+            } else {
+              publication.julkaisu[field.name] = field.default;
+            }
+        }
       });
 
       delete publication.julkaisu.id;

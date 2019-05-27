@@ -367,19 +367,40 @@
       </i>
       <span data-ng-if="isFieldRequired('projektinumero')" class="required-star">*</span>
     </div>
-    <div class="col-sm-8 col-xs-12 justus-data"
-        data-ng-model="req_projektinumero">
+    <div class="col-sm-8 col-xs-12 justus-data">
       <div class="row">
-        <div class="col-xs-10">
-          <input type="text" class="form-control"
-                data-ng-model="justus.julkaisu.projektinumero"
-                placeholder="{{ i18n.content.form.projektinumero[lang] }}">
+        <div class="col-xs-8">
+            <div data-ng-repeat="projektinumero in justus.julkaisu.projektinumero track by $index" data-ng-class="{'mb-x':($index !== $last)}">
+                <input type="text"
+                  class="form-control "
+                  data-ng-model="justus.julkaisu.projektinumero[$index]"
+                  placeholder="{{ i18n.content.form.projektinumero[lang] }}">
+                <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+            </div>
+          </div>
+            <div class="col-xs-4">
+                <div class="p-b mb-x">
+                  <button class="btn btn-primary"
+                        data-ng-click="justus.julkaisu.projektinumero.push('')"
+          
+                        title="{{i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]}}"
+                        data-ng-bind="i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]">
+                  </button>
+                </div>
+                <div>
+                  <button class="btn btn-primary"
+                        data-ng-click="justus.julkaisu.projektinumero.splice(justus.julkaisu.projektinumero.length-1, 1)"
+                        data-ng-hide="justus.julkaisu.projektinumero.length<2 || $index === '0'"
+                        title="{{i18n.content.form.organisaatiotekija.poista.tooltip[lang]}}"
+                        data-ng-bind="i18n.content.form.organisaatiotekija.poista.tooltip[lang]">
+                  </button>
+                </div>
+              </div>
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
-        </div>
+       
       </div>
     </div>
 </div>
-
 
   <h3 class="form-header">{{i18n.content.tietojensyotto.bibliografiset[lang]}}</h3>
 

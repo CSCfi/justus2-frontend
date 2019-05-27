@@ -66,6 +66,8 @@ angular.module('JustusController', [])
                 $scope.justus.julkaisu = {};
                 $scope.justus.julkaisu.issn = [""];
                 $scope.justus.julkaisu.isbn = [""];
+                $scope.justus.julkaisu.projektinumero = [""];
+                
                 $scope.justus.organisaatiotekija = [
                     {
                         "etunimet": "",
@@ -253,6 +255,8 @@ angular.module('JustusController', [])
 
                             $scope.justus.julkaisu = response.data;
                             $scope.justus.julkaisu.username = $rootScope.user.name;
+                            $scope.justus.julkaisu.projektinumero = [""];
+
 
                             // Initialize tekijatTags input
                             parseNames($scope.justus.julkaisu.tekijat).map(function(nameObject) {
@@ -279,6 +283,7 @@ angular.module('JustusController', [])
 
                             $scope.justus.julkaisu = response.data.julkaisu;
                             $scope.justus.julkaisu.username = $rootScope.user.name;
+                            $scope.justus.julkaisu.projektinumero = [""];
 
                             if (response.data.tieteenala) {
                                 $scope.justus.tieteenala = response.data.tieteenala;
@@ -672,6 +677,7 @@ angular.module('JustusController', [])
                     $scope.justus.julkaisu = {};
                     $scope.justus.julkaisu.issn = [""];
                     $scope.justus.julkaisu.isbn = [""];
+                    $scope.justus.julkaisu.projektinumero = [""];
                 }
 
                 if (!$rootScope.filedata) {

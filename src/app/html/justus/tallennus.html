@@ -71,7 +71,11 @@
       <!-- Prjektinumero -->
       <tr data-ng-if="isFieldVisible('projektinumero')">
         <td class="condensed font-weight-bold">{{ i18n.content.form.projektinumero[lang] }}</td>
-        <td>{{ justus.julkaisu.projektinumero }}</td>
+        <td>  
+          <div data-ng-repeat="pn in justus.julkaisu.projektinumero track by $index">
+              {{ pn }}
+          </div>
+        </td>
       </tr>
 
       <!-- Konferenssin vakiintunut nimi -->

@@ -20,10 +20,10 @@ angular.module('APIService', [])
             { name: 'julkaisuntekijoidenlukumaara', default: '' },
             { name: 'konferenssinvakiintunutnimi', default: '' },
             { name: 'emojulkaisunnimi', default: '' },
-            { name: 'isbn', default: '' },
+            { name: 'isbn', default: null }, // array
             { name: 'emojulkaisuntoimittajat', default: '' },
             { name: 'lehdenjulkaisusarjannimi', default: '' },
-            { name: 'issn', default: '' },
+            { name: 'issn', default: null }, // array
             { name: 'volyymi', default: null },
             { name: 'numero', default: null },
             { name: 'sivut', default: '' },
@@ -46,7 +46,7 @@ angular.module('APIService', [])
             { name: 'julkaisuntila', default: '' },
             { name: 'username', default: ''},
             { name: 'modified', default: null },
-            { name: 'projektinumero', default: null }
+            { name: 'projektinumero', default: null } // array
           ]
         },
         // 'avainsana': {
