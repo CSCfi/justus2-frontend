@@ -102,7 +102,19 @@ angular.module('APIService', [])
             { name: 'taiteenalakoodi', default: '' },
             { name: 'jnro', default: null }
           ]
-        }
+        },
+          "julkaisuarkisto": {
+              columns: [
+                  { name: 'abstract', default: undefined },
+                  { name: 'embargo', default: undefined },
+                  { name: 'filename', default: undefined },
+                  { name: 'julkaisuid', default: undefined },
+                  { name: 'oikeudet', default: undefined },
+                  { name: 'urn', default: undefined },
+                  { name: 'versio', default: undefined, },
+                  { name: 'julkaisusarja', default: undefined, }
+              ]
+          }
         // 'lisatieto': {
         //   name: 'lisatieto',
         //   ui: 'lisatieto',
