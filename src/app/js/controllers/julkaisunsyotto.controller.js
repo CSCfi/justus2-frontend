@@ -5,50 +5,52 @@ angular.module('JulkaisunsyottoController', [])
         '$scope', '$rootScope', '$stateParams', '$log', 'Upload', 'JustusService', 'APIService', 'ExternalServicesService', 'API_BASE_URL',
         function($scope, $rootScope, $stateParams, $log, Upload, JustusService, APIService, ExternalServicesService, API_BASE_URL) {
 
-        $scope.file = JustusService.file;
-        $scope.syotaJulkaisu = false;
-        $scope.rinnakkaistallennettumuualle = false;
+            $scope.file = JustusService.file;
+            $scope.syotaJulkaisu = false;
+            $scope.rinnakkaistallennettumuualle = false;
 
-        if ( $rootScope.filedata.filename) {
-            $scope.syotaJulkaisu = true;
-        }
+            if ( $rootScope.filedata.filename) {
+                $scope.syotaJulkaisu = true;
+            }
 
-        if (!$rootScope.filedata.filename && $scope.justus.julkaisu.julkaisurinnakkaistallennettu === "1") {
-            $scope.rinnakkaistallennettumuualle = true;
-        }
+            if (!$rootScope.filedata.filename && $scope.justus.julkaisu.julkaisurinnakkaistallennettu === "1") {
+                $scope.rinnakkaistallennettumuualle = true;
+            }
 
-        if ($scope.justus.julkaisu.julkaisurinnakkaistallennettu === "0") {
-            $scope.eirinnakkaistellennettava = true;
-        }
+            if ($scope.justus.julkaisu.julkaisurinnakkaistallennettu === "0") {
+                $scope.eirinnakkaistellennettava = true;
+                $scope.fileAlreadyExists = false;
+            }
 
-        $scope.updateRinnakkaistallennusData = function(file) {
+            $scope.updateRinnakkaistallennusData = function(file) {
 
-            if ($scope.file || $rootScope.filedata.filename) {
-                $scope.file = file;
-                JustusService.file = $scope.file;
-                if (!$rootScope.filedata.filename) {
-                    $rootScope.filedata.filename = file.name;
+                if ($scope.file || $rootScope.filedata.filename) {
+                    $scope.file = file;
+                    JustusService.file = $scope.file;
+                    if (!$rootScope.filedata.filename) {
+                        $rootScope.filedata.filename = file.name;
+                    }
+                    $scope.justus.julkaisu.julkaisurinnakkaistallennettu = "1";
+                    $scope.justus.julkaisu.rinnakkaistallennetunversionverkkoosoite = "";
                 }
-                $scope.justus.julkaisu.julkaisurinnakkaistallennettu = "1";
-                $scope.justus.julkaisu.rinnakkaistallennetunversionverkkoosoite = "";
-            }
-            else if ($scope.justus.julkaisu.rinnakkaistallennetunversionverkkoosoite &&
-                $scope.justus.julkaisu.julkaisurinnakkaistallennettu !== "") {
-                $rootScope.filedata = {};
-                $scope.justus.julkaisu.julkaisurinnakkaistallennettu = "1";
-                JustusService.file = null;
-                delete $rootScope.filedata;
-                $rootScope.filedata = {};
-            } else {
-                $rootScope.filedata = {};
-                $scope.justus.julkaisu.julkaisurinnakkaistallennettu = "0";
-                $scope.justus.julkaisu.rinnakkaistallennetunversionverkkoosoite = "";
-                JustusService.file = null;
-                delete $rootScope.filedata;
-                $rootScope.filedata = {};
-            }
+                else if ($scope.justus.julkaisu.rinnakkaistallennetunversionverkkoosoite &&
+                    $scope.justus.julkaisu.rinnakkaistallennetunversionverkkoosoite !== "" &&
+                    $scope.justus.julkaisu.julkaisurinnakkaistallennettu !== "") {
+                    $rootScope.filedata = {};
+                    $scope.justus.julkaisu.julkaisurinnakkaistallennettu = "1";
+                    JustusService.file = null;
+                    delete $rootScope.filedata;
+                    $rootScope.filedata = {};
+                } else {
+                    $rootScope.filedata = {};
+                    $scope.justus.julkaisu.julkaisurinnakkaistallennettu = "0";
+                    $scope.justus.julkaisu.rinnakkaistallennetunversionverkkoosoite = "";
+                    JustusService.file = null;
+                    delete $rootScope.filedata;
+                    $rootScope.filedata = {};
+                }
 
-        };
+            };
 
             // format date
             if ($rootScope.filedata.embargo) {
@@ -88,26 +90,28 @@ angular.module('JulkaisunsyottoController', [])
                 ExternalServicesService.haeUrn().then(response => {
                     $rootScope.filedata.urn = response.data.data;
                 }).catch((error) => {
-                  console.log(error);
+                    console.log(error);
                 })
             };
 
             $scope.removeFile = function() {
-              $scope.file = null;
-              $scope.fileAlreadyExists = false;
-              delete $rootScope.filedata;
-              $rootScope.filedata = {};
-              JustusService.file = null;
+                $scope.file = null;
+                $scope.fileAlreadyExists = false;
+                delete $rootScope.filedata;
+                $rootScope.filedata = {};
+                JustusService.file = null;
             };
 
             $scope.removeFileFromServer = function() {
                 APIService.delete($stateParams.id)
                     .then((response) => {
+                        console.log(response);
                         if (response.status !== 500) {
                             JustusService.file = null;
                             $scope.fileAlreadyExists = false;
-                            delete $rootScope.filedata;
-                            $rootScope.filedata = {};
+                            delete $rootScope.filedata.urn;
+                            delete $rootScope.filedata.filename;
+                            delete $rootScope.filedata.handle;
                             $scope.justus.julkaisu.julkaisurinnakkaistallennettu = "0";
                             $scope.justus.julkaisu.rinnakkaistallennetunversionverkkoosoite = "";
                         } else {
@@ -118,6 +122,13 @@ angular.module('JulkaisunsyottoController', [])
 
             $scope.getLink = function() {
                 return API_BASE_URL + "download/" + $stateParams.id ;
+            };
+
+            $scope.bytesToSize = function(a,b) {
+                {if(0==a)return"0 Bytes";
+                    let c=1024,d=b||2,e=["Bytes","KB","MB","GB","TB","PB","EB","ZB","YB"],f=Math.floor(Math.log(a)/Math.log(c));
+                    return parseFloat((a/Math.pow(c,f)).toFixed(d))+" "+e[f]}
+
             };
 
 

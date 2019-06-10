@@ -69,13 +69,20 @@ angular.module('TallennusController', [])
 
       publication.taiteenala = $scope.justus.taiteenala;
 
+      const fileData = {};
+
+       if (Object.keys($rootScope.filedata).length !== 0 ) {
+           angular.forEach($scope.meta.tables.julkaisuarkisto.columns, (field) => {
+               publication.julkaisu[field.name] = $scope.justus.julkaisu[field.name] || field.default;
+               fileData[field.name] = $rootScope.filedata[field.name] || field.default;
+           });
+       }
+
         if (!$scope.justus.julkaisu.id) {
-
             APIService.post('julkaisu', publication).then((data) => {
-                if ($rootScope.filedata.filename && $rootScope.filedata.filename !== "") {
-                    $rootScope.filedata.julkaisuid =  data.id;
-
-                    APIService.postJulkaisu($rootScope.filedata, $scope.file).then((response) => {
+                if (fileData.filename && fileData.filename !== "") {
+                    fileData.julkaisuid =  data.id;
+                    APIService.postJulkaisu(fileData, $scope.file).then((response) => {
                         console.log(response);
                         $state.go('omat');
                         JustusService.clearPublicationForm();
@@ -100,17 +107,17 @@ angular.module('TallennusController', [])
             let promise;
 
             if ($scope.file) {
-                $rootScope.filedata.julkaisuid = $scope.justus.julkaisu.id;
+                fileData.julkaisuid = $scope.justus.julkaisu.id;
                 APIService.put('julkaisu', $scope.justus.julkaisu.id, publication)
                     .then((response) => {
                         console.log(response);
-                        promise = APIService.postJulkaisu($rootScope.filedata, $scope.file);
+                        promise = APIService.postJulkaisu(fileData, $scope.file);
                         clearDataAndNavigateToNextPage(promise);
 
                     });
-            } else if (!$scope.file && $rootScope.filedata.filename) {
-                $rootScope.filedata.julkaisuid = $scope.justus.julkaisu.id;
-                promise =  APIService.put('julkaisu', $scope.justus.julkaisu.id, publication, $rootScope.filedata);
+            } else if (!$scope.file && fileData.filename) {
+                fileData.julkaisuid = $scope.justus.julkaisu.id;
+                promise =  APIService.put('julkaisu', $scope.justus.julkaisu.id, publication, fileData);
                 clearDataAndNavigateToNextPage(promise);
 
             } else {
