@@ -11,5 +11,4 @@ RUN npm run build -- --production
 FROM openresty/openresty:1.13.6.2-stretch
 COPY ./docker/server.conf /etc/nginx/conf.d/default.conf
 COPY --from=front_builder /app/dist/ /usr/share/nginx/html/
-COPY --from=front_builder /app/bower_components /usr/share/nginx/html/fonts
 
