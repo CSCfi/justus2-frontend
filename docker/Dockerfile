@@ -4,11 +4,7 @@ COPY ./package.json /app
 COPY ./package-lock.json /app
 RUN npm install
 COPY ./src /app/src
-COPY ./bower.json /app
 COPY ./gulpfile.js /app
-COPY ./docker/fix_fonts.sh /app
-RUN npm install -g bower && bower --allow-root install
-RUN /bin/bash /app/fix_fonts.sh
 ARG env=prod
 RUN npm run build -- --production
 
