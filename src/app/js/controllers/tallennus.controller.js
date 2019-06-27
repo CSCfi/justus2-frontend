@@ -108,9 +108,10 @@ angular.module('TallennusController', [])
 
             if ($scope.file) {
                 fileData.julkaisuid = $scope.justus.julkaisu.id;
-                APIService.put('julkaisu', $scope.justus.julkaisu.id, publication)
+                APIService.put('julkaisu', $scope.justus.julkaisu.id, publication, fileData)
                     .then((response) => {
                         console.log(response);
+                        // Todo: if first request fails do not send publication
                         promise = APIService.postJulkaisu(fileData, $scope.file);
                         clearDataAndNavigateToNextPage(promise);
 
