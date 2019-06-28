@@ -439,15 +439,28 @@ angular.module('JustusController', [])
                     // make sure both values are set (paa,ala):
 
                     $scope.useJulkaisutyyppiPaa($scope.justus.julkaisu.julkaisutyyppi.substring(0, 1));
-                    // Stay on stage 3 if stage form not valid
+
                     if ($scope.vaihe === 5) {
+
+                        // validate that embargo date is not in past
+                        // if not valid stay on stage 4
+                        let date = new Date();
+                        let d = date.getDate();
+                        let m = date.getMonth();
+                        let y = date.getFullYear();
+                        let today = new Date(y, m, d, 0, 0, 0);
+
+                        if ($rootScope.filedata.embargo && $rootScope.filedata.embargo !== "" && $rootScope.filedata.embargo <  today) {
+                            ValidationService.setValidationErrors(["embargo"]);
+                            $scope.useVaihe(4);
+                            return;
+                        }
                         if (!$scope.isJustusValid()) {
+                            // Stay on stage 3 if stage form not valid
                             $scope.useVaihe(3);
                             return;
                         }
                         // Add user's organisaatiotunnus to the form
-                        // Overwrite active organization code with demo user code to allow saving in demo
-                        // this.justus.julkaisu.organisaatiotunnus = DEMO_ENABLED === true ? '00000' : $rootScope.user.organization.code;
                         this.justus.julkaisu.organisaatiotunnus =  $rootScope.user.organization.code;
                     }
                 }
