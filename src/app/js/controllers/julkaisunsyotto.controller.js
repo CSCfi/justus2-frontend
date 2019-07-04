@@ -17,9 +17,8 @@ angular.module('JulkaisunsyottoController', [])
                 $scope.rinnakkaistallennettumuualle = true;
             }
 
-            if ($scope.justus.julkaisu.julkaisurinnakkaistallennettu === "0") {
-                $scope.eirinnakkaistellennettava = true;
-                $scope.fileAlreadyExists = false;
+            if (!$scope.justus.julkaisu.julkaisurinnakkaistallennettu || $scope.justus.julkaisu.julkaisurinnakkaistallennettu === "") {
+                $scope.justus.julkaisu.julkaisurinnakkaistallennettu =  "1";
             }
 
             $scope.updateRinnakkaistallennusData = function(file) {
@@ -30,8 +29,6 @@ angular.module('JulkaisunsyottoController', [])
                     if (!$rootScope.filedata.filename) {
                         $rootScope.filedata.filename = file.name;
                     }
-                    $scope.justus.julkaisu.julkaisurinnakkaistallennettu = "1";
-                    $scope.justus.julkaisu.rinnakkaistallennetunversionverkkoosoite = "";
                 }
                 else if ($scope.justus.julkaisu.rinnakkaistallennetunversionverkkoosoite &&
                     $scope.justus.julkaisu.rinnakkaistallennetunversionverkkoosoite !== "" &&
@@ -112,7 +109,6 @@ angular.module('JulkaisunsyottoController', [])
                             delete $rootScope.filedata.urn;
                             delete $rootScope.filedata.filename;
                             delete $rootScope.filedata.handle;
-                            $scope.justus.julkaisu.julkaisurinnakkaistallennettu = "0";
                             $scope.justus.julkaisu.rinnakkaistallennetunversionverkkoosoite = "";
                         } else {
                             $log.error('delete ERROR ' + response.data);
