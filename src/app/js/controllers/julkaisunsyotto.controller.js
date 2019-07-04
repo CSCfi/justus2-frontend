@@ -31,7 +31,6 @@ angular.module('JulkaisunsyottoController', [])
                         $rootScope.filedata.filename = file.name;
                     }
                     $scope.justus.julkaisu.julkaisurinnakkaistallennettu = "1";
-                    $scope.justus.julkaisu.rinnakkaistallennetunversionverkkoosoite = "";
                 }
                 else if ($scope.justus.julkaisu.rinnakkaistallennetunversionverkkoosoite &&
                     $scope.justus.julkaisu.rinnakkaistallennetunversionverkkoosoite !== "" &&
