@@ -77,6 +77,37 @@
                         <div class="row form-group">
                             <div class="col-md-4">
                                 <label class="control-label"
+                                       data-ng-bind="i18n.content.form.julkaisurinnakkaistallennettu[lang]">
+                                </label>
+                                <i class="fa fa-info-circle justus-info"
+                                   data-popover-trigger="'mouseenter'"
+                                   data-popover-placement="right"
+                                   data-uib-popover="{{i18n.content.form.julkaisurinnakkaistallennettu.tooltip[lang]}}"
+                                   data-ng-show="i18n.content.form.julkaisurinnakkaistallennettu.tooltip[lang]">
+                                </i>
+                            </div>
+                            <div class="col-md-8 justus-data">
+                                <div class="row">
+                                    <div class="col-xs-10">
+                                        <label class="control-label">
+                                            <input type="radio"
+                                                   data-ng-model="justus.julkaisu.julkaisurinnakkaistallennettu"
+                                                   value="1">
+                                            {{i18n.content.form.julkaisurinnakkaistallennettu['1'][lang]}}
+                                        </label>
+                                        <label class="control-label">
+                                            <input type="radio"
+                                                   data-ng-model="justus.julkaisu.julkaisurinnakkaistallennettu"
+                                                   value="0">
+                                            {{i18n.content.form.julkaisurinnakkaistallennettu['0'][lang]}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-4">
+                                <label class="control-label"
                                        data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.abstrakti[lang]">
                                 </label>
                                 <i class="fa fa-info-circle justus-info"
