@@ -286,6 +286,7 @@
                             <div class="col-xs-8">
                                 <input type="text"
                                        class="form-control"
+                                       data-ng-disabled="fileAlreadyExists"
                                        data-ng-model="justus.julkaisu.rinnakkaistallennetunversionverkkoosoite">
                                 <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
                             </div>
@@ -299,8 +300,8 @@
             <div class="col-xs-12">
                 <!-- TODO: disable if file exists, so user has to first remove file -->
                 <button class="col-xs-12 justus-btn justus-btn-tyyppi"
-                        data-ng-disabled="rinnakkaistallennettumuualle || syotaJulkaisu"
-                        data-ng-class="{'active': eirinnakkaistellennettava,  'disabled': rinnakkaistallennettumuualle || syotaJulkaisu }"
+                        data-ng-disabled="rinnakkaistallennettumuualle || syotaJulkaisu || fileAlreadyExists"
+                        data-ng-class="{'active': eirinnakkaistellennettava,  'disabled': rinnakkaistallennettumuualle || syotaJulkaisu || fileAlreadyExists}"
                         data-ng-click="eiRinnakkaisTallennettavaSelected(); useVaihe(5)">
                     {{ i18n.content.rinnakkaistallennusform.eirinnakkaistallennettava[lang] }}
                     <i class="fa fa-info-circle justus-info"

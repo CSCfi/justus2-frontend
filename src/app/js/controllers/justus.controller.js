@@ -469,6 +469,7 @@ angular.module('JustusController', [])
                 delete $rootScope.filedata;
                 $rootScope.filedata = {};
                 $scope.eirinnakkaistellennettava = true;
+                $scope.fileAlreadyExists = false;
             };
 
             $scope.useRequiredHighlight = function() {
