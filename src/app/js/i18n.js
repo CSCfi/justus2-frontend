@@ -631,11 +631,16 @@ const i18n = {
         }
       },
       julkaisurinnakkaistallennettu: {
-          FI: 'Julkaisu rinnakkaistallennettu',
-          SV: 'Publikationen har lagrats parallelt',
+          FI: 'Julkaisu on rinnakkaistellenne',
+          SV: 'Lagrats parallelt publikationen',
           EN: 'Self-archived publication',
               '1': { FI: 'Kyllä', SV: 'Ja', EN: 'Yes' },
-              '0': { FI: 'Ei', SV: 'Nej', EN: 'No' }
+              '0': { FI: 'Ei', SV: 'Nej', EN: 'No' },
+		  tooltip: {
+			  FI: 'Rinnakkaistallenne on julkaisuarkistoon rinnakkaistallennettava julkaisun kopio. Valitse ei, mikäli kyseessä on esimerkiksi oman organisaatiosi julkaisusarja.',
+			  SV: 'Lagrats pallelt publikationen är en kopia av publikationen som kommer att lagras i publikationarkivet. Välj nej, om publikationen ingår i din egen organisations publikationsserie.',
+			  EN: 'Self-archived version is a copy of the publication that will be stored in the publication archive. Choose no, if the publication is part of your own organization\'s publication series.'
+		  }
       },
       lisatieto: {
         FI: 'Lisätieto',
@@ -658,13 +663,13 @@ const i18n = {
     rinnakkaistallennusform: {
         rinnakkaistallennettava: {
             otsikko: {
-               FI: 'Rinnakkaistallenna julkaisu',
-               SV: '*SV Rinnakkaistallenna julkaisu',
-               EN: 'Self-archive publication',
+               FI: 'Syötä julkaisun tiedosto',
+               SV: 'Ange publikationsfil',
+               EN: 'Enter publication file',
                tooltip : {
-                 FI: 'Rinnakkaistallenna julkaisuun liittyvä tiedosto suoraan julkaisuarkistoon, mikäli mahdollinen kustantaja on sen sallinut sekä kaikilta julkaisun tekoon osallistuneilta tekijöiltä on siihen lupa. Julkaisuun liittyvä tiedosto tulee tällöin avoimesti saataville julkaisuarkistoon organisaation pääkäyttäjän hyväksyttyä sen. Mikäli olet epävarma rinnakkaistallentamisen mahdollisuudesta, ole yhteydessä oman organisaatiosi käyttötukeen.',
-                 SV: '*SV Rinnakkaistallenna julkaisuun liittyvä tiedosto suoraan julkaisuarkistoon, mikäli mahdollinen kustantaja on sen sallinut sekä kaikilta julkaisun tekoon osallistuneilta tekijöiltä on siihen lupa. Julkaisuun liittyvä tiedosto tulee tällöin avoimesti saataville julkaisuarkistoon organisaation pääkäyttäjän hyväksyttyä sen. Mikäli olet epävarma rinnakkaistallentamisen mahdollisuudesta, ole yhteydessä oman organisaatiosi käyttötukeen.',
-                 EN: 'You can self-archive publication file if the possible publisher has allowed it and you have permission from all the authors to do so. The publication file will be then be made publicly available at publication archive when administrator has approved it. If you are unsure about the possibility to self-archive the publication, be in contact with the help desk.'
+                 FI: 'Syötä julkaisuun liittyvä tiedosto, mikäli mahdollinen kustantaja on sen sallinut sekä kaikilta julkaisun tekoon osallistuneilta tekijöiltä on siihen lupa. Julkaisuun liittyvä tiedosto tulee tällöin avoimesti saataville julkaisuarkistoon organisaation pääkäyttäjän hyväksyttyä sen. Mikäli olet epävarma julkaisun syöttämisestä, ole yhteydessä oman organisaatiosi käyttötukeen.',
+                 SV: 'Du kan ange publikationsfil om den möjliga utgivaren har tillåtit det och du har behörighet från alla författare att göra det. Publiceringsfilen publiceras sedan på publikationsarkivet när administratören har godkänt den. Om du är osäker på möjligheten att skriva in en publikationsfil, kontakta organisations helpdesk.',
+                 EN: 'You can enter publication file if the possible publisher has allowed it and you have permission from all the authors to do so. The publication file will be then be made publicly available at publication archive when administrator has approved it. If you are unsure about the possibility to enter publication file, be in contact with the help desk.'
                }
             },
             form: {
@@ -816,7 +821,7 @@ const i18n = {
         korosta: { FI: 'korosta', SV: 'markera', EN: 'highlight' },
         poistakorostus: { FI: 'poista korostus', SV: 'ta bort markeringen', EN: 'remove highlight' }
       },
-      rinnakkaistallennusvalinta: { FI: 'Siirry rinnakaistallennuksen valintaan', SV: '*SV Siirry rinnakkaistallennuksen valintaan', EN: 'Proceed to self-archived selection' },
+      rinnakkaistallennusvalinta: { FI: 'Siirry julkaisun tiedoston valintaan', SV: 'Fortsätt till publikation av filval', EN: 'Proceed to publication file selection' },
       jatka: { FI: 'Siirry esikatseluun', SV: 'Förhandsgranska', EN: 'Preview' },
       keskeyta: { FI: 'Hylkää ja mene omiin tallennuksiin', SV: 'Avbryt och go till egna publikationer ', EN: 'Discard and go to saved publications' }
     },
