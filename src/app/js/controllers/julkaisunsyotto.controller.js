@@ -17,6 +17,10 @@ angular.module('JulkaisunsyottoController', [])
                 $scope.rinnakkaistallennettumuualle = true;
             }
 
+            if ($scope.justus.julkaisu.julkaisurinnakkaistallennettu === "0" && !$rootScope.filedata.filename) {
+                $scope.fileAlreadyExists = false;
+            }
+
             if (!$scope.justus.julkaisu.julkaisurinnakkaistallennettu || $scope.justus.julkaisu.julkaisurinnakkaistallennettu === "") {
                 $scope.justus.julkaisu.julkaisurinnakkaistallennettu =  "1";
             }
