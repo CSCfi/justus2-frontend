@@ -7,22 +7,26 @@ angular.module('JulkaisunsyottoController', [])
 
             $scope.file = JustusService.file;
             $scope.syotaJulkaisu = false;
+            $scope.fileAlreadyExists = false;
             $scope.rinnakkaistallennettumuualle = false;
 
-            if ( $rootScope.filedata.filename) {
+
+            if ($rootScope.filedata.filename) {
                 $scope.syotaJulkaisu = true;
+                $scope.fileAlreadyExists = true;
             }
 
-            if (!$rootScope.filedata.filename && $scope.justus.julkaisu.julkaisurinnakkaistallennettu === "1") {
+            if (!$rootScope.filedata.filename && $scope.justus.julkaisu.julkaisurinnakkaistallennettu === "1"
+            && $scope.justus.julkaisu.rinnakkaistallennetunversionverkkoosoite !== "") {
                 $scope.rinnakkaistallennettumuualle = true;
-            }
-
-            if ($scope.justus.julkaisu.julkaisurinnakkaistallennettu === "0" && !$rootScope.filedata.filename) {
-                $scope.fileAlreadyExists = false;
             }
 
             if (!$scope.justus.julkaisu.julkaisurinnakkaistallennettu || $scope.justus.julkaisu.julkaisurinnakkaistallennettu === "") {
                 $scope.justus.julkaisu.julkaisurinnakkaistallennettu =  "1";
+            }
+
+            if ($scope.justus.julkaisu.julkaisurinnakkaistallennettu === "0" && !$rootScope.filedata.filename) {
+                $scope.eirinnakkaistellennettava = true;
             }
 
             $scope.updateRinnakkaistallennusData = function(file) {
@@ -113,6 +117,8 @@ angular.module('JulkaisunsyottoController', [])
                             delete $rootScope.filedata.urn;
                             delete $rootScope.filedata.filename;
                             delete $rootScope.filedata.handle;
+
+                            // TODO: check in case of Jukuri publication
                             $scope.justus.julkaisu.rinnakkaistallennetunversionverkkoosoite = "";
                         } else {
                             $log.error('delete ERROR ' + response.data);
