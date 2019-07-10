@@ -17,7 +17,7 @@
                 </button>
                 <div class="col-xs-12">
                     <div data-ng-show="syotaJulkaisu" class="m-t m-b">
-                        <div class="row">
+                        <div class="row form-group">
                             <div class="col-md-4">
                                 <label class="control-label"
                                        data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu[lang]">
@@ -36,8 +36,8 @@
                                           <span data-ng-if="filedata.handle !== ''"> {{filedata.filename}} </span>
                                         </span>
                                     </div>
-                                    <div class="col-md-2 text-right">
-                                        <button class="btn btn-danger m-b"
+                                    <div class="col-md-2 text-right" data-ng-hide="hideRemove">
+                                        <button class="btn btn-danger"
                                                 data-ng-click="removeFileFromServer()">Poista
                                         </button>
                                     </div>

@@ -8,6 +8,7 @@ angular.module('AuthService', [])
 
             let getUserInfo = function () {
                 return $http.get(AUTH_URL).then(function (response) {
+
                     user.name = response.data.perustiedot.nimi;
                     user.mail = response.data.perustiedot.email;
                     user.role = response.data.perustiedot.rooli;
@@ -17,6 +18,7 @@ angular.module('AuthService', [])
                     user.visibleFields = response.data.visibleFields;
                     user.requiredFields = response.data.requiredFields;
                     user.alayksikot = response.data.alayksikot;
+                    user.jukuriUser = response.data.perustiedot.jukuriUser;
 
                     user.lang = response.data.perustiedot.kieli;
                     return user;

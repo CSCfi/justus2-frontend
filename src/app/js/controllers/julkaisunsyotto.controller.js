@@ -9,7 +9,11 @@ angular.module('JulkaisunsyottoController', [])
             $scope.syotaJulkaisu = false;
             $scope.fileAlreadyExists = false;
             $scope.rinnakkaistallennettumuualle = false;
+            $scope.hideRemove = false;
 
+            if ($rootScope.user.jukuriUser && ($scope.justus.julkaisu.julkaisuntila === "1" || $scope.justus.julkaisu.julkaisuntila === "2")) {
+                $scope.hideRemove = true;
+            }
 
             if ($rootScope.filedata.filename) {
                 $scope.syotaJulkaisu = true;
