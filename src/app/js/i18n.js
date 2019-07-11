@@ -685,7 +685,8 @@ const i18n = {
                   tiedosto: { 
                     valitse: { FI: 'Valitse tiedosto', SV: '*SV Valitse tiedosto', EN: 'Select file' },
                     eivalittu: { FI: 'Ei valittua tiedostoa', SV: '*SV Ei valittua tiedostoa', EN: 'No file selected' },
-                    veda: { FI: 'Tai vedä tiedosto tähän', SV: '*SV Tai vedä tiedosto tähän', EN: 'Or drag file here' }
+                    veda: { FI: 'Tai vedä tiedosto tähän', SV: '*SV Tai vedä tiedosto tähän', EN: 'Or drag file here' },
+                    poista: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' }
                   }
                 },
                 abstrakti: {

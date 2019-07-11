@@ -38,7 +38,8 @@
                                     </div>
                                     <div class="col-md-2 text-right" data-ng-hide="hideRemove">
                                         <button class="btn btn-danger"
-                                                data-ng-click="removeFileFromServer()">Poista
+                                                data-ng-click="removeFileFromServer()"
+                                                data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.poista[lang]">
                                         </button>
                                     </div>
                                 </div>
@@ -67,7 +68,8 @@
                                         </div>
                                         <div class="col-md-2 text-right">
                                             <button class="btn btn-primary m-b"
-                                                    data-ng-click="removeFile(); file = null">Poista
+                                                    data-ng-click="removeFile(); file = null"
+                                                    data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.poista[lang]">
                                             </button>
                                         </div>
                                     </div>
