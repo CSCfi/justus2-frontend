@@ -706,6 +706,11 @@ const i18n = {
                       FI: 'Julkaisulle luotava URN:NBN -pohjainen URN-tunnus, joka luodaan automaattisesti julkaisulle julkaisarkistoon siirron yhteydessä.',
                       SV: '*SV Julkaisulle luotava URN:NBN -pohjainen URN-tunnus, joka luodaan automaattisesti julkaisulle julkaisarkistoon siirron yhteydessä.',
                       EN: 'Publication will be automatically assigned with a URN:NBN based URN identifier when it is transferred to publication archive.',
+                  },
+                  generoi: {
+                    FI: 'Luo URN-tunniste',
+                    SV: 'Generera URN',
+                    EN: 'Generate URN'
                   }
               },
               embargo: {

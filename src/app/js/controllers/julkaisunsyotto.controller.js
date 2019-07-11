@@ -95,6 +95,15 @@ angular.module('JulkaisunsyottoController', [])
                 opened: false
             };
 
+            $scope.getUrnForTheseusPublications = function() {
+                if ($rootScope.user.jukuriUser)  {
+                    return;
+                } else {
+                    $scope.getUrn();
+                }
+            };
+
+
             $scope.getUrn = function() {
                 ExternalServicesService.haeUrn().then(response => {
                     $rootScope.filedata.urn = response.data.data;

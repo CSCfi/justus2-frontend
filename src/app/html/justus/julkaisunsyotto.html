@@ -46,7 +46,7 @@
                             <div ng-show="!fileAlreadyExists" class="col-md-8">
                                 <form name="form">
                                     <div ng-show="!file">
-                                        <div class="d-inline-block" ngf-select ngf-change="getUrn()" ng-model="file" name="filename"
+                                        <div class="d-inline-block" ngf-select ngf-change="getUrnForTheseusPublications()" ng-model="file" name="filename"
                                              ngf-max-size="100MB">
                                             <button class="btn btn-primary">{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.valitse[lang]}}</button>
                                         </div>
@@ -135,10 +135,28 @@
                                    data-ng-show="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.urn.tooltip[lang]">
                                 </i>
                             </div>
-                            <div class="col-md-8">
+
+                            <!-- Jukuri users can edit urn identifier -->
+                            <div data-ng-show="user.jukuriUser">
+                                <div class="col-md-6 col-xs-12" datan-ng-show="user.jukuriUser">
+                                    <input type="text"
+                                           class="form-control"
+                                           data-ng-model="filedata.urn"
+                                           placeholder="">
+                                    <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-2 col-xs-12">
+                                    <button type="button" class="btn btn-sm btn-primary"
+                                            ng-click="getUrn()"
+                                            data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.urn.generoi[lang]">
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-8" data-ng-hide="user.jukuriUser">
                                 <p data-ng-model="filedata.urn">{{filedata.urn}}</p>
                             </div>
                         </div>
+
                         <div class="row form-group" id="embargoGroup">
                             <div class="col-md-4">
                                 <label class="control-label"
