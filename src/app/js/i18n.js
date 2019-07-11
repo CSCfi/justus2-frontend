@@ -631,7 +631,7 @@ const i18n = {
         }
       },
       julkaisurinnakkaistallennettu: {
-          FI: 'Julkaisu on rinnakkaistellenne',
+          FI: 'Julkaisu on rinnakkaistallenne',
           SV: 'Lagrats parallelt publikationen',
           EN: 'Self-archived publication',
               '1': { FI: 'Kyllä', SV: 'Ja', EN: 'Yes' },
