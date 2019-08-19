@@ -270,7 +270,9 @@ angular.module('JustusController', [])
                             $scope.crossrefTaiVirtaLataa = false;
                             $scope.useVaihe(3); // ->tietojen syöttöön
                         }, function errorCb(response) {
+                            console.log(response);
                             $scope.julkaisuhaettu = false;
+                            $scope.crossrefTaiVirtaLataa = false;
                             return false;
                         });
                 }
