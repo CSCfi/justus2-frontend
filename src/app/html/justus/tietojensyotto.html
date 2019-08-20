@@ -260,7 +260,7 @@
           </div>
          
           <div class="row form-group">
-              <div data-ng-if="isFieldVisible('alayksikko') && isFieldRequired('alayksikko')"  class="col-xs-12 col-sm-6 form-group" id="orcidGroup">
+              <div data-ng-if="isFieldVisible('alayksikko')"  class="col-xs-12 col-sm-6 form-group" id="orcidGroup">
                   <input type="text" class="form-control"
                          data-ng-model="justus.organisaatiotekija[$index].orcid"
                          placeholder="{{i18n.content.form.organisaatiotekija.orcid.picktip[lang]}}">
@@ -290,8 +290,8 @@
                   </ui-select>
               </div>
 
-          <div data-ng-if="isFieldVisible('alayksikko') " class="col-xs-12" id="alayksikkoGroup">
-            <div>
+          <div data-ng-if="isFieldVisible('alayksikko')" class="col-xs-12" id="alayksikkoGroup">
+
             <div data-ng-repeat="ota in justus.organisaatiotekija[$index].alayksikko track by $index"
                  data-ng-init="pIx=$parent.$index" class="row">
               <div class="col-xs-9 col-sm-9">
@@ -307,6 +307,7 @@
                   </ui-select-choices>
                 </ui-select>
               </div>
+              <div>
 
               <div class="col-xs-3 col-sm-3">
                 <span class="btn btn-primary"
