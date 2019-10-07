@@ -5,5 +5,6 @@ angular.module('ServicesModule', [
   'KoodistoService',
   'DataStoreService',
   'ValidationService',
-  'AuthService'
+  'AuthService',
+  'Publications'
 ]);

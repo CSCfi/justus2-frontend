@@ -131,16 +131,6 @@ angular.module('APIService', [])
       }
     };
 
-    this.restoreQuery = function() {
-      let restoredQuery = $location.search();
-
-      return {
-        pageSize: restoredQuery.pageSize || 50,
-        currentPage: restoredQuery.currentPage || 1,
-        sort: restoredQuery.sort || 'id',
-        direction: restoredQuery.direction || 'desc'
-      };
-    };
 
     /* CREATE :: POST */
     this.post = function(api, str) {
@@ -159,24 +149,39 @@ angular.module('APIService', [])
     };
 
     /* READ :: GET */
-    this.get = function (api, code, singleResult = false) {
-      /*
-          Organisation code (second parameter) is optional, if missing return data from all organisations.
-          This functionality is possible for owners only
-       */
+    this.get = function (api, id) {
+
+        console.log(API_BASE_URL + 'julkaisut' + '/' + api + (id ? '/' + id : ''));
+
       return $http({
         method: 'GET',
-        url:  API_BASE_URL + 'julkaisut' + '/' + api + (code ? '/' + code : ''),
-        // params: query
+        url:  API_BASE_URL + 'julkaisut' + '/' + api + (id ? '/' + id : ''),
       })
       .then(function (response) {
-        let ret = response.data; // list always
-        if (singleResult === true) {
-          return ret && ret.length > 0 ? ret[0] : {};
-        }
-        return ret
+        return response.data;
       });
     };
+
+      this.getPublicationList = function (api, code, odottavat, currentPage) {
+
+      /*
+          Organisation code is optional, if missing return data from all organisations.
+          This functionality is possible for owners only
+       */
+
+      return $http({
+          method: 'GET',
+          url:  API_BASE_URL + 'julkaisut' + '/' + api + (code ? '/' + code : ''),
+          params: { odottavat: odottavat, currentPage: currentPage }
+      })
+          .then(function (response) {
+              let ret = {
+                data: response.data.data,
+                count:  response.headers('TotalCount')
+              };
+              return ret
+          });
+      };
 
     /* UPDATE :: PUT */
     this.put = function (path, id, data, filedata) {
