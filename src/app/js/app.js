@@ -10,6 +10,7 @@ angular.module('JustusApp', [
   'ngTagsInput',
   'ngCsv',
   'ngFileUpload',
+  'infinite-scroll',
 
   // App modules
   'appConfig',
