@@ -228,10 +228,13 @@ angular.module('IndexController', [])
 
             $scope.setDemoUserOrganization = function(organizationCode) {
 
+
+
                 for (let i = 0; i < $scope.organisationList.length; i++) {
                     if ($scope.organisationList[i].arvo === organizationCode) {
 
                         $scope.user.organization.code = organizationCode;
+                        $rootScope.user.organization.code = organizationCode;
                         $scope.user.organization.name = $scope.organisationList[i].selite;
 
                         $scope.user.visibleFields = $scope.organisationList[i].visibleFields;
