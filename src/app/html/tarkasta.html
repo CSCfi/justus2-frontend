@@ -13,10 +13,13 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-xs-12">
+<div class="row px">
+  <div class="col-xs-6">
+    <h4 class="font-weight-bold">Totalcount: {{publications.count}}</h4>
+  </div>
+  <div data-ng-show="!publications.odottavat" class="col-xs-6">
     <button type="button"
-            class="btn btn-default"
+            class="btn btn-link pull-right"
             data-ng-if="user.role === 'admin' || user.role === 'owner'"
             ng-csv="getCsvExportFile()"
             lazy-load="true"
@@ -32,26 +35,64 @@
         &nbsp;<span class="fa fa-spinner fa-spin"></span>
       </span>
     </button>
-    <button type="button"
-            class="btn btn-secondary pull-right"
-            data-ng-if="!odottavat"
-            data-ng-click="showRejectedPublications()">
-      <span data-ng-bind="showhide[lang]+' '+i18n.content.tarkasta.hylatyt.painike[lang]"></span>
-    </button>
-    <hr>
   </div>
 </div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <p class="font-weight-bold">Totalcount: {{publications.count}}</p>
+<div data-ng-show="!publications.odottavat">
+  <div class="row pxs">
+    <div class="col-sm-5">
+      <div class="input-group">
+        <input type="text" class="form-control"
+               data-ng-model="search.vapaasanahaku"
+               placeholder="Hae julkaisun tai tekijän nimellä.."/>
+        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="form-group">
+        <input type="number" class="form-control"
+               data-ng-model="search.julkaisuvuosi"
+               placeholder="Hae / rajaa hakua julkaisuvoden perusteella"/>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="form-group">
+        <ui-select data-ng-model="search.julkaisuntila"
+                   theme="bootstrap">
+          <ui-select-match class="ui-select-match"
+                           placeholder="Julkaisuntila">
+            {{ search.julkaisuntila }}
+          </ui-select-match>
+          <ui-select-choices repeat="state in julkaisuntilat">
+            {{ state }}
+          </ui-select-choices>
+        </ui-select>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="d-inline-block pxs">
+        <button class="btn btn-primary"
+                data-ng-click="searchPublications()"
+                data-ng-disabled="!search.vapaasanahaku && !search.julkaisuvuosi && !search.julkaisuntila"
+                data-ng-bind="i18n.content.esitayta.hae[lang]">
+        </button>
+      </div>
+      <div class="d-inline-block">
+        <button class="btn btn-danger"
+                data-ng-click="resetData()">
+          Tyhjennä
+        </button>
+      </div>
     </div>
   </div>
+</div>
+
+
 
   <div class="row" >
     <div class="col-xs-12 table-responsive">
         <div infinite-scroll-disabled="publications.loaded"
-                infinite-scroll="publications.nextPage()" infinite-scroll-distance="1"
+                infinite-scroll="publications.nextPage(searchMode, search)" infinite-scroll-distance="1"
              >
           <table class="table table-striped table-hover">
             <thead>
@@ -176,6 +217,12 @@
         </div>
     </div>
   </div>
+
+<div class="row m-b" data-ng-show="data.length < 1 && !publications.showSpinner">
+  <div class="col-xs-12 text-center m-b">
+      <h4>No results with given parameters</h4>
+  </div>
+</div>
 
 <div data-ng-if="publications.showSpinner === true && !publications.loaded" class="loading-icon-wrapper">
     <span class="fa fa-spinner fa-spin fa-2x"></span>

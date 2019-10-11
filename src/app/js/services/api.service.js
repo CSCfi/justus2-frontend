@@ -183,6 +183,31 @@ angular.module('APIService', [])
           });
       };
 
+
+      this.getSearchResults = function (api, code, currentPage, searchParameters) {
+
+          /*
+              Organisation code is optional, if missing return data from all organisations.
+              This functionality is possible for owners only
+           */
+
+          return $http({
+              method: 'GET',
+              url:  API_BASE_URL + 'julkaisut' + '/' + api + (code ? '/' + code : ''),
+              params: { currentPage: currentPage,
+                        nimiTekija: searchParameters.vapaasanahaku,
+                        julkaisuVuosi: searchParameters.julkaisuvuosi,
+                        julkaisunTila: searchParameters.julkaisuntila }
+          })
+              .then(function (response) {
+                  let ret = {
+                      data: response.data.data,
+                      count:  response.headers('TotalCount')
+                  };
+                  return ret
+              });
+      };
+
     /* UPDATE :: PUT */
     this.put = function (path, id, data, filedata) {
 
