@@ -10,6 +10,15 @@ angular.module('TarkastaController', [])
             $scope.colOrderReverse = true;
             $scope.totalItems = 0;
 
+            $scope.loading = {};
+
+            $scope.search = {
+                "julkaisuntila": "",
+                "vapaasanahaku": "",
+                "julkaisuvuosi": null
+            };
+
+
             $scope.editPublication = function (d) {
                 if ($scope.state.name === 'omat' && d.julkaisuntila) {
                     return;
@@ -42,10 +51,8 @@ angular.module('TarkastaController', [])
                 }
             };
 
-            $scope.resetData = function () {
-
+            $scope.clearData = function() {
                 $scope.data = [];
-
                 $scope.publications.data = [];
                 $scope.publications.loaded = false;
                 $scope.publications.pageNumber = 1;
@@ -53,8 +60,35 @@ angular.module('TarkastaController', [])
                 $scope.publications.loading = false;
                 $scope.publications.showSpinner = false;
                 $scope.showPublicationLink = $rootScope.user.organization.showPublicationInput;
+            };
 
-                $scope.publications.nextPage();
+            $scope.resetData = function () {
+
+                $scope.clearData();
+
+                $scope.search = {
+                    "julkaisuntila": "",
+                    "vapaasanahaku": "",
+                    "julkaisuvuosi": null
+                };
+
+                $scope.searchMode = false;
+
+                $scope.publications.nextPage($scope.searchMode);
+                $timeout(function () {
+                    $scope.data = $scope.publications.data;
+                    $scope.publications.showSpinner = false;
+                }, 500);
+
+            };
+
+            $scope.searchPublications = function() {
+
+                $scope.clearData();
+
+                $scope.searchMode = true;
+                $scope.publications.nextPage($scope.searchMode, $scope.search);
+
                 $timeout(function () {
                     $scope.data = $scope.publications.data;
                     $scope.publications.showSpinner = false;
@@ -93,6 +127,7 @@ angular.module('TarkastaController', [])
             let init = function () {
 
                 $scope.publications = new Publications();
+                $scope.searchMode = false;
                 $scope.showPublicationLink = $rootScope.user.organization.showPublicationInput;
                 if (DataStoreService.getBooleanForOdottavat() === false) {
                     $scope.publications.odottavat = false;
@@ -109,6 +144,10 @@ angular.module('TarkastaController', [])
             };
 
             verifyAccess();
+
+            $scope.julkaisuntilat = [
+                "0", "1", "2", "-1",
+            ];
 
 
             // CSV export

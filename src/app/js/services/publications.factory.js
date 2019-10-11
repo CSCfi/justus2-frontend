@@ -23,7 +23,7 @@ angular.module('Publications', [])
                 }
             };
 
-            Page.prototype.nextPage = function() {
+            Page.prototype.nextPage = function(searchMode, searchParameters) {
 
                 this.showSpinner = true;
                 this.organisationCode = getCode();
@@ -41,26 +41,33 @@ angular.module('Publications', [])
                 }
 
                 this.loading = true;
+                let dataPromise;
 
-                APIService.getPublicationList("lista", this.organisationCode, this.odottavat, this.pageNumber)
-                    .then(function (obj) {
-                        this.count = obj.count;
-                        let items = obj.data;
+                if (searchMode) {
+                    dataPromise = APIService.getSearchResults("haku", this.organisationCode, this.pageNumber, searchParameters);
+                } else {
+                    dataPromise = APIService.getPublicationList("lista", this.organisationCode, this.odottavat, this.pageNumber);
 
-                        for (let i = 0; i < items.length; i++) {
-                            items[i].julkaisu.ui_julkaisuntila = items[i].julkaisu.julkaisuntila;
-                            if (items[i].filedata) {
-                                this.data.push({"julkaisu": items[i].julkaisu, "filedata": items[i].filedata});
-                            } else {
-                                this.data.push({"julkaisu": items[i].julkaisu});
+                }
 
-                            }
+                dataPromise.then(function (obj) {
+                    this.count = obj.count;
+                    let items = obj.data;
+
+                    for (let i = 0; i < items.length; i++) {
+                        items[i].julkaisu.ui_julkaisuntila = items[i].julkaisu.julkaisuntila;
+                        if (items[i].filedata) {
+                            this.data.push({"julkaisu": items[i].julkaisu, "filedata": items[i].filedata});
+                        } else {
+                            this.data.push({"julkaisu": items[i].julkaisu});
+
                         }
+                    }
 
-                        this.pageNumber = this.pageNumber + 1;
-                        this.loading = false;
+                    this.pageNumber = this.pageNumber + 1;
+                    this.loading = false;
 
-                    }.bind(this))
+                }.bind(this))
                     .catch(function (err) {
                         console.log(err);
                     });
