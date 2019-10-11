@@ -89,6 +89,10 @@
   }
 }
 
+.ui-select-choices-row-inner {
+  padding-left: 10px !important;
+}
+
 @mixin input() {
   border-radius: $input-border-radius;
 }

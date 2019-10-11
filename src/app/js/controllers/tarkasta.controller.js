@@ -67,7 +67,7 @@ angular.module('TarkastaController', [])
                 $scope.clearData();
 
                 $scope.search = {
-                    "julkaisuntila": "",
+                    "julkaisuntila": null,
                     "vapaasanahaku": "",
                     "julkaisuvuosi": null
                 };
@@ -86,6 +86,10 @@ angular.module('TarkastaController', [])
 
                 $scope.clearData();
 
+                if (angular.isObject($scope.search.julkaisuntila)) {
+                    $scope.search.julkaisuntila = $scope.search.julkaisuntila.value;
+                }
+
                 $scope.searchMode = true;
                 $scope.publications.nextPage($scope.searchMode, $scope.search);
 
@@ -96,16 +100,6 @@ angular.module('TarkastaController', [])
 
             };
 
-            // $scope.showRejectedPublications = function () {
-            //     if ($scope.showRejected) {
-            //         $scope.showRejected = false;
-            //         $scope.showhide = $scope.i18n.content.tarkasta.hylatyt.nayta;
-            //
-            //     } else {
-            //         $scope.showRejected = true;
-            //         $scope.showhide = $scope.i18n.content.tarkasta.hylatyt.piilota;
-            //     }
-            // };
 
             // at very first test that user object is accessible
             let verifyAccess = function () {
@@ -143,10 +137,30 @@ angular.module('TarkastaController', [])
 
             };
 
+
             verifyAccess();
 
             $scope.julkaisuntilat = [
-                "0", "1", "2", "-1",
+                {
+                    "name": "Valitse julkaisuntila",
+                    "value": null
+                },
+                {
+                    "name": "-1",
+                    "value": "-1"
+                },
+                {
+                    "name": "0",
+                    "value": "0"
+                },
+                {
+                    "name": "1",
+                    "value": "1"
+                },
+                {
+                    "name": "2",
+                    "value": "2"
+                }
             ];
 
 

@@ -44,6 +44,7 @@
       <div class="input-group">
         <input type="text" class="form-control"
                data-ng-model="search.vapaasanahaku"
+               data-ng-keyup="$event.keyCode == 13 && searchPublications()"
                placeholder="Hae julkaisun tai tekijän nimellä.."/>
         <span class="input-group-addon"><i class="fa fa-search"></i></span>
       </div>
@@ -51,6 +52,7 @@
     <div class="col-sm-3">
       <div class="form-group">
         <input type="number" class="form-control"
+               data-ng-keyup="$event.keyCode == 13 && searchPublications()"
                data-ng-model="search.julkaisuvuosi"
                placeholder="Hae / rajaa hakua julkaisuvoden perusteella"/>
       </div>
@@ -60,11 +62,12 @@
         <ui-select data-ng-model="search.julkaisuntila"
                    theme="bootstrap">
           <ui-select-match class="ui-select-match"
-                           placeholder="Julkaisuntila">
-            {{ search.julkaisuntila }}
+                           placeholder="Valitse julkaisuntila">
+            {{ search.julkaisuntila.name || search.julkaisuntila }}
           </ui-select-match>
-          <ui-select-choices repeat="state in julkaisuntilat">
-            {{ state }}
+          <ui-select-choices
+                  repeat="state in julkaisuntilat">
+            {{ state.name }}
           </ui-select-choices>
         </ui-select>
       </div>
@@ -86,8 +89,6 @@
     </div>
   </div>
 </div>
-
-
 
   <div class="row" >
     <div class="col-xs-12 table-responsive">
