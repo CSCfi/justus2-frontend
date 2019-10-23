@@ -15,7 +15,7 @@
 
 <div class="row px">
   <div class="col-xs-6">
-    <h4 class="font-weight-bold">Totalcount: {{publications.count}}</h4>
+    <h4 class="font-weight-bold">{{i18n.content.tarkasta.julkaisuja[lang]}}: {{publications.count}}</h4>
   </div>
   <div data-ng-show="!publications.odottavat" class="col-xs-6">
     <button type="button"
@@ -45,7 +45,7 @@
         <input type="text" class="form-control"
                data-ng-model="search.vapaasanahaku"
                data-ng-keyup="$event.keyCode == 13 && searchPublications()"
-               placeholder="Hae julkaisun tai tekijän nimellä.."/>
+               placeholder="{{i18n.content.tarkasta.haku.tekija[lang]}}"/>
         <span class="input-group-addon"><i class="fa fa-search"></i></span>
       </div>
     </div>
@@ -54,7 +54,7 @@
         <input type="number" class="form-control"
                data-ng-keyup="$event.keyCode == 13 && searchPublications()"
                data-ng-model="search.julkaisuvuosi"
-               placeholder="Hae / rajaa hakua julkaisuvoden perusteella"/>
+               placeholder="{{i18n.content.tarkasta.haku.julkaisuvuosi[lang]}}"/>
       </div>
     </div>
     <div class="col-sm-2">
@@ -62,7 +62,7 @@
         <ui-select data-ng-model="search.julkaisuntila"
                    theme="bootstrap">
           <ui-select-match class="ui-select-match"
-                           placeholder="Valitse julkaisuntila">
+                           placeholder="{{i18n.content.tarkasta.haku.julkaisuntila[lang]}}">
             {{ search.julkaisuntila.name || search.julkaisuntila }}
           </ui-select-match>
           <ui-select-choices
@@ -72,7 +72,7 @@
         </ui-select>
       </div>
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-2 p-0">
       <div class="d-inline-block pxs">
         <button class="btn btn-primary"
                 data-ng-click="searchPublications()"
@@ -82,8 +82,9 @@
       </div>
       <div class="d-inline-block">
         <button class="btn btn-danger"
-                data-ng-click="resetData()">
-          Tyhjennä
+                data-ng-click="resetData()"
+                title="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]"
+                data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]">
         </button>
       </div>
     </div>

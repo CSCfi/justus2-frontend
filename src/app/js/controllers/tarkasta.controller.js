@@ -142,12 +142,8 @@ angular.module('TarkastaController', [])
 
             $scope.julkaisuntilat = [
                 {
-                    "name": "Valitse julkaisuntila",
+                    "name": $scope.i18n.content.tarkasta.haku.julkaisuntila[$scope.lang],
                     "value": null
-                },
-                {
-                    "name": "-1",
-                    "value": "-1"
                 },
                 {
                     "name": "0",
@@ -160,9 +156,12 @@ angular.module('TarkastaController', [])
                 {
                     "name": "2",
                     "value": "2"
-                }
+                },
+                {
+                    "name": "-1",
+                    "value": "-1"
+                },
             ];
-
 
             // CSV export
             $scope.csvExportHeader = [

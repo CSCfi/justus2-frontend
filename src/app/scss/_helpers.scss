@@ -35,6 +35,10 @@
   padding: $padding-small-vertical 0;
 }
 
+.p-0 {
+  padding: 0;
+}
+
 .nowrap {
   white-space: nowrap;
 }
@@ -91,6 +95,13 @@
 
 .ui-select-choices-row-inner {
   padding-left: 10px !important;
+}
+
+input[type=number]
+{
+  padding-left: 0 !important;
+  text-indent: 10px;
+  padding-right: 5px;
 }
 
 @mixin input() {

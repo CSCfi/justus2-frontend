@@ -846,7 +846,8 @@ const i18n = {
     tarkasta: {
       odottavat: { FI: 'Hyväksymistä odottavat julkaisut', SV: 'I väntan på godkännande', EN: 'Publications waiting for approval' },
       hyvaksytyt: { FI: 'Hyväksytyt julkaisut', SV: 'Godkända publikationer', EN: 'Approved publications' },
-      table: {
+      julkaisuja: { FI: 'Julkaisuja', SV: 'Publikationer', EN: 'Publications' },
+        table: {
         julkaisuid: { FI: 'JulkaisuID', SV: 'PublikationID', EN: 'PublicationID' },
         julkaisunnimi: { FI: 'Julkaisun nimi', SV: 'Publikationens namn/titel', EN: 'Publication name' },
         julkaisuntekijat: { FI: 'Julkaisun tekijät', SV: 'Publikationens upphovsmän', EN: 'Publication authors' },
@@ -859,11 +860,10 @@ const i18n = {
       },
       uusi: { FI: 'Tallenna uusi julkaisu', SV: 'Lägga till en ny publikation', EN: 'Save new publication' },
       csv: { FI: 'Lataa CSV-tiedostona', SV: 'Hämta som CSV', EN: 'Export to CSV'},
-      hylatyt: {
-        otsikko: { FI: 'Hylätyt julkaisut', SV: 'Övergivna publikationer', EN: 'Rejected publications' },
-        nayta: { FI: 'Näytä', SV: 'Visa', EN: 'Show'},
-        piilota: { FI: 'Piilota', SV: 'Dölja', EN: 'Hide'},
-        painike: { FI: ' hylätyt julkaisut', SV: ' övergivna publikationer', EN: ' rejected publications' }
+      haku: {
+        tekija: { FI: 'Hae julkaisun tai tekijän nimellä', SV: 'Hae julkaisun tai tekijän nimellä', EN: 'Search by name or author' },
+        julkaisuvuosi: { FI: 'Hae/rajaa hakua julkaisuvuoden perusteella', SV: 'Hae/rajaa hakua julkaisuvuoden perusteella', EN: 'Search/filter by year of publication'},
+        julkaisuntila: { FI: 'Valitse julkaisuntila', SV: 'Valitse julkaisuntila', EN: 'Valitse julkaisuntila'},
       }
     },
 
