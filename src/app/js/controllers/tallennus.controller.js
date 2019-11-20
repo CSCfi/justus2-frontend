@@ -43,7 +43,7 @@ angular.module('TallennusController', [])
       for (let i = 0; i < $scope.justus.organisaatiotekija.length; i++) {
         publication.organisaatiotekija.push({
           "etunimet": "", "sukunimi": "", "orcid": "", "hrnumero": "", "rooli": ""
-        })
+        });
         angular.forEach($scope.meta.tables.organisaatiotekija.columns, (field) => {
           publication.organisaatiotekija[i][field.name] = $scope.justus.organisaatiotekija[i][field.name] || field.default;
 
@@ -84,7 +84,11 @@ angular.module('TallennusController', [])
                     fileData.julkaisuid =  data.id;
                     APIService.postJulkaisu(fileData, $scope.file).then((response) => {
                         console.log(response);
-                        $state.go('omat');
+                        if ($rootScope.user.role === "admin") {
+                            $state.go('hyvaksy');
+                        } else {
+                            $state.go('omat');
+                        }
                         JustusService.clearPublicationForm();
                         delete $rootScope.filedata;
                         $rootScope.filedata = {};
@@ -93,7 +97,11 @@ angular.module('TallennusController', [])
                             $log.error(error);
                         });
                 } else {
-                    $state.go('omat');
+                    if ($rootScope.user.role === "admin") {
+                        $state.go('hyvaksy');
+                    } else {
+                        $state.go('omat');
+                    }
                     JustusService.clearPublicationForm();
                     delete $rootScope.filedata;
                     $rootScope.filedata = {};
@@ -134,7 +142,12 @@ angular.module('TallennusController', [])
           promise
               .then((res) => {
                   console.log(res);
-                  $state.go('omat');
+                  if ($rootScope.user.role === "admin") {
+                      $state.go('hyvaksy');
+                  } else {
+                      $state.go('omat');
+                  }
+
                   JustusService.clearPublicationForm();
                   delete $rootScope.filedata;
                   $rootScope.filedata = {};
