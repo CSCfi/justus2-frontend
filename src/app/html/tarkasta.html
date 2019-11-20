@@ -38,54 +38,56 @@
   </div>
 </div>
 
-<div data-ng-show="!publications.odottavat">
-  <div class="row pxs">
-    <div class="col-sm-5">
-      <div class="input-group">
-        <input type="text" class="form-control"
-               data-ng-model="search.vapaasanahaku"
-               data-ng-keyup="$event.keyCode == 13 && searchPublications()"
-               placeholder="{{i18n.content.tarkasta.haku.tekija[lang]}}"/>
-        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+<div data-ng-if="user.role === 'admin' || user.role === 'owner'">
+  <div data-ng-show="!publications.odottavat">
+    <div class="row pxs">
+      <div class="col-sm-5">
+        <div class="input-group">
+          <input type="text" class="form-control"
+                 data-ng-model="search.vapaasanahaku"
+                 data-ng-keyup="$event.keyCode == 13 && searchPublications()"
+                 placeholder="{{i18n.content.tarkasta.haku.tekija[lang]}}"/>
+          <span class="input-group-addon"><i class="fa fa-search"></i></span>
+        </div>
       </div>
-    </div>
-    <div class="col-sm-3">
-      <div class="form-group">
-        <input type="number" class="form-control"
-               data-ng-keyup="$event.keyCode == 13 && searchPublications()"
-               data-ng-model="search.julkaisuvuosi"
-               placeholder="{{i18n.content.tarkasta.haku.julkaisuvuosi[lang]}}"/>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <input type="number" class="form-control"
+                 data-ng-keyup="$event.keyCode == 13 && searchPublications()"
+                 data-ng-model="search.julkaisuvuosi"
+                 placeholder="{{i18n.content.tarkasta.haku.julkaisuvuosi[lang]}}"/>
+        </div>
       </div>
-    </div>
-    <div class="col-sm-2">
-      <div class="form-group">
-        <ui-select data-ng-model="search.julkaisuntila"
-                   theme="bootstrap">
-          <ui-select-match class="ui-select-match"
-                           placeholder="{{i18n.content.tarkasta.haku.julkaisuntila[lang]}}">
-            {{ search.julkaisuntila.name || search.julkaisuntila }}
-          </ui-select-match>
-          <ui-select-choices
-                  repeat="state in julkaisuntilat">
-            {{ state.name }}
-          </ui-select-choices>
-        </ui-select>
+      <div class="col-sm-2">
+        <div class="form-group">
+          <ui-select data-ng-model="search.julkaisuntila"
+                     theme="bootstrap">
+            <ui-select-match class="ui-select-match"
+                             placeholder="{{i18n.content.tarkasta.haku.julkaisuntila[lang]}}">
+              {{ search.julkaisuntila.name || search.julkaisuntila }}
+            </ui-select-match>
+            <ui-select-choices
+                    repeat="state in julkaisuntilat">
+              {{ state.name }}
+            </ui-select-choices>
+          </ui-select>
+        </div>
       </div>
-    </div>
-    <div class="col-sm-2 p-0">
-      <div class="d-inline-block pxs">
-        <button class="btn btn-primary"
-                data-ng-click="searchPublications()"
-                data-ng-disabled="!search.vapaasanahaku && !search.julkaisuvuosi && !search.julkaisuntila"
-                data-ng-bind="i18n.content.esitayta.hae[lang]">
-        </button>
-      </div>
-      <div class="d-inline-block">
-        <button class="btn btn-danger"
-                data-ng-click="resetData()"
-                title="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]"
-                data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]">
-        </button>
+      <div class="col-sm-2 p-0">
+        <div class="d-inline-block pxs">
+          <button class="btn btn-primary"
+                  data-ng-click="searchPublications()"
+                  data-ng-disabled="!search.vapaasanahaku && !search.julkaisuvuosi && !search.julkaisuntila"
+                  data-ng-bind="i18n.content.esitayta.hae[lang]">
+          </button>
+        </div>
+        <div class="d-inline-block">
+          <button class="btn btn-danger"
+                  data-ng-click="resetData()"
+                  title="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]"
+                  data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]">
+          </button>
+        </div>
       </div>
     </div>
   </div>
