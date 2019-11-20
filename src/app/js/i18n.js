@@ -832,7 +832,7 @@ const i18n = {
       keskeyta: { FI: 'Hylkää ja mene omiin tallennuksiin', SV: 'Avbryt och go till egna publikationer ', EN: 'Discard and go to saved publications' }
     },
     tallennus: {
-      tallenna: { FI: 'Tallenna tiedot ja siirry julkaisulistaukseen', SV: 'Spara och gå till publikation lista', EN: 'Save changes and go to publication list' },
+      tallenna: { FI: 'Tallenna tiedot ja siirry julkaisulistaukseen', SV: 'Spara och gå till publikationslistan', EN: 'Save changes and go to publication list' },
       hylkaa: { FI: 'Hylkää ja palaa omiin tallennuksiin', SV: 'Avbryt och gå till egna publikationer', EN: 'Discard and return to saved publications' }
     },
     vaihevuo: {
