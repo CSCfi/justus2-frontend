@@ -20,6 +20,8 @@ angular.module('DirectivesModule', [])
     require: 'ngModel',
     link: function(scope, element, attr, mCtrl) {
       function myValidation(issn) {
+
+
         if (!issn) return false; // undefined?
         if (!issn.match(JustusService.pattern.issn)) return false;
         let ret = JustusService.checkISSN(issn);
@@ -50,4 +52,41 @@ angular.module('DirectivesModule', [])
       mCtrl.$parsers.push(myValidation);
     }
   };
+}])
+
+.directive('validateOrganisaatiotekijatDirective',
+    ['JustusService', 'ValidationService', function(JustusService, ValidationService) {
+    return {
+        // require: 'ngModel',
+        scope: {
+          validate: '=',
+          field: '@',
+          value: '=',
+
+        },
+        link: function(scope, element, attr, mCtrl) {
+
+
+            if (!scope.validate) return;
+
+            if (scope.field === 'orcid') {
+                if (scope.field !== null || scope.field !== '') {
+                    let pattern = JustusService.pattern["orcid"];
+                    if (!scope.value.match(pattern)) {
+                        element.addClass('has-error has-feedback');
+
+                    }
+                }
+                else {
+                    if (JustusService.isFieldRequired(scope.field)) {
+                        if (JustusService.fieldIsEmpty(scope.value)) {
+                            element.addClass('has-error has-feedback');
+                        }
+                    }
+                }
+
+            }
+
+        }
+    };
 }]);

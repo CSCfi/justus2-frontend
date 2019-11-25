@@ -30,6 +30,8 @@ angular.module('JustusController', [])
             $scope.fileAlreadyExists = false;
             JustusService.file = null;
 
+            $scope.validateState = false;
+
             // Parses first- and lastnames from a string of names and returns them in a list of objects [{ firstName: '', lastName: '' }, ...]
             const parseNames = function(namesString) {
                 const parsedNames = [];
@@ -83,6 +85,7 @@ angular.module('JustusController', [])
                 $scope.invalidFields = [];
                 fillMissingJustusLists();
                 $scope.useVaihe(1);
+                $scope.validateState = false;
             };
 
             $scope.useTekijat = function() {
@@ -431,6 +434,10 @@ angular.module('JustusController', [])
 
             $scope.useVaihe = function(vaihe) {
 
+                if ($scope.vaihe !== 5) {
+                    $scope.validateState = false;
+                }
+
                 // Prevent user from navigating to vaihe 1 when editing a publication
                 if ($scope.justus.julkaisu.id && vaihe === 1) {
                     return;
@@ -457,7 +464,10 @@ angular.module('JustusController', [])
                             $scope.useVaihe(4);
                             return;
                         }
+
+                        $scope.validateState = true;
                         if (!$scope.isJustusValid()) {
+
                             // Stay on stage 3 if stage form not valid
                             $scope.useVaihe(3);
                             return;
@@ -717,6 +727,8 @@ angular.module('JustusController', [])
                 JustusService.updatePublicationFormData($scope.justus);
                 $scope.useVaihe($stateParams.vaihe || 1);
                 $scope.loading.publication = false;
+                $scope.validateState = false;
+
             };
 
 

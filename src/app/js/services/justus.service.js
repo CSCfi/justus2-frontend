@@ -148,7 +148,7 @@ angular.module('JustusService', [])
     if (field_default_config[fieldName].childnode) {
         if (this.fieldIsEmpty(this.justus.julkaisu[fieldName])) {
             valid = this.isFieldRequired(fieldName) === true ? false : true;
-            reason = valid === false ? 'Field is empty' : '';
+            reason = valid === false ? `Field is empty: ${fieldName}` : '';
         }
         else {
             fieldIsFilled = true;
@@ -156,7 +156,7 @@ angular.module('JustusService', [])
     } else {
         if (this.fieldIsEmpty(this.justus[fieldName])) {
             valid = this.isFieldRequired(fieldName) === true ? false : true;
-            reason = valid === false ? 'Field is empty' : '';
+            reason = valid === false ? `Field is empty: ${fieldName}` : '';
         }
         else {
             fieldIsFilled = true;
@@ -238,6 +238,7 @@ angular.module('JustusService', [])
 
   this.validateNestedField = function(fieldName) {
     let valid = true;
+
     angular.forEach(field_default_config[fieldName].subfields, function(subfieldName) {
       const subfieldIsRequired = this.isFieldRequired(subfieldName);
 
@@ -245,19 +246,13 @@ angular.module('JustusService', [])
       if (angular.isArray(this.justus[fieldName]) && subfieldIsRequired === true) {
         angular.forEach(this.justus[fieldName], function(fieldIndex, index) {
 
-
-          // If the required amount of values is already entered, no need to validate
-          // emptiness of remaining fields
-          // if (field_default_config[fieldName].requiredAmount <= index) {
-          //   return;
-          // }
-
           if (this.fieldIsEmpty(fieldIndex[subfieldName]) === true) {
             valid = false;
           }
           else if (angular.isArray(fieldIndex[subfieldName])) {
             if (fieldIndex[subfieldName].length > 0) {
-              if (!fieldIndex[subfieldName][0]) {
+              let emptyStrings = fieldIndex[subfieldName].filter(str => str.trim().length <= 0);
+              if (emptyStrings.length > 0) {
                 valid = false;
               }
             }

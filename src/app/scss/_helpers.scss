@@ -2,6 +2,10 @@
   margin-top: $padding-large-vertical;
 }
 
+.mt-x {
+  margin-top: $padding-small-vertical;
+}
+
 
 .text-gray {
   color: 	#8c8c8c;
@@ -37,6 +41,10 @@
 
 .p-0 {
   padding: 0;
+}
+
+.pl-0 {
+  padding-left: 0;
 }
 
 .nowrap {
@@ -95,6 +103,10 @@
 
 .ui-select-choices-row-inner {
   padding-left: 10px !important;
+}
+
+.dropdown-height-300 > .ui-select-choices {
+  max-height: 300px !important;
 }
 
 input[type=number]
