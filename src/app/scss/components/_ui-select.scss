@@ -1,7 +1,15 @@
 .ui-select-bootstrap {
   span {
     overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 1.5em;
   }
+  .ui-select-match-text {
+    //width: 97%;
+    text-overflow: ellipsis;
+    padding-right: 0 !important;
+  }
+
   .ui-select-toggle {
 
     &.form-control {
@@ -20,6 +28,14 @@
   }
 
   .ui-select-choices-row {
+    //padding: $padding-small-vertical $padding-small-horizontal;
     padding: $padding-small-vertical $padding-small-horizontal;
+    span {
+        padding: 3px 10px;
+    }
   }
+}
+
+.ui-select-match.no-ellipsis span {
+  text-overflow: initial;
 }

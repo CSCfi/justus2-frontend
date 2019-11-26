@@ -130,6 +130,13 @@ angular.module('JustusController', [])
                 $scope.justus.organisaatiotekija[parentIndex].alayksikko.splice(index, 1);
             };
 
+            $scope.getArvo = function(alayksikkoKoodi) {
+              if ($scope.alayksikkovuosi.selected["id"] === 2019) {
+                  return "";
+              } else
+                  return alayksikkoKoodi;
+            };
+
             $scope.useOrganisaatiotekijaRooli = function(parIndex, input) {
                 $scope.justus.organisaatiotekija[parIndex].rooli = input.arvo;
             };

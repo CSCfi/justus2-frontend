@@ -307,9 +307,9 @@
                            on-select="useOrganisaatiotekijaAlayksikko(pIx,$index,$select.selected.arvo)"
                            theme="bootstrap"
                             class="dropdown-height-300">
-                  <ui-select-match class="ui-select-match"
-                                   placeholder="{{ota}} {{ getSelite(user.alayksikot, ota)|| i18n.content.form.organisaatiotekija.alayksikko.picktip[lang]}}">
-                    {{ ota }}  {{ getSelite(user.alayksikot, ota) }}
+                    <ui-select-match class="ui-select-match"
+                                     placeholder="{{ getArvo(ota)}} {{ getSelite(user.alayksikot, ota)|| i18n.content.form.organisaatiotekija.alayksikko.picktip[lang]}}">
+                    {{ getArvo(ota) }}  {{ getSelite(user.alayksikot, ota) }}
                   </ui-select-match>
                   <ui-select-choices repeat="o in getAlayksikkoData(alayksikkovuosi.selected) | filter: $select.search">
                     {{o.arvo}} {{o.selite}}
@@ -338,7 +338,7 @@
           </div>
         </div>
         <div class="col-xs-2">
-          <span class="btn btn-primary"
+          <span class="btn btn-primary mb-x"
                 data-ng-click="justus.organisaatiotekija.splice($index, 1)"
                 data-ng-hide="justus.organisaatiotekija.length<2"
                 title="{{i18n.content.form.organisaatiotekija.poista.tooltip[lang]}}"
