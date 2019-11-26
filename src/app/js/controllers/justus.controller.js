@@ -126,6 +126,10 @@ angular.module('JustusController', [])
                 $scope.justus.organisaatiotekija[parIndex].alayksikko[index] = input;
             };
 
+            $scope.addAlayksikko = function(parentIndex, index) {
+                $scope.justus.organisaatiotekija[parentIndex].alayksikko.splice(index, 1);
+            };
+
             $scope.useOrganisaatiotekijaRooli = function(parIndex, input) {
                 $scope.justus.organisaatiotekija[parIndex].rooli = input.arvo;
             };
