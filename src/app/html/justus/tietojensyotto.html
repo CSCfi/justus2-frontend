@@ -309,10 +309,10 @@
                             class="dropdown-height-300">
                     <ui-select-match class="ui-select-match"
                                      placeholder="{{ getArvo(ota)}} {{ getSelite(user.alayksikot, ota)|| i18n.content.form.organisaatiotekija.alayksikko.picktip[lang]}}">
-                    {{ getArvo(ota) }}  {{ getSelite(user.alayksikot, ota) }}
+                    {{ ota }}  {{ getSelite(user.alayksikot, ota) }}
                   </ui-select-match>
                   <ui-select-choices repeat="o in getAlayksikkoData(alayksikkovuosi.selected) | filter: $select.search">
-                    {{o.arvo}} {{o.selite}}
+                    {{ getArvo(o.arvo)}} {{o.selite}}
                   </ui-select-choices>
                 </ui-select>
               </div>
