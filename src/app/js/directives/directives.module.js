@@ -74,19 +74,18 @@ angular.module('DirectivesModule', [])
                     let pattern = JustusService.pattern["orcid"];
                     if (!scope.value.match(pattern)) {
                         element.addClass('has-error has-feedback');
-
                     }
                 }
-                else {
-                    if (JustusService.isFieldRequired(scope.field)) {
-                        if (JustusService.fieldIsEmpty(scope.value)) {
-                            element.addClass('has-error has-feedback');
-                        }
+            }
+            else {
+                if (JustusService.isFieldRequired(scope.field)) {
+                    if (JustusService.fieldIsEmpty(scope.value)) {
+                        element.addClass('has-error has-feedback');
                     }
                 }
-
             }
 
         }
+
     };
 }]);

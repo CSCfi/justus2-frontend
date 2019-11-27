@@ -62,7 +62,7 @@
         <div class="form-group">
           <ui-select data-ng-model="search.julkaisuntila"
                      theme="bootstrap">
-            <ui-select-match class="ui-select-match"
+            <ui-select-match class="ui-select-match no-ellipsis"
                              placeholder="{{i18n.content.tarkasta.haku.julkaisuntila[lang]}}">
               {{ search.julkaisuntila.name || search.julkaisuntila }}
             </ui-select-match>
