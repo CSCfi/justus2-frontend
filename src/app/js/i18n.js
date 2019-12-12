@@ -493,18 +493,18 @@ const i18n = {
         SV: 'Publikationens vetenskapsområde',
         EN: 'Field of science of the publication',
         tooltip: {
-          FI: '1-6 tieteenalaa Tilastokeskuksen tieteenalaluokituksen mukaan siinä järjestyksessä, mitä tieteenalaa julkaisu eniten koskee. Ensimmäinen, ns. ensisijainen tieteenala, on pakollinen tieto.',
-          SV: '1–6 vetenskapsområden enligt Statistikcentralens klassificering av vetenskapsområden med det vetenskapsområde först som publikationen i första hand berör. Det första, s.k. primära, vetenskapsområdet måste anges.',
-          EN: 'One to six fields of science according to the field of science classification of Statistics Finland in the order of relevance of each field to the publication. The first, so-called primary field of science is mandatory.'
+          FI: '1-6 alatieteenalaa Tilastokeskuksen tieteenalaluokituksen mukaan siinä järjestyksessä, mitä alatieteenalaa julkaisu eniten koskee. Ensimmäinen, ns. ensisijainen alatieteenala, on pakollinen tieto.',
+          SV: '1–6 sekundära vetenskapsområden enligt Statistikcentralens klassificering av vetenskapsområden med det sekundära vetenskapsområde först som publikationen i första hand berör. Det sekundära vetenskapsområdet måste anges.',
+          EN: 'One to six secondary fields of science according to the field of science classification of Statistics Finland in the order of relevance of each secondary field of science to the publication. The secondary field of science is mandatory.'
         },
 		tooltipF: {
-          FI: 'Käytetään sopivinta tieteenalaa johdettuna taiteenalasta. 1-6 tieteenalaa Tilastokeskuksen tieteenalaluokituksen mukaan siinä järjestyksessä, mitä tieteenalaa julkaisu eniten koskee. Ensimmäinen, ns. ensisijainen tieteenala, on pakollinen tieto.',
+          FI: 'Käytetään sopivinta alatieteenalaa johdettuna taiteenalasta. 1-6 alatieteenalaa Tilastokeskuksen tieteenalaluokituksen mukaan siinä järjestyksessä, mitä alatieteenalaa julkaisu eniten koskee. Ensimmäinen, ns. ensisijainen alatieteenala, on pakollinen tieto.',
           SV: '*SV',
-          EN: 'Use the most appropriate field of science based on the field of art. One to six fields of science according to the field of science classification of Statistics Finland in the order of relevance of each field to the publication. The first, so-called primary field of science is mandatory.'
+          EN: 'Use the most appropriate secondary field of science based on the field of art. One to six secondary fields of science according to the field of science classification of Statistics Finland in the order of relevance of each seconadry field of science to the publication. The secondary field of science is mandatory.'
         },
         lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
         poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
-        paa: { picktip: { FI: 'Valitse päätieteenala', SV: 'Välj primära vetenskapsområdet', EN: 'Choose primary field of science' } },
+        paa: { picktip: { FI: 'Rajaa päätieteenala', SV: 'Filter efter primära vetenskapsområdet', EN: 'Filter by primary field of science' } },
         ala: { picktip: { FI: 'Valitse alatieteenala', SV: 'Välj sekundära vetenskapsområdet', EN: 'Choose secondary field of science' } }
       },
       taiteenala: {
