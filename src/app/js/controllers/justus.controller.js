@@ -483,8 +483,7 @@ angular.module('JustusController', [])
                             $scope.useVaihe(3);
                             return;
                         }
-                        // Add user's organisaatiotunnus to the form
-                        this.justus.julkaisu.organisaatiotunnus =  $rootScope.user.organization.code;
+
                     }
                 }
                 else {

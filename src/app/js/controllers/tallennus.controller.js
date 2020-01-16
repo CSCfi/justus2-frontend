@@ -36,6 +36,7 @@ angular.module('TallennusController', [])
 
       delete publication.julkaisu.id;
       publication.julkaisu.username = $rootScope.user.name;
+      publication.julkaisu.organisaatiotunnus = $rootScope.user.organization.code;
       publication.julkaisu.modified = new Date();
 
       // Replace user entered values in schema and set default values for
