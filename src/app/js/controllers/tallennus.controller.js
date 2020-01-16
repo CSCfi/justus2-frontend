@@ -70,7 +70,7 @@ angular.module('TallennusController', [])
 
       publication.taiteenala = $scope.justus.taiteenala;
 
-      const fileData = {};
+      let fileData = {};
 
        if (Object.keys($rootScope.filedata).length !== 0 ) {
            angular.forEach($scope.meta.tables.julkaisuarkisto.columns, (field) => {
@@ -80,24 +80,14 @@ angular.module('TallennusController', [])
        }
 
         if (!$scope.justus.julkaisu.id) {
-            APIService.post('julkaisu', publication).then((data) => {
+            APIService.post('julkaisu', publication).then((response) => {
                 if (fileData.filename && fileData.filename !== "") {
-                    fileData.julkaisuid =  data.id;
-                    APIService.postJulkaisu(fileData, $scope.file).then((response) => {
-                        console.log(response);
-                        if ($rootScope.user.role === "admin") {
-                            $state.go('hyvaksy');
-                        } else {
-                            $state.go('omat');
-                        }
-                        JustusService.clearPublicationForm();
-                        delete $rootScope.filedata;
-                        $rootScope.filedata = {};
-                    })
-                        .catch((error) => {
-                            $log.error(error);
-                        });
-                } else {
+                    fileData.julkaisuid = response.id;
+                    const uploadPromise = APIService.postJulkaisu(fileData, $scope.file);
+                    console.log(uploadPromise);
+                    handlePublicationUploadAndNavigateToNextPage(uploadPromise)
+                }
+                else {
                     if ($rootScope.user.role === "admin") {
                         $state.go('hyvaksy');
                     } else {
@@ -107,13 +97,12 @@ angular.module('TallennusController', [])
                     delete $rootScope.filedata;
                     $rootScope.filedata = {};
                 }
-            }).catch((error) => {
-                    $log.error(error);
+            })
+        }
+        else {
 
-        });
-        } else {
-
-            let promise;
+            let uploadPromise;
+            let julkaisuPromise;
 
             if ($scope.file) {
                 fileData.julkaisuid = $scope.justus.julkaisu.id;
@@ -121,42 +110,68 @@ angular.module('TallennusController', [])
                     .then((response) => {
                         console.log(response);
                         // Todo: if first request fails do not send publication
-                        promise = APIService.postJulkaisu(fileData, $scope.file);
-                        clearDataAndNavigateToNextPage(promise);
+                        uploadPromise = APIService.postJulkaisu(fileData, $scope.file);
+                        handlePublicationUploadAndNavigateToNextPage(uploadPromise);
 
                     });
             } else if (!$scope.file && fileData.filename) {
                 fileData.julkaisuid = $scope.justus.julkaisu.id;
-                promise =  APIService.put('julkaisu', $scope.justus.julkaisu.id, publication, fileData);
-                clearDataAndNavigateToNextPage(promise);
+                julkaisuPromise =  APIService.put('julkaisu', $scope.justus.julkaisu.id, publication, fileData);
+                clearDataAndNavigateToNextPage(julkaisuPromise);
 
             } else {
-                promise = APIService.put('julkaisu', $scope.justus.julkaisu.id, publication);
-                clearDataAndNavigateToNextPage(promise);
+                julkaisuPromise = APIService.put('julkaisu', $scope.justus.julkaisu.id, publication);
+                clearDataAndNavigateToNextPage(julkaisuPromise);
             }
 
         }
 
   };
 
-      function clearDataAndNavigateToNextPage(promise) {
-          promise
-              .then((res) => {
-                  console.log(res);
-                  if ($rootScope.user.role === "admin") {
-                      $state.go('hyvaksy');
-                  } else {
-                      $state.go('omat');
-                  }
+      function handlePublicationUploadAndNavigateToNextPage(upload) {
+            upload
+                .then((res) => {
+                    console.log(res);
+                    if (res.status === 500) {
+                        alert("Metadata for publication was succesfully saved but publication upload responded with " +
+                            "following error code: " + res.data);
+                        $state.go('omat');
+                    } else {
+                        if ($rootScope.user.role === "admin") {
+                            $state.go('hyvaksy');
+                        } else {
+                            $state.go('omat');
+                        }
+                    }
 
-                  JustusService.clearPublicationForm();
-                  delete $rootScope.filedata;
-                  $rootScope.filedata = {};
-              })
-              .catch((error) => {
-                  $log.error(error);
-              });
-      }
+                    JustusService.clearPublicationForm();
+                    delete $rootScope.filedata;
+                    $rootScope.filedata = {};
+
+                })
+                .catch((error) => {
+                    $log.error(error);
+                });
+        }
+
+        function clearDataAndNavigateToNextPage(julkaisuPromise) {
+            julkaisuPromise
+                .then((res) => {
+                    console.log(res);
+                        if ($rootScope.user.role === "admin") {
+                            $state.go('hyvaksy');
+                        } else {
+                            $state.go('omat');
+                        }
+                    JustusService.clearPublicationForm();
+                    delete $rootScope.filedata;
+                    $rootScope.filedata = {};
+
+                })
+                .catch((error) => {
+                    $log.error(error);
+                });
+        }
 
 
       $scope.cancelAndReturnToPublicationListing = function() {

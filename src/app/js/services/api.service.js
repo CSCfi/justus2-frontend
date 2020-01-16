@@ -146,14 +146,13 @@ angular.module('APIService', [])
         return response.data;
       })
       .catch(function (response) {
-        $log.error('post ERROR ' + response.status + ' ' + response.data);
+        console.log(response);
+        $log.error('post ERROR ' + response.status + ' ' + response.data.description);
       });
     };
 
     /* READ :: GET */
     this.get = function (api, id) {
-
-        console.log(API_BASE_URL + 'julkaisut' + '/' + api + (id ? '/' + id : ''));
 
       return $http({
         method: 'GET',
@@ -223,10 +222,11 @@ angular.module('APIService', [])
         headers: { 'Content-Type': 'application/json' }
       })
       .then(function (response) {
-        return response.data;
+          return response.data;
       })
       .catch(function (response) {
         $log.error('put ERROR ' + response.status + ' ' + response.data);
+        return response.status;
       });
     };
 
@@ -249,6 +249,7 @@ angular.module('APIService', [])
 
     this.postJulkaisu = function(data, file) {
 
+        console.log(data);
           return Upload.upload({
               url: API_BASE_URL + 'upload',
               data: { file: file, data: data },
@@ -258,13 +259,10 @@ angular.module('APIService', [])
           .then(function (resp) {
              return resp;
           }, function (resp) {
-              console.log(resp);
-              $log.error('Error status: ' + resp.status);
-              $log.error('Error message: ' + resp.data);
+              console.log(resp.status);
+              // $log.error('Error status: ' + resp.status);
+              // $log.error('Error message: ' + resp.data);
               return resp;
-          }, function (evt) {
-              let progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-              console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
           });
 
     };
