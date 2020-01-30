@@ -28,10 +28,10 @@
       </div>
     </div>
   </div>
-  <div class="col-xs-12 col-md-5 pull-right text-right">
+  <div class="col-xs-12 col-md-5 pull-right text-right pl-0">
     <div  data-ng-if="state.name!='index' && user">
       <span><i>{{user.name}}</i>,&nbsp;
-        <span data-ng-if="initialRole === 'owner'">{{ user.organization.code}}:&nbsp;</span>{{ user.organization.name }}</span>
+        <span data-ng-if="initialRole === 'owner'" class="text-capitalize">{{user.role}}, {{ user.organization.code}}:&nbsp;</span>{{ user.organization.name }}</span>
       <span>| <a href="" data-ng-href="{{ siteUrl }}Shibboleth.sso/Logout?return={{ siteUrl }}">{{i18n.header.logout[lang]}}</a></span>
     </div>
     <div>
@@ -52,14 +52,21 @@
     </div>
 
     <span data-ng-if="initialRole === 'owner'">
-      <select data-ng-model="selectedDemoUserRole" data-ng-change="setDemoUserRole(selectedDemoUserRole)">
-        <option value="owner">Owner</option>
+      <select data-ng-model="selectedDemoUserRole">
+        <option value="" disabled selected>Valite rooli</option>
         <option value="admin">Admin</option>
         <option value="member">Member</option>
       </select>
-      <select data-ng-model="selectedDemoUserOrganizationCode" data-ng-change="setDemoUserOrganization(selectedDemoUserOrganizationCode)">
-        <option data-ng-repeat="organization in organisationList" value="{{organization.arvo}}">{{organization.arvo}}: {{organization.selite}}</option>
+      <select data-ng-model="selectedDemoUserOrganizationCode">
+        <option value="" disabled selected>Valite organisaatio</option>
+        <option data-ng-repeat="organization in organisationList" value="{{organization.arvo}}">{{organization.arvo}}: {{organization.value}}</option>
       </select>
+      <button class="btn" data-ng-click="setDemoUserOrganization(selectedDemoUserOrganizationCode, selectedDemoUserRole)">
+        Lähetä
+      </button>
+        <button class="btn btn-link" data-ng-click="resetDemoUser()">
+          <span class=""><i class="fa fa-close fa-lg"></i></span>
+      </button>
     </span>
     
   </div>
