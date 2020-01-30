@@ -8,21 +8,26 @@ angular.module('AuthService', [])
 
             let getUserInfo = function () {
                 return $http.get(AUTH_URL).then(function (response) {
-
-                    user.name = response.data.perustiedot.nimi;
-                    user.mail = response.data.perustiedot.email;
-                    user.role = response.data.perustiedot.rooli;
-                    user.organization.code = response.data.perustiedot.organisaatio;
-                    user.organization.name = response.data.perustiedot.organisaationimi;
-                    user.organization.showPublicationInput = response.data.perustiedot.showPublicationInput;
-                    user.visibleFields = response.data.visibleFields;
-                    user.requiredFields = response.data.requiredFields;
-                    user.alayksikot = response.data.alayksikot;
-                    user.jukuriUser = response.data.perustiedot.jukuriUser;
-
-                    user.lang = response.data.perustiedot.kieli;
-                    return user;
+                   return setUser(response.data);
                 })
+            };
+
+            let setUser = function(response) {
+                user.name = response.perustiedot.nimi;
+                user.mail = response.perustiedot.email;
+                user.role = response.perustiedot.rooli;
+                user.organization.code = response.perustiedot.organisaatio;
+                user.organization.name = response.perustiedot.organisaationimi;
+                user.organization.showPublicationInput = response.perustiedot.showPublicationInput;
+                user.visibleFields = response.visibleFields;
+                user.requiredFields = response.requiredFields;
+                user.alayksikot = response.alayksikot;
+                user.jukuriUser = response.perustiedot.jukuriUser;
+
+                user.lang = response.perustiedot.kieli;
+                user.owner = response.perustiedot.owner;
+
+                return user;
             };
 
             let isLoggedIn = function () {
@@ -48,8 +53,7 @@ angular.module('AuthService', [])
                 "alayksikot": []
             };
 
-
-            return { getUserInfo: getUserInfo, isLoggedIn: isLoggedIn };
+            return { getUserInfo: getUserInfo, isLoggedIn: isLoggedIn, setUser: setUser };
 
         }
 

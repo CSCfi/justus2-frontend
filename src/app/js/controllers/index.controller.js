@@ -3,31 +3,27 @@
 angular.module('IndexController', [])
 
     .controller('IndexController', [
-        '$state', '$q', '$scope', '$rootScope', '$http', '$window', '$stateParams', '$transitions', '$location', 'KoodistoService', 'AuthService', 'APIService', 'AUTH_URL', 'SITE_URL', 'API_BASE_URL', 'DEMO_ENABLED',
-        function($state, $q, $scope, $rootScope, $http, $window, $stateParams, $transitions, $location, KoodistoService, AuthService, APIService, AUTH_URL, SITE_URL, API_BASE_URL, DEMO_ENABLED) {
+        '$state', '$q', '$scope', '$rootScope', '$http', '$window', '$stateParams', '$transitions', '$location', 'JustusService', 'KoodistoService', 'AuthService', 'APIService', 'AUTH_URL', 'SITE_URL', 'API_BASE_URL', 'DEMO_ENABLED',
+        function($state, $q, $scope, $rootScope, $http, $window, $stateParams, $transitions, $location, JustusService, KoodistoService, AuthService, APIService, AUTH_URL, SITE_URL, API_BASE_URL, DEMO_ENABLED) {
             $scope.demoEnabled = DEMO_ENABLED;
             $scope.siteUrl = SITE_URL;
 
 
             if (typeof (AUTH_URL) !== 'undefined') {
-
-                    AuthService.getUserInfo().then(function (res) {
+                AuthService.getUserInfo().then(function (res) {
 
                         // scope.user is reference to AuthService's user object
                         $scope.user = res;
                         $scope.lang = res.lang;
 
-                        //  if user's organization code is 00000 fetch data from all organizations
-                        if ($scope.user.organization.code === "00000") {
-                            getDemoOrganisationList($scope.user);
+                        //  if user is owner fetch data from all organizations
+                        if ($scope.user.owner) {
+                            $rootScope.initialRole = "owner";
+                            getDemoOrganisationList();
                         }
-
                         $rootScope.user = $scope.user;
-                        $rootScope.initialUser = $scope.user;
-                        $scope.initialRole = $scope.user.role;
 
                         $scope.showPublicationInput = $rootScope.user.organization.showPublicationInput;
-
                         fetchKoodistoData();
 
                          }).catch(function (err) {
@@ -38,17 +34,13 @@ angular.module('IndexController', [])
                 }
 
 
-            let getDemoOrganisationList = function(user) {
-                // Initialize role/organization selectors for demo user
-                $scope.selectedDemoUserRole = user.role;
-                $scope.selectedDemoUserOrganizationCode = user.organization.code;
-
+            let getDemoOrganisationList = function() {
+                $scope.selectedDemoUserRole = "";
                 $http.get(API_BASE_URL + 'organisaatiolistaus')
                     .then(function(response) {
                         $scope.organisationList = response.data;
 
                     });
-
             };
 
             let init = function() {
@@ -221,33 +213,42 @@ angular.module('IndexController', [])
                 return ($location.path().indexOf(menuPath) !== -1) ? 'active' : '';
             };
 
-            $scope.setDemoUserRole = function(userRole) {
-                $scope.user.role = userRole;
-                $rootScope.user = $scope.user;
+            let resetUserData = function(userData) {
+                APIService.post("impersonate", userData)
+                    .then(function(response) {
+                        console.log(response);
+                        $scope.user = AuthService.setUser(response);
+                        $rootScope.user = $scope.user;
+                        $scope.selectedDemoUserRole = "";
+                        $scope.selectedDemoUserOrganizationCode = "";
+                        $scope.showPublicationInput = $rootScope.user.organization.showPublicationInput;
+                        JustusService.clearPublicationForm();
+                        $state.reload();
+                    }).catch(function (Error) {
+                    console.log(Error);
+                });
             };
 
-            $scope.setDemoUserOrganization = function(organizationCode) {
+            $scope.resetDemoUser = function() {
+                let ownerData = {
+                    "organizationId": "00000",
+                    "role": "owner"
+                };
+                resetUserData(ownerData);
+             };
 
+            $scope.setDemoUserOrganization = function(organizationCode, userRole) {
 
+                if (!organizationCode || !userRole) return;
 
-                for (let i = 0; i < $scope.organisationList.length; i++) {
-                    if ($scope.organisationList[i].arvo === organizationCode) {
-
-                        $scope.user.organization.code = organizationCode;
-                        $rootScope.user.organization.code = organizationCode;
-                        $scope.user.organization.name = $scope.organisationList[i].selite;
-
-                        $scope.user.visibleFields = $scope.organisationList[i].visibleFields;
-                        $rootScope.user.visibleFields = $scope.organisationList[i].visibleFields;
-
-                        $scope.user.requiredFields = $scope.organisationList[i].requiredFields;
-                        $rootScope.user.requiredFields = $scope.organisationList[i].requiredFields;
-
-                        $scope.user.alayksikot = $scope.organisationList[i].alayksikot;
-
-                    }
+                if (userRole === "") {
+                    userRole = "admin";
                 }
-
+                let demoUserData = {
+                  "organizationId": organizationCode,
+                  "role": userRole
+                };
+                resetUserData(demoUserData);
             };
 
             init();
