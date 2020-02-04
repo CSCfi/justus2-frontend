@@ -33,7 +33,6 @@ angular.module('IndexController', [])
 
                 }
 
-
             let getDemoOrganisationList = function() {
                 $scope.selectedDemoUserRole = "";
                 $http.get(API_BASE_URL + 'organisaatiolistaus')
@@ -207,6 +206,19 @@ angular.module('IndexController', [])
             $scope.login = function() {
                 let target = encodeURIComponent(SITE_URL + '#!/valitse');
                 $window.location.href = SITE_URL + 'Shibboleth.sso/Login?target=' + target;
+            };
+
+
+            $scope.logout = function() {
+                APIService.post("logout")
+                    .then(function(response) {
+                        console.log(response);
+                        $window.location.href = SITE_URL + 'Shibboleth.sso/Logout?return=' + SITE_URL;
+                    }).catch(function (Error) {
+                    console.log(Error);
+                });
+
+
             };
 
             $scope.getMenuClass = function(menuPath) {

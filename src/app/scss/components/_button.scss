@@ -1,8 +1,7 @@
-.btn {
+.btn-primary {
   &.btn-lg {
     padding: $padding-large-vertical*2 $padding-large-horizontal;
   }
-
   &.btn-secondary,
   &:focus,
   &:active {

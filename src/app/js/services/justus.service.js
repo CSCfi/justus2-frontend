@@ -277,7 +277,7 @@ angular.module('JustusService', [])
   this.getInvalidFields = function(fields) {
       const invalidFields = [];
 
-      for (var i = 0; i < fields.length; i++) {
+      for (let i = 0; i < fields.length; i++) {
           if (this.isValid(fields[i]) === false) {
               invalidFields.push(fields[i]);
           }
