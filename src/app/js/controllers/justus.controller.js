@@ -397,7 +397,13 @@ angular.module('JustusController', [])
                         tieteenalakoodi: input.arvo,
                         jnro: ''
                     });
+
                 }
+                // empty selected value from UI:s scope
+                if ($scope.alatieteenalat) {
+                    $scope.alatieteenalat.selected = undefined;
+                }
+
             };
 
             $scope.useTaiteenala = function(input) {
