@@ -15,6 +15,7 @@ angular.module('JustusController', [])
             $scope.pattern = JustusService.pattern;
 
             $scope.tekijatTags = [];
+            $scope.emojulkaisuntoimittajatTags = [];
             $scope.avainsanatTags = [];
             $scope.lehtinimet = [];
             $scope.kustantajanimet = [];
@@ -88,6 +89,24 @@ angular.module('JustusController', [])
                 $scope.validateState = false;
             };
 
+            $scope.useEmojulkaisuntoimittajat = function() {
+
+                // Add space after each comma if none entered
+                $scope.emojulkaisuntoimittajatTags = $scope.emojulkaisuntoimittajatTags.map(function(tag, index) {
+                    if (tag.text && tag.text.indexOf(', ') === -1) {
+                        tag.text = tag.text.replace(',', ', ');
+                    }
+                    return tag;
+                });
+
+                $scope.justus.julkaisu.emojulkaisuntoimittajat = '';
+                $scope.justus.julkaisu.emojulkaisuntoimittajat = $scope.emojulkaisuntoimittajatTags.map(function(tag, index) {
+                    return tag.text;
+                }).join('; ');
+
+            };
+
+
             $scope.useTekijat = function() {
 
                 // Add space after each comma if none entered
@@ -106,12 +125,12 @@ angular.module('JustusController', [])
             };
 
             $scope.useKopioiTekijat = function(input) {
-                var tempstr = input;
-                for (var i = 0; i < $scope.justus.julkaisu.julkaisuntekijoidenlukumaara; i++) {
-                    var sb = 0;
-                    var se = tempstr.indexOf(',');
-                    var eb = tempstr.indexOf(',') + 1;
-                    var ee = tempstr.indexOf(';') >= 0 ? tempstr.indexOf(';') : tempstr.length;
+                let tempstr = input;
+                for (let i = 0; i < $scope.justus.julkaisu.julkaisuntekijoidenlukumaara; i++) {
+                    let sb = 0;
+                    let se = tempstr.indexOf(',');
+                    let eb = tempstr.indexOf(',') + 1;
+                    let ee = tempstr.indexOf(';') >= 0 ? tempstr.indexOf(';') : tempstr.length;
                     $scope.justus.organisaatiotekija[i] = {};
                     $scope.justus.organisaatiotekija[i].sukunimi = tempstr.substring(sb, se).trim();
                     $scope.justus.organisaatiotekija[i].etunimet = tempstr.substring(eb, ee).trim();
@@ -703,6 +722,12 @@ angular.module('JustusController', [])
                         });
 
                         $scope.useTekijat();
+
+                        parseNames($scope.justus.julkaisu.emojulkaisuntoimittajat).map((nameObject) => {
+                            $scope.emojulkaisuntoimittajatTags.push({ text: `${nameObject.lastName}, ${nameObject.firstName}` });
+                        });
+
+                        $scope.useEmojulkaisuntoimittajat();
                         $scope.initializeAvainsanatTags();
 
                         finalizeInit();
