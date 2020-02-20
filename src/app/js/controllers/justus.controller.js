@@ -608,7 +608,16 @@ angular.module('JustusController', [])
                         }
                     }
                 }
+
+                if (alayksikkovuosi.id === 2020) {
+                    for (let i = 0; i < $rootScope.user.alayksikot.length; i++) {
+                        if ($rootScope.user.alayksikot[i].vuosi === '2020') {
+                            return $rootScope.user.alayksikot[i].yksikot;
+                        }
+                    }
+                }
             };
+
 
             // fillMissingJustusLists - for UI setup list fields if otherwise missing
             // - internal unscoped function
@@ -616,7 +625,7 @@ angular.module('JustusController', [])
             let fillMissingJustusLists = function() {
 
                 for (let i=0; i < $rootScope.user.alayksikot.length; i++) {
-                    if($rootScope.user.alayksikot[i].vuosi === '2019') {
+                    if($rootScope.user.alayksikot[i].vuosi === '2020') {
                         if($rootScope.user.alayksikot[i].yksikot.length < 1) {
                             $scope.alayksikkovuodet = [
                                 {
@@ -630,6 +639,10 @@ angular.module('JustusController', [])
                                 {
                                     id: 2018,
                                     label: '2018'
+                                },
+                                {
+                                    id: 2019,
+                                    label: '2019'
                                 }
                             ];
                         } else {
@@ -649,6 +662,10 @@ angular.module('JustusController', [])
                                 {
                                     id: 2019,
                                     label: '2019'
+                                },
+                                {
+                                    id: 2020,
+                                    label: '2020'
                                 }
                             ];
                         }
@@ -658,19 +675,25 @@ angular.module('JustusController', [])
                 $scope.alayksikkovuosi = {};
 
                 if (!$scope.justus.organisaatiotekija[0].alayksikko[0]) {
-                    if ($scope.alayksikkovuodet.length === 4) {
+                    if ($scope.alayksikkovuodet.length === 5) {
+                        $scope.alayksikkovuosi.selected = {
+                            id: 2020,
+                            label: '2020'
+                        };
+                    } else {
                         $scope.alayksikkovuosi.selected = {
                             id: 2019,
                             label: '2019'
                         };
-                    } else {
-                        $scope.alayksikkovuosi.selected = {
-                            id: 2018,
-                            label: '2018'
-                        };
                     }
                 } else {
-                    if ($scope.justus.organisaatiotekija[0].alayksikko[0].indexOf('-2019-') !== -1) {
+                    if ($scope.justus.organisaatiotekija[0].alayksikko[0].indexOf('-2020-') !== -1) {
+                        $scope.alayksikkovuosi.selected = {
+                            id: 2020,
+                            label: '2020'
+                        };
+                    }
+                    else if ($scope.justus.organisaatiotekija[0].alayksikko[0].indexOf('-2019-') !== -1) {
                         $scope.alayksikkovuosi.selected = {
                             id: 2019,
                             label: '2019'
