@@ -15,7 +15,7 @@ angular.module('JustusController', [])
             $scope.pattern = JustusService.pattern;
 
             $scope.tekijatTags = [];
-            // $scope.emojulkaisuntoimittajatTags = [];
+            $scope.emojulkaisuntoimittajatTags = [];
             $scope.avainsanatTags = [];
             $scope.lehtinimet = [];
             $scope.kustantajanimet = [];
@@ -50,6 +50,22 @@ angular.module('JustusController', [])
 
                 return parsedNames;
             };
+
+            // Split from semicolon and create name object
+            const parseEmojulkaisuntoimittajat = function(namesString) {
+                const parsedNames = [];
+
+                if (namesString && namesString.length > 0) {
+                    const namePairs = namesString.split(';');
+                    namePairs.map(function(namePair) {
+                        parsedNames.push({
+                            name: namePair ? namePair.trim() : ''
+                        });
+                    });
+                }
+                return parsedNames;
+            };
+
 
             $scope.clearFormAndReturnToStart = function() {
                 JustusService.clearPublicationForm();
@@ -105,6 +121,25 @@ angular.module('JustusController', [])
                 }).join('; ');
                 $scope.justus.julkaisu.julkaisuntekijoidenlukumaara = $scope.tekijatTags.length;
             };
+
+
+            $scope.useEmojulkaisuntoimittajat = function() {
+
+                // Add space after each comma if none entered
+                $scope.emojulkaisuntoimittajatTags = $scope.emojulkaisuntoimittajatTags.map(function(tag, index) {
+                    if (tag.text && tag.text.indexOf(', ') === -1) {
+                        tag.text = tag.text.replace(',', ', ');
+                    }
+                    return tag;
+                });
+
+                $scope.justus.julkaisu.emojulkaisuntoimittajat = '';
+                $scope.justus.julkaisu.emojulkaisuntoimittajat = $scope.emojulkaisuntoimittajatTags.map(function(tag, index) {
+                    return tag.text;
+                }).join('; ');
+
+            };
+
 
             $scope.useKopioiTekijat = function(input) {
                 let tempstr = input;
@@ -730,6 +765,13 @@ angular.module('JustusController', [])
 
                         $scope.useTekijat();
                         $scope.initializeAvainsanatTags();
+
+
+                        parseEmojulkaisuntoimittajat($scope.justus.julkaisu.emojulkaisuntoimittajat).map((nameObject) => {
+                            $scope.emojulkaisuntoimittajatTags.push({ text: nameObject.name });
+                        });
+
+                        $scope.useEmojulkaisuntoimittajat();
 
                         finalizeInit();
                     })
