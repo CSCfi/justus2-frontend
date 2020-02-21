@@ -288,9 +288,9 @@ const i18n = {
         SV: 'Moderpublikationens redaktörer',
         EN: 'Parent publication editors',
         tooltip: {
-          FI: 'Toimitetun teoksen toimittajat muodossa Sukunimi, Etunimi. Paina Enter vahvistaaksesi nimi. Toimittajat siinä järjestyksessä, jossa ne on listattu alkuperäisessä julkaisussa tai lähdetietokannassa.',
-          SV: 'Det redigerade verkets redaktörer i följande format: Efternamn, Förnamn. Tryck på Enter för att bekräfta. Redaktörer i samma ordning som de nämns i den ursprungliga publikationen eller källdatabasen.',
-          EN: ' Editors of the parent publication in the following format: Surname, Firstname. Press Enter to confirm. Editors in the same order in which they were listed in the original publication or source database.'
+            FI: 'Emojulkaisun toimittajat siinä muodossa ja järjestyksessä, jossa ne on listattu alkuperäisessä julkaisussa tai lähdetietokannassa.',
+            SV: 'Det redigerade verkets redaktörer anges i den form och i den ordning som de nÃ¤mns i den ursprungliga publikationen eller källdatabasen.',
+            EN: 'Editors of the parent publication in the format and order in which they were listed in the original publication or source database.'
         }
       },
       lehdenjulkaisusarjannimi: {

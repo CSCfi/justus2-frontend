@@ -547,16 +547,21 @@
     <div class="col-sm-8 col-xs-12 justus-data">
       <div class="row">
         <div class="col-xs-10">
-         <tags-input data-ng-model="emojulkaisuntoimittajatTags"
-                           data-replace-spaces-with-dashes="false"
-                           data-add-on-comma="false"
-                           data-add-on-space="false"
-                           placeholder="{{i18n.content.form.tekijat.picktip[lang]}}"
-                           data-on-tag-added="useEmojulkaisuntoimittajat()"
-                           data-on-tag-removed="useEmojulkaisuntoimittajat()"
-                           enable-editing-last-tag="true"
-                           allowed-tags-pattern="^[^,\;]+,[^,\;]+$">
-         </tags-input>
+
+         <input type="text"
+                class="form-control"
+                data-ng-model="justus.julkaisu.emojulkaisuntoimittajat">
+
+         <!--<tags-input data-ng-model="emojulkaisuntoimittajatTags"-->
+                           <!--data-replace-spaces-with-dashes="false"-->
+                           <!--data-add-on-comma="false"-->
+                           <!--data-add-on-space="false"-->
+                           <!--placeholder="{{i18n.content.form.tekijat.picktip[lang]}}"-->
+                           <!--data-on-tag-added="useEmojulkaisuntoimittajat()"-->
+                           <!--data-on-tag-removed="useEmojulkaisuntoimittajat()"-->
+                           <!--enable-editing-last-tag="true"-->
+                           <!--allowed-tags-pattern="^[^,\;]+,[^,\;]+$">-->
+         <!--</tags-input>-->
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
         <div class="col-xs-2">
@@ -1117,6 +1122,7 @@
                      on-select="useTieteenala($select.selected)"
                      theme="bootstrap">
             <ui-select-match class="ui-select-match"
+
                              placeholder="{{i18n.content.form.tieteenala.paa.picktip[lang]}}">
               {{ $select.selected.arvo }} {{ $select.selected.selite }}
             </ui-select-match>
@@ -1133,6 +1139,7 @@
                        on-select="useTieteenala($select.selected)"
                        theme="bootstrap">
               <ui-select-match class="ui-select-match"
+                               allow-clear="true"
                                placeholder="{{i18n.content.form.tieteenala.ala.picktip[lang]}}">
                 {{ $select.selected.arvo }} {{ $select.selected.selite }}
               </ui-select-match>

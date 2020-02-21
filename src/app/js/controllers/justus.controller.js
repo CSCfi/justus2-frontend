@@ -15,7 +15,7 @@ angular.module('JustusController', [])
             $scope.pattern = JustusService.pattern;
 
             $scope.tekijatTags = [];
-            $scope.emojulkaisuntoimittajatTags = [];
+            // $scope.emojulkaisuntoimittajatTags = [];
             $scope.avainsanatTags = [];
             $scope.lehtinimet = [];
             $scope.kustantajanimet = [];
@@ -88,24 +88,6 @@ angular.module('JustusController', [])
                 $scope.useVaihe(1);
                 $scope.validateState = false;
             };
-
-            $scope.useEmojulkaisuntoimittajat = function() {
-
-                // Add space after each comma if none entered
-                $scope.emojulkaisuntoimittajatTags = $scope.emojulkaisuntoimittajatTags.map(function(tag, index) {
-                    if (tag.text && tag.text.indexOf(', ') === -1) {
-                        tag.text = tag.text.replace(',', ', ');
-                    }
-                    return tag;
-                });
-
-                $scope.justus.julkaisu.emojulkaisuntoimittajat = '';
-                $scope.justus.julkaisu.emojulkaisuntoimittajat = $scope.emojulkaisuntoimittajatTags.map(function(tag, index) {
-                    return tag.text;
-                }).join('; ');
-
-            };
-
 
             $scope.useTekijat = function() {
 
@@ -548,11 +530,13 @@ angular.module('JustusController', [])
 
             $scope.isValid = function(type, field) {
                 return JustusService.isValid(type, field);
+
             };
 
             $scope.isJustusValid = function() {
                 $scope.visibleFields = JustusService.getListOfVisibleFields();
                 $scope.invalidFields = JustusService.getInvalidFields($rootScope.user.visibleFields);
+
                 ValidationService.setValidationErrors($scope.invalidFields);
                 return $scope.invalidFields.length === 0;
                 // return true;
@@ -745,12 +729,6 @@ angular.module('JustusController', [])
                         });
 
                         $scope.useTekijat();
-
-                        parseNames($scope.justus.julkaisu.emojulkaisuntoimittajat).map((nameObject) => {
-                            $scope.emojulkaisuntoimittajatTags.push({ text: `${nameObject.lastName}, ${nameObject.firstName}` });
-                        });
-
-                        $scope.useEmojulkaisuntoimittajat();
                         $scope.initializeAvainsanatTags();
 
                         finalizeInit();
@@ -803,6 +781,7 @@ angular.module('JustusController', [])
                 } else {
                     AuthService.getUserInfo().then(function (res) {
                         $scope.user = res;
+                        $rootScope.user = $scope.user;
                         populatePublicationForm();
 
                     }).catch(function (err) {
