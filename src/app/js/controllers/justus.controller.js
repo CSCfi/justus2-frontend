@@ -307,7 +307,6 @@ angular.module('JustusController', [])
                             $scope.justus.julkaisu.username = $rootScope.user.name;
                             $scope.justus.julkaisu.projektinumero = [""];
 
-
                             // Initialize tekijatTags input
                             parseNames($scope.justus.julkaisu.tekijat).map(function(nameObject) {
                                 $scope.tekijatTags.push({ text: `${nameObject.lastName}, ${nameObject.firstName}` });
