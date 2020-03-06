@@ -263,6 +263,13 @@ angular.module('IndexController', [])
                 resetUserData(demoUserData);
             };
 
+            //
+            $http.get('test-data/person.json').then(function (res){
+                $scope.persons = res.data.persons;
+                console.log(res.data.persons);
+            });
+
+
             init();
 
         }

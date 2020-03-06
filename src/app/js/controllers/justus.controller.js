@@ -414,6 +414,64 @@ angular.module('JustusController', [])
                 }
             };
 
+            $scope.useOrganisaatiotekija = function(input, field, index) {
+
+                // reset previous value
+                $scope.justus.organisaatiotekija[index].alayksikko = [null];
+
+                $scope.justus.organisaatiotekija[index].etunimet = input.etunimi;
+                $scope.justus.organisaatiotekija[index].sukunimi = input.sukunimi;
+                $scope.justus.organisaatiotekija[index].orcid = input.orcid;
+
+                $scope.tempAlayksikot = input.alayksikko;
+
+                if (input.alayksikko.length === 1) {
+                    $scope.justus.organisaatiotekija[index].alayksikko = input.alayksikko;
+                }
+
+            };
+
+            $scope.resetOrg = function() {
+
+                $scope.justus.organisaatiotekija[0] =
+                    {
+                        "etunimet": "",
+                        "sukunimi": "",
+                        "orcid": "",
+                        "hrnumero": null,
+                        "rooli": null,
+                        "alayksikko": [null]
+
+                    };
+                console.log($scope.justus.organisaatiotekija);
+            };
+
+            $scope.useOrcidEsitaytto =  function(input, index) {
+
+                if (input.length !== 19) return;
+
+                $scope.orcidError = false;
+
+                let person = $scope.persons[$scope.persons.findIndex(x => x.orcid === input)];
+
+                if (!person) {
+                    $scope.orcidError = true;
+                    return;
+                }
+
+                $scope.justus.organisaatiotekija[index].etunimet = person.etunimi;
+                $scope.justus.organisaatiotekija[index].sukunimi = person.sukunimi;
+                $scope.tempAlayksikot = person.alayksikko;
+
+                $scope.organisaatioTekijaSelected = person.sukunimi;
+
+                if (person.alayksikko.length === 1) {
+                    $scope.justus.organisaatiotekija[index].alayksikko = input.alayksikko;
+                }
+
+            };
+
+
             $scope.useTieteenala = function(input) {
                 if (input === null) return;
 
