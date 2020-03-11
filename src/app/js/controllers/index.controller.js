@@ -25,6 +25,7 @@ angular.module('IndexController', [])
 
                         $scope.showPublicationInput = $rootScope.user.organization.showPublicationInput;
                         fetchKoodistoData();
+                        fetchPersonData();
 
                          }).catch(function (err) {
                             console.log(err);
@@ -263,12 +264,13 @@ angular.module('IndexController', [])
                 resetUserData(demoUserData);
             };
 
-            //
-            $http.get('test-data/person.json').then(function (res){
-                $scope.persons = res.data.persons;
-                console.log(res.data.persons);
-            });
 
+            let fetchPersonData = function() {
+                APIService.getPersonData()
+                    .then(function (res) {
+                        $scope.persons = res.persons;
+                    })
+            };
 
             init();
 

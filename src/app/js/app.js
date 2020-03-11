@@ -82,11 +82,23 @@ angular.module('JustusApp', [
       }
     };
 
+      const adminState = {
+          name: 'admin',
+          url: '/admin',
+          views: {
+              '': {
+                  templateUrl: 'html/admin.html',
+                  controller: 'AdminController'
+              }
+          }
+      };
+
     $stateProvider.state(indexState);
     $stateProvider.state(valitseState);
     $stateProvider.state(justusState);
     $stateProvider.state(omatState);
     $stateProvider.state(hyvaksyState);
+    $stateProvider.state(adminState);
   }
 ])
 

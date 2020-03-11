@@ -1,0 +1,189 @@
+<div class="row">
+    <div class="col-xs-12">
+        <h3 class="mt-x font-weight-bold">Käyttäjien hallinta</h3>
+    </div>
+</div>
+
+
+<div class="row no-gutter m-b">
+    <div class="col-xs-6 text-center">
+        <div class="justus-btn justus-btn-stage" data-ng-class="{selected: hakuState}"
+             data-ng-click="hakuState=true">
+            <span>Haku käyttäjistä</span>
+        </div>
+    </div>
+    <div class="col-xs-6 text-center">
+        <div class="justus-btn justus-btn-stage" data-ng-class="{selected: !hakuState}"
+             data-ng-click="hakuState=false">
+            <span>Tuo käyttäjiä</span>
+        </div>
+    </div>
+</div>
+
+<div data-ng-if="hakuState">
+    <div class="row no-gutter">
+        <div class="col-xs-12 p">
+            <p>Organisaation käyttäjiä yhteensä: {{persons.length}}</p>
+        </div>
+    </div>
+
+
+    <div class="px" style="margin:35px 0;" data-ng-if="showEditDialog">
+        <h5 class="font-weight-bold">Muokkat käyttäjää {{selectedPerson.etunimi}} {{selectedPerson.sukunimi}}</h5>
+        <div class="row form-group">
+            <div class="col-xs-12 ">
+                <label class="control-label">Etunimi</label>
+                <input type="text" class="form-control person-input"
+                       data-ng-model="selectedPerson.etunimi">
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-12">
+                <label class="control-label">Sukunimi</label>
+                <input type="text" class="form-control person-input"
+                       data-ng-model="selectedPerson.sukunimi">
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-12">
+                <label class="control-label">Sähköposti</label>
+                <input type="text" class="form-control person-input"
+                       value="email@email.fi">
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-12">
+                <label class="control-label">ORCID</label>
+                <input type="text" class="form-control person-input"
+                       data-ng-model="selectedPerson.orcid">
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-12">
+                <label class="control-label">Alayksikko</label>
+                <div data-ng-repeat="a in selectedPerson.alayksikko">
+                    <input type="text" class="form-control person-input"
+                           data-ng-model="a">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-6">
+                <button class="btn btn-primary" data-ng-click="savePerson()">
+                    Tallenna
+                </button>
+            </div>
+            <div class="col-xs-6">
+                <button class="btn btn-danger pull-right" data-ng-click="closeForm()">
+                    Hylkää muutokset
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="px">
+        <div class="row m-b">
+            <div class="col-sm-6">
+                <div class="input-group">
+                    <span class="input-group-addon bg-primary cursor-pointer"><i
+                            class="fa fa-search text-white"></i></span>
+                    <input type="text" class="form-control person-input"
+                           data-ng-model="search"
+                           placeholder="Haku henkilöistä"/>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table table-condensed table-striped">
+                    <thead>
+                    <tr>
+                        <th class="text-xl">HRnumero</th>
+                        <th class="text-xl">Etunimi</th>
+                        <th class="text-xl">Sukunimi</th>
+                        <th class="text-xl">Orcid</th>
+                        <th class="text-xl">Muokattu</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr data-ng-repeat="person in persons | filter: search | limitTo:'11' ">
+
+                        <td>{{person.hrnumero}}</td>
+                        <td>{{person.etunimi}}</td>
+                        <td>{{person.sukunimi}}</td>
+                        <td>{{person.orcid}}</td>
+                        <td><span data-ng-bind="person.modified | date:'d.M.yyyy HH:mm'"></span></td>
+                        <td class="text-right"><span class="px"><button
+                                class="btn btn-link font-weight-bold">Näytä</button></span></td>
+                        <td class="text-right">
+                            <button class="btn btn-link font-weight-bold" data-ng-click="editPerson(person)">Muokkaa
+                            </button>
+                        </td>
+                        <!--<button class="btn btn-link font-weight-bold" data-ng-click="editPerson(person)">Muokkaa</button></td>-->
+                        <!--<td><button class="btn btn-primary">Muokkaa</button></td>-->
+                    </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div data-ng-if="!hakuState">
+    <div class="row no-gutter">
+        <div class="col-md-4">
+            <h4>Lataa tiedot</h4>
+        </div>
+
+        <div class="d-inline-block pull-right">
+            <button class="btn btn-primary" data-ng-click="downloadCSV()">Lataa</button>
+        </div>
+    </div>
+
+
+    <div class="row no-gutter">
+        <div class="col-md-4">
+            <h4>Tuo päivitetyt tiedot</h4>
+        </div>
+
+        <div class="col-md-8">
+            <form name="form">
+                <div ng-show="!csvFile">
+                    <div class="d-inline-block pull-right" ngf-select ng-model="csvFile" name="filename"
+                         ngf-max-size="100MB">
+                        <button class="btn btn-primary">
+                            {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.valitse[lang]}}
+                        </button>
+                    </div>
+                    <!--<div class="d-inline-block text-right px" ng-if="!csvFile">-->
+                    <!--{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.eivalittu[lang]}}-->
+                    <!--</div>-->
+                </div>
+                <div class="row" ng-show="csvFile">
+                    <div class="col-md-8">
+                        <span class="font-weight-bold text-xl">{{csvFile.name}}</span>
+                    </div>
+                    <div class="col-md-2" style="margin-top:5px;">
+                        <span data-ng-bind="bytesToSize(csvFile.size)"></span>
+                    </div>
+                    <div class="col-md-2 text-right">
+                        <button class="btn btn-primary m-b"
+                                data-ng-click="removeFile(); csvFile = null"
+                                data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.poista[lang]">
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

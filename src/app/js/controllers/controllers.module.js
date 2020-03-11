@@ -3,5 +3,6 @@ angular.module('ControllersModule', [
   'JustusController',
   'JulkaisunsyottoController',
   'TallennusController',
-  'TarkastaController'
+  'TarkastaController',
+  'AdminController'
 ]);

@@ -1,3 +1,23 @@
+.red-bar {
+  background: transparent;
+}
+
+.red-bar.ng-enter {
+  transition:all ease-in 0.1s;
+  height: 0px;
+}
+
+.red-bar.ng-enter.ng-enter-active {
+  height: 30px;
+}
+
+.person-input {
+  border: 0;
+  border-bottom: 1px solid $brand-primary;
+  border-radius: 0;
+  box-shadow: none;
+}
+
 .m-t {
   margin-top: $padding-large-vertical;
 }
@@ -83,9 +103,18 @@
   font-weight: bold;
 }
 
+.text-white {
+  color: #fff;
+}
+
 .bg-white {
   background-color: #fff !important;
 }
+
+.bg-primary {
+  background-color: $brand-primary;
+}
+
 
 .d-inline-block {
   display: inline-block;
@@ -99,6 +128,22 @@
   &:first-child {
 
   }
+}
+
+.box-shadow-0 {
+  box-shadow: none;
+}
+
+.border-radius-0 {
+  border-radius: 0;
+}
+
+.border-0 {
+  border: none;
+}
+
+.border-primary {
+  border: 1px solid $brand-primary;
 }
 
 .ui-select-choices-row-inner {
