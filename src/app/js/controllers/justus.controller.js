@@ -429,6 +429,7 @@ angular.module('JustusController', [])
                     $scope.justus.organisaatiotekija[index].alayksikko = input.alayksikko;
                 }
 
+                $scope.organisaatiotekijaDisabled = true;
             };
 
             $scope.resetOrg = function() {
