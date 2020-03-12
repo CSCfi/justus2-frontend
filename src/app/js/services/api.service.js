@@ -209,17 +209,12 @@ angular.module('APIService', [])
               });
       };
 
-      this.getPersonData = function (writeCSV = false) {
+      this.getPersonData = function () {
           return $http({
               method: 'GET',
               url:  API_BASE_URL + 'organisaatiotekijat',
-              params: {
-                  writeCSV: writeCSV
-              }
           })
               .then(function (response) {
-                  console.log(response.data);
-                  // $scope.persons = response.data.persons;
                   return response.data;
               })
               .catch(function (error) {
