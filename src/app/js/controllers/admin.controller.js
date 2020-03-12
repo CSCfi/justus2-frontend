@@ -50,14 +50,11 @@ angular.module('AdminController', [])
             };
 
             // lataussivu
-                $scope.csvFile = null;
-                $scope.downloadCSV = function () {
-                    console.log("Downloading CSV file...");
-                    APIService.getPersonData(true).then(function (res) {
-                            console.log(res);
-                        }
-                    )
-                }
+
+            $scope.csvurl = API_BASE_URL + '/download-csv/personlist';
+
+            $scope.csvFile = null;
+
 
         }
     ]);
