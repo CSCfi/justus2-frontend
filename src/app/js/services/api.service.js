@@ -279,5 +279,24 @@ angular.module('APIService', [])
           });
 
     };
+
+      this.postCsvFile = function(file) {
+
+          return Upload.upload({
+              url: API_BASE_URL + 'upload-csv',
+              data: { file: file },
+              method: 'POST',
+              headers: { 'Content-Type': 'multipart/form-data' }
+          })
+              .then(function (resp) {
+                  return resp;
+              }, function (resp) {
+                  console.log(resp.status);
+                  // $log.error('Error status: ' + resp.status);
+                  // $log.error('Error message: ' + resp.data);
+                  return resp;
+              });
+
+      };
   }
 ]);

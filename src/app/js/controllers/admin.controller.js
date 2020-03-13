@@ -55,6 +55,14 @@ angular.module('AdminController', [])
 
             $scope.csvFile = null;
 
+            $scope.uploadCsv = function (file) {
+                console.log(file);
+                APIService.postCsvFile(file)
+                    .then(function (res) {
+                        console.log(res);
+                    })
+            }
+
 
         }
     ]);

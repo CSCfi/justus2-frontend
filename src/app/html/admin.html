@@ -28,7 +28,7 @@
     </div>
 
 
-    <div class="px" style="margin:35px 0;" data-ng-if="showEditDialog">
+    <div class="px m-b"  data-ng-if="showEditDialog">
         <h5 class="font-weight-bold">Muokkat käyttäjää {{selectedPerson.etunimi}} {{selectedPerson.sukunimi}}</h5>
         <div class="row form-group">
             <div class="col-xs-12 ">
@@ -88,7 +88,7 @@
         <div class="row m-b">
             <div class="col-sm-6">
                 <div class="input-group">
-                    <span class="input-group-addon bg-primary cursor-pointer"><i
+                    <span class="input-group-addon bg-primary cursor-pointer border-radius-0 border-primary"><i
                             class="fa fa-search text-white"></i></span>
                     <input type="text" class="form-control person-input"
                            data-ng-model="search"
@@ -113,7 +113,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr data-ng-repeat="person in persons | filter: search | limitTo:'11' ">
+                    <tr data-ng-repeat="person in persons | filter: search | limitTo:'20' ">
 
                         <td>{{person.hrnumero}}</td>
                         <td>{{person.etunimi}}</td>
@@ -174,9 +174,9 @@
                     <div class="col-md-8">
                         <span class="font-weight-bold text-xl">{{csvFile.name}}</span>
                     </div>
-                    <div class="col-md-2" style="margin-top:5px;">
-                        <span data-ng-bind="bytesToSize(csvFile.size)"></span>
-                    </div>
+                    <!--<div class="col-md-2" style="margin-top:5px;">-->
+                        <!--<span data-ng-bind="bytesToSize(csvFile.size)"></span>-->
+                    <!--</div>-->
                     <div class="col-md-2 text-right">
                         <button class="btn btn-primary m-b"
                                 data-ng-click="removeFile(); csvFile = null"
@@ -186,6 +186,11 @@
                 </div>
             </form>
         </div>
+    </div>
+    <div class="row no-gutte">
+        <button class="btn btn-primary" data-ng-click="uploadCsv(csvFile)">
+            lähhetä
+        </button>
     </div>
 </div>
 
