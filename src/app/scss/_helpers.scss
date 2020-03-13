@@ -130,6 +130,13 @@
   }
 }
 
+.no-hover {
+  &:hover {
+    color: inherit;
+
+  }
+}
+
 .box-shadow-0 {
   box-shadow: none;
 }
