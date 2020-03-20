@@ -162,7 +162,17 @@ angular.module('JustusController', [])
                 $scope.justus.organisaatiotekija[parIndex].alayksikko[index] = input;
             };
 
+
+            $scope.useAlayksikko = function(index, input) {
+                $scope.justus.organisaatiotekija[index].alayksikko.push(input);
+            };
+
+
             $scope.addAlayksikko = function(parentIndex, index) {
+                $scope.justus.organisaatiotekija[parentIndex].alayksikko.splice(index, 1);
+            };
+
+            $scope.poistaAlayksikko = function(parentIndex, index) {
                 $scope.justus.organisaatiotekija[parentIndex].alayksikko.splice(index, 1);
             };
 
