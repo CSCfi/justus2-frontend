@@ -164,7 +164,12 @@ angular.module('JustusController', [])
 
 
             $scope.useAlayksikko = function(index, input) {
-                $scope.justus.organisaatiotekija[index].alayksikko.push(input);
+                if ($scope.justus.organisaatiotekija[index].alayksikko[0] === null) {
+                    $scope.justus.organisaatiotekija[index].alayksikko[0] = input;
+                } else {
+                    $scope.justus.organisaatiotekija[index].alayksikko.push(input);
+                }
+
             };
 
 
@@ -177,7 +182,7 @@ angular.module('JustusController', [])
             };
 
             $scope.getArvo = function(alayksikkoKoodi) {
-              if ($scope.alayksikkovuosi.selected["id"] === 2019) {
+              if ($scope.alayksikkovuosi.selected["id"] === 2019 || $scope.alayksikkovuosi.selected["id"] === 2020) {
                   return "";
               } else
                   return alayksikkoKoodi;
@@ -424,7 +429,7 @@ angular.module('JustusController', [])
                 }
             };
 
-            $scope.useOrganisaatiotekija = function(input, field, index) {
+            $scope.useOrganisaatiotekijaEsitaytto = function(input, field, index) {
 
                 // reset previous value
                 $scope.justus.organisaatiotekija[index].alayksikko = [null];
@@ -433,13 +438,10 @@ angular.module('JustusController', [])
                 $scope.justus.organisaatiotekija[index].sukunimi = input.sukunimi;
                 $scope.justus.organisaatiotekija[index].orcid = input.orcid;
 
-                $scope.tempAlayksikot = input.alayksikko;
-
                 if (input.alayksikko.length === 1) {
                     $scope.justus.organisaatiotekija[index].alayksikko = input.alayksikko;
                 }
 
-                $scope.organisaatiotekijaDisabled = true;
             };
 
             $scope.resetOrg = function() {
@@ -454,33 +456,32 @@ angular.module('JustusController', [])
                         "alayksikko": [null]
 
                     };
-                console.log($scope.justus.organisaatiotekija);
             };
 
-            $scope.useOrcidEsitaytto =  function(input, index) {
-
-                if (input.length !== 19) return;
-
-                $scope.orcidError = false;
-
-                let person = $scope.persons[$scope.persons.findIndex(x => x.orcid === input)];
-
-                if (!person) {
-                    $scope.orcidError = true;
-                    return;
-                }
-
-                $scope.justus.organisaatiotekija[index].etunimet = person.etunimi;
-                $scope.justus.organisaatiotekija[index].sukunimi = person.sukunimi;
-                $scope.tempAlayksikot = person.alayksikko;
-
-                $scope.organisaatioTekijaSelected = person.sukunimi;
-
-                if (person.alayksikko.length === 1) {
-                    $scope.justus.organisaatiotekija[index].alayksikko = input.alayksikko;
-                }
-
-            };
+            // $scope.useOrcidEsitaytto =  function(input, index) {
+            //
+            //     if (input.length !== 19) return;
+            //
+            //     $scope.orcidError = false;
+            //
+            //     let person = $scope.persons[$scope.persons.findIndex(x => x.orcid === input)];
+            //
+            //     if (!person) {
+            //         $scope.orcidError = true;
+            //         return;
+            //     }
+            //
+            //     $scope.justus.organisaatiotekija[index].etunimet = person.etunimi;
+            //     $scope.justus.organisaatiotekija[index].sukunimi = person.sukunimi;
+            //     $scope.tempAlayksikot = person.alayksikko;
+            //
+            //     $scope.organisaatioTekijaSelected = person.sukunimi;
+            //
+            //     if (person.alayksikko.length === 1) {
+            //         $scope.justus.organisaatiotekija[index].alayksikko = input.alayksikko;
+            //     }
+            //
+            // };
 
 
             $scope.useTieteenala = function(input) {
@@ -880,6 +881,10 @@ angular.module('JustusController', [])
                 $scope.useVaihe($stateParams.vaihe || 1);
                 $scope.loading.publication = false;
                 $scope.validateState = false;
+
+                if ($scope.user.showHrData) {
+                    $scope.useEsitaytto = true;
+                }
 
             };
 
