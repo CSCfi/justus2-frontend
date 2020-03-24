@@ -26,7 +26,8 @@ angular.module('AuthService', [])
 
                 user.lang = response.perustiedot.kieli;
                 user.owner = response.perustiedot.owner;
-                user.showHrData = response.perustiedot.showHrData;
+                user.hrDataExists = response.perustiedot.showHrData;
+                // user.hrDataExists = false;
 
                 return user;
             };

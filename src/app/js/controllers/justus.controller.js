@@ -140,23 +140,71 @@ angular.module('JustusController', [])
 
             };
 
-
             $scope.useKopioiTekijat = function(input) {
+
+                $scope.multipleMatchNames = [];
                 let tempstr = input;
                 for (let i = 0; i < $scope.justus.julkaisu.julkaisuntekijoidenlukumaara; i++) {
                     let sb = 0;
                     let se = tempstr.indexOf(',');
                     let eb = tempstr.indexOf(',') + 1;
                     let ee = tempstr.indexOf(';') >= 0 ? tempstr.indexOf(';') : tempstr.length;
-                    $scope.justus.organisaatiotekija[i] = {};
-                    $scope.justus.organisaatiotekija[i].sukunimi = tempstr.substring(sb, se).trim();
-                    $scope.justus.organisaatiotekija[i].etunimet = tempstr.substring(eb, ee).trim();
-                    $scope.justus.organisaatiotekija[i].alayksikko = [null];
-                    $scope.justus.organisaatiotekija[i].orcid = "";
-                    $scope.justus.organisaatiotekija[i].hrnumero = null;
-                    tempstr = tempstr.substring(ee + 1);
+
+                    if (!$scope.user.hrDataExists) {
+                        $scope.justus.organisaatiotekija[i] = {};
+                        $scope.justus.organisaatiotekija[i].alayksikko = [null];
+                        $scope.justus.organisaatiotekija[i].sukunimi = tempstr.substring(sb, se).trim();
+                        $scope.justus.organisaatiotekija[i].etunimet = tempstr.substring(eb, ee).trim();
+                        $scope.justus.organisaatiotekija[i].orcid = "";
+                        $scope.justus.organisaatiotekija[i].hrnumero = null;
+                        tempstr = tempstr.substring(ee + 1);
+
+                    } else {
+                        let sukunimi = tempstr.substring(sb, se).trim();
+                        let etunimet = tempstr.substring(eb, ee).trim();
+                        tempstr = tempstr.substring(ee + 1);
+
+                        let personToCopy = $scope.persons.filter(obj => obj.sukunimi.toLowerCase() === sukunimi.toLowerCase() && obj.etunimi.toLowerCase() === etunimet.toLowerCase());
+
+                        if(personToCopy.length > 0) {
+
+                            for (let i = 0; i < personToCopy.length; i++) {
+                                let orgTekijaObj = {
+                                    "etunimet": personToCopy[i].etunimi,
+                                    "sukunimi": personToCopy[i].sukunimi,
+                                    "alayksikko": [personToCopy[i].alayksikko[0]],
+                                    "orcid": personToCopy[i].orcid,
+                                    "hrnumero": null
+                                };
+
+                                if ($scope.justus.organisaatiotekija[0].sukunimi === "") {
+                                    $scope.justus.organisaatiotekija[0] = orgTekijaObj;
+                                } else {
+                                    $scope.justus.organisaatiotekija.push(orgTekijaObj);
+                                }
+                            }
+
+                            if (personToCopy.length > 1) {
+                                $scope.multipleMatch = true;
+
+                                $scope.multipleMatchNames.push({
+                                    "etunimi": personToCopy[i].etunimi,
+                                    "sukunimi": personToCopy[i].sukunimi,
+
+                                });
+
+                                $scope.infoText = "HUOM! Seuraaville tekijöille löytyi useampi kuin yksi vastaavuus: ";
+                            }
+
+                        }
+                    }
                 }
             };
+
+            $scope.changeMode = function(index) {
+                $scope.justus.organisaatiotekija[index].useEsitaytto = !$scope.justus.organisaatiotekija[index].useEsitaytto
+            };
+
 
             $scope.useOrganisaatiotekijaAlayksikko = function(parIndex, index, input) {
                 $scope.justus.organisaatiotekija[parIndex].alayksikko[index] = input;
@@ -164,6 +212,9 @@ angular.module('JustusController', [])
 
 
             $scope.useAlayksikko = function(index, input) {
+
+                if (arrayContains($scope.justus.organisaatiotekija[index].alayksikko, input)) return;
+
                 if ($scope.justus.organisaatiotekija[index].alayksikko[0] === null) {
                     $scope.justus.organisaatiotekija[index].alayksikko[0] = input;
                 } else {
@@ -171,7 +222,6 @@ angular.module('JustusController', [])
                 }
 
             };
-
 
             $scope.addAlayksikko = function(parentIndex, index) {
                 $scope.justus.organisaatiotekija[parentIndex].alayksikko.splice(index, 1);
@@ -208,6 +258,9 @@ angular.module('JustusController', [])
                         "alayksikko": [null]
                     }
                 );
+                if ($scope.user.hrDataExists) {
+                    $scope.justus.organisaatiotekija[$scope.justus.organisaatiotekija.length-1].useEsitaytto = true;
+                }
 
             };
 
@@ -873,7 +926,11 @@ angular.module('JustusController', [])
                             "rooli": null,
                             "alayksikko": [null]
                         }
-                    ]
+                    ];
+
+                    if ($scope.user.hrDataExists) {
+                        $scope.justus.organisaatiotekija[0].useEsitaytto = true;
+                    }
                 }
                 $scope.justus.julkaisu.username = $rootScope.user.name;
                 fillMissingJustusLists();
@@ -881,10 +938,6 @@ angular.module('JustusController', [])
                 $scope.useVaihe($stateParams.vaihe || 1);
                 $scope.loading.publication = false;
                 $scope.validateState = false;
-
-                if ($scope.user.showHrData) {
-                    $scope.useEsitaytto = true;
-                }
 
             };
 
