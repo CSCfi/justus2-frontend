@@ -405,7 +405,7 @@
                   <label>{{i18n.content.form.organisaatiotekija.sukunimi.picktip[lang]}}</label>
                   <div data-ng-show="i.useEsitaytto">
                     <ui-select data-ng-model="organisaatioTekijaSelected"
-                               on-select="useOrganisaatiotekijaEsitaytto($select.selected, 'sukunimi', $index)"
+                               on-select="useOrganisaatiotekijaEsitaytto($select.selected, $index)"
                                theme="bootstrap">
                       <ui-select-match class="ui-select-match"
                                        placeholder="Valitse / Kirjoita sukunimi">
@@ -428,7 +428,7 @@
                  value="justus.organisaatiotekija[$index].etunimet">
               <label>{{i18n.content.form.organisaatiotekija.etunimet.picktip[lang]}}</label>
               <input type="text" class="form-control"
-                     data-ng-disabled="useEsitaytto"
+                     data-ng-disabled="justus.organisaatiotekija[$index].useEsitaytto"
                      data-ng-model="justus.organisaatiotekija[$index].etunimet"
                      placeholder="{{i18n.content.form.organisaatiotekija.etunimet.picktip[lang]}}">
               <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
@@ -441,7 +441,7 @@
                    value="justus.organisaatiotekija[$index].orcid">
                  <label>{{i18n.content.form.organisaatiotekija.orcid.picktip[lang]}}</label>
                   <input type="text" class="form-control"
-                         data-ng-disabled="useEsitaytto && justus.organisaatiotekija[$index].orcid !== ''"
+                         data-ng-disabled="justus.organisaatiotekija[$index].useEsitaytto && justus.organisaatiotekija[$index].orcid !== ''"
                          data-ng-model="justus.organisaatiotekija[$index].orcid"
                          placeholder="{{i18n.content.form.organisaatiotekija.orcid.picktip[lang]}}">
                   <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>

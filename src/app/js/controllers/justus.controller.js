@@ -482,7 +482,7 @@ angular.module('JustusController', [])
                 }
             };
 
-            $scope.useOrganisaatiotekijaEsitaytto = function(input, field, index) {
+            $scope.useOrganisaatiotekijaEsitaytto = function(input, index) {
 
                 // reset previous value
                 $scope.justus.organisaatiotekija[index].alayksikko = [null];
@@ -491,9 +491,7 @@ angular.module('JustusController', [])
                 $scope.justus.organisaatiotekija[index].sukunimi = input.sukunimi;
                 $scope.justus.organisaatiotekija[index].orcid = input.orcid;
 
-                if (input.alayksikko.length === 1) {
-                    $scope.justus.organisaatiotekija[index].alayksikko = input.alayksikko;
-                }
+                $scope.justus.organisaatiotekija[index].alayksikko = input.alayksikko;
 
             };
 
