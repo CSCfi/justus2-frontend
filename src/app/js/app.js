@@ -86,10 +86,9 @@ angular.module('JustusApp', [
           name: 'admin',
           url: '/admin',
           views: {
-              '': {
-                  templateUrl: 'html/admin.html',
-                  controller: 'AdminController'
-              }
+            '': {
+                templateUrl: 'html/admin.html'
+            }
           }
       };
 

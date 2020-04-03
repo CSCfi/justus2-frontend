@@ -121,7 +121,7 @@ angular.module('JulkaisunsyottoController', [])
             };
 
             $scope.removeFileFromServer = function() {
-                APIService.delete($stateParams.id)
+                APIService.delete("julkaisu/poista", $stateParams.id)
                     .then((response) => {
                         console.log(response);
                         if (response.status !== 500) {
@@ -140,7 +140,7 @@ angular.module('JulkaisunsyottoController', [])
             };
 
             $scope.getLink = function() {
-                return API_BASE_URL + "download/" + $stateParams.id ;
+                return API_BASE_URL + "julkaisu/download/" + $stateParams.id ;
             };
 
             $scope.bytesToSize = function(a,b) {

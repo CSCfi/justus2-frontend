@@ -145,9 +145,10 @@ angular.module('APIService', [])
       .then(function (response) {
         return response.data;
       })
-      .catch(function (response) {
-        console.log(response);
-        $log.error('post ERROR ' + response.status + ' ' + response.data.description);
+      .catch(function (error) {
+        console.log(error);
+        $log.error('post ERROR ' + error.status + ' ' + error.data);
+        return error;
       });
     };
 
@@ -212,7 +213,7 @@ angular.module('APIService', [])
       this.getPersonData = function () {
           return $http({
               method: 'GET',
-              url:  API_BASE_URL + 'organisaatiotekijat',
+              url:  API_BASE_URL + 'persons/get',
           })
               .then(function (response) {
                   return response.data;
@@ -244,19 +245,18 @@ angular.module('APIService', [])
     };
 
 
-
     /* DELETE :: DELETE */
-    this.delete = function (id) {
+    this.delete = function (path, id) {
       return $http({
         method: 'DELETE',
-        url: API_BASE_URL + 'julkaisu/poista/' + id
+          url:  API_BASE_URL + path + (id ? '/' + id : ''),
       })
       .then(function (response) {
         return response;
       })
-      .catch(function (response) {
+      .catch(function (error) {
         // $log.error('delete ERROR ' + response.status + ' ' + response.data);
-        return response;
+        return error;
       });
     };
 
@@ -264,7 +264,7 @@ angular.module('APIService', [])
 
         console.log(data);
           return Upload.upload({
-              url: API_BASE_URL + 'upload',
+              url: API_BASE_URL + 'julkaisu/upload',
               data: { file: file, data: data },
               method: 'POST',
               headers: { 'Content-Type': 'multipart/form-data' }
@@ -283,7 +283,7 @@ angular.module('APIService', [])
       this.postCsvFile = function(file) {
 
           return Upload.upload({
-              url: API_BASE_URL + 'upload-csv',
+              url: API_BASE_URL + 'persons/upload',
               data: { file: file },
               method: 'POST',
               headers: { 'Content-Type': 'multipart/form-data' }
