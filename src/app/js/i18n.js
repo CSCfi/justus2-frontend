@@ -687,6 +687,9 @@ const i18n = {
                     eivalittu: { FI: 'Ei valittua tiedostoa', SV: '*SV Ei valittua tiedostoa', EN: 'No file selected' },
                     veda: { FI: 'Tai vedä tiedosto tähän', SV: '*SV Tai vedä tiedosto tähän', EN: 'Or drag file here' },
                     poista: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' }
+                  },
+                  info: {
+                      FI: 'Huom! Vain pdf-tiedostot salllittuja.', SV: 'Huom! Vain pdf-tiedostot salllittuja.', EN: 'NB! Only pdf files are accepted.'
                   }
                 },
                 abstrakti: {
