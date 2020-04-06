@@ -780,7 +780,6 @@ const i18n = {
                 },
                 tyhjenna: {
                   FI: 'Tyhjennä', SV: 'Ta bort', EN: 'Remove'
-
                 }
           }
       },
@@ -862,11 +861,12 @@ const i18n = {
         hyvaksy: { FI: 'Hyväksy', SV: 'Godkänd', EN: 'Approve' }
       },
       uusi: { FI: 'Tallenna uusi julkaisu', SV: 'Lägga till en ny publikation', EN: 'Save new publication' },
-      csv: { FI: 'Lataa CSV-tiedostona', SV: 'Hämta som CSV', EN: 'Export to CSV'},
+      csv: { FI: 'Lataa julkaisut CSV-tiedostona', SV: 'Hämta som CSV', EN: 'Export publications to CSV'},
       haku: {
         tekija: { FI: 'Hae julkaisun tai tekijän nimellä', SV: 'Hae julkaisun tai tekijän nimellä', EN: 'Search by name or author' },
         julkaisuvuosi: { FI: 'Hae/rajaa hakua julkaisuvuoden perusteella', SV: 'Hae/rajaa hakua julkaisuvuoden perusteella', EN: 'Search/filter by year of publication'},
         julkaisuntila: { FI: 'Valitse julkaisuntila', SV: 'Valitse julkaisuntila', EN: 'Valitse julkaisuntila'},
+        tyhjenna: { FI: 'Tyhjennä haku', SV: 'Tyhjennä haku', EN: 'Clear search'}
       }
     },
 
