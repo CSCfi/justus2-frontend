@@ -55,6 +55,9 @@
                                             {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.eivalittu[lang]}}
                                         </div>
                                     </div>
+                                    <div ng-show="!file" class="mt-x">
+                                        <p class="text-danger">{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.info[lang]}}</p>
+                                    </div>
                                     <div ng-show="!file" ngf-drop ng-model="file" class="drop-box"
                                          ngf-drag-over-class="'dragover'" ngf-allow-dir="true">
                                          {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.veda[lang]}}
@@ -73,6 +76,7 @@
                                             </button>
                                         </div>
                                     </div>
+
                                 </form>
                             </div>
                         </div>

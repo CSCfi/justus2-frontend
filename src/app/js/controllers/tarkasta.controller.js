@@ -118,7 +118,18 @@ angular.module('TarkastaController', [])
                 }
             };
 
+
+            $scope.toggleSelection = function(checked) {
+                $scope.hyvaksyBtnDisabled = !checked;
+            };
+
             let init = function () {
+
+                $scope.hyvaksyBtnDisabled = false;
+
+                if ($rootScope.user.owner) {
+                    $scope.hyvaksyBtnDisabled = true;
+                }
 
                 $scope.publications = new Publications();
                 $scope.searchMode = false;

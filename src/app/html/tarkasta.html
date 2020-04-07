@@ -82,14 +82,23 @@
           </button>
         </div>
         <div class="d-inline-block">
-          <button class="btn btn-danger"
+          <button class="btn btn-default"
                   data-ng-click="resetData()"
-                  title="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]"
-                  data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]">
+                  data-ng-bind="i18n.content.tarkasta.haku.tyhjenna[lang]">
           </button>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="row no-gutter" data-ng-if="user.owner && state.name === 'hyvaksy'">
+  <div class="pull-right">
+    <input class="form-check-input" type="checkbox" data-ng-model="checked"
+           data-ng-click="toggleSelection(checked)">
+    <label class="form-check-label">
+      Salli muokkaus
+    </label>
   </div>
 </div>
 
@@ -172,44 +181,8 @@
                   <button data-ng-repeat="julkaisuntila in codes.julkaisuntila | orderBy: 'arvo' | limitTo:4"
                           title="{{julkaisuntila.selite}}"
                           class="btn btn-primary"
-                          data-ng-class="{'active': d.julkaisu.ui_julkaisuntila==julkaisuntila.arvo}"
-                          data-ng-click="d.julkaisu.ui_julkaisuntila = julkaisuntila.arvo; updatePublication(d.julkaisu, julkaisuntila.arvo)">
-                    {{ julkaisuntila.arvo }}
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr data-ng-if="publications.odottavat === false"
-                data-ng-show="showRejected && data.length > 0" class="bg-white">
-              <td colspan="6"><h4><span class="font-weight-bold" data-ng-bind="i18n.content.tarkasta.hylatyt.otsikko[lang]"></span></h4></td>
-            </tr>
-            <tr data-ng-repeat="d in data | orderBy:colOrder:colOrderReverse track by d.julkaisu.id"
-                data-ng-if="d.julkaisu.julkaisuntila === '-1' && publications.odottavat === false"
-                data-ng-show="showRejected">
-              <td class="condensed nowrap">
-                <span data-ng-bind="d.julkaisu.julkaisuvuosi+'-'+d.julkaisu.organisaatiotunnus+'-'+d.julkaisu.id"></span>
-              </td>
-              <td>{{ d.julkaisu.julkaisunnimi | truncate:true:180:'...' }}</td>
-              <td>{{ d.julkaisu.tekijat | truncate:true:180:'...' }}</td>
-              <td>
-                <span data-ng-bind="d.julkaisu.modified | date:'d.M.yyyy HH:mm'"></span>
-              </td>
-              <td >
-                <span data-ng-bind="d.julkaisu.username"></span>
-              </td>
-              <td data-ng-if="showPublicationLink">
-                <span data-ng-show="d.filedata">
-                  <a data-ng-href="{{d.filedata.handle}}" target="_blank">
-                   <i class="fa fa-link" ng-class="{'text-gray': !d.filedata.handle }"> </i>
-                  </a>
-                </span>
-              </td>
-              <td data-ng-show="state.name=='hyvaksy'" class="btn-col">
-                <div class="btn-group">
-                  <button data-ng-repeat="julkaisuntila in codes.julkaisuntila | orderBy: 'arvo' | limitTo:4"
-                          title="{{ julkaisuntila.selite }}"
-                          class="btn btn-primary"
-                          data-ng-class="{'active': d.julkaisu.ui_julkaisuntila==julkaisuntila.arvo}"
+                          data-ng-disabled="hyvaksyBtnDisabled"
+                          data-ng-class="{'active': d.julkaisu.ui_julkaisuntila==julkaisuntila.arvo }"
                           data-ng-click="d.julkaisu.ui_julkaisuntila = julkaisuntila.arvo; updatePublication(d.julkaisu, julkaisuntila.arvo)">
                     {{ julkaisuntila.arvo }}
                   </button>
