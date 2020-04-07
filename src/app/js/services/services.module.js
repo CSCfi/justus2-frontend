@@ -6,5 +6,6 @@ angular.module('ServicesModule', [
   'DataStoreService',
   'ValidationService',
   'AuthService',
+  'AlayksikkoService',
   'Publications'
 ]);
