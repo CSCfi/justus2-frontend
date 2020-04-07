@@ -7,7 +7,7 @@
 
 
     <div class="px m-b" data-ng-if="showEditDialog">
-        <h5 class="font-weight-bold">Muokkat käyttäjää {{selectedPerson.etunimi}} {{selectedPerson.sukunimi}}</h5>
+        <h5 class="font-weight-bold">Muokkat käyttäjää: {{selectedPerson.etunimi}} {{selectedPerson.sukunimi}}</h5>
         <div class="row form-group">
             <div class="col-xs-12 ">
                 <label class="control-label">Etunimi</label>
@@ -38,11 +38,54 @@
         </div>
         <div class="row form-group">
             <div class="col-xs-12">
-                <label class="control-label">Alayksikko</label>
-                <div data-ng-repeat="a in selectedPerson.alayksikko">
-                    <input type="text" class="form-control person-input"
-                           data-ng-model="a">
+                <label class="control-label">Alayksikko (Maks. 3)</label>
+                <div data-ng-repeat="a in selectedPerson.alayksikko track by $index" class="row">
+                    <div class="col-xs-11">
+                        <input disabled="true"
+                               type="text" class="form-control person-input"
+                               data-ng-model="a">
+                    </div>
+                    <div class="col-xs-1">
+                        <span class="btn btn-primary"
+                              data-ng-click="removeAlayksikko($index)"
+                              data-ng-hide="selectedPerson.alayksikko.length<2"
+                              title="{{i18n.content.form.organisaatiotekija.poista.tooltip[lang]}}"
+                              data-ng-bind="i18n.content.form.organisaatiotekija.poista[lang]">
+                        </span>
+                    </div>
                 </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-12">
+                <label class="control-label">Lisää alayksiköitä</label>
+            </div>
+            <div class="col-xs-12 col-sm-5">
+                <ui-select data-ng-model="alayksikkovuosi.selected"
+                           theme="bootstrap">
+                    <ui-select-match class="ui-select-match"
+                                     data-ng-value="alayksikkovuosi.selected"
+                                     placeholder="{{i18n.content.form.organisaatiotekija.alayksikkovuosi.picktip[lang]}}">
+                        {{ $select.selected.label }}
+                    </ui-select-match>
+                    <ui-select-choices repeat="ala in alayksikkovuodet">
+                        {{ala.label}}
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-xs-12 col-sm-7">
+                <ui-select data-ng-model="alayksikko.selected"
+                           on-select="addAlayksikko($select.selected.arvo)"
+                           theme="bootstrap"
+                           class="dropdown-height-300">
+                    <ui-select-match class="ui-select-match"
+                                     placeholder="Lisää alayksikkö">Lisää alayksikkö
+
+                    </ui-select-match>
+                    <ui-select-choices repeat="o in getAlayksikkoData(alayksikkovuosi.selected) | filter: $select.search">
+                        {{ o.arvo}} {{o.selite}}
+                    </ui-select-choices>
+                </ui-select>
             </div>
         </div>
 

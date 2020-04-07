@@ -2,11 +2,49 @@
 
 angular.module('AdminController', [])
     .controller('AdminController', [
-        '$rootScope', '$scope', '$http', '$log', '$state', 'API_BASE_URL', 'APIService',
-        function ($rootScope, $scope, $http, $log, $state, API_BASE_URL, APIService) {
+        '$rootScope', '$scope', '$state', '$http', 'API_BASE_URL', 'APIService', 'AlayksikkoService', 'AuthService',
+        function ($rootScope, $scope, $state, $http, API_BASE_URL, APIService, AlayksikkoService, AuthService) {
 
-            $scope.hakuState = true;
-            $scope.personsToBeDeleted = [];
+
+            // at very first test that user object is accessible
+            let verifyAccess = function () {
+                if (AuthService.isLoggedIn()) {
+                    init();
+                } else {
+                    AuthService.getUserInfo().then(function (res) {
+                        $rootScope.user = res;
+                        init();
+
+                    }).catch(function (err) {
+                        console.log(err);
+                        $state.go('index');
+
+                    });
+                }
+            };
+
+
+        let init = function() {
+
+                $scope.hakuState = true;
+                $scope.personsToBeDeleted = [];
+                $scope.alayksikkovuodet = AlayksikkoService.getAlayksikkovuodet();
+
+                $scope.alayksikkovuosi = {};
+
+                if ($scope.alayksikkovuodet.length === 5) {
+                    $scope.alayksikkovuosi.selected = {
+                        id: 2020,
+                        label: '2020'
+                    };
+                } else {
+                    $scope.alayksikkovuosi.selected = {
+                        id: 2019,
+                        label: '2019'
+                    };
+                }
+
+            };
 
             $scope.editPerson = function (person) {
                 console.log(person);
@@ -20,32 +58,39 @@ angular.module('AdminController', [])
                 $scope.showEditDialog = false;
             };
 
+
+            $scope.addAlayksikko = function(input) {
+                if ($scope.selectedPerson.alayksikko.indexOf(input) > -1
+                    || $scope.selectedPerson.alayksikko.length > 2) return;
+
+                $scope.selectedPerson.alayksikko.push(input);
+            };
+
+            $scope.removeAlayksikko = function(index) {
+                console.log(index);
+                console.log($scope.selectedPerson);
+                $scope.selectedPerson.alayksikko.splice(index, 1);
+            };
+
+            // get alayksikkodata based on selected year
+            $scope.getAlayksikkoData = function(alayksikkovuosi) {
+                return AlayksikkoService.getAlayksikkoData(alayksikkovuosi);
+            };
+
             $scope.savePerson = function() {
 
                 delete($scope.selectedPerson.modified);
                 let id = $scope.selectedPerson.id;
-                let url = API_BASE_URL + 'persons/update/' + id;
 
-                $http({
-                    method: 'PUT',
-                    url: url,
-                    data: $scope.selectedPerson,
-                    headers: { 'Content-Type': 'application/json' }
-                })
+                APIService.put("persons/update", id, $scope.selectedPerson)
                     .then(function (response) {
-
                         $scope.closeForm();
                         $scope.search = "";
-
-                        console.log (response.data);
+                        console.log (response);
                         APIService.getPersonData()
                             .then(function (res) {
-                              $scope.persons = res.persons;
+                                $scope.persons = res.persons;
                             })
-
-                    })
-                    .catch(function (error) {
-                        $log.error(error.data);
                     });
 
             };
@@ -99,8 +144,9 @@ angular.module('AdminController', [])
                     }).catch(function (err) {
                         console.log(err);
                     })
-            }
+            };
 
+            verifyAccess();
 
         }
     ]);
