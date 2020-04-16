@@ -169,10 +169,16 @@ angular.module('JustusController', [])
                         if(personToCopy.length > 0) {
 
                             for (let i = 0; i < personToCopy.length; i++) {
+
+                                let alayksikkoArray = [];
+                                for (let x = 0; x < personToCopy[i].alayksikko.length; x++) {
+                                    alayksikkoArray.push(personToCopy[i].alayksikko[x]);
+                                }
+
                                 let orgTekijaObj = {
                                     "etunimet": personToCopy[i].etunimi,
                                     "sukunimi": personToCopy[i].sukunimi,
-                                    "alayksikko": [personToCopy[i].alayksikko[0]],
+                                    "alayksikko": alayksikkoArray,
                                     "orcid": personToCopy[i].orcid,
                                     "hrnumero": null
                                 };
