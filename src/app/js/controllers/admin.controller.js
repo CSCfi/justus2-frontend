@@ -2,8 +2,8 @@
 
 angular.module('AdminController', [])
     .controller('AdminController', [
-        '$rootScope', '$scope', '$state', '$http', 'API_BASE_URL', 'APIService', 'AlayksikkoService', 'AuthService',
-        function ($rootScope, $scope, $state, $http, API_BASE_URL, APIService, AlayksikkoService, AuthService) {
+        '$rootScope', '$scope', '$state', '$window', '$http', 'API_BASE_URL', 'APIService', 'AlayksikkoService', 'AuthService',
+        function ($rootScope, $scope, $state, $window, $http, API_BASE_URL, APIService, AlayksikkoService, AuthService) {
 
 
             // at very first test that user object is accessible
@@ -48,6 +48,7 @@ angular.module('AdminController', [])
 
             $scope.editPerson = function (person) {
                 console.log(person);
+                $window.scrollTo(0, 0);
                 $scope.selectedPerson = angular.copy(person);
                 $scope.showEditDialog = true;
             };
