@@ -787,7 +787,7 @@ angular.module('JustusController', [])
 
                 $scope.loading.publication = true;
 
-                  APIService.get('tiedot', $stateParams.id)
+                  APIService.get('julkaisut/tiedot', $stateParams.id)
                     .then(function (obj) {
                         $scope.justus = obj.data;
                         if (obj.data.filedata) {

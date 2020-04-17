@@ -154,10 +154,9 @@ angular.module('APIService', [])
 
     /* READ :: GET */
     this.get = function (api, id) {
-
       return $http({
         method: 'GET',
-        url:  API_BASE_URL + 'julkaisut' + '/' + api + (id ? '/' + id : ''),
+        url:  API_BASE_URL + api + (id ? '/' + id : ''),
       })
       .then(function (response) {
         return response.data;
@@ -247,6 +246,7 @@ angular.module('APIService', [])
 
     /* DELETE :: DELETE */
     this.delete = function (path, id) {
+
       return $http({
         method: 'DELETE',
           url:  API_BASE_URL + path + (id ? '/' + id : ''),
