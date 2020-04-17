@@ -47,15 +47,31 @@ angular.module('AdminController', [])
             };
 
             $scope.editPerson = function (person) {
-                console.log(person);
                 $window.scrollTo(0, 0);
                 $scope.selectedPerson = angular.copy(person);
                 $scope.showEditDialog = true;
             };
 
+            $scope.showPublications = function(person) {
+                $window.scrollTo(0, 0);
+                APIService.get("persons/publications", person.orcid)
+                    .then(function (response) {
+                        console.log(response);
+                        $scope.publicationList = response.publications;
+                        $scope.personToShow =  person;
+                        $scope.showList = true;
+                    }).catch(function (err) {
+                    console.log(err);
+                });
+
+            };
+
+            $scope.closeList = function() {
+                $scope.showList = false;
+            };
+
             $scope.closeForm = function () {
                 $scope.selectedPerson = {};
-                console.log($scope.selectedPerson);
                 $scope.showEditDialog = false;
             };
 
@@ -64,12 +80,14 @@ angular.module('AdminController', [])
                 if ($scope.selectedPerson.alayksikko.indexOf(input) > -1
                     || $scope.selectedPerson.alayksikko.length > 2) return;
 
-                $scope.selectedPerson.alayksikko.push(input);
+                if (!$scope.selectedPerson.alayksikko[0]) {
+                    $scope.selectedPerson.alayksikko[0] = input;
+                } else {
+                    $scope.selectedPerson.alayksikko.push(input);
+                }
             };
 
             $scope.removeAlayksikko = function(index) {
-                console.log(index);
-                console.log($scope.selectedPerson);
                 $scope.selectedPerson.alayksikko.splice(index, 1);
             };
 
@@ -78,22 +96,65 @@ angular.module('AdminController', [])
                 return AlayksikkoService.getAlayksikkoData(alayksikkovuosi);
             };
 
+
+            $scope.addPerson = function() {
+              $window.scrollTo(0, 0);
+              $scope.selectedPerson = {
+                  "hrnumero": "",
+                  "etunimi": "",
+                  "sukunimi": "",
+                  "orcid": null,
+                  "alayksikko": [null]
+              };
+              $scope.showEditDialog = true;
+            };
+
             $scope.savePerson = function() {
+                let promise;
+                if ($scope.selectedPerson.id) {
+                    //  update
+                    let id = $scope.selectedPerson.id;
+                    delete($scope.selectedPerson.modified);
+                    promise = APIService.put("person/update", id, $scope.selectedPerson);
+                } else {
+                    // post
+                    promise = APIService.post("person/save", $scope.selectedPerson);
+                }
 
-                delete($scope.selectedPerson.modified);
+                promise.then(function (response) {
+                    console.log(response);
+                    $scope.closeForm();
+                    $scope.search = "";
+                    fetchPersonData();
+                    // $window.scrollTo(0, 0);
+                }).catch(function (err) {
+                    console.log(err);
+                })
+
+            };
+
+            $scope.removePerson = function() {
                 let id = $scope.selectedPerson.id;
-
-                APIService.put("persons/update", id, $scope.selectedPerson)
+                console.log(id);
+                APIService.delete("persons/remove", id)
                     .then(function (response) {
-                        $scope.closeForm();
-                        $scope.search = "";
-                        console.log (response);
-                        APIService.getPersonData()
-                            .then(function (res) {
-                                $scope.persons = res.persons;
-                            })
-                    });
+                        console.log(response);
+                        $scope.selectedPerson = {};
+                        $scope.showEditDialog = false;
+                        // state reload?
+                        fetchPersonData();
+                    }).catch(function (err) {
+                        console.log(err);
+                })
 
+            };
+
+
+            let fetchPersonData = function() {
+                APIService.getPersonData()
+                    .then(function (res) {
+                        $scope.persons = res.persons;
+                    })
             };
 
             // lataussivu
@@ -135,7 +196,7 @@ angular.module('AdminController', [])
             };
 
             $scope.discardChanges = function () {
-                APIService.delete("persons/poista", null)
+                APIService.delete("persons/csv-remove", null)
                     .then(function (res) {
                         console.log(res);
                         $scope.personsToBeDeleted = [];

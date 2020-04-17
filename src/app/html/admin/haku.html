@@ -1,48 +1,57 @@
 <div data-ng-if="hakuState">
-    <div class="row no-gutter">
-        <div class="col-xs-12 p">
-            <p>Organisaation käyttäjiä yhteensä: {{persons.length}}</p>
-        </div>
-    </div>
 
+    <!-- TODO: move to directive -->
+    <div class="px mb-l" data-ng-if="showEditDialog">
 
-    <div class="px m-b" data-ng-if="showEditDialog">
-        <h5 class="font-weight-bold">Muokkat käyttäjää: {{selectedPerson.etunimi}} {{selectedPerson.sukunimi}}</h5>
+        <span data-ng-click="closeForm()" class="pull-right cursor-pointer justus-close-btn" title="Sulje">
+            <i class="fa fa-close fa-lg"></i>
+        </span>
+
+        <h4 data-ng-if="selectedPerson.id" class="font-weight-bold">Muokkaat henkilöä: {{selectedPerson.etunimi}} {{selectedPerson.sukunimi}}</h4>
+        <h4 data-ng-if="!selectedPerson.id" class="font-weight-bold">Lisää uusi henkilö</h4>
+
         <div class="row form-group">
             <div class="col-xs-12 ">
                 <label class="control-label">Etunimi</label>
-                <input type="text" class="form-control person-input"
+                <input type="text" class="form-control"
                        data-ng-model="selectedPerson.etunimi">
             </div>
         </div>
         <div class="row form-group">
             <div class="col-xs-12">
                 <label class="control-label">Sukunimi</label>
-                <input type="text" class="form-control person-input"
+                <input type="text" class="form-control"
                        data-ng-model="selectedPerson.sukunimi">
             </div>
         </div>
         <div class="row form-group">
             <div class="col-xs-12">
+                <label class="control-label">Hr numero</label>
+                <input type="text" class="form-control"
+                       data-ng-model="selectedPerson.hrnumero">
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-12">
                 <label class="control-label">Sähköposti</label>
-                <input type="text" class="form-control person-input"
+                <input type="text" class="form-control"
                        data-ng-model="selectedPerson.email">
             </div>
         </div>
         <div class="row form-group">
             <div class="col-xs-12">
                 <label class="control-label">ORCID</label>
-                <input type="text" class="form-control person-input"
+                <input type="text" class="form-control"
                        data-ng-model="selectedPerson.orcid">
             </div>
         </div>
         <div class="row form-group">
-            <div class="col-xs-12">
+            <div data-ng-if="selectedPerson.alayksikko[0]" class="col-xs-12">
                 <label class="control-label">Alayksikko (Maks. 3)</label>
-                <div data-ng-repeat="a in selectedPerson.alayksikko track by $index" class="row">
+                <div data-ng-repeat="a in selectedPerson.alayksikko track by $index" class="row mb-x">
                     <div class="col-xs-11">
                         <input disabled="true"
-                               type="text" class="form-control person-input"
+                               type="text" class="form-control"
                                data-ng-model="a">
                     </div>
                     <div class="col-xs-1">
@@ -89,18 +98,19 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-xs-6">
-                <button class="btn btn-primary" data-ng-click="savePerson()">
+        <div class="row mt-xl">
+            <div data-ng-class="{ 'col-xs-12': !selectedPerson.id, 'col-xs-8': selectedPerson.id }">
+                <button class="btn btn-primary btn-block btn-lg" data-ng-click="savePerson()">
                     Tallenna
                 </button>
             </div>
-            <div class="col-xs-6">
-                <button class="btn btn-danger pull-right" data-ng-click="closeForm()">
-                    Hylkää muutokset
+            <div data-ng-if="selectedPerson.id" class="col-xs-4">
+                <button class="btn btn-danger btn-block btn-lg" data-ng-click="removePerson()">
+                    Poista käyttäjä
                 </button>
             </div>
         </div>
+    </div>
 
     <div data-ng-if="showList" style="margin: 30px 15px;">
         <span data-ng-click="closeList()" class="pull-right cursor-pointer justus-close-btn">
@@ -115,16 +125,23 @@
 
 
     <div class="px">
-        <div class="row m-b">
-            <div class="col-sm-6">
+
+        <div class="row m-b m-t">
+            <div class="col-sm-12">
                 <div class="input-group">
-                    <span class="input-group-addon bg-primary cursor-pointer border-radius-0 border-primary">
+                    <span class="input-group-addon bg-primary cursor-pointer border-primary">
                         <i class="fa fa-search text-white"></i>
                     </span>
-                    <input type="text" class="form-control person-input"
+                    <input type="text" class="form-control"
                            data-ng-model="search"
                            placeholder="Haku henkilöistä"/>
                 </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 p">
+                <p>Organisaation käyttäjiä yhteensä: {{persons.length}}</p>
             </div>
         </div>
 
@@ -140,30 +157,37 @@
                             <th class="text-xl">Orcid</th>
                             <th class="text-xl">Muokattu</th>
                             <th></th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                    <tr data-ng-repeat="person in persons | filter: search ">
-                        <td>{{person.hrnumero}}</td>
-                        <td>{{person.etunimi}}</td>
-                        <td>{{person.sukunimi}}</td>
-                        <td>{{person.orcid}}</td>
-                        <td><span data-ng-bind="person.modified | date:'d.M.yyyy HH:mm'"></span></td>
-                        <td class="text-right"><span class="px"><button
-                                class="btn btn-link font-weight-bold">Näytä</button></span></td>
+                    <tr data-ng-repeat="person in persons | filter: search | limitTo: 20"
+                        class="hover-table-green">
+                        <td data-ng-click="editPerson(person)">{{person.hrnumero}}</td>
+                        <td data-ng-click="editPerson(person)">{{person.etunimi}}</td>
+                        <td data-ng-click="editPerson(person)">{{person.sukunimi}}</td>
+                        <td data-ng-click="editPerson(person)">{{person.orcid}}</td>
+                        <td data-ng-click="editPerson(person)"><span data-ng-bind="person.modified | date:'d.M.yyyy HH:mm'"></span></td>
                         <td class="text-right">
-                            <button class="btn btn-link font-weight-bold" data-ng-click="editPerson(person)">Muokkaa
-                            </button>
+                            <span class="px">
+                                <button
+                                    class="btn btn-primary btn-sm"
+                                    data-ng-disabled="!person.orcid"
+                                    data-ng-click="showPublications(person)">Näytä julkaisut
+                                </button>
+                            </span>
                         </td>
-                        <!--<button class="btn btn-link font-weight-bold" data-ng-click="editPerson(person)">Muokkaa</button></td>-->
-                        <!--<td><button class="btn btn-primary">Muokkaa</button></td>-->
                     </tr>
                     </tbody>
                 </table>
-
-
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <button class="btn btn-primary btn-block btn-lg" data-ng-click="addPerson()">Lisää uusi käyttäjä
+            </button>
+        </div>
+    </div>
+
 </div>

@@ -39,8 +39,16 @@
   margin-bottom: $padding-large-vertical;
 }
 
+.mb-l {
+  margin-bottom: 50px;
+}
+
 .mb-x {
   margin-bottom: $padding-small-vertical;
+}
+
+.mt-xl {
+  margin-top: $padding-large-vertical*2;
 }
 
 .pb{
@@ -64,7 +72,7 @@
 }
 
 .p-0 {
-  padding: 0;
+  padding: 0 !important;
 }
 
 .pl-0 {
