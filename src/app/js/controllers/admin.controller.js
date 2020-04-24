@@ -44,6 +44,8 @@ angular.module('AdminController', [])
                     };
                 }
 
+            $scope.csvData = '';
+
             };
 
             $scope.editPerson = function (person) {

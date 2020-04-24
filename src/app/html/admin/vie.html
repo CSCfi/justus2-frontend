@@ -19,11 +19,12 @@
 
         <div class="col-md-8">
             <div ng-show="!csvFile.file">
-                <div class="d-inline-block pull-right" ngf-select ng-model="csvFile.file" name="filename"
-                     ngf-max-size="100MB">
-                    <button class="btn btn-primary">
-                        {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.valitse[lang]}}
-                    </button>
+                <div class="d-inline-block pull-right">
+                    <input type="file" ngf-select="" ng-model="csvFile.file" name="filename"
+                           ngf-max-size="100MB"  data-file-reader-directive file-content="csvData" accept=".csv">
+                    <!--<button class="btn btn-primary">-->
+                        <!--{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.valitse[lang]}}-->
+                    <!--</button>-->
                 </div>
             </div>
             <div ng-show="csvFile.file" class="text-right">
@@ -38,6 +39,19 @@
             </div>
         </div>
     </div>
+
+    <ul>
+        <li data-ng-repeat="row in csvData | limitTo: 10">
+            <span class="font-weight-bold pl-x">HRnumero: </span> {{row.hrnumero}},
+            <span class="font-weight-bold pl-x">Etunimi: </span> {{row.etunimi}},
+            <span class="font-weight-bold pl-x">Sukunimi: </span> {{row.sukunimi}},
+            <span class="font-weight-bold pl-x">Email: </span>{{row.email}},
+            <span class="font-weight-bold pl-x">Alayksikkö 1: </span>{{row.alayksikko1}},
+            <span class="font-weight-bold pl-x">Alayksikkö 2: </span> {{row.alayksikko2}},
+            <span class="font-weight-bold pl-x">Alayksikkö 3: </span> {{row.alayksikko3}}
+        </li>
+
+    </ul>
 
     <div data-ng-if="personsToBeDeleted.length > 0" class="row no-gutter border-danger p-l">
         <div>
