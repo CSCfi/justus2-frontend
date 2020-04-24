@@ -1,5 +1,4 @@
-angular.module('DirectivesModule', [])
-.directive('isbnDirective', ['JustusService', function(JustusService) {
+app.directive('isbnDirective', ['JustusService', function(JustusService) {
   return {
     require: 'ngModel',
     link: function(scope, element, attr, mCtrl) {
@@ -65,8 +64,6 @@ angular.module('DirectivesModule', [])
 
         },
         link: function(scope, element, attr, mCtrl) {
-
-
             if (!scope.validate) return;
 
             if (scope.field === 'orcid') {
@@ -89,3 +86,5 @@ angular.module('DirectivesModule', [])
 
     };
 }]);
+
+

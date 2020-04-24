@@ -1,4 +1,4 @@
-angular.module('JustusApp', [
+let app = angular.module('JustusApp', [
 
   // Vendor modules
   'ui.router',
@@ -16,7 +16,6 @@ angular.module('JustusApp', [
   'appConfig',
   'templates',
   'FiltersModule',
-  'DirectivesModule',
   'ControllersModule',
   'ServicesModule'
 ])
