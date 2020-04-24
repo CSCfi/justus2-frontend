@@ -1,5 +1,4 @@
-angular.module('DirectivesModule', [])
-    .directive('personPublicationListDirective',
+app.directive('personPublicationListDirective',
         function() {
         return {
             restrict: 'EA',
@@ -7,9 +6,7 @@ angular.module('DirectivesModule', [])
                 person: '=',
                 publicationList: '=',
                 showList: '='
-
             },
-            templateUrl: 'js/directives/person-publication-list.html',
-
+            templateUrl: 'js/directives/person-publication-list.html'
         };
     });
