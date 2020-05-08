@@ -43,12 +43,7 @@ angular.module('AdminController', [])
                         label: '2019'
                     };
                 }
-
-
-
             };
-
-
 
             $scope.editPerson = function (person) {
                 $window.scrollTo(0, 0);
