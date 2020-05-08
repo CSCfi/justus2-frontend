@@ -2,8 +2,8 @@
 
 angular.module('AdminController', [])
     .controller('AdminController', [
-        '$rootScope', '$scope', '$state', '$window', '$http', 'API_BASE_URL', 'APIService', 'AlayksikkoService', 'AuthService',
-        function ($rootScope, $scope, $state, $window, $http, API_BASE_URL, APIService, AlayksikkoService, AuthService) {
+        '$rootScope', '$scope', '$state', '$window', '$http', '$uibModal', 'API_BASE_URL', 'APIService', 'AlayksikkoService', 'AuthService',
+        function ($rootScope, $scope, $state, $window, $http, $uibModal, API_BASE_URL, APIService, AlayksikkoService, AuthService) {
 
 
             // at very first test that user object is accessible
@@ -137,22 +137,40 @@ angular.module('AdminController', [])
 
             };
 
-            $scope.removePerson = function() {
-                let id = $scope.selectedPerson.id;
-                console.log(id);
-                APIService.delete("persons/remove", id)
-                    .then(function (response) {
-                        console.log(response);
-                        $scope.selectedPerson = {};
-                        $scope.showEditDialog = false;
-                        // state reload?
-                        fetchPersonData();
-                    }).catch(function (err) {
-                        console.log(err);
-                })
+            $scope.removePerson = function (size) {
 
+                let modalInstance = $uibModal.open({
+                    animation: false,
+                    // ariaLabelledBy: 'modal-title',
+                    // ariaDescribedBy: 'modal-body',
+                    templateUrl: 'js/shared/modal.html',
+                    controller: 'ModalInstanceCtrl',
+                    size: size,
+                    resolve: {
+                        person: function () {
+                            return $scope.selectedPerson
+                        }
+                    }
+                });
+
+                modalInstance.result.then(function () {
+
+                    let id = $scope.selectedPerson.id;
+                    console.log(id);
+                    APIService.delete("persons/remove", id)
+                        .then(function (response) {
+                            console.log(response);
+                            $scope.selectedPerson = {};
+                            $scope.showEditDialog = false;
+                            fetchPersonData();
+                        }).catch(function (err) {
+                            console.log(err);
+                    })
+
+                }, function () {
+                    console.log('Modal dismissed at: ' + new Date());
+                });
             };
-
 
             let fetchPersonData = function() {
                 APIService.getPersonData()
