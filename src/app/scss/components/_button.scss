@@ -21,6 +21,16 @@
   border-radius: 6px;
   position: relative;
 }
+.alert-dismissable .close, .alert-dismissible .close {
+  float:right;
+  background: inherit;
+  margin-top: -10px;
+  padding: 0;
+  span {
+    font-size: 28px;
+  }
+}
+
 
 .justus-btn.disabled {
   cursor: not-allowed;

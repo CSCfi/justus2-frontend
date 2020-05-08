@@ -35,18 +35,19 @@ app.directive('fileReaderDirective', [
                                     "sukunimi": lines[k][2],
                                     "email": lines[k][3],
                                     "orcid": lines[k][4],
-                                    "alayksikko1": lines[k][5],
-                                    "alayksikko2": lines[k][6],
-                                    "alayksikko3": lines[k][7],
+                                    "alayksikko1": lines[k][6],
+                                    "alayksikko2": lines[k][7],
+                                    "alayksikko3": lines[k][8],
                                 })
                             }
 
                             scope.$apply(function () {
-                                scope.fileContent = json;
+                                scope.fileContent.data = json;
                             })
                         };
 
                         r.readAsText(files[0], 'ISO-8859-1');
+
                     }
                 });
 

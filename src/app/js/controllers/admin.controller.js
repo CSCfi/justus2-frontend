@@ -44,9 +44,11 @@ angular.module('AdminController', [])
                     };
                 }
 
-            $scope.csvData = '';
+
 
             };
+
+
 
             $scope.editPerson = function (person) {
                 $window.scrollTo(0, 0);
@@ -167,35 +169,46 @@ angular.module('AdminController', [])
                 file: null
             };
 
+            $scope.csvData = {
+                data: {}
+            };
+
             $scope.uploadCsv = function (file) {
                 APIService.postCsvFile(file)
                     .then(function (res) {
-                        if (res.data.length < 1) {
-                            $scope.saveCsvData();
-                        } else {
-                            $scope.personsToBeDeleted = res.data;
-                        }
+                        $scope.personsToBeDeleted = res.data;
                     }).catch(function (err) {
                         console.log(err);
                     })
             };
 
             $scope.saveCsvData = function() {
+
                 APIService.post("persons/save", $scope.personsToBeDeleted)
                     .then(function (res) {
                         if (res.status === 500) {
                             $scope.csvUploadError = true;
-                            $scope.csvUploadErrorText = "Csv upload error with message: " +
+                            $scope.csvUploadResponseText = "Csv upload error with message: " +
                                 res.data + " and status: " + res.status
+                        } else {
+                            $scope.csvUploadError = false;
+                            $scope.csvUploadResponseText = "HR data päivitetty onnistuneesti!";
                         }
-
+                        $scope.showAlertDialog = true;
                         $scope.personsToBeDeleted = [];
                         $scope.csvFile = {
                             file: null
                         };
-
+                        $scope.csvData.data = {};
+                        console.log(res);
                     })
             };
+
+            $scope.resetDialog = function() {
+                $scope.showAlertDialog = false;
+                $scope.csvUploadError = false;
+            }
+
 
             $scope.discardChanges = function () {
                 APIService.delete("persons/csv-remove", null)
@@ -205,6 +218,7 @@ angular.module('AdminController', [])
                         $scope.csvFile = {
                             file: null
                         };
+                        $scope.csvData.data = {};
                     }).catch(function (err) {
                         console.log(err);
                     })
