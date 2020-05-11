@@ -22,14 +22,6 @@ angular.module('JustusService', [])
       this.file = file;
   };
 
-  // this.getOrganizationFieldConfig = function(organizationDomain, organizationCode) {
-  //   let fieldConfigs = organizationFieldConfig;
-  //   let organizationConfig = fieldConfigs.filter(function(organization) {
-  //     return organization.domain === organizationDomain && organization.code === organizationCode;
-  //   });
-  //   return organizationConfig ? organizationConfig[0] : null;
-  // };
-
 
   // Returns true if the provided field is configured to be visible, false if not
   this.isFieldVisible = function(field) {
@@ -89,8 +81,6 @@ angular.module('JustusService', [])
     return organizationConfig.indexOf(fieldName) !== -1;
   };
 
-
-
       this.fieldIsEmpty = function(fieldValue) {
         let fieldIsEmpty;
 
@@ -128,11 +118,12 @@ angular.module('JustusService', [])
         return visibleFields;
   };
 
+    let orcidValid = true;
     this.isValid = function(fieldName) {
 
     // Assume the field is valid, for performance we will continue validating until the field is first decided as invalid
     let valid = true;
-    let orcidValid = true;
+
     let reason = '';
     let fieldIsFilled = false;
 
@@ -281,6 +272,9 @@ angular.module('JustusService', [])
           if (this.isValid(fields[i]) === false) {
               invalidFields.push(fields[i]);
           }
+      }
+      if (!orcidValid) {
+        invalidFields.push("orcid");
       }
       return invalidFields;
 
