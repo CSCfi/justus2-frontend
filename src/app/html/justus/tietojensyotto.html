@@ -436,14 +436,14 @@
           </div>
 
           <div class="row form-group">
-              <div data-ng-if="isFieldVisible('alayksikko')"  class="col-xs-12 col-sm-6"
-                   validate-organisaatiotekijat-directive validate="validateState" field="orcid"
+              <div data-ng-if="isFieldVisible('alayksikko')"  class="col-xs-12 col-sm-6" id="orcidGroup"
                    value="justus.organisaatiotekija[$index].orcid">
                  <label>{{i18n.content.form.organisaatiotekija.orcid.picktip[lang]}}</label>
                   <input type="text" class="form-control"
                          data-ng-disabled="justus.organisaatiotekija[$index].useEsitaytto && justus.organisaatiotekija[$index].orcid !== ''"
                          data-ng-model="justus.organisaatiotekija[$index].orcid"
-                         placeholder="{{i18n.content.form.organisaatiotekija.orcid.picktip[lang]}}">
+                         placeholder="{{i18n.content.form.organisaatiotekija.orcid.picktip[lang]}}"
+                         data-orcid-directive>
                   <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
                 <span data-ng-show="orcidError">No data found for this orcid</span>
               </div>

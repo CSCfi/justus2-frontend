@@ -43,9 +43,13 @@ app.directive('isbnDirective', ['JustusService', function(JustusService) {
           return orcid;
         }
         if (!orcid) return false; // undefined?
-        if (!orcid.match(JustusService.pattern.orcid)) return false;
-        let ret = JustusService.checkORCID(orcid);
-        mCtrl.$setValidity('orcidValid', ret);
+
+        if (!orcid.match(JustusService.pattern.orcid)) {
+            mCtrl.$setValidity('orcidValid', false);
+            return orcid;
+        } else {
+            mCtrl.$setValidity('orcidValid', true);
+        }
         return orcid;
       }
       mCtrl.$parsers.push(myValidation);
@@ -66,21 +70,12 @@ app.directive('isbnDirective', ['JustusService', function(JustusService) {
         link: function(scope, element, attr, mCtrl) {
             if (!scope.validate) return;
 
-            if (scope.field === 'orcid') {
-                if (scope.field !== null || scope.field !== '') {
-                    let pattern = JustusService.pattern["orcid"];
-                    if (!scope.value.match(pattern)) {
-                        element.addClass('has-error has-feedback');
-                    }
+            if (JustusService.isFieldRequired(scope.field)) {
+                if (JustusService.fieldIsEmpty(scope.value)) {
+                    element.addClass('has-error has-feedback');
                 }
             }
-            else {
-                if (JustusService.isFieldRequired(scope.field)) {
-                    if (JustusService.fieldIsEmpty(scope.value)) {
-                        element.addClass('has-error has-feedback');
-                    }
-                }
-            }
+
 
         }
 
