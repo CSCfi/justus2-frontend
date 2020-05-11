@@ -3,6 +3,7 @@
     <!-- TODO: move to directive -->
     <div class="px mb-l" data-ng-if="showEditDialog">
 
+        <form name="personForm" novalidate>
         <span data-ng-click="closeForm()" class="pull-right cursor-pointer justus-close-btn" title="Sulje">
             <i class="fa fa-close fa-lg"></i>
         </span>
@@ -10,49 +11,55 @@
         <h4 data-ng-if="selectedPerson.id" class="font-weight-bold">Muokkaat henkilöä: {{selectedPerson.etunimi}} {{selectedPerson.sukunimi}}</h4>
         <h4 data-ng-if="!selectedPerson.id" class="font-weight-bold">Lisää uusi henkilö</h4>
 
-        <div class="row form-group">
+        <div class="row form-group" id="firstnameGroup">
             <div class="col-xs-12 ">
                 <label class="control-label">Etunimi</label>
-                <input type="text" class="form-control"
-                       data-ng-model="selectedPerson.etunimi">
+                <input type="text" class="form-control" name="firstname"
+                       data-ng-model="selectedPerson.etunimi" required>
             </div>
         </div>
-        <div class="row form-group">
+        <div class="row form-group"  id="lastnameGroup">
             <div class="col-xs-12">
                 <label class="control-label">Sukunimi</label>
-                <input type="text" class="form-control"
-                       data-ng-model="selectedPerson.sukunimi">
+                <input type="text" class="form-control" name="lastname"
+                       data-ng-model="selectedPerson.sukunimi" required>
             </div>
         </div>
-        <div class="row form-group">
+        <div class="row form-group" id="hrnumberGroup">
             <div class="col-xs-12">
                 <label class="control-label">Hr numero</label>
-                <input type="text" class="form-control"
-                       data-ng-model="selectedPerson.hrnumero">
+                <input type="text" class="form-control" name="hrnumber"
+                       data-ng-model="selectedPerson.hrnumero"
+                       data-ng-disabled="selectedPerson.id"
+                       required>
             </div>
         </div>
         <div class="row form-group">
             <div class="col-xs-12">
                 <label class="control-label">Sähköposti</label>
-                <input type="text" class="form-control"
+                <input type="text" class="form-control" name="email"
                        data-ng-model="selectedPerson.email">
             </div>
         </div>
-        <div class="row form-group">
-            <div class="col-xs-12">
+        <div class="row form-group" id="orcidGroup">
+            <div class="col-xs-12"
+                 value="selectedPerson.orcid">
                 <label class="control-label">ORCID</label>
-                <input type="text" class="form-control"
-                       data-ng-model="selectedPerson.orcid">
+                <input type="text" class="form-control" name="orcid"
+                       data-ng-model="selectedPerson.orcid"
+                       orcid-directive>
             </div>
         </div>
-        <div class="row form-group">
+        <div class="row form-group"
+             data-ng-if="isFieldVisible('alayksikko')">
             <div data-ng-if="selectedPerson.alayksikko[0]" class="col-xs-12">
                 <label class="control-label">Alayksikko (Maks. 3)</label>
                 <div data-ng-repeat="a in selectedPerson.alayksikko track by $index" class="row mb-x">
                     <div class="col-xs-11">
                         <input disabled="true"
                                type="text" class="form-control"
-                               data-ng-model="a">
+                               data-ng-model="a" name="alayksikko"
+                               >
                     </div>
                     <div class="col-xs-1">
                         <span class="btn btn-primary"
@@ -65,7 +72,7 @@
                 </div>
             </div>
         </div>
-        <div class="row form-group">
+        <div class="row form-group" data-ng-if="isFieldVisible('alayksikko')" id="alayksikkoGroup">
             <div class="col-xs-12">
                 <label class="control-label">Lisää alayksiköitä</label>
             </div>
@@ -100,7 +107,7 @@
 
         <div class="row mt-xl">
             <div data-ng-class="{ 'col-xs-12': !selectedPerson.id, 'col-xs-8': selectedPerson.id }">
-                <button class="btn btn-primary btn-block btn-lg" data-ng-click="savePerson()">
+                <button class="btn btn-primary btn-block btn-lg" type="submit" data-ng-click="savePerson(personForm)">
                     Tallenna
                 </button>
             </div>
@@ -110,6 +117,7 @@
                 </button>
             </div>
         </div>
+        </form>
     </div>
 
     <div data-ng-hide="showEditDialog">

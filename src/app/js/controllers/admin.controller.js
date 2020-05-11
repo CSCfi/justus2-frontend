@@ -2,8 +2,10 @@
 
 angular.module('AdminController', [])
     .controller('AdminController', [
-        '$rootScope', '$scope', '$state', '$window', '$http', '$uibModal', 'API_BASE_URL', 'APIService', 'AlayksikkoService', 'AuthService',
-        function ($rootScope, $scope, $state, $window, $http, $uibModal, API_BASE_URL, APIService, AlayksikkoService, AuthService) {
+        '$rootScope', '$scope', '$state', '$window', '$http', '$uibModal', 'API_BASE_URL', 'JustusService',
+        'APIService', 'AlayksikkoService', 'AuthService', 'ValidationService',
+        function ($rootScope, $scope, $state, $window, $http, $uibModal, API_BASE_URL, JustusService,
+                  APIService, AlayksikkoService, AuthService, ValidationService) {
 
 
             // at very first test that user object is accessible
@@ -43,6 +45,10 @@ angular.module('AdminController', [])
                         label: '2019'
                     };
                 }
+            };
+
+            $scope.isFieldVisible = function(field) {
+                return JustusService.isFieldVisible(field);
             };
 
             $scope.editPerson = function (person) {
@@ -95,9 +101,7 @@ angular.module('AdminController', [])
                 return AlayksikkoService.getAlayksikkoData(alayksikkovuosi);
             };
 
-
             $scope.addPerson = function() {
-              $window.scrollTo(0, 0);
               $scope.selectedPerson = {
                   "hrnumero": "",
                   "etunimi": "",
@@ -108,27 +112,48 @@ angular.module('AdminController', [])
               $scope.showEditDialog = true;
             };
 
-            $scope.savePerson = function() {
-                let promise;
-                if ($scope.selectedPerson.id) {
-                    //  update
-                    let id = $scope.selectedPerson.id;
-                    delete($scope.selectedPerson.modified);
-                    promise = APIService.put("person/update", id, $scope.selectedPerson);
-                } else {
-                    // post
-                    promise = APIService.post("person/save", $scope.selectedPerson);
+            $scope.savePerson = function(form) {
+                 $scope.invalidFields = [];
+                 let error = form.$error;
+                 angular.forEach(error.required, function(field) {
+                    if(field.$invalid){
+                        var fieldName = field.$name;
+                        $scope.invalidFields.push(fieldName);
+                    }
+                });
+
+                if (error.orcidValid) {
+                    $scope.invalidFields.push("orcid");
                 }
 
-                promise.then(function (response) {
-                    console.log(response);
-                    $scope.closeForm();
-                    $scope.search = "";
-                    fetchPersonData();
-                    // $window.scrollTo(0, 0);
-                }).catch(function (err) {
-                    console.log(err);
-                })
+                if (JustusService.isFieldRequired('alayksikko')) {
+                    if (!$scope.selectedPerson.alayksikko[0] || $scope.selectedPerson.alayksikko[0].length < 1) {
+                        $scope.invalidFields.push("alayksikko");
+                    }
+                }
+                ValidationService.setValidationErrors($scope.invalidFields);
+
+                if ($scope.invalidFields.length === 0) {
+                    let promise;
+                    if ($scope.selectedPerson.id) {
+                        //  update
+                        let id = $scope.selectedPerson.id;
+                        delete($scope.selectedPerson.modified);
+                        promise = APIService.put("person/update", id, $scope.selectedPerson);
+                    } else {
+                        // post
+                        promise = APIService.post("person/save", $scope.selectedPerson);
+                    }
+
+                    promise.then(function (response) {
+                        console.log(response);
+                        $scope.closeForm();
+                        $scope.search = "";
+                        fetchPersonData();
+                    }).catch(function (err) {
+                        console.log(err);
+                    })
+                }
 
             };
 
@@ -136,8 +161,6 @@ angular.module('AdminController', [])
 
                 let modalInstance = $uibModal.open({
                     animation: false,
-                    // ariaLabelledBy: 'modal-title',
-                    // ariaDescribedBy: 'modal-body',
                     templateUrl: 'js/shared/modal.html',
                     controller: 'ModalInstanceCtrl',
                     size: size,

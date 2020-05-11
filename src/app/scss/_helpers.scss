@@ -1,15 +1,3 @@
-.red-bar {
-  background: transparent;
-}
-
-.red-bar.ng-enter {
-  transition:all ease-in 0.1s;
-  height: 0px;
-}
-
-.red-bar.ng-enter.ng-enter-active {
-  height: 30px;
-}
 
 .person-input {
   border: 0;
