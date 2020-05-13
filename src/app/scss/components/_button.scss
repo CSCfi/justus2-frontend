@@ -1,6 +1,10 @@
 .btn-primary {
+  border-color: $brand-primary;
+  font-family: $font-family-secondary;
   &.btn-lg {
-    padding: $padding-large-vertical*2 $padding-large-horizontal;
+    //padding: $padding-large-vertical*2 $padding-large-horizontal;
+    padding-left: $padding-large-vertical*2;
+    padding-right: $padding-large-vertical*2;
   }
   &.btn-secondary,
   &:focus,
@@ -15,11 +19,26 @@
   }
 }
 
+.btn-secondary {
+  background-color: $brand-secondary;
+  color: $brand-white;
+  font-family: $font-family-secondary;
+  font-weight: 300;
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: darken($brand-secondary, 5%);
+    color:  $brand-white;
+
+  }
+}
+
 .justus-btn {
   cursor: pointer;
   text-align: center;
-  border-radius: 6px;
+  //border-radius: 6px;
   position: relative;
+  font-family: $font-family-secondary;
 }
 
 .justus-btn.disabled {
@@ -28,15 +47,18 @@
 
 .justus-btn:hover {
   transition: all 0.5s ease-in-out;
-  background-color: #026D7C;
+  //background-color: #026D7C;
+  background-color: darken($brand-secondary, 5%);
 }
 
 .justus-btn.selected {
-  background-color: #026D7C;
+  //background-color: #026D7C;
+  background-color: $brand-secondary;
 }
 
 .justus-btn-stage {
-  background-color: #99C2C8;
+  //background-color: #99C2C8;
+  background-color: lighten($brand-secondary, 50%);
   color: #FFFFFF;
   font-size: larger;
   padding: 12px;
@@ -44,7 +66,8 @@
 }
 
 .justus-btn-stage.disabled {
-  background-color: #99C2C8;
+  //background-color: #99C2C8;
+  background-color: lighten($brand-secondary, 50%);
   padding: 12px;
   margin: 2px;
 }
@@ -60,6 +83,7 @@
 }
 
 .justus-btn-tyyppi {
+  font-family: $font-family-secondary;
   color: $brand-white;
   background-color: $brand-primary-light;
   display: inline-block;
@@ -68,7 +92,11 @@
   cursor: pointer;
   text-align: left;
   font-size: larger;
-  border: 0
+  border: 0;
+  border-radius: 4px;
+  &:hover {
+    background-color: $brand-primary-dark;
+  }
 }
 
 .justus-btn-tyyppi.active {
