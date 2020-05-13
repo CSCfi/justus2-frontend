@@ -29,7 +29,7 @@
 
 <div class="row m-b">
   <div class="col-sm-6 col-xs-12">
-    <h3 class="form-header">{{i18n.content.esitayta.doihaku.title[lang]}}</h3>
+    <h3>{{i18n.content.esitayta.doihaku.title[lang]}}</h3>
     <p data-ng-bind="i18n.content.esitayta.doihaku.info[lang]"></p>
     <div class="input-group">
       <input type="text"
@@ -37,7 +37,7 @@
              class="form-control"
              placeholder='{{i18n.content.esitayta.doihaku.tunniste.tooltip[lang]}}'>
       <span class="input-group-btn">
-        <button class="btn btn-primary"
+        <button class="btn btn-secondary"
                 data-ng-click="useJulkaisunnimi('CrossRef',julkaisunhakudoi)"
                 data-ng-bind="i18n.content.esitayta.doihaku.hae[lang]">
         </button>
@@ -46,7 +46,7 @@
   </div>
 
   <div class="col-sm-6 col-xs-12">
-    <h3 class="form-header">{{i18n.content.esitayta.etsijulkaisu.title[lang]}}</h3>
+    <h3>{{i18n.content.esitayta.etsijulkaisu.title[lang]}}</h3>
     <p data-ng-bind="i18n.content.esitayta.etsijulkaisu.info[lang]"></p>
     <!-- {{i18n.content.esitayta.etsijulkaisu.tekija[lang]}} -->
     <div class="form-group">
@@ -74,7 +74,7 @@
     </div>
 
     <div class="text-right">
-      <button class="btn btn-primary"
+      <button class="btn btn-secondary"
               data-ng-click="useJulkaisunnimi(julkaisu.selected.source, julkaisu.selected.identifier)"
               data-ng-bind="i18n.content.esitayta.hae[lang]">
       </button>
@@ -88,15 +88,15 @@
 
 <div class="row" data-ng-show="julkaisu.selected.organisation == user.organization.code">
   <div class="col-xs-12">
-    <h3 class="form-header">
+    <h3>
       *Mahdollinen duplikaatti*
     </h3>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-xs-12">
-    <button type="button" class="btn btn-lg btn-block btn-primary" data-ng-click="julkaisuhaettu=true; useVaihe(2)">
+  <div class="col-xs-12 text-center">
+    <button type="button" class="btn btn-lg btn-primary" data-ng-click="julkaisuhaettu=true; useVaihe(2)">
       {{ i18n.content.esitayta.ohita[lang] }}
     </button>
   </div>

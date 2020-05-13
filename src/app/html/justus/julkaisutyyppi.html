@@ -10,7 +10,7 @@
       data-ng-if="o.arvo=='A' || o.arvo=='B' || o.arvo=='C' || o.arvo=='D' || o.arvo=='E' || o.arvo=='F' || o.arvo=='G'"
     >
       <div class="col-xs-12">
-        <div class="col-xs-12 justus-btn justus-btn-tyyppi" data-ng-class="{'active': julkaisutyyppi_paa == o.arvo}"
+        <div class="col-xs-12 justus-btn-tyyppi" data-ng-class="{'active': julkaisutyyppi_paa == o.arvo}"
         data-ng-click="useJulkaisutyyppiPaa(o.arvo);">{{o.selite}}</div>
         <!-- julkaisutyyppi alaluokka -->
         <div class="row form-group"
@@ -19,7 +19,7 @@
           <div class="col-xs-11">
             <input type="hidden" data-ng-model="justus.julkaisu.julkaisutyyppi">
             <div data-ng-repeat="a in o.alatyypit | orderBy: 'arvo'">
-              <div class="col-xs-12 justus-btn justus-btn-tyyppi" data-ng-class="{'active': justus.julkaisu.julkaisutyyppi == a.arvo}"
+              <div class="col-xs-12 justus-btn-tyyppi" data-ng-class="{'active': justus.julkaisu.julkaisutyyppi == a.arvo}"
                data-ng-click="useField('julkaisu','julkaisutyyppi',a.arvo); useVaihe(3);">
                 {{a.selite}}
                 <i class="fa fa-info-circle"

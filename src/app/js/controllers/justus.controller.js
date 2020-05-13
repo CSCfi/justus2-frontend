@@ -162,7 +162,7 @@ angular.module('JustusController', [])
                 $scope.justus.organisaatiotekija[parIndex].alayksikko[index] = input;
             };
 
-            $scope.addAlayksikko = function(parentIndex, index) {
+            $scope.removeAlayksikko = function(parentIndex, index) {
                 $scope.justus.organisaatiotekija[parentIndex].alayksikko.splice(index, 1);
             };
 
@@ -544,9 +544,9 @@ angular.module('JustusController', [])
                 $scope.fileAlreadyExists = false;
             };
 
-            $scope.useRequiredHighlight = function() {
-                $scope.requiredHighlight = !$scope.requiredHighlight;
-            };
+            // $scope.useRequiredHighlight = function() {
+            //     $scope.requiredHighlight = !$scope.requiredHighlight;
+            // };
 
             $scope.useField = function(type, field, input) {
                 if (input !== null && input !== undefined) {
