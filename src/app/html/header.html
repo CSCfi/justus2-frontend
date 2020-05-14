@@ -33,9 +33,9 @@
       </span>
         </div>
 
-    <div data-ng-if="initialRole === 'owner'">
-      <button href data-ui-sref="admin()" class="btn btn-link font-weight-bold">Käyttäjien hallinta</button>
-    </div>
+        <!--    <div data-ng-if="initialRole === 'owner'">-->
+        <!--        <button  data-ui-sref="admin()" class="btn btn-link font-weight-bold">Käyttäjien hallinta</button>-->
+        <!--    </div>-->
 
     <span data-ng-if="initialRole === 'owner'">
       <select data-ng-model="selectedDemoUserRole">
@@ -77,6 +77,11 @@
                href data-ui-sref="hyvaksy()"
                data-ng-class="getMenuClass('/hyvaksy')"
                data-ng-bind="i18n.content.valitse.hyvaksy[lang]">
+            </a>
+            <a
+                    href data-ui-sref="admin()"
+                    data-ng-class="getMenuClass('/admin')">
+                Käyttäjien hallinta
             </a>
         </div>
     </div>
