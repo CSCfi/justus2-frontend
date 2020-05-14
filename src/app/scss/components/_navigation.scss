@@ -6,12 +6,14 @@
     font-size: $font-size-base;
     text-decoration: none;
     color: $brand-primary;
-    padding: $padding-small-vertical $padding-small-horizontal;
+    text-transform: uppercase;
+    //padding: $padding-small-vertical $padding-small-horizontal;
+    padding: 10px 30px;
     border-radius: $border-radius-base;
     margin-bottom: $padding-small-vertical;
 
     &:hover {
-      background: $brand-secondary;
+      background: $brand-primary-dark;
       color: $brand-white;
       text-decoration: none;
     }
