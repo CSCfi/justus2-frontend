@@ -108,7 +108,7 @@ const i18n = {
       uudestaan: {
         FI: 'Hae julkaisua uudestaan', SV: '*SV*Hae julkaisua uudestaan', EN: '*EN*Hae julkaisua uudestaan'
       },
-      hae: { FI: 'Hae', SV: 'Hämta', EN: 'Search' },
+      hae: { FI: 'Vie tiedot lomakkeelle', SV: 'Hämta', EN: 'Search' },
       ohita: { FI: 'Ohita vaihe ja syötä julkaisutiedot käsin', SV: 'Manuell inmatning', EN: 'Skip this phase and manually enter publication information' }
     },
     form: {
