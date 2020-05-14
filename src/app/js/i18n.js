@@ -872,5 +872,27 @@ const i18n = {
 
     yes: { FI: 'Kyllä', SV: 'Ja', EN: 'Yes' },
     no: { FI: 'Ei', SV: 'Nej', EN: 'No' }
+  },
+  admin: {
+	  haku: {
+	    FI: 'Haku henkilöistä', SV: '', EN: ''
+	  },
+      vie: {
+        FI: 'Tuo henkilöitä', SV: '', EN: ''
+      },
+	  content: {
+	    etsi: {
+          FI: 'Hae henkilöä', SV: '', EN: ''
+        },
+         lista: {
+            tunniste: { FI: 'Tunniste / ID', SV: '', EN: 'HR number'},
+            etunimi: { FI: 'Etunimi', SV: '', EN: 'Firstname'},
+            sukunimi: { FI: 'Sukunimi', SV: '', EN: 'Lastname'},
+            orcid: { FI: 'Orcid', SV: 'Orcid', EN: 'Orcid'},
+            muokattu: { FI: 'Muokattu', SV: '', EN: 'Modified'}
+        }
+    }
+	 
   }
+  
 };

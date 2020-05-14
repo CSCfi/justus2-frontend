@@ -12,13 +12,13 @@
         <div class="col-xs-6 text-center">
             <div class="justus-btn justus-btn-stage" data-ng-class="{selected: hakuState}"
                  data-ng-click="hakuState=true">
-                <span>Haku käyttäjistä</span>
+                <span data-ng-bind="i18n.admin.haku[lang]"></span>
             </div>
         </div>
         <div class="col-xs-6 text-center">
             <div class="justus-btn justus-btn-stage" data-ng-class="{selected: !hakuState}"
                  data-ng-click="hakuState=false">
-                <span>Tuo käyttäjiä</span>
+                <span data-ng-bind="i18n.admin.vie[lang]"></span>
             </div>
         </div>
     </div>
