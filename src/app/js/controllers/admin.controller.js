@@ -51,6 +51,10 @@ angular.module('AdminController', [])
                 return JustusService.isFieldVisible(field);
             };
 
+            $scope.isFieldRequired = function(field) {
+                return JustusService.isFieldRequired(field);
+            };
+
             $scope.editPerson = function (person) {
                 $window.scrollTo(0, 0);
                 $scope.selectedPerson = angular.copy(person);
@@ -126,7 +130,7 @@ angular.module('AdminController', [])
                     $scope.invalidFields.push("orcid");
                 }
 
-                if (JustusService.isFieldRequired('alayksikko')) {
+                if ($scope.isFieldRequired('alayksikko')) {
                     if (!$scope.selectedPerson.alayksikko[0] || $scope.selectedPerson.alayksikko[0].length < 1) {
                         $scope.invalidFields.push("alayksikko");
                     }
