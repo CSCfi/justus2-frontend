@@ -2,17 +2,18 @@ tags-input,
 .tags-input {
   min-height: 40px;
   .tags {
+    font-family: $font-family-secondary !important;
     background-color: lighten(#d2d3d5, 10%);
     border-radius: 2px;
     border: 1px solid #d7d7d7;
     .input {
       font-family: $font-family-secondary !important;
+      font-size: $font-size-xl;
       padding-left: $padding-base-horizontal - 2px;
       background-color: lighten(#d2d3d5, 10%);
-      //border-width: 1px;
-
       box-shadow: none;
       min-height: 40px;
+      font-weight: 300;
       margin: 0;
       &.invalid-tag {
         color: $brand-danger;
@@ -38,7 +39,7 @@ tags-input,
       border-radius: 2px;
       font-family: $font-family-secondary;
       padding: 4px 8px;
-      font-size: 15px;
+      //font-size: 15px;
       height: 35px;
 
       &.selected {
