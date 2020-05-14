@@ -14,7 +14,7 @@
 
 .form-control {
   border-radius: 2px;
-  font-size: 16px;
+  font-size: $font-size-xl;
   height: 40px;
   color: $gray-darker;
   background-color: lighten(#d2d3d5, 10%);
@@ -37,7 +37,6 @@
 .form-control::-ms-input-placeholder { font-weight: 300; }  /* Microsoft Edge */
 
 
-
 .form-control-feedback {
   display: none;
   right: 15px;
@@ -55,9 +54,7 @@
   top: 10px;
 }
 
-.required-star {
-  color: $brand-danger;
-}
+
 
 textarea {
   min-height: 40px;

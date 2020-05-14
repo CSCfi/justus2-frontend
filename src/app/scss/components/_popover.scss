@@ -1,4 +1,8 @@
 .popover {
+  width: 100%;
+  font-size: $font-size-xl;
   background: $brand-white;
   color: $text-color;
+  border: 0;
+  max-width: 350px;
 }
