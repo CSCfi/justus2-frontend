@@ -264,7 +264,7 @@ angular.module('JustusController', [])
             $scope.fetchLehtisarja = function(input) { // issn
 
                 if (input == null || input === "") return;
-                ExternalServicesService.etsiissn(input[0])
+                ExternalServicesService.etsiissn(input)
                     .then(function (response) {
                         var jobj = response.data;
                         var jufotunnus = jobj && jobj.length > 0 ? jobj[0].Jufo_ID : null; // voisi asettaa jo scopeen, mutta seuraavassa kutsussa
