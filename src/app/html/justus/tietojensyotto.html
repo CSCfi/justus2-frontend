@@ -626,49 +626,40 @@
              data-ng-bind="i18n.content.form.issn[lang]">
       </label>
       <i class="fa fa-info-circle justus-info"
-        data-popover-trigger="'mouseenter'"
-        data-popover-placement="right"
-        data-uib-popover="{{ julkaisutyyppi_paa == 'F' ? i18n.content.form.issn.tooltipF[lang] : i18n.content.form.issn.tooltip[lang] }}"
-        data-ng-show="i18n.content.form.issn.tooltip[lang]">
+         data-popover-trigger="'mouseenter'"
+         data-popover-placement="right"
+         data-uib-popover="{{ julkaisutyyppi_paa == 'F' ? i18n.content.form.issn.tooltipF[lang] : i18n.content.form.issn.tooltip[lang] }}"
+         data-ng-show="i18n.content.form.issn.tooltip[lang]">
       </i>
       <span data-ng-if="isFieldRequired('issn')" class="required-star">*</span>
     </div>
     <div class="col-sm-8 col-xs-12 justus-data">
-      <div class="row">
-        <div class="col-xs-4" >
-          <div data-ng-repeat="issn in justus.julkaisu.issn track by $index" data-ng-class="{'mb-x':$first}">
+      <div class="row" data-ng-repeat="issn in justus.julkaisu.issn track by $index" data-ng-class="{'mb-x':$first}">
+        <div class="col-xs-6">
             <input type="text"
-              class="form-control"
-              data-ng-model="justus.julkaisu.issn[$index]"
-              placeholder="1234-567X">
+                   class="form-control"
+                   data-ng-model="justus.julkaisu.issn[$index]"
+                   placeholder="1234-567X">
             <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
-          </div>
+            <span data-ng-if="issnDescription[$index]">{{issnDescription[$index]}}</span>
         </div>
         <div class="col-xs-6">
-          <div class="p-b mb-x">
             <button class="btn btn-primary"
-                  data-ng-click="justus.julkaisu.issn.push('')"
-                  data-ng-disabled="justus.julkaisu.issn.length>1"
-                  title="{{i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]}}"
-                  data-ng-bind="i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]">
+                    data-ng-show="$index === 0 && justus.julkaisu.issn.length === 1"
+                    data-ng-click="justus.julkaisu.issn.push('')"
+                    data-ng-disabled="justus.julkaisu.issn.length>1"
+                    title="{{i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]}}"
+                    data-ng-bind="i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]">
             </button>
-          </div>
-          <div>
-            <button class="btn btn-primary"
-                  data-ng-click="justus.julkaisu.issn.splice(justus.julkaisu.issn.length-1, 1)"
-                  data-ng-hide="justus.julkaisu.issn.length<2 || $index === '0'"
-                  title="{{i18n.content.form.organisaatiotekija.poista.tooltip[lang]}}"
-                  data-ng-bind="i18n.content.form.organisaatiotekija.poista.tooltip[lang]">
+           <button class="btn btn-primary"
+                   data-ng-click="removeIssn($index)"
+                   data-ng-hide="justus.julkaisu.issn.length<2 || $index === '0'"
+                   title="{{i18n.content.form.organisaatiotekija.poista.tooltip[lang]}}"
+                   data-ng-bind="i18n.content.form.organisaatiotekija.poista.tooltip[lang]">
             </button>
-          </div>
         </div>
-        <!--<div class="col-xs-2">-->
-          <!--<i class="fa fa-arrow-left pull-right form-control-feedback-extra"-->
-            <!--data-ng-if="requiredHighlight && !isValid('issn[0]')">-->
-          <!--</i>-->
-        <!--</div>-->
-      </div>
-  </div>
+        </div>
+    </div>
   </div>
 
   <!-- Kenttä: Volyymi :: näkyy aina -->

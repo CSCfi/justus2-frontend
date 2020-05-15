@@ -25,6 +25,7 @@ angular.module('JustusController', [])
             $scope.crossrefTaiVirtaLataa = false;
             $scope.requiredHighlight = false;
             $scope.invalidFields = [];
+            $scope.issnDescription = [];
 
             $scope.julkaisu = {};
 
@@ -82,6 +83,7 @@ angular.module('JustusController', [])
                 $scope.kustantajanimet = [];
                 $scope.konferenssinimet = [];
                 $scope.julkaisunnimet = [];
+                $scope.issnDescription = [];
                 $scope.justus.julkaisu = {};
                 $scope.justus.julkaisu.issn = [""];
                 $scope.justus.julkaisu.isbn = [""];
@@ -242,12 +244,16 @@ angular.module('JustusController', [])
                         $scope.justus.julkaisu.jufotunnus = input; // tai vastauksesta...
                         $scope.justus.julkaisu.jufoluokitus = obj.Level;
 
-                        if (obj.ISSN1) $scope.justus.julkaisu.issn[0] = obj.ISSN1;
+                        if (obj.ISSN1) {
+                            $scope.justus.julkaisu.issn[0] = obj.ISSN1;
+                            $scope.issnDescription[0]= "print";
+                        }
 
                         if (!$scope.justus.julkaisu.issn[0] && obj.ISSN2) {
                             $scope.justus.julkaisu.issn[0] = obj.ISSN2;
                         } else if ($scope.justus.julkaisu.issn[0] && obj.ISSN2) {
                             $scope.justus.julkaisu.issn[1] = obj.ISSN2;
+                            $scope.issnDescription[1] = "electronic";
                         }
                         if (obj.Publisher) {
                             $scope.justus.julkaisu.kustantaja = obj.Publisher
@@ -397,6 +403,11 @@ angular.module('JustusController', [])
                 $scope.justus.avainsanat = $scope.avainsanatTags.map(function(tag) {
                     return  tag.prefLabel;
                 });
+            };
+
+            $scope.removeIssn = function(issnIndex) {
+                $scope.justus.julkaisu.issn.splice(issnIndex, 1);
+                $scope.issnDescription = [];
             };
 
             $scope.initializeAvainsanatTags = function() {
