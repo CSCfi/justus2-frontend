@@ -11,6 +11,9 @@ angular.module('TallennusController', [])
     $scope.file = JustusService.file;
 
     $scope.savePublicationForm = function() {
+
+      $rootScope.publicationSaveInProgress = true;
+
       const publication = {};
       publication.julkaisu = {};
       publication.organisaatiotekija = [];
@@ -80,24 +83,38 @@ angular.module('TallennusController', [])
        }
 
         if (!$scope.justus.julkaisu.id) {
+
+
             APIService.post('julkaisu', publication).then((response) => {
-                if (fileData.filename && fileData.filename !== "") {
-                    fileData.julkaisuid = response.id;
-                    const uploadPromise = APIService.postJulkaisu(fileData, $scope.file);
-                    console.log(uploadPromise);
-                    handlePublicationUploadAndNavigateToNextPage(uploadPromise)
-                }
-                else {
-                    if ($rootScope.user.role === "admin") {
-                        $state.go('hyvaksy');
-                    } else {
-                        $state.go('omat');
+
+                console.log(response);
+                // post success, continue with file upload
+                if (response.status === 200) {
+                    if (fileData.filename && fileData.filename !== "") {
+                        console.log(response.data.id);
+                        fileData.julkaisuid = response.data.id;
+                        const uploadPromise = APIService.postJulkaisu(fileData, $scope.file);
+                        console.log(uploadPromise);
+                        handlePublicationUploadAndNavigateToNextPage(uploadPromise)
                     }
-                    JustusService.clearPublicationForm();
-                    delete $rootScope.filedata;
-                    $rootScope.filedata = {};
+                    else {
+                        if ($rootScope.user.role === "admin") {
+                            $state.go('hyvaksy');
+                        } else {
+                            $state.go('omat');
+                        }
+                        JustusService.clearPublicationForm();
+                        $rootScope.publicationSaveInProgress = false;
+                        delete $rootScope.filedata;
+                        $rootScope.filedata = {};
+                    }
+                } else {
+                    alert ("Error in saving publication data with error  " + response.data);
+                    $rootScope.publicationSaveInProgress = false;
                 }
+
             })
+
         }
         else {
 
@@ -109,10 +126,14 @@ angular.module('TallennusController', [])
                 APIService.put('julkaisu', $scope.justus.julkaisu.id, publication, fileData)
                     .then((response) => {
                         console.log(response);
-                        // Todo: if first request fails do not send publication
-                        uploadPromise = APIService.postJulkaisu(fileData, $scope.file);
-                        handlePublicationUploadAndNavigateToNextPage(uploadPromise);
-
+                        // check response status and do not send query if status is not 200
+                        if (response.status === 200) {
+                            uploadPromise = APIService.postJulkaisu(fileData, $scope.file);
+                            handlePublicationUploadAndNavigateToNextPage(uploadPromise);
+                        } else {
+                            alert ("Error in updating publication data with error  " + response.data);
+                            $rootScope.publicationSaveInProgress = false;
+                        }
                     });
             } else if (!$scope.file && fileData.filename) {
                 fileData.julkaisuid = $scope.justus.julkaisu.id;
@@ -132,7 +153,7 @@ angular.module('TallennusController', [])
             upload
                 .then((res) => {
                     console.log(res);
-                    if (res.status === 500) {
+                    if (res.status !== 200) {
                         alert("Metadata for publication was succesfully saved but publication upload responded with " +
                             "following error code: " + res.data);
                         $state.go('omat');
@@ -143,7 +164,7 @@ angular.module('TallennusController', [])
                             $state.go('omat');
                         }
                     }
-
+                    $rootScope.publicationSaveInProgress = false;
                     JustusService.clearPublicationForm();
                     delete $rootScope.filedata;
                     $rootScope.filedata = {};
@@ -151,26 +172,30 @@ angular.module('TallennusController', [])
                 })
                 .catch((error) => {
                     $log.error(error);
+                    $rootScope.publicationSaveInProgress = false;
                 });
         }
 
         function clearDataAndNavigateToNextPage(julkaisuPromise) {
             julkaisuPromise
-                .then((res) => {
-                    console.log(res);
+                .then((response) => {
+                    if(response.status === 200) {
                         if ($rootScope.user.role === "admin") {
                             $state.go('hyvaksy');
                         } else {
                             $state.go('omat');
                         }
-                    JustusService.clearPublicationForm();
-                    delete $rootScope.filedata;
-                    $rootScope.filedata = {};
+                        JustusService.clearPublicationForm();
+                        delete $rootScope.filedata;
+                        $rootScope.filedata = {};
+                        $rootScope.publicationSaveInProgress = false;
+                    } else {
+                        alert("Error in saving publication data with error  " + response.data);
+                        $rootScope.publicationSaveInProgress = false;
+                    }
 
                 })
-                .catch((error) => {
-                    $log.error(error);
-                });
+
         }
 
 
