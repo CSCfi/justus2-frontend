@@ -341,12 +341,19 @@
     </tbody>
   </table>
 
+  <div class="row m-b">
+    <div class="text-center">
+      <i class="fa fa-spinner fa-spin fa-3x" data-ng-show="publicationSaveInProgress"> </i>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-md-8">
       <button
               data-ng-controller="TallennusController"
               class="btn btn-lg btn-block btn-primary"
               type="button"
+              data-ng-disabled="publicationSaveInProgress"
               data-ng-click="savePublicationForm()">
         {{i18n.content.tallennus.tallenna[lang]}}
       </button>
@@ -356,6 +363,7 @@
               data-ng-controller="TallennusController"
               class="btn btn-lg btn-block btn-danger"
               type="button"
+              data-ng-disabled="publicationSaveInProgress"
               data-ng-click=cancelAndReturnToPublicationListing()>
         {{i18n.content.tallennus.hylkaa[lang]}}
       </button>
