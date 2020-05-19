@@ -147,7 +147,7 @@ angular.module('APIService', [])
       })
       .catch(function (response) {
         console.log(response);
-        $log.error('post ERROR ' + response.status + ' ' + response.data.description);
+        $log.error('post ERROR ' + response.status + ' ' + response.data);
         return response;
       });
     };

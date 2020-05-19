@@ -229,7 +229,7 @@ angular.module('IndexController', [])
                 APIService.post("impersonate", userData)
                     .then(function(response) {
                         console.log(response);
-                        $scope.user = AuthService.setUser(response);
+                        $scope.user = AuthService.setUser(response.data);
                         $rootScope.user = $scope.user;
                         $scope.selectedDemoUserRole = "";
                         $scope.selectedDemoUserOrganizationCode = "";
