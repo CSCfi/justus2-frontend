@@ -866,6 +866,7 @@ const i18n = {
         tekija: { FI: 'Hae julkaisun tai tekijän nimellä', SV: 'Hae julkaisun tai tekijän nimellä', EN: 'Search by name or author' },
         julkaisuvuosi: { FI: 'Hae/rajaa hakua julkaisuvuoden perusteella', SV: 'Hae/rajaa hakua julkaisuvuoden perusteella', EN: 'Search/filter by year of publication'},
         julkaisuntila: { FI: 'Valitse julkaisuntila', SV: 'Valitse julkaisuntila', EN: 'Valitse julkaisuntila'},
+        hae: { FI: 'Hae', SV: 'Hämta', EN: 'Search'},
         tyhjenna: { FI: 'Tyhjennä haku', SV: 'Tyhjennä haku', EN: 'Clear search'}
       }
     },
