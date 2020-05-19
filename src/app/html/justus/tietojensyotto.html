@@ -47,11 +47,6 @@
             title="{{ julkaisutyyppi_paa == 'F' ? i18n.content.form.julkaisuvuosi.tooltipF[lang] : i18n.content.form.julkaisuvuosi.tooltip[lang] }}">
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
-<!--        <div class="col-xs-2">-->
-<!--          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"-->
-<!--             data-ng-if="requiredHighlight && !isValid('julkaisuvuosi')">-->
-<!--          </i>-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -80,11 +75,6 @@
           </textarea>
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
-<!--        <div class="col-xs-2">-->
-<!--          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"-->
-<!--             data-ng-if="requiredHighlight && !isValid('julkaisuvuodenlisatieto')">-->
-<!--          </i>-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -104,7 +94,6 @@
         data-uib-popover="{{ julkaisutyyppi_paa == 'F' ? i18n.content.form.julkaisunnimi.tooltipF[lang] : i18n.content.form.julkaisunnimi.tooltip[lang] }}"
         data-ng-show="i18n.content.form.julkaisunnimi.tooltip[lang]">
       </i>
-
     </div>
     <div class="col-sm-8 col-xs-12 justus-data"
          data-ng-model="req_julkaisunnimi">
@@ -115,11 +104,6 @@
                  placeholder="{{ i18n.content.form.julkaisunnimi.picktip[lang] }}">
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
-<!--        <div class="col-xs-2">-->
-<!--          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"-->
-<!--             data-ng-if="requiredHighlight && !isValid('julkaisunnimi')">-->
-<!--          </i>-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -151,11 +135,6 @@
           </tags-input>
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
-<!--        <div class="col-xs-2">-->
-<!--          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"-->
-<!--             data-ng-if="requiredHighlight && !isValid('tekijat')">-->
-<!--          </i>-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -193,11 +172,6 @@
             data-ng-bind="i18n.content.form.organisaatiotekija.kopioi[lang]">
           </span>
         </div>
-<!--        <div class="col-xs-2">-->
-<!--          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"-->
-<!--             data-ng-if="requiredHighlight && !isValid('julkaisuntekijoidenlukumaara')">-->
-<!--          </i>-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -347,19 +321,12 @@
                 title="{{i18n.content.form.organisaatiotekija.poista.tooltip[lang]}}"
                 data-ng-bind="i18n.content.form.organisaatiotekija.poista.tooltip[lang]">
           </span>
-          <span class="btn btn-secondary"
+          <span class="btn btn-primary"
                 data-ng-click="addOrganisaatiotekija()"
                 data-ng-hide="$index < justus.organisaatiotekija.length-1"
-
                 title="{{i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]}}"
                 data-ng-bind="i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]">
           </span>
-
-<!--          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"-->
-<!--             data-ng-if="requiredHighlight && !(justus.organisaatiotekija[$index].sukunimi && justus.organisaatiotekija[$index].etunimet-->
-<!--            && justus.organisaatiotekija[$index].alayksikko[0].alayksikko-->
-<!--            )">-->
-<!--          </i>-->
         </div>
       </div>
     </div>
@@ -449,12 +416,6 @@
             placeholder="{{i18n.content.form.konferenssinvakiintunutnimi.picktip[lang]}}">
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
-<!--        <div class="col-xs-2">-->
-<!--          <i class='fa fa-spinner fa-spin fa-lg' data-ng-show='jufoKonferenssiLataa'></i>-->
-<!--          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"-->
-<!--             data-ng-if="requiredHighlight && !isValid('konferenssinvakiintunutnimi')">-->
-<!--          </i>-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -482,8 +443,6 @@
                   placeholder="{{ i18n.content.form.emojulkaisunnimi.picktip[lang] }}">
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
-<!--        <div class="col-xs-2">-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -526,11 +485,6 @@
           </button>
             </div>
         </div>
-        <!--<div class="col-xs-2">-->
-        <!--<i class="fa fa-arrow-left pull-right form-control-feedback-extra"-->
-        <!--data-ng-if="requiredHighlight && !isValid('issn[0]')">-->
-        <!--</i>-->
-        <!--</div>-->
       </div>
   </div>
   </div>
@@ -565,8 +519,6 @@
          </tags-input>
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
-<!--        <div class="col-xs-2">-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -599,9 +551,6 @@
         </div>
         <div class="col-xs-1">
           <i class='fa fa-spinner fa-spin fa-2x' data-ng-show='jufoLataa'></i>
-<!--          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"-->
-<!--             data-ng-if="requiredHighlight && !isValid('lehdenjulkaisusarjannimi')">-->
-<!--          </i>-->
         </div>
       </div>
       <!-- näytä valitun lehden/sarjan tietoja -->
@@ -693,10 +642,6 @@
                  placeholder="{{ i18n.content.form.volyymi.picktip[lang] }}">
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
-<!--        <div class="col-xs-6">-->
-<!--        </div>-->
-<!--        <div class="col-xs-2">-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -721,10 +666,6 @@
                  placeholder="{{ i18n.content.form.numero.picktip[lang] }}">
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
-<!--        <div class="col-xs-6">-->
-<!--        </div>-->
-<!--        <div class="col-xs-2">-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -749,10 +690,6 @@
                  placeholder="{{ i18n.content.form.sivut.picktip[lang] }}">
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
-<!--        <div class="col-xs-6">-->
-<!--        </div>-->
-<!--        <div class="col-xs-2">-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -780,10 +717,6 @@
                  placeholder="{{ i18n.content.form.artikkelinumero.picktip[lang] }}">
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
-<!--        <div class="col-xs-6">-->
-<!--        </div>-->
-<!--        <div class="col-xs-2">-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -814,9 +747,6 @@
         </div>
         <div class="col-xs-1">
           <i class='fa fa-spinner fa-spin fa-lg' data-ng-show='jufoKustantajaLataa'></i>
-<!--          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"-->
-<!--             data-ng-if="requiredHighlight && !isValid('kustantaja')">-->
-<!--          </i>-->
         </div>
       </div>
     </div>
@@ -847,10 +777,6 @@
                  placeholder="{{ i18n.content.form.julkaisunkustannuspaikka.picktip[lang] }}">
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
-<!--        <div class="col-xs-6">-->
-<!--        </div>-->
-<!--        <div class="col-xs-2">-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -921,8 +847,6 @@
                  data-typeahead-editable="false">
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
-<!--        <div class="col-xs-2">-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -962,11 +886,6 @@
               {{i18n.content.form.julkaisunkansainvalisyys['0'][lang]}}
           </label>
         </div>
-<!--        <div class="col-xs-2">-->
-<!--          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"-->
-<!--             data-ng-if="requiredHighlight && !isValid('julkaisunkansainvalisyys')">-->
-<!--          </i>-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -995,8 +914,6 @@
                  placeholder="{{ i18n.content.form.julkaisumaa.picktip[lang] }}">
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
-<!--        <div class="col-xs-2">-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -1025,11 +942,6 @@
           </textarea>
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
-<!--        <div class="col-xs-2">-->
-<!--          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"-->
-<!--             data-ng-if="requiredHighlight && !isValid('julkistamispaikkakunta')">-->
-<!--          </i>-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -1058,11 +970,6 @@
           </textarea>
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
-<!--        <div class="col-xs-2">-->
-<!--          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"-->
-<!--             data-ng-if="requiredHighlight && !isValid('tapahtumanlisatieto')">-->
-<!--          </i>-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -1104,9 +1011,6 @@
                   title="{{i18n.content.form.tieteenala.poista.tooltip[lang]}}"
                   data-ng-bind="i18n.content.form.tieteenala.poista.tooltip[lang]">
           </button>
-<!--          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"-->
-<!--             data-ng-if="requiredHighlight && (justus.tieteenala.length==0 || (justus.tieteenala.length>=1 && !justus.tieteenala[$index].tieteenalakoodi))">-->
-<!--          </i>-->
         </div>
       </div>
       <div class="row">
@@ -1204,8 +1108,7 @@
               <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
                  <ui-select data-ng-model="taiteenala.selected"
                             on-select="useTaiteenala($select.selected.arvo)"
-                            theme="bootstrap"
-                 >
+                            theme="bootstrap">
                     <ui-select-match class="ui-select-match"
                                      data-ng-value="justus.taiteenala"
                                      placeholder="{{i18n.content.form.taiteenala.picktip[lang]}}">
@@ -1311,11 +1214,6 @@
               {{i18n.content.form.kansainvalinenyhteisjulkaisu['0'][lang]}}
           </label>
         </div>
-<!--        <div class="col-xs-2">-->
-<!--          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"-->
-<!--             data-ng-if="requiredHighlight && !isValid('kansainvalinenyhteisjulkaisu')">-->
-<!--          </i>-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -1354,11 +1252,6 @@
               {{i18n.content.form.yhteisjulkaisuyrityksenkanssa['0'][lang]}}
           </label>
         </div>
-<!--        <div class="col-xs-2">-->
-<!--          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"-->
-<!--             data-ng-if="requiredHighlight && !isValid('yhteisjulkaisuyrityksenkanssa')">-->
-<!--          </i>-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -1386,8 +1279,6 @@
                  placeholder="{{ i18n.content.form.doitunniste.picktip[lang] }}">
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
-<!--        <div class="col-xs-2">-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -1416,11 +1307,6 @@
           </textarea>
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
-<!--        <div class="col-xs-2">-->
-<!--          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"-->
-<!--             data-ng-if="requiredHighlight && !isValid('muutunniste')">-->
-<!--          </i>-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -1448,8 +1334,6 @@
                  placeholder="{{ i18n.content.form.pysyvaverkkoosoite.picktip[lang] }}">
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
-<!--        <div class="col-xs-2">-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -1508,11 +1392,6 @@
             </i>
           </label>
         </div>
-<!--        <div class="col-xs-2">-->
-<!--          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"-->
-<!--             data-ng-if="requiredHighlight && !isValid('avoinsaatavuus')">-->
-<!--          </i>-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -1540,11 +1419,6 @@
           </textarea>
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
-<!--        <div class="col-xs-2">-->
-<!--          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"-->
-<!--             data-ng-if="requiredHighlight && !isValid('lisatieto')">-->
-<!--          </i>-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -1553,12 +1427,12 @@
   <div class="row" data-ng-if="invalidFields.length > 0">
     <div class="col-xs-12">
       <div class="alert alert-danger">
-        <h3>
-        {{i18n.content.tietojensyotto.taytaviela[lang]}}
+        <h3 class="text-secondary mt-0">
+        {{i18n.content.tietojensyotto.taytaviela[lang]}}:
         </h3>
         <div>
-          <span data-ng-repeat="o in invalidFields">
-            <i data-ng-bind="i18n.content.form[o][lang]?i18n.content.form[o][lang]:o"></i>
+          <span class="pxs" data-ng-repeat="o in invalidFields">
+            <i class="text-xl" data-ng-bind="i18n.content.form[o][lang]?i18n.content.form[o][lang]:o"></i>
             <br>
           </span>
         </div>
