@@ -477,7 +477,7 @@
           </button>
             </div>
           <div>
-            <button class="btn btn-primary"
+            <button class="btn btn-danger"
                   data-ng-click="justus.julkaisu.isbn.splice(justus.julkaisu.isbn.length-1, 1)"
                   data-ng-hide="justus.julkaisu.isbn.length<2 || $index === '0'"
                   title="{{i18n.content.form.organisaatiotekija.poista.tooltip[lang]}}"
@@ -606,7 +606,7 @@
                     title="{{i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]}}"
                     data-ng-bind="i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]">
             </button>
-           <button class="btn btn-primary"
+           <button class="btn btn-danger"
                    data-ng-click="removeIssn($index)"
                    data-ng-hide="justus.julkaisu.issn.length<2 || $index === '0'"
                    title="{{i18n.content.form.organisaatiotekija.poista.tooltip[lang]}}"

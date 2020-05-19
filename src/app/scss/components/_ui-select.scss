@@ -1,4 +1,7 @@
 .ui-select-bootstrap {
+  .btn {
+    line-height: inherit;
+  }
   span {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -19,7 +22,6 @@
 
   .input-group {
     .ui-select-toggle {
-
       &.form-control:first-child {
         border-bottom-right-radius: 0;
         border-top-right-radius: 0;
@@ -38,6 +40,10 @@
           background-color: $brand-primary;
         }
     }
+  }
+  .ui-select-placeholder {
+    color: #999;
+    font-weight: 300;
   }
 }
 
