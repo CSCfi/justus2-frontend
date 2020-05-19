@@ -13,9 +13,9 @@
   </div>
 </div>
 
-<div class="row px">
+<div class="row pxs">
   <div class="col-xs-6">
-    <h4 class="font-weight-bold">{{i18n.content.tarkasta.julkaisuja[lang]}}: {{publications.count}}</h4>
+    <h4 class="font-weight-700 text-secondary">{{i18n.content.tarkasta.julkaisuja[lang]}}: {{publications.count}}</h4>
   </div>
   <div data-ng-show="!publications.odottavat" class="col-xs-6">
     <button type="button"
@@ -40,17 +40,17 @@
 
 <div data-ng-if="user.role === 'admin' || user.role === 'owner'">
   <div data-ng-show="!publications.odottavat">
-    <div class="row pxs">
+    <div class="row pxs publication-search">
       <div class="col-sm-5">
-        <div class="input-group">
+        <div class="form-group">
           <input type="text" class="form-control"
                  data-ng-model="search.vapaasanahaku"
                  data-ng-keyup="$event.keyCode == 13 && searchPublications()"
                  placeholder="{{i18n.content.tarkasta.haku.tekija[lang]}}"/>
-          <span class="input-group-addon"><i class="fa fa-search"></i></span>
+<!--          <span class="input-group-addon"><i class="fa fa-search"></i></span>-->
         </div>
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-3 pl-0">
         <div class="form-group">
           <input type="number" class="form-control"
                  data-ng-keyup="$event.keyCode == 13 && searchPublications()"
@@ -58,7 +58,7 @@
                  placeholder="{{i18n.content.tarkasta.haku.julkaisuvuosi[lang]}}"/>
         </div>
       </div>
-      <div class="col-sm-2">
+      <div class="col-sm-2 pl-0">
         <div class="form-group">
           <ui-select data-ng-model="search.julkaisuntila"
                      theme="bootstrap">
@@ -74,15 +74,15 @@
         </div>
       </div>
       <div class="col-sm-2 p-0">
-        <div class="d-inline-block pxs">
-          <button class="btn btn-primary"
+        <div class="d-inline-block p-r">
+          <button class="btn btn-primary btn-sm"
                   data-ng-click="searchPublications()"
                   data-ng-disabled="!search.vapaasanahaku && !search.julkaisuvuosi && !search.julkaisuntila"
-                  data-ng-bind="i18n.content.esitayta.hae[lang]">
+                  data-ng-bind="i18n.content.tarkasta.haku.hae[lang]">
           </button>
         </div>
         <div class="d-inline-block">
-          <button class="btn btn-default"
+          <button class="btn btn-default btn-sm"
                   data-ng-click="resetData()"
                   data-ng-bind="i18n.content.tarkasta.haku.tyhjenna[lang]">
           </button>

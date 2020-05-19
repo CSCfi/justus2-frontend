@@ -1,16 +1,22 @@
 .table {
+  font-family: $font-family-secondary;
   tbody,
   thead {
     tr {
       th {
+        font-family: $font-family-secondary;
         white-space: nowrap;
       }
       th,
       td {
+
         vertical-align: top;
 
-        &.condensed {
+        &.condensed-1 {
           width: 1%;
+        }
+        &.condensed-25 {
+          width: 25%;
         }
 
         &.nowrap {
@@ -38,7 +44,7 @@
 .hover-table-green {
   &:hover {
     cursor: pointer;
-    background-color: $brand-secondary !important;
+    background-color: $brand-primary-light !important;
     color: #fff;
     a {
       color: #fff;

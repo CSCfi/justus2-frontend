@@ -143,7 +143,7 @@ angular.module('APIService', [])
         headers: { 'Content-Type': 'application/json' }
       })
       .then(function (response) {
-        return response.data;
+        return response;
       })
       .catch(function (error) {
         console.log(error);
@@ -235,11 +235,11 @@ angular.module('APIService', [])
         headers: { 'Content-Type': 'application/json' }
       })
       .then(function (response) {
-          return response.data;
+          return response;
       })
       .catch(function (response) {
         $log.error('put ERROR ' + response.status + ' ' + response.data);
-        return response.status;
+        return response;
       });
     };
 

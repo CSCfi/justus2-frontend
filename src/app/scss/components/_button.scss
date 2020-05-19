@@ -29,6 +29,12 @@
   font-weight: 300;
 }
 
+.btn-sm {
+  border-radius: $border-radius-base;
+  padding: 9px 10px;
+
+}
+
 .btn-secondary {
   background-color: $brand-secondary;
   color: $brand-white;

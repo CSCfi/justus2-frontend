@@ -256,9 +256,9 @@ gulp.task('build', function (callback) {
 });
 
 gulp.task('watch', function () {
-  gulp.watch('./src/**/*.html', ['default']);
-  gulp.watch('./src/**/*.js', ['app-js']);
-  gulp.watch('./src/**/*.scss', ['app-css']);
+  gulp.watch('./src/**/*.html', { maxListeners: 999 }, ['default']);
+  gulp.watch('./src/**/*.js', { maxListeners: 999 }, ['app-js']);
+  gulp.watch('./src/**/*.scss', { maxListeners: 999 }, ['app-css']);
 });
 
 gulp.task('dev', function () {
