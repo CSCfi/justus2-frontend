@@ -1,25 +1,62 @@
 <!-- vaihe 0 valitse -->
 
-<h3 data-ng-bind="i18n.content.valitse.title[lang]"></h3>
+<div class="p-1 text-dark text-uppercase text-center">
+    <h3 data-ng-bind="i18n.content.valitse.title[lang]"></h3>
+</div>
 
-<div class="row">
-  <div class="col-xs-12 col-sm-4">
-    <button class="btn btn-block btn-lg btn-primary"
-      data-ui-sref="justus({id:id,vaihe:vaihe||1})">
-      <i class="fa fa-upload" aria-hidden="true"></i> {{ i18n.content.valitse.tallenna[lang] }}
-    </button>
-  </div>
-  <div class="col-xs-12 col-sm-4">
-    <a class="btn btn-block btn-lg btn-primary"
-      data-ui-sref="omat()">
-      <i class="fa fa-list" aria-hidden="true"></i> {{ i18n.content.valitse.omat[lang] }}
-    </a>
-  </div>
-  <div class="col-xs-12 col-sm-4">
-    <a class="btn btn-block btn-lg btn-primary"
-      data-ng-if="hasAccessToApprove()"
-      data-ui-sref="hyvaksy()">
-      <i class="fa fa-check" aria-hidden="true"></i> {{ i18n.content.valitse.hyvaksy[lang] }}
-    </a>
+<div class="row" style="margin-bottom: 30px">
+    <div class="col-xs-12 col-sm-6 text-center">
+        <div class="m-b">
+            <i class="fa fa-upload fa-4x text-color-secondary" aria-hidden="true"></i>
+        </div>
+        <button class="btn btn-primary btn-etusivu"
+                data-ui-sref="justus({id:id,vaihe:vaihe||1})">
+            {{ i18n.content.valitse.tallenna[lang] }}
+        </button>
+        <p class="m-t text-left px">
+            Julkaisujen tallennus on viisivaiheinen, sisältäen mahdollisuuden myös julkaisun syöttöön organisaatiosta
+            riippuen. Voit halutessasi esitäyttää julkaisuja Virta tai CrossRef palveluista.</p>
+    </div>
+    <div class="col-xs-12 col-sm-6 text-center">
+        <div class="m-b">
+            <i class="fa fa-list fa-4x text-color-secondary" aria-hidden="true"></i>
+        </div>
+        <button class="btn btn-primary btn-etusivu"
+                data-ui-sref="omat()">
+            {{ i18n.content.valitse.omat[lang] }}
+        </button>
+        <p class="m-t text-left px">Kaikki käyttäjän tallentamat julkaisutiedot näkyvät Omat tallennukset -näkymässä.
+            Näkymä jakautuu hyväksymistä odottaviin julkaisuihin ja hyväksyttyihin julkaisuihin. </p>
+    </div>
+</div>
+
+<div data-ng-if="hasAccessToApprove()">
+    <div class="p-1 text-dark text-uppercase text-center">
+        <h3 class="">Toiminnallisuudet pääkäyttäjille</h3>
+    </div>
+    <div class="row m-b">
+        <div class="col-xs-12 col-sm-6 text-center">
+            <div class="m-b">
+                <i class="fa fa-check fa-4x text-color-secondary" aria-hidden="true"></i>
+            </div>
+            <button class="btn btn-primary btn-etusivu"
+                    data-ng-if="hasAccessToApprove()"
+                    data-ui-sref="hyvaksy()">
+                {{ i18n.content.valitse.hyvaksy[lang] }}
+            </button>
+            <p class="m-t text-left px">Hyväksy tallennuksia näkymässä näkyvät kaikki oman organisaation rivi- ja
+                pääkäyttäjien lisäämät julkaisutiedot.
+                Näkymä jakautuu hyväksymistä odottaviin julkaisuihin ja hyväksyttyihin julkaisuihin.</p>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="margin-top: 40px;">
+  <div class="col-xs-12 text-center text-dark">
+    <p>Justus palvelun tarkemmat ohjeet löytyvät
+      <a class="font-weight-bold" href="https://wiki.eduuni.fi/display/CscJustus/Ohjeet"
+         target="__blank">täältä
+      </a>
+    </p>
   </div>
 </div>
