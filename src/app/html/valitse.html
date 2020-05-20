@@ -7,56 +7,71 @@
 <div class="row" style="margin-bottom: 30px">
     <div class="col-xs-12 col-sm-6 text-center">
         <div class="m-b">
-            <i class="fa fa-upload fa-4x text-color-secondary" aria-hidden="true"></i>
+            <i class="fa fa-upload fa-4x text-dark" aria-hidden="true"></i>
         </div>
         <button class="btn btn-primary btn-etusivu"
                 data-ui-sref="justus({id:id,vaihe:vaihe||1})">
             {{ i18n.content.valitse.tallenna[lang] }}
         </button>
         <p class="m-t text-left px">
-            Julkaisujen tallennus on viisivaiheinen, sis‰lt‰en mahdollisuuden myˆs julkaisun syˆttˆˆn organisaatiosta
-            riippuen. Voit halutessasi esit‰ytt‰‰ julkaisuja Virta tai CrossRef palveluista.</p>
+            Julkaisujen tallennus on viisivaiheinen, sis√§lt√§en mahdollisuuden my√∂s julkaisun sy√∂tt√∂√∂n organisaatiosta
+            riippuen. Voit halutessasi esit√§ytt√§√§ julkaisuja Virta tai CrossRef palveluista.</p>
     </div>
     <div class="col-xs-12 col-sm-6 text-center">
         <div class="m-b">
-            <i class="fa fa-list fa-4x text-color-secondary" aria-hidden="true"></i>
+            <i class="fa fa-list fa-4x text-dark" aria-hidden="true"></i>
         </div>
         <button class="btn btn-primary btn-etusivu"
                 data-ui-sref="omat()">
             {{ i18n.content.valitse.omat[lang] }}
         </button>
-        <p class="m-t text-left px">Kaikki k‰ytt‰j‰n tallentamat julkaisutiedot n‰kyv‰t Omat tallennukset -n‰kym‰ss‰.
-            N‰kym‰ jakautuu hyv‰ksymist‰ odottaviin julkaisuihin ja hyv‰ksyttyihin julkaisuihin. </p>
+        <p class="m-t text-left px">Kaikki k√§ytt√§j√§n tallentamat julkaisutiedot n√§kyv√§t Omat tallennukset -n√§kym√§ss√§.
+            N√§kym√§ jakautuu hyv√§ksymist√§ odottaviin julkaisuihin ja hyv√§ksyttyihin julkaisuihin. </p>
     </div>
 </div>
 
 <div data-ng-if="hasAccessToApprove()">
     <div class="p-1 text-dark text-uppercase text-center">
-        <h3 class="">Toiminnallisuudet p‰‰k‰ytt‰jille</h3>
+        <h3 class="">Toiminnallisuudet p√§√§k√§ytt√§jille</h3>
     </div>
     <div class="row m-b">
         <div class="col-xs-12 col-sm-6 text-center">
             <div class="m-b">
-                <i class="fa fa-check fa-4x text-color-secondary" aria-hidden="true"></i>
+                <i class="fa fa-check fa-4x text-dark" aria-hidden="true"></i>
             </div>
             <button class="btn btn-primary btn-etusivu"
                     data-ng-if="hasAccessToApprove()"
                     data-ui-sref="hyvaksy()">
                 {{ i18n.content.valitse.hyvaksy[lang] }}
             </button>
-            <p class="m-t text-left px">Hyv‰ksy tallennuksia n‰kym‰ss‰ n‰kyv‰t kaikki oman organisaation rivi- ja
-                p‰‰k‰ytt‰jien lis‰‰m‰t julkaisutiedot.
-                N‰kym‰ jakautuu hyv‰ksymist‰ odottaviin julkaisuihin ja hyv‰ksyttyihin julkaisuihin.</p>
+            <p class="m-t text-left px">Hyv√§ksy tallennuksia n√§kym√§ss√§ n√§kyv√§t kaikki oman organisaation rivi- ja
+                p√§√§k√§ytt√§jien lis√§√§m√§t julkaisutiedot.
+                N√§kym√§ jakautuu hyv√§ksymist√§ odottaviin julkaisuihin ja hyv√§ksyttyihin julkaisuihin.</p>
+        </div>
+        <div class="col-xs-12 col-sm-6 text-center">
+            <div class="m-b">
+                <i class="fa fa-user fa-4x text-dark" aria-hidden="true"></i>
+            </div>
+            <button class="btn btn-primary btn-etusivu"
+                    data-ng-if="hasAccessToApprove()"
+                    data-ui-sref="admin()">
+                K√§ytt√§jien hallinta
+            </button>
+            <p class="m-t text-left px">K√§ytt√§jien hallinta osiossa p√§√§see lis√§√§m√§√§n ja muokkaamaan organisaation
+                k√§ytt√§ji√§.
+                Osiossa on mahdollista tuoda k√§ytt√§j√§t ladata k√§ytt√§j√§t CSV-tiedostona palvelimelta sek√§ l√§hett√§√§
+                p√§ivitetyt tiedot CSV:n√§.
+            </p>
         </div>
     </div>
 </div>
 
 <div class="row" style="margin-top: 40px;">
-  <div class="col-xs-12 text-center text-dark">
-    <p>Justus palvelun tarkemmat ohjeet lˆytyv‰t
-      <a class="font-weight-bold" href="https://wiki.eduuni.fi/display/CscJustus/Ohjeet"
-         target="__blank">t‰‰lt‰
-      </a>
-    </p>
-  </div>
+    <div class="col-xs-12 text-center text-dark">
+        <p>Justus palvelun tarkemmat ohjeet l√∂ytyv√§t
+            <a class="font-weight-bold" href="https://wiki.eduuni.fi/display/CscJustus/Ohjeet"
+               target="__blank">t√§√§lt√§
+            </a>
+        </p>
+    </div>
 </div>
