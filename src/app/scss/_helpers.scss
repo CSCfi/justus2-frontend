@@ -26,6 +26,10 @@
   color: #8c8c8c;
 }
 
+.text-dark {
+  color: $text-color-dark;
+}
+
 .text-xl {
   font-size: 1.2em;
 }
@@ -48,6 +52,9 @@
 
 .mt-xl {
   margin-top: $padding-large-vertical*2;
+
+.p-1 {
+  padding: $padding-large-horizontal;
 }
 
 .pb{
@@ -199,38 +206,5 @@ input[type=number]
   border-radius: $input-border-radius;
 }
 
-.col-xs-5ths,
-.col-sm-5ths,
-.col-md-5ths,
-.col-lg-5ths {
-  position: relative;
-  min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
-}
 
-.col-xs-5ths {
-  width: 20%;
-  float: left;
-}
 
-@media (min-width: 768px) {
-  .col-sm-5ths {
-    width: 20%;
-    float: left;
-  }
-}
-
-@media (min-width: 992px) {
-  .col-md-5ths {
-    width: 20%;
-    float: left;
-  }
-}
-
-@media (min-width: 1200px) {
-  .col-lg-5ths {
-    width: 20%;
-    float: left;
-  }
-}

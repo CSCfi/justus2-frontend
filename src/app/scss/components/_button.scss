@@ -49,6 +49,12 @@
   }
 }
 
+.btn-etusivu {
+  padding: 12px 40px;
+  border-radius: 2px;
+  font-size: $font-size-xl;
+}
+
 .justus-btn {
   cursor: pointer;
   text-align: center;
@@ -75,6 +81,7 @@
   transition: all 0.5s ease-in-out;
   //background-color: #026D7C;
   background-color: darken($brand-secondary, 5%);
+  color: $brand-white;
 }
 
 .justus-close-btn {
@@ -85,12 +92,14 @@
 .justus-btn.selected {
   //background-color: #026D7C;
   background-color: $brand-secondary;
+  color: $brand-white;
+
 }
 
 .justus-btn-stage {
   //background-color: #99C2C8;
   background-color: lighten($brand-secondary, 50%);
-  color: #FFFFFF;
+  color: $gray-darker;
   font-size: larger;
   padding: 12px;
   margin: 2px;
@@ -125,13 +134,16 @@
   font-size: larger;
   border: 0;
   border-radius: 4px;
+  color: $gray-darker;
   &:hover {
     background-color: $brand-primary-dark;
+    color: $brand-white;
   }
 }
 
 .justus-btn-tyyppi.active {
   background-color: $brand-primary;
+  color: $brand-white;
 }
 .justus-btn-tyyppi.disabled {
   &:hover {

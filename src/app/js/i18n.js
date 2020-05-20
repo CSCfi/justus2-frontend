@@ -41,7 +41,7 @@ const i18n = {
   },
   content: {
     valitse: {
-      title: { FI: 'VALITSE TOIMINTO', SV: 'VÄLJ FUNKTION', EN: 'CHOOSE FUNCTION' },
+      title: { FI: 'Valitse toiminto', SV: 'Välj funktion', EN: 'Choose function' },
       etusivu: { FI: 'Etusivu', SV: 'Framsida', EN: 'Frontpage' },
       tallenna: { FI: 'Tallenna julkaisu', SV: 'Spara uppgifter', EN: 'Save publication' },
       omat: { FI: 'Omat tallennukset', SV: 'Mina publikationer', EN: 'My publications' },
