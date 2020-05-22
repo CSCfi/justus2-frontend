@@ -6,8 +6,8 @@
         <form name="personForm" novalidate>
           <span class="btn btn-default pull-right "
                 data-ng-click="closeForm()"
-                title="Sulje">
-              <i class="fa fa-close fa-lg"></i>
+                title="Sulje">Sulje
+              <i class="fa fa-close fa-lg pl"></i>
           </span>
 
         <h4 data-ng-if="selectedPerson.id" class="font-weight-bold">Muokkaat henkilöä: {{selectedPerson.etunimi}} {{selectedPerson.sukunimi}}</h4>
@@ -131,8 +131,8 @@
     <div data-ng-if="showList" style="margin: 30px 15px;">
         <span class="btn btn-default pull-right "
               data-ng-click="closeList()"
-              title="Sulje">
-              <i class="fa fa-close fa-lg"></i>
+              title="Sulje">Sulje
+              <i class="fa fa-close fa-lg pl"></i>
           </span>
         <person-publication-list-directive
                                            person="personToShow"
