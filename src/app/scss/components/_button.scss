@@ -11,7 +11,6 @@
   &.btn-secondary,
   &:focus,
   &:active {
-    background: $brand-secondary;
     color: $brand-white;
 
     &:hover {
@@ -97,17 +96,15 @@
 }
 
 .justus-btn-stage {
-  //background-color: #99C2C8;
-  background-color: lighten($brand-secondary, 50%);
-  color: $gray-darker;
+  background-color: lighten($brand-secondary, 40%);
+  color: $brand-white;
   font-size: larger;
   padding: 12px;
   margin: 2px;
 }
 
 .justus-btn-stage.disabled {
-  //background-color: #99C2C8;
-  background-color: lighten($brand-secondary, 50%);
+  background-color: lighten($brand-secondary, 40%);
   padding: 12px;
   margin: 2px;
 }
@@ -134,7 +131,6 @@
   font-size: larger;
   border: 0;
   border-radius: 4px;
-  color: $gray-darker;
   &:hover {
     background-color: $brand-primary-dark;
     color: $brand-white;

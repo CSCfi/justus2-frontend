@@ -1208,7 +1208,7 @@
           </div>
         </div>
         <div class="col-xs-2">
-          <button class="btn btn-primary m-b"
+          <button class="btn btn-danger m-b"
                   data-ng-click="justus.tieteenala.splice($index, 1)"
                   data-ng-if="justus.tieteenala.length >= 2 && (justus.tieteenala.length - 1) !== $index"
                   title="{{i18n.content.form.tieteenala.poista.tooltip[lang]}}"
@@ -1298,7 +1298,7 @@
           </div>
         </div>
         <div class="col-xs-2">
-          <button class="btn btn-primary m-b"
+          <button class="btn btn-danger m-b"
                   data-ng-click="justus.taiteenala.splice($index, 1)"
                   data-ng-if="justus.taiteenala.length >= 2 && (justus.taiteenala.length - 1) !== $index"
                   title="{{i18n.content.form.taiteenala.poista.tooltip[lang]}}"
@@ -1354,7 +1354,7 @@
         </div>
       </div>
         <div class="col-xs-2">
-          <button class="btn btn-primary m-b"
+          <button class="btn btn-danger m-b"
                   data-ng-click="justus.taidealantyyppikategoria.splice($index, 1)"
                   title="{{i18n.content.form.taidealantyyppikategoria.poista.tooltip[lang]}}"
                   data-ng-bind="i18n.content.form.taidealantyyppikategoria.poista.tooltip[lang]">
@@ -1366,8 +1366,7 @@
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
           <ui-select data-ng-model="taidealantyyppikategoria.selected"
                      on-select="useTaidelanTyyppi($select.selected.arvo)"
-                     theme="bootstrap"
-          >
+                     theme="bootstrap">
           <ui-select-match class="ui-select-match"
                            data-ng-value="justus.taidealantyyppikategoria"
                            placeholder="{{i18n.content.form.taidealantyyppikategoria.picktip[lang]}}">
