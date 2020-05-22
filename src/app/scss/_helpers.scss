@@ -22,6 +22,19 @@
   font-weight: 700;
 }
 
+.text-secondary {
+  font-family: $font-family-secondary;
+}
+
+.text-color-primary {
+  color: $brand-primary;
+}
+
+.text-color-secondary {
+  color: $text-color-secondary;
+}
+
+
 .text-gray {
   color: #8c8c8c;
 }
@@ -32,6 +45,10 @@
 
 .text-xl {
   font-size: 1.2em;
+}
+
+.mx {
+  margin: 0 10px;
 }
 
 .mt-0 {
@@ -195,10 +212,13 @@
   border: 2px solid $brand-primary;
 }
 
+.border-bottom-1 {
+  border-bottom: 1px solid $brand-primary;
+}
+
 .ui-select-choices-row-inner {
   padding-left: 10px !important;
 }
-
 
 input[type=number]
 {
@@ -211,5 +231,8 @@ input[type=number]
   border-radius: $input-border-radius;
 }
 
+input[type="file"] {
+  display: none;
+}
 
 

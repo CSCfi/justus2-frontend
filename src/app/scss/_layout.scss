@@ -17,15 +17,6 @@ h3 {
   color: $text-color-dark;
 }
 
-
-.text-secondary {
-  font-family: $font-family-secondary;
-}
-.text-color-secondary {
-  color: $text-color-secondary;
-}
-
-
 .main-wrapper {
   background-color: $body-bg;
   height: 100%;
@@ -40,7 +31,6 @@ h3 {
 }
 
 .header-wrapper {
-  //padding: $padding-large-vertical 0;
   padding-top: $padding-large-vertical;
 }
 
