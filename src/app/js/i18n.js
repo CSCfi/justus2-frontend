@@ -6,7 +6,14 @@ const i18n = {
     logotext: { FI: 'JUSTUS - JULKAISUTIETOJEN TALLENNUS', SV: 'JUSTUS - JULKAISUTIETOJEN TALLENNUS', EN: 'JUSTUS - JULKAISUTIETOJEN TALLENNUS' },
     lang: { FI: 'Suomeksi', SV: 'På svenska', EN: 'In English' },
     logout: { FI: 'Kirjaudu ulos', SV: 'Logga ut', EN: 'Logout' },
-    help: { FI: 'Ohje', SV: 'Instruktioner', EN: 'Instructions' }
+    help: { FI: 'Ohje', SV: 'Instruktioner', EN: 'Instructions' },
+    navigation: {
+      etusivu: { FI: 'Etusivu', SV: 'Framsida', EN: 'Frontpage' },
+      tallenna: { FI: 'Tallenna julkaisu', SV: 'Spara uppgifter', EN: 'Save publication' },
+      omat: { FI: 'Omat tallennukset', SV: 'Mina publikationer', EN: 'My publications' },
+      hyvaksy: { FI: 'Hyväksy tallennuksia', SV: 'Godkänn uppgifter', EN: 'Approve publications' },
+      admin: { FI: 'Käyttäjien hallinta', SV: 'SV Käyttäjien hallinta', EN: 'EN Käyttäjien hallinta' },
+    }
   },
   footer: {
     help: {
@@ -42,10 +49,44 @@ const i18n = {
   content: {
     valitse: {
       title: { FI: 'Valitse toiminto', SV: 'Välj funktion', EN: 'Choose function' },
-      etusivu: { FI: 'Etusivu', SV: 'Framsida', EN: 'Frontpage' },
-      tallenna: { FI: 'Tallenna julkaisu', SV: 'Spara uppgifter', EN: 'Save publication' },
-      omat: { FI: 'Omat tallennukset', SV: 'Mina publikationer', EN: 'My publications' },
-      hyvaksy: { FI: 'Hyväksy tallennuksia', SV: 'Godkänn uppgifter', EN: 'Approve publications' }
+      admintitle: { FI: 'Toiminnallisuudet pääkäyttäjille', SV: 'SV Toiminnallisuudet pääkäyttäjille', EN: 'EN Toiminnallisuudet pääkäyttäjille' },
+      tallenna: { 
+        button: { FI: 'Tallenna julkaisu', SV: 'Spara uppgifter', EN: 'Save publication' },
+        text: { 
+          FI: 'Julkaisujen tallennus on viisivaiheinen, sisältäen mahdollisuuden myös julkaisun syöttöön organisaatiosta riippuen. Voit halutessasi esitäyttää julkaisuja Virta tai CrossRef palveluista.', 
+          SV: 'Spara uppgifter', 
+          EN: 'Save publication' 
+        },
+      },
+      omat: { 
+        button: { FI: 'Omat tallennukset', SV: 'Mina publikationer', EN: 'My publications' },
+        text: { 
+          FI: 'Kaikki käyttäjän tallentamat julkaisutiedot näkyvät Omat tallennukset -näkymässä. Näkymä jakautuu hyväksymistä odottaviin julkaisuihin ja hyväksyttyihin julkaisuihin.', 
+          SV: 'Mina publikationer', 
+          EN: 'My publications' 
+        },
+      },
+      hyvaksy: { 
+        button: { FI: 'Hyväksy tallennuksia', SV: 'Godkänn uppgifter', EN: 'Approve publications' },
+        text: { 
+          FI: 'Hyväksy tallennuksia näkymässä näkyvät kaikki oman organisaation rivi- ja pääkäyttäjien lisäämät julkaisutiedot. Näkymä jakautuu hyväksymistä odottaviin julkaisuihin ja hyväksyttyihin julkaisuihin.', 
+          SV: 'Godkänn uppgifter', 
+          EN: 'Approve publications' 
+        },
+      },
+      admin: { 
+        button: {  FI: 'Käyttäjien hallinta', SV: 'SV Käyttäjien hallinta', EN: 'EN Käyttäjien hallinta' },
+        text: { 
+          FI: 'Käyttäjien hallinta osiossa pääsee lisäämään ja muokkaamaan organisaation käyttäjiä. Osiossa on mahdollista tuoda käyttäjät ladata käyttäjät CSV-tiedostona palvelimelta sekä lähettää päivitetyt tiedot CSV:nä.', 
+          SV: 'SV Käyttäjien hallinta', 
+          EN: 'EN Käyttäjien hallinta' 
+        },
+      },
+      ohje: {
+        text: {  FI: 'Justus palvelun tarkemmat ohjeet löytyvät ', SV: 'SV Justus palvelun tarkemmat ohjeet löytyvät ', EN: 'EN Justus palvelun tarkemmat ohjeet löytyvät ' },
+        link: {  FI: 'täältä', SV: 'SV täältä', EN: 'EN täältä'  }
+      }
+      
     },
     esitayta: {
       title: { FI: 'Tietojen haku', SV: 'Hämta uppgifter', EN: 'Search information' },
