@@ -6,24 +6,26 @@
         <form name="personForm" novalidate>
           <span class="btn btn-default pull-right "
                 data-ng-click="closeForm()"
-                title="Sulje">Sulje
+                title="i18n.admin.content.form.sulje[lang]">
+                  {{i18n.admin.content.form.sulje[lang]}}
               <i class="fa fa-close fa-lg pl"></i>
           </span>
 
-        <h4 data-ng-if="selectedPerson.id" class="font-weight-bold">Muokkaat henkilöä: {{selectedPerson.etunimi}} {{selectedPerson.sukunimi}}</h4>
-        <h4 data-ng-if="!selectedPerson.id" class="font-weight-bold">Lisää uusi henkilö</h4>
+        <h4 data-ng-if="selectedPerson.id">
+            {{i18n.admin.content.form.muokkaa[lang]}} {{selectedPerson.etunimi}} {{selectedPerson.sukunimi}}</h4>
+        <h4 data-ng-if="!selectedPerson.id" data-ng-bind="i18n.admin.content.form.lisaa[lang]"></h4>
 
         <div class="row form-group" id="firstnameGroup">
             <div class="col-xs-12 ">
-                <label class="control-label">Etunimi</label>
+                <label class="control-label" data-ng-bind="i18n.admin.content.form.etunimi[lang]"></label>
                 <i class="fa fa-asterisk required-star" aria-hidden="true"></i>
                 <input type="text" class="form-control" name="firstname"
                        data-ng-model="selectedPerson.etunimi" required>
             </div>
         </div>
-        <div class="row form-group"  id="lastnameGroup">
+        <div class="row form-group" id="lastnameGroup">
             <div class="col-xs-12">
-                <label class="control-label">Sukunimi</label>
+                <label class="control-label" data-ng-bind="i18n.admin.content.form.sukunimi[lang]"></label>
                 <i class="fa fa-asterisk required-star" aria-hidden="true"></i>
                 <input type="text" class="form-control" name="lastname"
                        data-ng-model="selectedPerson.sukunimi" required>
@@ -31,7 +33,7 @@
         </div>
         <div class="row form-group" id="hrnumberGroup">
             <div class="col-xs-12">
-                <label class="control-label">Tunniste / ID</label>
+                <label class="control-label" data-ng-bind="i18n.admin.content.form.tunniste[lang]"></label>
                 <i class="fa fa-asterisk required-star" aria-hidden="true"></i>
                 <input type="text" class="form-control" name="hrnumber"
                        data-ng-model="selectedPerson.hrnumero"
@@ -41,7 +43,7 @@
         </div>
         <div class="row form-group">
             <div class="col-xs-12">
-                <label class="control-label">Sähköposti</label>
+                <label class="control-label" data-ng-bind="i18n.admin.content.form.email[lang]"></label>
                 <input type="text" class="form-control" name="email"
                        data-ng-model="selectedPerson.email">
             </div>
@@ -49,7 +51,7 @@
         <div class="row form-group" id="orcidGroup">
             <div class="col-xs-12"
                  value="selectedPerson.orcid">
-                <label class="control-label">ORCID</label>
+                <label class="control-label" data-ng-bind="i18n.admin.content.form.orcid[lang]"></label>
                 <input type="text" class="form-control" name="orcid"
                        data-ng-model="selectedPerson.orcid"
                        orcid-directive>
@@ -58,13 +60,12 @@
         <div class="row form-group"
              data-ng-if="isFieldVisible('alayksikko')">
             <div data-ng-if="selectedPerson.alayksikko[0]" class="col-xs-12">
-                <label class="control-label">Alayksikko (Maks. 3)</label>
+                <label class="control-label" data-ng-bind="i18n.admin.content.form.alayksikko.label[lang]"></label>
                 <div data-ng-repeat="a in selectedPerson.alayksikko track by $index" class="row mb-x">
                     <div class="col-xs-11">
-                        <input disabled="true"
+                        <input disabled
                                type="text" class="form-control"
-                               data-ng-model="a" name="alayksikko"
-                               >
+                               data-ng-model="a" name="alayksikko">
                     </div>
                     <div class="col-xs-1">
                         <span class="btn btn-danger"
@@ -79,7 +80,7 @@
         </div>
         <div class="row form-group" data-ng-if="isFieldVisible('alayksikko')" id="alayksikkoGroup">
             <div class="col-xs-12">
-                <label class="control-label">Lisää alayksiköitä</label>
+                <label class="control-label" data-ng-bind="i18n.admin.content.form.alayksikko.lisaa[lang]"></label>
                 <i data-ng-if="isFieldRequired('alayksikko')" class="fa fa-asterisk required-star" aria-hidden="true"></i>
             </div>
 
@@ -88,7 +89,7 @@
                            theme="bootstrap">
                     <ui-select-match class="ui-select-match"
                                      data-ng-value="alayksikkovuosi.selected"
-                                     placeholder="{{i18n.content.form.organisaatiotekija.alayksikkovuosi.picktip[lang]}}">
+                                     placeholder="{{i18n.admin.content.form.alayksikko.placeholder.vuosi[lang]}}">
                         {{ $select.selected.label }}
                     </ui-select-match>
                     <ui-select-choices repeat="ala in alayksikkovuodet">
@@ -102,8 +103,8 @@
                            theme="bootstrap"
                            class="dropdown-height-300">
                     <ui-select-match class="ui-select-match"
-                                     placeholder="Lisää alayksikkö">Lisää alayksikkö
-
+                                     placeholder="{{i18n.admin.content.form.alayksikko.placeholder.lisaa[lang]}}">
+                        {{i18n.admin.content.form.alayksikko.placeholder.lisaa[lang]}}
                     </ui-select-match>
                     <ui-select-choices repeat="o in getAlayksikkoData(alayksikkovuosi.selected) | filter: $select.search">
                         {{ o.arvo}} {{o.selite}}
@@ -114,13 +115,16 @@
 
         <div class="row mt-xl">
             <div data-ng-class="{ 'col-xs-12': !selectedPerson.id, 'col-xs-8': selectedPerson.id }">
-                <button class="btn btn-primary btn-block btn-lg" type="submit" data-ng-click="savePerson(personForm)">
-                    Tallenna
+                <button class="btn btn-primary btn-block btn-lg"
+                        type="submit"
+                        data-ng-click="savePerson(personForm)"
+                        data-ng-bind="i18n.admin.content.form.tallenna[lang]">
                 </button>
             </div>
             <div data-ng-if="selectedPerson.id" class="col-xs-4">
-                <button class="btn btn-danger btn-block btn-lg" data-ng-click="removePerson()">
-                    Poista käyttäjä
+                <button class="btn btn-danger btn-block btn-lg"
+                        data-ng-click="removePerson()"
+                        data-ng-bind="i18n.admin.content.form.poista[lang]">
                 </button>
             </div>
         </div>
@@ -131,13 +135,14 @@
     <div data-ng-if="showList" style="margin: 30px 15px;">
         <span class="btn btn-default pull-right "
               data-ng-click="closeList()"
-              title="Sulje">Sulje
+              title="{{i18n.admin.content.form.sulje[lang]}}">
+                {{i18n.admin.content.form.sulje[lang]}}
               <i class="fa fa-close fa-lg pl"></i>
           </span>
         <person-publication-list-directive
+                                           lang="lang"
                                            person="personToShow"
-                                           publication-list="publicationList"
-                                          >
+                                           publication-list="publicationList">
         </person-publication-list-directive>
     </div>
 
@@ -150,17 +155,16 @@
                     </span>
                     <input type="text" class="form-control"
                            data-ng-model="search"
-                           placeholder="Haku henkilöistä"/>
+                           placeholder="{{i18n.admin.content.haku[lang]}}"/>
                 </div>
             </div>
         </div>
 
         <div class="row">
             <div class="col-xs-12 p">
-                <p>Organisaation käyttäjiä yhteensä: {{persons.length}}</p>
+                <p>{{i18n.admin.content.yhteensa[lang]}}<span class="pl-x">{{persons.length}}</span></p>
             </div>
         </div>
-
 
         <div class="row">
             <div class="col-xs-12">
@@ -188,7 +192,8 @@
                                 <button
                                     class="btn btn-primary btn-sm"
                                     data-ng-disabled="!person.orcid"
-                                    data-ng-click="showPublications(person)">Näytä julkaisut
+                                    data-ng-click="showPublications(person)"
+                                    data-ng-bind="i18n.admin.content.lista.nayta[lang]">
                                 </button>
                             </span>
                         </td>
@@ -201,7 +206,8 @@
 
     <div class="row">
         <div class="col-xs-12">
-            <button class="btn btn-primary btn-block btn-lg" data-ng-click="addPerson()">Lisää uusi käyttäjä
+            <button class="btn btn-primary btn-block btn-lg" data-ng-click="addPerson()"
+                    data-ng-bind="i18n.admin.content.lisaa[lang]">
             </button>
         </div>
     </div>

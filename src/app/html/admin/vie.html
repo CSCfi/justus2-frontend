@@ -2,24 +2,27 @@
 
     <div class="row mx form-group border-bottom-1">
         <div class="col-md-4">
-            <h3 class="text-secondary text-primary" style="margin-top: 10px;">Lataa tiedot</h3>
+            <h3 class="text-secondary text-primary" style="margin-top: 10px;"
+                data-ng-bind="i18n.admin.content.lataus.lataa.title[lang]"></h3>
         </div>
         <div class="col-md-8 ">
             <button class="pull-right btn btn-primary">
-                <a data-ng-href="{{csvurl}}" class="text-white no-hover" download="persons.csv">Lataa CSV</a>
+                <a data-ng-href="{{csvurl}}" class="text-white no-hover"
+                   download="persons.csv">{{i18n.admin.content.lataus.lataa.button[lang]}}</a>
             </button>
         </div>
     </div>
 
     <div class="row mx form-group pt">
         <div class="col-md-4">
-            <h3 class="text-secondary text-primary" style="margin-top: 6px;">Tuo päivitetyt tiedot</h3>
+            <h3 class="text-secondary text-primary" style="margin-top: 6px;"
+                data-ng-bind="i18n.admin.content.lataus.tuo.title[lang]"></h3>
         </div>
         <div class="col-md-8">
             <div ng-show="!csvFile.file">
                 <div class="d-inline-block pull-right">
-                    <label for="file-upload" class="custom-file-upload btn btn-primary cursor-pointer">
-                        Valitse tiedosto
+                    <label for="file-upload" class="custom-file-upload btn btn-primary cursor-pointer"
+                           data-ng-bind="i18n.admin.content.lataus.tuo.button[lang]">
                     </label>
                     <input id="file-upload" type="file" ngf-select="uploadCsv(csvFile.file)" ng-model="csvFile.file" name="filename"
                            ngf-max-size="100MB"  data-file-reader-directive file-content="csvData" accept=".csv">
@@ -34,7 +37,7 @@
     <div data-ng-if="csvData.data.length > 0">
         <div class="row">
             <div class="col-xs-12 text-secondary">
-                <h4 class="font-weight-700">Esikatselu lisättävistä henkiöistä (10 ensimmäistä):</h4>
+                <h4 class="font-weight-700" data-ng-bind="i18n.admin.content.lataus.tuo.esikatselu[lang]"></h4>
             </div>
         </div>
         <div class="row no-gutter">
@@ -42,14 +45,15 @@
                 <table class="table table-condensed">
                     <thead>
                         <tr>
-                            <th>Tunniste / ID</th>
-                            <th>Etunimi</th>
-                            <th>Sukunimi</th>
-                            <th>Email</th>
-                            <th>ORCID</th>
-                            <th>Alayksikkö 1</th>
-                            <th>Alayksikkö 2</th>
-                            <th>Alayksikkö 3</th>
+                            <th data-ng-bind="i18n.admin.content.lista.tunniste[lang]"></th>
+                            <th data-ng-bind="i18n.admin.content.lista.etunimi[lang]"></th>
+                            <th data-ng-bind="i18n.admin.content.lista.sukunimi[lang]"></th>
+                            <th data-ng-bind="i18n.admin.content.lista.email[lang]"></th>
+                            <th data-ng-bind="i18n.admin.content.lista.orcid[lang]"></th>
+                            <th>{{i18n.admin.content.lista.alayksikko[lang]}} 1</th>
+                            <th>{{i18n.admin.content.lista.alayksikko[lang]}} 2</th>
+                            <th>{{i18n.admin.content.lista.alayksikko[lang]}} 3</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -72,8 +76,8 @@
     <div class="row" data-ng-if="personsToBeDeleted.length > 0">
         <div class="col-md-12">
             <div>
-                <h4 class="font-weight-700 text-danger mt-0 text-secondary">Huom! Seuraavat henkilöt poistetaan
-                    tietokannasta:</h4>
+                <h4 class="font-weight-700 text-danger mt-0 text-secondary"
+                    data-ng-bind="i18n.admin.content.lataus.tuo.poisto[lang]"></h4>
             </div>
             <div class="alert alert-danger text-secondary m-b">
                 <ul>
@@ -89,7 +93,7 @@
     <div data-ng-if="csvFile.file">
     <div class="row mb-x">
             <div class="col-xs-12">
-               <p class="font-weight-500"> Hyväksy yllä olevat muutokset painamalla Tallenna tai hylkää muutokset Peruuta nappulasta</p>
+               <p class="font-weight-500" data-ng-bind="i18n.admin.content.lataus.tuo.info[lang]"></p>
             </div>
         </div>
 
@@ -97,15 +101,15 @@
             <div class="col-md-8">
                 <button class="btn btn-lg btn-primary btn-block"
                         type="button"
-                        data-ng-click="saveCsvData()">
-                    Tallenna
+                        data-ng-click="saveCsvData()"
+                        data-ng-bind="i18n.admin.content.lataus.tuo.tallenna[lang]">
                 </button>
             </div>
             <div class="col-md-4 pull-right">
                 <button class="btn btn-lg btn-danger btn-block"
                         type="button"
-                        data-ng-click="discardChanges(csvData)">
-                    Peruuta
+                        data-ng-click="discardChanges(csvData)"
+                        data-ng-bind="i18n.admin.content.lataus.tuo.peruuta[lang]">
                 </button>
             </div>
         </div>

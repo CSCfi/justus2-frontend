@@ -1,13 +1,4 @@
 <div data-ng-controller="AdminController">
-
-
-    <div class="row">
-        <div class="col-xs-12">
-            <h3 class="mt-x font-weight-bold">Käyttäjien hallinta</h3>
-        </div>
-    </div>
-
-
     <div class="row no-gutter m-b">
         <div class="col-xs-6 text-center">
             <div class="justus-btn justus-btn-stage" data-ng-class="{selected: hakuState}"
@@ -22,8 +13,6 @@
             </div>
         </div>
     </div>
-
     <div data-ng-if="hakuState" data-ng-include data-src="'html/admin/haku.html'"></div>
     <div data-ng-if="!hakuState" data-ng-include data-src="'html/admin/vie.html'"></div>
-
 </div>

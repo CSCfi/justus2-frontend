@@ -1,12 +1,12 @@
 <div>
-    <h4 class="font-weight-bold">Käyttäjän {{person.etunimi}} {{person.sukunimi}} ({{person.orcid}}) julkaisut:</h4>
+    <h4>{{i18n.admin.content.julkaisut.title1[lang]}} {{person.etunimi}} {{person.sukunimi}} ({{person.orcid}}) {{i18n.admin.content.julkaisut.title2[lang]}}:</h4>
     <div class="row">
         <div class="col-xs-12">
             <table class="table table-condensed">
                 <thead>
                     <tr>
-                        <th class="text-xl">JulkaisuID</th>
-                        <th class="text-xl">Julkaisu</th>
+                        <th class="text-xl" data-ng-bind="i18n.admin.content.julkaisut.id[lang]"></th>
+                        <th class="text-xl" data-ng-bind="i18n.admin.content.julkaisut.julkaisu[lang]"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -17,7 +17,7 @@
                 </tbody>
             </table>
             <div data-ng-if="!publicationList.length">
-                Ei julkaisuja
+                {{i18n.admin.content.julkaisut.eijulkaisuja[lang]}}
             </div>
         </div>
     </div>

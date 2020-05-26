@@ -916,23 +916,69 @@ const i18n = {
     no: { FI: 'Ei', SV: 'Nej', EN: 'No' }
   },
   admin: {
-	  haku: {
-	    FI: 'Haku henkilöistä', SV: '', EN: ''
-	  },
-      vie: {
-        FI: 'Tuo henkilöitä', SV: '', EN: ''
-      },
+	  haku: { FI: 'Haku henkilöistä', SV: 'SV Haku henkilöistä', EN: 'EN Haku henkilöistä' },
+    vie: {  FI: 'Tuo henkilöitä', SV: 'SV Tuo henkilöitä', EN: 'EN Tuo henkilöitä' },
 	  content: {
-	    etsi: {
-          FI: 'Hae henkilöä', SV: '', EN: ''
+	    etsi: { FI: 'Hae henkilöä', SV: '', EN: '' },
+      yhteensa: { FI: 'Organisaation käyttäjiä yhteensä:', SV: '', EN: '' }, 
+      haku: { FI: 'Haku henkilöistä', SV: 'SV Haku henkilöistä', EN: 'EN Haku henkilöistä' },
+      lista: {
+        tunniste: { FI: 'Tunniste / ID', SV: '', EN: 'Identifier'},
+        etunimi: { FI: 'Etunimi', SV: '', EN: 'Firstname'},
+        sukunimi: { FI: 'Sukunimi', SV: '', EN: 'Lastname'},
+        orcid: { FI: 'Orcid', SV: 'Orcid', EN: 'Orcid'},
+        muokattu: { FI: 'Muokattu', SV: '', EN: 'Modified'},
+        nayta: { FI: 'Näytä julkaisut', SV: 'Visa publikationer', EN: 'Show publications'},
+        email: { FI: 'Sähköposti', SV: 'Email', EN: 'Email' },
+        alayksikko: { FI: 'Alayksikkö', SV: 'Enhet', EN: 'Organisational unit' }
+      },
+      lisaa: { FI: 'Lisää uusi käyttäjä', SV: 'SV Lisää uusi käyttäjä', EN: 'Add new user' },
+      form: {
+        sulje: { FI: 'Sulje', SV: 'Stäng', EN: 'Close' },
+        lisaa: { FI: 'Lisää uusi henkilö', SV: 'SV Lisää uusi henkilö', EN: 'EN Lisää uusi henkilö' },
+        muokkaa: { FI: 'Muokkaat henkilöä:', SV: 'SV Muokkaat henkilöä:', EN: 'EN Muokkaat henkilöä:' },
+        etunimi: { FI: 'Etunimi', SV: 'Förnamn', EN: 'Firstname' },
+        sukunimi: { FI: 'Sukunimi', SV: 'Efternamn', EN: 'Lastname' },
+        tunniste: { FI: 'Tunniste / ID', SV: 'SV Tunniste', EN: 'Identifier' },
+        email: { FI: 'Sähköposti', SV: 'Email', EN: 'Email' },
+        orcid: { FI: 'Orcid', SV: 'Orcid', EN: 'Orcid' },
+        alayksikko: { 
+          label: { FI: 'Alayksikko (maks. 3)', SV: 'SV Alayksikko (maks. 3)', EN: 'EN Alayksikko (maks. 3)' },
+          lisaa: { FI: 'Lisää alayksiköitä', SV: 'SV Lisää alayksiköitä', EN: 'EN Lisää alayksiköitä' },
+          placeholder: { 
+            vuosi: { FI: 'Valitse vuosi', SV: 'Välj året', EN: 'Choose year' },
+            lisaa: { FI: 'Lisää alayksikkö', SV: 'SV Lisää alayksikkö', EN: 'EN Lisää alayksikkö' },
+          }
         },
-         lista: {
-            tunniste: { FI: 'Tunniste / ID', SV: '', EN: 'HR number'},
-            etunimi: { FI: 'Etunimi', SV: '', EN: 'Firstname'},
-            sukunimi: { FI: 'Sukunimi', SV: '', EN: 'Lastname'},
-            orcid: { FI: 'Orcid', SV: 'Orcid', EN: 'Orcid'},
-            muokattu: { FI: 'Muokattu', SV: '', EN: 'Modified'}
+        tallenna: { FI: 'Tallenna muutokset', SV: 'Spara', EN: 'Save changes'},
+        poista: { FI: 'Poista käyttäjä', SV: 'SV Poista käyttäjä', EN: 'Remove user'}
+      },
+      julkaisut: {
+        title1: { FI: 'Käyttäjän', SV: 'SV Käyttäjän', EN: 'EN Käyttäjän'},
+        title2: { FI: 'julkaisut', SV: 'SV julkaisut', EN: 'EN julkaisut'},
+        id: { FI: 'Julkaisu ID', SV: 'SV Julkaisu ID', EN: 'EN Julkaisu ID' },
+        julkaisu: { FI: 'Julkaisu', SV: 'Publikation', EN: 'Publication' },
+        eijulkaisuja: { FI: 'Ei julkaisuja', SV: 'SV Ei julkaisuja', EN: 'No publications' }
+      },
+      lataus: {
+        lataa: { 
+          title: { FI: 'Lataa tiedot', SV: 'SV Lataa tiedot', EN: 'EN Lataa tiedot' }, 
+          button: { FI: 'Lataa CSV', SV: 'SV Lataa CSV', EN: 'EN Lataa CSV' }
+        },
+        tuo: { 
+          title: { FI: 'Tuo päivitetyt tiedot', SV: 'SV Tuo päivitetyt tiedot', EN: 'EN Tuo päivitetyt tiedot' }, 
+          button: { FI: 'Valitse tiedosto', SV: 'SV Valitse tiedosto', EN: 'EN Valitse tiedosto' }, 
+          esikatselu: { FI: 'Esikatselu lisättävistä henkiöistä (10 ensimmäistä):', SV: 'SV Esikatselu lisättävistä henkiöistä (10 ensimmäistä):', EN: 'EN Esikatselu lisättävistä henkiöistä (10 ensimmäistä):' }, 
+          poisto: { FI: 'Huom! Seuraavat henkilöt poistetaan tietokannasta:', SV: 'SV Huom! Seuraavat henkilöt poistetaan tietokannasta:', EN: 'EN Huom! Seuraavat henkilöt poistetaan tietokannasta:' }, 
+          info: { 
+            FI: 'Hyväksy yllä olevat muutokset painamalla Tallenna tai hylkää muutokset Peruuta nappulasta', 
+            SV: 'SV Hyväksy yllä olevat muutokset painamalla Tallenna tai hylkää muutokset Peruuta nappulasta', 
+            EN: 'EN Hyväksy yllä olevat muutokset painamalla Tallenna tai hylkää muutokset Peruuta nappulasta' 
+          }, 
+          tallenna: { FI: 'Tallenna', SV: 'SV Tallenna', EN: 'Save' }, 
+          peruuta: { FI: 'Peruuta', SV: 'SV Peruuta', EN: 'Cancel' } 
         }
+      }
     }
 	 
   }
