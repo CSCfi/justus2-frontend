@@ -887,8 +887,8 @@ const i18n = {
       tallennus: { FI: 'Tarkista ja tallenna', SV: 'Granska och spara', EN: 'Verify and save' }
     },
     tarkasta: {
-      odottavat: { FI: 'Hyväksymistä odottavat julkaisut', SV: 'I väntan på godkännande', EN: 'Publications waiting for approval' },
-      hyvaksytyt: { FI: 'Hyväksytyt julkaisut', SV: 'Godkända publikationer', EN: 'Approved publications' },
+      odottavat: { FI: 'Käsittelyä odottavat julkaisut', SV: 'I väntan på behandling', EN: 'Publications waiting for handling' },
+      hyvaksytyt: { FI: 'Käsitellyt julkaisut', SV: 'Behandlade publikationer', EN: 'Handled publications' },
       julkaisuja: { FI: 'Julkaisuja', SV: 'Publikationer', EN: 'Publications' },
         table: {
         julkaisuid: { FI: 'JulkaisuID', SV: 'PublikationID', EN: 'PublicationID' },
