@@ -1,29 +1,12 @@
-<button class="btn btn-block btn-lg btn-primary"
-  data-ng-click="login()">
-  <i class="fa fa-sign-in" aria-hidden="true"></i> {{i18n.etusivu.kirjaudu[lang]}}
-</button>
-<button class="btn btn-block btn-lg btn-primary"
-  data-ui-sref="valitse()"
-  data-ng-if="demoEnabled">
-  <i class="fa fa-sign-in" aria-hidden="true"></i> Demo
-</button>
-<div class="row">
-  <div class="col-xs-12">
-    <h3 data-ng-bind="i18n.etusivu.title[lang]"></h3>
 
-    <p data-ng-repeat="text in i18n.etusivu.paragraphs">
+<div class="row">
+  <div class="col-xs-12" style="padding: 10px 20px;" >
+    <h3 class="text-center text-secondary" data-ng-bind="i18n.etusivu.title[lang]"></h3>
+    <p data-ng-repeat="text in i18n.etusivu.paragraphs" style="padding: 10px 20px;">
       <span data-ng-bind="text[lang]"></span>
     </p>
-
-
-    <h4 data-ng-bind="i18n.etusivu.help.title[lang]" class="d-inline-block"></h4>
-    <span>
-      <a href="https://wiki.eduuni.fi/display/CscJustus/Ohjeet" target="__blank">
-        <i class="fa fa-question-circle justus-info"></i> {{i18n.header.help[lang]}}
-      </a>
-    </span>
-    <h4 data-ng-bind="i18n.etusivu.help.organization[lang]"></h4>
-    <div class="row">
+    <p class="text-dark text-center" data-ng-bind="i18n.etusivu.help.organization[lang]"></p>
+    <div class="row" style="padding: 10px 100px">
         <div class="col-xs-12 col-sm-4">
             <span data-ng-repeat="o in organisationNameList" data-ng-if="$index < organisationNameList.length/3"><span data-ng-bind="o"></span><br></span>
         </div>
@@ -35,4 +18,34 @@
         </div>
     </div>
   </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 text-center p-1">
+    <button class="btn btn-lg  btn-primary" style="padding: 20px 60px"
+            data-ng-click="login()">
+        <i class="fa fa-sign-in" aria-hidden="true"></i> {{i18n.etusivu.kirjaudu[lang]}}
+    </button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        <button class="btn btn-lg btn-primary"
+          data-ui-sref="valitse()"
+          data-ng-if="demoEnabled">
+          <i class="fa fa-sign-in" aria-hidden="true"></i> Demo
+        </button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 text-center p-1">
+        <p data-ng-bind="i18n.etusivu.help.title[lang]" class="d-inline-block text-muted"></p>
+        <span>
+          <a href="https://wiki.eduuni.fi/display/CscJustus/Ohjeet" target="__blank">
+            <i class="fa fa-question-circle justus-info"></i> {{i18n.header.help[lang]}}
+          </a>
+        </span>
+    </div>
 </div>
