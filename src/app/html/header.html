@@ -1,5 +1,5 @@
 <div class="row m-b">
-    <div class="col-xs-12 col-md-7">
+    <div class="col-xs-12 col-md-6">
         <div data-ng-if="state.name=='index'">
             <img src="img/justus2.png" alt="{{i18n.header.logotext[lang]}" class="img-responsive">
         </div>
@@ -10,7 +10,7 @@
             </div>
         </div>
     </div>
-    <div class="col-xs-12 col-md-5 pull-right text-right pl-0">
+    <div class="col-xs-12 col-md-6 pull-right text-right pl-0">
         <div data-ng-if="state.name!='index' && user">
       <span><i>{{user.name}}</i>,&nbsp;
         <span data-ng-if="initialRole === 'owner'" class="text-capitalize">{{user.role}}, {{ user.organization.code}}:&nbsp;</span>{{ user.organization.name }}</span>
@@ -47,12 +47,12 @@
         <option value="" disabled selected>Valite organisaatio</option>
         <option data-ng-repeat="organization in organisationList" value="{{organization.arvo}}">{{organization.arvo}}: {{organization.value}}</option>
       </select>
-      <button class="btn"
+      <button class="btn btn-default btn-sm" style="padding: 5px"
               data-ng-click="setDemoUserOrganization(selectedDemoUserOrganizationCode, selectedDemoUserRole)">
         Lähetä
       </button>
-        <button class="btn btn-link" data-ng-click="resetDemoUser()">
-          <span class=""><i class="fa fa-close fa-lg"></i></span>
+        <button class="btn btn-default btn-sm" style="padding: 5px" data-ng-click="resetDemoUser()">
+          Tyhjennä
       </button>
     </span>
 
