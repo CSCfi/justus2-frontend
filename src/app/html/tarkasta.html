@@ -42,12 +42,11 @@
   <div data-ng-show="!publications.odottavat">
     <div class="row pxs">
       <div class="col-sm-5">
-        <div class="input-group">
+        <div class="form-group">
           <input type="text" class="form-control"
                  data-ng-model="search.vapaasanahaku"
                  data-ng-keyup="$event.keyCode == 13 && searchPublications()"
                  placeholder="{{i18n.content.tarkasta.haku.tekija[lang]}}"/>
-          <span class="input-group-addon"><i class="fa fa-search"></i></span>
         </div>
       </div>
       <div class="col-sm-3">
