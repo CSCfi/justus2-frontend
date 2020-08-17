@@ -209,6 +209,7 @@ angular.module('JustusController', [])
                 if (tyyppi === 1) {
                     return ExternalServicesService.etsiJulkaisuSarjanNimi(input)
                         .then(function (response) {
+                            console.log(response);
                             if (angular.isArray(response.data)) {
                                 $scope.lehtinimet = response.data;
                                 return response.data;
@@ -239,7 +240,20 @@ angular.module('JustusController', [])
 
             // kutsutaan lehden / julkaisusarjan nimestä jos löytyy
             $scope.useLehtisarja = function(input) { // jufo_id
-                if (input === null) return;
+
+                // first clear previous values
+                $scope.justus.julkaisu.jufotunnus = "";
+                $scope.justus.julkaisu.jufoluokitus = "";
+                $scope.justus.julkaisu.issn = [""];
+                $scope.justus.julkaisu.isbn = [""];
+                $scope.justus.julkaisu.kustantaja = "";
+                $scope.issnDescription = [];
+
+                // if input is empty return (jufo_id does not exist)
+                if (input === null || input === "") {
+                    return;
+                }
+
                 ExternalServicesService.kanava(input)
                     .then(function (obj) {
                         $scope.justus.julkaisu.lehdenjulkaisusarjannimi = obj.Name;
