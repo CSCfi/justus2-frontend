@@ -13,6 +13,7 @@ const del = require('del');
 const gutil = require('gulp-util');
 const babel = require('gulp-babel');
 const sourcemaps = require('gulp-sourcemaps');
+const replace = require('gulp-replace');
 
 const SOURCE_PATH = 'src';
 const BUILD_PATH = 'build';
@@ -55,9 +56,8 @@ const config = {
       'node_modules/ui-select/dist/select.js',
       'node_modules/angular-touch/angular-touch.js',
       'node_modules/ng-csv/build/ng-csv.js',
-	  'node_modules/ng-file-upload/dist/ng-file-upload.js',
-	  'node_modules/ng-infinite-scroll/build/ng-infinite-scroll.js'
-	  
+      'node_modules/ng-file-upload/dist/ng-file-upload.js',
+      'node_modules/ng-infinite-scroll/build/ng-infinite-scroll.js'	  
     ],
 
     // Define lib styles here
@@ -103,19 +103,18 @@ var revSourceFiles = [
 ];
 
 // Renames files after build
-gulp.task('rev-all', function (callback) {
+gulp.task('rev-all', async function () {
   if (isProduction === false) {
     return gutil.noop();
   }
 
   var revAll = new RevAll({
-    dontRenameFile: ['index.html', 'config.js'],
-    dontUpdateReference: ['index.html', 'config.js']
+    dontRenameFile: 'index.html',
+    dontUpdateReference: 'index.html'
   });
   return gulp.src(
     revSourceFiles
     .concat(buildDestinationPath + '/index.html')
-    .concat(buildDestinationPath + '/config.js')
   )
   .pipe(revAll.revision())
   .pipe(size({
@@ -124,7 +123,7 @@ gulp.task('rev-all', function (callback) {
   .pipe(gulp.dest(buildDestinationPath));
 });
 
-gulp.task('templatecache', function () {
+gulp.task('templatecache', async function () {
   return gulp.src(config.assets.appHtmlSrc)
   .pipe(size({
     title: 'html'
@@ -132,12 +131,16 @@ gulp.task('templatecache', function () {
   .pipe(templateCache({
     standalone: true
   }))
+
+  .pipe(replace('put(\'/', 'put(\''))
   .pipe(gulp.dest(SOURCE_PATH + '/app'));
+ 
 });
+
 
 // Copy additional html files
 gulp.task('html', function () {
-  return gulp.src([SOURCE_PATH + '/index.html', SOURCE_PATH + '/config.js'])
+  return gulp.src(SOURCE_PATH + '/index.html')
   .pipe(gulp.dest(buildDestinationPath))
   .on('error', function(e) {
     gutil.log(e);
@@ -145,7 +148,7 @@ gulp.task('html', function () {
 });
 
 // Deletes all files generated in the build
-gulp.task('clean', [], function () {
+gulp.task('clean', function () {
   return del([buildDestinationPath]);
 });
 
@@ -206,7 +209,7 @@ gulp.task('lib-js', function () {
     .pipe(gulp.dest(buildDestinationPath + '/js'));
 });
 
-gulp.task('lib-css', [], function () {
+gulp.task('lib-css', function () {
   return gulp.src(config.assets.libStyleSrc)
     .pipe(concat('libstyle-bundle.css'))
     .pipe(isProduction ? cleanCSS().on('error', function(e) {
@@ -215,22 +218,22 @@ gulp.task('lib-css', [], function () {
     .pipe(gulp.dest(buildDestinationPath + '/css'));
 });
 
-gulp.task('fonts', function () {
+gulp.task('fonts', async function () {
   gulp.src(config.assets.fontSrc)
     .pipe(gulp.dest(buildDestinationPath + '/fonts'));
 });
 
-gulp.task('images', function () {
+gulp.task('images', async function () {
   gulp.src(config.assets.imageSrc)
     .pipe(gulp.dest(buildDestinationPath + '/img'));
 });
 
-gulp.task('rootAssets', function () {
+gulp.task('rootAssets', async function () {
   gulp.src(config.assets.rootAssetSrc)
     .pipe(gulp.dest(buildDestinationPath + '/'));
 });
 
-gulp.task('generate-config', () => {
+gulp.task('generate-config', async function() {
   let environment = isProduction ? 'production' : 'development';
   if (gutil.env.qa) {
     environment = 'qa';
@@ -244,35 +247,50 @@ gulp.task('generate-config', () => {
     });
 });
 
-gulp.task('build', function (callback) {
-  runSequence(
-    'clean',
-    'generate-config',
-    'templatecache',
-    ['app-js', 'lib-js', 'app-css', 'lib-css', 'fonts', 'images', 'rootAssets', 'html'],
-    'rev-all',
-    callback
-  );
-});
-
 gulp.task('watch', function () {
-  gulp.watch('./src/**/*.html', { maxListeners: 999 }, ['default']);
-  gulp.watch('./src/**/*.js', { maxListeners: 999 }, ['app-js']);
-  gulp.watch('./src/**/*.scss', { maxListeners: 999 }, ['app-css']);
+  gulp.watch('./src/**/*.html', gulp.series('default'));
+  gulp.watch('./src/**/*.js', gulp.series('app-js'));
+  gulp.watch('./src/**/*.scss', gulp.series('app-css'));
+  gutil.log(gutil.colors.magenta('Build successful, waiting for changes...'));
 });
 
-gulp.task('dev', function () {
-  runSequence(
-    'clean',
-    'generate-config',
-    'templatecache',
-    ['app-js', 'lib-js', 'app-css', 'lib-css', 'fonts', 'images', 'rootAssets', 'html'],
-    'watch',
-    function() {
-      gutil.log(gutil.colors.green('Build successful, waiting for changes...'));
-    }
-  );
-});
+gulp.task('build', gulp.series(
+  'clean',
+  'generate-config',
+  'templatecache', 
+    gulp.parallel( 
+      'app-js', 
+      'lib-js', 
+      'app-css', 
+      'lib-css', 
+      'fonts', 
+      'images', 
+      'rootAssets', 
+      'html',),
+    'rev-all',
+  function (done) {
+    done();    
+  }));
+
+gulp.task('dev', gulp.series(
+  'clean',
+  'generate-config',
+  'templatecache', 
+    gulp.parallel( 
+      'app-js', 
+      'lib-js', 
+      'app-css', 
+      'lib-css', 
+      'fonts', 
+      'images', 
+      'rootAssets', 
+      'html',),
+  'watch',
+ 
+function (done) {
+  done();  
+}));
+
 
 // Set a default task
-gulp.task('default', ['dev']);
+gulp.task('default', gulp.series('dev'));
