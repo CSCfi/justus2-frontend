@@ -79,7 +79,7 @@
                 <h4 class="font-weight-700 text-danger mt-0 text-secondary"
                     data-ng-bind="i18n.admin.content.lataus.tuo.poisto[lang]"></h4>
             </div>
-            <div class="alert alert-danger text-secondary m-b">
+            <div role="alert" class="alert alert-danger text-secondary m-b">
                 <ul>
                     <li data-ng-repeat="person in personsToBeDeleted" class="">
                         <span class="font-weight-bold">{{person.hrnumero}}</span>
@@ -100,7 +100,7 @@
         <div class="row">
             <div class="col-md-8">
                 <button class="btn btn-lg btn-primary btn-block"
-                        type="button"
+                        type="submit"
                         data-ng-click="saveCsvData()"
                         data-ng-bind="i18n.admin.content.lataus.tuo.tallenna[lang]">
                 </button>

@@ -954,7 +954,7 @@ const i18n = {
           lisaa: { FI: 'Lisää alayksiköitä', SV: 'SV Lisää alayksiköitä', EN: 'EN Lisää alayksiköitä' },
           placeholder: { 
             vuosi: { FI: 'Valitse vuosi', SV: 'Välj året', EN: 'Choose year' },
-            lisaa: { FI: 'Lisää alayksikkö', SV: 'SV Lisää alayksikkö', EN: 'EN Lisää alayksikkö' },
+            lisaa: { FI: 'Valitse alayksikkö', SV: 'SV Valitse alayksikkö', EN: 'EN Valitse alayksikkö' },
           }
         },
         tallenna: { FI: 'Tallenna muutokset', SV: 'Spara', EN: 'Save changes'},
