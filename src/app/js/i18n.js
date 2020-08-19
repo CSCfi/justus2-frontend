@@ -7,7 +7,8 @@ const i18n = {
       etusivu: { FI: 'Etusivu', SV: 'Framsida', EN: 'Frontpage' },
       justus: {  FI: 'Tallenna julkaisu', SV: 'Spara uppgifter', EN: 'Save publcation' },
       omat:  {  FI: 'Omat tallennukset', SV: 'Mina publikationer', EN: 'My publications' },
-      hyvaksy: { FI: 'Hyväksy tallennuksia', SV: 'Godkänn uppgifter', EN: 'Approve publications' }
+      hyvaksy: { FI: 'Hyväksy tallennuksia', SV: 'Godkänn uppgifter', EN: 'Approve publications' },
+      admin: { FI: 'Käyttäjien hallinta', SV: 'SV Käyttäjien hallinta', EN: 'EN Käyttäjien hallinta' }
     },
     logotext: { FI: 'JUSTUS - JULKAISUTIETOJEN TALLENNUS', SV: 'JUSTUS - JULKAISUTIETOJEN TALLENNUS', EN: 'JUSTUS - JULKAISUTIETOJEN TALLENNUS' },
     lang: { FI: 'Suomeksi', SV: 'På svenska', EN: 'In English' },

@@ -93,7 +93,8 @@ let app = angular.module('JustusApp', [
             '': {
                 templateUrl: 'html/admin/main.html'
             }
-          }
+          },
+        data:  { pageTitle: 'admin' }
       };
 
     $stateProvider.state(indexState);
