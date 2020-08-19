@@ -33,7 +33,8 @@ angular.module('JustusApp', [
         '': {
           templateUrl: 'html/index_part.html'
         }
-      }
+      },
+      data:  { pageTitle: 'kirjaudu' }
     };
 
     const valitseState = {
@@ -43,7 +44,8 @@ angular.module('JustusApp', [
         '': {
           templateUrl: 'html/valitse.html'
         }
-      }
+      },
+      data:  { pageTitle: 'etusivu' }
     };
 
     const justusState = {
@@ -57,7 +59,8 @@ angular.module('JustusApp', [
       params: {
         vaihe: null,
         id: null
-      }
+      },
+      data:  { pageTitle: 'justus' }
     };
 
     const omatState = {
@@ -68,7 +71,8 @@ angular.module('JustusApp', [
           templateUrl: 'html/tarkasta.html',
           controller: 'TarkastaController'
         }
-      }
+      },
+      data:  { pageTitle: 'omat' }
     };
 
     const hyvaksyState = {
@@ -79,7 +83,8 @@ angular.module('JustusApp', [
           templateUrl: 'html/tarkasta.html',
           controller: 'TarkastaController'
         }
-      }
+      },
+      data:  { pageTitle: 'hyvaksy' }
     };
 
     $stateProvider.state(indexState);
@@ -91,7 +96,9 @@ angular.module('JustusApp', [
 ])
 
 // Configure bluebird
-.run(['$rootScope', '$window', '$log', function ($rootScope, $window, $log) {
+.run(['$rootScope', '$window', '$log', '$state', '$transitions',
+  function ($rootScope, $window, $log, $state, $transitions) {
+
   const Promise = $window.Promise;
 
   Promise.setScheduler(function (cb) {
@@ -102,6 +109,13 @@ angular.module('JustusApp', [
     e.preventDefault();
     $log.error(e.detail.reason);
   });
+
+    $transitions.onSuccess({}, (transition) => {
+      $rootScope.pageTitle = $state.current.data.pageTitle;
+    });
+
 }]);
+
+
 
 
