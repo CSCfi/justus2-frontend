@@ -37,32 +37,33 @@
                                         </span>
                                     </div>
                                     <div class="col-md-2 text-right" data-ng-hide="hideRemove">
-                                        <button class="btn btn-danger"
+                                        <button role="button"
+                                                class="btn btn-danger"
                                                 data-ng-click="removeFileFromServer()"
                                                 data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.poista[lang]">
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                            <div ng-show="!fileAlreadyExists" class="col-md-8">
+                            <div data-ng-show="!fileAlreadyExists" class="col-md-8">
                                 <form name="form">
-                                    <div ng-show="!file">
-                                        <div class="d-inline-block" ngf-select ngf-change="getUrnForTheseusPublications()" ng-model="file" name="filename"
-                                             ngf-max-size="100MB">
-                                            <button class="btn btn-primary">{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.valitse[lang]}}</button>
+                                    <div data-ng-show="!file">
+                                        <div class="d-inline-block" data-ngf-select data-ngf-change="getUrnForTheseusPublications()" data-ng-model="file" name="filename"
+                                             data-ngf-max-size="100MB">
+                                            <button type="button" class="btn btn-primary">{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.valitse[lang]}}</button>
                                         </div>
-                                        <div class="d-inline-block text-right px" ng-if="!file">
+                                        <div class="d-inline-block text-right px" data-ng-if="!file">
                                             {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.eivalittu[lang]}}
                                         </div>
                                     </div>
-                                    <div ng-show="!file" class="mt-x">
+                                    <div data-ng-show="!file" class="mt-x">
                                         <p class="text-danger">{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.info[lang]}}</p>
                                     </div>
-                                    <div ng-show="!file" ngf-drop ng-model="file" class="drop-box"
-                                         ngf-drag-over-class="'dragover'" ngf-allow-dir="true">
+                                    <div data-ng-show="!file" data-ngf-drop data-ng-model="file" class="drop-box"
+                                         data-ngf-drag-over-class="'dragover'" data-ngf-allow-dir="true">
                                          {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.veda[lang]}}
                                     </div>
-                                    <div class="row" ng-show="file">
+                                    <div class="row" data-ng-show="file">
                                         <div class="col-md-8">
                                             <span class="font-weight-bold text-xl">{{file.name}}</span>
                                         </div>
@@ -70,7 +71,8 @@
                                             <span data-ng-bind="bytesToSize(file.size)"></span>
                                         </div>
                                         <div class="col-md-2 text-right">
-                                            <button class="btn btn-primary m-b"
+                                            <button type="button"
+                                                    class="btn btn-primary m-b"
                                                     data-ng-click="removeFile(); file = null"
                                                     data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.poista[lang]">
                                             </button>
@@ -81,39 +83,44 @@
                             </div>
                         </div>
                         <div class="row form-group">
-                            <div class="col-md-4">
-                                <label class="control-label"
-                                       data-ng-bind="i18n.content.form.julkaisurinnakkaistallennettu[lang]">
-                                </label>
-                                <i class="fa fa-info-circle justus-info"
-                                   data-popover-trigger="'mouseenter'"
-                                   data-popover-placement="right"
-                                   data-uib-popover="{{i18n.content.form.julkaisurinnakkaistallennettu.tooltip[lang]}}"
-                                   data-ng-show="i18n.content.form.julkaisurinnakkaistallennettu.tooltip[lang]">
-                                </i>
-                            </div>
-                            <div class="col-md-8 justus-data">
-                                <div class="row">
-                                    <div class="col-xs-10">
-                                        <label class="control-label">
-                                            <input type="radio"
+                            <fieldset>
+                                <legend class="col-md-4">
+                                    <label class="control-label"
+                                           data-ng-bind="i18n.content.form.julkaisurinnakkaistallennettu[lang]">
+                                    </label>
+                                    <i class="fa fa-info-circle justus-info"
+                                       data-popover-trigger="'mouseenter'"
+                                       data-popover-placement="right"
+                                       data-uib-popover="{{i18n.content.form.julkaisurinnakkaistallennettu.tooltip[lang]}}"
+                                       data-ng-show="i18n.content.form.julkaisurinnakkaistallennettu.tooltip[lang]">
+                                    </i>
+                                </legend>
+                                <div class="col-md-8 justus-data">
+                                    <div class="row">
+                                        <div class="col-xs-10">
+                                            <input id="rinnakkaistallenne"
+                                                   type="radio"
                                                    data-ng-model="justus.julkaisu.julkaisurinnakkaistallennettu"
                                                    value="1">
-                                            {{i18n.content.form.julkaisurinnakkaistallennettu['1'][lang]}}
-                                        </label>
-                                        <label class="control-label">
-                                            <input type="radio"
+                                            <label for="rinnakkaistallenne" class="control-label">
+                                                {{i18n.content.form.julkaisurinnakkaistallennettu['1'][lang]}}
+                                            </label>
+                                            <input id="eirinnakkaistallenne"
+                                                   type="radio"
                                                    data-ng-model="justus.julkaisu.julkaisurinnakkaistallennettu"
                                                    value="0">
-                                            {{i18n.content.form.julkaisurinnakkaistallennettu['0'][lang]}}
-                                        </label>
+                                            <label for="eirinnakkaistallenne" class="control-label">
+                                                {{i18n.content.form.julkaisurinnakkaistallennettu['0'][lang]}}
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </fieldset>
                         </div>
                         <div class="row form-group">
                             <div class="col-md-4">
-                                <label class="control-label"
+                                <label for="abstrakti"
+                                       class="control-label"
                                        data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.abstrakti[lang]">
                                 </label>
                                 <i class="fa fa-info-circle justus-info"
@@ -123,16 +130,18 @@
                                 </i>
                             </div>
                             <div class="col-md-8">
-                                <div class="">
-                                  <textarea type="text" class="form-control vertical-resize min-height-300"
+                                  <textarea id="abstrakti"
+                                            name="abstrakti"
+                                            role="textbox"
+                                            class="form-control vertical-resize min-height-300"
                                             data-ng-model="filedata.abstract">
                                   </textarea>
-                                </div>
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-md-4">
-                                <label class="control-label"
+                                <label for="urntunnus"
+                                        class="control-label"
                                        data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.urn[lang]">
                                 </label>
                                 <i class="fa fa-info-circle justus-info"
@@ -144,16 +153,17 @@
 
                             <!-- Jukuri users can edit urn identifier -->
                             <div data-ng-show="user.jukuriUser">
-                                <div class="col-md-6 col-xs-12" datan-ng-show="user.jukuriUser">
-                                    <input type="text"
+                                <div class="col-md-6 col-xs-12" data-ng-show="user.jukuriUser">
+                                    <input id="urntunnus"
+                                           name="unrtunnus"
+                                           type="text"
                                            class="form-control"
                                            data-ng-model="filedata.urn"
                                            placeholder="">
-                                    <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
                                 </div>
                                 <div class="col-md-2 col-xs-12">
                                     <button type="button" class="btn btn-sm btn-primary"
-                                            ng-click="getUrn()"
+                                            data-ng-click="getUrn()"
                                             data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.urn.generoi[lang]">
                                     </button>
                                 </div>
@@ -165,7 +175,8 @@
 
                         <div class="row form-group" id="embargoGroup">
                             <div class="col-md-4">
-                                <label class="control-label"
+                                <label for="embargo"
+                                        class="control-label"
                                        data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo[lang]">
                                 </label>
                                 <i class="fa fa-info-circle justus-info"
@@ -176,21 +187,41 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="input-group pb">
-                                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                                    <input id="embargo"
+                                           name="embargo"
+                                           type="text" class="form-control"
+                                           data-uib-datepicker-popup="{{format}}"
                                            data-ng-model="filedata.embargo" is-open="popup.opened"
-                                           datepicker-options="dateOptions"
-                                           show-button-bar="false" placeholder="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo.picktip[lang]}}"/>
-                                    <span ng-click="openDatepicker()" class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                           data-datepicker-options="dateOptions"
+                                           data-show-button-bar="false"
+                                           placeholder="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo.picktip[lang]}}"/>
+                                    <span role="button"
+                                          tabindex="0"
+                                          data-ng-click="openDatepicker()"
+                                          class="input-group-addon cursor-pointer span-focus">
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
                                 </div>
                                 <div class="py">
-                                    <button type="button" class="btn btn-sm btn-primary" ng-click="setMonth()">{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo.puolivuotta[lang]}}</button>
-                                    <button type="button" class="btn btn-sm btn-primary" ng-click="setYear()">{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo.vuosi[lang]}}</button>
+                                    <button type="button"
+                                            aria-label="puolivuotta"
+                                            class="btn btn-sm btn-primary"
+                                            data-ng-click="setMonth()">
+                                        {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo.puolivuotta[lang]}}
+                                    </button>
+                                    <button type="button"
+                                            aria-label="vuosi"
+                                            class="btn btn-sm btn-primary"
+                                            data-ng-click="setYear()">
+                                        {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo.vuosi[lang]}}
+                                    </button>
                                 </div>
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-md-4">
-                                <label class="control-label"
+                                <label id="oikeudet"
+                                        class="control-label"
                                        data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.oikeudet[lang]">
                                 </label>
                                 <i class="fa fa-info-circle justus-info"
@@ -200,19 +231,22 @@
                                 </i>
                             </div>
                             <div class="col-md-6 col-xs-12 form-group">
-                                <ui-select data-ng-model="filedata.oikeudet"
+                                <ui-select aria-labelledby="oikeudet"
+                                        role="listbox"
+                                        data-ng-model="filedata.oikeudet"
                                            theme="bootstrap">
                                     <ui-select-match class="ui-select-match"
                                                      placeholder="{{filedata.oikeudet.koodi }} {{ filedata.oikeudet.selite[lang] || i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.oikeudet.picktip[lang] }}">
                                         {{ $select.selected }} {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.oikeudet.value[$select.selected][lang] }}
                                     </ui-select-match>
-                                    <ui-select-choices repeat="o in rights">
+                                    <ui-select-choices role="option" repeat="o in rights">
                                         {{o}}  {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.oikeudet.value[o][lang] }}
                                     </ui-select-choices>
                                 </ui-select>
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary m-b"
+                                <button type="button"
+                                        class="btn btn-primary m-b"
                                         data-ng-click="filedata.oikeudet = null"
                                         data-ng-if="filedata.oikeudet"
                                         title="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]"
@@ -222,7 +256,8 @@
                         </div>
                         <div class="row form-group">
                             <div class="col-md-4">
-                                <label class="control-label"
+                                <label id="versio"
+                                       class="control-label"
                                        data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.versio[lang]">
                                 </label>
                                 <i class="fa fa-info-circle justus-info"
@@ -232,19 +267,25 @@
                                 </i>
                             </div>
                             <div class="col-md-6 col-xs-12 form-group">
-                                <ui-select data-ng-model="filedata.versio"
+                                <ui-select aria-labelledby="versio"
+                                           data-ng-model="filedata.versio"
                                            theme="bootstrap">
                                     <ui-select-match class="ui-select-match"
                                                      placeholder=" {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.versio.value[filedata.versio][lang] || i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.versio.picktip[lang] }}">
-                                        {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.versio.value[$select.selected][lang] }}
+                                        {{
+                                        i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.versio.value[$select.selected][lang]
+                                        }}
                                     </ui-select-match>
-                                    <ui-select-choices repeat="v in version">
-                                        {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.versio.value[v][lang] }}
+                                    <ui-select-choices role="option" repeat="v in version">
+                                        {{
+                                        i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.versio.value[v][lang]
+                                        }}
                                     </ui-select-choices>
                                 </ui-select>
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary m-b"
+                                <button type="button"
+                                        class="btn btn-primary m-b"
                                         data-ng-click="filedata.versio = null"
                                         data-ng-if="filedata.versio"
                                         title="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]"
@@ -254,7 +295,7 @@
                         </div>
                         <div class="row form-group">
                             <div class="col-md-4">
-                                <label class="control-label"
+                                <label for="julkaisusarja" class="control-label"
                                        data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisusarja[lang]">
                                 </label>
                                 <i class="fa fa-info-circle justus-info"
@@ -266,11 +307,12 @@
                             <div class="col-md-6 col-xs-12">
                                 <div class="row">
                                     <div class="col-xs-12">
-                                        <input type="text"
+                                        <input id="julkaisusarja"
+                                               name="julkaisusarja"
+                                               type="text"
                                                class="form-control"
                                                data-ng-model="filedata.julkaisusarja"
                                                placeholder="">
-                                        <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
                                     </div>
                                 </div>
                             </div>
@@ -297,7 +339,8 @@
                     <div data-ng-show="rinnakkaistallennettumuualle" class="m-t m-b">
                         <div class="row">
                             <div class="col-xs-4">
-                                <label class="control-label"
+                                <label for="verkkoosoite"
+                                       class="control-label"
                                        data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettumuualle.form.rinnakkaistallennetunversionverkkoosoite[lang]">
                                 </label>
                                 <i class="fa fa-info-circle justus-info"
@@ -308,11 +351,12 @@
                                 </i>
                             </div>
                             <div class="col-xs-8">
-                                <input type="text"
+                                <input id="verkkoosoite"
+                                       name="verkkoosoite"
+                                       type="text"
                                        class="form-control"
                                        data-ng-disabled="fileAlreadyExists"
                                        data-ng-model="justus.julkaisu.rinnakkaistallennetunversionverkkoosoite">
-                                <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
                             </div>
                         </div>
                     </div>

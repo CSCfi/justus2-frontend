@@ -17,7 +17,7 @@
 
     <!-- Julkaisuvuoden lisätieto -->
     <!-- Show this field only when art publication is selected -->
-    <tr ng-if="justus.taiteenala.length > 0">
+    <tr data-ng-if="justus.taiteenala.length > 0">
       <td class="condensed-25 font-weight-bold">{{ i18n.content.form.julkaisuvuodenlisatieto[lang] }}</td>
       <td>{{ justus.lisatieto.julkaisuvuodenlisatieto }}</td>
     </tr>
@@ -352,7 +352,7 @@
       <button
               data-ng-controller="TallennusController"
               class="btn btn-lg btn-block btn-primary"
-              type="button"
+              type="submit"
               data-ng-disabled="publicationSaveInProgress"
               data-ng-click="savePublicationForm()">
         {{i18n.content.tallennus.tallenna[lang]}}
@@ -362,7 +362,7 @@
       <button
               data-ng-controller="TallennusController"
               class="btn btn-lg btn-block btn-danger"
-              type="button"
+              type="reset"
               data-ng-disabled="publicationSaveInProgress"
               data-ng-click=cancelAndReturnToPublicationListing()>
         {{i18n.content.tallennus.hylkaa[lang]}}

@@ -67,3 +67,15 @@
 textarea {
   min-height: 40px;
 }
+
+legend {
+  font-size: inherit;
+  color: $brand-primary;
+  border-bottom: 0;
+}
+
+.span-focus:focus {
+  border-color: #60abb5;
+  border-width: 2px;
+}
+
