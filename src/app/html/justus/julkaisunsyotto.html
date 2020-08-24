@@ -385,13 +385,24 @@
 
 </div>
 
-<div>
-    <button
-            class="btn btn-lg btn-block btn-primary"
-            type="button"
-            data-ng-click="updateRinnakkaistallennusData(file); useVaihe(5)">
-        {{i18n.content.tietojensyotto.jatka[lang]}}
-    </button>
+<div class="row">
+    <div class="col-md-4">
+        <button
+                class="btn btn-lg btn-block btn-light"
+                type="submit"
+                data-ng-click="useVaihe(3)">
+            Palaa edelliseen vaiheeseen
+        </button>
+    </div>
+    <div class="col-md-8">
+        <button
+                class="btn btn-lg btn-block btn-primary"
+                type="button"
+                data-ng-click="updateRinnakkaistallennusData(file); useVaihe(5)">
+            {{i18n.content.tietojensyotto.jatka[lang]}}
+        </button>
+    </div>
+
 </div>
 
 </div>
