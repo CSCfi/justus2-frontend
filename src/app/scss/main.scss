@@ -28,6 +28,8 @@
 @import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/labels";
 @import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/alerts";
 @import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/glyphicons";
+@import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/panels";
+//@import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 // Components w/ JavaScript
 @import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/tooltip";
@@ -57,3 +59,4 @@
 @import "components/file-upload";
 @import "components/icons";
 @import "components/dropdown";
+@import "components/panels";

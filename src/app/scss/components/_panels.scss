@@ -1,0 +1,52 @@
+.panel-body {
+  background:$brand-white;
+  padding: 0;
+  border: 1px solid #eee;
+}
+
+.panel-title {
+  font-size: 18px;
+}
+
+.panel-default {
+  border: none;
+  margin-bottom: 10px !important;
+}
+
+.panel-default > .panel-heading {
+  color: $brand-primary;
+  background-color: rgb(240, 240, 240);
+  border-color: rgb(240, 240, 240);
+  padding:15px 15px;
+  a {
+    text-decoration: none !important;
+  }
+  a:hover, a:active {
+    text-decoration: none;
+  }
+  &:hover {
+    background: darken(rgb(240, 240, 240), 10%);
+  }
+  .active {
+    background: darken(rgb(240, 240, 240), 10%);
+  }
+}
+
+.bg-light {
+  background: rgb(240, 240, 240);
+}
+
+.julkaisutyyppi-btn {
+  padding: 7px 0 7px 20px;
+  font-size: 17px;
+  border-bottom: 1px solid #eee;
+  &:hover {
+    cursor: pointer;
+    background: $brand-primary;
+    color: $brand-white
+  }
+}
+.julkaisutyyppi-btn.active {
+  background: $brand-primary;
+  color: $brand-white
+}
