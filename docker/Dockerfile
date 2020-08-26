@@ -1,4 +1,4 @@
-FROM node:14-stretch as front_builder
+FROM node:14.4.0-stretch as front_builder
 WORKDIR /app
 COPY ./package.json /app
 COPY ./package-lock.json /app
