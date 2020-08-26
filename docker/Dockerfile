@@ -6,6 +6,7 @@ RUN npm install
 COPY ./src /app/src
 COPY ./gulpfile.js /app
 ARG env=prod
+RUN npm run build -- --qa
 RUN npm run build -- --production
 
 FROM openresty/openresty:1.13.6.2-stretch
