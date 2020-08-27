@@ -4,7 +4,7 @@
 </div>
 
 <uib-accordion class="text-secondary">
-  <div uib-accordion-group class="panel-default" id="heimoi"
+  <div uib-accordion-group class="panel-default"
        data-ng-repeat="o in codes.julkaisutyypit | orderBy: 'arvo' track by $index"
        is-open="o.open"
        data-ng-init="o.open = julkaisutyyppi_paa === o.arvo"

@@ -132,28 +132,15 @@
 
   }
 }
-
-// Datepicker
-
 .btn-info {
-  background-color: $brand-primary;
-  border-color: $brand-primary;
-  &:hover {
-    background-color: darken($brand-primary, 10%);
+  background-color: #f5f5dc;
+  border-color: #f5f5dc;
+  color: $brand-primary;
+  &:hover, &:focus, &:active {
+    background-color: darken(#f5f5dc, 5%) !important;
+    border-color: #f5f5dc !important;
+    color: $brand-primary !important;
   }
-}
-
-.btn-info:active, .btn-info.active, .open > .btn-info.dropdown-toggle {
-  color: #fff;
-  background-color: $brand-primary;
-  border-color: $brand-primary;
-  &:hover {
-    background-color: darken($brand-primary, 10%);
-  }
-
-}
-.text-info {
-  color: #000;
 }
 
 
