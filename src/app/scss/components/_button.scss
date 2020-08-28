@@ -81,15 +81,15 @@
 }
 
 .justus-btn-stage {
-  background-color: lighten($brand-secondary, 40%);
+  background-color: lighten($brand-secondary, 30%);
   color: $brand-white;
-  font-size: larger;
+  font-size: 18px;
   padding: 12px;
   margin: 2px;
 }
 
 .justus-btn-stage.disabled {
-  background-color: lighten($brand-secondary, 40%);
+  background-color: lighten($brand-secondary, 30%);
   padding: 12px;
   margin: 2px;
 }
@@ -140,6 +140,19 @@
     background-color: darken(#f5f5dc, 5%) !important;
     border-color: #f5f5dc !important;
     color: $brand-primary !important;
+  }
+}
+
+.approve-btn {
+  border: 1px solid #333;
+  border-radius: 3px;
+  &:hover {
+    border: 1px solid #333;
+  }
+  button {
+    &:hover {
+      border-color: $brand-primary-dark;
+    }
   }
 }
 
