@@ -87,6 +87,28 @@
                                 </li>
                             </ul>
                         </li>
+                        <li data-ng-show="user.role === 'admin' || user.role === 'owner'">
+                            <a href data-ui-sref="admin()"
+                               class="link-white"
+                               data-ng-bind="i18n.header.navigation.admin[lang]">
+                            </a>
+                            <ul class="list-style-none">
+                                <li>
+                                    <a href data-ui-sref="admin({tila:'haku'})"
+                                       class="link-white"
+                                       data-ng-bind="i18n.admin.haku[lang]">
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="list-style-none">
+                                <li>
+                                    <a href data-ui-sref="admin({tila:'vienti'})"
+                                       class="link-white"
+                                       data-ng-bind="i18n.admin.vie[lang]">
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>

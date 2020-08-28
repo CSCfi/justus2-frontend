@@ -2,9 +2,9 @@
 
 angular.module('AdminController', [])
     .controller('AdminController', [
-        '$rootScope', '$scope', '$state', '$window', '$http', '$uibModal', 'API_BASE_URL', 'JustusService',
+        '$rootScope', '$scope', '$state', '$stateParams', '$window', '$http', '$uibModal', 'API_BASE_URL', 'JustusService',
         'APIService', 'AlayksikkoService', 'AuthService', 'ValidationService',
-        function ($rootScope, $scope, $state, $window, $http, $uibModal, API_BASE_URL, JustusService,
+        function ($rootScope, $scope, $state, $stateParams, $window, $http, $uibModal, API_BASE_URL, JustusService,
                   APIService, AlayksikkoService, AuthService, ValidationService) {
 
 
@@ -28,7 +28,18 @@ angular.module('AdminController', [])
 
         let init = function() {
 
+            if ($stateParams.tila === "haku") {
                 $scope.hakuState = true;
+            }
+
+            if ($stateParams.tila === "vienti") {
+                $scope.hakuState = false;
+            }
+
+            if (!$stateParams.tila) {
+                $scope.hakuState = true;
+            }
+
                 $scope.personsToBeDeleted = [];
                 $scope.alayksikkovuodet = AlayksikkoService.getAlayksikkovuodet();
 

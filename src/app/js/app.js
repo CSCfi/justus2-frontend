@@ -94,12 +94,15 @@ let app = angular.module('JustusApp', [
 
       const adminState = {
           name: 'admin',
-          url: '/admin',
+          url: '/admin?tila',
           views: {
             '': {
                 templateUrl: 'html/admin/main.html'
             }
           },
+        params: {
+          tila: null
+        },
         data:  { pageTitle: 'admin' }
       };
 
