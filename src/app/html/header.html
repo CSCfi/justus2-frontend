@@ -1,12 +1,13 @@
 <div class="row m-b">
     <div class="col-xs-12 col-md-6">
         <div data-ng-if="state.name=='index'">
-            <img src="img/justus2.png" alt="{{i18n.header.logotext[lang]}" class="img-responsive">
+            <img src="img/justus2.png" alt="Justus logo" class="img-responsive">
         </div>
         <div data-ng-if="state.name!='index'">
             <div>
-                <a href data-ui-sref="valitse()"><img src="img/justus2.png" alt="{{i18n.header.logotext[lang]}"
-                                                      class="img-responsive"></a>
+                <a href data-ui-sref="valitse()">
+                    <img src="img/justus2.png" alt="Justus logo" class="img-responsive">
+                </a>
             </div>
         </div>
     </div>
@@ -19,7 +20,7 @@
         <div>
       <span>
         <a href="https://wiki.eduuni.fi/display/CscJustus/Ohjeet" target="__blank">
-          <i class="fa fa-question-circle justus-info"></i> {{i18n.header.help[lang]}}
+          <i class="fa fa-external-link pl-x"></i> {{i18n.header.help[lang]}}
         </a>
       </span>
             <span data-ng-if="state.name !== 'justus'">

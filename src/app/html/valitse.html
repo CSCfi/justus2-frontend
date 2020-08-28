@@ -1,7 +1,7 @@
 <!-- vaihe 0 valitse -->
 
-<div class="p-1 text-dark text-uppercase text-center">
-    <h3 data-ng-bind="i18n.content.valitse.title[lang]"></h3>
+<div class="p-1 text-center">
+    <h4 class="text-secondary font-weight-700 text-2xl" data-ng-bind="i18n.content.valitse.title[lang]"></h4>
 </div>
 
 <div class="row" style="margin-bottom: 30px">
@@ -32,8 +32,8 @@
 </div>
 
 <div data-ng-if="hasAccessToApprove()">
-    <div class="p-1 text-dark text-uppercase text-center">
-        <h3 data-ng-bind="i18n.content.valitse.admintitle[lang]"></h3>
+    <div class="p-1 text-center">
+        <h4 class="text-secondary font-weight-700 text-2xl" data-ng-bind="i18n.content.valitse.admintitle[lang]"></h4>
     </div>
     <div class="row m-b">
         <div class="col-xs-12 col-sm-6 text-center">
@@ -65,12 +65,3 @@
     </div>
 </div>
 
-<div class="row" style="margin-top: 40px;">
-    <div class="col-xs-12 text-center text-dark">
-        <p> {{i18n.content.valitse.ohje.text[lang]}}
-            <a class="font-weight-bold" href="https://wiki.eduuni.fi/display/CscJustus/Ohjeet"
-               target="__blank">{{i18n.content.valitse.ohje.link[lang]}}
-            </a>
-        </p>
-    </div>
-</div>

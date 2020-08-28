@@ -1,22 +1,136 @@
-<div class="row footer">
-  <div class="col-xs-4">
+<div class="footer">
+
     <div data-ng-if="state.name!='index'">
-      {{i18n.footer.help.title[lang]}}:<br>
-      {{user.mail}}<br>
-      <!--
-      {{i18n.footer.help.email[lang]}}<br>
-      {{i18n.footer.help.time[lang]}}<br>
-      -->
+        <div class="row p-1">
+            <div class="col-xs-12 text-center text-2xl text-secondary">
+                <span class="font-weight-bold"> {{i18n.footer.help.title[lang]}}:</span> {{user.mail}}
+            </div>
+        </div>
+
+        <div class="row p-1 d-flex">
+            <div class="col-md-6 col-xs-12 text-center">
+                <div class="d-inline-block text-left">
+                    <p class="text-xl font-weight-bold text-secondary">Sivukartta:</p>
+                    <ul class="list-style-none text-xl">
+                        <li>
+                            <a href data-ui-sref="valitse()"
+                               class="link-white"
+                               data-ng-bind="i18n.header.navigation.etusivu[lang]">
+                            </a>
+                        </li>
+                        <li>
+                            <a href data-ui-sref="justus({id:id,vaihe:vaihe||1})"
+                               class="link-white"
+                               data-ng-bind="i18n.header.navigation.tallenna[lang]">
+                            </a>
+                            <ul class="list-style-none">
+                                <li>
+                                    <a href data-ui-sref="justus({id:id,vaihe:vaihe||1})"
+                                       class="link-white"
+                                       data-ng-bind="i18n.content.vaihevuo.esitayta[lang]">
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="list-style-none">
+                                <li>
+                                    <a href data-ui-sref="justus({id:id,vaihe:vaihe||2})"
+                                       class="link-white"
+                                       data-ng-bind="i18n.content.vaihevuo.julkaisutyyppi[lang]">
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul data-ng-bind="i18n.content.vaihevuo.tietojensyotto[lang]"></ul>
+                            <ul data-ng-bind="i18n.content.vaihevuo.rinnakkaistallennus[lang]"></ul>
+                            <ul data-ng-bind="i18n.content.vaihevuo.tallennus[lang]"></ul>
+                        </li>
+                        <li>
+                            <a href data-ui-sref="omat()"
+                               class="link-white"
+                               data-ng-bind="i18n.header.navigation.omat[lang]">
+                            </a>
+                            <ul class="list-style-none">
+                                <li>
+                                    <a href data-ui-sref="omat({tila:'odottavat'})"
+                                       class="link-white"
+                                       data-ng-bind="i18n.content.tarkasta.odottavat[lang]">
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="list-style-none">
+                                <li>
+                                    <a href data-ui-sref="omat({tila:'kasitellyt'})"
+                                       class="link-white"
+                                       data-ng-bind="i18n.content.tarkasta.hyvaksytyt[lang]">
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li data-ng-show="user.role === 'admin' || user.role === 'owner'">
+                            <a href data-ui-sref="hyvaksy()"
+                               class="link-white"
+                               data-ng-bind="i18n.header.navigation.hyvaksy[lang]">
+                            </a>
+                            <ul class="list-style-none">
+                                <li>
+                                    <a href data-ui-sref="hyvaksy({tila:'odottavat'})"
+                                       class="link-white"
+                                       data-ng-bind="i18n.content.tarkasta.odottavat[lang]">
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="list-style-none">
+                                <li>
+                                    <a href data-ui-sref="hyvaksy({tila:'kasitellyt'})"
+                                       class="link-white"
+                                       data-ng-bind="i18n.content.tarkasta.hyvaksytyt[lang]">
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 col-xs-12 text-center text-secondary d-flex flex-column align-items-center justify-content-center pl-0">
+                <div class="text-left">
+                    <p class="text-xl">
+                        <a class="link-white" href="https://wiki.eduuni.fi/display/CscJustus/Ohjeet" target="__blank">
+                            Palvelun ohjeet
+                            <i class="fa fa-external-link pl-x"></i>
+                        </a>
+                    </p>
+                    <p class="text-xl">
+                        <a class="link-white" href="https://wiki.eduuni.fi/display/CscJustus/Ohjeet" target="__blank">
+                            Saavutettavuusseloste
+                            <i class="fa fa-external-link pl-x"></i>
+                        </a>
+                    </p>
+                    <p class="text-xl">
+                        <a class="link-white" href="https://wiki.eduuni.fi/display/CscJustus/Ohjeet" target="__blank">
+                            Tietosuoja
+                            <i class="fa fa-external-link pl-x"></i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="col-xs-4 text-center text-secondary">
-    <br>{{i18n.footer.csc.name[lang]}}<br>
-    <!--
-    {{i18n.footer.csc.address[lang]}}<br>
-    {{i18n.footer.csc.phone[lang]}}<br>
-    -->
-  </div>
-  <div class="col-xs-4 text-right">
-    <img src="img/cscnega.png" alt="CSC logo" class="pull-right img-responsive" style="max-height:50px">
-  </div>
+
+    <div class="row">
+        <div class="col-xs-12 text-center text-secondary">
+            <hr data-ng-if="state.name!=='index'" style="width:80%"/>
+            <div class="text-xl font-weight-bold">Palvelun tarjoaa:</div>
+            <div class="p-1">
+                <img src="img/cscnega.png" alt="CSC logo" class="" style="max-height:50px">
+            </div>
+            <div>
+                <p>
+                    {{i18n.footer.csc.name[lang]}}
+                </p>
+                <p>
+                    <a class="link-white" href="mailto:justus@csc.fi">justus@csc.fi</a>
+                    <i class="fa fa-envelope pl-x"></i>
+                </p>
+            </div>
+        </div>
+    </div>
 </div>

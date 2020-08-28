@@ -14,6 +14,10 @@
   margin-top: $padding-small-vertical;
 }
 
+.font-weight-light {
+  font-weight: lighter;
+}
+
 .font-weight-500 {
   font-weight: 500;
 }
@@ -34,6 +38,12 @@
   color: $text-color-secondary;
 }
 
+.link-white {
+  color: $brand-white;
+  &:hover, &:active, &:focus {
+    color: $brand-white;
+  }
+}
 
 .text-gray {
   color: #8c8c8c;
@@ -49,6 +59,9 @@
 
 .mx {
   margin: 0 10px;
+
+.text-2xl {
+  font-size: 1.4em;
 }
 
 .mt-0 {
@@ -121,6 +134,9 @@
 
 .ml-0 {
   margin-left: 0;
+
+.pl-x {
+  padding-left: 5px;
 }
 
 .nowrap {
@@ -177,6 +193,10 @@
 
 .d-inline-block {
   display: inline-block;
+}
+
+.list-style-none {
+  list-style: none;
 }
 
 *:focus {

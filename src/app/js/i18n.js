@@ -136,7 +136,7 @@ const i18n = {
           SV: 'Hämta publikationsdata från den internationella CrossRef-publikationsdatabasen med hjälp av DOI.',
           EN: 'You can prefill publication information by using a DOI-link. The information is retrieved from the CrossRef-service'
         },
-        hae: { FI: 'Hae', SV: 'Hämta', EN: 'Search' }
+        hae: { FI: 'Hae julkaisun tiedot ja vie lomakkeelle', SV: 'Hämta', EN: 'Search' }
       },
       etsijulkaisu: {
         title: { FI: 'Hae tietoja julkaisun nimellä', SV: 'Hämta uppgifter på titel', EN: 'Search using publication\'s name' },
