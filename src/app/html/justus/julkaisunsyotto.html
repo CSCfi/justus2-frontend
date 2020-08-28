@@ -23,7 +23,10 @@
                                        data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu[lang]">
                                 </label>
                                 <i class="fa fa-info-circle justus-info"
-                                   data-popover-trigger="'mouseenter'" data-popover-placement="right"
+                                   data-popover-trigger="'outsideClick'"
+                                   data-popover-is-open="isOpenJulkaisu"
+                                   data-ng-mouseenter="isOpenJulkaisu = true"
+                                   data-popover-placement="right"
                                    data-uib-popover="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tooltip[lang]}}"
                                    data-ng-show="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tooltip[lang]">
                                 </i>
@@ -89,7 +92,9 @@
                                            data-ng-bind="i18n.content.form.julkaisurinnakkaistallennettu[lang]">
                                     </label>
                                     <i class="fa fa-info-circle justus-info"
-                                       data-popover-trigger="'mouseenter'"
+                                       data-popover-trigger="'outsideClick'"
+                                       data-popover-is-open="isOpenRinnakkaistallenne"
+                                       data-ng-mouseenter="isOpenRinnakkaistallenne = true"
                                        data-popover-placement="right"
                                        data-uib-popover="{{i18n.content.form.julkaisurinnakkaistallennettu.tooltip[lang]}}"
                                        data-ng-show="i18n.content.form.julkaisurinnakkaistallennettu.tooltip[lang]">
@@ -124,7 +129,10 @@
                                        data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.abstrakti[lang]">
                                 </label>
                                 <i class="fa fa-info-circle justus-info"
-                                   data-popover-trigger="'mouseenter'" data-popover-placement="right"
+                                   data-popover-trigger="'outsideClick'"
+                                   data-popover-is-open="isOpenAbstrakti"
+                                   data-ng-mouseenter="isOpenAbstrakti = true"
+                                   data-popover-placement="right"
                                    data-uib-popover="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.abstrakti.tooltip[lang]}}"
                                    data-ng-show="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.abstrakti.tooltip[lang]">
                                 </i>
@@ -145,7 +153,10 @@
                                        data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.urn[lang]">
                                 </label>
                                 <i class="fa fa-info-circle justus-info"
-                                   data-popover-trigger="'mouseenter'" data-popover-placement="right"
+                                   data-popover-trigger="'outsideClick'"
+                                   data-popover-is-open="isOpenUrn"
+                                   data-ng-mouseenter="isOpenUrn = true"
+                                   data-popover-placement="right"
                                    data-uib-popover="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.urn.tooltip[lang]}}"
                                    data-ng-show="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.urn.tooltip[lang]">
                                 </i>
@@ -180,7 +191,10 @@
                                        data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo[lang]">
                                 </label>
                                 <i class="fa fa-info-circle justus-info"
-                                   data-popover-trigger="'mouseenter'" data-popover-placement="right"
+                                   data-popover-trigger="'outsideClick'"
+                                   data-popover-is-open="isOpenEmbargo"
+                                   data-ng-mouseenter="isOpenEmbargo = true"
+                                   data-popover-placement="right"
                                    data-uib-popover="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo.tooltip[lang]}}"
                                    data-ng-show="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo.tooltip[lang]">
                                 </i>
@@ -225,7 +239,10 @@
                                        data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.oikeudet[lang]">
                                 </label>
                                 <i class="fa fa-info-circle justus-info"
-                                   data-popover-trigger="'mouseenter'" data-popover-placement="right"
+                                   data-popover-trigger="'outsideClick'"
+                                   data-popover-is-open="isOpenOikeudet"
+                                   data-ng-mouseenter="isOpenOikeudet = true"
+                                   data-popover-placement="right"
                                    data-uib-popover="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.oikeudet.tooltip[lang]}}"
                                    data-ng-show="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.oikeudet.tooltip[lang]">
                                 </i>
@@ -261,7 +278,10 @@
                                        data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.versio[lang]">
                                 </label>
                                 <i class="fa fa-info-circle justus-info"
-                                   data-popover-trigger="'mouseenter'" data-popover-placement="right"
+                                   data-popover-trigger="'outsideClick'"
+                                   data-popover-is-open="isOpenVersio"
+                                   data-ng-mouseenter="isOpenVersio = true"
+                                   data-popover-placement="right"
                                    data-uib-popover="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.versio.tooltip[lang]}}"
                                    data-ng-show="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.versio.tooltip[lang]">
                                 </i>
@@ -299,7 +319,10 @@
                                        data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisusarja[lang]">
                                 </label>
                                 <i class="fa fa-info-circle justus-info"
-                                   data-popover-trigger="'mouseenter'" data-popover-placement="right"
+                                   data-popover-trigger="'outsideClick'"
+                                   data-popover-is-open="isOpenJulkaisusarja"
+                                   data-ng-mouseenter="isOpenJulkaisusarja = true"
+                                   data-popover-placement="right"
                                    data-uib-popover="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisusarja.tooltip[lang]}}"
                                    data-ng-show="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisusarja.tooltip[lang]">
                                 </i>
@@ -321,6 +344,7 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-xs-12">
                 <button class="col-xs-12 justus-btn justus-btn-tyyppi"
@@ -330,7 +354,8 @@
                      syotaJulkaisu = false; eirinnakkaistellennettava = false">
                     {{ i18n.content.rinnakkaistallennusform.rinnakkaistallennettumuualle.otsikko[lang] }}
                     <i class="fa fa-info-circle"
-                       data-popover-trigger="'mouseenter'" data-popover-placement="right"
+                       data-popover-trigger="'mouseenter'"
+                       data-popover-placement="right"
                        data-popover-class="justus-info-bw"
                        data-uib-popover="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettumuualle.otsikko.tooltip[lang]}}"
                        data-ng-show="true"></i>
@@ -344,7 +369,9 @@
                                        data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettumuualle.form.rinnakkaistallennetunversionverkkoosoite[lang]">
                                 </label>
                                 <i class="fa fa-info-circle justus-info"
-                                   data-popover-trigger="'mouseenter'"
+                                   data-popover-trigger="'outsideClick'"
+                                   data-popover-is-open="popoverIsOpen"
+                                   data-ng-mouseenter="popoverIsOpen = true"
                                    data-popover-placement="right"
                                    data-uib-popover="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettumuualle.form.rinnakkaistallennetunversionverkkoosoite.tooltip[lang]}}"
                                    data-ng-show="i18n.content.rinnakkaistallennusform.rinnakkaistallennettumuualle.form.rinnakkaistallennetunversionverkkoosoite.tooltip[lang]">
