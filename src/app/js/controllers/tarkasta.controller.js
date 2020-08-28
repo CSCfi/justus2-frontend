@@ -2,8 +2,8 @@
 
 angular.module('TarkastaController', [])
     .controller('TarkastaController', [
-        '$rootScope', '$scope', '$http', '$state', '$location', '$log', '$timeout', 'APIService', 'KoodistoService', 'DataStoreService', 'AuthService', 'Publications',
-        function ($rootScope, $scope, $http, $state, $location, $log, $timeout, APIService, KoodistoService, DataStoreService, AuthService, Publications) {
+        '$rootScope', '$scope', '$http', '$state', '$stateParams', '$location', '$log', '$timeout', 'APIService', 'KoodistoService', 'DataStoreService', 'AuthService', 'Publications',
+        function ($rootScope, $scope, $http, $state, $stateParams, $location, $log, $timeout, APIService, KoodistoService, DataStoreService, AuthService, Publications) {
             $scope.meta = APIService.meta;
             $scope.data = [];
             $scope.colOrder = 'julkaisu.modified';
@@ -134,11 +134,22 @@ angular.module('TarkastaController', [])
                 $scope.publications = new Publications();
                 $scope.searchMode = false;
                 $scope.showPublicationLink = $rootScope.user.organization.showPublicationInput;
-                if (DataStoreService.getBooleanForOdottavat() === false) {
-                    $scope.publications.odottavat = false;
-                    DataStoreService.storeBooleanforOdottavat(null);
-                } else {
+
+                if($stateParams.tila === "odottavat") {
                     $scope.publications.odottavat = true;
+                }
+
+                if($stateParams.tila === "kasitellyt") {
+                    $scope.publications.odottavat = false;
+                }
+
+                if (!$stateParams.tila) {
+                    if (DataStoreService.getBooleanForOdottavat() === false) {
+                        $scope.publications.odottavat = false;
+                        DataStoreService.storeBooleanforOdottavat(null);
+                    } else {
+                        $scope.publications.odottavat = true;
+                    }
                 }
 
                 $timeout(function () {

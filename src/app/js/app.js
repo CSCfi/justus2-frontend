@@ -65,24 +65,30 @@ angular.module('JustusApp', [
 
     const omatState = {
       name: 'omat',
-      url: '/omat',
+      url: '/omat?tila',
       views: {
         '': {
           templateUrl: 'html/tarkasta.html',
           controller: 'TarkastaController'
         }
       },
+      params: {
+        tila: null
+      },
       data:  { pageTitle: 'omat' }
     };
 
     const hyvaksyState = {
       name: 'hyvaksy',
-      url: '/hyvaksy',
+      url: '/hyvaksy?tila',
       views: {
         '': {
           templateUrl: 'html/tarkasta.html',
           controller: 'TarkastaController'
         }
+      },
+      params: {
+        tila: null
       },
       data:  { pageTitle: 'hyvaksy' }
     };
@@ -112,6 +118,7 @@ angular.module('JustusApp', [
 
     $transitions.onSuccess({}, (transition) => {
       $rootScope.pageTitle = $state.current.data.pageTitle;
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
     });
 
 }]);
