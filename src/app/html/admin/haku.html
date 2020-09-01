@@ -80,7 +80,7 @@
                                type="text" class="form-control"
                                data-ng-model="a" name="alayksikko">
                     </div>
-                    <div class="col-xs-1">
+                    <div class="col-xs-1 pl-0">
                         <span class="btn btn-danger"
                               data-ng-click="removeAlayksikko($index)"
                               data-ng-hide="selectedPerson.alayksikko.length<2"
@@ -134,14 +134,14 @@
         </div>
 
         <div class="row mt-xl">
-            <div data-ng-class="{ 'col-xs-12': !selectedPerson.id, 'col-xs-8': selectedPerson.id }">
+            <div class="col-xs-12 margin-bottom-md" data-ng-class="{ 'col-md-12': !selectedPerson.id, 'col-md-8': selectedPerson.id }">
                 <button class="btn btn-primary btn-block btn-lg"
                         type="submit"
                         data-ng-click="savePerson(personForm)"
                         data-ng-bind="i18n.admin.content.form.tallenna[lang]">
                 </button>
             </div>
-            <div data-ng-if="selectedPerson.id" class="col-xs-4">
+            <div data-ng-if="selectedPerson.id" class="col-md-4 col-xs-12">
                 <button type="reset"
                         class="btn btn-danger btn-block btn-lg"
                         data-ng-click="removePerson()"
