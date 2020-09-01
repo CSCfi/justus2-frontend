@@ -41,7 +41,7 @@
     <div class="col-sm-8 col-xs-12 justus-data"
          data-ng-model="req_julkaisuvuosi">
       <div class="row">
-        <div class="col-xs-5">
+        <div class="col-sm-5 col-xs-12">
           <input type="text" class="form-control"
             name="julkaisuvuosi"
             id="julkaisuvuosi"
@@ -176,7 +176,7 @@
     <div class="col-sm-8 col-xs-12 justus-data"
          data-ng-model="req_julkaisuntekijoidenlukumaara">
       <div class="row">
-        <div class="col-xs-5">
+        <div class="col-sm-5 col-xs-12">
           <input id="julkaisuntekijoidenlukumaara"
                  name="julkaisuntekijoidenlukumaara"
                  type="text"
@@ -538,7 +538,7 @@
       </div>
       <div class="col-sm-8 col-xs-12 justus-data">
         <div class="row">
-          <div class="col-xs-8">
+          <div class="col-xs-9">
             <div data-ng-repeat="isbn in justus.julkaisu.isbn track by $index" data-ng-class="{'mb-x':$first}">
               <input
                       id="isbn"
@@ -548,7 +548,7 @@
                       data-ng-model="justus.julkaisu.isbn[$index]">
             </div>
           </div>
-          <div class="col-xs-4">
+          <div class="col-xs-3">
             <div class="p-b mb-x">
               <button
                       type="button"
@@ -692,7 +692,7 @@
       </div>
       <div class="col-sm-8 col-xs-12 justus-data">
         <div class="row" data-ng-repeat="issn in justus.julkaisu.issn track by $index" data-ng-class="{'mb-x':$first}">
-          <div class="col-xs-6">
+          <div class="col-md-6 col-xs-9">
             <input type="text"
                    id="issn"
                    name="issn"
@@ -701,7 +701,7 @@
                    placeholder="1234-567X">
             <span data-ng-if="issnDescription[$index]">{{issnDescription[$index]}}</span>
           </div>
-          <div class="col-xs-6">
+          <div class="col-md-6 col-xs-3">
             <button
                     type="button"
                     class="btn btn-primary"
@@ -992,7 +992,7 @@
        </div>
        <div class="col-sm-8 col-xs-12 justus-data">
          <div class="row">
-           <div class="col-xs-10">
+           <div class="col-xs-12">
              <input type="text"
                     id="julkaisunkieli"
                     name="julkaisunkieli"
@@ -1071,7 +1071,7 @@
        </div>
        <div class="col-sm-8 col-xs-12 justus-data">
          <div class="row">
-           <div class="col-xs-10">
+           <div class="col-xs-12">
              <input
                      id="julkaisumaa"
                      name="julkaisumaa"
@@ -1247,20 +1247,20 @@
              </div>
              <!--dev--><!-- when paatieteenala not selected/used above --><!--enddev-->
              <!--dev--><!-- hack... now parent.index... --><!--enddev-->
-             <!--          <div data-ng-if="!tieteenala_paa">-->
-             <!--            <ui-select data-ng-model="alatieteenalat.selected"-->
-             <!--                       on-select="useTieteenala($select.selected)"-->
-             <!--                       theme="bootstrap">-->
-             <!--              <ui-select-match class="ui-select-match"-->
-             <!--                               placeholder="{{i18n.content.form.tieteenala.ala.picktip[lang]}}">-->
-             <!--                {{ $select.selected.arvo }} {{ $select.selected.selite }}-->
-             <!--              </ui-select-match>-->
-             <!--              <ui-select-choices repeat="o in getAlltieteenalat() | orderBy: 'arvo'"-->
-             <!--                                 ui-disable-choice="o.nogo">-->
-             <!--                {{o.arvo}} {{o.selite }}-->
-             <!--              </ui-select-choices>-->
-             <!--            </ui-select>-->
-             <!--          </div>-->
+               <div data-ng-if="!tieteenala_paa">
+                 <ui-select data-ng-model="alatieteenalat.selected"
+                            on-select="useTieteenala($select.selected)"
+                            theme="bootstrap">
+                   <ui-select-match class="ui-select-match"
+                                    placeholder="{{i18n.content.form.tieteenala.ala.picktip[lang]}}">
+                     {{ $select.selected.arvo }} {{ $select.selected.selite }}
+                   </ui-select-match>
+                   <ui-select-choices repeat="o in getAlltieteenalat() | orderBy: 'arvo'"
+                                      ui-disable-choice="o.nogo">
+                     {{o.arvo}} {{o.selite }}
+                   </ui-select-choices>
+                 </ui-select>
+               </div>
            </div>
          </div>
        </div>
@@ -1720,7 +1720,7 @@
 
 <!-- JATKA -->
 <div class="row form-group px m-t">
-  <div class="col-md-4">
+  <div class="col-md-4 margin-bottom-md">
     <button class="btn btn-danger btn-lg btn-block"
             type="reset"
             data-ng-click="cancelAndGoToPublicationListing()">
