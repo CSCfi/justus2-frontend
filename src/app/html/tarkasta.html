@@ -42,25 +42,40 @@
 
 <div data-ng-if="user.role === 'admin' || user.role === 'owner'">
   <div data-ng-show="!publications.odottavat">
-    <div class="row pxs publication-search">
-      <div class="col-sm-5">
-        <div class="form-group">
-          <input type="text" class="form-control"
-                 data-ng-model="search.vapaasanahaku"
-                 data-ng-keyup="$event.keyCode == 13 && searchPublications()"
-                 placeholder="{{i18n.content.tarkasta.haku.tekija[lang]}}"/>
+    <div class="publication-search">
+      <div class="row pxs">
+        <div class="col-sm-8">
+          <div class="form-group">
+            <label for="vapaasanahaku"
+                   class="control-label">
+              Vapaasana / ID haku
+            </label>
+            <input id="vapaasanahaku"
+                   type="text" class="form-control"
+                   data-ng-model="search.vapaasanahaku"
+                   data-ng-keyup="$event.keyCode == 13 && searchPublications()"
+                   placeholder="{{i18n.content.tarkasta.haku.tekija[lang]}}"/>
+          </div>
+        </div>
+        <div class="col-sm-4 pl-0">
+          <div class="form-group">
+            <label for="vuosihaku"
+                   class="control-label">
+              Julkaisuvuosi
+            </label>
+            <input id="vuosihaku"
+                   type="number" class="form-control"
+                   data-ng-keyup="$event.keyCode == 13 && searchPublications()"
+                   data-ng-model="search.julkaisuvuosi"
+                   placeholder="{{i18n.content.tarkasta.haku.julkaisuvuosi[lang]}}"/>
+          </div>
         </div>
       </div>
-      <div class="col-sm-3 pl-0">
-        <div class="form-group">
-          <input type="number" class="form-control"
-                 data-ng-keyup="$event.keyCode == 13 && searchPublications()"
-                 data-ng-model="search.julkaisuvuosi"
-                 placeholder="{{i18n.content.tarkasta.haku.julkaisuvuosi[lang]}}"/>
+      <div class="row form-group  pxs">
+        <div class="col-sm-1">
+          <label class="control-label">Julkaisun tila</label>
         </div>
-      </div>
-      <div class="col-sm-2 pl-0">
-        <div class="form-group">
+        <div class="col-sm-5">
           <ui-select data-ng-model="search.julkaisuntila"
                      theme="bootstrap">
             <ui-select-match class="ui-select-match no-ellipsis"
@@ -73,17 +88,16 @@
             </ui-select-choices>
           </ui-select>
         </div>
-      </div>
-      <div class="col-sm-2 p-0">
-        <div class="d-inline-block p-r">
-          <button class="btn btn-primary btn-sm"
+        <div class="col-sm-4">
+          <button class="btn btn-primary btn-block"
                   data-ng-click="searchPublications()"
                   data-ng-disabled="!search.vapaasanahaku && !search.julkaisuvuosi && !search.julkaisuntila"
                   data-ng-bind="i18n.content.tarkasta.haku.hae[lang]">
           </button>
         </div>
-        <div class="d-inline-block">
-          <button class="btn btn-default btn-sm"
+
+        <div class="col-sm-2">
+          <button class="btn btn-default btn-block"
                   data-ng-click="resetData()"
                   data-ng-bind="i18n.content.tarkasta.haku.tyhjenna[lang]">
           </button>
@@ -139,7 +153,7 @@
                 <span class="fa fa-sort-asc" data-ng-if="colOrder=='julkaisu.username' && (colOrderReverse)"></span>
               </th>
               <th data-ng-if="showPublicationLink">
-                <span data-ng-bind="i18n.content.tarkasta.table.julkaisu[lang]">
+                <span >Julkaisun tiedosto
                 </span>
               </th>
               <th data-ng-show="state.name=='hyvaksy'"
@@ -172,8 +186,10 @@
               </td>
               <td data-ng-if="showPublicationLink">
                 <span data-ng-show="d.filedata">
-                  <a data-ng-href="{{d.filedata.handle}}" target="_blank">
-                   <i class="fa fa-link" ng-class="{'text-gray': !d.filedata.handle }"> </i>
+                  <a data-ng-href="{{d.filedata.handle}}" data-ng-class="{'text-gray': !d.filedata.handle, 'no-underline': !d.filedata.handle}"  data-ng-disabled="!d.filedata.handle" target="_blank">
+                    <span >Tiedosto</span>
+                   <i title="Avaa julkaisu Theseuksessa" class="fa fa-external-link"> </i>
+
                   </a>
                 </span>
               </td>
