@@ -29,21 +29,19 @@
   <div class="row form-group" id="julkaisuvuosiGroup" data-ng-if="isFieldVisible('julkaisuvuosi')">
     <div class="col-sm-4 col-xs-12">
       <label for="julkaisuvuosi" class="control-label" data-ng-bind="i18n.content.form.julkaisuvuosi[lang]"></label>
-      <i data-ng-if="isFieldRequired('julkaisuvuosi')" class="fa fa-asterisk required-star" aria-hidden="true"></i>
       <i class="fa fa-info-circle justus-info justus-color cursor-pointer"
-        data-popover-trigger="'outsideClick'"
-        data-popover-is-open="popoverIsOpen"
-        data-ng-mouseenter="popoverIsOpen = true"
-
+         data-popover-trigger="'outsideClick'"
+         data-popover-is-open="popoverIsOpen"
+         data-ng-mouseenter="popoverIsOpen = true"
          data-popover-placement="right"
-        data-uib-popover="{{ julkaisutyyppi_paa == 'F' ? i18n.content.form.julkaisuvuosi.tooltipF[lang] : i18n.content.form.julkaisuvuosi.tooltip[lang] }}">
+         data-uib-popover="{{ julkaisutyyppi_paa == 'F' ? i18n.content.form.julkaisuvuosi.tooltipF[lang] : i18n.content.form.julkaisuvuosi.tooltip[lang] }}">
       </i>
-
+      <i data-ng-if="isFieldRequired('julkaisuvuosi')" class="fa fa-asterisk required-star" aria-hidden="true"></i>
     </div>
     <div class="col-sm-8 col-xs-12 justus-data"
          data-ng-model="req_julkaisuvuosi">
       <div class="row">
-        <div class="col-xs-5">
+        <div class="col-sm-5 col-xs-12">
           <input type="text" class="form-control"
             name="julkaisuvuosi"
             id="julkaisuvuosi"
@@ -97,15 +95,15 @@
       <label for="julkaisunnimi" class="control-label"
              data-ng-bind="i18n.content.form.julkaisunnimi[lang]">
       </label>
-      <i title="pakollinen tieto" data-ng-if="isFieldRequired('julkaisunnimi')" class="fa fa-asterisk required-star" aria-hidden="true"></i>
       <i class="fa fa-info-circle justus-info cursor-pointer"
          data-popover-trigger="'outsideClick'"
          data-popover-is-open="popoverIsOpen"
          data-ng-mouseenter="popoverIsOpen = true"
-        data-popover-placement="right"
-        data-uib-popover="{{ julkaisutyyppi_paa == 'F' ? i18n.content.form.julkaisunnimi.tooltipF[lang] : i18n.content.form.julkaisunnimi.tooltip[lang] }}"
-        data-ng-show="i18n.content.form.julkaisunnimi.tooltip[lang]">
+         data-popover-placement="right"
+         data-uib-popover="{{ julkaisutyyppi_paa == 'F' ? i18n.content.form.julkaisunnimi.tooltipF[lang] : i18n.content.form.julkaisunnimi.tooltip[lang] }}"
+         data-ng-show="i18n.content.form.julkaisunnimi.tooltip[lang]">
       </i>
+      <i data-ng-if="isFieldRequired('julkaisunnimi')" class="fa fa-asterisk required-star" aria-hidden="true"></i>
     </div>
     <div class="col-sm-8 col-xs-12 justus-data"
          data-ng-model="req_julkaisunnimi">
@@ -126,7 +124,10 @@
     <div class="col-sm-4 col-xs-12">
       <label id="julkaisuntekijat" class="control-label" data-ng-bind="i18n.content.form.tekijat[lang]"></label>
       <i class="fa fa-info-circle justus-info"
-         data-popover-trigger="'mouseenter'" data-popover-placement="right"
+         data-popover-trigger="'outsideClick'"
+         data-popover-is-open="popoverIsOpen"
+         data-ng-mouseenter="popoverIsOpen = true"
+         data-popover-placement="right"
          data-uib-popover="{{i18n.content.form.tekijat.tooltip[lang]}}"
          data-ng-show="i18n.content.form.tekijat.tooltip[lang]">
       </i>
@@ -163,15 +164,19 @@
              data-ng-bind="i18n.content.form.julkaisuntekijoidenlukumaara[lang]">
       </label>
       <i class="fa fa-info-circle justus-info"
-      data-popover-trigger="'mouseenter'" data-popover-placement="right"
-      data-uib-popover="{{julkaisutyyppi_paa == 'F' ? i18n.content.form.julkaisuntekijoidenlukumaara.tooltipF[lang] : i18n.content.form.julkaisuntekijoidenlukumaara.tooltip[lang]}}"
-      data-ng-show="i18n.content.form.julkaisuntekijoidenlukumaara.tooltip[lang]"></i>
+         data-popover-trigger="'outsideClick'"
+         data-popover-is-open="popoverIsOpen"
+         data-ng-mouseenter="popoverIsOpen = true"
+         data-popover-placement="right"
+         data-uib-popover="{{julkaisutyyppi_paa == 'F' ? i18n.content.form.julkaisuntekijoidenlukumaara.tooltipF[lang] : i18n.content.form.julkaisuntekijoidenlukumaara.tooltip[lang]}}"
+         data-ng-show="i18n.content.form.julkaisuntekijoidenlukumaara.tooltip[lang]">
+      </i>
       <i data-ng-if="isFieldRequired('julkaisuntekijoidenlukumaara')" class="fa fa-asterisk required-star" aria-hidden="true"></i>
     </div>
     <div class="col-sm-8 col-xs-12 justus-data"
          data-ng-model="req_julkaisuntekijoidenlukumaara">
       <div class="row">
-        <div class="col-xs-5">
+        <div class="col-sm-5 col-xs-12">
           <input id="julkaisuntekijoidenlukumaara"
                  name="julkaisuntekijoidenlukumaara"
                  type="text"
@@ -586,7 +591,9 @@
                data-ng-bind="i18n.content.form.projektinumero[lang]">
         </label>
         <i class="fa fa-info-circle justus-info"
-           data-popover-trigger="'mouseenter'"
+           data-popover-trigger="'outsideClick'"
+           data-popover-is-open="popoverIsOpen"
+           data-ng-mouseenter="popoverIsOpen = true"
            data-popover-placement="right"
            data-uib-popover="{{ i18n.content.form.projektinumero.tooltip[lang] }}"
            data-ng-show="i18n.content.form.projektinumero.tooltip[lang]">
@@ -649,7 +656,10 @@
                 data-ng-bind="i18n.content.form.konferenssinvakiintunutnimi[lang]">
         </label>
         <i class="fa fa-info-circle justus-info"
-           data-popover-trigger="'mouseenter'" data-popover-placement="right"
+           data-popover-trigger="'outsideClick'"
+           data-popover-is-open="popoverIsOpen"
+           data-ng-mouseenter="popoverIsOpen = true"
+           data-popover-placement="right"
            data-uib-popover="{{i18n.content.form.konferenssinvakiintunutnimi.tooltip[lang]}}"
            data-ng-show="i18n.content.form.konferenssinvakiintunutnimi.tooltip[lang]">
         </i>
@@ -682,7 +692,10 @@
         <label for="emojulkaisunnimi" class="control-label"
                data-ng-bind="i18n.content.form.emojulkaisunnimi[lang]"></label>
         <i class="fa fa-info-circle justus-info"
-           data-popover-trigger="'mouseenter'" data-popover-placement="right"
+           data-popover-trigger="'outsideClick'"
+           data-popover-is-open="popoverIsOpen"
+           data-ng-mouseenter="popoverIsOpen = true"
+           data-popover-placement="right"
            data-uib-popover="{{ julkaisutyyppi_paa == 'F' ? i18n.content.form.emojulkaisunnimi.tooltipF[lang] : i18n.content.form.emojulkaisunnimi.tooltip[lang] }}"
            data-ng-show="i18n.content.form.emojulkaisunnimi.tooltip[lang]">
         </i>
@@ -708,14 +721,17 @@
       <div class="col-sm-4 col-xs-12">
         <label for="isbn" class="control-label" data-ng-bind="i18n.content.form.isbn[lang]"></label>
         <i class="fa fa-info-circle justus-info"
-           data-popover-trigger="'mouseenter'" data-popover-placement="right"
+           data-popover-trigger="'outsideClick'"
+           data-popover-is-open="popoverIsOpen"
+           data-ng-mouseenter="popoverIsOpen = true"
+           data-popover-placement="right"
            data-uib-popover="{{julkaisutyyppi_paa == 'F' ? i18n.content.form.isbn.tooltipF[lang] : i18n.content.form.isbn.tooltip[lang]}}"
            data-ng-show="i18n.content.form.isbn.tooltip[lang]"></i>
         <i data-ng-if="isFieldRequired('isbn')" class="fa fa-asterisk required-star" aria-hidden="true"></i>
       </div>
       <div class="col-sm-8 col-xs-12 justus-data">
         <div class="row">
-          <div class="col-xs-8">
+          <div class="col-xs-9">
             <div data-ng-repeat="isbn in justus.julkaisu.isbn track by $index" data-ng-class="{'mb-x':$first}">
               <input
                       id="isbn"
@@ -725,7 +741,7 @@
                       data-ng-model="justus.julkaisu.isbn[$index]">
             </div>
           </div>
-          <div class="col-xs-4">
+          <div class="col-xs-3">
             <div class="p-b mb-x">
               <button
                       type="button"
@@ -762,7 +778,10 @@
                 data-ng-bind="i18n.content.form.emojulkaisuntoimittajat[lang]">
         </label>
         <i class="fa fa-info-circle justus-info"
-           data-popover-trigger="'mouseenter'" data-popover-placement="right"
+           data-popover-trigger="'outsideClick'"
+           data-popover-is-open="popoverIsOpen"
+           data-ng-mouseenter="popoverIsOpen = true"
+           data-popover-placement="right"
            data-uib-popover="{{i18n.content.form.emojulkaisuntoimittajat.tooltip[lang]}}"
            data-ng-show="i18n.content.form.emojulkaisuntoimittajat.tooltip[lang]">
         </i>
@@ -798,7 +817,9 @@
                class="control-label"
                data-ng-bind="i18n.content.form.lehdenjulkaisusarjannimi[lang]"></label>
         <i class="fa fa-info-circle justus-info"
-           data-popover-trigger="'mouseenter'"
+           data-popover-trigger="'outsideClick'"
+           data-popover-is-open="popoverIsOpen"
+           data-ng-mouseenter="popoverIsOpen = true"
            data-popover-placement="right"
            data-uib-popover="{{i18n.content.form.lehdenjulkaisusarjannimi.tooltip[lang]}}"
            data-ng-show="i18n.content.form.lehdenjulkaisusarjannimi.tooltip[lang]"></i>
@@ -853,7 +874,9 @@
                data-ng-bind="i18n.content.form.issn[lang]">
         </label>
         <i class="fa fa-info-circle justus-info"
-           data-popover-trigger="'mouseenter'"
+           data-popover-trigger="'outsideClick'"
+           data-popover-is-open="popoverIsOpen"
+           data-ng-mouseenter="popoverIsOpen = true"
            data-popover-placement="right"
            data-uib-popover="{{ julkaisutyyppi_paa == 'F' ? i18n.content.form.issn.tooltipF[lang] : i18n.content.form.issn.tooltip[lang] }}"
            data-ng-show="i18n.content.form.issn.tooltip[lang]">
@@ -862,7 +885,7 @@
       </div>
       <div class="col-sm-8 col-xs-12 justus-data">
         <div class="row" data-ng-repeat="issn in justus.julkaisu.issn track by $index" data-ng-class="{'mb-x':$first}">
-          <div class="col-xs-6">
+          <div class="col-md-6 col-xs-9">
             <input type="text"
                    id="issn"
                    name="issn"
@@ -871,7 +894,7 @@
                    placeholder="1234-567X">
             <span data-ng-if="issnDescription[$index]">{{issnDescription[$index]}}</span>
           </div>
-          <div class="col-xs-6">
+          <div class="col-md-6 col-xs-3">
             <button
                     type="button"
                     class="btn btn-primary"
@@ -905,7 +928,9 @@
                 data-ng-bind="i18n.content.form.volyymi[lang]">
         </label>
         <i class="fa fa-info-circle justus-info"
-           data-popover-trigger="'mouseenter'"
+           data-popover-trigger="'outsideClick'"
+           data-popover-is-open="popoverIsOpen"
+           data-ng-mouseenter="popoverIsOpen = true"
            data-popover-placement="right"
            data-uib-popover="{{i18n.content.form.volyymi.tooltip[lang]}}"
            data-ng-show="i18n.content.form.volyymi.tooltip[lang]">
@@ -932,7 +957,10 @@
       <div class="col-sm-4 col-xs-12 col-md-4">
         <label for="numero" class="control-label" data-ng-bind="i18n.content.form.numero[lang]"></label>
         <i class="fa fa-info-circle justus-info"
-           data-popover-trigger="'mouseenter'" data-popover-placement="right"
+           data-popover-trigger="'outsideClick'"
+           data-popover-is-open="popoverIsOpen"
+           data-ng-mouseenter="popoverIsOpen = true"
+           data-popover-placement="right"
            data-uib-popover="{{i18n.content.form.numero.tooltip[lang]}}"
            data-ng-show="i18n.content.form.numero.tooltip[lang]">
         </i>
@@ -962,7 +990,10 @@
                 data-ng-bind="i18n.content.form.sivut[lang]">
         </label>
         <i class="fa fa-info-circle justus-info"
-           data-popover-trigger="'mouseenter'" data-popover-placement="right"
+           data-popover-trigger="'outsideClick'"
+           data-popover-is-open="popoverIsOpen"
+           data-ng-mouseenter="popoverIsOpen = true"
+           data-popover-placement="right"
            data-uib-popover="{{i18n.content.form.sivut.tooltip[lang]}}"
            data-ng-show="i18n.content.form.sivut.tooltip[lang]">
         </i>
@@ -991,7 +1022,9 @@
         <label for="artikkelinumero" class="control-label"
                data-ng-bind="i18n.content.form.artikkelinumero[lang]"></label>
         <i class="fa fa-info-circle justus-info"
-           data-popover-trigger="'mouseenter'"
+           data-popover-trigger="'outsideClick'"
+           data-popover-is-open="popoverIsOpen"
+           data-ng-mouseenter="popoverIsOpen = true"
            data-popover-placement="right"
            data-uib-popover="{{i18n.content.form.artikkelinumero.tooltip[lang]}}"
            data-ng-show="i18n.content.form.artikkelinumero.tooltip[lang]">
@@ -1022,7 +1055,10 @@
                 data-ng-bind="i18n.content.form.kustantaja[lang]">
         </label>
         <i class="fa fa-info-circle justus-info"
-           data-popover-trigger="'mouseenter'" data-popover-placement="right"
+           data-popover-trigger="'outsideClick'"
+           data-popover-is-open="popoverIsOpen"
+           data-ng-mouseenter="popoverIsOpen = true"
+           data-popover-placement="right"
            data-uib-popover="{{julkaisutyyppi_paa == 'F' ? i18n.content.form.kustantaja.tooltipF[lang] : i18n.content.form.kustantaja.tooltip[lang]}}"
            data-ng-show="i18n.content.form.kustantaja.tooltip[lang]">
         </i>
@@ -1061,7 +1097,9 @@
                 data-ng-bind="i18n.content.form.julkaisunkustannuspaikka[lang]">
         </label>
         <i class="fa fa-info-circle justus-info"
-           data-popover-trigger="'mouseenter'"
+           data-popover-trigger="'outsideClick'"
+           data-popover-is-open="popoverIsOpen"
+           data-ng-mouseenter="popoverIsOpen = true"
            data-popover-placement="right"
            data-uib-popover="{{julkaisutyyppi_paa == 'F' ? i18n.content.form.julkaisunkustannuspaikka.tooltipF[lang] : i18n.content.form.julkaisunkustannuspaikka.tooltip[lang]}}"
            data-ng-show="i18n.content.form.julkaisunkustannuspaikka.tooltip[lang]">
@@ -1094,7 +1132,9 @@
        <div class="col-sm-4 col-xs-12">
          <label id="avainsanat" class="control-label" data-ng-bind="i18n.content.form.avainsanat[lang]"></label>
          <i class="fa fa-info-circle justus-info"
-            data-popover-trigger="'mouseenter'"
+            data-popover-trigger="'outsideClick'"
+            data-popover-is-open="popoverIsOpen"
+            data-ng-mouseenter="popoverIsOpen = true"
             data-popover-placement="right"
             data-uib-popover="{{i18n.content.form.avainsanat.tooltip[lang]}}"
             data-ng-show="i18n.content.form.avainsanat.tooltip[lang]">
@@ -1134,7 +1174,10 @@
          <label for="julkaisunkieli" class="control-label"
                 data-ng-bind="i18n.content.form.julkaisunkieli[lang]"></label>
          <i class="fa fa-info-circle justus-info"
-            data-popover-trigger="'mouseenter'" data-popover-placement="right"
+            data-popover-trigger="'outsideClick'"
+            data-popover-is-open="popoverIsOpen"
+            data-ng-mouseenter="popoverIsOpen = true"
+            data-popover-placement="right"
             data-uib-popover="{{julkaisutyyppi_paa == 'F' ? i18n.content.form.julkaisunkieli.tooltipF[lang] : i18n.content.form.julkaisunkieli.tooltip[lang]}}"
             data-ng-show="i18n.content.form.julkaisunkieli.tooltip[lang]">
          </i>
@@ -1142,7 +1185,7 @@
        </div>
        <div class="col-sm-8 col-xs-12 justus-data">
          <div class="row">
-           <div class="col-xs-10">
+           <div class="col-xs-12">
              <input type="text"
                     id="julkaisunkieli"
                     name="julkaisunkieli"
@@ -1167,7 +1210,9 @@
                 data-ng-bind="i18n.content.form.julkaisunkansainvalisyys[lang]">
          </label>
          <i class="fa fa-info-circle justus-info"
-            data-popover-trigger="'mouseenter'"
+            data-popover-trigger="'outsideClick'"
+            data-popover-is-open="popoverIsOpen"
+            data-ng-mouseenter="popoverIsOpen = true"
             data-popover-placement="right"
             data-uib-popover="{{julkaisutyyppi_paa == 'F' ? i18n.content.form.julkaisunkansainvalisyys.tooltipF[lang] : i18n.content.form.julkaisunkansainvalisyys.tooltip[lang]}}"
             data-ng-show="i18n.content.form.julkaisunkansainvalisyys.tooltip[lang]">
@@ -1208,7 +1253,10 @@
                 data-ng-bind="i18n.content.form.julkaisumaa[lang]">
          </label>
          <i class="fa fa-info-circle justus-info"
-            data-popover-trigger="'mouseenter'" data-popover-placement="right"
+            data-popover-trigger="'outsideClick'"
+            data-popover-is-open="popoverIsOpen"
+            data-ng-mouseenter="popoverIsOpen = true"
+            data-popover-placement="right"
             data-uib-popover="{{julkaisutyyppi_paa == 'F' ? i18n.content.form.julkaisumaa.tooltipF[lang] : i18n.content.form.julkaisumaa.tooltip[lang]}}"
             data-ng-show="i18n.content.form.julkaisumaa.tooltip[lang]">
          </i>
@@ -1216,7 +1264,7 @@
        </div>
        <div class="col-sm-8 col-xs-12 justus-data">
          <div class="row">
-           <div class="col-xs-10">
+           <div class="col-xs-12">
              <input
                      id="julkaisumaa"
                      name="julkaisumaa"
@@ -1241,7 +1289,10 @@
                 data-ng-bind="i18n.content.form.julkistamispaikkakunta[lang]">
          </label>
          <i class="fa fa-info-circle justus-info"
-            data-popover-trigger="'mouseenter'" data-popover-placement="right"
+            data-popover-trigger="'outsideClick'"
+            data-popover-is-open="popoverIsOpen"
+            data-ng-mouseenter="popoverIsOpen = true"
+            data-popover-placement="right"
             data-uib-popover="{{i18n.content.form.julkistamispaikkakunta.tooltip[lang]}}"
             data-ng-show="i18n.content.form.julkistamispaikkakunta.tooltip[lang]">
          </i>
@@ -1275,7 +1326,10 @@
                 data-ng-bind="i18n.content.form.tapahtumanlisatieto[lang]">
          </label>
          <i class="fa fa-info-circle justus-info"
-            data-popover-trigger="'mouseenter'" data-popover-placement="right"
+            data-popover-trigger="'outsideClick'"
+            data-popover-is-open="popoverIsOpen"
+            data-ng-mouseenter="popoverIsOpen = true"
+            data-popover-placement="right"
             data-uib-popover="{{i18n.content.form.tapahtumanlisatieto.tooltip[lang]}}"
             data-ng-show="i18n.content.form.tapahtumanlisatieto.tooltip[lang]">
          </i>
@@ -1309,7 +1363,9 @@
                 data-ng-bind="i18n.content.form.tieteenala[lang]">
          </label>
          <i class="fa fa-info-circle justus-info"
-            data-popover-trigger="'mouseenter'"
+            data-popover-trigger="'outsideClick'"
+            data-popover-is-open="popoverIsOpen"
+            data-ng-mouseenter="popoverIsOpen = true"
             data-popover-placement="right"
             data-uib-popover="{{julkaisutyyppi_paa == 'F' ? i18n.content.form.tieteenala.tooltipF[lang] : i18n.content.form.tieteenala.tooltip[lang]}}"
             data-ng-show="i18n.content.form.tieteenala.tooltip[lang]">
@@ -1384,20 +1440,20 @@
              </div>
              <!--dev--><!-- when paatieteenala not selected/used above --><!--enddev-->
              <!--dev--><!-- hack... now parent.index... --><!--enddev-->
-             <!--          <div data-ng-if="!tieteenala_paa">-->
-             <!--            <ui-select data-ng-model="alatieteenalat.selected"-->
-             <!--                       on-select="useTieteenala($select.selected)"-->
-             <!--                       theme="bootstrap">-->
-             <!--              <ui-select-match class="ui-select-match"-->
-             <!--                               placeholder="{{i18n.content.form.tieteenala.ala.picktip[lang]}}">-->
-             <!--                {{ $select.selected.arvo }} {{ $select.selected.selite }}-->
-             <!--              </ui-select-match>-->
-             <!--              <ui-select-choices repeat="o in getAlltieteenalat() | orderBy: 'arvo'"-->
-             <!--                                 ui-disable-choice="o.nogo">-->
-             <!--                {{o.arvo}} {{o.selite }}-->
-             <!--              </ui-select-choices>-->
-             <!--            </ui-select>-->
-             <!--          </div>-->
+               <div data-ng-if="!tieteenala_paa">
+                 <ui-select data-ng-model="alatieteenalat.selected"
+                            on-select="useTieteenala($select.selected)"
+                            theme="bootstrap">
+                   <ui-select-match class="ui-select-match"
+                                    placeholder="{{i18n.content.form.tieteenala.ala.picktip[lang]}}">
+                     {{ $select.selected.arvo }} {{ $select.selected.selite }}
+                   </ui-select-match>
+                   <ui-select-choices repeat="o in getAlltieteenalat() | orderBy: 'arvo'"
+                                      ui-disable-choice="o.nogo">
+                     {{o.arvo}} {{o.selite }}
+                   </ui-select-choices>
+                 </ui-select>
+               </div>
            </div>
          </div>
        </div>
@@ -1415,7 +1471,9 @@
          >
          </label>
          <i class="fa fa-info-circle justus-info"
-            data-popover-trigger="'mouseenter'"
+            data-popover-trigger="'outsideClick'"
+            data-popover-is-open="popoverIsOpen"
+            data-ng-mouseenter="popoverIsOpen = true"
             data-popover-placement="right"
             data-uib-popover="{{i18n.content.form.taiteenala.tooltip[lang]}}"
             data-ng-show="i18n.content.form.taiteenala.tooltip[lang]">
@@ -1480,7 +1538,9 @@
                 data-ng-bind="i18n.content.form.taidealantyyppikategoria[lang]">
          </label>
          <i class="fa fa-info-circle justus-info"
-            data-popover-trigger="'mouseenter'"
+            data-popover-trigger="'outsideClick'"
+            data-popover-is-open="popoverIsOpen"
+            data-ng-mouseenter="popoverIsOpen = true"
             data-popover-placement="right"
             data-uib-popover="{{i18n.content.form.taidealantyyppikategoria.tooltip[lang]}}"
             data-ng-show="i18n.content.form.taidealantyyppikategoria.tooltip[lang]">
@@ -1543,7 +1603,9 @@
                 data-ng-bind="i18n.content.form.kansainvalinenyhteisjulkaisu[lang]">
          </label>
          <i class="fa fa-info-circle justus-info"
-            data-popover-trigger="'mouseenter'"
+            data-popover-trigger="'outsideClick'"
+            data-popover-is-open="popoverIsOpen"
+            data-ng-mouseenter="popoverIsOpen = true"
             data-popover-placement="right"
             data-uib-popover="{{julkaisutyyppi_paa == 'F' ? i18n.content.form.kansainvalinenyhteisjulkaisu.tooltipF[lang] : i18n.content.form.kansainvalinenyhteisjulkaisu.tooltip[lang]}}"
             data-ng-show="i18n.content.form.kansainvalinenyhteisjulkaisu.tooltip[lang]">
@@ -1589,7 +1651,9 @@
                 data-ng-bind="i18n.content.form.yhteisjulkaisuyrityksenkanssa[lang]">
          </label>
          <i class="fa fa-info-circle justus-info"
-            data-popover-trigger="'mouseenter'"
+            data-popover-trigger="'outsideClick'"
+            data-popover-is-open="popoverIsOpen"
+            data-ng-mouseenter="popoverIsOpen = true"
             data-popover-placement="right"
             data-uib-popover="{{i18n.content.form.yhteisjulkaisuyrityksenkanssa.tooltip[lang]}}"
             data-ng-show="i18n.content.form.yhteisjulkaisuyrityksenkanssa.tooltip[lang]">
@@ -1637,7 +1701,9 @@
                 data-ng-bind="i18n.content.form.doitunniste[lang]">
          </label>
          <i class="fa fa-info-circle justus-info"
-            data-popover-trigger="'mouseenter'"
+            data-popover-trigger="'outsideClick'"
+            data-popover-is-open="popoverIsOpen"
+            data-ng-mouseenter="popoverIsOpen = true"
             data-popover-placement="right"
             data-uib-popover="{{i18n.content.form.doitunniste.tooltip[lang]}}"
             data-ng-show="i18n.content.form.doitunniste.tooltip[lang]">
@@ -1664,7 +1730,10 @@
          <label for="muutunniste" class="control-label" data-ng-bind="i18n.content.form.muutunniste[lang]">
          </label>
          <i class="fa fa-info-circle justus-info"
-            data-popover-trigger="'mouseenter'" data-popover-placement="right"
+            data-popover-trigger="'outsideClick'"
+            data-popover-is-open="popoverIsOpen"
+            data-ng-mouseenter="popoverIsOpen = true"
+            data-popover-placement="right"
             data-uib-popover="{{i18n.content.form.muutunniste.tooltip[lang]}}"
             data-ng-show="i18n.content.form.muutunniste.tooltip[lang]">
          </i>
@@ -1695,7 +1764,9 @@
          <label for="pysyvaverkkoosoite" class="control-label"
                 data-ng-bind="i18n.content.form.pysyvaverkkoosoite[lang]"></label>
          <i class="fa fa-info-circle justus-info"
-            data-popover-trigger="'mouseenter'"
+            data-popover-trigger="'outsideClick'"
+            data-popover-is-open="popoverIsOpen"
+            data-ng-mouseenter="popoverIsOpen = true"
             data-popover-placement="right"
             data-uib-popover="{{i18n.content.form.pysyvaverkkoosoite.tooltip[lang]}}"
             data-ng-show="i18n.content.form.pysyvaverkkoosoite.tooltip[lang]">
@@ -1726,7 +1797,9 @@
                 data-ng-bind="i18n.content.form.avoinsaatavuus[lang]">
          </label>
          <i class="fa fa-info-circle justus-info"
-            data-popover-trigger="'mouseenter'"
+            data-popover-trigger="'outsideClick'"
+            data-popover-is-open="popoverIsOpen"
+            data-ng-mouseenter="popoverIsOpen = true"
             data-popover-placement="right"
             data-uib-popover="{{i18n.content.form.avoinsaatavuus.tooltip[lang]}}"
             data-ng-show="i18n.content.form.avoinsaatavuus.tooltip[lang]">
@@ -1757,7 +1830,9 @@
              <label for="openaccess" data-ng-model="lab2_avoinsaatavuus" class="control-label">
                {{i18n.content.form.avoinsaatavuus['1'][lang]}}
                <i class="fa fa-info-circle justus-info"
-                  data-popover-trigger="'mouseenter'"
+                  data-popover-trigger="'outsideClick'"
+                  data-popover-is-open="popoverIsOpen2"
+                  data-ng-mouseenter="popoverIsOpen2 = true"
                   data-popover-placement="right"
                   data-uib-popover="{{i18n.content.form.avoinsaatavuus['1'].tooltip[lang]}}"
                   data-ng-show="i18n.content.form.avoinsaatavuus['1'].tooltip[lang]">
@@ -1772,7 +1847,9 @@
              <label for="hybridijulkaisu" data-ng-model="lab3_avoinsaatavuus" class="control-label">
                {{i18n.content.form.avoinsaatavuus['2'][lang]}}
                <i class="fa fa-info-circle justus-info"
-                  data-popover-trigger="'mouseenter'"
+                  data-popover-trigger="'outsideClick'"
+                  data-popover-is-open="popoverIsOpen"
+                  data-ng-mouseenter="popoverIsOpen = true"
                   data-popover-placement="right"
                   data-uib-popover="{{i18n.content.form.avoinsaatavuus['2'].tooltip[lang]}}"
                   data-ng-show="i18n.content.form.avoinsaatavuus['2'].tooltip[lang]">
@@ -1791,7 +1868,10 @@
                 data-ng-bind="i18n.content.form.lisatieto[lang]">
          </label>
          <i class="fa fa-info-circle justus-info"
-            data-popover-trigger="'mouseenter'" data-popover-placement="right"
+            data-popover-trigger="'outsideClick'"
+            data-popover-is-open="popoverIsOpen"
+            data-ng-mouseenter="popoverIsOpen = true"
+            data-popover-placement="right"
             data-uib-popover="{{i18n.content.form.lisatieto.tooltip[lang]}}"
             data-ng-show="i18n.content.form.lisatieto.tooltip[lang]">
          </i>
@@ -1833,7 +1913,7 @@
 
 <!-- JATKA -->
 <div class="row form-group px m-t">
-  <div class="col-md-4">
+  <div class="col-md-4 margin-bottom-md">
     <button class="btn btn-danger btn-lg btn-block"
             type="reset"
             data-ng-click="cancelAndGoToPublicationListing()">

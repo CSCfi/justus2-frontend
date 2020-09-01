@@ -108,3 +108,21 @@ h3 {
     float: left;
   }
 }
+
+@media (max-width: 992px) {
+  .margin-bottom-md {
+    margin-bottom: 10px;
+  }
+  .container {
+    width: 100%;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .btn-lg {
+    font-size: 16px;
+    padding: 13px 12px !important;
+  }
+
+}

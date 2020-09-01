@@ -11,21 +11,22 @@
        data-ng-class="{'opened': o.open}"
        data-ng-click="useJulkaisutyyppiPaa(o.arvo)"
        data-ng-if="o.arvo=='A' || o.arvo=='B' || o.arvo=='C' || o.arvo=='D' || o.arvo=='E' || o.arvo=='F' || o.arvo=='G'">
-    <uib-accordion-heading class="bg-light" >
+    <uib-accordion-heading class="bg-light">
       <div>
-      {{o.selite}}
-      <i class="pull-right glyphicon" data-ng-class="{'glyphicon-chevron-down': o.open, 'glyphicon-chevron-right': !o.open}"></i>
+        {{o.selite}}
+        <i class="pull-right glyphicon"
+           data-ng-class="{'glyphicon-chevron-down': o.open, 'glyphicon-chevron-right': !o.open}"></i>
       </div>
     </uib-accordion-heading>
     <div data-ng-repeat="a in o.alatyypit | orderBy: 'arvo'">
       <div class="col-xs-12 julkaisutyyppi-btn" data-ng-class="{'active': justus.julkaisu.julkaisutyyppi == a.arvo}"
            data-ng-click="useField('julkaisu','julkaisutyyppi',a.arvo); useVaihe(3);">
-        {{a.selite}}
-        <i class="fa fa-info-circle"
-           data-popover-trigger="'mouseenter'" data-popover-placement="right"
-           data-popover-class="justus-info-bw"
-           data-uib-popover="{{a.kuvaus}}"
-           data-ng-show="a.kuvaus"></i>
+        <p class="font-weight-bold mb-0">
+          {{a.selite}}
+        </p>
+        <p class="mb-0 ">
+          {{a.kuvaus}}
+        </p>
       </div>
     </div>
   </div>
