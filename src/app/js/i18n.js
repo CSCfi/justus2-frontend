@@ -12,7 +12,7 @@ const i18n = {
     logotext: { FI: 'JUSTUS - JULKAISUTIETOJEN TALLENNUS', SV: 'JUSTUS - JULKAISUTIETOJEN TALLENNUS', EN: 'JUSTUS - JULKAISUTIETOJEN TALLENNUS' },
     lang: { FI: 'Suomeksi', SV: 'På svenska', EN: 'In English' },
     logout: { FI: 'Kirjaudu ulos', SV: 'Logga ut', EN: 'Logout' },
-    help: { FI: 'Ohje', SV: 'Instruktioner', EN: 'Instructions' },
+    help: { FI: 'Palvelun ohjeet', SV: 'Instruktioner', EN: 'Instructions' },
     navigation: {
       etusivu: { FI: 'Etusivu', SV: 'Framsida', EN: 'Frontpage' },
       tallenna: { FI: 'Tallenna julkaisu', SV: 'Spara uppgifter', EN: 'Save publication' },
@@ -888,7 +888,7 @@ const i18n = {
       julkaisutyyppi: { FI: 'Valitse julkaisutyyppi', SV: 'Välj publikationstyp', EN: 'Choose publication type' },
       esitayta: { FI: 'Esitäytä tiedot', SV: 'Sök bland publikationer', EN: 'Prefill the form' },
       tietojensyotto: { FI: 'Syötä julkaisutiedot', SV: 'Mata in uppgifter', EN: 'Enter publication information' },
-      julkaisunsyotto: { FI: 'Syötä julkaisu', SV: 'Mata in publikation', EN: 'Enter publication' },
+      julkaisunsyotto: { FI: 'Rinnakkaistallenna julkaisu', SV: 'Mata in publikation', EN: 'Enter publication' },
       rinnakkaistallennus: { FI: "Rinnakkaistallennus", SV: "*SV Rinnakkaistallennus", EN: "*EN Rinnakkaistallennus" },
       tallennus: { FI: 'Tarkista ja tallenna', SV: 'Granska och spara', EN: 'Verify and save' }
     },
