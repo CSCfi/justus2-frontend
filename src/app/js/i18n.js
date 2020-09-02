@@ -859,9 +859,9 @@ const i18n = {
           SV: '*SV Ei rinnakkaistallennattava julkaisu',
           EN: 'Not self-archivable publication',
           tooltip: {
-            FI: 'Julkaisu ei ole rinnakkaistallennettava, sitä ei ole tarve rinnakkaistallentaa tai rinnakkaistallennus tehdään myöhemmin. Siirry suoraan esikatseluun.',
-            SV: '*SV Julkaisu ei ole rinnakkaistallennettava, sitä ei ole tarve rinnakkaistallentaa tai rinnakkaistallennus tehdään myöhemmin. Siirry suoraan esikatseluun.',
-            EN: 'Publication is not self-archivable, there is no need to self-archive or the self-archiving will be done later. Proceed to preview.'
+            FI: 'Julkaisu ei ole rinnakkaistallennettava, sitä ei ole tarve rinnakkaistallentaa tai rinnakkaistallennus tehdään myöhemmin.',
+            SV: '*SV Julkaisu ei ole rinnakkaistallennettava, sitä ei ole tarve rinnakkaistallentaa tai rinnakkaistallennus tehdään myöhemmin.',
+            EN: 'Publication is not self-archivable, there is no need to self-archive or the self-archiving will be done later.'
           }
       }
     },

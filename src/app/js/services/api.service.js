@@ -252,7 +252,7 @@ angular.module('APIService', [])
 
         console.log(data);
           return Upload.upload({
-              url: API_BASE_URL + 'upload',
+              url: API_BASE_URL + 'julkaisu/upload',
               data: { file: file, data: data },
               method: 'POST',
               headers: { 'Content-Type': 'multipart/form-data' }

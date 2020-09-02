@@ -68,3 +68,15 @@ legend {
   border-width: 2px;
 }
 
+.custom-radio {
+  display: inline-block !important;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  + span {
+    float: right;
+    padding-top: 6px;
+    padding-left: 8px;
+  }
+}
+
