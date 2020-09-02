@@ -47,6 +47,13 @@
   }
 }
 
+.strong-placeholder {
+  .ui-select-placeholder {
+    color: $gray-darker;
+    font-weight: 500;
+  }
+}
+
 .ui-select-match.no-ellipsis span {
   text-overflow: initial;
 }
