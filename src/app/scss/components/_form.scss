@@ -36,17 +36,6 @@
 .form-control:-ms-input-placeholder { font-weight: 300; }  /* Internet Explorer 10-11 */
 .form-control::-ms-input-placeholder { font-weight: 300; }  /* Microsoft Edge */
 
-.publication-search {
-  .form-control {
-    &::-webkit-input-placeholder { font-size: 14px; }
-    &:-moz-placeholder { font-size: 14px; }
-    &::-moz-placeholder { font-size: 14px; }
-    &:-ms-input-placeholder { font-size: 14px; }
-    &::-ms-input-placeholder { font-size: 14px;}
-  }
-
-}
-
 .form-control-feedback {
   display: none;
   right: 15px;
@@ -77,5 +66,17 @@ legend {
 .span-focus:focus {
   border-color: #60abb5;
   border-width: 2px;
+}
+
+.custom-radio {
+  display: inline-block !important;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  + span {
+    float: right;
+    padding-top: 6px;
+    padding-left: 8px;
+  }
 }
 
