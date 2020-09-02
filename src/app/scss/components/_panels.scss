@@ -14,10 +14,10 @@
 }
 
 .panel-default > .panel-heading {
-  color: $brand-primary;
-  background-color: rgb(240, 240, 240);
-  border-color: rgb(240, 240, 240);
-  padding:15px 15px;
+ color: $brand-primary;
+ background-color: rgb(240, 240, 240);
+ border-color: rgb(240, 240, 240);
+ padding:15px 15px;
   a {
     text-decoration: none !important;
   }
@@ -43,10 +43,13 @@
   &:hover {
     cursor: pointer;
     background: $brand-primary;
-    color: $brand-white
+    color: $brand-white;
   }
 }
 .julkaisutyyppi-btn.active {
   background: $brand-primary;
   color: $brand-white
 }
+
+
+
