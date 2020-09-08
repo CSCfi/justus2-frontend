@@ -183,7 +183,6 @@
                  class="form-control"
                  data-ng-model="justus.julkaisu.julkaisuntekijoidenlukumaara"
                  maxlength="2" pattern="^[0-9]*$">
-          <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
         <div class="col-xs-5 justus-data text-right">
           <button class="btn btn-primary justus-btn"
@@ -1146,7 +1145,7 @@
                  aria-labelledby="avainsanat"
                  data-ng-model="avainsanatTags"
                  data-replace-spaces-with-dashes="false"
-                 data-add-on-comma="false"
+                 data-add-on-comma="true"
                  data-add-on-space="false"
                  placeholder="{{i18n.content.form.avainsanat.picktip[lang]}}"
                  data-on-tag-added="addAvainsana($tag)"
@@ -1171,7 +1170,7 @@
      <!-- Kenttä: Julkaisun kieli -->
      <div class="row form-group" id="julkaisunkieliGroup" data-ng-if="isFieldVisible('julkaisunkieli')">
        <div class="col-sm-4 col-xs-12">
-         <label for="julkaisunkieli" class="control-label"
+         <label id="julkaisunkieli" class="control-label"
                 data-ng-bind="i18n.content.form.julkaisunkieli[lang]"></label>
          <i class="fa fa-info-circle justus-info"
             data-popover-trigger="'outsideClick'"
@@ -1183,19 +1182,24 @@
          </i>
          <i data-ng-if="isFieldRequired('julkaisunkieli')" class="fa fa-asterisk required-star" aria-hidden="true"></i>
        </div>
-       <div class="col-sm-8 col-xs-12 justus-data">
+       <div class="col-sm-8 col-xs-12 justus-data" >
          <div class="row">
            <div class="col-xs-12">
-             <input type="text"
-                    id="julkaisunkieli"
-                    name="julkaisunkieli"
-                    class="form-control"
-                    data-ng-model="sel_julkaisunkieli"
-                    data-ng-value="getSelite(codes.kieli, justus.julkaisu.julkaisunkieli.toUpperCase())"
-                    data-uib-typeahead="o.selite for o in codes['kieli'] | filter: $viewValue"
-                    placeholder="{{i18n.content.form.julkaisunkieli.picktip[lang]}}"
-                    data-typeahead-on-select="useField('julkaisu','julkaisunkieli',$item.arvo.toLowerCase())"
-                    data-typeahead-editable="false">
+               <ui-select aria-labelledby="julkaisunkieli"
+                       data-ng-model="julkaisunkieli.selected"
+                          data-ng-class="{ 'strong-placeholder': justus.julkaisu.julkaisunkieli }"
+                          on-select="useField('julkaisu', 'julkaisunkieli', $select.selected.arvo.toLowerCase())"
+                          theme="bootstrap">
+                 <ui-select-match class="ui-select-match"
+                                  placeholder="{{getSelite(codes.kieli, justus.julkaisu.julkaisunkieli.toUpperCase()) || i18n.content.form.julkaisunkieli.picktip[lang]}}">
+                   {{ $select.selected.selite }}
+                 </ui-select-match>
+                 <ui-select-choices role="option"
+                         repeat="o in codes['kieli'] | orderBy: 'selite' | filter: $select.search"
+                                    ui-disable-choice="o.nogo">
+                    {{o.selite }}
+                 </ui-select-choices>
+               </ui-select>
            </div>
          </div>
        </div>
@@ -1248,7 +1252,7 @@
      <!-- Kenttä: Julkaisumaa -->
      <div class="row form-group" data-ng-if="isFieldVisible('julkaisumaa')" id="julkaisumaaGroup">
        <div class="col-sm-4 col-xs-12">
-         <label for="julkaisumaa"
+         <label id="julkaisumaa"
                 class="control-label"
                 data-ng-bind="i18n.content.form.julkaisumaa[lang]">
          </label>
@@ -1265,17 +1269,21 @@
        <div class="col-sm-8 col-xs-12 justus-data">
          <div class="row">
            <div class="col-xs-12">
-             <input
-                     id="julkaisumaa"
-                     name="julkaisumaa"
-                     type="text"
-                     class="form-control"
-                     data-ng-value="getSelite(codes.maatjavaltiot2 ,justus.julkaisu.julkaisumaa)"
-                     data-ng-model="sel_julkaisumaa"
-                     data-uib-typeahead="o.arvo+' '+o.selite for o in codes['maatjavaltiot2'] | filter: $viewValue"
-                     data-typeahead-on-select="useField('julkaisu','julkaisumaa',$item.arvo)"
-                     data-typeahead-editable="false"
-                     placeholder="{{ i18n.content.form.julkaisumaa.picktip[lang] }}">
+             <ui-select aria-labelledby="julkaisumaa"
+                        data-ng-model="julkaisumaa.selected"
+                        data-ng-class="{ 'strong-placeholder': justus.julkaisu.julkaisumaa }"
+                        on-select="useField('julkaisu', 'julkaisumaa', $select.selected.arvo)"
+                        theme="bootstrap">
+               <ui-select-match class="ui-select-match"
+                                placeholder="{{getSelite(codes.maatjavaltiot2, justus.julkaisu.julkaisumaa) || i18n.content.form.julkaisumaa.picktip[lang]}}">
+                 {{ $select.selected.selite }}
+               </ui-select-match>
+               <ui-select-choices role="option"
+                                  repeat="o in codes['maatjavaltiot2'] | orderBy: 'selite' | filter: $select.search"
+                                  ui-disable-choice="o.nogo">
+                 {{o.arvo }} {{o.selite }}
+               </ui-select-choices>
+             </ui-select>
            </div>
          </div>
        </div>

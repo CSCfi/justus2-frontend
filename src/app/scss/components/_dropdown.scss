@@ -5,6 +5,18 @@
   overflow-y: scroll;
 }
 
+.custom-dropdown {
+  li {
+    padding: 7px 0 7px 20px;
+    color: $text-color-dark;
+    &:hover {
+      background: $brand-primary;
+      color: $brand-white;
+    }
+  }
+
+}
+
 //.dropdown-height-300 > .ui-select-choices {
 //  max-height: 300px !important;
 //}

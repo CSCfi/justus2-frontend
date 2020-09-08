@@ -140,7 +140,7 @@ const i18n = {
       },
       etsijulkaisu: {
         title: { FI: 'Hae tietoja julkaisun nimellä', SV: 'Hämta uppgifter på titel', EN: 'Search using publication\'s name' },
-        picktip: { FI: 'Hae julkaisun nimellä', SV: 'Hämta på titel', EN: 'Search publication\'s name' },
+        picktip: { FI: 'Hae julkaisun nimellä (vähintään viisi merkkiä)', SV: 'Hämta på titel', EN: 'Search publication\'s name' },
         tekija: {
           FI: 'Kirjoita hakuehto: tekijä',
           SV: '*SV*Kirjoita hakuehto: tekijä',
@@ -449,13 +449,13 @@ const i18n = {
         SV: 'Nyckelord',
         EN: 'Key words',
         tooltip: {
-          FI: 'Julkaisun sisältöä mahdollisimman hyvin kuvailevat avainsanat.',
-          SV: 'Nyckelord som så bra som möjligt beskriver publikationens innehåll.',
-          EN: 'Keywords that describe the content of the publication as accurately as possible.'
+          FI: 'Julkaisun sisältöä mahdollisimman hyvin kuvailevat avainsanat. Kirjoita avainsana ja paina enter tai pilkku näppäintä.',
+          SV: 'Nyckelord som så bra som möjligt beskriver publikationens innehåll. Skriv nyckelordet och tryck enter',
+          EN: 'Keywords that describe the content of the publication as accurately as possible. Type in the keyword and press enter'
         },
         lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
         poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
-        picktip: { FI: 'Kirjoita avainsana ja paina enter', SV: 'Skriv nyckelordet och tryck enter', EN: 'Type in the keyword and press enter' }
+        picktip: { FI: 'Kirjoita avainsana ja paina enter tai pilkku näppäintä', SV: 'Skriv nyckelordet och tryck enter', EN: 'Type in the keyword and press enter' }
       },
       julkaisunkieli: {
         FI: 'Julkaisun kieli',
