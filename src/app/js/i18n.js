@@ -139,7 +139,7 @@ const i18n = {
       },
       etsijulkaisu: {
         title: { FI: 'Hae tietoja julkaisun nimellä', SV: 'Hämta uppgifter på titel', EN: 'Search using publication\'s name' },
-        picktip: { FI: 'Hae julkaisun nimellä', SV: 'Hämta på titel', EN: 'Search publication\'s name' },
+        picktip: { FI: 'Hae julkaisun nimellä (vähintään viisi merkkiä)', SV: 'Hämta på titel', EN: 'Search publication\'s name' },
         tekija: {
           FI: 'Kirjoita hakuehto: tekijä',
           SV: '*SV*Kirjoita hakuehto: tekijä',

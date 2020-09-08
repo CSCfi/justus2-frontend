@@ -295,29 +295,48 @@ angular.module('JustusController', [])
                     });
             };
 
-            $scope.refreshJulkaisunnimet = function(input, tekija) {
-                if (input === null) return;
+
+            $scope.searchDropDownStatus = {
+                isopen: false
+            };
+
+            $scope.valitseJulkaisu = function(julkaisu) {
+                $scope.valittuJulkaisu = julkaisu;
+            }
+
+            $scope.refreshJulkaisunnimet = function($event, input, tekija) {
+
+                if (!input) return;
                 if (input.length < 5) return;
 
                 $scope.julkaisunnimet = [];
+                $scope.noResults = false;
+
                 $scope.virtaLataa = true;
 
                 // Haku julkaisun nimellä, tekijän nimi rajaa hakua
                 ExternalServicesService.worksquery(input, tekija)
                     .then(function(obj) {
-                        $scope.julkaisunnimet = $scope.julkaisunnimet.concat(obj.data);
+
+                        if (obj.data.length < 1) {
+                            $scope.noResults = true;
+                        } else {
+                            $scope.noResults = false;
+                            $scope.julkaisunnimet = $scope.julkaisunnimet.concat(obj.data);
+                            $event.preventDefault();
+                            $event.stopPropagation();
+                            $event.stopPropagation();
+                            $scope.searchDropDownStatus.isopen = !$scope.searchDropDownStatus.isopen;
+                        }
+
                         $scope.virtaLataa = false;
+
                     });
             };
 
-            // reset julkaisunnimet on blur
-            $scope.onOpenClose = function(isOpen, title) {
-              if (!title && isOpen === false) {
-                  $scope.julkaisunnimet = [];
-              }
-            };
 
             $scope.useJulkaisunnimi = function(source, input) { // input == identifier
+
                 if (!source || !input) return;
 
                 if (source === 'CrossRef') {
@@ -340,6 +359,10 @@ angular.module('JustusController', [])
 
                             $scope.crossrefLataa = false;
                             $scope.useVaihe(3); // ->tietojen syöttöön
+
+                            $scope.julkaisunnimet = [];
+                            $scope.valittuJulkaisu = null;
+
                         }, function errorCb(response) {
                             console.log(response);
                             $scope.julkaisuhaettu = false;
@@ -377,6 +400,10 @@ angular.module('JustusController', [])
                             $scope.julkaisuhaettu = true;
                             $scope.virtaLataa = false;
                             $scope.useVaihe(3); // ->tietojen syöttöön
+
+                            $scope.julkaisunnimet = [];
+                            $scope.valittuJulkaisu = null;
+
                         }, function errorVirta(response) {
                             $scope.julkaisuhaettu = false;
                             return false;
@@ -576,6 +603,7 @@ angular.module('JustusController', [])
             // };
 
             $scope.useField = function(type, field, input) {
+
                 if (input !== null && input !== undefined) {
                     $scope.justus[type][field] = String(input);
                 }
@@ -595,6 +623,7 @@ angular.module('JustusController', [])
             };
 
             $scope.isJustusValid = function() {
+
                 $scope.visibleFields = JustusService.getListOfVisibleFields();
                 $scope.invalidFields = JustusService.getInvalidFields($rootScope.user.visibleFields);
 
@@ -861,6 +890,7 @@ angular.module('JustusController', [])
             };
 
             verifyAccess();
+
         }
 
 
