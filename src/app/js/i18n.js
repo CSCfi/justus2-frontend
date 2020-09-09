@@ -905,7 +905,8 @@ const i18n = {
         viimeisinmuokkaaja: { FI: 'Viimeisin muokkaaja', SV: 'Senast ändrad av', EN: 'Last edit by' },
         julkaisu: { FI: 'Julkaisu', SV: 'Publikation', EN: 'Publication' },
         toiminnot: { FI: 'Toiminnot', SV: 'Funktioner', EN: 'Functions' },
-        hyvaksy: { FI: 'Hyväksy', SV: 'Godkänd', EN: 'Approve' }
+        hyvaksy: { FI: 'Hyväksy', SV: 'Godkänd', EN: 'Approve' },
+        tietue: { FI: 'Tietue', SV: '*SV Tietue', EN: 'Record' }
       },
       uusi: { FI: 'Tallenna uusi julkaisu', SV: 'Lägga till en ny publikation', EN: 'Save new publication' },
       csv: { FI: 'Lataa julkaisut CSV-tiedostona', SV: 'Hämta som CSV', EN: 'Export publications to CSV'},
