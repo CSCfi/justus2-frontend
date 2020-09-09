@@ -30,6 +30,9 @@ angular.module('JustusController', [])
 
             $scope.julkaisu = {};
 
+            $scope.julkaisunkieli = {};
+            $scope.julkaisumaa = {};
+
             $scope.fileAlreadyExists = false;
             JustusService.file = null;
 
@@ -89,6 +92,8 @@ angular.module('JustusController', [])
                 $scope.justus.julkaisu.issn = [""];
                 $scope.justus.julkaisu.isbn = [""];
                 $scope.justus.julkaisu.projektinumero = [""];
+                $scope.julkaisunkieli = {};
+                $scope.julkaisumaa = {};
                 
                 $scope.justus.organisaatiotekija = [
                     {
@@ -735,6 +740,13 @@ angular.module('JustusController', [])
                     $scope.justus[type][field] = String(input);
                 }
             };
+
+            $scope.resetField = function(input) {
+
+                $scope.justus.julkaisu[input] = undefined;
+                $scope[input].selected = null;
+
+            }
 
             $scope.getSelite = function(codeset, value) {
                 return KoodistoService.getSelite(codeset, value)

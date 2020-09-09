@@ -1182,9 +1182,9 @@
          </i>
          <i data-ng-if="isFieldRequired('julkaisunkieli')" class="fa fa-asterisk required-star" aria-hidden="true"></i>
        </div>
-       <div class="col-sm-8 col-xs-12 justus-data" >
+       <div class="col-sm-8 col-xs-12 justus-data">
          <div class="row">
-           <div class="col-xs-12">
+           <div class="col-xs-10">
                <ui-select aria-labelledby="julkaisunkieli"
                        data-ng-model="julkaisunkieli.selected"
                           data-ng-class="{ 'strong-placeholder': justus.julkaisu.julkaisunkieli }"
@@ -1200,6 +1200,12 @@
                     {{o.selite }}
                  </ui-select-choices>
                </ui-select>
+           </div>
+           <div class="col-xs-2">
+              <button class="btn btn-primary"
+                          data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]"
+                          data-ng-click="resetField('julkaisunkieli')">
+              </button>
            </div>
          </div>
        </div>
@@ -1268,7 +1274,7 @@
        </div>
        <div class="col-sm-8 col-xs-12 justus-data">
          <div class="row">
-           <div class="col-xs-12">
+           <div class="col-xs-10">
              <ui-select aria-labelledby="julkaisumaa"
                         data-ng-model="julkaisumaa.selected"
                         data-ng-class="{ 'strong-placeholder': justus.julkaisu.julkaisumaa }"
@@ -1284,6 +1290,12 @@
                  {{o.arvo }} {{o.selite }}
                </ui-select-choices>
              </ui-select>
+           </div>
+           <div class="col-xs-2">
+             <button class="btn btn-primary"
+                     data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]"
+                     data-ng-click="resetField('julkaisumaa')">
+             </button>
            </div>
          </div>
        </div>
@@ -1921,14 +1933,21 @@
 
 <!-- JATKA -->
 <div class="row form-group px m-t">
-  <div class="col-md-4 margin-bottom-md">
+  <div class="col-md-3 margin-bottom-md">
+    <button class="btn btn-info btn-lg btn-block"
+            type="reset"
+            data-ng-click="useVaihe(2)">
+      Palaa edelliseen vaiheeseen
+    </button>
+  </div>
+  <div class="col-md-3 margin-bottom-md">
     <button class="btn btn-danger btn-lg btn-block"
             type="reset"
             data-ng-click="cancelAndGoToPublicationListing()">
-      {{i18n.content.tietojensyotto.keskeyta[lang]}}
+      Hylkää
     </button>
   </div>
-  <div class="col-md-8">
+  <div class="col-md-6">
     <button class="btn btn-lg btn-block btn-primary"
             type="button"
             data-ng-click="useVaihe(4)">

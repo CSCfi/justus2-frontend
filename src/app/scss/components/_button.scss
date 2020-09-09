@@ -20,6 +20,10 @@
   }
 }
 
+.btn-default {
+  border-color: #333;
+}
+
 .btn-lg {
   padding-left: $padding-large-vertical*2;
   padding-right: $padding-large-vertical*2;
@@ -162,10 +166,12 @@
 .approve-btn {
   border: 1px solid #333;
   border-radius: 3px;
+
   &:hover {
     border: 1px solid #333;
   }
   button {
+    padding: 5px 12px !important;
     &:hover {
       border-color: $brand-primary-dark;
     }
