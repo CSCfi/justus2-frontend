@@ -339,39 +339,50 @@ angular.module('JustusController', [])
                     });
             };
 
-
-            $scope.useJulkaisunnimi = function(source, input) { // input == identifier
+            $scope.useJulkaisunnimi = function(source, input, usevaihe = true) { // input == identifier
 
                 if (!source || !input) return;
 
                 if (source === 'CrossRef') {
                     $scope.crossrefLataa = true;
+                    $scope.noCrossRefResults = false;
                     ExternalServicesService.works(source, input)
                         .then(function successCb(response) {
 
-                            $scope.justus.julkaisu = response.data;
-                            $scope.justus.julkaisu.username = $rootScope.user.name;
-                            $scope.justus.julkaisu.projektinumero = [""];
+                            if (usevaihe) {
+                                $scope.justus.julkaisu = response.data;
+                                $scope.justus.julkaisu.username = $rootScope.user.name;
+                                $scope.justus.julkaisu.projektinumero = [""];
 
-                            // Initialize tekijatTags input
-                            parseNames($scope.justus.julkaisu.tekijat).map(function(nameObject) {
-                                $scope.tekijatTags.push({ text: `${nameObject.lastName}, ${nameObject.firstName}` });
-                            });
-                            $scope.useTekijat();
+                                // Initialize tekijatTags input
+                                parseNames($scope.justus.julkaisu.tekijat).map(function(nameObject) {
+                                    $scope.tekijatTags.push({ text: `${nameObject.lastName}, ${nameObject.firstName}` });
+                                });
+                                $scope.useTekijat();
 
-                            $scope.fetchLehtisarja($scope.justus.julkaisu.issn[0]);
-                            $scope.julkaisuhaettu = true;
+                                $scope.fetchLehtisarja($scope.justus.julkaisu.issn[0]);
+                                $scope.julkaisuhaettu = true;
+
+                                $scope.crossrefLataa = false;
+
+                                $scope.useVaihe(3); // ->tietojen syöttöön
+
+                                $scope.julkaisunnimet = [];
+                                $scope.valittuJulkaisu = null;
+                                $scope.crossRefResult = null;
+                            } else {
+                                $scope.crossRefResult = response.data.julkaisunnimi;
+                            }
 
                             $scope.crossrefLataa = false;
-                            $scope.useVaihe(3); // ->tietojen syöttöön
-
-                            $scope.julkaisunnimet = [];
-                            $scope.valittuJulkaisu = null;
 
                         }, function errorCb(response) {
                             console.log(response);
                             $scope.julkaisuhaettu = false;
                             $scope.crossrefLataa = false;
+                            if (response.status === 404) {
+                                $scope.noCrossRefResults = true;
+                            }
                             return false;
                         });
                 }
@@ -408,6 +419,7 @@ angular.module('JustusController', [])
 
                             $scope.julkaisunnimet = [];
                             $scope.valittuJulkaisu = null;
+                            $scope.crossRefResult = null;
 
                         }, function errorVirta(response) {
                             $scope.julkaisuhaettu = false;

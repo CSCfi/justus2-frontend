@@ -28,9 +28,13 @@
 
 <div class="esitaytto-container px">
     <div class="row px">
-        <div class="col-xs-12">
+        <div class="col-xs-11">
             <label for="doihaku" class="h3 text-dark">{{i18n.content.esitayta.doihaku.title[lang]}}</label>
             <p data-ng-bind="i18n.content.esitayta.doihaku.info[lang]"></p>
+        </div>
+    </div>
+    <div class="row px">
+        <div class="col-xs-11">
             <div class="form-group">
                 <input id="doihaku"
                        name="doihaku"
@@ -40,16 +44,45 @@
                        placeholder='{{i18n.content.esitayta.doihaku.tunniste.tooltip[lang]}}'>
             </div>
         </div>
-    </div>
-    <div class="row px">
-        <div class="col-xs-12">
-        <button type="submit"
-                class="btn btn-primary pull-right"
-                data-ng-click="useJulkaisunnimi('CrossRef',julkaisunhakudoi)"
-                data-ng-bind="i18n.content.esitayta.doihaku.hae[lang]">
-        </button>
+
+        <div class="col-xs-1">
+            <button type="submit"
+                    class="btn btn-primary pull-right"
+                    data-ng-disabled="!julkaisunhakudoi.length"
+                    data-ng-click="useJulkaisunnimi('CrossRef',julkaisunhakudoi,  false)"
+                    >Hae
+            </button>
         </div>
     </div>
+
+    <div class="row px">
+        <div class="col-xs-6">
+            <i class="fa fa-spinner fa-spin fa-3x pull-right" data-ng-if="crossrefLataa"></i>
+        </div>
+    </div>
+
+    <div class="row px" data-ng-if="crossRefResult.length">
+        <div class="col-xs-12">
+            <p class="text-secondary h4 font-weight-bold">Löytyi julkaisu:</p>
+            <p class="h4 text-dark font-weight-bold">
+                {{crossRefResult}}
+            </p>
+            <button type="button"
+                    class="btn btn-primary mt-x"
+                    data-ng-click="useJulkaisunnimi('CrossRef', julkaisunhakudoi)"
+                    data-ng-bind="i18n.content.esitayta.hae[lang]">
+            </button>
+        </div>
+    </div>
+
+    <div data-ng-show="noCrossRefResults" class="row px">
+        <div class="col-xs-12">
+            <p class="text-secondary text-dark pl-x text-xl">
+                DOI-tunnistetta vastaavaa julkaisua ei löytynyt. Tarkista että syöttämäsi tunniste on oikein.
+            </p>
+        </div>
+    </div>
+
 
     <div class="row px">
         <div class="col-xs-11">
@@ -105,6 +138,7 @@
             <button type="button"
                     style="margin-top:27px;"
                     class="btn btn-primary"
+                    data-ng-disabled="!hakusana || hakusana.length < 5"
                     data-ng-click="refreshJulkaisunnimet($event, hakusana, julkaisunhakutekija)">Hae
             </button>
         </div>
@@ -112,7 +146,7 @@
 
     <div data-ng-show="noResults" class="row px">
         <div class="col-xs-12">
-            <p class="text-secondary text-dark pl-x text-xl">Ei hakutuloksia annetuilla hakuehdoilla.</p>
+            <p class="text-secondary text-dark pl-x text-xl">Ei hakutuloksia annetuilla hakuehdoilla. Tarkasta hakuehdot.</p>
         </div>
     </div>
 
