@@ -651,9 +651,14 @@ angular.module('JustusController', [])
                 $scope.visibleFields = JustusService.getListOfVisibleFields();
                 $scope.invalidFields = JustusService.getInvalidFields($rootScope.user.visibleFields);
 
-                ValidationService.setValidationErrors($scope.invalidFields);
-                return $scope.invalidFields.length === 0;
-                // return true;
+                ValidationService.setValidationErrors($scope.invalidFields.missingValue);
+                ValidationService.setInvalidFieldErrors($scope.invalidFields.invalidValue);
+
+                if ($scope.invalidFields.missingValue.length === 0 && $scope.invalidFields.invalidValue.length === 0) {
+                    return true
+                } else {
+                    return false;
+                }
             };
 
             $scope.isFieldRequired = function(fieldName) {

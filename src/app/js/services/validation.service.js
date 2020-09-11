@@ -7,7 +7,7 @@ angular.module('ValidationService', [])
     this.clearValidationErrors = function() {
       angular.element('.has-error').removeClass('has-error');
       angular.element('.has-feedback').removeClass('has-feedback');
-      angular.element('.form-control-feedback').hide();
+      angular.element('.invalid-pattern').hide();
     };
 
     this.setValidationErrors = function(fieldsWithErrors) {
@@ -20,5 +20,16 @@ angular.module('ValidationService', [])
       }, 50);
       });
     };
+
+    this.setInvalidFieldErrors = function(fieldsWithErrors) {
+      fieldsWithErrors.map(function(field) {
+        $timeout(function(){
+          var element = angular.element('#' + field + 'Group');
+          element.addClass('has-error has-feedback');
+          element.find('.invalid-pattern').show();
+        }, 50);
+      });
+    };
+
   }
 ]);
