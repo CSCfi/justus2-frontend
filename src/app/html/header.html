@@ -58,23 +58,25 @@
 <div class="row" data-ng-if="state.name!='index'">
     <div class="col-md-12">
         <div class="navigation">
-            <a href data-ui-sref="valitse()"
-               data-ng-class="getMenuClass('/valitse')"
-               data-ng-bind="i18n.header.navigation.etusivu[lang]">
-            </a>
-            <a href data-ui-sref="justus({id:id,vaihe:vaihe||1})"
-               data-ng-class="getMenuClass('/justus')"
-               data-ng-bind="i18n.header.navigation.tallenna[lang]">
-            </a>
-            <a href data-ui-sref="omat()"
-               data-ng-class="getMenuClass('/omat')"
-               data-ng-bind="i18n.header.navigation.omat[lang]">
-            </a>
-            <a data-ng-if="hasAccessToApprove()"
-               href data-ui-sref="hyvaksy()"
-               data-ng-class="getMenuClass('/hyvaksy')"
-               data-ng-bind="i18n.header.navigation.hyvaksy[lang]">
-            </a>
+            <nav aria-label="primary-nav">
+                <a href data-ui-sref="valitse()"
+                   data-ng-class="getMenuClass('/valitse')"
+                   data-ng-bind="i18n.header.navigation.etusivu[lang]">
+                </a>
+                <a href data-ui-sref="justus({id:id,vaihe:vaihe||1})"
+                   data-ng-class="getMenuClass('/justus')"
+                   data-ng-bind="i18n.header.navigation.tallenna[lang]">
+                </a>
+                <a href data-ui-sref="omat()"
+                   data-ng-class="getMenuClass('/omat')"
+                   data-ng-bind="i18n.header.navigation.omat[lang]">
+                </a>
+                <a data-ng-if="hasAccessToApprove()"
+                   href data-ui-sref="hyvaksy()"
+                   data-ng-class="getMenuClass('/hyvaksy')"
+                   data-ng-bind="i18n.header.navigation.hyvaksy[lang]">
+                </a>
+            </nav>
         </div>
     </div>
 </div>
