@@ -129,6 +129,7 @@ angular.module('JustusController', [])
                     return tag.text;
                 }).join('; ');
                 $scope.justus.julkaisu.julkaisuntekijoidenlukumaara = $scope.tekijatTags.length;
+                ValidationService.clearError("julkaisuntekijoidenlukumaara");
             };
 
 
@@ -645,6 +646,10 @@ angular.module('JustusController', [])
                 return JustusService.isValid(type, field);
 
             };
+
+            $scope.resetValidationError = function(field, index) {
+                ValidationService.clearError(field, index);
+            }
 
             $scope.isJustusValid = function() {
 

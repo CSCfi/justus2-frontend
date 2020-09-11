@@ -16,7 +16,6 @@ angular.module('ValidationService', [])
         $timeout(function(){
           var element = angular.element('#' + field + 'Group');
           element.addClass('has-error has-feedback');
-          element.find('.form-control-feedback').show();
       }, 50);
       });
     };
@@ -29,6 +28,18 @@ angular.module('ValidationService', [])
           element.find('.invalid-pattern').show();
         }, 50);
       });
+    };
+
+    this.clearError = function(field, index) {
+        let element =  angular.element(document.querySelector('#' + field + 'Group'));
+        element.removeClass('has-error')
+        element.find('.invalid-pattern').hide();
+        if (index >= 0) {
+          let element1 =  document.getElementsByClassName(field + 'Group' + index);
+          angular.element(element1[0]).removeClass('has-error');
+          angular.element(element1[0]).find('.invalid-pattern').hide();
+
+        }
     };
 
   }

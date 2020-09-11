@@ -49,7 +49,8 @@
             maxlength="4"
             pattern="^[0-9]{4}$"
             placeholder="{{ i18n.content.form.julkaisuvuosi.picktip[lang] }}"
-            title="{{ julkaisutyyppi_paa == 'F' ? i18n.content.form.julkaisuvuosi.tooltipF[lang] : i18n.content.form.julkaisuvuosi.tooltip[lang] }}">
+            title="{{ julkaisutyyppi_paa == 'F' ? i18n.content.form.julkaisuvuosi.tooltipF[lang] : i18n.content.form.julkaisuvuosi.tooltip[lang] }}"
+            data-ng-keydown="resetValidationError('julkaisuvuosi')">
         </div>
       </div>
     </div>
@@ -113,7 +114,8 @@
                  id="julkaisunnimi"
                  name="julkaisunnimi"
                  data-ng-model="justus.julkaisu.julkaisunnimi"
-                 placeholder="{{ i18n.content.form.julkaisunnimi.picktip[lang] }}">
+                 placeholder="{{ i18n.content.form.julkaisunnimi.picktip[lang] }}"
+                 data-ng-keydown="resetValidationError('julkaisunnimi')">
         </div>
       </div>
     </div>
@@ -148,7 +150,8 @@
                       data-on-tag-added="useTekijat()"
                       data-on-tag-removed="useTekijat()"
                       enable-editing-last-tag="true"
-                      allowed-tags-pattern="^[^,\;]+,[^,\;]+$">
+                      allowed-tags-pattern="^[^,\;]+,[^,\;]+$"
+                      data-ng-keydown="resetValidationError('tekijat')">
           </tags-input>
         </div>
       </div>
@@ -254,7 +257,7 @@
            data-ng-model="req_organisaatiotekija[$index]">
         <div class="col-xs-10">
           <div class="row form-group" id="organisaatiotekijaRow">
-            <div class="col-xs-12 col-sm-6 sukunimiGroup"
+            <div class="col-xs-12 col-sm-6" data-ng-class="['sukunimiGroup' + $index]"
                  validate-organisaatiotekijat-directive validate="validateState"
                  field="sukunimi"
                  value="justus.organisaatiotekija[$index].sukunimi">
@@ -264,9 +267,10 @@
                       type="text"
                       class="form-control"
                       data-ng-model="justus.organisaatiotekija[$index].sukunimi"
-                      placeholder="{{i18n.content.form.organisaatiotekija.sukunimi.picktip[lang]}}">
+                      placeholder="{{i18n.content.form.organisaatiotekija.sukunimi.picktip[lang]}}"
+                      data-ng-keydown="resetValidationError('sukunimi', $index)">
             </div>
-            <div class="col-xs-12 col-sm-6 etunimetGroup"
+            <div class="col-xs-12 col-sm-6" data-ng-class="['etunimetGroup' + $index]"
                  validate-organisaatiotekijat-directive validate="validateState" field="etunimet"
                  value="justus.organisaatiotekija[$index].etunimet">
               <input
@@ -275,12 +279,13 @@
                       type="text"
                       class="form-control"
                       data-ng-model="justus.organisaatiotekija[$index].etunimet"
-                      placeholder="{{i18n.content.form.organisaatiotekija.etunimet.picktip[lang]}}">
+                      placeholder="{{i18n.content.form.organisaatiotekija.etunimet.picktip[lang]}}"
+                      data-ng-keydown="resetValidationError('etunimet', $index)">
             </div>
           </div>
 
           <div class="row form-group">
-            <div data-ng-if="isFieldVisible('alayksikko')" class="col-xs-12 col-sm-6 form-group"
+            <div data-ng-if="isFieldVisible('alayksikko')" data-ng-class="['orcidGroup' + $index]" class="col-xs-12 col-sm-6 form-group"
                  validate-organisaatiotekijat-directive validate="validateState" field="orcid"
                  value="justus.organisaatiotekija[$index].orcid">
               <input
@@ -288,7 +293,9 @@
                       name="orcid"
                       type="text" class="form-control"
                       data-ng-model="justus.organisaatiotekija[$index].orcid"
-                      placeholder="{{i18n.content.form.organisaatiotekija.orcid.picktip[lang]}}">
+                      placeholder="{{i18n.content.form.organisaatiotekija.orcid.picktip[lang]}}"
+                      data-ng-keydown="resetValidationError('orcid', $index)">
+              <span class="invalid-pattern text-secondary text-danger" aria-hidden="true">Tarkasta ORCID -numeron muoto</span>
             </div>
             <!-- Kenttä hr numero, currently visible only for Luonnonvarakeskus -->
             <div data-ng-if="isFieldVisible('hrnumero')" id="hrGroup" class="col-xs-12 col-sm-6 form-group">
@@ -415,7 +422,6 @@
                       class="form-control "
                       data-ng-model="justus.julkaisu.projektinumero[$index]"
                       placeholder="{{ i18n.content.form.projektinumero[lang] }}">
-              <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
             </div>
           </div>
           <div class="col-xs-4">
@@ -444,6 +450,12 @@
     </div>
   </div>
 
+  <div class="row px">
+    <div class="col-xs-12">
+      <p class="text-danger font-xl">Pakolliset tiedot merkitty tähdellä  <i class="fa fa-asterisk required-star" ></i>
+      </p>
+    </div>
+  </div>
 
   <h3 class="form-header">{{i18n.content.tietojensyotto.bibliografiset[lang]}}</h3>
 
@@ -482,7 +494,8 @@
                     data-uib-typeahead="konferenssinimet.Name for konferenssinimet in refreshKanavanimet(3,$viewValue)"
                     data-typeahead-loading="jufoKonferenssiLataa" data-typeahead-no-results="jufoNoResults"
                     data-typeahead-wait-ms="2000"
-                    placeholder="{{i18n.content.form.konferenssinvakiintunutnimi.picktip[lang]}}">
+                    placeholder="{{i18n.content.form.konferenssinvakiintunutnimi.picktip[lang]}}"
+                    data-ng-keydown="resetValidationError('konferenssinvakiintunutnimi')">
           </div>
         </div>
       </div>
@@ -514,7 +527,8 @@
                     type="text"
                     class="form-control"
                     data-ng-model="justus.julkaisu.emojulkaisunnimi"
-                    placeholder="{{ i18n.content.form.emojulkaisunnimi.picktip[lang] }}">
+                    placeholder="{{ i18n.content.form.emojulkaisunnimi.picktip[lang] }}"
+                    data-ng-keydown="resetValidationError('emojulkaisunnimi')">
           </div>
         </div>
       </div>
@@ -542,7 +556,8 @@
                       name="isbn"
                       type="text"
                       class="form-control"
-                      data-ng-model="justus.julkaisu.isbn[$index]">
+                      data-ng-model="justus.julkaisu.isbn[$index]"
+                      data-ng-keydown="resetValidationError('isbn')">
             </div>
           </div>
           <div class="col-xs-3">
@@ -608,7 +623,8 @@
                     data-on-tag-added="useEmojulkaisuntoimittajat()"
                     data-on-tag-removed="useEmojulkaisuntoimittajat()"
                     enable-editing-last-tag="true"
-                    allowed-tags-pattern="^[^,\;]+,[^,\;]+$">
+                    allowed-tags-pattern="^[^,\;]+,[^,\;]+$"
+                    data-ng-keydown="resetValidationError('emojulkaisuntoimittajat')">
             </tags-input>
           </div>
         </div>
@@ -646,7 +662,8 @@
                     data-typeahead-no-results="jufoNoResults"
                     data-typeahead-wait-ms="2000"
                     placeholder="{{i18n.content.form.lehdenjulkaisusarjannimi.picktip[lang]}}"
-                    data-typeahead-on-select="useLehtisarja($item.Jufo_ID)">
+                    data-typeahead-on-select="useLehtisarja($item.Jufo_ID)"
+                    data-ng-keydown="resetValidationError('lehdenjulkaisusarjannimi')">
           </div>
           <div class="col-xs-1">
             <i class='fa fa-spinner fa-spin fa-2x' data-ng-show='jufoLataa'></i>
@@ -698,7 +715,8 @@
                    name="issn"
                    class="form-control"
                    data-ng-model="justus.julkaisu.issn[$index]"
-                   placeholder="1234-567X">
+                   placeholder="1234-567X"
+                   data-ng-keydown="resetValidationError('issn')">
             <span data-ng-if="issnDescription[$index]">{{issnDescription[$index]}}</span>
           </div>
           <div class="col-md-6 col-xs-3">
@@ -756,7 +774,8 @@
                     type="text"
                     class="form-control"
                     data-ng-model="justus.julkaisu.volyymi"
-                    placeholder="{{ i18n.content.form.volyymi.picktip[lang] }}">
+                    placeholder="{{ i18n.content.form.volyymi.picktip[lang] }}"
+                    data-ng-keydown="resetValidationError('volyymi')">
           </div>
         </div>
       </div>
@@ -785,7 +804,8 @@
                     type="text"
                     class="form-control"
                     data-ng-model="justus.julkaisu.numero"
-                    placeholder="{{ i18n.content.form.numero.picktip[lang] }}">
+                    placeholder="{{ i18n.content.form.numero.picktip[lang] }}"
+                    data-ng-keydown="resetValidationError('numero')">
           </div>
         </div>
       </div>
@@ -818,7 +838,8 @@
                     type="text"
                     class="form-control"
                     data-ng-model="justus.julkaisu.sivut"
-                    placeholder="{{ i18n.content.form.sivut.picktip[lang] }}">
+                    placeholder="{{ i18n.content.form.sivut.picktip[lang] }}"
+                    data-ng-keydown="resetValidationError('sivut')">
           </div>
         </div>
       </div>
@@ -850,7 +871,8 @@
                     type="text"
                     class="form-control"
                     data-ng-model="justus.julkaisu.artikkelinumero"
-                    placeholder="{{ i18n.content.form.artikkelinumero.picktip[lang] }}">
+                    placeholder="{{ i18n.content.form.artikkelinumero.picktip[lang] }}"
+                    data-ng-keydown="resetValidationError('artikkelinumero')">
           </div>
         </div>
       </div>
@@ -887,7 +909,8 @@
                   data-typeahead-loading="jufoKustantajaLataa"
                   data-typeahead-no-results="jufoNoResults"
                   data-typeahead-wait-ms="2000"
-                  placeholder="{{i18n.content.form.kustantaja.picktip[lang]}}">
+                  placeholder="{{i18n.content.form.kustantaja.picktip[lang]}}"
+                  data-ng-keydown="resetValidationError('kustantaja')">
           </div>
           <div class="col-xs-1">
             <i class='fa fa-spinner fa-spin fa-lg' data-ng-show='jufoKustantajaLataa'></i>
@@ -926,12 +949,20 @@
                     type="text"
                     class="form-control"
                     data-ng-model="justus.julkaisu.julkaisunkustannuspaikka"
-                    placeholder="{{ i18n.content.form.julkaisunkustannuspaikka.picktip[lang] }}">
+                    placeholder="{{ i18n.content.form.julkaisunkustannuspaikka.picktip[lang] }}"
+                    data-ng-keydown="resetValidationError('julkaisunkustannuspaikka')">
           </div>
         </div>
       </div>
     </div>
 </div>
+
+  <div class="row px">
+    <div class="col-xs-12">
+      <p class="text-danger font-xl">Pakolliset tiedot merkitty tähdellä  <i class="fa fa-asterisk required-star" ></i>
+      </p>
+    </div>
+  </div>
 
   <h3 class="form-header">{{i18n.content.tietojensyotto.muut[lang]}}</h3>
 
@@ -965,7 +996,8 @@
                  display-property="prefLabel"
                  track-by-expr="$index"
                  data-add-on-blur="false"
-                 data-min-length="1">
+                 data-min-length="1"
+                 data-ng-keydown="resetValidationError('avainsanat')">
            <auto-complete
                    data-source="refreshAvainsanat($query)"
                    data-load-on-down-arrow="true"
@@ -1048,7 +1080,8 @@
              <input type="radio"
                     id="kansainvalinen"
                     data-ng-model="justus.julkaisu.julkaisunkansainvalisyys"
-                    value="1">
+                    value="1"
+                    data-ng-change="resetValidationError('julkaisunkansainvalisyys')">
              <label for="kansainvalinen" data-ng-model="lab1_julkaisunkansainvalisyys"
                     class="control-label">
                {{i18n.content.form.julkaisunkansainvalisyys['1'][lang]}}
@@ -1056,7 +1089,8 @@
              <input  type="radio"
                      id="kotimainen"
                      data-ng-model="justus.julkaisu.julkaisunkansainvalisyys"
-                     value="0">
+                     value="0"
+                     data-ng-change="resetValidationError('julkaisunkansainvalisyys')">
              <label for="kotimainen" data-ng-model="lab2_julkaisunkansainvalisyys"
                     class="control-label">
                {{i18n.content.form.julkaisunkansainvalisyys['0'][lang]}}
@@ -1216,7 +1250,7 @@
                        class="form-control"
                        data-ng-model="lab_tieteenala$index"
                        data-ng-value="i.tieteenalakoodi+' '+getSelite(codes.tieteenalat, i.tieteenalakoodi)">
-               <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+<!--               <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>-->
              </div>
            </div>
            <div class="col-xs-2">
@@ -1256,7 +1290,7 @@
                        role="listbox"
                        aria-label="alatieteenala"
                        data-ng-model="alatieteenalat.selected"
-                       on-select="useTieteenala($select.selected)"
+                       on-select="useTieteenala($select.selected); resetValidationError('tieteenala')"
                        theme="bootstrap">
                  <ui-select-match class="ui-select-match"
                                   allow-clear="true"
@@ -1273,7 +1307,7 @@
              <!--dev--><!-- hack... now parent.index... --><!--enddev-->
                <div data-ng-if="!tieteenala_paa">
                  <ui-select data-ng-model="alatieteenalat.selected"
-                            on-select="useTieteenala($select.selected)"
+                            on-select="useTieteenala($select.selected); resetValidationError('tieteenala')"
                             theme="bootstrap">
                    <ui-select-match class="ui-select-match"
                                     placeholder="{{i18n.content.form.tieteenala.ala.picktip[lang]}}">
@@ -1337,12 +1371,12 @@
          </div>
          <div class="row">
            <div class="col-xs-10 form-group">
-             <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+<!--             <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>-->
              <ui-select
                      role="listbox"
                      aria-label="taiteenalaselect"
                      data-ng-model="taiteenala.selected"
-                     on-select="useTaiteenala($select.selected.arvo)"
+                     on-select="useTaiteenala($select.selected.arvo); resetValidationError('taiteenala')"
                      theme="bootstrap">
                <ui-select-match class="ui-select-match"
                                 data-ng-value="justus.taiteenala"
@@ -1361,7 +1395,7 @@
 
      <!-- Taiteenalan tyyppikategoria-->
      <div class="row form-group"
-          id="taidealaTyyppiGroup"
+          id="taidealantyyppikategoriaGroup"
           data-ng-if="isFieldVisible('taidealantyyppikategoria')">
        <div class="col-sm-4 col-xs-12">
          <label for="taidealantyyppikategoria"
@@ -1389,7 +1423,7 @@
                       class="form-control"
                       data-ng-model="lab_taidealantyyppikategoria$index"
                       data-ng-value="i +' '+getSelite(codes.taidealantyypit ,i)">
-               <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+<!--               <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>-->
              </div>
            </div>
            <div class="col-xs-2">
@@ -1404,11 +1438,11 @@
          </div>
          <div class="row">
            <div class="col-xs-10 form-group">
-             <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+<!--             <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>-->
              <ui-select role="listbox"
                         aria-label="tyyppikategoriaselect"
                         data-ng-model="taidealantyyppikategoria.selected"
-                        on-select="useTaidelanTyyppi($select.selected.arvo)"
+                        on-select="useTaidelanTyyppi($select.selected.arvo); resetValidationError('taidealantyyppikategoria')"
                         theme="bootstrap">
                <ui-select-match class="ui-select-match"
                                 data-ng-value="justus.taidealantyyppikategoria"
@@ -1453,7 +1487,8 @@
                     name="kansainvalinenyhteisjulkaisu"
                     type="radio"
                     data-ng-model="justus.julkaisu.kansainvalinenyhteisjulkaisu"
-                    value="1">
+                    value="1"
+                    data-ng-change="resetValidationError('kansainvalinenyhteisjulkaisu')">
              <label for="kansainvalinenyhteisjulkaisu" data-ng-model="lab1_kansainvalinenyhteisjulkaisu"
                     class="control-label">
                {{i18n.content.form.kansainvalinenyhteisjulkaisu['1'][lang]}}
@@ -1462,7 +1497,8 @@
                     id="eikansainvalinenyhteisjulkaisu"
                     name="eikansainvalinenyhteisjulkaisu"
                     data-ng-model="justus.julkaisu.kansainvalinenyhteisjulkaisu"
-                    value="0">
+                    value="0"
+                    data-ng-change="resetValidationError('kansainvalinenyhteisjulkaisu')">
              <label for="eikansainvalinenyhteisjulkaisu"
                     data-ng-model="lab2_kansainvalinenyhteisjulkaisu"
                     class="control-label">
@@ -1501,7 +1537,8 @@
                     name="yhteisjulkaisuyrityksenkanssa"
                     type="radio"
                     data-ng-model="justus.julkaisu.yhteisjulkaisuyrityksenkanssa"
-                    value="1">
+                    value="1"
+                    data-ng-change="resetValidationError('yhteisjulkaisuyrityksenkanssa')">
              <label for="yhteisjulkaisuyrityksenkanssa"
                     data-ng-model="lab1_yhteisjulkaisuyrityksenkanssa"
                     class="control-label">
@@ -1511,7 +1548,8 @@
                     name="eiyhteisjulkaisuyrityksenkanssa"
                     type="radio"
                     data-ng-model="justus.julkaisu.yhteisjulkaisuyrityksenkanssa"
-                    value="0">
+                    value="0"
+                    data-ng-change="resetValidationError('yhteisjulkaisuyrityksenkanssa')">
              <label for="eiyhteisjulkaisuyrityksenkanssa"
                     data-ng-model="lab2_yhteisjulkaisuyrityksenkanssa"
                     class="control-label">
@@ -1549,7 +1587,8 @@
                     type="text"
                     class="form-control"
                     data-ng-model="justus.julkaisu.doitunniste"
-                    placeholder="{{ i18n.content.form.doitunniste.picktip[lang] }}">
+                    placeholder="{{ i18n.content.form.doitunniste.picktip[lang] }}"
+                    data-ng-keydown="resetValidationError('doitunniste')">
            </div>
          </div>
        </div>
@@ -1580,7 +1619,8 @@
                     rows="1"
                     maxlength="1000"
                     placeholder="{{i18n.content.form.muutunniste.picktip[lang]}}"
-                    data-ng-model="justus.lisatieto.muutunniste">
+                    data-ng-model="justus.lisatieto.muutunniste"
+                    data-ng-keydown="resetValidationError('muutunniste')">
           </textarea>
            </div>
          </div>
@@ -1613,7 +1653,8 @@
                     type="text"
                     class="form-control"
                     data-ng-model="justus.julkaisu.pysyvaverkkoosoite"
-                    placeholder="{{ i18n.content.form.pysyvaverkkoosoite.picktip[lang] }}">
+                    placeholder="{{ i18n.content.form.pysyvaverkkoosoite.picktip[lang] }}"
+                    data-ng-keydown="resetValidationError('pysyvaverkkoosoite')">
            </div>
          </div>
        </div>
@@ -1646,7 +1687,8 @@
                     name="eiavoinsaatavuutta"
                     type="radio"
                     data-ng-model="justus.julkaisu.avoinsaatavuus"
-                    value="0">
+                    value="0"
+                    data-ng-change="resetValidationError('avoinsaatavuus')">
              <label for="eiavoinsaatavuutta"
                     data-ng-model="lab1_avoinsaatavuus"
                     class="control-label">
@@ -1657,7 +1699,8 @@
                     name="openaccess"
                     type="radio"
                     data-ng-model="justus.julkaisu.avoinsaatavuus"
-                    value="1">
+                    value="1"
+                    data-ng-change="resetValidationError('avoinsaatavuus')">
              <label for="openaccess" data-ng-model="lab2_avoinsaatavuus" class="control-label">
                {{i18n.content.form.avoinsaatavuus['1'][lang]}}
                <i class="fa fa-info-circle justus-info"
@@ -1674,7 +1717,8 @@
                     name="hybridijulkaisu"
                     type="radio"
                     data-ng-model="justus.julkaisu.avoinsaatavuus"
-                    value="2">
+                    value="2"
+                    data-ng-change="resetValidationError('avoinsaatavuus')">
              <label for="hybridijulkaisu" data-ng-model="lab3_avoinsaatavuus" class="control-label">
                {{i18n.content.form.avoinsaatavuus['2'][lang]}}
                <i class="fa fa-info-circle justus-info"
@@ -1724,16 +1768,27 @@
        </div>
      </div>
    </div>
+  <div class="row px">
+    <div class="col-xs-12">
+      <p class="text-danger font-xl">Pakolliset tiedot merkitty tähdellä  <i class="fa fa-asterisk required-star" ></i>
+      </p>
+    </div>
+  </div>
 
-  <div class="row" data-ng-if="invalidFields.length > 0">
+  <div class="row" data-ng-if="invalidFields.missingValue.length > 0 || invalidFields.invalidValue.length > 0">
     <div class="col-xs-12">
       <div role="alert" class="alert alert-danger">
         <h3 class="text-secondary mt-0">
-        {{i18n.content.tietojensyotto.taytaviela[lang]}}:
+          Tarkasta seuraavat kentät:
+<!--        {{i18n.content.tietojensyotto.taytaviela[lang]}}:-->
         </h3>
         <div>
-          <span class="pxs" data-ng-repeat="o in invalidFields">
+          <span class="pxs" data-ng-repeat="o in invalidFields.missingValue">
             <i class="text-xl" data-ng-bind="i18n.content.form[o][lang]?i18n.content.form[o][lang]:o"></i>
+            <br>
+          </span>
+          <span class="pxs" data-ng-repeat="i in invalidFields.invalidValue">
+            <i class="text-xl" data-ng-bind="i18n.content.form[i][lang]?i18n.content.form[i][lang]:i"></i>
             <br>
           </span>
         </div>

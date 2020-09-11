@@ -65,8 +65,6 @@ angular.module('DirectivesModule', [])
 
         },
         link: function(scope, element, attr, mCtrl) {
-
-
             if (!scope.validate) return;
 
             if (scope.field === 'orcid') {
@@ -74,6 +72,7 @@ angular.module('DirectivesModule', [])
                     let pattern = JustusService.pattern["orcid"];
                     if (!scope.value.match(pattern)) {
                         element.addClass('has-error has-feedback');
+                        element.find('.invalid-pattern').show();
                     }
                 }
             }
