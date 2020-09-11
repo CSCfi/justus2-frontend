@@ -70,9 +70,20 @@ app.directive('isbnDirective', ['JustusService', function(JustusService) {
         link: function(scope, element, attr, mCtrl) {
             if (!scope.validate) return;
 
-            if (JustusService.isFieldRequired(scope.field)) {
-                if (JustusService.fieldIsEmpty(scope.value)) {
-                    element.addClass('has-error has-feedback');
+            if (scope.field === 'orcid') {
+                if (scope.field !== null || scope.field !== '') {
+                    let pattern = JustusService.pattern["orcid"];
+                    if (!scope.value.match(pattern)) {
+                        element.addClass('has-error has-feedback');
+                        element.find('.invalid-pattern').show();
+                    }
+                }
+            }
+            else {
+                if (JustusService.isFieldRequired(scope.field)) {
+                    if (JustusService.fieldIsEmpty(scope.value)) {
+                        element.addClass('has-error has-feedback');
+                    }
                 }
             }
 

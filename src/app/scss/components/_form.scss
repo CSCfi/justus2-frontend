@@ -17,9 +17,8 @@
   font-size: $font-size-xl;
   height: 40px;
   color: $gray-darker;
-  background-color: lighten(#d2d3d5, 10%);
+  background-color: #f9f9f9;
   font-family: $font-family-secondary;
-  //background-color: lighten(#dac3ca, 10%);
   border: 1px solid $brand-primary;
   box-shadow: none;
   font-weight: 500;
@@ -36,21 +35,9 @@
 .form-control:-ms-input-placeholder { font-weight: 300; }  /* Internet Explorer 10-11 */
 .form-control::-ms-input-placeholder { font-weight: 300; }  /* Microsoft Edge */
 
-.form-control-feedback {
+
+.invalid-pattern {
   display: none;
-  right: 15px;
-}
-
-.has-feedback {
-  .form-control-feedback {
-    display: block;
-  }
-}
-
-.form-control-feedback-extra {
-  position: absolute;
-  right: 15px;
-  top: 10px;
 }
 
 textarea {

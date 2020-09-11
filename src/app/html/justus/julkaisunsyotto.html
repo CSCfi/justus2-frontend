@@ -51,7 +51,9 @@
                         <div data-ng-show="!file">
                             <div class="d-inline-block" data-ngf-select data-ngf-change="getUrnForTheseusPublications()"
                                  data-ng-model="file" name="filename"
-                                 data-ngf-max-size="100MB">
+                                 data-ngf-max-size="100MB"
+                                 data-ngf-pattern="'.pdf'"
+                                 data-ngf-accept="'.pdf'">
                                 <button type="button" class="btn btn-primary">
                                     {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.valitse[lang]}}
                                 </button>
@@ -65,7 +67,7 @@
                                 {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.info[lang]}}</p>
                         </div>
                         <div data-ng-show="!file" data-ngf-drop data-ng-model="file" class="drop-box"
-                             data-ngf-drag-over-class="'dragover'" data-ngf-allow-dir="true">
+                             data-ngf-drag-over-class="'dragover'" data-ngf-pattern="'.pdf'" data-ngf-allow-dir="true">
                             {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.veda[lang]}}
                         </div>
                         <div class="row" data-ng-show="file">

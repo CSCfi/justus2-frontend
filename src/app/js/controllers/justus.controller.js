@@ -129,6 +129,7 @@ angular.module('JustusController', [])
                     return tag.text;
                 }).join('; ');
                 $scope.justus.julkaisu.julkaisuntekijoidenlukumaara = $scope.tekijatTags.length;
+                ValidationService.clearError("julkaisuntekijoidenlukumaara");
             };
 
 
@@ -413,39 +414,50 @@ angular.module('JustusController', [])
                     });
             };
 
-
-            $scope.useJulkaisunnimi = function(source, input) { // input == identifier
+            $scope.useJulkaisunnimi = function(source, input, usevaihe = true) { // input == identifier
 
                 if (!source || !input) return;
 
                 if (source === 'CrossRef') {
                     $scope.crossrefLataa = true;
+                    $scope.noCrossRefResults = false;
                     ExternalServicesService.works(source, input)
                         .then(function successCb(response) {
 
-                            $scope.justus.julkaisu = response.data;
-                            $scope.justus.julkaisu.username = $rootScope.user.name;
-                            $scope.justus.julkaisu.projektinumero = [""];
+                            if (usevaihe) {
+                                $scope.justus.julkaisu = response.data;
+                                $scope.justus.julkaisu.username = $rootScope.user.name;
+                                $scope.justus.julkaisu.projektinumero = [""];
 
-                            // Initialize tekijatTags input
-                            parseNames($scope.justus.julkaisu.tekijat).map(function(nameObject) {
-                                $scope.tekijatTags.push({ text: `${nameObject.lastName}, ${nameObject.firstName}` });
-                            });
-                            $scope.useTekijat();
+                                // Initialize tekijatTags input
+                                parseNames($scope.justus.julkaisu.tekijat).map(function(nameObject) {
+                                    $scope.tekijatTags.push({ text: `${nameObject.lastName}, ${nameObject.firstName}` });
+                                });
+                                $scope.useTekijat();
 
-                            $scope.fetchLehtisarja($scope.justus.julkaisu.issn[0]);
-                            $scope.julkaisuhaettu = true;
+                                $scope.fetchLehtisarja($scope.justus.julkaisu.issn[0]);
+                                $scope.julkaisuhaettu = true;
+
+                                $scope.crossrefLataa = false;
+
+                                $scope.useVaihe(3); // ->tietojen syöttöön
+
+                                $scope.julkaisunnimet = [];
+                                $scope.valittuJulkaisu = null;
+                                $scope.crossRefResult = null;
+                            } else {
+                                $scope.crossRefResult = response.data.julkaisunnimi;
+                            }
 
                             $scope.crossrefLataa = false;
-                            $scope.useVaihe(3); // ->tietojen syöttöön
-
-                            $scope.julkaisunnimet = [];
-                            $scope.valittuJulkaisu = null;
 
                         }, function errorCb(response) {
                             console.log(response);
                             $scope.julkaisuhaettu = false;
                             $scope.crossrefLataa = false;
+                            if (response.status === 404) {
+                                $scope.noCrossRefResults = true;
+                            }
                             return false;
                         });
                 }
@@ -482,6 +494,7 @@ angular.module('JustusController', [])
 
                             $scope.julkaisunnimet = [];
                             $scope.valittuJulkaisu = null;
+                            $scope.crossRefResult = null;
 
                         }, function errorVirta(response) {
                             $scope.julkaisuhaettu = false;
@@ -761,14 +774,23 @@ angular.module('JustusController', [])
 
             };
 
+            $scope.resetValidationError = function(field, index) {
+                ValidationService.clearError(field, index);
+            }
+
             $scope.isJustusValid = function() {
 
                 $scope.visibleFields = JustusService.getListOfVisibleFields();
                 $scope.invalidFields = JustusService.getInvalidFields($rootScope.user.visibleFields);
 
-                ValidationService.setValidationErrors($scope.invalidFields);
-                return $scope.invalidFields.length === 0;
-                // return true;
+                ValidationService.setValidationErrors($scope.invalidFields.missingValue);
+                ValidationService.setInvalidFieldErrors($scope.invalidFields.invalidValue);
+
+                if ($scope.invalidFields.missingValue.length === 0 && $scope.invalidFields.invalidValue.length === 0) {
+                    return true
+                } else {
+                    return false;
+                }
             };
 
             $scope.isFieldRequired = function(fieldName) {

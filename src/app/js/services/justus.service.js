@@ -118,7 +118,44 @@ angular.module('JustusService', [])
         return visibleFields;
   };
 
+
     let orcidValid = true;
+
+    this.isPatternValid = function (fieldName) {
+      // Assume the field is valid, for performance we will continue validating until the field is first decided as invalid
+      let valid = true;
+      let fieldIsFilled = false;
+
+      if (!field_default_config[fieldName]) {
+        return true;
+      }
+
+      if (this.isFieldVisible(fieldName) === false) {
+        return true;
+      }
+
+      fieldIsFilled = !this.fieldIsEmpty(this.justus.julkaisu[fieldName]);
+
+      // Validate the field has against a possible validation pattern
+      if (field_default_config[fieldName].pattern !== null && valid === true && fieldIsFilled === true) {
+
+        // If trying to pattern match something else than a string the value is invalid
+        if (typeof this.justus.julkaisu[fieldName] === 'string') {
+          valid = this.justus.julkaisu[fieldName].match(field_default_config[fieldName].pattern) !== null;
+        }
+
+        // Field that contains pattern may also be array
+        if (typeof this.justus.julkaisu[fieldName] === 'object') {
+            let i = 0;
+            while (valid && i < this.justus.julkaisu[fieldName].length ) {
+                valid = this.justus.julkaisu[fieldName][i].match(field_default_config[fieldName].pattern) !== null;
+                i++;
+            }
+        }
+      }
+      return valid;
+    }
+
     this.isValid = function(fieldName) {
 
     // Assume the field is valid, for performance we will continue validating until the field is first decided as invalid
@@ -154,25 +191,9 @@ angular.module('JustusService', [])
         }
     }
 
-    // Validate the field has against a possible validation pattern
-    if (field_default_config[fieldName].pattern !== null && valid === true && fieldIsFilled === true) {
 
-      // If trying to pattern match something else than a string the value is invalid
-      if (typeof this.justus.julkaisu[fieldName] === 'string') {
-        valid = this.justus.julkaisu[fieldName].match(field_default_config[fieldName].pattern) !== null;
-          reason = valid === false ? `Field value is invalid for field: ${fieldName}` : '';
-      }
 
-      // Field that contains pattern may also be array
-      if (typeof this.justus.julkaisu[fieldName] === 'object') {
-          let i = 0;
-          while (valid && i < this.justus.julkaisu[fieldName].length ) {
-              valid = this.justus.julkaisu[fieldName][i].match(field_default_config[fieldName].pattern) !== null;
-              reason = valid === false ? `Field value is invalid for field: ${fieldName}` : '';
-              i++;
-          }
-      }
-    }
+
 
     // Validate a field that contains a list of values
     if (field_default_config[fieldName].requiredAmount > 0 && valid === true) {
@@ -266,12 +287,21 @@ angular.module('JustusService', [])
 
 
   this.getInvalidFields = function(fields) {
-      const invalidFields = [];
+
+    const invalidFields =
+      {
+        "missingValue": [],
+        "invalidValue": []
+      };
 
       for (let i = 0; i < fields.length; i++) {
           if (this.isValid(fields[i]) === false) {
-              invalidFields.push(fields[i]);
+              invalidFields["missingValue"].push(fields[i]);
           }
+          if (this.isPatternValid(fields[i]) === false) {
+            invalidFields["invalidValue"].push(fields[i]);
+          }
+
       }
       if (!orcidValid) {
         invalidFields.push("orcid");

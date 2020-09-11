@@ -13,9 +13,10 @@
        data-ng-if="o.arvo=='A' || o.arvo=='B' || o.arvo=='C' || o.arvo=='D' || o.arvo=='E' || o.arvo=='F' || o.arvo=='G'">
     <uib-accordion-heading class="bg-light">
       <div>
-        {{o.selite}}
+        <h4>{{o.selite}}
         <i class="pull-right glyphicon"
            data-ng-class="{'glyphicon-chevron-down': o.open, 'glyphicon-chevron-right': !o.open}"></i>
+        </h4>
       </div>
     </uib-accordion-heading>
     <div data-ng-repeat="a in o.alatyypit | orderBy: 'arvo'">
