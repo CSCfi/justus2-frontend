@@ -35,6 +35,11 @@ angular.module('ValidationService', [])
         element.removeClass('has-error')
         element.find('.invalid-pattern').hide();
         if (index >= 0) {
+
+          if (field === 'organisaatiotekija') {
+          //  TODO: reset subfield errors
+          }
+
           let element1 =  document.getElementsByClassName(field + 'Group' + index);
           angular.element(element1[0]).removeClass('has-error');
           angular.element(element1[0]).find('.invalid-pattern').hide();

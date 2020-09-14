@@ -119,7 +119,7 @@ angular.module('JustusService', [])
   };
 
 
-    let orcidValid = true;
+
 
     this.isPatternValid = function (fieldName) {
       // Assume the field is valid, for performance we will continue validating until the field is first decided as invalid
@@ -160,7 +160,7 @@ angular.module('JustusService', [])
 
     // Assume the field is valid, for performance we will continue validating until the field is first decided as invalid
     let valid = true;
-
+    let orcidValid = true;
     let reason = '';
     let fieldIsFilled = false;
 
@@ -302,9 +302,6 @@ angular.module('JustusService', [])
             invalidFields["invalidValue"].push(fields[i]);
           }
 
-      }
-      if (!orcidValid) {
-        invalidFields.push("orcid");
       }
       return invalidFields;
 

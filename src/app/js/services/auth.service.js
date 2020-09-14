@@ -28,14 +28,14 @@ angular.module('AuthService', [])
                 user.owner = response.perustiedot.owner;
 
                 // This is just for testing purposes
-                if (user.role === "owner") {
+                if (user.owner) {
                     user.hrDataExists = true;
                 } else {
                     user.hrDataExists = false;
                 }
 
                 console.log(user);
-                //user.hrDataExists = response.perustiedot.showHrData;
+                // user.hrDataExists = response.perustiedot.showHrData;
                 // user.hrDataExists = false;
 
                 return user;

@@ -408,7 +408,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-xs-12 col-sm-6 sukunimiGroup"
+              <div class="col-xs-12 col-sm-6"  data-ng-class="['sukunimiGroup' + $index]"
                    validate-organisaatiotekijat-directive validate="validateState"
                    field="sukunimi"
                    value="justus.organisaatiotekija[$index].sukunimi">
@@ -416,7 +416,7 @@
                 <div data-ng-show="i.useEsitaytto">
                   <ui-select aria-labelledby="organisaatiokijat organisaatiotekijasukunimi"
                              data-ng-model="organisaatioTekijaSelected"
-                             on-select="useOrganisaatiotekijaEsitaytto($select.selected, $index)"
+                             on-select="useOrganisaatiotekijaEsitaytto($select.selected, $index, resetValidationError('organisaatiotekija', $index))"
                              theme="bootstrap">
                     <ui-select-match class="ui-select-match"
                                      placeholder="Valitse / Kirjoita sukunimi">
@@ -433,11 +433,11 @@
                   <input aria-labelledby=" organisaatiotekijasukunimi"
                          type="text" class="form-control"
                          data-ng-model="justus.organisaatiotekija[$index].sukunimi"
-                         placeholder="{{i18n.content.form.organisaatiotekija.sukunimi.picktip[lang]}}">
+                         placeholder="{{i18n.content.form.organisaatiotekija.sukunimi.picktip[lang]}}"
+                         data-ng-keydown="resetValidationError('sukunimi', $index)">
                 </div>
-                <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
               </div>
-              <div class="col-xs-12 col-sm-6 etunimetGroup"
+              <div class="col-xs-12 col-sm-6" data-ng-class="['etunimetGroup' + $index]"
                    validate-organisaatiotekijat-directive validate="validateState" field="etunimet"
                    value="justus.organisaatiotekija[$index].etunimet">
                 <label id="organisaatiotekijaetunimet">{{i18n.content.form.organisaatiotekija.etunimet.picktip[lang]}}</label>
@@ -445,13 +445,14 @@
                        type="text" class="form-control"
                        data-ng-disabled="justus.organisaatiotekija[$index].useEsitaytto"
                        data-ng-model="justus.organisaatiotekija[$index].etunimet"
-                       placeholder="{{i18n.content.form.organisaatiotekija.etunimet.picktip[lang]}}">
-                <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+                       placeholder="{{i18n.content.form.organisaatiotekija.etunimet.picktip[lang]}}"
+                       data-ng-keydown="resetValidationError('etunimet', $index)">
               </div>
             </div>
 
             <div class="row form-group">
-              <div data-ng-if="isFieldVisible('alayksikko')" class="col-xs-12 col-sm-6" id="orcidGroup"
+              <div data-ng-if="isFieldVisible('alayksikko')" data-ng-class="['orcidGroup' + $index]" class="col-xs-12 col-sm-6 form-group"
+                   validate-organisaatiotekijat-directive validate="validateState" field="orcid"
                    value="justus.organisaatiotekija[$index].orcid">
                 <label for="orcid"
                        class="control-label">{{i18n.content.form.organisaatiotekija.orcid.picktip[lang]}}</label>
@@ -460,8 +461,9 @@
                        data-ng-disabled="justus.organisaatiotekija[$index].useEsitaytto && justus.organisaatiotekija[$index].orcid !== ''"
                        data-ng-model="justus.organisaatiotekija[$index].orcid"
                        placeholder="{{i18n.content.form.organisaatiotekija.orcid.picktip[lang]}}"
-                       data-orcid-directive>
-                <span data-ng-show="orcidError">No data found for this orcid</span>
+                       data-ng-keydown="resetValidationError('orcid', $index)">
+<!--                <span data-ng-show="orcidError">No data found for this orcid</span>-->
+                <span class="invalid-pattern text-secondary text-danger" aria-hidden="true">Tarkasta ORCID -numeron muoto</span>
               </div>
               <!-- Kenttä hr numero, currently visible only for Luonnonvarakeskus -->
               <div data-ng-if="isFieldVisible('hrnumero')" id="hrGroup" class="col-xs-12 col-sm-6 form-group">
