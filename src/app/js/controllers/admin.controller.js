@@ -127,26 +127,37 @@ angular.module('AdminController', [])
               $scope.showEditDialog = true;
             };
 
+            $scope.resetValidationError = function(field) {
+                ValidationService.clearError(field);
+            }
+
             $scope.savePerson = function(form) {
-                 $scope.invalidFields = [];
+
+                $scope.invalidFields =
+                {
+                    "missingValue": [],
+                    "invalidValue": []
+                };
                  let error = form.$error;
                  angular.forEach(error.required, function(field) {
                     if(field.$invalid){
                         var fieldName = field.$name;
-                        $scope.invalidFields.push(fieldName);
+                        $scope.invalidFields.missingValue.push(fieldName);
                     }
                 });
 
                 if (error.orcidValid) {
-                    $scope.invalidFields.push("orcid");
+                    $scope.invalidFields.invalidValue.push("orcid");
                 }
 
                 if ($scope.isFieldRequired('alayksikko')) {
                     if (!$scope.selectedPerson.alayksikko[0] || $scope.selectedPerson.alayksikko[0].length < 1) {
-                        $scope.invalidFields.push("alayksikko");
+                        $scope.invalidFields.missingValue.push("alayksikko");
                     }
                 }
-                ValidationService.setValidationErrors($scope.invalidFields);
+
+                ValidationService.setValidationErrors($scope.invalidFields.missingValue);
+                ValidationService.setInvalidFieldErrors($scope.invalidFields.invalidValue);
 
                 if ($scope.invalidFields.length === 0) {
                     let promise;

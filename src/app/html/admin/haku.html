@@ -11,9 +11,9 @@
               <i class="fa fa-close fa-lg pl"></i>
           </button>
 
-        <h4 data-ng-if="selectedPerson.id">
-            {{i18n.admin.content.form.muokkaa[lang]}} {{selectedPerson.etunimi}} {{selectedPerson.sukunimi}}</h4>
-        <h4 data-ng-if="!selectedPerson.id" data-ng-bind="i18n.admin.content.form.lisaa[lang]"></h4>
+        <h3 data-ng-if="selectedPerson.id" class="text-secondary">
+            {{i18n.admin.content.form.muokkaa[lang]}} {{selectedPerson.etunimi}} {{selectedPerson.sukunimi}}</h3>
+        <h3 data-ng-if="!selectedPerson.id" class="text-secondary" data-ng-bind="i18n.admin.content.form.lisaa[lang]"></h3>
 
             <div class="row form-group" id="firstnameGroup">
                 <div class="col-xs-12 ">
@@ -24,7 +24,9 @@
                            type="text"
                            class="form-control"
                            name="firstname"
-                           data-ng-model="selectedPerson.etunimi" required>
+                           data-ng-model="selectedPerson.etunimi"
+                           data-ng-keydown="resetValidationError('firstname')"
+                           required>
                 </div>
             </div>
             <div class="row form-group" id="lastnameGroup">
@@ -36,7 +38,9 @@
                            type="text"
                            class="form-control"
                            name="lastname"
-                           data-ng-model="selectedPerson.sukunimi" required>
+                           data-ng-model="selectedPerson.sukunimi"
+                           data-ng-keydown="resetValidationError('lastname')"
+                           required>
                 </div>
             </div>
             <div class="row form-group" id="hrnumberGroup">
@@ -48,6 +52,7 @@
                            type="text" class="form-control" name="hrnumber"
                            data-ng-model="selectedPerson.hrnumero"
                            data-ng-disabled="selectedPerson.id"
+                           data-ng-keydown="resetValidationError('hrnumber')"
                            required>
                 </div>
             </div>
@@ -67,6 +72,7 @@
                        type="text" class="form-control" name="orcid"
                        data-ng-model="selectedPerson.orcid"
                        data-orcid-directive>
+                <span class="invalid-pattern text-secondary text-danger" aria-hidden="true">Tarkasta ORCID -numeron muoto</span>
             </div>
         </div>
         <div class="row form-group"
@@ -103,7 +109,7 @@
                            aria-labelledby="valitsevuosi"
                            theme="bootstrap"
                            role="listbox"
-                            aria-labelled="addunits">
+                           aria-labelled="addunits">
                     <ui-select-match class="ui-select-match"
                                      data-ng-value="alayksikkovuosi.selected"
                                      placeholder="{{i18n.admin.content.form.alayksikko.placeholder.vuosi[lang]}}">
@@ -119,7 +125,7 @@
                 <ui-select data-ng-model="alayksikko.selected"
                            aria-labelledby="valitsealayksikko"
                            role="listbox"
-                           on-select="addAlayksikko($select.selected.arvo)"
+                           on-select="addAlayksikko($select.selected.arvo); resetValidationError('alayksikko')"
                            theme="bootstrap"
                            class="dropdown-height-300">
                     <ui-select-match class="ui-select-match"
@@ -130,6 +136,13 @@
                         {{ o.arvo}} {{o.selite}}
                     </ui-select-choices>
                 </ui-select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <p class="text-danger font-xl">Pakolliset tiedot merkitty tähdellä  <i class="fa fa-asterisk required-star" ></i>
+                </p>
             </div>
         </div>
 
