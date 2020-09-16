@@ -22,9 +22,9 @@
     <div data-ng-repeat="a in o.alatyypit | orderBy: 'arvo'">
       <div class="col-xs-12 julkaisutyyppi-btn" data-ng-class="{'active': justus.julkaisu.julkaisutyyppi == a.arvo}"
            data-ng-click="useField('julkaisu','julkaisutyyppi',a.arvo); useVaihe(3);">
-        <p class="font-weight-bold mb-0">
+        <h5 class="font-weight-bold mb-0">
           {{a.selite}}
-        </p>
+        </h5>
         <p class="mb-0 ">
           {{a.kuvaus}}
         </p>
