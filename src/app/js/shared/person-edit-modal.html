@@ -1,0 +1,20 @@
+<div class="modal-header">
+    <div class="pt">
+        <h3 class="text-secondary d-inline">
+            {{i18n.admin.content.form.muokkaa[lang]}} {{selectedPerson.etunimi}} {{selectedPerson.sukunimi}}
+        </h3>
+        <button class="btn btn-default pull-right "
+                data-ng-click="cancel()"
+                title="i18n.admin.content.form.sulje[lang]">
+            {{i18n.admin.content.form.sulje[lang]}}
+            <i class="fa fa-close fa-lg pl"></i>
+        </button>
+    </div>
+</div>
+<div class="modal-body" id="modal-body">
+    <person-form-directive data-ng-form="editPersonForm" selected-person="selectedPerson" lang="lang"></person-form-directive>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary btn-lg pull-left" data-ng-click="editPerson(editPersonForm)">Tallenna tiedot</button>
+    <button type="button" class="btn btn-danger btn-lg pull-right" data-ng-click="removePerson(selectedPerson.id)">Poista henkilö</button>
+</div>

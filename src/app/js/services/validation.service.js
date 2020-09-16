@@ -2,8 +2,8 @@
 
 angular.module('ValidationService', [])
 .service('ValidationService', [
-  '$http', '$rootScope', '$timeout',
-  function ($http, $rootScope, $timeout) {
+  '$http', '$rootScope', '$timeout', 'JustusService',
+  function ($http, $rootScope, $timeout, JustusService) {
     this.clearValidationErrors = function() {
       angular.element('.has-error').removeClass('has-error');
       angular.element('.has-feedback').removeClass('has-feedback');
@@ -46,6 +46,31 @@ angular.module('ValidationService', [])
 
         }
     };
+
+    this.validatePersonForm = function (form) {
+      let invalidFields =
+          {
+            "missingValue": [],
+            "invalidValue": []
+          };
+
+      let error = form.$error;
+      angular.forEach(error.required, function(field) {
+        if(field.$invalid){
+          var fieldName = field.$name;
+          invalidFields.missingValue.push(fieldName);
+        }
+      });
+
+      if (error.orcidValid) {
+        invalidFields.invalidValue.push("orcid");
+      }
+
+      this.setValidationErrors(invalidFields.missingValue);
+      this.setInvalidFieldErrors(invalidFields.invalidValue);
+
+      return invalidFields;
+    }
 
   }
 ]);

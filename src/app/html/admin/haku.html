@@ -1,171 +1,5 @@
 <div data-ng-if="hakuState">
-
-    <!-- TODO: move to directive -->
-    <div class="px mb-l" data-ng-if="showEditDialog">
-
-        <form name="personForm" novalidate>
-          <button class="btn btn-default pull-right "
-                data-ng-click="closeForm()"
-                title="i18n.admin.content.form.sulje[lang]">
-                  {{i18n.admin.content.form.sulje[lang]}}
-              <i class="fa fa-close fa-lg pl"></i>
-          </button>
-
-        <h3 data-ng-if="selectedPerson.id" class="text-secondary">
-            {{i18n.admin.content.form.muokkaa[lang]}} {{selectedPerson.etunimi}} {{selectedPerson.sukunimi}}</h3>
-        <h3 data-ng-if="!selectedPerson.id" class="text-secondary" data-ng-bind="i18n.admin.content.form.lisaa[lang]"></h3>
-
-            <div class="row form-group" id="firstnameGroup">
-                <div class="col-xs-12 ">
-                    <label for="fname" class="control-label"
-                           data-ng-bind="i18n.admin.content.form.etunimi[lang]"></label>
-                    <i class="fa fa-asterisk required-star" aria-hidden="true"></i>
-                    <input id="fname"
-                           type="text"
-                           class="form-control"
-                           name="firstname"
-                           data-ng-model="selectedPerson.etunimi"
-                           data-ng-keydown="resetValidationError('firstname')"
-                           required>
-                </div>
-            </div>
-            <div class="row form-group" id="lastnameGroup">
-                <div class="col-xs-12">
-                    <label for="lname" class="control-label"
-                           data-ng-bind="i18n.admin.content.form.sukunimi[lang]"></label>
-                    <i class="fa fa-asterisk required-star" aria-hidden="true"></i>
-                    <input id="lname"
-                           type="text"
-                           class="form-control"
-                           name="lastname"
-                           data-ng-model="selectedPerson.sukunimi"
-                           data-ng-keydown="resetValidationError('lastname')"
-                           required>
-                </div>
-            </div>
-            <div class="row form-group" id="hrnumberGroup">
-                <div class="col-xs-12">
-                    <label for="identifier" class="control-label"
-                           data-ng-bind="i18n.admin.content.form.tunniste[lang]"></label>
-                    <i class="fa fa-asterisk required-star" aria-hidden="true"></i>
-                    <input id="identifier"
-                           type="text" class="form-control" name="hrnumber"
-                           data-ng-model="selectedPerson.hrnumero"
-                           data-ng-disabled="selectedPerson.id"
-                           data-ng-keydown="resetValidationError('hrnumber')"
-                           required>
-                </div>
-            </div>
-        <div class="row form-group">
-            <div class="col-xs-12">
-                <label for="email" class="control-label" data-ng-bind="i18n.admin.content.form.email[lang]"></label>
-                <input id="email"
-                        type="email" class="form-control" name="email"
-                       data-ng-model="selectedPerson.email">
-            </div>
-        </div>
-        <div class="row form-group" id="orcidGroup">
-            <div class="col-xs-12"
-                 value="selectedPerson.orcid">
-                <label for="orcid" class="control-label" data-ng-bind="i18n.admin.content.form.orcid[lang]"></label>
-                <input id="orcid"
-                       type="text" class="form-control" name="orcid"
-                       data-ng-model="selectedPerson.orcid"
-                       data-orcid-directive>
-                <span class="invalid-pattern text-secondary text-danger" aria-hidden="true">Tarkasta ORCID -numeron muoto</span>
-            </div>
-        </div>
-        <div class="row form-group"
-             data-ng-if="isFieldVisible('alayksikko')">
-            <div data-ng-if="selectedPerson.alayksikko[0]" class="col-xs-12">
-                <label for="unit" class="control-label" data-ng-bind="i18n.admin.content.form.alayksikko.label[lang]"></label>
-                <div data-ng-repeat="a in selectedPerson.alayksikko track by $index" class="row mb-x">
-                    <div class="col-xs-11">
-                        <input disabled
-                               id="unit"
-                               type="text" class="form-control"
-                               data-ng-model="a" name="alayksikko">
-                    </div>
-                    <div class="col-xs-1 pl-0">
-                        <span class="btn btn-danger"
-                              data-ng-click="removeAlayksikko($index)"
-                              data-ng-hide="selectedPerson.alayksikko.length<2"
-                              title="{{i18n.content.form.organisaatiotekija.poista.tooltip[lang]}}"
-                              data-ng-bind="i18n.content.form.organisaatiotekija.poista[lang]">
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row form-group" data-ng-if="isFieldVisible('alayksikko')" id="alayksikkoGroup">
-            <div class="col-xs-12">
-                <label class="control-label" data-ng-bind="i18n.admin.content.form.alayksikko.lisaa[lang]"></label>
-                <i data-ng-if="isFieldRequired('alayksikko')" class="fa fa-asterisk required-star" aria-hidden="true"></i>
-            </div>
-
-            <div class="col-xs-12 col-sm-5">
-                <label id="valitsevuosi">{{i18n.admin.content.form.alayksikko.placeholder.vuosi[lang]}}</label>
-                <ui-select data-ng-model="alayksikkovuosi.selected"
-                           aria-labelledby="valitsevuosi"
-                           theme="bootstrap"
-                           role="listbox"
-                           aria-labelled="addunits">
-                    <ui-select-match class="ui-select-match"
-                                     data-ng-value="alayksikkovuosi.selected"
-                                     placeholder="{{i18n.admin.content.form.alayksikko.placeholder.vuosi[lang]}}">
-                        {{ $select.selected.label }}
-                    </ui-select-match>
-                    <ui-select-choices role="option" repeat="ala in alayksikkovuodet">
-                        {{ala.label}}
-                    </ui-select-choices>
-                </ui-select>
-            </div>
-            <div class="col-xs-12 col-sm-7">
-                <label id="valitsealayksikko">{{i18n.admin.content.form.alayksikko.placeholder.lisaa[lang]}}</label>
-                <ui-select data-ng-model="alayksikko.selected"
-                           aria-labelledby="valitsealayksikko"
-                           role="listbox"
-                           on-select="addAlayksikko($select.selected.arvo); resetValidationError('alayksikko')"
-                           theme="bootstrap"
-                           class="dropdown-height-300">
-                    <ui-select-match class="ui-select-match"
-                                     placeholder="{{i18n.admin.content.form.alayksikko.placeholder.lisaa[lang]}}">
-                        {{i18n.admin.content.form.alayksikko.placeholder.lisaa[lang]}}
-                    </ui-select-match>
-                    <ui-select-choices role="option" repeat="o in getAlayksikkoData(alayksikkovuosi.selected) | filter: $select.search">
-                        {{ o.arvo}} {{o.selite}}
-                    </ui-select-choices>
-                </ui-select>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-12">
-                <p class="text-danger font-xl">Pakolliset tiedot merkitty tähdellä  <i class="fa fa-asterisk required-star" ></i>
-                </p>
-            </div>
-        </div>
-
-        <div class="row mt-xl">
-            <div class="col-xs-12 margin-bottom-md" data-ng-class="{ 'col-md-12': !selectedPerson.id, 'col-md-8': selectedPerson.id }">
-                <button class="btn btn-primary btn-block btn-lg"
-                        type="submit"
-                        data-ng-click="savePerson(personForm)"
-                        data-ng-bind="i18n.admin.content.form.tallenna[lang]">
-                </button>
-            </div>
-            <div data-ng-if="selectedPerson.id" class="col-md-4 col-xs-12">
-                <button type="reset"
-                        class="btn btn-danger btn-block btn-lg"
-                        data-ng-click="removePerson()"
-                        data-ng-bind="i18n.admin.content.form.poista[lang]">
-                </button>
-            </div>
-        </div>
-        </form>
-    </div>
-
-    <div data-ng-hide="showEditDialog">
+    <div>
         <div data-ng-if="showList" style="margin: 30px 15px;">
             <button type="button"
                     class="btn btn-default pull-right "
@@ -180,32 +14,29 @@
                     publication-list="publicationList">
             </person-publication-list-directive>
         </div>
-
-    <div class="px">
-        <div class="row m-b m-t">
-            <div class="col-sm-12">
-                <div class="input-group">
+        <div class="px">
+            <div class="row m-b m-t">
+                <div class="col-sm-12">
+                    <div class="input-group">
                     <span class="input-group-addon bg-primary cursor-pointer border-primary">
                         <i class="fa fa-search text-white"></i>
                     </span>
-                    <input aria-label="search from persons"
-                            type="search" class="form-control"
-                           data-ng-model="search"
-                           placeholder="{{i18n.admin.content.haku[lang]}}"/>
+                        <input aria-label="search from persons"
+                               type="search" class="form-control"
+                               data-ng-model="search"
+                               placeholder="{{i18n.admin.content.haku[lang]}}"/>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-12 p">
-                <p>{{i18n.admin.content.yhteensa[lang]}}<span class="pl-x">{{persons.length}}</span></p>
+            <div class="row">
+                <div class="col-xs-12 p">
+                    <p>{{i18n.admin.content.yhteensa[lang]}}<span class="pl-x">{{persons.length}}</span></p>
+                </div>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-12">
-                <table class="table table-condensed table-striped">
-                    <thead>
+            <div class="row">
+                <div class="col-xs-12">
+                    <table class="table table-condensed table-striped">
+                        <thead>
                         <tr>
                             <th class="text-xl">{{i18n.admin.content.lista.tunniste[lang]}}</th>
                             <th class="text-xl">{{i18n.admin.content.lista.etunimi[lang]}}</th>
@@ -214,38 +45,31 @@
                             <th class="text-xl">{{i18n.admin.content.lista.muokattu[lang]}}</th>
                             <th></th>
                         </tr>
-                    </thead>
-                    <tbody>
-                    <tr data-ng-repeat="person in persons | filter: search | limitTo: 20"
-                        class="hover-table-green">
-                        <td data-ng-click="editPerson(person)">{{person.hrnumero}}</td>
-                        <td data-ng-click="editPerson(person)">{{person.etunimi}}</td>
-                        <td data-ng-click="editPerson(person)">{{person.sukunimi}}</td>
-                        <td data-ng-click="editPerson(person)">{{person.orcid}}</td>
-                        <td data-ng-click="editPerson(person)"><span data-ng-bind="person.modified | date:'d.M.yyyy HH:mm'"></span></td>
-                        <td class="text-right">
+                        </thead>
+                        <tbody>
+                        <tr data-ng-repeat="person in persons | filter: search | limitTo: 20"
+                            class="hover-table-green">
+                            <td data-ng-click="editPerson(person, 'lg')">{{person.hrnumero}}</td>
+                            <td data-ng-click="editPerson(person, 'lg')">{{person.etunimi}}</td>
+                            <td data-ng-click="editPerson(person, 'lg')">{{person.sukunimi}}</td>
+                            <td data-ng-click="editPerson(person, 'lg')">{{person.orcid}}</td>
+                            <td data-ng-click="editPerson(person, 'lg')"><span
+                                    data-ng-bind="person.modified | date:'d.M.yyyy HH:mm'"></span></td>
+                            <td class="text-right">
                             <span class="px">
                                 <button
-                                    class="btn btn-primary btn-sm"
-                                    data-ng-disabled="!person.orcid"
-                                    data-ng-click="showPublications(person)"
-                                    data-ng-bind="i18n.admin.content.lista.nayta[lang]">
+                                        class="btn btn-primary btn-sm"
+                                        data-ng-disabled="!person.orcid"
+                                        data-ng-click="showPublications(person)"
+                                        data-ng-bind="i18n.admin.content.lista.nayta[lang]">
                                 </button>
                             </span>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-12">
-            <button class="btn btn-primary btn-block btn-lg" data-ng-click="addPerson()"
-                    data-ng-bind="i18n.admin.content.lisaa[lang]">
-            </button>
-        </div>
-    </div>
     </div>
 </div>

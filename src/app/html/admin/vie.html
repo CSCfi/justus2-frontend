@@ -114,15 +114,97 @@
             </div>
         </div>
     </div>
-
-</div>
-
-<div data-ng-show="showAlertDialog">
-    <span data-ng-class="{'text-danger': csvUploadError}">{{csvUploadErrorText}}</span>
-    <div class="alert alert-success alert-dismissible" data-ng-class="{'alert-danger': csvUploadError}" role="alert">
-        <strong>{{csvUploadResponseText}}</strong>
-        <button type="button" data-ng-click="resetDialog()" class="btn close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+    <div data-ng-show="showAlertDialog">
+        <span data-ng-class="{'text-danger': csvUploadError}">{{csvUploadErrorText}}</span>
+        <div class="alert alert-success alert-dismissible" data-ng-class="{'alert-danger': csvUploadError}" role="alert">
+            <strong>{{csvUploadResponseText}}</strong>
+            <button type="button" data-ng-click="resetDialog()" class="btn close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
     </div>
+
+
+    <uib-accordion class="text-secondary">
+        <div uib-accordion-group class="panel-default"
+             is-open="status.open"
+             data-ng-class="{'opened': status.open}">
+            <uib-accordion-heading class="bg-light" >
+                <div data-ng-click="addPerson()">
+                    <h4>{{i18n.admin.content.lisaa[lang]}}
+                        <i class="pull-right glyphicon"
+                           data-ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                    </h4>
+                </div>
+            </uib-accordion-heading>
+            <div class="p-1" data-ng-if="user.visibleFields">
+
+                <person-form-directive  data-ng-form="personForm" selected-person="personData" lang="lang"></person-form-directive>
+                <div class="row mt-xl">
+                    <div class="col-xs-8 margin-bottom-md">
+                        <button class="btn btn-primary btn-block btn-lg"
+                                type="submit"
+                                data-ng-click="savePerson(personForm)"
+                                data-ng-bind="i18n.admin.content.form.tallenna[lang]">
+                        </button>
+                    </div>
+                    <div class="col-xs-4 margin-bottom-md">
+                        <button class="btn btn-danger btn-block btn-lg"
+                                type="submit"
+                                data-ng-click="cancel()">
+                            Peruuta
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </uib-accordion>
+
+
+
+<!--    <div class="row">-->
+<!--        <div class="col-xs-12">-->
+<!--            <button class="btn btn-primary btn-block btn-lg" data-ng-click="addPerson()"-->
+<!--                    data-ng-bind="i18n.admin.content.lisaa[lang]">-->
+<!--            </button>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="px mb-l" data-ng-if="showEditDialog">-->
+
+<!--        <button class="btn btn-default pull-right "-->
+<!--                data-ng-click="closeForm()"-->
+<!--                title="i18n.admin.content.form.sulje[lang]">-->
+<!--            {{i18n.admin.content.form.sulje[lang]}}-->
+<!--            <i class="fa fa-close fa-lg pl"></i>-->
+<!--        </button>-->
+<!--        <h3 data-ng-if="selectedPerson.id" class="text-secondary">-->
+<!--            {{i18n.admin.content.form.muokkaa[lang]}} {{selectedPerson.etunimi}} {{selectedPerson.sukunimi}}</h3>-->
+<!--        <h3 data-ng-if="!selectedPerson.id" class="text-secondary" data-ng-bind="i18n.admin.content.form.lisaa[lang]"></h3>-->
+
+
+<!--        <person-form-directive data-ng-form="personForm" selected-person="selectedPerson" lang="lang"></person-form-directive>-->
+
+<!--        <div class="row mt-xl">-->
+<!--            <div class="col-xs-12 margin-bottom-md" data-ng-class="{ 'col-md-12': !selectedPerson.id, 'col-md-8': selectedPerson.id }">-->
+<!--                <button class="btn btn-primary btn-block btn-lg"-->
+<!--                        type="submit"-->
+<!--                        data-ng-click="savePerson(personForm)"-->
+<!--                        data-ng-bind="i18n.admin.content.form.tallenna[lang]">-->
+<!--                </button>-->
+<!--            </div>-->
+<!--            <div data-ng-if="selectedPerson.id" class="col-md-4 col-xs-12">-->
+<!--                <button type="reset"-->
+<!--                        class="btn btn-danger btn-block btn-lg"-->
+<!--                        data-ng-click="removePerson()"-->
+<!--                        data-ng-bind="i18n.admin.content.form.poista[lang]">-->
+<!--                </button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
 </div>
+
+

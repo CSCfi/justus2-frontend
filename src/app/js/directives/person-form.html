@@ -1,0 +1,135 @@
+<form name="person" novalidate>
+    <div class="row form-group" id="firstnameGroup">
+        <div class="col-xs-12 ">
+            <label for="fname" class="control-label"
+                   data-ng-bind="i18n.admin.content.form.etunimi[lang]"></label>
+            <i class="fa fa-asterisk required-star" aria-hidden="true"></i>
+            <input id="fname"
+                   type="text"
+                   class="form-control"
+                   name="firstname"
+                   data-ng-model="selectedPerson.etunimi"
+                   data-ng-keydown="resetValidationError('firstname')"
+                   required>
+        </div>
+    </div>
+    <div class="row form-group" id="lastnameGroup">
+        <div class="col-xs-12">
+            <label for="lname" class="control-label"
+                   data-ng-bind="i18n.admin.content.form.sukunimi[lang]"></label>
+            <i class="fa fa-asterisk required-star" aria-hidden="true"></i>
+            <input id="lname"
+                   type="text"
+                   class="form-control"
+                   name="lastname"
+                   data-ng-model="selectedPerson.sukunimi"
+                   data-ng-keydown="resetValidationError('lastname')"
+                   required>
+        </div>
+    </div>
+    <div class="row form-group" id="hrnumberGroup">
+        <div class="col-xs-12">
+            <label for="identifier" class="control-label"
+                   data-ng-bind="i18n.admin.content.form.tunniste[lang]"></label>
+            <i class="fa fa-asterisk required-star" aria-hidden="true"></i>
+            <input id="identifier"
+                   type="text" class="form-control" name="hrnumber"
+                   data-ng-model="selectedPerson.hrnumero"
+                   data-ng-disabled="selectedPerson.id"
+                   data-ng-keydown="resetValidationError('hrnumber')"
+                   required>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-xs-12">
+            <label for="email" class="control-label" data-ng-bind="i18n.admin.content.form.email[lang]"></label>
+            <input id="email"
+                   type="email" class="form-control" name="email"
+                   data-ng-model="selectedPerson.email">
+        </div>
+    </div>
+    <div class="row form-group" id="orcidGroup">
+        <div class="col-xs-12"
+             value="selectedPerson.orcid">
+            <label for="orcid" class="control-label" data-ng-bind="i18n.admin.content.form.orcid[lang]"></label>
+            <input id="orcid"
+                   type="text" class="form-control" name="orcid"
+                   data-ng-model="selectedPerson.orcid"
+                   data-orcid-directive>
+            <span class="invalid-pattern text-secondary text-danger" aria-hidden="true">Tarkasta ORCID -numeron muoto</span>
+        </div>
+    </div>
+    <div class="row form-group"
+         data-ng-if="isFieldVisible('alayksikko')">
+        <div data-ng-show="selectedPerson.alayksikko[0]" class="col-xs-12">
+            <label for="unit" class="control-label" data-ng-bind="i18n.admin.content.form.alayksikko.label[lang]"></label>
+            <div data-ng-repeat="a in selectedPerson.alayksikko track by $index" class="row mb-x">
+                <div class="col-xs-11">
+                    <input disabled
+                           id="unit"
+                           type="text" class="form-control"
+                           data-ng-model="a"
+                           name="alayksikko"
+                           data-ng-required="isFieldRequired('alayksikko')">
+                </div>
+                <div class="col-xs-1 pl-0">
+                        <span class="btn btn-danger"
+                              data-ng-click="removeAlayksikko($index)"
+                              data-ng-hide="selectedPerson.alayksikko.length<2"
+                              title="{{i18n.content.form.organisaatiotekija.poista.tooltip[lang]}}"
+                              data-ng-bind="i18n.content.form.organisaatiotekija.poista[lang]">
+                        </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row form-group" data-ng-if="isFieldVisible('alayksikko')" id="alayksikkoGroup">
+        <div class="col-xs-12">
+            <label class="control-label" data-ng-bind="i18n.admin.content.form.alayksikko.lisaa[lang]"></label>
+            <i data-ng-if="isFieldRequired('alayksikko')" class="fa fa-asterisk required-star" aria-hidden="true"></i>
+        </div>
+
+        <div class="col-xs-12 col-sm-5">
+            <label id="valitsevuosi">{{i18n.admin.content.form.alayksikko.placeholder.vuosi[lang]}}</label>
+            <ui-select data-ng-model="alayksikkovuosi.selected"
+                       aria-labelledby="valitsevuosi"
+                       theme="bootstrap"
+                       role="listbox"
+                       aria-labelled="addunits">
+                <ui-select-match class="ui-select-match"
+                                 data-ng-value="alayksikkovuosi.selected"
+                                 placeholder="{{i18n.admin.content.form.alayksikko.placeholder.vuosi[lang]}}">
+                    {{ $select.selected.label }}
+                </ui-select-match>
+                <ui-select-choices role="option" repeat="ala in alayksikkovuodet">
+                    {{ala.label}}
+                </ui-select-choices>
+            </ui-select>
+        </div>
+        <div class="col-xs-12 col-sm-7">
+            <label id="valitsealayksikko">{{i18n.admin.content.form.alayksikko.placeholder.lisaa[lang]}}</label>
+            <ui-select data-ng-model="alayksikko.selected"
+                       aria-labelledby="valitsealayksikko"
+                       role="listbox"
+                       on-select="addAlayksikko($select.selected.arvo); resetValidationError('alayksikko')"
+                       theme="bootstrap"
+                       class="dropdown-height-300">
+                <ui-select-match class="ui-select-match"
+                                 placeholder="{{i18n.admin.content.form.alayksikko.placeholder.lisaa[lang]}}">
+                    {{i18n.admin.content.form.alayksikko.placeholder.lisaa[lang]}}
+                </ui-select-match>
+                <ui-select-choices role="option" repeat="o in getAlayksikkoData(alayksikkovuosi.selected) | filter: $select.search">
+                    {{ o.arvo}} {{o.selite}}
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <p class="text-danger font-xl">Pakolliset tiedot merkitty tähdellä  <i class="fa fa-asterisk required-star" ></i>
+            </p>
+        </div>
+    </div>
+</form>
+

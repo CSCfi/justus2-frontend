@@ -40,23 +40,16 @@ angular.module('AdminController', [])
                 $scope.hakuState = true;
             }
 
-                $scope.personsToBeDeleted = [];
-                $scope.alayksikkovuodet = AlayksikkoService.getAlayksikkovuodet();
+            $scope.personsToBeDeleted = [];
 
-                $scope.alayksikkovuosi = {};
-
-                if ($scope.alayksikkovuodet.length === 5) {
-                    $scope.alayksikkovuosi.selected = {
-                        id: 2020,
-                        label: '2020'
-                    };
-                } else {
-                    $scope.alayksikkovuosi.selected = {
-                        id: 2019,
-                        label: '2019'
-                    };
-                }
+            $scope.personData = {
+                "hrnumero": "",
+                "etunimi": "",
+                "sukunimi": "",
+                "orcid": null,
+                "alayksikko": [null]
             };
+        };
 
             $scope.isFieldVisible = function(field) {
                 return JustusService.isFieldVisible(field);
@@ -67,9 +60,52 @@ angular.module('AdminController', [])
             };
 
             $scope.editPerson = function (person) {
-                $window.scrollTo(0, 0);
                 $scope.selectedPerson = angular.copy(person);
-                $scope.showEditDialog = true;
+                let modalInstance = $uibModal.open({
+                    animation: false,
+                    templateUrl: 'js/shared/person-edit-modal.html',
+                    controller: 'PersonModalInstanceCtrl',
+                    size: 'lg',
+                    backdrop: 'static',
+                    resolve: {
+                        person: function () {
+                            return $scope.selectedPerson
+                        },
+                        lang: function () {
+                            return $scope.lang
+                        }
+
+                    }
+                });
+
+                modalInstance.result.then(function (event) {
+                    let id = $scope.selectedPerson.id;
+
+                    if (event === "update") {
+                        delete($scope.selectedPerson.modified);
+                        APIService.put("person/update", id, $scope.selectedPerson)
+                            .then(function (response) {
+                                console.log(response);
+                                // $scope.search = "";
+
+                                fetchPersonData();
+                            }).catch(function (err) {
+                            console.log(err);
+                        })
+                    }
+                    if (event === "delete") {
+                        APIService.delete("persons/remove", id)
+                            .then(function (response) {
+                                console.log(response);
+                                fetchPersonData();
+                            }).catch(function (err) {
+                            console.log(err);
+                        })
+                    }
+
+                }, function () {
+                    console.log('Edit modal dismissed at: ' + new Date());
+                });
             };
 
             $scope.showPublications = function(person) {
@@ -83,7 +119,6 @@ angular.module('AdminController', [])
                     }).catch(function (err) {
                     console.log(err);
                 });
-
             };
 
             $scope.closeList = function() {
@@ -95,37 +130,16 @@ angular.module('AdminController', [])
                 $scope.showEditDialog = false;
             };
 
-
-            $scope.addAlayksikko = function(input) {
-                if ($scope.selectedPerson.alayksikko.indexOf(input) > -1
-                    || $scope.selectedPerson.alayksikko.length > 2) return;
-
-                if (!$scope.selectedPerson.alayksikko[0]) {
-                    $scope.selectedPerson.alayksikko[0] = input;
-                } else {
-                    $scope.selectedPerson.alayksikko.push(input);
-                }
-            };
-
-            $scope.removeAlayksikko = function(index) {
-                $scope.selectedPerson.alayksikko.splice(index, 1);
-            };
-
-            // get alayksikkodata based on selected year
-            $scope.getAlayksikkoData = function(alayksikkovuosi) {
-                return AlayksikkoService.getAlayksikkoData(alayksikkovuosi);
-            };
-
-            $scope.addPerson = function() {
-              $scope.selectedPerson = {
-                  "hrnumero": "",
-                  "etunimi": "",
-                  "sukunimi": "",
-                  "orcid": null,
-                  "alayksikko": [null]
-              };
-              $scope.showEditDialog = true;
-            };
+            $scope.cancel = function() {
+                $scope.status.open = false;
+                $scope.personData = {
+                    "hrnumero": "",
+                    "etunimi": "",
+                    "sukunimi": "",
+                    "orcid": null,
+                    "alayksikko": [null]
+                };
+            }
 
             $scope.resetValidationError = function(field) {
                 ValidationService.clearError(field);
@@ -133,48 +147,20 @@ angular.module('AdminController', [])
 
             $scope.savePerson = function(form) {
 
-                $scope.invalidFields =
-                {
-                    "missingValue": [],
-                    "invalidValue": []
-                };
-                 let error = form.$error;
-                 angular.forEach(error.required, function(field) {
-                    if(field.$invalid){
-                        var fieldName = field.$name;
-                        $scope.invalidFields.missingValue.push(fieldName);
-                    }
-                });
+                let invalidFields = ValidationService.validatePersonForm(form.person)
 
-                if (error.orcidValid) {
-                    $scope.invalidFields.invalidValue.push("orcid");
-                }
-
-                if ($scope.isFieldRequired('alayksikko')) {
-                    if (!$scope.selectedPerson.alayksikko[0] || $scope.selectedPerson.alayksikko[0].length < 1) {
-                        $scope.invalidFields.missingValue.push("alayksikko");
-                    }
-                }
-
-                ValidationService.setValidationErrors($scope.invalidFields.missingValue);
-                ValidationService.setInvalidFieldErrors($scope.invalidFields.invalidValue);
-
-                if ($scope.invalidFields.length === 0) {
-                    let promise;
-                    if ($scope.selectedPerson.id) {
-                        //  update
-                        let id = $scope.selectedPerson.id;
-                        delete($scope.selectedPerson.modified);
-                        promise = APIService.put("person/update", id, $scope.selectedPerson);
-                    } else {
-                        // post
-                        promise = APIService.post("person/save", $scope.selectedPerson);
-                    }
-
-                    promise.then(function (response) {
+                if (invalidFields.missingValue.length === 0 && invalidFields.invalidValue.length === 0) {
+                    APIService.post("person/save", $scope.personData)
+                    .then(function (response) {
                         console.log(response);
-                        $scope.closeForm();
-                        $scope.search = "";
+                        $scope.personData = {
+                            "hrnumero": "",
+                            "etunimi": "",
+                            "sukunimi": "",
+                            "orcid": null,
+                            "alayksikko": [null]
+                        };
+                        $scope.status.open = false;
                         fetchPersonData();
                     }).catch(function (err) {
                         console.log(err);
@@ -183,47 +169,17 @@ angular.module('AdminController', [])
 
             };
 
-            $scope.removePerson = function (size) {
-
-                let modalInstance = $uibModal.open({
-                    animation: false,
-                    templateUrl: 'js/shared/modal.html',
-                    controller: 'ModalInstanceCtrl',
-                    size: size,
-                    resolve: {
-                        person: function () {
-                            return $scope.selectedPerson
-                        }
-                    }
-                });
-
-                modalInstance.result.then(function () {
-
-                    let id = $scope.selectedPerson.id;
-                    console.log(id);
-                    APIService.delete("persons/remove", id)
-                        .then(function (response) {
-                            console.log(response);
-                            $scope.selectedPerson = {};
-                            $scope.showEditDialog = false;
-                            fetchPersonData();
-                        }).catch(function (err) {
-                            console.log(err);
-                    })
-
-                }, function () {
-                    console.log('Modal dismissed at: ' + new Date());
-                });
+            $scope.status = {
+                isOpen: false
             };
 
             let fetchPersonData = function() {
                 APIService.getPersonData()
                     .then(function (res) {
+                        console.log(res);
                         $scope.persons = res.persons;
                     })
             };
-
-            // lataussivu
 
             $scope.csvurl = API_BASE_URL + 'persons/download';
 
