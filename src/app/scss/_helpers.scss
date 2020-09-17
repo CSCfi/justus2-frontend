@@ -129,6 +129,10 @@
   cursor: pointer;
 }
 
+.cursor-disabled {
+  cursor: not-allowed;
+}
+
 .font-weight-bold {
   font-weight: bold;
 }

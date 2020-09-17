@@ -50,9 +50,10 @@ legend {
   border-bottom: 0;
 }
 
-.span-focus:focus {
-  border-color: #60abb5;
-  border-width: 2px;
+.calendar-icon {
+  border: 5px solid $brand-primary !important;
+  background: $brand-primary;
+  color: $brand-white;
 }
 
 .custom-radio {
