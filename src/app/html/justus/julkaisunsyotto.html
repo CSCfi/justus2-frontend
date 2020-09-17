@@ -207,19 +207,25 @@
                     <div class="input-group pb">
                         <input id="embargo"
                                name="embargo"
-                               type="text" class="form-control"
+                               type="text" class="form-control cursor-disabled"
                                data-uib-datepicker-popup="{{format}}"
                                data-ng-model="filedata.embargo" is-open="popup.opened"
                                data-datepicker-options="dateOptions"
                                data-show-button-bar="false"
+                               data-ng-readonly="true"
                                placeholder="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo.picktip[lang]}}"/>
                         <span role="button"
                               tabindex="0"
+                              aria-label="Valitse päivämäärä kalenterista"
+                              title="Valitse päivämäärä kalenterista"
                               data-ng-click="openDatepicker()"
-                              class="input-group-addon cursor-pointer span-focus">
-                                        <i class="fa fa-calendar"></i>
-                                    </span>
+                              class="input-group-addon cursor-pointer calendar-icon">
+                              <i class="fa fa-calendar"></i>
+                        </span>
+
+
                     </div>
+
                     <div class="py">
                         <button type="button"
                                 aria-label="puolivuotta"
