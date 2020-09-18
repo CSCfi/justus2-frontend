@@ -11,25 +11,21 @@
             </div>
         </div>
     </div>
-    <div class="col-xs-12 col-md-6 pull-right text-right pl-0">
+    <div class="col-xs-12 col-md-6 pull-right text-right text-md pl-0">
         <div data-ng-if="state.name!='index' && user">
-      <span><i>{{user.name}}</i>,&nbsp;
+            <span class="font-weight-bold">{{user.name}},</span>&nbsp;
+            <span>
         <span data-ng-if="initialRole === 'owner'" class="text-capitalize">{{user.role}}, {{ user.organization.code}}:&nbsp;</span>{{ user.organization.name }}</span>
             <span>| <a href="" data-ng-click="logout()">{{i18n.header.logout[lang]}}</a></span>
         </div>
         <div>
-      <span>
-        <a href="https://wiki.eduuni.fi/display/CscJustus/Ohjeet" target="__blank">
-          <i class="fa fa-external-link pl-x"></i> {{i18n.header.help[lang]}}
-        </a>
-      </span>
-            <span data-ng-if="state.name !== 'justus'">
-        <span>|</span>
+
+        <span data-ng-if="state.name !== 'justus'">
 
         <a href data-ng-show="lang!='FI'" data-ng-click="changeLang('FI')">{{i18n.header.lang.FI}}</a>
-        <span data-ng-show="lang!='FI'">|</span>
+        <span data-ng-show="lang!='FI'" aria-hidden="true">|</span>
         <a href data-ng-show="lang!='SV'" data-ng-click="changeLang('SV')">{{i18n.header.lang.SV}}</a>
-        <span data-ng-show="lang=='FI'">|</span>
+        <span data-ng-show="lang=='FI'" aria-hidden="true">|</span>
         <a href data-ng-show="lang!='EN'" data-ng-click="changeLang('EN')">{{i18n.header.lang.EN}}</a>
       </span>
         </div>
