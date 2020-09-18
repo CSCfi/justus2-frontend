@@ -204,7 +204,7 @@ angular.module('IndexController', [])
 
 
             $scope.login = function() {
-                let target = encodeURIComponent(SITE_URL + '#!/valitse');
+                let target = encodeURIComponent(SITE_URL + '#' + /valitse');
                 $window.location.href = SITE_URL + 'Shibboleth.sso/Login?target=' + target;
             };
 
