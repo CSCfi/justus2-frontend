@@ -17,7 +17,7 @@
 
 <div class="row pxs">
   <div class="col-xs-6">
-    <h4 class="font-weight-700 text-secondary">{{i18n.content.tarkasta.julkaisuja[lang]}}: {{publications.count}}</h4>
+    <span class="font-weight-700 text-xl text-secondary">{{i18n.content.tarkasta.julkaisuja[lang]}}: {{publications.count}}</span>
   </div>
   <div data-ng-show="!publications.odottavat" class="col-xs-6">
     <button type="button"
@@ -141,41 +141,59 @@
           <table class="table table-striped table-hover">
             <thead>
             <tr>
-              <th data-ng-click="colOrderReverse=!(colOrder=='julkaisu.id'?colOrderReverse:true); colOrder='julkaisu.id'">
-                <span data-ng-bind="i18n.content.tarkasta.table.julkaisuid[lang]"></span>
-                <span class="fa fa-sort-desc" data-ng-if="colOrder=='julkaisu.id' && !(colOrderReverse)"></span>
-                <span class="fa fa-sort-asc" data-ng-if="colOrder=='julkaisu.id' && (colOrderReverse)"></span>
+              <th>
+                <a data-ng-click="colOrderReverse=!(colOrder=='julkaisu.id'?colOrderReverse:true); colOrder='julkaisu.id'"
+                   class="cursor-pointer">
+                  <span data-ng-bind="i18n.content.tarkasta.table.julkaisuid[lang]"></span>
+                  <span class="fa fa-sort-desc" data-ng-if="colOrder=='julkaisu.id' && !(colOrderReverse)"></span>
+                  <span class="fa fa-sort-asc" data-ng-if="colOrder=='julkaisu.id' && (colOrderReverse)"></span>
+                </a>
               </th>
-              <th data-ng-click="colOrderReverse=!(colOrder=='julkaisu.julkaisunnimi'?colOrderReverse:true); colOrder='julkaisu.julkaisunnimi'">
-                <span data-ng-bind="i18n.content.tarkasta.table.julkaisunnimi[lang]"></span>
-                <span class="fa fa-sort-desc" data-ng-if="colOrder=='julkaisu.julkaisunnimi' && !(colOrderReverse)"></span>
-                <span class="fa fa-sort-asc" data-ng-if="colOrder=='julkaisu.julkaisunnimi' && (colOrderReverse)"></span>
+              <th>
+                <a data-ng-click="colOrderReverse=!(colOrder=='julkaisu.julkaisunnimi'?colOrderReverse:true); colOrder='julkaisu.julkaisunnimi'"
+                   class="cursor-pointer">
+                  <span data-ng-bind="i18n.content.tarkasta.table.julkaisunnimi[lang]"></span>
+                  <span class="fa fa-sort-desc" data-ng-if="colOrder=='julkaisu.julkaisunnimi' && !(colOrderReverse)"></span>
+                  <span class="fa fa-sort-asc" data-ng-if="colOrder=='julkaisu.julkaisunnimi' && (colOrderReverse)"></span>
+                </a>
               </th>
-              <th data-ng-click="colOrderReverse=!(colOrder=='julkaisu.tekijat'?colOrderReverse:true); colOrder='julkaisu.tekijat'">
-                <span data-ng-bind="i18n.content.tarkasta.table.julkaisuntekijat[lang]"></span>
-                <span class="fa fa-sort-desc" data-ng-if="colOrder=='julkaisu.tekijat' && !(colOrderReverse)"></span>
-                <span class="fa fa-sort-asc" data-ng-if="colOrder=='julkaisu.tekijat' && (colOrderReverse)"></span>
+              <th>
+                <a data-ng-click="colOrderReverse=!(colOrder=='julkaisu.tekijat'?colOrderReverse:true); colOrder='julkaisu.tekijat'"
+                   class="cursor-pointer">
+                  <span data-ng-bind="i18n.content.tarkasta.table.julkaisuntekijat[lang]"></span>
+                  <span class="fa fa-sort-desc" data-ng-if="colOrder=='julkaisu.tekijat' && !(colOrderReverse)"></span>
+                  <span class="fa fa-sort-asc" data-ng-if="colOrder=='julkaisu.tekijat' && (colOrderReverse)"></span>
+                </a>
               </th>
-              <th class="hidden-xs"
-                  data-ng-click="colOrderReverse=!(colOrder=='julkaisu.modified'?colOrderReverse:true); colOrder='julkaisu.modified'">
-                <span data-ng-bind="i18n.content.tarkasta.table.muokattu[lang]"></span>
-                <span class="fa fa-sort-desc" data-ng-if="colOrder=='julkaisu.modified' && !(colOrderReverse)"></span>
-                <span class="fa fa-sort-asc" data-ng-if="colOrder=='julkaisu.modified' && (colOrderReverse)"></span>
+              <th class="hidden-xs">
+                <a data-ng-click="colOrderReverse=!(colOrder=='julkaisu.modified'?colOrderReverse:true); colOrder='julkaisu.modified'"
+                   class="cursor-pointer">
+                  <span data-ng-bind="i18n.content.tarkasta.table.muokattu[lang]"></span>
+                  <span class="fa fa-sort-desc" data-ng-if="colOrder=='julkaisu.modified' && !(colOrderReverse)"></span>
+                  <span class="fa fa-sort-asc"
+                        data-ng-if="colOrder=='julkaisu.modified' && (colOrderReverse)"></span></a>
               </th>
-              <th class="hidden-xs"
-                  data-ng-click="colOrderReverse=!(colOrder=='julkaisu.username'?colOrderReverse:true); colOrder='julkaisu.username'">
-                <span data-ng-bind="i18n.content.tarkasta.table.viimeisinmuokkaaja[lang]"></span>
-                <span class="fa fa-sort-desc" data-ng-if="colOrder=='julkaisu.username' && !(colOrderReverse)"></span>
-                <span class="fa fa-sort-asc" data-ng-if="colOrder=='julkaisu.username' && (colOrderReverse)"></span>
+              <th class="hidden-xs">
+                <a data-ng-click="colOrderReverse=!(colOrder=='julkaisu.username'?colOrderReverse:true); colOrder='julkaisu.username'"
+                   class="cursor-pointer">
+                  <span data-ng-bind="i18n.content.tarkasta.table.viimeisinmuokkaaja[lang]"></span>
+                  <span class="fa fa-sort-desc" data-ng-if="colOrder=='julkaisu.username' && !(colOrderReverse)"></span>
+                  <span class="fa fa-sort-asc" data-ng-if="colOrder=='julkaisu.username' && (colOrderReverse)"></span>
+                </a>
               </th>
               <th data-ng-if="showPublicationLink">
                 <span data-ng-bind="i18n.content.tarkasta.table.julkaisu[lang]"></span>
               </th>
               <th data-ng-show="state.name=='hyvaksy'"
-                  data-ng-click="colOrderReverse=!(colOrder=='julkaisuntila'?colOrderReverse:false); colOrder='julkaisuntila'"
                   class="condensed">
                 <span data-ng-bind="i18n.content.tarkasta.table.hyvaksy[lang]"></span>
-                <span class="fa" data-ng-class="{'fa-sort-desc': colOrder=='julkaisuntila' && !(colOrderReverse), 'fa-sort-asc': colOrder=='julkaisuntila' && (colOrderReverse)}"></span>
+                <i class="fa fa-info-circle justus-info justus-color cursor-pointer"
+                   data-popover-trigger="'outsideClick'"
+                   data-popover-is-open="popoverIsOpen"
+                   data-ng-mouseenter="popoverIsOpen = true"
+                   data-popover-placement="bottom-right"
+                   data-uib-popover="{{i18n.content.tarkasta.table.hyvaksy.tooltip[lang]}}">
+                </i>
               </th>
             </tr>
             </thead>
@@ -238,16 +256,4 @@
 
 <div data-ng-if="publications.showSpinner === true && !publications.loaded" class="loading-icon-wrapper">
     <span class="fa fa-spinner fa-spin fa-2x"></span>
-</div>
-
-
-<div class="row">
-  <div class="col-xs-12">
-
-    <button class="btn btn-lg btn-block btn-primary"
-            data-ui-sref="justus({vaihe:1})"
-            data-ng-show="publications.odottavat"
-            data-ng-bind="i18n.content.tarkasta.uusi[lang]">
-    </button>
-  </div>
 </div>
