@@ -682,6 +682,11 @@ angular.module('JustusController', [])
                 }
             };
 
+            $scope.cancelAndAndStartOver = function() {
+                $state.go('valitse');
+                JustusService.clearPublicationForm();
+            };
+
             // get alayksikkodata based on selected year
             $scope.getAlayksikkoData = function(alayksikkovuosi) {
 
