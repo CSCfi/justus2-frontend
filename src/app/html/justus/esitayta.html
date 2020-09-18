@@ -21,9 +21,9 @@
   </div>
 </div -->
 
-<div class="alert alert-default text-center" data-ng-if="justus.julkaisu.id">
-    <h4 class="text-secondary">Muokkaat julkaisua {{ justus.julkaisu.id }}, {{ justus.julkaisu.julkaisunnimi }}</h4>
-    <button class="btn btn-primary" data-ng-click="clearFormAndReturnToStart()">Hylkää muutokset ja siirry alkuun</button>
+<div class="alert alert-default text-center text-secondary" data-ng-if="justus.julkaisu.id">
+    <p class="text-2xl text-dark">Muokkaat julkaisua {{ justus.julkaisu.id }}, {{ justus.julkaisu.julkaisunnimi }}</p>
+    <button class="btn btn-primary" data-ng-click="clearFormAndReturnToStart()">Keskeytä ja siirry alkuun</button>
 </div>
 
 <div class="esitaytto-container px">
@@ -86,7 +86,7 @@
 
     <div class="row px">
         <div class="col-xs-11">
-            <label for="julkaisunnimihaku"
+            <label
                    class="h3 text-dark">{{i18n.content.esitayta.etsijulkaisu.title[lang]}}
             </label>
             <p data-ng-bind="i18n.content.esitayta.etsijulkaisu.info[lang]"></p>
@@ -187,9 +187,9 @@
     </div>
 </div>
 
-<div class="row" style="margin-top:100px">
+<div class="row px" style="margin-top:80px">
     <div class="col-xs-12 text-center">
-        <button type="button" class="btn btn-lg btn-primary" data-ng-click="julkaisuhaettu=true; useVaihe(2)">
+        <button type="button" class="btn btn-lg btn-primary pull-right" data-ng-click="julkaisuhaettu=true; useVaihe(2)">
             {{ i18n.content.esitayta.ohita[lang] }}
         </button>
     </div>
