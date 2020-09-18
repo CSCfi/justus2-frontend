@@ -1,6 +1,9 @@
 .alert-default {
   background: #ddd;
   padding: 25px;
+  > p {
+    margin-bottom: 10px;
+  }
   > button {
     font-size: 16px;
   }
