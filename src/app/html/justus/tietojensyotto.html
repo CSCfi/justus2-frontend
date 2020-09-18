@@ -39,13 +39,14 @@
          data-ng-model="req_julkaisuvuosi">
       <div class="row">
         <div class="col-sm-5 col-xs-12">
-          <input type="text" class="form-control"
+          <input type="number" class="form-control"
             name="julkaisuvuosi"
             id="julkaisuvuosi"
-            data-ng-model="justus.julkaisu.julkaisuvuosi"
-            maxlength="4"
-            pattern="^[0-9]{4}$"
-            placeholder="{{ i18n.content.form.julkaisuvuosi.picktip[lang] }}"
+                 data-ng-model="justus.julkaisu.julkaisuvuosi"
+                 min="-999" max="9999"
+                 pattern="^[0-9]{4}$"
+                 onKeyPress="if(this.value.length===4) return false;"
+                 placeholder="{{ i18n.content.form.julkaisuvuosi.picktip[lang] }}"
             title="{{ julkaisutyyppi_paa == 'F' ? i18n.content.form.julkaisuvuosi.tooltipF[lang] : i18n.content.form.julkaisuvuosi.tooltip[lang] }}"
             data-ng-keydown="resetValidationError('julkaisuvuosi')">
         </div>
