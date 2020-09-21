@@ -61,29 +61,29 @@ const i18n = {
   content: {
     valitse: {
       title: { FI: 'Valitse toiminto', SV: 'Välj funktion', EN: 'Choose function' },
-      admintitle: { FI: 'Toiminnallisuudet pääkäyttäjille', SV: 'SV Toiminnallisuudet pääkäyttäjille', EN: 'EN Toiminnallisuudet pääkäyttäjille' },
+      admintitle: { FI: 'Toiminnallisuudet pääkäyttäjille', SV: 'Funktioner för administratörer', EN: 'Functions for administrators' },
       tallenna: { 
         button: { FI: 'Tallenna julkaisu', SV: 'Spara uppgifter', EN: 'Save publication' },
         text: { 
-          FI: 'Julkaisujen tallennus on viisivaiheinen, sisältäen mahdollisuuden myös julkaisun tiedoston syöttöön organisaatiosta riippuen. Voit halutessasi esitäyttää julkaisuja Virta tai CrossRef palveluista.',
-          SV: 'Julkaisujen tallennus on viisivaiheinen, sisältäen mahdollisuuden myös julkaisun tiedoston syöttöön organisaatiosta riippuen. Voit halutessasi esitäyttää julkaisuja Virta tai CrossRef palveluista.',
-          EN: 'Julkaisujen tallennus on viisivaiheinen, sisältäen mahdollisuuden myös julkaisun tiedoston syöttöön organisaatiosta riippuen. Voit halutessasi esitäyttää julkaisuja Virta tai CrossRef palveluista.'
+          FI: 'Julkaisujen tallennus on viisivaiheinen, ja riippuen organisaatiosta, sisältää myös mahdollisuuden syöttää julkaisun tiedosto. Voit halutessasi esitäyttää julkaisun tiedot Virta tai CrossRef palveluista.',
+          SV: 'Spara uppgifter –processen består av fem steg, och beroende på organisation, inkluderar även möjligheten att ange en publikationsfil. Du kan importera publikationsdata från Virta eller CrossRef databas.',
+          EN: 'Save publication –function has five steps, and depending on the organization, also includes the option to add a file for the publication. You may also choose to prefill the publication information from the Virta or CrossRef service databases. '
         },
       },
       omat: { 
         button: { FI: 'Omat tallennukset', SV: 'Mina publikationer', EN: 'My publications' },
         text: { 
-          FI: 'Kaikki käyttäjän tallentamat julkaisutiedot näkyvät Omat tallennukset -näkymässä. Näkymä jakautuu hyväksymistä odottaviin julkaisuihin ja hyväksyttyihin julkaisuihin.', 
-          SV: 'Kaikki käyttäjän tallentamat julkaisutiedot näkyvät Omat tallennukset -näkymässä. Näkymä jakautuu hyväksymistä odottaviin julkaisuihin ja hyväksyttyihin julkaisuihin.',
-          EN: 'All publication information entered by the user is listed on My publications page. It is divided into Publications waiting for handling and Handled publications sections.'
+          FI: 'Kaikki käyttäjän tallentamat julkaisutiedot näkyvät Omat tallennukset -näkymässä. Näkymä jakautuu käsittelyä odottaviin julkaisuihin ja käsiteltyihin julkaisuihin.',
+          SV: 'Alla publikationsinformation som sparats av användaren visas I Mina publikationer vy. Vyn är uppdelad i publikationer som väntar på behandlingen och behandlade publikationer.',
+          EN: 'All publication information saved by the user are shown in the My publications –section. The section is divided into pending publications and processed publications.'
         },
       },
       hyvaksy: { 
         button: { FI: 'Hyväksy tallennuksia', SV: 'Godkänn uppgifter', EN: 'Approve publications' },
         text: { 
-          FI: 'Hyväksy tallennuksia näkymässä näkyvät kaikki oman organisaation rivi- ja pääkäyttäjien lisäämät julkaisutiedot. Näkymä jakautuu hyväksymistä odottaviin julkaisuihin ja hyväksyttyihin julkaisuihin.', 
-          SV: 'Hyväksy tallennuksia näkymässä näkyvät kaikki oman organisaation rivi- ja pääkäyttäjien lisäämät julkaisutiedot. Näkymä jakautuu hyväksymistä odottaviin julkaisuihin ja hyväksyttyihin julkaisuihin.',
-          EN: 'Only the organisation\'s administrators are able to access the "Approve publications". From here they are able to see all the publication information entered by any of the organisation\'s standard users and administrators. It is divided into Publications waiting for handling and Handled publications sections.'
+          FI: 'Hyväksy tallennuksia -näkymässä näkyvät kaikki oman organisaation rivi- ja pääkäyttäjien lisäämät julkaisutiedot. Näkymä jakautuu käsittelyä odottaviin julkaisuihin ja käsiteltyihin julkaisuihin.',
+          SV: 'Godkänn uppgifter vy visas alla publikationer som har sparats av organisationens medlemmar. Vyn är uppdelad i publikationer som väntar på behandlingen och behandlade publikationer.',
+          EN: 'All publication information saved by all of the organizations users are shown in the Approve publications -section. The section is divided into pending publications and processed publications.'
         },
       },
       admin: { 
@@ -905,8 +905,8 @@ const i18n = {
       tallennus: { FI: 'Tarkista ja tallenna', SV: 'Granska och spara', EN: 'Verify and save' }
     },
     tarkasta: {
-      odottavat: { FI: 'Käsittelyä odottavat julkaisut', SV: 'I väntan på behandling', EN: 'Publications waiting for handling' },
-      hyvaksytyt: { FI: 'Käsitellyt julkaisut', SV: 'Behandlade publikationer', EN: 'Handled publications' },
+      odottavat: { FI: 'Käsittelyä odottavat julkaisut', SV: 'I väntan på behandling', EN: 'Pending publications' },
+      hyvaksytyt: { FI: 'Käsitellyt julkaisut', SV: 'Behandlade publikationer', EN: 'Processed publications'  },
       julkaisuja: { FI: 'Julkaisuja', SV: 'Publikationer', EN: 'Publications' },
         table: {
         julkaisuid: { FI: 'JulkaisuID', SV: 'PublikationID', EN: 'PublicationID' },
