@@ -62,7 +62,7 @@ angular.module('DirectivesModule', [])
           validate: '=',
           field: '@',
           value: '=',
-
+          index: '=?'
         },
         link: function(scope, element, attr, mCtrl) {
             if (!scope.validate) return;
@@ -76,6 +76,17 @@ angular.module('DirectivesModule', [])
                     }
                 }
             }
+
+            else if (scope.field === 'alayksikko') {
+             if (JustusService.isFieldRequired(scope.field)) {
+                    if (JustusService.fieldIsEmpty(scope.value)) {
+                        let elements =  document.getElementsByClassName('alayksikko-error');
+                        angular.element(elements[scope.index]).addClass('has-error has-feedback');
+                    }
+                }
+
+            }
+
             else {
                 if (JustusService.isFieldRequired(scope.field)) {
                     if (JustusService.fieldIsEmpty(scope.value)) {

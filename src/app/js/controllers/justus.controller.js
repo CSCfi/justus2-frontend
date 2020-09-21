@@ -172,15 +172,24 @@ angular.module('JustusController', [])
                 $scope.justus.organisaatiotekija[parIndex].alayksikko[index] = input;
             };
 
-            $scope.removeAlayksikko = function(parentIndex, index) {
+            $scope.useAlayksikko = function(index, input) {
+
+                if (arrayContains($scope.justus.organisaatiotekija[index].alayksikko, input)) return;
+
+                if ($scope.justus.organisaatiotekija[index].alayksikko[0] === null) {
+                    $scope.justus.organisaatiotekija[index].alayksikko[0] = input;
+                } else {
+                    $scope.justus.organisaatiotekija[index].alayksikko.push(input);
+                }
+
+            };
+
+            $scope.addAlayksikko = function(parentIndex, index) {
                 $scope.justus.organisaatiotekija[parentIndex].alayksikko.splice(index, 1);
             };
 
-            $scope.getArvo = function(alayksikkoKoodi) {
-              if ($scope.alayksikkovuosi.selected["id"] === 2019) {
-                  return "";
-              } else
-                  return alayksikkoKoodi;
+            $scope.poistaAlayksikko = function(parentIndex, index) {
+                $scope.justus.organisaatiotekija[parentIndex].alayksikko.splice(index, 1);
             };
 
             $scope.useOrganisaatiotekijaRooli = function(parIndex, input) {
@@ -615,10 +624,6 @@ angular.module('JustusController', [])
                 $scope.eirinnakkaistellennettava = true;
                 $scope.fileAlreadyExists = false;
             };
-
-            // $scope.useRequiredHighlight = function() {
-            //     $scope.requiredHighlight = !$scope.requiredHighlight;
-            // };
 
             $scope.useField = function(type, field, input) {
 

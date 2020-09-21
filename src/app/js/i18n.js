@@ -261,7 +261,13 @@ const i18n = {
 	
         sukunimi: { FI: 'Sukunimi', SV: 'Efternamn', EN: 'Surname', picktip: { FI: 'Sukunimi', SV: 'Efternamn', EN: 'Surname' } },
         etunimet: { FI: 'Etunimet', SV: 'Förnamn', EN: 'First names', picktip: { FI: 'Etunimet', SV: 'Förnamn', EN: 'First names' } },
-        alayksikko: { FI: 'Alayksikkö', SV: 'Enhet', EN: 'Organisational unit', picktip: { FI: 'Alayksikkö', SV: 'Enhet', EN: 'Organisational unit' } },
+        alayksikko: { FI: 'Alayksikkö', SV: 'Enhet', EN: 'Organisational unit',
+          picktip: { FI: 'Alayksikkö', SV: 'Enhet', EN: 'Organisational unit' },
+          placeholder: {
+            vuosi: { FI: 'Valitse vuosi', SV: 'Välj året', EN: 'Choose year' },
+            lisaa: { FI: 'Valitse alayksikkö', SV: 'SV Valitse alayksikkö', EN: 'EN Valitse alayksikkö' },
+          }
+        },
         alayksikkovuosi: { FI: 'Alayksikkökoodiston vuosiversio', SV: 'Year of organisational unit', EN: 'Year of organisational unit',
           picktip: { FI: 'Valitse vuosi', SV: 'Choose year', EN: 'Choose year' },
           tooltip: {
