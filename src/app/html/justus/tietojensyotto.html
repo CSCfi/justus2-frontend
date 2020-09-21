@@ -1067,11 +1067,15 @@
                  </ui-select-choices>
                </ui-select>
            </div>
-           <div class="col-xs-2">
-              <button class="btn btn-primary"
-                          data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]"
-                          data-ng-click="resetField('julkaisunkieli')">
-              </button>
+           <div class="col-xs-2 mt-x">
+             <a
+                     data-ng-click="resetField('julkaisunkieli')"
+                     class="text-danger cursor-pointer text-secondary"
+                     data-ng-hide="!justus.julkaisu.julkaisunkieli || justus.julkaisu.julkaisunkieli === ''"
+                     title="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]}}">
+               {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]}}
+               <i class="fa fa-close"></i>
+             </a>
            </div>
          </div>
        </div>
@@ -1163,11 +1167,15 @@
                </ui-select-choices>
              </ui-select>
            </div>
-           <div class="col-xs-2">
-             <button class="btn btn-primary"
-                     data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]"
-                     data-ng-click="resetField('julkaisumaa')">
-             </button>
+           <div class="col-xs-2 mt-x">
+             <a
+               data-ng-click="resetField('julkaisumaa')"
+               class="text-danger cursor-pointer text-secondary"
+               data-ng-hide="!justus.julkaisu.julkaisumaa || justus.julkaisu.julkaisumaa === ''"
+               title="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]}}">
+               {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]}}
+               <i class="fa fa-close"></i>
+             </a>
            </div>
          </div>
        </div>
