@@ -716,7 +716,8 @@ const i18n = {
         }
       },
       jufotunnus: { FI: 'JUFO-ID', SV: 'JUFO-ID', EN: 'JUFO-ID' },
-      jufoluokitus: { FI: 'JUFO-luokitus', SV: 'JUFO-klassificering', EN: 'JUFO-classification' }
+      jufoluokitus: { FI: 'JUFO-luokitus', SV: 'JUFO-klassificering', EN: 'JUFO-classification' },
+      pakollinenkentta:  { FI: 'Pakollinen kenttä', SV: 'Obligatoriskt fält', EN: 'Required field' },
     },
     rinnakkaistallennusform: {
         rinnakkaistallennettava: {
