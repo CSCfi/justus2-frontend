@@ -1,8 +1,17 @@
 <div data-ng-controller="JulkaisunsyottoController">
 
-    <h4 class="text-secondary font-weight-bold">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="breadcrumb">
+                <h1 data-ng-bind="i18n.header.navigation.tallenna[lang]"></h1> <span><i class="fa fa-chevron-right"></i></span>
+                <h2 data-ng-bind="i18n.content.vaihevuo.rinnakkaistallennus[lang]"></h2>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="text-secondary ">
         Valitse yksi seuraavista:
-    </h4>
+    </h3>
 
     <div data-ng-show="showPublicationInput" class="m-b">
         <div class="bg-light p-1">

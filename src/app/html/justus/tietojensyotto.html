@@ -2,9 +2,18 @@
   <span class="text-2xl text-dark">Muokkaat julkaisua {{ justus.julkaisu.id }}, {{ justus.julkaisu.julkaisunnimi }}</span>
 </div>
 
+<div class="row">
+  <div class="col-xs-12">
+    <div class="breadcrumb">
+      <h1 data-ng-bind="i18n.header.navigation.tallenna[lang]"></h1> <span><i class="fa fa-chevron-right"></i></span>
+      <h2 data-ng-bind="i18n.content.vaihevuo.tietojensyotto[lang]"></h2>
+    </div>
+  </div>
+</div>
+
 
 <div role="form" data-ng-if="!loading.publication" class="form-container">
-  <h3 class="form-header">{{i18n.content.tietojensyotto.yleiset[lang]}}</h3>
+  <h3 class="form-header mt-0 text-secondary">{{i18n.content.tietojensyotto.yleiset[lang]}}</h3>
 
   <!-- alun yhteiset -->
   <div class="px">
@@ -463,7 +472,7 @@
     </div>
   </div>
 
-  <h3 class="form-header">{{i18n.content.tietojensyotto.bibliografiset[lang]}}</h3>
+  <h3 class="form-header text-secondary">{{i18n.content.tietojensyotto.bibliografiset[lang]}}</h3>
 
   <div class="px">
   <!-- julkaisutyypistä riippuvat -->
@@ -990,7 +999,7 @@
     </div>
   </div>
 
-  <h3 class="form-header">{{i18n.content.tietojensyotto.muut[lang]}}</h3>
+  <h3 class="form-header text-secondary">{{i18n.content.tietojensyotto.muut[lang]}}</h3>
 
    <div class="px">
   <!-- loput kentät -->

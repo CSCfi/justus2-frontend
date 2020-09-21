@@ -1,23 +1,32 @@
 <div class="row no-gutter m-b">
   <div class="col-xs-6 text-center">
-    <h2 class="justus-btn justus-btn-stage" data-ng-class="{selected: publications.odottavat}"
+    <div class="justus-btn justus-btn-stage" data-ng-class="{selected: publications.odottavat}"
          data-ng-click="publications.odottavat=true; resetData()"
           data-ui-sref="{{state.name}}({tila:'odottavat'})">
       <span data-ng-bind="i18n.content.tarkasta.odottavat[lang]"></span>
-    </h2>
+    </div>
   </div>
   <div class="col-xs-6 text-center">
-    <h2 class="justus-btn justus-btn-stage" data-ng-class="{selected: !publications.odottavat}"
+    <div class="justus-btn justus-btn-stage" data-ng-class="{selected: !publications.odottavat}"
          data-ng-click="publications.odottavat=false; resetData()"
          data-ui-sref="{{state.name}}({tila:'kasitellyt'})">
       <span data-ng-bind="i18n.content.tarkasta.hyvaksytyt[lang]"></span>
-    </h2>
+    </div>
   </div>
 </div>
 
-<div class="row pxs">
+<div class="row">
+  <div class="col-xs-12">
+    <div class="breadcrumb">
+      <h1 data-ng-bind="state.name === 'omat' ? i18n.header.navigation.omat[lang] : i18n.header.navigation.hyvaksy[lang]"></h1> <span><i class="fa fa-chevron-right"></i></span>
+      <h2 data-ng-bind="publications.odottavat ? i18n.content.tarkasta.odottavat[lang] : i18n.content.tarkasta.hyvaksytyt[lang]"></h2>
+    </div>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-xs-6">
-    <span class="font-weight-700 text-xl text-secondary">{{i18n.content.tarkasta.julkaisuja[lang]}}: {{publications.count}}</span>
+    <span class="font-weight-700 text-xl text-secondary pl-x">{{i18n.content.tarkasta.julkaisuja[lang]}}: {{publications.count}}</span>
   </div>
   <div data-ng-show="!publications.odottavat" class="col-xs-6">
     <button type="button"
@@ -48,7 +57,7 @@
              is-open="status.open"
              data-ng-class="{'opened': status.open}">
           <uib-accordion-heading class="bg-light">
-            <div>
+            <div class="py">
               Hae julkaisuista
               <i class="pull-right glyphicon"
                  data-ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
@@ -133,7 +142,7 @@
   </div>
 </div>
 
-  <div class="row" >
+  <div class="row m-t">
     <div class="col-xs-12 table-responsive">
         <div infinite-scroll-disabled="publications.loaded"
                 infinite-scroll="publications.nextPage(searchMode, search)" infinite-scroll-distance="1"
