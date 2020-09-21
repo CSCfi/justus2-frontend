@@ -22,8 +22,13 @@ const i18n = {
     }
   },
   footer: {
+
+    ohjeet: { FI: 'Palvelun ohjeet', SV: 'Instruktioner', EN: 'Instructions ' },
+    sivukartta: { FI: 'Sivukartta', SV: 'Sidkarta', EN: 'Sitemap'  },
+    saavutettavuusseloste: { FI: 'Saavutettavuusseloste', SV: 'Tillgänglighetsutlåtande', EN: 'Accessibility statement' },
+    tietosuoja: { FI: 'Tietosuoja', SV: 'Dataskydd', EN: 'Privacy' },
     help: {
-      title: { FI: 'Käyttötuki', SV: 'Helpdesk', EN: 'Helpdesk' },
+      title: { FI: 'Käyttötuki', SV: 'Användarstöd', EN: 'Support' },
       email: { FI: 'justus@csc.fi', SV: 'justus@csc.fi', EN: 'justus@csc.fi' },
       time: { FI: 'ma-pe klo 8.30-16', SV: 'mån-fre 8.30-16', EN: 'Mon-Fri 8.30am-4pm' }
     },
@@ -31,7 +36,8 @@ const i18n = {
       name: { FI: 'CSC - TIETEEN TIETOTEKNIIKAN KESKUS OY', SV: 'CSC - TIETEEN TIETOTEKNIIKAN KESKUS OY', EN: 'CSC - IT CENTER FOR SCIENCE LTD' },
       address: { FI: 'PL 405, 02101 Espoo', SV: 'PL 405, 02101 Espoo', EN: 'P.O. Box 405, FI-02101 Espoo' },
       phone: { FI: 'puh. (09) 457 2001', SV: 'tel. +358 (0)9 457 2001', EN: 'tel. +358 (0)9 457 2001' }
-    }
+    },
+    palveluntarjoaa: { FI: 'Palvelun tarjoaa', SV: 'Tjänsten tillhandahålls av', EN: 'The service is provided by' }
   },
   etusivu: {
     kirjaudu: { FI: 'Kirjaudu JUSTUS-palveluun', SV: 'Logga in', EN: 'Log in to JUSTUS-service' },
