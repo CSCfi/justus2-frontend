@@ -466,8 +466,8 @@ angular.module('JustusController', [])
                 });
             };
 
-            $scope.removeIssn = function(issnIndex) {
-                $scope.justus.julkaisu.issn.splice(issnIndex, 1);
+            $scope.removeIssn = function() {
+                $scope.justus.julkaisu.issn.splice($scope.justus.julkaisu.issn.length-1, 1)
                 $scope.issnDescription = [];
             };
 
