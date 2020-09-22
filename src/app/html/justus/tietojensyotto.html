@@ -219,7 +219,10 @@
         <label id="organisaatiokijat" class="control-label"
                data-ng-bind="i18n.content.form.organisaatiotekija[lang]"></label>
         <i class="fa fa-info-circle justus-info"
-           data-popover-trigger="'mouseenter'" data-popover-placement="right"
+           data-popover-trigger="'outsideClick'"
+           data-popover-is-open="popoverIsOpen"
+           data-ng-mouseenter="popoverIsOpen = true"
+           data-popover-placement="right"
            data-uib-popover="{{julkaisutyyppi_paa == 'F' ? i18n.content.form.organisaatiotekija.tooltipF[lang] : i18n.content.form.organisaatiotekija.tooltip[lang]}}"
            data-ng-show="i18n.content.form.organisaatiotekija.tooltip[lang]">
         </i>
