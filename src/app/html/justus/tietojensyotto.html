@@ -1,5 +1,5 @@
 <div class="alert alert-default text-center text-secondary" data-ng-if="justus.julkaisu.id">
-  <span class="text-2xl text-dark">Muokkaat julkaisua {{ justus.julkaisu.id }}, {{ justus.julkaisu.julkaisunnimi }}</span>
+  <span class="text-2xl text-dark">{{i18n.content.alert.text[lang]}}  {{ justus.julkaisu.id }}, {{ justus.julkaisu.julkaisunnimi }}</span>
 </div>
 
 <div class="row">
@@ -1850,14 +1850,14 @@
     <button class="btn btn-info btn-lg btn-block"
             type="reset"
             data-ng-click="useVaihe(2)">
-      Palaa edelliseen vaiheeseen
+      {{i18n.content.tietojensyotto.palaa[lang]}}
     </button>
   </div>
   <div class="col-md-3 margin-bottom-md">
     <button class="btn btn-danger btn-lg btn-block"
             type="reset"
             data-ng-click="cancelAndAndStartOver()">
-      Hylkää muutokset
+      {{i18n.content.tietojensyotto.hylkaa[lang]}}
     </button>
   </div>
   <div class="col-md-6">

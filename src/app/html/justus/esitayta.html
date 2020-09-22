@@ -22,8 +22,8 @@
 </div -->
 
 <div class="alert alert-default text-center text-secondary" data-ng-if="justus.julkaisu.id">
-    <p class="text-2xl text-dark">Muokkaat julkaisua {{ justus.julkaisu.id }}, {{ justus.julkaisu.julkaisunnimi }}</p>
-    <button class="btn btn-primary" data-ng-click="clearFormAndReturnToStart()">Keskeytä ja siirry alkuun</button>
+    <p class="text-2xl text-dark">{{i18n.content.alert.text[lang]}} {{ justus.julkaisu.id }}, {{ justus.julkaisu.julkaisunnimi }}</p>
+    <button class="btn btn-primary" data-ng-click="clearFormAndReturnToStart()">{{i18n.content.alert.button[lang]}}</button>
 </div>
 
 <div class="esitaytto-container px">
@@ -58,8 +58,8 @@
             <button type="submit"
                     class="btn btn-primary pull-right"
                     data-ng-disabled="!julkaisunhakudoi.length"
-                    data-ng-click="useJulkaisunnimi('CrossRef',julkaisunhakudoi,  false)"
-                    >Hae
+                    data-ng-click="useJulkaisunnimi('CrossRef',julkaisunhakudoi, false)"
+                    data-ng-bind="i18n.content.esitayta.doihaku.hae[lang]">
             </button>
         </div>
     </div>
@@ -72,7 +72,8 @@
 
     <div class="row px" data-ng-if="crossRefResult.length">
         <div class="col-xs-12">
-            <p class="text-secondary h4 font-weight-bold">Löytyi julkaisu:</p>
+            <p class="text-secondary h4 font-weight-bold"
+                data-ng-bind="i18n.content.esitayta.doihaku.tulos[lang]"></p>
             <p class="h4 text-dark font-weight-bold">
                 {{crossRefResult}}
             </p>
@@ -86,12 +87,9 @@
 
     <div data-ng-show="noCrossRefResults" class="row px">
         <div class="col-xs-12">
-            <p class="text-secondary text-dark pl-x text-xl">
-                DOI-tunnistetta vastaavaa julkaisua ei löytynyt. Tarkista että syöttämäsi tunniste on oikein.
-            </p>
+            <p class="text-secondary text-dark pl-x text-xl" data-ng-bind="i18n.content.esitayta.doihaku.eituloksia[lang]"></p>
         </div>
     </div>
-
 
     <div class="row px">
         <div class="col-xs-11">
@@ -106,14 +104,15 @@
     <div class="row px">
         <div class="col-xs-11">
             <label class="control-label font-weight-bold"
-                   for="tekijannimi">
-                Rajaa hakua halutessasi tekijän nimellä (valinnainen)
+                   for="tekijannimi"
+                    data-ng-bind="i18n.content.esitayta.etsijulkaisu.tekija[lang]">
+
             </label>
             <div class="form-group">
                 <input id="tekijannimi"
                        type="text" class="form-control"
                        data-ng-model="julkaisunhakutekija"
-                       placeholder="{{i18n.content.esitayta.etsijulkaisu.tekija.tooltip[lang]}}">
+                       placeholder="{{i18n.content.esitayta.etsijulkaisu.tekija[lang]}}">
             </div>
         </div>
     </div>
@@ -148,20 +147,21 @@
                     style="margin-top:27px;"
                     class="btn btn-primary"
                     data-ng-disabled="!hakusana || hakusana.length < 5"
-                    data-ng-click="refreshJulkaisunnimet($event, hakusana, julkaisunhakutekija)">Hae
+                    data-ng-click="refreshJulkaisunnimet($event, hakusana, julkaisunhakutekija)"
+                    data-ng-bind="i18n.content.esitayta.doihaku.hae[lang]">
             </button>
         </div>
     </div>
 
     <div data-ng-show="noResults" class="row px">
         <div class="col-xs-12">
-            <p class="text-secondary text-dark pl-x text-xl">Ei hakutuloksia annetuilla hakuehdoilla. Tarkasta hakuehdot.</p>
+            <p class="text-secondary text-dark pl-x text-xl" data-ng-bind="i18n.content.esitayta.etsijulkaisu.eituloksia[lang]"></p>
         </div>
     </div>
 
     <div class="row px" data-ng-show="valittuJulkaisu">
         <div class="col-xs-12">
-            <p class="text-secondary h4 font-weight-bold">Valittuna julkaisu:</p>
+            <p class="text-secondary h4 font-weight-bold" data-ng-bind="i18n.content.esitayta.etsijulkaisu.valittuna[lang]"></p>
 
             <p class="h4 text-dark">
                 <span>{{valittuJulkaisu.source}}</span>  <span class="pl-x">{{valittuJulkaisu.doi}}</span>

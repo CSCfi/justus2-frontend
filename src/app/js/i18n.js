@@ -59,6 +59,10 @@ const i18n = {
     }
   },
   content: {
+    alert: {
+      text: {  FI: 'Muokkaat julkaisua', SV: 'Muokkaat julkaisua', EN: 'Muokkaat julkaisua' },
+      button: {  FI: 'Keskeytä ja siirry alkuun', SV: 'Keskeytä ja siirry alkuun', EN: 'Keskeytä ja siirry alkuun' }
+    },
     valitse: {
       title: { FI: 'Valitse toiminto', SV: 'Välj funktion', EN: 'Choose function' },
       admintitle: { FI: 'Toiminnallisuudet pääkäyttäjille', SV: 'Funktioner för administratörer', EN: 'Functions for administrators' },
@@ -141,21 +145,30 @@ const i18n = {
           SV: 'Hämta publikationsdata från den internationella CrossRef-publikationsdatabasen med hjälp av DOI.',
           EN: 'You can prefill publication information by using a DOI-link. The information is retrieved from the CrossRef-service'
         },
-        hae: { FI: 'Hae julkaisun tiedot ja vie lomakkeelle', SV: 'Hämta', EN: 'Search' }
+        hae: { FI: 'Hae', SV: 'Hämta', EN: 'Search' },
+        tulos: { FI: 'Löytyi julkaisu:', SV: 'Löytyi julkaisu:', EN: 'Löytyi julkaisu:' },
+        eituloksia: { 
+          FI: 'DOI-tunnistetta vastaavaa julkaisua ei löytynyt. Tarkista että syöttämäsi tunniste on oikein.', 
+          SV: 'DOI-tunnistetta vastaavaa julkaisua ei löytynyt. Tarkista että syöttämäsi tunniste on oikein.', 
+          EN: 'DOI-tunnistetta vastaavaa julkaisua ei löytynyt. Tarkista että syöttämäsi tunniste on oikein.' 
+        },
       },
       etsijulkaisu: {
         title: { FI: 'Hae tietoja julkaisun nimellä', SV: 'Hämta uppgifter på titel', EN: 'Search using publication\'s name' },
         picktip: { FI: 'Hae julkaisun nimellä (vähintään viisi merkkiä)', SV: 'Hämta på titel', EN: 'Search publication\'s name' },
         tekija: {
-          FI: 'Kirjoita hakuehto: tekijä',
-          SV: '*SV*Kirjoita hakuehto: tekijä',
-          EN: 'Enter the author',
-          tooltip: { FI: 'Rajaa hakua halutessasi tekijän nimellä', SV: 'Avgränsa sökningen med författarens namn', EN: 'Filter search using the author\'s name' }
+         FI: 'Rajaa hakua halutessasi tekijän nimellä', SV: 'Avgränsa sökningen med författarens namn', EN: 'Filter search using the author\'s name' 
         },
         info: {
           FI: 'Voit hakea ja esitäyttää julkaisutietoja myös VIRTA- tai CrossRef -palveluista löytyvillä tiedoilla. Hakua voi rajata julkaisun tekijän nimellä ja haku kohdistuu julkaisun nimeen.',
           SV: 'Hämta uppgifter från den internationella CrossRef-publikationsdatabasen eller den nationella VIRTA-databasen genom att börja skriva in publikationens titel och välj från listan som visas.',
           EN: 'You can also prefill the publication information by searching for it from the VIRTA- and CrossRef-service. The search can be filtered by using the author\'s name and the search is performed using the publication\'s name'
+        },
+        valittuna: { FI: 'Valittuna julkaisu:', SV: 'Valittuna julkaisu:', EN: 'Valittuna julkaisu:' },
+        eituloksia: {
+          FI: 'Ei hakutuloksia annetuilla hakuehdoilla. Tarkasta hakuehdot.', 
+          SV: 'Ei hakutuloksia annetuilla hakuehdoilla. Tarkasta hakuehdot.', 
+          EN: 'Ei hakutuloksia annetuilla hakuehdoilla. Tarkasta hakuehdot.' 
         }
       },
       uudestaan: {
@@ -726,6 +739,7 @@ const i18n = {
       pakollinenkentta:  { FI: 'Pakollinen kenttä', SV: 'Obligatoriskt fält', EN: 'Required field' },
     },
     rinnakkaistallennusform: {
+	   otsikko: {  FI: 'Valitse yksi seuraavista:', SV: 'Valitse yksi seuraavista:', EN: 'Choose one:' },
         rinnakkaistallennettava: {
             otsikko: {
                FI: 'Syötä julkaisun tiedosto',
@@ -896,7 +910,9 @@ const i18n = {
       },
       rinnakkaistallennusvalinta: { FI: 'Siirry julkaisun tiedoston valintaan', SV: 'Fortsätt till publikation av filval', EN: 'Proceed to publication file selection' },
       jatka: { FI: 'Siirry esikatseluun', SV: 'Förhandsgranska', EN: 'Preview' },
-      keskeyta: { FI: 'Hylkää ja mene omiin tallennuksiin', SV: 'Avbryt och go till egna publikationer ', EN: 'Discard and go to saved publications' }
+      palaa: { FI: 'Palaa edelliseen vaiheeseen', SV: 'Palaa edelliseen vaiheeseen', EN: 'Return' },
+      palaamuokkaamaan: { FI: 'Palaa muokkaamaan', SV: 'Palaa muokkaamaan', EN: 'Return' },
+      hylkaa: { FI: 'Hylkää muutokset', SV: 'Avbryt', EN: 'Discard' }
     },
     tallennus: {
       tallenna: { FI: 'Tallenna tiedot ja siirry julkaisulistaukseen', SV: 'Spara och gå till publikationslistan', EN: 'Save changes and go to publication list' },

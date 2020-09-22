@@ -362,7 +362,7 @@
               class="btn btn-lg btn-block btn-info"
               type="submit"
               data-ng-click="useVaihe(3)">
-        Palaa muokkaamaan
+        {{i18n.content.tietojensyotto.palaamuokkaamaan[lang]}}
       </button>
     </div>
         <div class="col-md-3 margin-bottom-md">
@@ -372,8 +372,7 @@
                   type="reset"
                   data-ng-disabled="publicationSaveInProgress"
                   data-ng-click=cancelAndReturnToPublicationListing()>
-<!--            {{i18n.content.tallennus.hylkaa[lang]}}-->
-            Hylkää muutokset
+            {{i18n.content.tietojensyotto.hylkaa[lang]}}
           </button>
         </div>
     <div class="col-md-6">

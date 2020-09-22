@@ -9,8 +9,7 @@
         </div>
     </div>
 
-    <h3 class="text-secondary ">
-        Valitse yksi seuraavista:
+    <h3 class="text-secondary" data-ng-bind="i18n.content.rinnakkaistallennusform.otsikko[lang]">
     </h3>
 
     <div data-ng-show="showPublicationInput" class="m-b">
@@ -422,7 +421,7 @@
                     class="btn btn-lg btn-block btn-info"
                     type="submit"
                     data-ng-click="useVaihe(3)">
-                Palaa edelliseen vaiheeseen
+                {{i18n.content.tietojensyotto.palaa[lang]}}
             </button>
         </div>
         <div class="col-md-8">
