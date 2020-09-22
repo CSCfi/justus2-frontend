@@ -923,7 +923,7 @@ const i18n = {
       esitayta: { FI: 'Esitäytä tiedot', SV: 'Sök bland publikationer', EN: 'Prefill the form' },
       tietojensyotto: { FI: 'Syötä julkaisutiedot', SV: 'Mata in uppgifter', EN: 'Enter publication information' },
       julkaisunsyotto: { FI: 'Rinnakkaistallenna julkaisu', SV: 'Mata in publikation', EN: 'Enter publication' },
-      rinnakkaistallennus: { FI: "Rinnakkaistallennus", SV: "*SV Rinnakkaistallennus", EN: "*EN Rinnakkaistallennus" },
+      rinnakkaistallennus: { FI: "Rinnakkaistallennus", SV: "Parallellpublicering", EN: "Self-archiving" },
       tallennus: { FI: 'Tarkista ja tallenna', SV: 'Granska och spara', EN: 'Verify and save' }
     },
     tarkasta: {
