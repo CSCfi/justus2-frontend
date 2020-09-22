@@ -759,7 +759,7 @@
                       data-ng-bind="i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]">
               </button>
             </div>
-            <div class="m-t pl-x">
+            <div class="m-t pl-x" data-ng-style="(issnDescription[0]) ? {'padding-top': '18px'} : {}">
               <a
                       data-ng-click="removeIssn()"
                       class="text-danger cursor-pointer text-secondary"
