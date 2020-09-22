@@ -13,7 +13,7 @@
     </div>
     <div class="col-xs-12 col-md-6 pull-right text-right text-md pl-0">
         <div data-ng-if="state.name!='index' && user">
-            <span class="font-weight-bold">{{user.name}},</span>&nbsp;
+            <span class="font-weight-bold">{{user.name}},</span>
             <span>
         <span data-ng-if="initialRole === 'owner'" class="text-capitalize">{{user.role}}, {{ user.organization.code}}:&nbsp;</span>{{ user.organization.name }}</span>
             <span>| <a href="" data-ng-click="logout()">{{i18n.header.logout[lang]}}</a></span>
