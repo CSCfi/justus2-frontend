@@ -46,6 +46,7 @@
         <div class="col-xs-11">
             <div class="form-group">
                 <input id="doihaku"
+                       data-ng-disabled="crossrefLataa"
                        name="doihaku"
                        type="text"
                        data-ng-model="julkaisunhakudoi"
@@ -57,29 +58,39 @@
         <div class="col-xs-1">
             <button type="submit"
                     class="btn btn-primary pull-right"
-                    data-ng-disabled="!julkaisunhakudoi.length"
-                    data-ng-click="useJulkaisunnimi('CrossRef',julkaisunhakudoi, false)"
+                    data-ng-disabled="!julkaisunhakudoi.length || crossrefLataa"
+                    data-ng-click="useJulkaisunnimiCrossRef(julkaisunhakudoi)"
                     data-ng-bind="i18n.content.esitayta.doihaku.hae[lang]">
             </button>
         </div>
     </div>
 
-    <div class="row px">
-        <div class="col-xs-6">
-            <i class="fa fa-spinner fa-spin fa-3x pull-right" data-ng-if="crossrefLataa"></i>
+    <div class="row px" data-ng-if="crossrefLataa">
+        <div class="col-xs-12 text-center text-dark">
+            <i class="fa fa-spinner fa-spin fa-3x"></i>
+            <p class="text-secondary m-t">Haku käynnissä, odotathan...</p>
         </div>
     </div>
 
-    <div class="row px" data-ng-if="crossRefResult.length">
+<!--    <div class="row px">-->
+<!--        <div class="col-xs-6">-->
+<!--            <i class="fa fa-spinner fa-spin fa-3x pull-right" data-ng-if="crossrefLataa"></i>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <div class="row px" data-ng-if="crossRefhaettu">
         <div class="col-xs-12">
             <p class="text-secondary h4 font-weight-bold"
                 data-ng-bind="i18n.content.esitayta.doihaku.tulos[lang]"></p>
+            <p class="text-xl text-dark">
+                {{crossRefJulkaisu.doitunniste}}
+            </p>
             <p class="h4 text-dark font-weight-bold">
-                {{crossRefResult}}
+                {{crossRefJulkaisu.julkaisunnimi}}
             </p>
             <button type="button"
                     class="btn btn-primary mt-x"
-                    data-ng-click="useJulkaisunnimi('CrossRef', julkaisunhakudoi)"
+                    data-ng-click="useCrossRefEsitaytto(crossRefJulkaisu)"
                     data-ng-bind="i18n.content.esitayta.hae[lang]">
             </button>
         </div>
@@ -87,7 +98,17 @@
 
     <div data-ng-show="noCrossRefResults" class="row px">
         <div class="col-xs-12">
+            <div class="alert alert-danger">
             <p class="text-secondary text-dark pl-x text-xl" data-ng-bind="i18n.content.esitayta.doihaku.eituloksia[lang]"></p>
+            </div>
+        </div>
+    </div>
+
+    <div data-ng-show="crossRefServerError" class="row px">
+        <div class="col-xs-12">
+            <div class="alert alert-danger">
+            <p class="text-secondary text-dark pl-x text-xl">Crossref palvelu ei vastaa, se voi olla esimerkiksi kovan kuormituksen alaisena. Yritä hetken kuluttua uudestaan.</p>
+            </div>
         </div>
     </div>
 
@@ -111,6 +132,7 @@
             <div class="form-group">
                 <input id="tekijannimi"
                        type="text" class="form-control"
+                       data-ng-disabled="crossrefTaiVirtaLataa"
                        data-ng-model="julkaisunhakutekija"
                        placeholder="{{i18n.content.esitayta.etsijulkaisu.tekija[lang]}}">
             </div>
@@ -127,6 +149,7 @@
             <input class="form-control" type="text"
                    data-ng-model="hakusana"
                    id="julkaisunnimihaku"
+                   data-ng-disabled="crossrefTaiVirtaLataa"
                    placeholder="{{i18n.content.esitayta.etsijulkaisu.picktip[lang]}}">
             <div class="btn-group" uib-dropdown is-open="searchDropDownStatus.isopen">
                 <ul class="custom-dropdown position-relative" uib-dropdown-menu role="menu"
@@ -146,7 +169,7 @@
             <button type="button"
                     style="margin-top:27px;"
                     class="btn btn-primary"
-                    data-ng-disabled="!hakusana || hakusana.length < 5"
+                    data-ng-disabled="!hakusana || hakusana.length < 5 || crossrefTaiVirtaLataa"
                     data-ng-click="refreshJulkaisunnimet($event, hakusana, julkaisunhakutekija)"
                     data-ng-bind="i18n.content.esitayta.doihaku.hae[lang]">
             </button>
@@ -155,7 +178,9 @@
 
     <div data-ng-show="noResults" class="row px">
         <div class="col-xs-12">
+            <div class="alert alert-danger">
             <p class="text-secondary text-dark pl-x text-xl" data-ng-bind="i18n.content.esitayta.etsijulkaisu.eituloksia[lang]"></p>
+            </div>
         </div>
     </div>
 
@@ -164,7 +189,7 @@
             <p class="text-secondary h4 font-weight-bold" data-ng-bind="i18n.content.esitayta.etsijulkaisu.valittuna[lang]"></p>
 
             <p class="h4 text-dark">
-                <span>{{valittuJulkaisu.source}}</span>  <span class="pl-x">{{valittuJulkaisu.doi}}</span>
+                <span>{{valittuJulkaisu.source}}</span>  <span class="pl-x">{{valittuJulkaisu.identifier}}</span>
             </p>
             <p class="h4 text-dark font-weight-bold">
                 {{valittuJulkaisu.title}}
@@ -173,6 +198,7 @@
             {{valittuJulkaisu.author}}
             </p>
             <button type="button"
+                    data-ng-disabled="crossrefTaiVirtaLataa"
                     class="btn btn-primary mt-x"
                     data-ng-click="useJulkaisunnimi(valittuJulkaisu.source, valittuJulkaisu.identifier)"
                     data-ng-bind="i18n.content.esitayta.hae[lang]">
@@ -180,14 +206,23 @@
         </div>
     </div>
 
-</div>
-
-    <div class="row px">
-        <div class="col-xs-6">
-            <i class="fa fa-spinner fa-spin fa-3x pull-right" data-ng-if="virtaLataa"></i>
+    <div class="row px" data-ng-if="crossrefTaiVirtaLataa">
+        <div class="col-xs-12 text-center text-dark">
+            <i class="fa fa-spinner fa-spin fa-3x"></i>
+            <p class="text-secondary m-t">Haku käynnissä, odotathan...</p>
         </div>
     </div>
 
+    <div data-ng-show="crossRefServerError2" class="row px m-t">
+        <div class="col-xs-12">
+            <div class="alert alert-danger">
+                <p class="text-secondary text-dark pl-x text-xl">CrossRef palvelu ei vastaa, se voi olla esimerkiksi kovan kuormituksen alaisena. Yritä hetken kuluttua uudestaan.</p>
+            </div>
+        </div>
+    </div>
+
+
+</div>
 <div class="row" data-ng-show="valittuJulkaisu.organisation == user.organization.code">
     <div class="col-xs-12">
         <h3>
@@ -198,7 +233,7 @@
 
 <div class="row px" style="margin-top:80px">
     <div class="col-xs-12 text-center">
-        <button type="button" class="btn btn-lg btn-primary pull-right" data-ng-click="julkaisuhaettu=true; useVaihe(2)">
+        <button type="button" class="btn btn-lg btn-primary pull-right" data-ng-click="useVaihe(2)">
             {{ i18n.content.esitayta.ohita[lang] }}
         </button>
     </div>
