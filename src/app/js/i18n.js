@@ -132,7 +132,7 @@ const i18n = {
           FI: 'Kirjoita DOI-tunniste',
           SV: 'Agne DOI',
           EN: 'Enter DOI-identifier',
-          tooltip: { FI: 'Esim. https://doi.org/10.4324/9780203841693', SV: 't.ex. https://doi.org/10.4324/9780203841693', EN: 'e.g. https://doi.org/10.4324/9780203841693' }
+          tooltip: { FI: 'Esim. 10.4324/9780203841693', SV: 't.ex. 10.4324/9780203841693', EN: 'e.g. 10.4324/9780203841693' }
         },
         klikkaa: {
           FI: 'ja klikkaa',
