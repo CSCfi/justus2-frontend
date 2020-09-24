@@ -228,6 +228,7 @@
         </i>
         <i data-ng-if="isFieldRequired('organisaatiotekija')" class="fa fa-asterisk required-star"
            aria-hidden="true"></i>
+        <span data-ng-if="isFieldRequired('organisaatiotekija')" class="sr-only" data-ng-bind="i18n.content.form.pakollinenkentta[lang]"></span>
       </div>
       <div class="col-sm-8 col-xs-12 justus-data">
         <div class="row" data-ng-if="multipleMatch">
@@ -250,6 +251,9 @@
                    field="sukunimi"
                    value="justus.organisaatiotekija[$index].sukunimi">
                 <label id="organisaatiotekijasukunimi">{{i18n.content.form.organisaatiotekija.sukunimi.picktip[lang]}}</label>
+                <i data-ng-if="isFieldRequired('organisaatiotekija')" class="fa fa-asterisk required-star"
+                   aria-hidden="true"></i>
+                <span data-ng-if="isFieldRequired('organisaatiotekija')" class="sr-only" data-ng-bind="i18n.content.form.pakollinenkentta[lang]"></span>
                 <div>
                   <input
                          aria-labelledby="organisaatiokijat organisaatiotekijasukunimi"
@@ -263,6 +267,9 @@
                    validate-organisaatiotekijat-directive validate="validateState" field="etunimet"
                    value="justus.organisaatiotekija[$index].etunimet">
                 <label id="organisaatiotekijaetunimet">{{i18n.content.form.organisaatiotekija.etunimet.picktip[lang]}}</label>
+                <i data-ng-if="isFieldRequired('organisaatiotekija')" class="fa fa-asterisk required-star"
+                   aria-hidden="true"></i>
+                <span data-ng-if="isFieldRequired('organisaatiotekija')" class="sr-only" data-ng-bind="i18n.content.form.pakollinenkentta[lang]"></span>
                 <input aria-labelledby="organisaatiokijat organisaatiotekijaetunimet"
                        type="text" class="form-control"
                        data-ng-model="justus.organisaatiotekija[$index].etunimet"
@@ -346,6 +353,9 @@
                 </div>
 
                 <label class="control-label">Lisää alayksiköitä</label>
+                <i data-ng-if="isFieldRequired('alayksikko')" class="fa fa-asterisk required-star"
+                   aria-hidden="true"></i>
+                <span data-ng-if="isFieldRequired('alayksikko')" class="sr-only" data-ng-bind="i18n.content.form.pakollinenkentta[lang]"></span>
                 <div class="row form-group" >
 
                   <div class="col-xs-12 col-sm-5">
