@@ -1,6 +1,6 @@
 <div class="row no-gutter m-b" data-ng-show="vaihe>=0">
   <div class="text-center col-md-5ths" data-ng-class="{'col-xs-8':vaihe==1, 'col-xs-1':vaihe!=1}">
-    <div class="justus-btn justus-btn-stage" data-ng-class="{selected:vaihe==1, disabled: justus.id}" data-ng-click="useVaihe(1)">
+    <div class="justus-btn justus-btn-stage" data-ng-class="{selected:vaihe==1, disabled: justus.julkaisu.id}" data-ng-click="useVaihe(1)">
       1 <span data-ng-class="{'hidden-xs': vaihe!=1, 'hidden-sm':vaihe!=1}" data-ng-bind="i18n.content.vaihevuo.esitayta[lang]"></span>
     </div>
   </div>
@@ -12,8 +12,8 @@
   </div>
 
   <div class="text-center col-md-5ths" data-ng-class="{'col-xs-8':vaihe==3, 'col-xs-1':vaihe!=3}">
-    <div class="justus-btn justus-btn-stage" data-ng-class="{selected:vaihe==3, disabled:vaihe<3}"
-         data-ng-click="vaihe>=3?useVaihe(3):null">
+    <div class="justus-btn justus-btn-stage" data-ng-class="{selected:vaihe==3, disabled:!justus.julkaisu.julkaisutyyppi}"
+         data-ng-click="useVaihe(3)">
       3 <span data-ng-class="{'hidden-xs': vaihe!=3, 'hidden-sm':vaihe!=3}" data-ng-bind="i18n.content.vaihevuo.tietojensyotto[lang]"></span>
     </div>
   </div>
