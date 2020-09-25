@@ -35,6 +35,15 @@
 .form-control:-ms-input-placeholder { font-weight: 300; }  /* Internet Explorer 10-11 */
 .form-control::-ms-input-placeholder { font-weight: 300; }  /* Microsoft Edge */
 
+.justus-data {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.organisaatiotekija-border {
+  padding-top: 15px;
+  border-top: 1px solid;
+}
 
 .invalid-pattern {
   display: none;
