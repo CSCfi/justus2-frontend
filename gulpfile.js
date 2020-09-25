@@ -51,6 +51,7 @@ const config = {
       'node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
       'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
       'node_modules/angular-sanitize/angular-sanitize.js',
+      'node_modules/angular-cookies/angular-cookies.js',
       'node_modules/@uirouter/angularjs/release/angular-ui-router.js',
       'node_modules/ng-tags-input/build/ng-tags-input.js',
       'node_modules/ui-select/dist/select.js',

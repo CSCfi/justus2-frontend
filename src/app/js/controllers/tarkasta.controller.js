@@ -104,12 +104,13 @@ angular.module('TarkastaController', [])
             // at very first test that user object is accessible
             let verifyAccess = function () {
                 if (AuthService.isLoggedIn()) {
-                    console.log("user is logged in");
+                    console.log("User is logged in");
                     init();
                 } else {
                     AuthService.getUserInfo().then(function (res) {
                         if (res.status === 200) {
                             $scope.user = res.data;
+                            $rootScope.user = $scope.user;
                             console.log(res);
                             init();
                         } else if (res.status === "error" && res.data.status === 401) {

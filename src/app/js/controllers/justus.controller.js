@@ -963,6 +963,9 @@ angular.module('JustusController', [])
             };
 
             let verifyAccess = function () {
+
+                console.log("Verifying access in Justus controller");
+
                 if (AuthService.isLoggedIn()) {
                     console.log("user is logged in");
                     populatePublicationForm();

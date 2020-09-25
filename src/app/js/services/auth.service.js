@@ -3,14 +3,18 @@
 'use strict';
 
 angular.module('AuthService', [])
-    .service('AuthService', ['$rootScope', '$http', 'AUTH_URL',
-        function($rootScope, $http, AUTH_URL) {
+    .service('AuthService', ['$rootScope', '$http', '$cookies', 'AUTH_URL',
+        function($rootScope, $http, $cookies, AUTH_URL) {
 
             let getUserInfo = function () {
                 return $http.get(AUTH_URL).then(function (response) {
                     console.log(response);
-                    return {"status": 200, "data": setUser(response.data)}
+                    if (response.data.perustiedot) {
+                        return { "status": 200, "data": setUser(response.data)}
+                    } else
+                        return { "status": 401, "data": "User is not signed in"}
                 }).catch(function (err) {
+                    console.log(err);
                     return { "status": 'error', "data": err };
                 })
             };
@@ -34,8 +38,12 @@ angular.module('AuthService', [])
             };
 
             let isLoggedIn = function () {
-                console.log(user);
-                if (user.name === "") {
+
+                let cookies = $cookies.getAll();
+                console.log(cookies);
+                console.log(Object.keys(cookies).length);
+
+                if (Object.keys(cookies).length < 2 || user.name === "") {
                     return false;
                 } else {
                     return true;

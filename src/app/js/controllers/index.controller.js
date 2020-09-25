@@ -3,46 +3,55 @@
 angular.module('IndexController', [])
 
     .controller('IndexController', [
-        '$state', '$q', '$scope', '$rootScope', '$http', '$window', '$stateParams', '$transitions', '$location', 'JustusService', 'KoodistoService', 'AuthService', 'APIService', 'AUTH_URL', 'SITE_URL', 'API_BASE_URL', 'DEMO_ENABLED',
-        function($state, $q, $scope, $rootScope, $http, $window, $stateParams, $transitions, $location, JustusService, KoodistoService, AuthService, APIService, AUTH_URL, SITE_URL, API_BASE_URL, DEMO_ENABLED) {
+        '$state', '$timeout', '$q', '$scope', '$rootScope', '$http', '$window', '$stateParams', '$transitions', '$location', 'JustusService', 'KoodistoService', 'AuthService', 'APIService', 'AUTH_URL', 'SITE_URL', 'API_BASE_URL', 'DEMO_ENABLED',
+        function($state, $timeout, $q, $scope, $rootScope, $http, $window, $stateParams, $transitions, $location, JustusService, KoodistoService, AuthService, APIService, AUTH_URL, SITE_URL, API_BASE_URL, DEMO_ENABLED) {
             $scope.demoEnabled = DEMO_ENABLED;
             $scope.siteUrl = SITE_URL;
 
-            if (typeof (AUTH_URL) !== 'undefined') {
-                AuthService.getUserInfo().then(function (res) {
 
-                    if (res.status === 200) {
 
-                        // scope.user is reference to AuthService's user object
-                        $scope.user = res.data;
-                        $scope.lang = res.data.lang;
+            let signIn = function () {
+                if (typeof (AUTH_URL) !== 'undefined') {
 
-                        if ($scope.user.owner) {
-                            $rootScope.initialRole = "owner";
-                            getDemoOrganisationList();
+                    console.log("In sign in function");
+
+                    AuthService.getUserInfo().then(function (res) {
+
+                        if (res.status === 200) {
+
+                            // scope.user is reference to AuthService's user object
+                            $scope.user = res.data;
+                            $scope.lang = res.data.lang;
+
+                            if ($scope.user.owner) {
+                                $rootScope.initialRole = "owner";
+                                getDemoOrganisationList();
+                            }
+
+                            $rootScope.user = $scope.user;
+
+                            $scope.showPublicationInput = $rootScope.user.organization.showPublicationInput;
+                            fetchKoodistoData();
+
+                        } else if (res.status === 401) {
+                            console.log(res.data);
+                            console.log("User in unauthorized");
+                            $state.go('index');
+                        } else {
+                            console.log(res.data);
+                            console.log(res.data.status);
+                            $state.go('index');
                         }
 
-                        $rootScope.user = $scope.user;
-
-                        $scope.showPublicationInput = $rootScope.user.organization.showPublicationInput;
-                        fetchKoodistoData();
-
-                    } else if (res.status === "error" && res.data.status === 401) {
-                        console.log(res.data);
-                        console.log("User in unauthorized");
+                    }).catch(function (err) {
+                        console.log(err);
                         $state.go('index');
-                    } else {
-                        console.log("Error in fetching user data from server with error");
-                        console.log(res.data);
-                        $state.go('index');
-                    }
+                    });
 
-                 }).catch(function (err) {
-                    console.log(err);
-                    $state.go('index');
-                });
-
+                }
             }
+
+
 
             let getDemoOrganisationList = function() {
                 $scope.selectedDemoUserRole = "";
@@ -55,14 +64,31 @@ angular.module('IndexController', [])
 
             let init = function() {
 
+                console.log("Initializing in index controller");
+
                 $scope.codes = {};
                 $scope.i18n = (typeof (i18n) !== 'undefined') ? i18n : {};
-
                 if (!$scope.lang) {
                     $scope.lang = "FI";
                 }
 
-                $scope.getOrganizationList();
+                // no need to fetch user data if data is already stored on cookie
+                if (AuthService.isLoggedIn()) {
+                    console.log("User is already logged in");
+                    fetchKoodistoData();
+                } else {
+                    $timeout(function () {
+                        console.log($state.$current.name);
+                        if($state.$current.name === 'index') {
+                            console.log("in index state");
+                            // log in page, this is all data needed
+                            $scope.getOrganizationList();
+                        } else {
+                            console.log("Signing in...");
+                            signIn();
+                        }
+                    },500)
+                }
 
             };
 

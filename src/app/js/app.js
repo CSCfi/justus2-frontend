@@ -11,6 +11,7 @@ angular.module('JustusApp', [
   'ngCsv',
   'ngFileUpload',
   'infinite-scroll',
+  'ngCookies',
 
   // App modules
   'appConfig',
