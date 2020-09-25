@@ -8,30 +8,41 @@ angular.module('IndexController', [])
             $scope.demoEnabled = DEMO_ENABLED;
             $scope.siteUrl = SITE_URL;
 
-
             if (typeof (AUTH_URL) !== 'undefined') {
                 AuthService.getUserInfo().then(function (res) {
 
-                        // scope.user is reference to AuthService's user object
-                        $scope.user = res;
-                        $scope.lang = res.lang;
+                    if (res.status === 200) {
 
-                        //  if user is owner fetch data from all organizations
+                        // scope.user is reference to AuthService's user object
+                        $scope.user = res.data;
+                        $scope.lang = res.data.lang;
+
                         if ($scope.user.owner) {
                             $rootScope.initialRole = "owner";
                             getDemoOrganisationList();
                         }
+
                         $rootScope.user = $scope.user;
 
                         $scope.showPublicationInput = $rootScope.user.organization.showPublicationInput;
                         fetchKoodistoData();
 
-                         }).catch(function (err) {
-                            console.log(err);
-                            $state.go('index');
-                        });
+                    } else if (res.status === "error" && res.data.status === 401) {
+                        console.log(res.data);
+                        console.log("User in unauthorized");
+                        $state.go('index');
+                    } else {
+                        console.log("Error in fetching user data from server with error");
+                        console.log(res.data);
+                        $state.go('index');
+                    }
 
-                }
+                 }).catch(function (err) {
+                    console.log(err);
+                    $state.go('index');
+                });
+
+            }
 
             let getDemoOrganisationList = function() {
                 $scope.selectedDemoUserRole = "";

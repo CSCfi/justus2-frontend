@@ -962,22 +962,27 @@ angular.module('JustusController', [])
 
             };
 
-
-            let verifyAccess = function() {
+            let verifyAccess = function () {
                 if (AuthService.isLoggedIn()) {
+                    console.log("user is logged in");
                     populatePublicationForm();
-
                 } else {
                     AuthService.getUserInfo().then(function (res) {
-                        $scope.user = res;
-                        $rootScope.user = $scope.user;
-                        populatePublicationForm();
+                        if (res.status === 200) {
+                            console.log(res);
+                            $scope.user = res.data;
+                            $rootScope.user = $scope.user;
+                            populatePublicationForm();
+                        } else if (res.status === "error" && res.data.status === 401) {
+                            console.log(res.data);
+                            console.log("User in unauthorized");
+                            $state.go('index');
+                        } else {
+                            console.log("Error in fetching user data from server with error: " + res.data);
+                            $state.go('index');
+                        }
+                    })
 
-                    }).catch(function (err) {
-                        console.log(err);
-                        $state.go('index');
-
-                    });
                 }
             };
 

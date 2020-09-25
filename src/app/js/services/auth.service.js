@@ -8,7 +8,10 @@ angular.module('AuthService', [])
 
             let getUserInfo = function () {
                 return $http.get(AUTH_URL).then(function (response) {
-                   return setUser(response.data);
+                    console.log(response);
+                    return {"status": 200, "data": setUser(response.data)}
+                }).catch(function (err) {
+                    return { "status": 'error', "data": err };
                 })
             };
 
@@ -31,6 +34,7 @@ angular.module('AuthService', [])
             };
 
             let isLoggedIn = function () {
+                console.log(user);
                 if (user.name === "") {
                     return false;
                 } else {
