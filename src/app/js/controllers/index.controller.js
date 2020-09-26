@@ -39,7 +39,7 @@ angular.module('IndexController', [])
                             $state.go('index');
                         } else {
                             console.log(res.data);
-                            console.log(res.data.status);
+                            console.log("No user data unvailable");
                             $state.go('index');
                         }
 

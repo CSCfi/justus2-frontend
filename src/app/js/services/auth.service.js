@@ -39,11 +39,10 @@ angular.module('AuthService', [])
 
             let isLoggedIn = function () {
 
-                let cookies = $cookies.getAll();
-                console.log(cookies);
-                console.log(Object.keys(cookies).length);
+                let cookie = $cookies.get('connect.sid');
+                console.log(cookie);
 
-                if (Object.keys(cookies).length < 2 || user.name === "") {
+                if (!cookie || user.name === "") {
                     return false;
                 } else {
                     return true;

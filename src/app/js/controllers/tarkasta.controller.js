@@ -113,16 +113,16 @@ angular.module('TarkastaController', [])
                             $rootScope.user = $scope.user;
                             console.log(res);
                             init();
-                        } else if (res.status === "error" && res.data.status === 401) {
+                        } else if (res.status  === 401) {
                             console.log(res.data);
                             console.log("User in unauthorized");
                             $state.go('index');
                         } else {
-                            console.log("Error in fetching user data from server with error: " + res.data);
+                            console.log("No user data unvailable");
+                            console.log(res.data);
                             $state.go('index');
                         }
                     })
-
                 }
             };
 
