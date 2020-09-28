@@ -242,10 +242,10 @@
           </div>
         </div>
         <div data-ng-repeat="i in justus.organisaatiotekija track by $index"
-             class="row ml-0 mr-0"
-             data-ng-class=" {'organisaatiotekija-border': justus.organisaatiotekija.length > 1  && !$first}"
+             class="row ml-0 organisaatiotekija-border"
+             data-ng-class=" {'p-t': !$first}"
              data-ng-model="req_organisaatiotekija[$index]">
-          <div class="col-xs-11 pl-0">
+          <div class="col-xs-12 pl-0">
             <div class="row form-group" id="organisaatiotekijaRow">
               <div class="col-xs-12 col-sm-6"  data-ng-class="['sukunimiGroup' + $index]"
                    validate-organisaatiotekijat-directive validate="validateState"
@@ -334,7 +334,7 @@
                            validate-organisaatiotekijat-directive validate="validateState" index="$parent.$index"
                            field="alayksikko" value="ota">
 
-                        <div class="form-group">
+                        <div class="">
                           <span id="unitlist" class="text-secondary font-weight-bold text-xl" data-ng-bind="ota + ' '+ getSelite(user.alayksikot, ota) "></span>
                         </div>
                       </div>
@@ -355,7 +355,7 @@
                 <i data-ng-if="isFieldRequired('alayksikko')" class="fa fa-asterisk required-star"
                    aria-hidden="true"></i>
                 <span data-ng-if="isFieldRequired('alayksikko')" class="sr-only" data-ng-bind="i18n.content.form.pakollinenkentta[lang]"></span>
-                <div class="row form-group" >
+                <div class="row form-group">
 
                   <div class="col-xs-12 col-sm-5">
 
@@ -397,24 +397,31 @@
                 </div>
               </div>
             </div>
+
+            <div data-ng-if="justus.organisaatiotekija.length>1" class="row form-group">
+              <div class="col-xs-12">
+                <a
+                        data-ng-click="justus.organisaatiotekija.splice($index, 1)"
+
+                        class="cursor-pointer text-secondary pull-right poista-btn"
+                        title="{{i18n.content.form.organisaatiotekija.poista.tooltip[lang]}}">
+                  Poista organisaatiotekijä
+                  <i class="fa fa-close"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="row form-group p-t">
+          <div class="col-xs-12">
             <button type="button"
                     class="btn btn-primary"
                     data-ng-click="addOrganisaatiotekija()"
-                    data-ng-hide="$index < justus.organisaatiotekija.length-1"
+
                     title="{{i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]}}">
               Lisää organisaatiotekijä
             </button>
-          </div>
-
-          <div class="col-xs-1 pl-0 pr-0">
-            <a
-                    data-ng-click="justus.organisaatiotekija.splice($index, 1)"
-                    data-ng-hide="justus.organisaatiotekija.length<2"
-                    class="text-danger cursor-pointer text-secondary pull-right"
-                    title="{{i18n.content.form.organisaatiotekija.poista.tooltip[lang]}}">
-              {{i18n.content.form.organisaatiotekija.poista.tooltip[lang]}}
-              <i class="fa fa-close"></i>
-            </a>
           </div>
         </div>
       </div>
