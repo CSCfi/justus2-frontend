@@ -71,6 +71,19 @@ angular.module('JustusController', [])
                 return parsedNames;
             };
 
+            $scope.clearPrefillSearchFields = function() {
+                $scope.crossrefTaiVirtaLataa = false;
+                $scope.valittuJulkaisu = null;
+                $scope.crossRefJulkaisu = null;
+                $scope.julkaisunnimet = [];
+                $scope.noResults = false;
+                $scope.crossRefServerError2 = false;
+                $scope.crossRefhaettu = false;
+                $scope.crossrefLataa = false;
+                $scope.noCrossRefResults = false;
+                $scope.crossRefServerError = false;
+
+            }
 
             $scope.clearFormAndReturnToStart = function() {
                 JustusService.clearPublicationForm();
@@ -325,11 +338,7 @@ angular.module('JustusController', [])
                 if (!input) return;
                 if (input.length < 5) return;
 
-                $scope.julkaisunnimet = [];
-                $scope.noResults = false;
-                $scope.crossRefServerError2 = false;
-                $scope.valittuJulkaisu = null;
-
+                $scope.clearPrefillSearchFields();
                 $scope.crossrefTaiVirtaLataa = true;
 
                 // Haku julkaisun nimellä, tekijän nimi rajaa hakua
@@ -376,18 +385,14 @@ angular.module('JustusController', [])
                             $scope.useTekijat();
 
                             $scope.fetchLehtisarja($scope.justus.julkaisu.issn[0]);
-                            // $scope.julkaisuhaettu = true;
-
-                            $scope.valittuJulkaisu = null;
-                            $scope.crossRefJulkaisu = null;
-
-                            $scope.crossrefTaiVirtaLataa = false;
-
                             $scope.initializeAvainsanatTags()
+
                             $scope.useVaihe(3); // ->tietojen syöttöön
+
+                            $scope.clearPrefillSearchFields(); // clear all search data
+
                         }, function errorCb(response) {
                             console.log(response);
-                            // $scope.julkaisuhaettu = false;
                             $scope.crossrefTaiVirtaLataa = false;
                             $scope.crossRefServerError2 = true;
                             return false;
@@ -419,18 +424,13 @@ angular.module('JustusController', [])
                             $scope.useTekijat();
 
                             $scope.fetchLehtisarja($scope.justus.julkaisu.issn[0]);
-                            // $scope.julkaisuhaettu = true;
-                            $scope.crossrefTaiVirtaLataa = false;
-
-                            $scope.valittuJulkaisu = null;
-                            $scope.crossRefJulkaisu = null;
 
                             $scope.initializeAvainsanatTags()
 
                             $scope.useVaihe(3); // ->tietojen syöttöön
+                            $scope.clearPrefillSearchFields(); // clear all search data
                         }, function errorVirta(response) {
                             $scope.crossrefTaiVirtaLataa = false;
-                            // $scope.julkaisuhaettu = false;
                             return false;
                         });
 
@@ -451,8 +451,7 @@ angular.module('JustusController', [])
                 $scope.initializeAvainsanatTags();
                 $scope.useVaihe(3);
 
-                $scope.crossRefhaettu = false;
-                $scope.crossRefJulkaisu = null;
+                $scope.clearPrefillSearchFields(); // clear all search data
             }
 
 
@@ -461,11 +460,9 @@ angular.module('JustusController', [])
                 if (!input) return;
 
                 // reset previous values before fetching new data
-                $scope.crossRefhaettu = false;
+                $scope.clearPrefillSearchFields();
                 $scope.crossrefLataa = true;
-                $scope.noCrossRefResults = false;
-                $scope.crossRefServerError = false;
-                $scope.crossRefJulkaisu = null;
+
 
                 ExternalServicesService.works('CrossRef', input)
                     .then(function successCb(response) {
