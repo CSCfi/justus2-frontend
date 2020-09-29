@@ -23,7 +23,7 @@ angular.module('JustusController', [])
             $scope.julkaisunnimet = [];
 
             $scope.crossrefLataa = false;
-            $scope.virtaLataa = false;;
+            $scope.virtaLataa = false;
             $scope.requiredHighlight = false;
             $scope.invalidFields = [];
             $scope.issnDescription = [];
@@ -382,6 +382,7 @@ angular.module('JustusController', [])
 
             $scope.valitseJulkaisu = function(julkaisu) {
                 $scope.valittuJulkaisu = julkaisu;
+                console.log($scope.valittuJulkaisu);
             }
 
             $scope.refreshJulkaisunnimet = function($event, input, tekija) {
@@ -391,12 +392,15 @@ angular.module('JustusController', [])
 
                 $scope.julkaisunnimet = [];
                 $scope.noResults = false;
+                $scope.crossRefServerError2 = false;
+                $scope.valittuJulkaisu = null;
 
-                $scope.virtaLataa = true;
+                $scope.crossrefTaiVirtaLataa = true;
 
                 // Haku julkaisun nimellä, tekijän nimi rajaa hakua
                 ExternalServicesService.worksquery(input, tekija)
                     .then(function(obj) {
+                        console.log(obj);
 
                         if (obj.data.length < 1) {
                             $scope.noResults = true;
@@ -408,62 +412,54 @@ angular.module('JustusController', [])
                             $event.stopPropagation();
                             $scope.searchDropDownStatus.isopen = !$scope.searchDropDownStatus.isopen;
                         }
+                        $scope.crossrefTaiVirtaLataa = false;
 
-                        $scope.virtaLataa = false;
-
-                    });
+                    }).catch(function (err) {
+                        console.log(err);
+                });
             };
 
-            $scope.useJulkaisunnimi = function(source, input, usevaihe = true) { // input == identifier
-
+            $scope.useJulkaisunnimi = function(source, input) { // input == identifier
                 if (!source || !input) return;
 
+                $scope.crossrefTaiVirtaLataa = true;
+
                 if (source === 'CrossRef') {
-                    $scope.crossrefLataa = true;
-                    $scope.noCrossRefResults = false;
+                    $scope.crossRefServerError2 = false;
+
                     ExternalServicesService.works(source, input)
                         .then(function successCb(response) {
 
-                            if (usevaihe) {
-                                $scope.justus.julkaisu = response.data;
-                                $scope.justus.julkaisu.username = $rootScope.user.name;
-                                $scope.justus.julkaisu.projektinumero = [""];
+                            $scope.justus.julkaisu = response.data;
+                            $scope.justus.julkaisu.username = $rootScope.user.name;
+                            $scope.justus.julkaisu.projektinumero = [""];
 
-                                // Initialize tekijatTags input
-                                parseNames($scope.justus.julkaisu.tekijat).map(function(nameObject) {
-                                    $scope.tekijatTags.push({ text: `${nameObject.lastName}, ${nameObject.firstName}` });
-                                });
-                                $scope.useTekijat();
+                            // Initialize tekijatTags input
+                            parseNames($scope.justus.julkaisu.tekijat).map(function(nameObject) {
+                                $scope.tekijatTags.push({ text: `${nameObject.lastName}, ${nameObject.firstName}` });
+                            });
+                            $scope.useTekijat();
 
-                                $scope.fetchLehtisarja($scope.justus.julkaisu.issn[0]);
-                                $scope.julkaisuhaettu = true;
+                            $scope.fetchLehtisarja($scope.justus.julkaisu.issn[0]);
+                            // $scope.julkaisuhaettu = true;
 
-                                $scope.crossrefLataa = false;
+                            $scope.valittuJulkaisu = null;
+                            $scope.crossRefJulkaisu = null;
 
-                                $scope.useVaihe(3); // ->tietojen syöttöön
+                            $scope.crossrefTaiVirtaLataa = false;
 
-                                $scope.julkaisunnimet = [];
-                                $scope.valittuJulkaisu = null;
-                                $scope.crossRefResult = null;
-                            } else {
-                                $scope.crossRefResult = response.data.julkaisunnimi;
-                            }
-
-                            $scope.crossrefLataa = false;
-
+                            $scope.initializeAvainsanatTags()
+                            $scope.useVaihe(3); // ->tietojen syöttöön
                         }, function errorCb(response) {
                             console.log(response);
-                            $scope.julkaisuhaettu = false;
-                            $scope.crossrefLataa = false;
-                            if (response.status === 404) {
-                                $scope.noCrossRefResults = true;
-                            }
+                            // $scope.julkaisuhaettu = false;
+                            $scope.crossrefTaiVirtaLataa = false;
+                            $scope.crossRefServerError2 = true;
                             return false;
                         });
                 }
                 // Prefill publication from VIRTA
                 if (source === 'VIRTA') {
-                    $scope.virtaLataa = true;
 
                     ExternalServicesService.works(source.toLowerCase(), input)
                         .then(function successVirta(response) {
@@ -488,22 +484,74 @@ angular.module('JustusController', [])
                             $scope.useTekijat();
 
                             $scope.fetchLehtisarja($scope.justus.julkaisu.issn[0]);
-                            $scope.julkaisuhaettu = true;
-                            $scope.virtaLataa = false;
-                            $scope.useVaihe(3); // ->tietojen syöttöön
+                            // $scope.julkaisuhaettu = true;
+                            $scope.crossrefTaiVirtaLataa = false;
 
-                            $scope.julkaisunnimet = [];
                             $scope.valittuJulkaisu = null;
-                            $scope.crossRefResult = null;
+                            $scope.crossRefJulkaisu = null;
 
+                            $scope.initializeAvainsanatTags()
+
+                            $scope.useVaihe(3); // ->tietojen syöttöön
                         }, function errorVirta(response) {
-                            $scope.julkaisuhaettu = false;
+                            $scope.crossrefTaiVirtaLataa = false;
+                            // $scope.julkaisuhaettu = false;
                             return false;
                         });
 
                 }
 
+            };
+
+            $scope.useCrossRefEsitaytto = function(cj) {
+                $scope.justus.julkaisu = cj;
+                $scope.justus.julkaisu.username = $rootScope.user.name;
+                $scope.justus.julkaisu.projektinumero = [""];
+                parseNames($scope.justus.julkaisu.tekijat).map(function (nameObject) {
+                    $scope.tekijatTags.push({text: `${nameObject.lastName}, ${nameObject.firstName}`});
+                });
+                $scope.useTekijat();
+
+                $scope.fetchLehtisarja($scope.justus.julkaisu.issn[0]);
                 $scope.initializeAvainsanatTags();
+                $scope.useVaihe(3);
+
+                $scope.crossRefhaettu = false;
+                $scope.crossRefJulkaisu = null;
+            }
+
+
+            $scope.useJulkaisunnimiCrossRef = function(input) { // input == identifier
+
+                if (!input) return;
+
+                // reset previous values before fetching new data
+                $scope.crossRefhaettu = false;
+                $scope.crossrefLataa = true;
+                $scope.noCrossRefResults = false;
+                $scope.crossRefServerError = false;
+                $scope.crossRefJulkaisu = null;
+
+                ExternalServicesService.works('CrossRef', input)
+                    .then(function successCb(response) {
+                        $scope.crossRefJulkaisu = response.data;
+                        console.log($scope.crossRefJulkaisu);
+                        $scope.crossRefhaettu = true;
+                        $scope.crossrefLataa = false;
+
+                    }, function errorCb(response) {
+                        console.log(response);
+                        $scope.julkaisuhaettu = false;
+                        $scope.crossrefLataa = false;
+                        if (response.status === 404) {
+                            $scope.noCrossRefResults = true;
+                        }
+                        if (response.status === 500) {
+                            console.log("Server error in CrossRef service");
+                            $scope.crossRefServerError = true;
+                        }
+                    });
+
             };
 
             $scope.refreshAvainsanat = function(input) {
@@ -540,8 +588,8 @@ angular.module('JustusController', [])
                 });
             };
 
-            $scope.removeIssn = function(issnIndex) {
-                $scope.justus.julkaisu.issn.splice(issnIndex, 1);
+            $scope.removeIssn = function() {
+                $scope.justus.julkaisu.issn.splice($scope.justus.julkaisu.issn.length-1, 1)
                 $scope.issnDescription = [];
             };
 
@@ -743,10 +791,6 @@ angular.module('JustusController', [])
                 $scope.fileAlreadyExists = false;
             };
 
-            // $scope.useRequiredHighlight = function() {
-            //     $scope.requiredHighlight = !$scope.requiredHighlight;
-            // };
-
             $scope.useField = function(type, field, input) {
 
                 if (input !== null && input !== undefined) {
@@ -807,6 +851,11 @@ angular.module('JustusController', [])
                     DataStoreService.storeStateData(null);
                     JustusService.clearPublicationForm();
                 }
+            };
+
+            $scope.cancelAndAndStartOver = function() {
+                $state.go('valitse');
+                JustusService.clearPublicationForm();
             };
 
             // get alayksikkodata based on selected year

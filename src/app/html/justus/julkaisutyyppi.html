@@ -1,6 +1,14 @@
-<div class="alert alert-default text-center" data-ng-if="justus.julkaisu.id">
-  <h4 class="text-secondary">Muokkaat julkaisua {{ justus.julkaisu.id }}, {{ justus.julkaisu.julkaisunnimi }}</h4>
-  <button class="btn btn-primary" data-ng-click="clearFormAndReturnToStart()">Hylkää muutokset ja siirry alkuun</button>
+<div class="alert alert-default text-center text-secondary" data-ng-if="justus.julkaisu.id">
+  <span class="text-2xl text-dark">{{i18n.content.alert.text[lang]}}  {{ justus.julkaisu.id }}, {{ justus.julkaisu.julkaisunnimi }}</span>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="breadcrumb">
+      <h1 data-ng-bind="i18n.header.navigation.tallenna[lang]"></h1> <span><i class="fa fa-chevron-right"></i></span>
+      <h2 data-ng-bind="i18n.content.vaihevuo.julkaisutyyppi[lang]"></h2>
+    </div>
+  </div>
 </div>
 
 <uib-accordion class="text-secondary">

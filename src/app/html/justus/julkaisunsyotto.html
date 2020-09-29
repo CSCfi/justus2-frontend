@@ -1,8 +1,15 @@
 <div data-ng-controller="JulkaisunsyottoController">
 
-    <h4 class="text-secondary font-weight-bold">
-        Valitse yksi seuraavista:
-    </h4>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="breadcrumb">
+                <h1 data-ng-bind="i18n.header.navigation.tallenna[lang]"></h1> <span><i class="fa fa-chevron-right"></i></span>
+                <h2 data-ng-bind="i18n.content.vaihevuo.rinnakkaistallennus[lang]"></h2>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="text-secondary" data-ng-bind="i18n.content.rinnakkaistallennusform.otsikko[lang]"></h3>
 
     <div data-ng-show="showPublicationInput" class="m-b">
         <div class="bg-light p-1">
@@ -31,18 +38,19 @@
                 <div data-ng-show="fileAlreadyExists" class="col-md-8">
                     <div class="row">
                         <div class="col-md-10">
-                                        <span class="font-weight-bold text-xl">
-                                          <a data-ng-if="filedata.handle === ''" data-ng-href="{{ getLink()}}"
-                                             target="_blank" download> {{filedata.filename}} </a>
-                                          <span data-ng-if="filedata.handle !== ''"> {{filedata.filename}} </span>
-                                        </span>
+                            <span class="font-weight-bold text-xl">
+                              <a data-ng-if="filedata.handle === ''" data-ng-href="{{ getLink()}}"
+                                 target="_blank" download> {{filedata.filename}} </a>
+                              <span data-ng-if="filedata.handle !== ''"> {{filedata.filename}} </span>
+                            </span>
                         </div>
-                        <div class="col-md-2 text-right" data-ng-hide="hideRemove">
-                            <button role="button"
-                                    class="btn btn-danger"
-                                    data-ng-click="removeFileFromServer()"
-                                    data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.poista[lang]">
-                            </button>
+                        <div class="col-md-2 text-right mt-x" data-ng-hide="hideRemove">
+                            <a data-ng-click="removeFileFromServer()"
+                               class="text-danger cursor-pointer text-secondary"
+                               title="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.poista[lang]">
+                                {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.poista[lang]}}
+                                <i class="fa fa-close" aria-hidden="true"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -77,12 +85,13 @@
                             <div class="col-md-2" style="margin-top:5px;">
                                 <span data-ng-bind="bytesToSize(file.size)"></span>
                             </div>
-                            <div class="col-md-2 text-right">
-                                <button type="button"
-                                        class="btn btn-primary m-b"
-                                        data-ng-click="removeFile(); file = null"
-                                        data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.poista[lang]">
-                                </button>
+                            <div class="col-md-2 text-right mt-x">
+                                <a data-ng-click="removeFile(); file = null"
+                                   class="text-danger cursor-pointer text-secondary"
+                                   title="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.poista[lang]">
+                                    {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.poista[lang]}}
+                                    <i class="fa fa-close" aria-hidden="true"></i>
+                                </a>
                             </div>
                         </div>
 
@@ -142,12 +151,12 @@
                     </i>
                 </div>
                 <div class="col-md-8">
-                                  <textarea id="abstrakti"
-                                            name="abstrakti"
-                                            role="textbox"
-                                            class="form-control vertical-resize min-height-300"
-                                            data-ng-model="filedata.abstract">
-                                  </textarea>
+                  <textarea id="abstrakti"
+                            name="abstrakti"
+                            role="textbox"
+                            class="form-control vertical-resize min-height-300"
+                            data-ng-model="filedata.abstract">
+                  </textarea>
                 </div>
             </div>
             <div class="row form-group">
@@ -274,14 +283,16 @@
                         </ui-select-choices>
                     </ui-select>
                 </div>
-                <div class="col-md-2">
-                    <button type="button"
-                            class="btn btn-primary m-b"
-                            data-ng-click="filedata.oikeudet = null"
-                            data-ng-if="filedata.oikeudet"
-                            title="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]"
-                            data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]">
-                    </button>
+                <div class="col-md-2 mt-x">
+
+                    <a data-ng-click="filedata.oikeudet = null"
+                       data-ng-if="filedata.oikeudet"
+                       class="text-danger cursor-pointer text-secondary"
+                       title="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]">
+                        {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]}}
+                        <i class="fa fa-close" aria-hidden="true"></i>
+                    </a>
+
                 </div>
             </div>
             <div class="row form-group">
@@ -316,14 +327,14 @@
                         </ui-select-choices>
                     </ui-select>
                 </div>
-                <div class="col-md-2">
-                    <button type="button"
-                            class="btn btn-primary m-b"
-                            data-ng-click="filedata.versio = null"
-                            data-ng-if="filedata.versio"
-                            title="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]"
-                            data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]">
-                    </button>
+                <div class="col-md-2 mt-x">
+                    <a data-ng-click="filedata.versio = null"
+                       data-ng-if="filedata.versio"
+                       class="text-danger cursor-pointer text-secondary"
+                       title="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]">
+                        {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]}}
+                        <i class="fa fa-close" aria-hidden="true"></i>
+                    </a>
                 </div>
             </div>
             <div class="row form-group">
@@ -413,7 +424,7 @@
                     class="btn btn-lg btn-block btn-info"
                     type="submit"
                     data-ng-click="useVaihe(3)">
-                Palaa edelliseen vaiheeseen
+                {{i18n.content.tietojensyotto.palaa[lang]}}
             </button>
         </div>
         <div class="col-md-8">

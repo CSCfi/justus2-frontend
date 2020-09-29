@@ -17,7 +17,6 @@
  color: $brand-primary;
  background-color: rgb(240, 240, 240);
  border-color: rgb(240, 240, 240);
- padding:15px 15px;
   a {
     text-decoration: none !important;
   }
@@ -40,6 +39,10 @@
   padding: 10px 0 10px 20px;
   font-size: 17px;
   border-bottom: 1px solid #eee;
+  h5 {
+    margin-top: 3px;
+    padding-bottom: 5px;
+  }
   &:hover {
     cursor: pointer;
     background: $brand-primary;
@@ -53,7 +56,7 @@
 
 .publication-search {
   .panel-body {
-    background: #eee;
+    background: $brand-white;
   }
   .form-control {
     background: #fff;
