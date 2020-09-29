@@ -279,8 +279,8 @@
               </div>
             </div>
 
-            <div class="row form-group">
-              <div data-ng-if="isFieldVisible('alayksikko')" data-ng-class="['orcidGroup' + $index]" class="col-xs-12 col-sm-6"
+            <div data-ng-if="isFieldVisible('alayksikko')" class="row form-group">
+              <div data-ng-class="['orcidGroup' + $index]" class="col-xs-12 col-sm-6"
                    validate-organisaatiotekijat-directive validate="validateState" field="orcid"
                    value="justus.organisaatiotekija[$index].orcid">
                 <label for="orcid"
@@ -323,8 +323,8 @@
               </div>
             </div>
 
-            <div class="row form-group">
-              <div data-ng-if="isFieldVisible('alayksikko')" class="col-xs-12">
+            <div data-ng-if="isFieldVisible('alayksikko')" class="row form-group">
+              <div  class="col-xs-12">
                 <div class="row form-group no-gutter" data-ng-show="justus.organisaatiotekija[$index].alayksikko[0]">
                   <label for="unitlist" class="control-label">Alayksikkö / Alayksiköt</label>
                   <div data-ng-repeat="ota in justus.organisaatiotekija[$index].alayksikko track by $index"
