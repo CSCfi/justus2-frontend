@@ -204,7 +204,7 @@ angular.module('AdminController', [])
 
                 APIService.post("persons/save", $scope.personsToBeDeleted)
                     .then(function (res) {
-                        if (res.status === 500) {
+                        if (res.status !== 200) {
                             $scope.csvUploadError = true;
                             $scope.csvUploadResponseText = "Csv upload error with message: " +
                                 res.data + " and status: " + res.status
