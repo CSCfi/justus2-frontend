@@ -76,7 +76,7 @@
                    data-ng-class="getMenuClass('/hyvaksy')"
                    data-ng-bind="i18n.header.navigation.hyvaksy[lang]">
                 </a>
-                <a data-ng-if="user.role === 'owner'"
+                <a data-ng-if="hasAccessToApprove()"
                 href data-ui-sref="admin()"
                 data-ng-class="getMenuClass('/admin')"
                 data-ng-bind="i18n.header.navigation.admin[lang]">
