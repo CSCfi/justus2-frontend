@@ -8,6 +8,7 @@ angular.module('AuthService', [])
 
             let getUserInfo = function () {
                 return $http.get(AUTH_URL).then(function (response) {
+                    console.log(response.data);
                    return setUser(response.data);
                 })
             };
@@ -24,19 +25,12 @@ angular.module('AuthService', [])
                 user.alayksikot = response.alayksikot;
                 user.jukuriUser = response.perustiedot.jukuriUser;
 
+                user.hrDataExists = response.perustiedot.showHrData;
+
                 user.lang = response.perustiedot.kieli;
                 user.owner = response.perustiedot.owner;
 
-                // This is just for testing purposes
-                if (user.owner) {
-                    user.hrDataExists = true;
-                } else {
-                    user.hrDataExists = false;
-                }
-
                 console.log(user);
-                // user.hrDataExists = response.perustiedot.showHrData;
-                // user.hrDataExists = false;
 
                 return user;
             };
