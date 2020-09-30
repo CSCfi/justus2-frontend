@@ -236,6 +236,7 @@ angular.module('IndexController', [])
                         $scope.selectedDemoUserOrganizationCode = "";
                         $scope.showPublicationInput = $rootScope.user.organization.showPublicationInput;
                         JustusService.clearPublicationForm();
+                        fetchPersonData();
                         $state.reload();
                     }).catch(function (Error) {
                     console.log(Error);
