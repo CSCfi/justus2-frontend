@@ -189,7 +189,7 @@ angular.module('JustusController', [])
 
                 if (arrayContains($scope.justus.organisaatiotekija[index].alayksikko, input)) return;
 
-                if ($scope.justus.organisaatiotekija[index].alayksikko[0] === null) {
+                if ($scope.justus.organisaatiotekija[index].alayksikko[0] === null || $scope.justus.organisaatiotekija[index].alayksikko[0] === "") {
                     $scope.justus.organisaatiotekija[index].alayksikko[0] = input;
                 } else {
                     $scope.justus.organisaatiotekija[index].alayksikko.push(input);
