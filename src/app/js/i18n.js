@@ -1006,18 +1006,18 @@ const i18n = {
       },
       lataus: {
         lataa: { 
-          title: { FI: 'Lataa tiedot', SV: 'SV Lataa tiedot', EN: 'EN Lataa tiedot' }, 
+          title: { FI: 'Lataa tiedot CSV-tiedostona', SV: 'SV Lataa tiedot CSV-tiedostona', EN: 'EN Lataa tiedot CSV-tiedostona' },
           button: { FI: 'Lataa CSV', SV: 'SV Lataa CSV', EN: 'EN Lataa CSV' }
         },
         tuo: { 
           title: { FI: 'Tuo päivitetyt tiedot', SV: 'SV Tuo päivitetyt tiedot', EN: 'EN Tuo päivitetyt tiedot' }, 
           button: { FI: 'Valitse tiedosto', SV: 'SV Valitse tiedosto', EN: 'EN Valitse tiedosto' }, 
-          esikatselu: { FI: 'Esikatselu lisättävistä henkiöistä (10 ensimmäistä):', SV: 'SV Esikatselu lisättävistä henkiöistä (10 ensimmäistä):', EN: 'EN Esikatselu lisättävistä henkiöistä (10 ensimmäistä):' }, 
+          esikatselu: { FI: 'Esikatselu lisättävistä henkilöistä (10 ensimmäistä):', SV: 'SV Esikatselu lisättävistä henkilöistä (10 ensimmäistä):', EN: 'EN Esikatselu lisättävistä henkilöistä (10 ensimmäistä):' },
           poisto: { FI: 'Huom! Seuraavat henkilöt poistetaan tietokannasta:', SV: 'SV Huom! Seuraavat henkilöt poistetaan tietokannasta:', EN: 'EN Huom! Seuraavat henkilöt poistetaan tietokannasta:' }, 
           info: { 
-            FI: 'Hyväksy yllä olevat muutokset painamalla Tallenna tai hylkää muutokset Peruuta nappulasta', 
-            SV: 'SV Hyväksy yllä olevat muutokset painamalla Tallenna tai hylkää muutokset Peruuta nappulasta', 
-            EN: 'EN Hyväksy yllä olevat muutokset painamalla Tallenna tai hylkää muutokset Peruuta nappulasta' 
+            FI: 'Hyväksy yllä olevat muutokset painamalla "Tallenna" tai hylkää muutokset painamalla "Peruuta"',
+            SV: 'SV Hyväksy yllä olevat muutokset painamalla "Tallenna" tai hylkää muutokset painamalla "Peruuta"',
+            EN: 'EN Hyväksy yllä olevat muutokset painamalla "Tallenna" tai hylkää muutokset painamalla "Peruuta"'
           }, 
           tallenna: { FI: 'Tallenna', SV: 'SV Tallenna', EN: 'Save' }, 
           peruuta: { FI: 'Peruuta', SV: 'SV Peruuta', EN: 'Cancel' } 
