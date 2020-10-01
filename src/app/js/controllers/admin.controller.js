@@ -210,7 +210,7 @@ angular.module('AdminController', [])
                                 res.data + " and status: " + res.status
                         } else {
                             $scope.csvUploadError = false;
-                            $scope.csvUploadResponseText = "HR data päivitetty onnistuneesti!";
+                            $scope.csvUploadResponseText = "Tiedot päivitetty onnistuneesti!";
                         }
                         $scope.showAlertDialog = true;
                         $scope.personsToBeDeleted = [];
