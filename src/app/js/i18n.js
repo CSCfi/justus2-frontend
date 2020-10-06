@@ -489,7 +489,7 @@ const i18n = {
         },
         lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
         poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
-        picktip: { FI: 'Kirjoita avainsana ja paina enter tai pilkku näppäintä', SV: 'Skriv nyckelordet och tryck enter', EN: 'Type in the keyword and press enter' }
+        picktip: { FI: 'Kirjoita avainsana ja paina Enter-näppäintä tai pilkkua', SV: 'Skriv nyckelordet och tryck enter', EN: 'Type in the keyword and press enter' }
       },
       julkaisunkieli: {
         FI: 'Julkaisun kieli',
