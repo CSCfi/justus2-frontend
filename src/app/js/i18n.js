@@ -304,6 +304,11 @@ const i18n = {
             FI: 'Kopioi julkaisun tekijät organisaation tekijöiksi',
             SV: 'Kopiera författarna till organisationens upphovsmän',
             EN: 'Copy authors as organisations authors'
+          },
+          disabled: {
+            FI: 'Tekijöiden kopiointi mahdollista vain kerran. Lisää puuttuvat tekijät manuaalisesti.',
+            SV: 'Tekijöiden kopiointi mahdollista vain kerran. Lisää puuttuvat tekijät manuaalisesti.',
+            EN: 'Tekijöiden kopiointi mahdollista vain kerran. Lisää puuttuvat tekijät manuaalisesti.'
           }
         }
       },

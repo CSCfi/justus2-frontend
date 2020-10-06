@@ -163,6 +163,16 @@ angular.module('JustusController', [])
 
             };
 
+            $scope.isCopyButtonDisabled = function() {
+                return !!($scope.justus.organisaatiotekija[0].sukunimi || $scope.justus.organisaatiotekija[0].etunimet);
+            }
+
+            $scope.getDisabledText = function (disabled) {
+                if (disabled) {
+                    return $scope.i18n.content.form.organisaatiotekija.kopioi.disabled[$scope.lang];
+                }
+                else return null;
+            }
 
             $scope.useKopioiTekijat = function(input) {
                 let tempstr = input;
@@ -478,7 +488,7 @@ angular.module('JustusController', [])
                         if (response.status === 404) {
                             $scope.noCrossRefResults = true;
                         }
-                        if (response.status === 500) {
+                        else  {
                             console.log("Server error in CrossRef service");
                             $scope.crossRefServerError = true;
                         }

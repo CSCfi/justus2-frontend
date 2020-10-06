@@ -187,7 +187,7 @@
     <div class="col-sm-8 col-xs-12 justus-data"
          data-ng-model="req_julkaisuntekijoidenlukumaara">
       <div class="row">
-        <div class="col-sm-5 col-xs-12">
+        <div class="col-xs-5">
           <input id="julkaisuntekijoidenlukumaara"
                  name="julkaisuntekijoidenlukumaara"
                  type="text"
@@ -195,15 +195,14 @@
                  data-ng-model="justus.julkaisu.julkaisuntekijoidenlukumaara"
                  maxlength="2" pattern="^[0-9]*$">
         </div>
-        <div class="col-xs-5 justus-data text-right">
+        <div class="col-xs-7 text-right">
           <button class="btn btn-primary justus-btn"
                   role="button"
                   data-ng-click="useKopioiTekijat(justus.julkaisu.tekijat)"
-                  data-ng-show="justus.julkaisu.tekijat && !(justus.organisaatiotekija[0].sukunimi || justus.organisaatiotekija[0].etunimet)"
-                  data-popover-trigger="'mouseenter'"
-                  data-popover-placement="right"
-                  data-uib-popover="{{i18n.content.form.organisaatiotekija.kopioi.tooltip[lang]}}"
-                  data-ng-bind="i18n.content.form.organisaatiotekija.kopioi[lang]">
+                  data-ng-disabled="isCopyButtonDisabled()"
+                  data-ng-show="justus.julkaisu.tekijat && !justus.julkaisu.id"
+                  data-ng-attr-title="{{getDisabledText(isCopyButtonDisabled())}}"
+                  data-ng-bind="i18n.content.form.organisaatiotekija.kopioi.tooltip[lang]">
           </button>
         </div>
       </div>
