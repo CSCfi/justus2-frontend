@@ -163,6 +163,17 @@ angular.module('JustusController', [])
 
             };
 
+            $scope.isCopyButtonDisabled = function() {
+                return !!($scope.justus.organisaatiotekija[0].sukunimi || $scope.justus.organisaatiotekija[0].etunimet);
+            }
+
+            $scope.getDisabledText = function (disabled) {
+                if (disabled) {
+                    return $scope.i18n.content.form.organisaatiotekija.kopioi.disabled[$scope.lang];
+                }
+                else return null;
+            }
+
             $scope.useKopioiTekijat = function(input) {
 
                 $scope.multipleMatchNames = [];
@@ -244,7 +255,7 @@ angular.module('JustusController', [])
 
                 if (arrayContains($scope.justus.organisaatiotekija[index].alayksikko, input)) return;
 
-                if ($scope.justus.organisaatiotekija[index].alayksikko[0] === null) {
+                if ($scope.justus.organisaatiotekija[index].alayksikko[0] === null || $scope.justus.organisaatiotekija[index].alayksikko[0] === "") {
                     $scope.justus.organisaatiotekija[index].alayksikko[0] = input;
                 } else {
                     $scope.justus.organisaatiotekija[index].alayksikko.push(input);
@@ -543,7 +554,7 @@ angular.module('JustusController', [])
                         if (response.status === 404) {
                             $scope.noCrossRefResults = true;
                         }
-                        if (response.status === 500) {
+                        else  {
                             console.log("Server error in CrossRef service");
                             $scope.crossRefServerError = true;
                         }

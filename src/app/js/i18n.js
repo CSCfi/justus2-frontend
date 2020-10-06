@@ -305,6 +305,11 @@ const i18n = {
             FI: 'Kopioi julkaisun tekijät organisaation tekijöiksi',
             SV: 'Kopiera författarna till organisationens upphovsmän',
             EN: 'Copy authors as organisations authors'
+          },
+          disabled: {
+            FI: 'Tekijöiden kopiointi mahdollista vain kerran. Lisää puuttuvat tekijät manuaalisesti.',
+            SV: 'Tekijöiden kopiointi mahdollista vain kerran. Lisää puuttuvat tekijät manuaalisesti.',
+            EN: 'Tekijöiden kopiointi mahdollista vain kerran. Lisää puuttuvat tekijät manuaalisesti.'
           }
         }
       },
@@ -485,7 +490,7 @@ const i18n = {
         },
         lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
         poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
-        picktip: { FI: 'Kirjoita avainsana ja paina enter tai pilkku näppäintä', SV: 'Skriv nyckelordet och tryck enter', EN: 'Type in the keyword and press enter' }
+        picktip: { FI: 'Kirjoita avainsana ja paina Enter-näppäintä tai pilkkua', SV: 'Skriv nyckelordet och tryck enter', EN: 'Type in the keyword and press enter' }
       },
       julkaisunkieli: {
         FI: 'Julkaisun kieli',
