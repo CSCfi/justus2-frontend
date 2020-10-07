@@ -184,6 +184,29 @@
             <div class="p-1" data-ng-if="user.visibleFields">
 
                 <person-form-directive  data-ng-form="personForm" selected-person="personData" lang="lang"></person-form-directive>
+
+                <div class="row"
+                     data-ng-if="invalidFields.missingValue.length > 0 || invalidFields.invalidValue.length > 0">
+                    <div class="col-xs-12">
+                        <div role="alert" class="alert alert-danger mb-0">
+                            <h3 class="text-secondary mt-0">
+                                Tarkasta seuraavat kentät:
+                            </h3>
+                            <div>
+                              <span class="pxs" data-ng-repeat="o in invalidFields.missingValue">
+                                    <i class="text-xl" data-ng-bind="i18n.admin.content.form[o][lang]?i18n.admin.content.form[o][lang]:o"></i>
+                                <br>
+                              </span>
+                                <span class="pxs" data-ng-repeat="i in invalidFields.invalidValue">
+                                    <i class="text-xl" data-ng-bind="i18n.admin.content.form[i][lang]?i18n.admin.content.form[i][lang]:i"></i>
+                                <br>
+                              </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="row mt-xl">
                     <div class="col-xs-8 margin-bottom-md">
                         <button class="btn btn-primary btn-block btn-lg"

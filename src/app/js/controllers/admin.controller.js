@@ -151,9 +151,9 @@ angular.module('AdminController', [])
 
             $scope.savePerson = function(form) {
 
-                let invalidFields = ValidationService.validatePersonForm(form.person)
+                $scope.invalidFields = ValidationService.validatePersonForm(form.person)
 
-                if (invalidFields.missingValue.length === 0 && invalidFields.invalidValue.length === 0) {
+                if ($scope.invalidFields.missingValue.length === 0 && $scope.invalidFields.invalidValue.length === 0) {
                     APIService.post("person/save", $scope.personData)
                     .then(function (response) {
                         console.log(response);
