@@ -49,6 +49,10 @@ angular.module('AdminController', [])
                 "orcid": null,
                 "alayksikko": [null]
             };
+
+            $scope.csvPreviewError = false;
+            $scope.csvPreviewSuccess = false;
+            $scope.showAlertDialog = false;
         };
 
             $scope.isFieldVisible = function(field) {
@@ -192,9 +196,21 @@ angular.module('AdminController', [])
             };
 
             $scope.uploadCsv = function (file) {
+                $scope.showAlertDialog = false;
+                $scope.csvPreviewSuccess = false;
+                $scope.csvPreviewError = false;
                 APIService.postCsvFile(file)
                     .then(function (res) {
-                        $scope.personsToBeDeleted = res.data;
+                        console.log(res);
+                        if(res.status === 200) {
+                            $scope.personsToBeDeleted = res.data;
+                            $scope.csvPreviewSuccess = true;
+                        } else {
+                            console.log("Server responded with status " + res.status);
+                            $scope.csvPreviewError = true;
+                            $scope.csvErrorText = res.data;
+                        }
+
                     }).catch(function (err) {
                         console.log(err);
                     })
@@ -218,6 +234,8 @@ angular.module('AdminController', [])
                             file: null
                         };
                         $scope.csvData.data = {};
+                        $scope.csvPreviewError = false;
+                        $scope.csvPreviewSuccess = false;
                         console.log(res);
                     })
             };
@@ -236,6 +254,8 @@ angular.module('AdminController', [])
                         $scope.csvFile = {
                             file: null
                         };
+                        $scope.csvPreviewError = false;
+                        $scope.csvPreviewSuccess = false;
                         $scope.csvData.data = {};
                     }).catch(function (err) {
                         console.log(err);
