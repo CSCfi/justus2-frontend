@@ -1,155 +1,183 @@
 <div data-ng-if="!hakuState">
 
-    <div class="row mx form-group border-bottom-1">
-        <div class="col-md-4">
-            <h3 class="text-secondary text-primary" style="margin-top: 10px;"
-                data-ng-bind="i18n.admin.content.lataus.lataa.title[lang]"></h3>
-        </div>
-        <div class="col-md-8 ">
-            <button class="pull-right btn btn-primary">
-                <a data-ng-href="{{csvurl}}" class="text-white no-hover"
-                   download="persons.csv">{{i18n.admin.content.lataus.lataa.button[lang]}}</a>
-            </button>
-        </div>
-    </div>
-
-    <div class="row mx form-group pt">
-        <div class="col-md-4">
-            <h3 class="text-secondary text-primary" style="margin-top: 6px;"
-                data-ng-bind="i18n.admin.content.lataus.tuo.title[lang]"></h3>
-        </div>
-        <div class="col-md-8">
-            <div ng-show="!csvFile.file">
-                <div class="d-inline-block pull-right">
-                    <label for="file-upload" class="custom-file-upload btn btn-primary cursor-pointer"
-                           data-ng-bind="i18n.admin.content.lataus.tuo.button[lang]">
-                    </label>
-                    <input id="file-upload" type="file" ngf-select="uploadCsv(csvFile.file)" ng-model="csvFile.file" name="filename"
-                           ngf-max-size="100MB"  data-file-reader-directive file-content="csvData" accept=".csv">
-                </div>
-            </div>
-            <div ng-show="csvFile.file" class="text-right">
-                <span class="font-weight-bold text-xl" style="margin-right: 10px;">{{csvFile.file.name}}</span>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="breadcrumb">
+                <h1 data-ng-bind="i18n.header.navigation.admin[lang]"></h1> <span><i class="fa fa-chevron-right"></i></span>
+                <h2>Tuo henkilöitä</h2>
             </div>
         </div>
     </div>
-
-    <div data-ng-if="csvPreviewSuccess">
-        <div data-ng-if="csvData.data.length > 0">
-            <div class="row">
-                <div class="col-xs-12 text-secondary">
-                    <h4 class="font-weight-700" data-ng-bind="i18n.admin.content.lataus.tuo.esikatselu[lang]"></h4>
-                </div>
-            </div>
-            <div class="row no-gutter">
-                <div class="col-md-12">
-                    <table class="table table-condensed">
-                        <thead>
-                            <tr>
-                                <th data-ng-bind="i18n.admin.content.lista.tunniste[lang]"></th>
-                                <th data-ng-bind="i18n.admin.content.lista.etunimi[lang]"></th>
-                                <th data-ng-bind="i18n.admin.content.lista.sukunimi[lang]"></th>
-                                <th data-ng-bind="i18n.admin.content.lista.email[lang]"></th>
-                                <th data-ng-bind="i18n.admin.content.lista.orcid[lang]"></th>
-                                <th>{{i18n.admin.content.lista.alayksikko[lang]}} 1</th>
-                                <th>{{i18n.admin.content.lista.alayksikko[lang]}} 2</th>
-                                <th>{{i18n.admin.content.lista.alayksikko[lang]}} 3</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr data-ng-repeat="row in csvData.data | limitTo: 10">
-                                <td>{{row.hrnumero}}</td>
-                                <td>{{row.etunimi}}</td>
-                                <td>{{row.sukunimi}}</td>
-                                <td>{{row.email}}</td>
-                                <td>{{row.orcid}}</td>
-                                <td>{{row.alayksikko1}}</td>
-                                <td>{{row.alayksikko2}}</td>
-                                <td>{{row.alayksikko3}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div class="row" data-ng-if="personsToBeDeleted.length > 0">
-            <div class="col-md-12">
-                <div>
-                    <h4 class="font-weight-700 text-danger mt-0 text-secondary"
-                        data-ng-bind="i18n.admin.content.lataus.tuo.poisto[lang]"></h4>
-                </div>
-                <div role="alert" class="alert alert-danger text-secondary m-b">
-                    <ul>
-                        <li data-ng-repeat="person in personsToBeDeleted" class="">
-                            <span class="font-weight-bold">{{person.hrnumero}}</span>
-                            <span class="pxs">{{person.etunimi}} {{person.sukunimi}}</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div data-ng-if="csvFile.file">
-            <div class="row mb-x">
-                <div class="col-xs-12">
-                   <p class="font-weight-500" data-ng-bind="i18n.admin.content.lataus.tuo.info[lang]"></p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-8 col-xs-12 margin-bottom-md">
-                    <button class="btn btn-lg btn-primary btn-block"
-                            type="submit"
-                            data-ng-click="saveCsvData()"
-                            data-ng-bind="i18n.admin.content.lataus.tuo.tallenna[lang]">
-                    </button>
-                </div>
-                <div class="col-md-4 col-xs-12 pull-right">
-                    <button class="btn btn-lg btn-danger btn-block"
-                            type="button"
-                            data-ng-click="discardChanges(csvData)"
-                            data-ng-bind="i18n.admin.content.lataus.tuo.peruuta[lang]">
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div data-ng-show="showAlertDialog">
-        <span data-ng-class="{'text-danger': csvUploadError}">{{csvUploadErrorText}}</span>
-        <div class="alert alert-success alert-dismissible" data-ng-class="{'alert-danger': csvUploadError}" role="alert">
-            <strong>{{csvUploadResponseText}}</strong>
-            <button type="button" data-ng-click="resetDialog()" class="btn close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    </div>
-
-    <div class="row" data-ng-if="csvPreviewError">
-        <div class="col-md-12">
-            <div role="alert" class="alert alert-danger text-secondary text-xl m-b">
-                <p>
-                    <span class="font-weight-bold">Error in uploading CSV file with error: </span> <span class="break-word">{{csvErrorText}}</span>
-                </p>
-                <p class="text-right">
-                    <button type="button" class="btn btn-danger"
-                            data-ng-click="discardChanges(csvData)">Hylkää ja yritä uudestaan</button>
-                </p>
-            </div>
-        </div>
-    </div>
-
 
     <uib-accordion class="text-secondary">
         <div uib-accordion-group class="panel-default m-t"
-             is-open="status.open"
-             data-ng-class="{'opened': status.open}">
+             is-open="download.open"
+             data-ng-class="{'opened': download.open}">
+            <uib-accordion-heading class="bg-light" >
+                <div>
+                    <h4>{{i18n.admin.content.lataus.lataa.title[lang]}}
+                        <i class="pull-right glyphicon"
+                           data-ng-class="{'glyphicon-chevron-down': download.open, 'glyphicon-chevron-right': !download.open}"></i>
+                    </h4>
+                </div>
+            </uib-accordion-heading>
+            <div class="p-1">
+<!--                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper lacus lacinia malesuada egestas. Mauris et eleifend dui. Duis dictum ante eu mauris fermentum, tristique commodo felis dictum. Aenean interdum nibh quis velit pulvinar bibendum. Pellentesque imperdiet vehicula purus vel molestie.</p>-->
+                    <a data-ng-href="{{csvurl}}" class="text-white btn btn-primary"
+                       download="persons.csv">{{i18n.admin.content.lataus.lataa.button[lang]}}</a>
+            </div>
+        </div>
+    </uib-accordion>
+
+    <uib-accordion class="text-secondary">
+        <div uib-accordion-group class="panel-default m-t"
+             is-open="upload.open"
+             data-ng-class="{'opened': upload.open}">
+            <uib-accordion-heading class="bg-light" >
+                <div>
+                    <h4>{{i18n.admin.content.lataus.tuo.title[lang]}}
+                        <i class="pull-right glyphicon"
+                           data-ng-class="{'glyphicon-chevron-down': upload.open, 'glyphicon-chevron-right': !upload.open}"></i>
+                    </h4>
+                </div>
+            </uib-accordion-heading>
+
+            <div class="p-1">
+            <div class="">
+                <div data-ng-show="!csvFile.file">
+<!--                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper lacus lacinia malesuada egestas. Mauris et eleifend dui. Duis dictum ante eu mauris fermentum, tristique commodo felis dictum. Aenean interdum nibh quis velit pulvinar bibendum. Pellentesque imperdiet vehicula purus vel molestie.</p>-->
+                    <div class="">
+                        <label for="file-upload" class="custom-file-upload btn btn-primary cursor-pointer"
+                               data-ng-bind="i18n.admin.content.lataus.tuo.button[lang]">
+                        </label>
+                        <input id="file-upload" type="file" ngf-select="uploadCsv(csvFile.file)" data-ng-model="csvFile.file" name="filename"
+                               ngf-max-size="100MB"  data-file-reader-directive file-content="csvData" accept=".csv">
+                    </div>
+                </div>
+                <div data-ng-show="csvFile.file">
+                    <p>Tiedosto: <span class="font-weight-bold">{{csvFile.file.name}}</span></p>
+                </div>
+            </div>
+
+            <div data-ng-if="csvPreviewSuccess">
+                <div data-ng-if="csvData.data.length > 0">
+                    <div class="row">
+                        <div class="col-xs-12 text-secondary">
+                            <h4 class="font-weight-700" data-ng-bind="i18n.admin.content.lataus.tuo.esikatselu[lang]"></h4>
+                        </div>
+                    </div>
+                    <div class="row no-gutter">
+                        <div class="col-md-12">
+                            <table class="table table-condensed">
+                                <thead>
+                                <tr>
+                                    <th data-ng-bind="i18n.admin.content.lista.tunniste[lang]"></th>
+                                    <th data-ng-bind="i18n.admin.content.lista.etunimi[lang]"></th>
+                                    <th data-ng-bind="i18n.admin.content.lista.sukunimi[lang]"></th>
+                                    <th data-ng-bind="i18n.admin.content.lista.email[lang]"></th>
+                                    <th data-ng-bind="i18n.admin.content.lista.orcid[lang]"></th>
+                                    <th>{{i18n.admin.content.lista.alayksikko[lang]}} 1</th>
+                                    <th>{{i18n.admin.content.lista.alayksikko[lang]}} 2</th>
+                                    <th>{{i18n.admin.content.lista.alayksikko[lang]}} 3</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr data-ng-repeat="row in csvData.data | limitTo: 10">
+                                    <td>{{row.hrnumero}}</td>
+                                    <td>{{row.etunimi}}</td>
+                                    <td>{{row.sukunimi}}</td>
+                                    <td>{{row.email}}</td>
+                                    <td>{{row.orcid}}</td>
+                                    <td>{{row.alayksikko1}}</td>
+                                    <td>{{row.alayksikko2}}</td>
+                                    <td>{{row.alayksikko3}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" data-ng-if="personsToBeDeleted.length > 0">
+                    <div class="col-md-12">
+                        <div>
+                            <h4 class="font-weight-700 text-danger mt-0 text-secondary"
+                                data-ng-bind="i18n.admin.content.lataus.tuo.poisto[lang]"></h4>
+                        </div>
+                        <div role="alert" class="alert alert-danger text-secondary m-b">
+                            <ul>
+                                <li data-ng-repeat="person in personsToBeDeleted" class="">
+                                    <span class="font-weight-bold">{{person.hrnumero}}</span>
+                                    <span class="pxs">{{person.etunimi}} {{person.sukunimi}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-ng-if="csvFile.file">
+                    <div class="row mb-x">
+                        <div class="col-xs-12">
+                            <p class="font-weight-500" data-ng-bind="i18n.admin.content.lataus.tuo.info[lang]"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-xs-12 margin-bottom-md">
+                            <button class="btn btn-lg btn-primary btn-block"
+                                    type="submit"
+                                    data-ng-click="saveCsvData()"
+                                    data-ng-bind="i18n.admin.content.lataus.tuo.tallenna[lang]">
+                            </button>
+                        </div>
+                        <div class="col-md-4 col-xs-12 pull-right">
+                            <button class="btn btn-lg btn-danger btn-block"
+                                    type="button"
+                                    data-ng-click="discardChanges(csvData)"
+                                    data-ng-bind="i18n.admin.content.lataus.tuo.peruuta[lang]">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div data-ng-show="showAlertDialog">
+                <span data-ng-class="{'text-danger': csvUploadError}">{{csvUploadErrorText}}</span>
+                <div class="alert alert-success alert-dismissible" data-ng-class="{'alert-danger': csvUploadError}" role="alert">
+                    <strong>{{csvUploadResponseText}}</strong>
+                    <button type="button" data-ng-click="resetDialog()" class="btn close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="row" data-ng-if="csvPreviewError">
+                <div class="col-md-12">
+                    <div role="alert" class="alert alert-danger text-secondary text-xl m-b">
+                        <p>
+                            <span class="font-weight-bold">Error in uploading CSV file with error: </span> <span class="break-word">{{csvErrorText}}</span>
+                        </p>
+                        <p class="text-right">
+                            <button type="button" class="btn btn-danger"
+                                    data-ng-click="discardChanges(csvData)">Hylkää ja yritä uudestaan</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </uib-accordion>
+
+    <uib-accordion class="text-secondary">
+        <div uib-accordion-group class="panel-default m-t"
+             is-open="addNew.open"
+             data-ng-class="{'opened': addNew.open}">
             <uib-accordion-heading class="bg-light" >
                 <div data-ng-click="addPerson()">
                     <h4>{{i18n.admin.content.lisaa[lang]}}
                         <i class="pull-right glyphicon"
-                           data-ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                           data-ng-class="{'glyphicon-chevron-down': addNew.open, 'glyphicon-chevron-right': !addNew.open}"></i>
                     </h4>
                 </div>
             </uib-accordion-heading>
@@ -172,54 +200,9 @@
                         </button>
                     </div>
                 </div>
-
             </div>
         </div>
     </uib-accordion>
-
-
-
-<!--    <div class="row">-->
-<!--        <div class="col-xs-12">-->
-<!--            <button class="btn btn-primary btn-block btn-lg" data-ng-click="addPerson()"-->
-<!--                    data-ng-bind="i18n.admin.content.lisaa[lang]">-->
-<!--            </button>-->
-<!--        </div>-->
-<!--    </div>-->
-
-<!--    <div class="px mb-l" data-ng-if="showEditDialog">-->
-
-<!--        <button class="btn btn-default pull-right "-->
-<!--                data-ng-click="closeForm()"-->
-<!--                title="i18n.admin.content.form.sulje[lang]">-->
-<!--            {{i18n.admin.content.form.sulje[lang]}}-->
-<!--            <i class="fa fa-close fa-lg pl"></i>-->
-<!--        </button>-->
-<!--        <h3 data-ng-if="selectedPerson.id" class="text-secondary">-->
-<!--            {{i18n.admin.content.form.muokkaa[lang]}} {{selectedPerson.etunimi}} {{selectedPerson.sukunimi}}</h3>-->
-<!--        <h3 data-ng-if="!selectedPerson.id" class="text-secondary" data-ng-bind="i18n.admin.content.form.lisaa[lang]"></h3>-->
-
-
-<!--        <person-form-directive data-ng-form="personForm" selected-person="selectedPerson" lang="lang"></person-form-directive>-->
-
-<!--        <div class="row mt-xl">-->
-<!--            <div class="col-xs-12 margin-bottom-md" data-ng-class="{ 'col-md-12': !selectedPerson.id, 'col-md-8': selectedPerson.id }">-->
-<!--                <button class="btn btn-primary btn-block btn-lg"-->
-<!--                        type="submit"-->
-<!--                        data-ng-click="savePerson(personForm)"-->
-<!--                        data-ng-bind="i18n.admin.content.form.tallenna[lang]">-->
-<!--                </button>-->
-<!--            </div>-->
-<!--            <div data-ng-if="selectedPerson.id" class="col-md-4 col-xs-12">-->
-<!--                <button type="reset"-->
-<!--                        class="btn btn-danger btn-block btn-lg"-->
-<!--                        data-ng-click="removePerson()"-->
-<!--                        data-ng-bind="i18n.admin.content.form.poista[lang]">-->
-<!--                </button>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-
 
 </div>
 

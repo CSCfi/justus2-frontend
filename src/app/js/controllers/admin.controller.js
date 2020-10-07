@@ -135,7 +135,7 @@ angular.module('AdminController', [])
             };
 
             $scope.cancel = function() {
-                $scope.status.open = false;
+                $scope.addNew.open = false;
                 $scope.personData = {
                     "hrnumero": "",
                     "etunimi": "",
@@ -164,7 +164,7 @@ angular.module('AdminController', [])
                             "orcid": null,
                             "alayksikko": [null]
                         };
-                        $scope.status.open = false;
+                        $scope.addNew.open = false;
                         fetchPersonData();
                     }).catch(function (err) {
                         console.log(err);
@@ -173,7 +173,7 @@ angular.module('AdminController', [])
 
             };
 
-            $scope.status = {
+            $scope.addNew = {
                 isOpen: false
             };
 
