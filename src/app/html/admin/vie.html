@@ -22,7 +22,7 @@
                 </div>
             </uib-accordion-heading>
             <div class="p-1">
-<!--                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper lacus lacinia malesuada egestas. Mauris et eleifend dui. Duis dictum ante eu mauris fermentum, tristique commodo felis dictum. Aenean interdum nibh quis velit pulvinar bibendum. Pellentesque imperdiet vehicula purus vel molestie.</p>-->
+                <p data-ng-bind="i18n.admin.content.lataus.lataa.text[lang]"></p>
                     <a data-ng-href="{{csvurl}}" class="text-white btn btn-primary"
                        download="persons.csv">{{i18n.admin.content.lataus.lataa.button[lang]}}</a>
             </div>
@@ -45,8 +45,8 @@
             <div class="p-1">
             <div class="">
                 <div data-ng-show="!csvFile.file">
-<!--                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper lacus lacinia malesuada egestas. Mauris et eleifend dui. Duis dictum ante eu mauris fermentum, tristique commodo felis dictum. Aenean interdum nibh quis velit pulvinar bibendum. Pellentesque imperdiet vehicula purus vel molestie.</p>-->
-                    <div class="">
+                    <p data-ng-bind="i18n.admin.content.lataus.tuo.text[lang]"></p>
+                    <div>
                         <label for="file-upload" class="custom-file-upload btn btn-primary cursor-pointer"
                                data-ng-bind="i18n.admin.content.lataus.tuo.button[lang]">
                         </label>
