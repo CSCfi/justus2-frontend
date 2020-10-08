@@ -5,9 +5,9 @@ app.controller('PersonModalInstanceCtrl', ['$scope', '$uibModalInstance', 'perso
         $scope.selectedPerson = person;
 
         $scope.editPerson = function (form) {
-            let invalidFields = ValidationService.validatePersonForm(form.person);
+            $scope.invalidFields = ValidationService.validatePersonForm(form.person);
 
-            if (invalidFields.missingValue.length === 0 && invalidFields.invalidValue.length === 0) {
+            if ($scope.invalidFields.missingValue.length === 0 && $scope.invalidFields.invalidValue.length === 0) {
                 $uibModalInstance.close("update");
             }
         };
