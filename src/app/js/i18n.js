@@ -1013,9 +1013,9 @@ const i18n = {
         lataus: {
           lataa: {
             title: { FI: 'Lataa tiedot CSV-tiedostona', SV: 'SV Lataa tiedot CSV-tiedostona', EN: 'EN Lataa tiedot CSV-tiedostona' },
-            text: { FI: 'Lataa Justus-palveluun tallennetut oman organisaatiosi tekijätiedot CSV-muotoisena tiedostona. Sovelluksen/palvelun puolella lisätyt henkilöt ovat mukana tiedostossa. Mikäli organisaation tekijätietoja ei löydy Justus-palvelusta, voit ladata mallipohjan.',
-                    SV: 'Lataa Justus-palveluun tallennetut oman organisaatiosi tekijätiedot CSV-muotoisena tiedostona. Sovelluksen/palvelun puolella lisätyt henkilöt ovat mukana tiedostossa. Mikäli organisaation tekijätietoja ei löydy Justus-palvelusta, voit ladata mallipohjan.',
-                    EN: 'Lataa Justus-palveluun tallennetut oman organisaatiosi tekijätiedot CSV-muotoisena tiedostona. Sovelluksen/palvelun puolella lisätyt henkilöt ovat mukana tiedostossa. Mikäli organisaation tekijätietoja ei löydy Justus-palvelusta, voit ladata mallipohjan.' },
+            text: { FI: 'Lataa Justus-palveluun tallennetut oman organisaatiosi tekijätiedot CSV-muotoisena tiedostona. Palvelun puolella lisätyt henkilöt ovat mukana tiedostossa. Mikäli organisaation tekijätietoja ei löydy Justus-palvelusta, voit ladata mallipohjan.',
+                    SV: 'Lataa Justus-palveluun tallennetut oman organisaatiosi tekijätiedot CSV-muotoisena tiedostona. Palvelun puolella lisätyt henkilöt ovat mukana tiedostossa. Mikäli organisaation tekijätietoja ei löydy Justus-palvelusta, voit ladata mallipohjan.',
+                    EN: 'Lataa Justus-palveluun tallennetut oman organisaatiosi tekijätiedot CSV-muotoisena tiedostona. Palvelun puolella lisätyt henkilöt ovat mukana tiedostossa. Mikäli organisaation tekijätietoja ei löydy Justus-palvelusta, voit ladata mallipohjan.' },
             button: { FI: 'Lataa CSV', SV: 'SV Lataa CSV', EN: 'EN Lataa CSV' }
           },
           tuo: {
