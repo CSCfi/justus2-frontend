@@ -84,7 +84,7 @@
                                 </thead>
                                 <tbody>
                                 <tr data-ng-repeat="row in csvData.data | limitTo: 10">
-                                    <td>{{row.hrnumero}}</td>
+                                    <td>{{row.tunniste}}</td>
                                     <td>{{row.etunimi}}</td>
                                     <td>{{row.sukunimi}}</td>
                                     <td>{{row.email}}</td>
@@ -108,7 +108,7 @@
                         <div role="alert" class="alert alert-danger text-secondary m-b">
                             <ul>
                                 <li data-ng-repeat="person in personsToBeDeleted" class="">
-                                    <span class="font-weight-bold">{{person.hrnumero}}</span>
+                                    <span class="font-weight-bold">{{person.tunniste}}</span>
                                     <span class="pxs">{{person.etunimi}} {{person.sukunimi}}</span>
                                 </li>
                             </ul>
