@@ -30,7 +30,7 @@ app.directive('fileReaderDirective', [
 
                             for (let k = 0; k < lines.length; k++){
                                 json.push({
-                                    "hrnumero": lines[k][0],
+                                    "tunniste": lines[k][0],
                                     "etunimi": lines[k][1],
                                     "sukunimi": lines[k][2],
                                     "email": lines[k][3],

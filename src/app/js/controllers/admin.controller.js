@@ -43,7 +43,7 @@ angular.module('AdminController', [])
             $scope.personsToBeDeleted = [];
 
             $scope.personData = {
-                "hrnumero": "",
+                "tunniste": "",
                 "etunimi": "",
                 "sukunimi": "",
                 "orcid": null,
@@ -137,7 +137,7 @@ angular.module('AdminController', [])
             $scope.cancel = function() {
                 $scope.addNew.open = false;
                 $scope.personData = {
-                    "hrnumero": "",
+                    "tunniste": "",
                     "etunimi": "",
                     "sukunimi": "",
                     "orcid": null,
@@ -158,7 +158,7 @@ angular.module('AdminController', [])
                     .then(function (response) {
                         console.log(response);
                         $scope.personData = {
-                            "hrnumero": "",
+                            "tunniste": "",
                             "etunimi": "",
                             "sukunimi": "",
                             "orcid": null,

@@ -988,7 +988,7 @@ const i18n = {
           muokkaa: { FI: 'Muokkaat henkilöä:', SV: 'SV Muokkaat henkilöä:', EN: 'EN Muokkaat henkilöä:' },
           firstname: { FI: 'Etunimi', SV: 'Förnamn', EN: 'Firstname' },
           lastname: { FI: 'Sukunimi', SV: 'Efternamn', EN: 'Lastname' },
-          hrnumber: { FI: 'Tunniste / ID', SV: 'SV Tunniste', EN: 'Identifier' },
+          tunniste: { FI: 'Tunniste / ID', SV: 'SV Tunniste', EN: 'Identifier' },
           email: { FI: 'Sähköposti', SV: 'Email', EN: 'Email' },
           orcid: { FI: 'Orcid', SV: 'Orcid', EN: 'Orcid' },
           alayksikko: {
