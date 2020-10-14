@@ -2,9 +2,9 @@
 
 angular.module('AdminController', [])
     .controller('AdminController', [
-        '$rootScope', '$scope', '$state', '$stateParams', '$window', '$http', '$uibModal', 'API_BASE_URL', 'JustusService',
+        '$rootScope', '$scope', '$state', '$stateParams', '$window', '$http', '$timeout', '$uibModal', 'API_BASE_URL', 'JustusService',
         'APIService', 'AlayksikkoService', 'AuthService', 'ValidationService',
-        function ($rootScope, $scope, $state, $stateParams, $window, $http, $uibModal, API_BASE_URL, JustusService,
+        function ($rootScope, $scope, $state, $stateParams, $window, $http, $timeout, $uibModal, API_BASE_URL, JustusService,
                   APIService, AlayksikkoService, AuthService, ValidationService) {
 
 
@@ -143,6 +143,10 @@ angular.module('AdminController', [])
                     "orcid": null,
                     "alayksikko": [null]
                 };
+
+                $scope.savePersonError = false;
+                $scope.savePersonSuccess = false;
+                $scope.savePersonResponseText = null;
             }
 
             $scope.resetValidationError = function(field) {
@@ -151,23 +155,47 @@ angular.module('AdminController', [])
 
             $scope.savePerson = function(form) {
 
+                $scope.savePersonError = false;
+                $scope.savePersonSuccess = false;
+                $scope.savePersonResponseText = null;
+
                 $scope.invalidFields = ValidationService.validatePersonForm(form.person)
 
                 if ($scope.invalidFields.missingValue.length === 0 && $scope.invalidFields.invalidValue.length === 0) {
                     APIService.post("person/save", $scope.personData)
                     .then(function (response) {
                         console.log(response);
-                        $scope.personData = {
-                            "tunniste": "",
-                            "etunimi": "",
-                            "sukunimi": "",
-                            "orcid": null,
-                            "alayksikko": [null]
-                        };
-                        $scope.addNew.open = false;
-                        fetchPersonData();
+
+                        if (response.status === 200) {
+
+                            $scope.personData = {
+                                "tunniste": "",
+                                "etunimi": "",
+                                "sukunimi": "",
+                                "orcid": null,
+                                "alayksikko": [null]
+                            };
+                            $scope.addNew.open = false;
+                            // scroll to top
+                            $window.scrollTo(0, 0);
+                            $scope.savePersonSuccess = true;
+                            $scope.savePersonResponseText = "Käyttäjän lisäys onnistui";
+
+                            $timeout(function () {
+                                $scope.savePersonSuccess = false;
+                                $scope.savePersonResponseText = null;
+                            }, 3000)
+
+                            fetchPersonData();
+                        } else {
+                            $scope.savePersonError = true;
+                            $scope.savePersonResponseText = "Operation failed with response code: " + response.status + " and message: " + response.data;
+                        }
+
                     }).catch(function (err) {
                         console.log(err);
+                        $scope.savePersonError = true;
+                        $scope.savePersonResponseText = "Operation failed";
                     })
                 }
 
