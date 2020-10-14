@@ -269,7 +269,8 @@ angular.module('IndexController', [])
             let fetchPersonData = function() {
                 APIService.getPersonData()
                     .then(function (res) {
-                        $scope.persons = res.persons;
+                        $scope.persons = { data: [] }
+                        $scope.persons.data = res.persons;
                     })
             };
 

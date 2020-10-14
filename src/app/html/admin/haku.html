@@ -25,7 +25,12 @@
                     publication-list="publicationList">
             </person-publication-list-directive>
         </div>
-        <div class="px">
+
+        <div class="px" data-ng-if="!persons.data.length">
+            <p class="text-secondary text-xl text-center mt-xl">Aloita lisäämällä henkilöitä Tuo henkilöitä -välilehdellä</p>
+        </div>
+
+        <div class="px" data-ng-if="persons.data.length">
             <div class="row m-b m-t">
                 <div class="col-sm-12">
                     <div class="input-group">
@@ -41,7 +46,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 p">
-                    <p>{{i18n.admin.content.yhteensa[lang]}}<span class="pl-x">{{persons.length}}</span></p>
+                    <p>{{i18n.admin.content.yhteensa[lang]}}<span class="pl-x">{{persons.data.length}}</span></p>
                 </div>
             </div>
             <div class="row">
@@ -58,7 +63,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr data-ng-repeat="person in persons | filter: search | limitTo: 20"
+                        <tr data-ng-repeat="person in persons.data | filter: search | limitTo: 20"
                             class="hover-table-green">
                             <td data-ng-click="editPerson(person, 'lg')">{{person.tunniste}}</td>
                             <td data-ng-click="editPerson(person, 'lg')">{{person.etunimi}}</td>

@@ -198,7 +198,7 @@ angular.module('JustusController', [])
                         let etunimet = tempstr.substring(eb, ee).trim();
                         tempstr = tempstr.substring(ee + 1);
 
-                        let personToCopy = $scope.persons.filter(obj => obj.sukunimi.toLowerCase() === sukunimi.toLowerCase() && obj.etunimi.toLowerCase() === etunimet.toLowerCase());
+                        let personToCopy = $scope.persons.data.filter(obj => obj.sukunimi.toLowerCase() === sukunimi.toLowerCase() && obj.etunimi.toLowerCase() === etunimet.toLowerCase());
 
                         if(personToCopy.length > 0) {
 
@@ -649,7 +649,7 @@ angular.module('JustusController', [])
             //
             //     $scope.orcidError = false;
             //
-            //     let person = $scope.persons[$scope.persons.findIndex(x => x.orcid === input)];
+            //     let person = $scope.persons.data[$scope.persons.data.findIndex(x => x.orcid === input)];
             //
             //     if (!person) {
             //         $scope.orcidError = true;

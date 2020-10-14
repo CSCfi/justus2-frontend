@@ -180,8 +180,8 @@ angular.module('AdminController', [])
             let fetchPersonData = function() {
                 APIService.getPersonData()
                     .then(function (res) {
-                        console.log(res);
-                        $scope.persons = res.persons;
+                        $scope.persons.data = res.persons;
+                        console.log($scope.persons.data);
                     })
             };
 

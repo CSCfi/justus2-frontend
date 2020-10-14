@@ -435,7 +435,7 @@
                       {{ i.sukunimi }}
                     </ui-select-match>
                     <ui-select-choices
-                            repeat="person in persons | orderBy: 'sukunimi' | filter: { sukunimi: $select.search }">
+                            repeat="person in persons.data | orderBy: 'sukunimi' | filter: { sukunimi: $select.search }">
                       <span class="font-weight-bold">{{person.sukunimi}}</span> {{person.etunimi}}
                     </ui-select-choices>
                   </ui-select>
