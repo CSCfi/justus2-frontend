@@ -1,5 +1,5 @@
-app.directive('personFormDirective', ['JustusService', 'AlayksikkoService', 'ValidationService',
-    function(JustusService, AlayksikkoService, ValidationService) {
+app.directive('personFormDirective', ['$rootScope', 'JustusService', 'AlayksikkoService', 'ValidationService', 'KoodistoService',
+    function($rootScope, JustusService, AlayksikkoService, ValidationService, KoodistoService) {
         return {
             restrict: 'EA',
             scope: {
@@ -37,6 +37,10 @@ app.directive('personFormDirective', ['JustusService', 'AlayksikkoService', 'Val
                 return AlayksikkoService.getAlayksikkoData(alayksikkovuosi);
             };
 
+            scope.getAlayksikkoSelite = function(value) {
+                return KoodistoService.getSelite($rootScope.user.alayksikot, value)
+            };
+
             scope.addAlayksikko = function(input) {
                 if (scope.selectedPerson.alayksikko.indexOf(input) > -1
                     || scope.selectedPerson.alayksikko.length > 2) return;
@@ -52,9 +56,9 @@ app.directive('personFormDirective', ['JustusService', 'AlayksikkoService', 'Val
                 scope.selectedPerson.alayksikko.splice(index, 1);
             };
 
-                scope.resetValidationError = function(field) {
-                    ValidationService.clearError(field);
-                }
+            scope.resetValidationError = function(field) {
+                ValidationService.clearError(field);
+            }
 
             }
         };

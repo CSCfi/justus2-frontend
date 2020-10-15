@@ -49,6 +49,16 @@
   display: none;
 }
 
+.input-no-border {
+  background: transparent;
+  border: 0;
+  font-size: 1.2em;
+  font-weight: bold;
+  width: 100%;
+  color: #026d7c;
+  font-family: $font-family-secondary;
+}
+
 textarea {
   min-height: 40px;
 }
