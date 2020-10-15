@@ -1,20 +1,20 @@
 <div data-ng-controller="AdminController">
     <div class="row no-gutter m-b">
         <div class="col-xs-6 text-center">
-            <h2 class="justus-btn justus-btn-stage"
+            <div class="justus-btn justus-btn-stage"
                  data-ng-class="{selected: hakuState}"
                  data-ng-click="hakuState=true"
                  data-ui-sref="admin({tila:'haku'})">
                 <span data-ng-bind="i18n.admin.haku[lang]"></span>
-            </h2>
+            </div>
         </div>
         <div class="col-xs-6 text-center">
-            <h2 class="justus-btn justus-btn-stage"
+            <div class="justus-btn justus-btn-stage"
                  data-ng-class="{selected: !hakuState}"
                  data-ng-click="hakuState=false"
                  data-ui-sref="admin({tila:'vienti'})">
                 <span data-ng-bind="i18n.admin.vie[lang]"></span>
-            </h2>
+            </div>
         </div>
     </div>
     <div data-ng-include data-src="'html/admin/haku.html'"></div>

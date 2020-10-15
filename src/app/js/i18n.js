@@ -8,7 +8,7 @@ const i18n = {
       justus: {  FI: 'Tallenna julkaisu', SV: 'Spara uppgifter', EN: 'Save publcation' },
       omat:  {  FI: 'Omat tallennukset', SV: 'Mina publikationer', EN: 'My publications' },
       hyvaksy: { FI: 'Hyväksy tallennuksia', SV: 'Godkänn uppgifter', EN: 'Approve publications' },
-      admin: { FI: 'Käyttäjien hallinta', SV: 'SV Käyttäjien hallinta', EN: 'EN Käyttäjien hallinta' }
+      admin: { FI: 'Tekijätietojen hallinta', SV: 'SV Käyttäjien hallinta', EN: 'EN Käyttäjien hallinta' }
     },
     logotext: { FI: 'JUSTUS - JULKAISUTIETOJEN TALLENNUS', SV: 'JUSTUS - JULKAISUTIETOJEN TALLENNUS', EN: 'JUSTUS - JULKAISUTIETOJEN TALLENNUS' },
     lang: { FI: 'Suomeksi', SV: 'På svenska', EN: 'In English' },
@@ -19,7 +19,7 @@ const i18n = {
       tallenna: { FI: 'Tallenna julkaisu', SV: 'Spara uppgifter', EN: 'Save publication' },
       omat: { FI: 'Omat tallennukset', SV: 'Mina publikationer', EN: 'My publications' },
       hyvaksy: { FI: 'Hyväksy tallennuksia', SV: 'Godkänn uppgifter', EN: 'Approve publications' },
-      admin: { FI: 'Käyttäjien hallinta', SV: 'SV Käyttäjien hallinta', EN: 'EN Käyttäjien hallinta' },
+      admin: { FI: 'Tekijätietojen hallinta', SV: 'SV Käyttäjien hallinta', EN: 'EN Käyttäjien hallinta' },
     }
   },
   footer: {
@@ -965,12 +965,12 @@ const i18n = {
     no: { FI: 'Ei', SV: 'Nej', EN: 'No' }
   },
   admin: {
-	  haku: { FI: 'Haku henkilöistä', SV: 'SV Haku henkilöistä', EN: 'EN Haku henkilöistä' },
-      vie: {  FI: 'Tuo henkilöitä', SV: 'SV Tuo henkilöitä', EN: 'EN Tuo henkilöitä' },
+	  haku: { FI: 'Haku tekijöistä', SV: 'SV Haku tekijöistä', EN: 'EN Haku tekijöistä' },
+      vie: {  FI: 'Tuo tekijöitä', SV: 'SV Tuo tekijöitä', EN: 'EN Tuo tekijöitä' },
 	  content: {
 	    etsi: { FI: 'Hae henkilöä', SV: '', EN: '' },
-        yhteensa: { FI: 'Organisaation käyttäjiä yhteensä:', SV: '', EN: '' },
-        haku: { FI: 'Haku henkilöistä', SV: 'SV Haku henkilöistä', EN: 'EN Haku henkilöistä' },
+        yhteensa: { FI: 'Organisaation tekijöitä yhteensä:', SV: '', EN: '' },
+        haku: { FI: 'Haku tekijöistä', SV: 'SV Haku tekijöistä', EN: 'EN Haku tekijöistä' },
         lista: {
           tunniste: { FI: 'Tunniste / ID', SV: '', EN: 'Identifier'},
           etunimi: { FI: 'Etunimi', SV: '', EN: 'Firstname'},
@@ -981,11 +981,11 @@ const i18n = {
           email: { FI: 'Sähköposti', SV: 'Email', EN: 'Email' },
           alayksikko: { FI: 'Alayksikkö', SV: 'Enhet', EN: 'Organisational unit' }
         },
-        lisaa: { FI: 'Lisää uusi käyttäjä', SV: 'SV Lisää uusi käyttäjä', EN: 'Add new user' },
+        lisaa: { FI: 'Lisää uusi organisaation tekijä', SV: 'SV Lisää uusi organisaation tekijä', EN: 'EN Lisää uusi organisaation tekijä' },
         form: {
           sulje: { FI: 'Sulje', SV: 'Stäng', EN: 'Close' },
-          lisaa: { FI: 'Lisää uusi henkilö', SV: 'SV Lisää uusi henkilö', EN: 'EN Lisää uusi henkilö' },
-          muokkaa: { FI: 'Muokkaat henkilöä:', SV: 'SV Muokkaat henkilöä:', EN: 'EN Muokkaat henkilöä:' },
+          lisaa: { FI: 'Lisää uusi organisaation tekijä', SV: 'SV Lisää uusi organisaation tekijä', EN: 'EN Lisää uusi organisaation tekijä' },
+          muokkaa: { FI: 'Muokkaat tekijää:', SV: 'SV Muokkaat tekijää:', EN: 'EN Muokkaat tekijää:' },
           firstname: { FI: 'Etunimi', SV: 'Förnamn', EN: 'Firstname' },
           lastname: { FI: 'Sukunimi', SV: 'Efternamn', EN: 'Lastname' },
           tunniste: { FI: 'Tunniste / ID', SV: 'SV Tunniste', EN: 'Identifier' },
