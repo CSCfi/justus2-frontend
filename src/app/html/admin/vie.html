@@ -141,10 +141,10 @@
                 </div>
             </div>
 
-            <div data-ng-show="showAlertDialog">
+            <div data-ng-show="showAlertDialog" class="p-t">
                 <span data-ng-class="{'text-danger': csvUploadError}">{{csvUploadErrorText}}</span>
-                <div class="alert alert-success alert-dismissible" data-ng-class="{'alert-danger': csvUploadError}" role="alert">
-                    <strong>{{csvUploadResponseText}}</strong>
+                <div class="alert alert-success alert-dismissible mb-0" data-ng-class="{'alert-danger': csvUploadError}" role="alert">
+                    <span class="text-xl text-secondary">{{csvUploadResponseText}}</span>
                     <button type="button" data-ng-click="resetDialog()" class="btn close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
