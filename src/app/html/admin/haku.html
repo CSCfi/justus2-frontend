@@ -51,7 +51,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <table class="table table-condensed table-striped">
+                    <table class="table table-striped">
                         <thead>
                         <tr>
                             <th class="text-xl">{{i18n.admin.content.lista.tunniste[lang]}}</th>
@@ -73,12 +73,12 @@
                                     data-ng-bind="person.modified | date:'d.M.yyyy HH:mm'"></span></td>
                             <td class="text-right">
                             <span class="px">
-                                <button
-                                        class="btn btn-primary btn-sm"
-                                        data-ng-disabled="!person.orcid"
-                                        data-ng-click="showPublications(person)"
-                                        data-ng-bind="i18n.admin.content.lista.nayta[lang]">
-                                </button>
+                                <a
+                                    data-ng-class="{ 'primary-button-a': person.orcid, 'disabled-button-a': !person.orcid }"
+                                    data-ng-disabled="!person.orcid"
+                                    data-ng-click="showPublications(person)"
+                                    data-ng-bind="i18n.admin.content.lista.nayta[lang]">
+                                </a>
                             </span>
                             </td>
                         </tr>
