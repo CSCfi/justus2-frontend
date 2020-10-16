@@ -90,9 +90,19 @@ angular.module('AdminController', [])
                         APIService.put("person/update", id, $scope.selectedPerson)
                             .then(function (response) {
                                 console.log(response);
-                                // $scope.search = "";
+                                $scope.showUpdateResponse = true;
+                                if (response.status === 200) {
+                                    $scope.updatePersonAlertText = "Changes saved";
+                                    fetchPersonData();
+                                    $timeout(function () {
+                                        $scope.showUpdateResponse = false;
+                                        $scope.updatePersonAlertText = null;
+                                    }, 3000)
+                                } else {
+                                    $scope.updatePersonError = true;
+                                    $scope.updatePersonAlertText = "Saving user failed with response code: " + response.status + " and message: " + response.data;
+                                }
 
-                                fetchPersonData();
                             }).catch(function (err) {
                             console.log(err);
                         })
@@ -111,6 +121,12 @@ angular.module('AdminController', [])
                     console.log('Edit modal dismissed at: ' + new Date());
                 });
             };
+
+            $scope.closeUpdateAlert = function() {
+                $scope.showUpdateResponse = false;
+                $scope.updatePersonError = false;
+                $scope.updatePersonAlertText = null;
+            }
 
             $scope.showPublications = function(person) {
                 $window.scrollTo(0, 0);

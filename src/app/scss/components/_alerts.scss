@@ -8,3 +8,28 @@
     font-size: 16px;
   }
 }
+
+.alert-absolute {
+  position: fixed;
+  z-index: 1000;
+  top: 20px;
+  left: 15px;
+  padding-right: 15px;
+  -webkit-box-shadow: 0 0 6px 1px rgba(158,156,158,1);
+  -moz-box-shadow: 0 0 6px 1px rgba(158,156,158,1);
+  box-shadow: 0 0 6px 1px rgba(158,156,158,1);
+  .custom-close {
+    cursor: pointer;
+    position: relative;
+    float: right;
+    color: inherit;
+    padding-left: 10px;
+    padding-top: 1px;
+    .fa {
+      font-size: 20px;
+        &:hover {
+          text-decoration: underline;
+        }
+    }
+  }
+}

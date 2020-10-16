@@ -63,29 +63,36 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr data-ng-repeat="person in persons.data | filter: search | limitTo: 20"
-                            class="hover-table-green">
-                            <td data-ng-click="editPerson(person, 'lg')">{{person.tunniste}}</td>
-                            <td data-ng-click="editPerson(person, 'lg')">{{person.etunimi}}</td>
-                            <td data-ng-click="editPerson(person, 'lg')">{{person.sukunimi}}</td>
-                            <td data-ng-click="editPerson(person, 'lg')">{{person.orcid}}</td>
-                            <td data-ng-click="editPerson(person, 'lg')"><span
-                                    data-ng-bind="person.modified | date:'d.M.yyyy HH:mm'"></span></td>
-                            <td class="text-right">
-                            <span class="px">
-                                <a
-                                    data-ng-class="{ 'primary-button-a': person.orcid, 'disabled-button-a': !person.orcid }"
-                                    data-ng-disabled="!person.orcid"
-                                    data-ng-click="showPublications(person)"
-                                    data-ng-bind="i18n.admin.content.lista.nayta[lang]">
-                                </a>
-                            </span>
-                            </td>
-                        </tr>
+                            <tr data-ng-repeat="person in persons.data | filter: search | limitTo: 20"
+                                class="hover-table-green">
+                                <td data-ng-click="editPerson(person, 'lg')">{{person.tunniste}}</td>
+                                <td data-ng-click="editPerson(person, 'lg')">{{person.etunimi}}</td>
+                                <td data-ng-click="editPerson(person, 'lg')">{{person.sukunimi}}</td>
+                                <td data-ng-click="editPerson(person, 'lg')">{{person.orcid}}</td>
+                                <td data-ng-click="editPerson(person, 'lg')"><span
+                                        data-ng-bind="person.modified | date:'d.M.yyyy HH:mm'"></span></td>
+                                <td class="text-right">
+                                    <span class="px">
+                                        <a
+                                            data-ng-class="{ 'primary-button-a': person.orcid, 'disabled-button-a': !person.orcid }"
+                                            data-ng-disabled="!person.orcid"
+                                            data-ng-click="showPublications(person)"
+                                            data-ng-bind="i18n.admin.content.lista.nayta[lang]">
+                                        </a>
+                                    </span>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+
+    <div data-ng-show="showUpdateResponse" class="alert alert-success alert-dismissible alert-absolute"
+        data-ng-class="{ 'alert-danger':  updatePersonError }">
+        <a class="custom-close" data-ng-click="closeUpdateAlert()" aria-label="close"><i class="fa fa-times"></i></a>
+        <span class="text-xl text-secondary">{{updatePersonAlertText}}</span>
+    </div>
+
 </div>
