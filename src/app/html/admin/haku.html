@@ -63,7 +63,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <tr data-ng-repeat="person in persons.data | filter: search | limitTo: 20"
+                            <tr data-ng-repeat="person in persons.data | filter: search"
                                 class="hover-table-green">
                                 <td data-ng-click="editPerson(person, 'lg')">{{person.tunniste}}</td>
                                 <td data-ng-click="editPerson(person, 'lg')">{{person.etunimi}}</td>

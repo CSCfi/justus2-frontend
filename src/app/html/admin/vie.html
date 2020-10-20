@@ -145,7 +145,7 @@
                 <span data-ng-class="{'text-danger': csvUploadError}">{{csvUploadErrorText}}</span>
                 <div class="alert alert-success alert-dismissible mb-0" data-ng-class="{'alert-danger': csvUploadError}" role="alert">
                     <span class="text-xl text-secondary">{{csvUploadResponseText}}</span>
-                    <button type="button" data-ng-click="resetDialog()" class="btn close" data-dismiss="alert" aria-label="Close">
+                    <button type="button" data-ng-click="resetDialog()" class="btn close" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -230,7 +230,7 @@
     <div data-ng-if="savePersonSuccess || savePersonError">
         <div class="alert alert-success alert-dismissible" data-ng-class="{'alert-danger': savePersonError}" role="alert">
             <span class="text-xl text-secondary">{{savePersonResponseText}}</span>
-            <button type="button" data-ng-click="resetDialog()" class="btn close" data-dismiss="alert" aria-label="Close">
+            <button type="button" data-ng-click="resetDialog()" class="btn close" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>

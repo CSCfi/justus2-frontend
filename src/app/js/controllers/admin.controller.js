@@ -271,6 +271,7 @@ angular.module('AdminController', [])
                         } else {
                             $scope.csvUploadError = false;
                             $scope.csvUploadResponseText = "Tiedot päivitetty onnistuneesti!";
+                            fetchPersonData();
                         }
                         $scope.showAlertDialog = true;
                         $scope.personsToBeDeleted = [];
@@ -287,6 +288,8 @@ angular.module('AdminController', [])
             $scope.resetDialog = function() {
                 $scope.showAlertDialog = false;
                 $scope.csvUploadError = false;
+                $scope.savePersonSuccess = false;
+                $scope.savePersonError = false;
             }
 
 
