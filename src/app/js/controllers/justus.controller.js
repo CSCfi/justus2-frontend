@@ -624,8 +624,12 @@ angular.module('JustusController', [])
                 $scope.justus.organisaatiotekija[index].etunimet = input.etunimi;
                 $scope.justus.organisaatiotekija[index].sukunimi = input.sukunimi;
                 $scope.justus.organisaatiotekija[index].orcid = input.orcid;
-
                 $scope.justus.organisaatiotekija[index].alayksikko = input.alayksikko;
+
+                // For Luonnonvarakeskus prefill also HR-numero field
+                if ($rootScope.user.jukuriUser) {
+                    $scope.justus.organisaatiotekija[index].hrnumero = input.tunniste;
+                }
 
             };
 
