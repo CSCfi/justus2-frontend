@@ -3,8 +3,10 @@
 angular.module('IndexController', [])
 
     .controller('IndexController', [
-        '$state', '$q', '$scope', '$rootScope', '$http', '$window', '$stateParams', '$transitions', '$location', 'JustusService', 'KoodistoService', 'AuthService', 'APIService', 'AUTH_URL', 'SITE_URL', 'API_BASE_URL', 'DEMO_ENABLED',
-        function($state, $q, $scope, $rootScope, $http, $window, $stateParams, $transitions, $location, JustusService, KoodistoService, AuthService, APIService, AUTH_URL, SITE_URL, API_BASE_URL, DEMO_ENABLED) {
+        '$state', '$q', '$scope', '$rootScope', '$http', '$window', '$stateParams', '$transitions', '$location', 'JustusService',
+        'KoodistoService', 'AuthService', 'APIService', 'ModalService', '$uibModal', 'AUTH_URL', 'SITE_URL', 'API_BASE_URL', 'DEMO_ENABLED',
+        function($state, $q, $scope, $rootScope, $http, $window, $stateParams, $transitions, $location, JustusService,
+                 KoodistoService, AuthService, APIService, ModalService, $uibModal, AUTH_URL, SITE_URL, API_BASE_URL, DEMO_ENABLED) {
             $scope.demoEnabled = DEMO_ENABLED;
             $scope.siteUrl = SITE_URL;
 
@@ -22,6 +24,7 @@ angular.module('IndexController', [])
                             getDemoOrganisationList();
                         }
                         $rootScope.user = $scope.user;
+                        console.log($scope.user);
 
                         $scope.showPublicationInput = $rootScope.user.organization.showPublicationInput;
                         fetchKoodistoData();
@@ -262,6 +265,25 @@ angular.module('IndexController', [])
                 };
                 resetUserData(demoUserData);
             };
+  
+            $scope.isDisabled = function() {
+                if ($stateParams.id) {
+                    return true;
+                }
+            }
+
+            $scope.changePage = function(state) {
+                let justus = JustusService.getPublicationFormData();
+        
+                // raise warning if user tries to change state after feeding data to form
+                if (justus.julkaisu && justus.julkaisu.julkaisutyyppi && !justus.julkaisu.id ) {
+                    ModalService.openWarningModal(state);
+
+                } else {
+                    $state.go(state);
+                }
+
+            }
 
             init();
 

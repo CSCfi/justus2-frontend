@@ -2,41 +2,12 @@
 
 angular.module('JustusController', [])
     .controller('JustusController', [
-        '$rootScope', '$scope', '$log', '$state', '$stateParams', 'ExternalServicesService',
+        '$rootScope', '$scope', '$log', '$state', '$stateParams', 'ExternalServicesService', 'ModalService',
          'KoodistoService', 'JustusService', 'APIService', 'ValidationService', 'DataStoreService', 'AuthService',
-        function($rootScope, $scope, $log, $state, $stateParams, ExternalServicesService,
+        function($rootScope, $scope, $log, $state, $stateParams, ExternalServicesService, ModalService,
                  KoodistoService, JustusService, APIService, ValidationService, DataStoreService, AuthService) {
 
-            $scope.loading = {};
-            $scope.meta = APIService.meta;
 
-            $scope.justus = JustusService.getPublicationFormData();
-
-            $scope.pattern = JustusService.pattern;
-
-            $scope.tekijatTags = [];
-            $scope.emojulkaisuntoimittajatTags = [];
-            $scope.avainsanatTags = [];
-            $scope.lehtinimet = [];
-            $scope.kustantajanimet = [];
-            $scope.konferenssinimet = [];
-            $scope.julkaisunnimet = [];
-
-            $scope.crossrefLataa = false;
-            $scope.virtaLataa = false;
-            $scope.requiredHighlight = false;
-            $scope.invalidFields = [];
-            $scope.issnDescription = [];
-
-            $scope.julkaisu = {};
-
-            $scope.julkaisunkieli = {};
-            $scope.julkaisumaa = {};
-
-            $scope.fileAlreadyExists = false;
-            JustusService.file = null;
-
-            $scope.validateState = false;
 
             // Parses first- and lastnames from a string of names and returns them in a list of objects [{ firstName: '', lastName: '' }, ...]
             const parseNames = function(namesString) {
@@ -85,16 +56,18 @@ angular.module('JustusController', [])
 
             }
 
-            $scope.clearFormAndReturnToStart = function() {
+            $scope.initializeValues = function() {
+
                 JustusService.clearPublicationForm();
-                delete $rootScope.filedata;
-                $rootScope.filedata = {};
-                JustusService.file = null;
-                $scope.fileAlreadyExists = false;
+
+                $scope.loading = {};
+                $scope.meta = APIService.meta;
+
                 $scope.justus = JustusService.getPublicationFormData();
                 $scope.julkaisutyyppi = null;
                 $scope.julkaisutyyppi_paa = null;
                 $scope.tekijatTags = [];
+                $scope.emojulkaisuntoimittajatTags = [];
                 $scope.avainsanatTags = [];
                 $scope.lehtinimet = [];
                 $scope.kustantajanimet = [];
@@ -107,7 +80,9 @@ angular.module('JustusController', [])
                 $scope.justus.julkaisu.projektinumero = [""];
                 $scope.julkaisunkieli = {};
                 $scope.julkaisumaa = {};
-                
+                $scope.fileAlreadyExists = false;
+                JustusService.file = null;
+
                 $scope.justus.organisaatiotekija = [
                     {
                         "etunimet": "",
@@ -119,30 +94,45 @@ angular.module('JustusController', [])
                     }
                 ];
                 $scope.crossrefLataa = false;
-                $scope.virtaLataa = false;
-                $scope.requiredHighlight = false;
+                $scope.crossrefTaiVirtaLataa = false;
                 $scope.invalidFields = [];
+                $scope.validateState = false;
+                $scope.loading.publication = false;
+                JustusService.updatePublicationFormData($scope.justus);
+            }
+
+
+            $scope.clearFormAndReturnToStart = function() {
+                JustusService.clearPublicationForm();
+                delete $rootScope.filedata;
+                $rootScope.filedata = {};
+                JustusService.file = null;
+                $scope.fileAlreadyExists = false;
+                $scope.justus = JustusService.getPublicationFormData();
+
+                $scope.initializeValues();
                 fillMissingJustusLists();
                 $scope.useVaihe(1);
-                $scope.validateState = false;
+
             };
 
             $scope.useTekijat = function() {
 
-                // Add space after each comma if none entered
-                $scope.tekijatTags = $scope.tekijatTags.map(function(tag, index) {
-                    if (tag.text && tag.text.indexOf(', ') === -1) {
-                        tag.text = tag.text.replace(',', ', ');
-                    }
-                    return tag;
-                });
+                    // Add space after each comma if none entered
+                    $scope.tekijatTags = $scope.tekijatTags.map(function(tag, index) {
+                        if (tag.text && tag.text.indexOf(', ') === -1) {
+                            tag.text = tag.text.replace(',', ', ');
+                        }
+                        return tag;
+                    });
 
-                $scope.justus.julkaisu.tekijat = '';
-                $scope.justus.julkaisu.tekijat = $scope.tekijatTags.map(function(tag, index) {
-                    return tag.text;
-                }).join('; ');
-                $scope.justus.julkaisu.julkaisuntekijoidenlukumaara = $scope.tekijatTags.length;
-                ValidationService.clearError("julkaisuntekijoidenlukumaara");
+                    $scope.justus.julkaisu.tekijat = '';
+                    $scope.justus.julkaisu.tekijat = $scope.tekijatTags.map(function(tag, index) {
+                        return tag.text;
+                    }).join('; ');
+                    $scope.justus.julkaisu.julkaisuntekijoidenlukumaara = $scope.tekijatTags.length;
+                    ValidationService.clearError("julkaisuntekijoidenlukumaara");
+
             };
 
 
@@ -449,12 +439,15 @@ angular.module('JustusController', [])
             };
 
             $scope.useCrossRefEsitaytto = function(cj) {
+
                 $scope.justus.julkaisu = cj;
                 $scope.justus.julkaisu.username = $rootScope.user.name;
                 $scope.justus.julkaisu.projektinumero = [""];
+
                 parseNames($scope.justus.julkaisu.tekijat).map(function (nameObject) {
                     $scope.tekijatTags.push({text: `${nameObject.lastName}, ${nameObject.firstName}`});
                 });
+
                 $scope.useTekijat();
 
                 $scope.fetchLehtisarja($scope.justus.julkaisu.issn[0]);
@@ -621,6 +614,11 @@ angular.module('JustusController', [])
             };
 
             $scope.useVaihe = function(vaihe) {
+                // When user navigates back to stage one raise warning of possible data loss
+                if (vaihe === 1 && $scope.justus.julkaisu.julkaisutyyppi && !$scope.justus.julkaisu.id) {
+                    ModalService.openWarningModal("justus?vaihe=1");
+                    return;
+                }
 
                 if ($scope.vaihe !== 5) {
                     $scope.validateState = false;
@@ -745,6 +743,8 @@ angular.module('JustusController', [])
             $scope.cancelAndAndStartOver = function() {
                 $state.go('valitse');
                 JustusService.clearPublicationForm();
+                JustusService.clearFileData();
+                
             };
 
             // get alayksikkodata based on selected year
@@ -894,11 +894,15 @@ angular.module('JustusController', [])
 
             const populatePublicationForm = () => {
 
+                $scope.justus = JustusService.getPublicationFormData();
+
                 if (!$stateParams.id) {
                     finalizeInit();
                     return;
                 }
 
+                // intialize all scope values before fetching data from database
+                $scope.initializeValues();
                 $scope.loading.publication = true;
 
                   APIService.get('tiedot', $stateParams.id)
@@ -926,6 +930,7 @@ angular.module('JustusController', [])
                         });
 
                         $scope.useEmojulkaisuntoimittajat();
+                        $scope.loading.publication = false;
 
                         finalizeInit();
                     })
@@ -937,60 +942,55 @@ angular.module('JustusController', [])
 
             const finalizeInit = () => {
 
-                if (!$scope.justus.julkaisu) {
-                    $scope.justus.julkaisu = {};
-                    $scope.justus.julkaisu.issn = [""];
-                    $scope.justus.julkaisu.isbn = [""];
-                    $scope.justus.julkaisu.projektinumero = [""];
+                if (!$scope.justus.julkaisu || angular.equals({}, $scope.justus.julkaisu)) {
+                    $scope.initializeValues();
                 }
 
                 if (!$rootScope.filedata) {
                     $rootScope.filedata = {};
                 }
 
-                if(!$scope.justus.organisaatiotekija || $scope.justus.organisaatiotekija.length < 1) {
-                    $scope.justus.organisaatiotekija = [
-                        {
-                            "etunimet": "",
-                            "sukunimi": "",
-                            "orcid": "",
-                            "hrnumero": null,
-                            "rooli": null,
-                            "alayksikko": [null]
-                        }
-                    ]
-                }
                 $scope.justus.julkaisu.username = $rootScope.user.name;
                 fillMissingJustusLists();
                 JustusService.updatePublicationFormData($scope.justus);
                 $scope.useVaihe($stateParams.vaihe || 1);
-                $scope.loading.publication = false;
-                $scope.validateState = false;
 
             };
 
+            let verifyAccess = function () {
 
-            let verifyAccess = function() {
                 if (AuthService.isLoggedIn()) {
                     populatePublicationForm();
-
                 } else {
                     AuthService.getUserInfo().then(function (res) {
                         $scope.user = res;
                         $rootScope.user = $scope.user;
                         populatePublicationForm();
-
                     }).catch(function (err) {
                         console.log(err);
                         $state.go('index');
 
-                    });
+                        // if (res.status === 200) {
+                        //     console.log(res);
+                        //     $scope.user = res.data;
+                        //     $rootScope.user = $scope.user;
+                        //     populatePublicationForm();
+                        // } else if (res.status === 401) {
+                        //     console.log(res.data);
+                        //     console.log("User in unauthorized");
+                        //     $state.go('index');
+                        // } else {
+                        //     console.log(res);
+                        //     console.log("No user data available");
+                        //     $state.go('index');
+                        // }
+                    })
+
                 }
             };
 
             verifyAccess();
 
         }
-
 
     ]);

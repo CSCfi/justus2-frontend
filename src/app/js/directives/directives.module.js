@@ -1,5 +1,4 @@
-angular.module('DirectivesModule', [])
-.directive('isbnDirective', ['JustusService', function(JustusService) {
+app.directive('isbnDirective', ['JustusService', function(JustusService) {
   return {
     require: 'ngModel',
     link: function(scope, element, attr, mCtrl) {
