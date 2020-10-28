@@ -1,14 +1,14 @@
 <div class="row no-gutter m-b">
   <div class="col-xs-6 text-center">
     <div class="justus-btn justus-btn-stage" data-ng-class="{selected: publications.odottavat}"
-         data-ng-click="publications.odottavat=true; resetData()"
+         data-ng-click="publications.odottavat=true; resetPublicationListData()"
           data-ui-sref="{{state.name}}({tila:'odottavat'})">
       <span data-ng-bind="i18n.content.tarkasta.odottavat[lang]"></span>
     </div>
   </div>
   <div class="col-xs-6 text-center">
     <div class="justus-btn justus-btn-stage" data-ng-class="{selected: !publications.odottavat}"
-         data-ng-click="publications.odottavat=false; resetData()"
+         data-ng-click="publications.odottavat=false; resetPublicationListData()"
          data-ui-sref="{{state.name}}({tila:'kasitellyt'})">
       <span data-ng-bind="i18n.content.tarkasta.hyvaksytyt[lang]"></span>
     </div>
@@ -120,7 +120,7 @@
               </div>
               <div class="col-sm-4">
                 <button class="btn btn-default btn-block"
-                        data-ng-click="resetData()"
+                        data-ng-click="resetPublicationListData()"
                         data-ng-bind="i18n.content.tarkasta.haku.tyhjenna[lang]">
                 </button>
               </div>

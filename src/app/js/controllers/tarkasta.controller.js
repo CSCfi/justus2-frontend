@@ -18,7 +18,6 @@ angular.module('TarkastaController', [])
                 "julkaisuvuosi": null
             };
 
-
             $scope.editPublication = function (d) {
                 if ($scope.state.name === 'omat' && d.julkaisuntila) {
                     return;
@@ -62,7 +61,7 @@ angular.module('TarkastaController', [])
                 $scope.showPublicationLink = $rootScope.user.organization.showPublicationInput;
             };
 
-            $scope.resetData = function () {
+            $scope.resetPublicationListData = function () {
 
                 $scope.clearData();
 

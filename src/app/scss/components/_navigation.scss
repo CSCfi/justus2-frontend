@@ -1,18 +1,18 @@
 .navigation {
-  a,
-  a:focus,
-  a:active {
+  button,
+  button:focus,
+  button:active {
     display: inline-block;
     font-size: $font-size-base;
     text-decoration: none;
     color: $brand-primary;
     text-transform: uppercase;
-    //padding: $padding-small-vertical $padding-small-horizontal;
     padding: 10px 30px;
     border-radius: $border-radius-base;
     margin-bottom: $padding-small-vertical;
     letter-spacing: 1.2px;
-
+    border: 0;
+    background: $brand-white;
     &:hover {
       background: $brand-primary-dark;
       color: $brand-white;

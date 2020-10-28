@@ -1,5 +1,14 @@
 <div data-ng-controller="JulkaisunsyottoController">
 
+    <div class="alert alert-default text-center text-secondary" data-ng-if="justus.julkaisu.id">
+        <p class="text-xl text-dark">{{i18n.content.alert.text[lang]}}  {{ justus.julkaisu.id }}:</p>
+        <p class="text-xl text-dark font-weight-bold" >{{ justus.julkaisu.julkaisunnimi }}</p>
+        <div class="text-center mb-0">
+          <button class="btn btn-gray" 
+                  data-ng-click="cancelAndAndStartOver()">Sulje tallentamatta</button>
+        </div>
+      </div>
+
     <div class="row">
         <div class="col-xs-12">
             <div class="breadcrumb">

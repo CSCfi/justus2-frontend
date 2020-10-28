@@ -15,8 +15,17 @@ angular.module('JustusService', [])
   };
 
   this.clearPublicationForm = function() {
-    this.justus = {};
+    this.justus = {
+      "julkaisu": {},
+      "organisaatiotekija": []
+    };
   };
+
+  this.clearFileData = function() {
+      delete $rootScope.filedata;
+      $rootScope.filedata = {};
+      this.file = null;
+  }
 
   this.file = function (file) {
       this.file = file;

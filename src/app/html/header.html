@@ -59,28 +59,37 @@
     <div class="col-md-12">
         <div class="navigation">
             <nav aria-label="primary-nav">
-                <a href data-ui-sref="valitse()"
-                   data-ng-class="getMenuClass('/valitse')"
-                   data-ng-bind="i18n.header.navigation.etusivu[lang]">
-                </a>
-                <a href data-ui-sref="justus({id:id,vaihe:vaihe||1})"
-                   data-ng-class="getMenuClass('/justus')"
-                   data-ng-bind="i18n.header.navigation.tallenna[lang]">
-                </a>
-                <a href data-ui-sref="omat()"
-                   data-ng-class="getMenuClass('/omat')"
-                   data-ng-bind="i18n.header.navigation.omat[lang]">
-                </a>
-                <a data-ng-if="hasAccessToApprove()"
-                   href data-ui-sref="hyvaksy()"
-                   data-ng-class="getMenuClass('/hyvaksy')"
-                   data-ng-bind="i18n.header.navigation.hyvaksy[lang]">
-                </a>
-                <a data-ng-if="hasAccessToApprove()"
-                href data-ui-sref="admin()"
-                data-ng-class="getMenuClass('/admin')"
-                data-ng-bind="i18n.header.navigation.admin[lang]">
-               </a>
+
+                <button 
+                        data-ng-disabled="isDisabled()"
+                        data-ng-click="changePage('valitse')"
+                        data-ng-class="getMenuClass('/valitse')"
+                        data-ng-bind="i18n.header.navigation.etusivu[lang]">
+                </button>
+                <button href data-ui-sref="justus({id:id,vaihe:vaihe||1})"
+                        data-ng-class="getMenuClass('/justus')"
+                        data-ng-bind="i18n.header.navigation.tallenna[lang]">
+                </button>
+                <button 
+                        data-ng-disabled="isDisabled()"
+                        data-ng-click="changePage('omat')"
+                        data-ng-class="getMenuClass('/omat')"
+                        data-ng-bind="i18n.header.navigation.omat[lang]">
+                </button>
+                <button 
+                        data-ng-if="hasAccessToApprove()"
+                        data-ng-disabled="isDisabled()"
+                        data-ng-click="changePage('hyvaksy')"
+                        data-ng-class="getMenuClass('/hyvaksy')"
+                        data-ng-bind="i18n.header.navigation.hyvaksy[lang]">
+                </button>
+                <button data-ng-if="hasAccessToApprove()"
+                        data-ng-disabled="isDisabled()"
+                        data-ng-click="changePage('admin')"
+                        data-ng-class="getMenuClass('/admin')"
+                        data-ng-bind="i18n.header.navigation.admin[lang]">
+            </button>
+
             </nav>
         </div>
     </div>
