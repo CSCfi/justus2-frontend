@@ -1,9 +1,15 @@
-<div class="row">
-  <div class="col-xs-12">
-    <div class="breadcrumb">
+<div class="row m-b">
+  <div class="col-xs-8">
+    <div class="breadcrumb p-t">
       <h1 data-ng-bind="i18n.header.navigation.tallenna[lang]"></h1> <span><i class="fa fa-chevron-right"></i></span>
       <h2 data-ng-bind="i18n.content.vaihevuo.tallennus[lang]"></h2>
     </div>
+
+  </div>
+  <div class="col-xs-4" data-ng-if="justus.julkaisu.id">
+    <button class="btn btn-gray pull-right" 
+            data-ng-controller="TallennusController" 
+            data-ng-click="cancelAndReturnToPublicationListing()">Sulje tallentamatta</button>
   </div>
 </div>
 
