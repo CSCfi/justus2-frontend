@@ -99,6 +99,39 @@ angular.module('TarkastaController', [])
 
             };
 
+            $scope.member = {
+                showRejectedPublications: false
+            };
+
+
+            $scope.toggleRejectedPublications = function() {
+
+                $scope.member.showRejectedPublications =! $scope.member.showRejectedPublications;
+                $scope.clearData();
+
+                if ($scope.member.showRejectedPublications) {
+                    $scope.search = {
+                        "julkaisuntila": -1,          
+                    };
+
+                    $scope.publications.nextPage(true, $scope.search);
+                } else {
+                    $scope.search = {
+                        "julkaisuntila": null,
+                        "vapaasanahaku": "",
+                        "julkaisuvuosi": null
+                    };
+                    $scope.searchMode = false;
+                    $scope.publications.nextPage($scope.searchMode);
+                }
+
+                $timeout(function () {
+                    $scope.data = $scope.publications.data;
+                    $scope.publications.showSpinner = false;
+                }, 500)
+
+            };
+
 
             // at very first test that user object is accessible
             let verifyAccess = function () {

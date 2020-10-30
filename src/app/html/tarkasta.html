@@ -46,6 +46,15 @@
         &nbsp;<span class="fa fa-spinner fa-spin"></span>
       </span>
     </button>
+
+    <div class="pull-right" data-ng-if="user.role === 'member'">
+      <div class="cursor-pointer d-inline-block" data-ng-click="toggleRejectedPublications();">
+        <span data-ng-class="member.showRejectedPublications?'active':'text-gray'"
+          class="text-secondary  pt pull-left">Näytä käyttäjän hylätyt julkaisut</span>
+        <i class="fa fa-2x fa-toggle-on pull-right pl"
+            data-ng-class="member.showRejectedPublications?'active':'fa-rotate-180 inactive'"></i>
+      </div>
+    </div>
   </div>
 </div>
 
