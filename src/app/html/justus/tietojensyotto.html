@@ -489,6 +489,7 @@
               <div data-ng-if="isFieldVisible('hrnumero')" id="hrGroup" class="col-xs-12 col-sm-6">
                 <label for="hrnumero" class="control-label">{{i18n.content.form.organisaatiotekija.hrnumero.picktip[lang]}}</label>
                 <input id="hrnumero"
+                       data-ng-disabled="i.useEsitaytto"
                        name="hrnumero"
                        type="text" class="form-control"
                        data-ng-model="justus.organisaatiotekija[$index].hrnumero"
