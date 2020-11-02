@@ -723,7 +723,6 @@ angular.module('JustusController', [])
                 return elementExists;
             };
 
-
             const containsObject = function(array, value, identifier) {
                 let elementExists = false;
                 array.forEach((item) => {
