@@ -91,41 +91,16 @@ const i18n = {
         },
       },
       admin: { 
-        button: {  FI: 'Käyttäjien hallinta', SV: 'SV Käyttäjien hallinta', EN: 'EN Käyttäjien hallinta' },
+        button: {  FI: 'Tekijätietojen hallinta', SV: 'SV Tekijätietojen hallinta', EN: 'EN Tekijätietojen hallinta' },
         text: { 
-          FI: 'Käyttäjien hallinta osiossa pääsee lisäämään ja muokkaamaan organisaation käyttäjiä. Osiossa on mahdollista tuoda käyttäjät ladata käyttäjät CSV-tiedostona palvelimelta sekä lähettää päivitetyt tiedot CSV:nä.', 
+          FI: 'Tekijätietojen hallinta osiossa pääsee lisäämään ja muokkaamaan organisaation käyttäjiä. Osiossa on mahdollista tuoda käyttäjät ladata käyttäjät CSV-tiedostona palvelimelta sekä lähettää päivitetyt tiedot CSV:nä.',
           SV: 'SV Käyttäjien hallinta', 
           EN: 'EN Käyttäjien hallinta' 
         },
-      },
-      ohje: {
-        text: {  FI: 'Justus palvelun tarkemmat ohjeet löytyvät ', SV: 'SV Justus palvelun tarkemmat ohjeet löytyvät ', EN: 'EN Justus palvelun tarkemmat ohjeet löytyvät ' },
-        link: {  FI: 'täältä', SV: 'SV täältä', EN: 'EN täältä'  }
       }
       
     },
     esitayta: {
-      title: { FI: 'Tietojen haku', SV: 'Hämta uppgifter', EN: 'Search information' },
-      text: {
-        FI: 'Tällä näytöllä voit hakea jo tallennettuja tietoja muista järjestelmistä pohjaksi.',
-        SV: '*SV*',
-        EN: '*EN*',
-        doi: {
-          FI: 'Suoraviivainen DOI-tunnisteella haku CrossRef:stä; syötä DOI-tunniste ja klikkaa Hae-painiketta niin siirryt suoraan esitäytettyyn tietojensyöttölomakkeeseen.',
-          SV: '*SV*',
-          EN: '*EN*'
-        },
-        haku: {
-          FI: 'Julkaisun haku tekijän ja julkaisun nimen perusteella; syötä tekijän nimi (osa) omaan kenttäänsä ja julkaisun nimeä (osa) seuraavaan kenttään. Haku käynnistyy automaattisesti CrossRef- ja VIRTA-palveluihin ja tulokset näytetään valintalistana josta sopivan julkaisun voi valita klikkaamalla. Tämän jälkeen valitun julkaisun voi ottaa mukaan klikkaamalla Käytä-painiketta jonka myötä siirrytään esitäytettuun tietojen syöttölomakkeeseen.',
-          SV: '*SV*',
-          EN: '*EN*'
-        },
-        ohita: {
-          FI: 'Vaihtoehtoisesti voit myös ohittaa hakuvaiheen klikkaamalla "Ohita haku"-painiketta jonka jälkeen siirryt tietojen syöttämiseen',
-          SV: '*SV*',
-          EN: '*EN*'
-        }
-      },
       doihaku: {
         title: { FI: 'Hae tietoja DOI-tunnisteella', SV: 'Hämta uppgifter med DOI', EN: 'Search using DOI-identifier' },
         tunniste: {
@@ -133,12 +108,6 @@ const i18n = {
           SV: 'Agne DOI',
           EN: 'Enter DOI-identifier',
           tooltip: { FI: 'Esim. 10.4324/9780203841693', SV: 't.ex. 10.4324/9780203841693', EN: 'e.g. 10.4324/9780203841693' }
-        },
-        klikkaa: {
-          FI: 'ja klikkaa',
-          SV: '*SV*ja klikkaa',
-          EN: '*EN*ja klikkaa',
-          tooltip: { FI: 'ja klikkaa', SV: '*SV*ja klikkaa', EN: '*EN*ja klikkaa' }
         },
         info: {
           FI: 'Voit esitäyttää julkaisutietoja käyttämällä DOI-tunnisteesta muodostettua pysyvää osoitetta. Julkaisutiedot haetaan CrossRef-palvelusta.',
@@ -171,9 +140,6 @@ const i18n = {
           EN: 'Ei hakutuloksia annetuilla hakuehdoilla. Tarkasta hakuehdot.' 
         }
       },
-      uudestaan: {
-        FI: 'Hae julkaisua uudestaan', SV: '*SV*Hae julkaisua uudestaan', EN: '*EN*Hae julkaisua uudestaan'
-      },
       hae: { FI: 'Vie tiedot lomakkeelle', SV: 'Vie tiedot lomakkeelle', EN: 'Bring data to form' },
       ohita: { FI: 'Ohita vaihe ja syötä julkaisutiedot käsin', SV: 'Manuell inmatning', EN: 'Skip this phase and manually enter publication information' }
     },
@@ -181,9 +147,7 @@ const i18n = {
       julkaisutyyppi: {
         FI: 'Julkaisutyyppi',
         SV: 'Publikationstyp',
-        EN: 'Publication type',
-        paa: { FI: 'VALITSE JULKAISUTYYPPI PÄÄLUOKKA', SV: '*SV*VALITSE JULKAISUTYYPPI PÄÄLUOKKA', EN: '*EN*VALITSE JULKAISUTYYPPI PÄÄLUOKKA' },
-        ala: { FI: 'VALITSE JULKAISUTYYPPI ALALUOKKA', SV: '*SV*VALITSE JULKAISUTYYPPI ALALUOKKA', EN: '*EN*VALITSE JULKAISUTYYPPI ALALUOKKA' }
+        EN: 'Publication type'
       },
       julkaisuvuosi: {
         FI: 'Julkaisuvuosi',
@@ -282,7 +246,7 @@ const i18n = {
           }
         },
         alayksikkovuosi: { FI: 'Alayksikkökoodiston vuosiversio', SV: 'Year of organisational unit', EN: 'Year of organisational unit',
-          picktip: { FI: 'Valitse vuosi', SV: 'Choose year', EN: 'Choose year' },
+          picktip: { FI: 'Valitse vuosi', SV: 'Välj året', EN: 'Choose year' },
           tooltip: {
             FI: 'Valitse Koodistopalvelun alayksiköistä tietyn vuoden vuosiversio. Oletuksena käytössä on aina uusin vuosiversio, mutta tarvittaessa voidaan käyttää myös vanhempaa vuosiversiota esim. vanhemmille julkaisuille.',
             SV: 'Choose the organisational units based on the Koodisto service by year. The service uses the most recent organisational units by default, but if necessary, older organisational units can be used as well.',
@@ -371,7 +335,7 @@ const i18n = {
         tooltip: {
           FI: 'Toimitetun teoksen toimittajat muodossa Sukunimi, Etunimi. Paina Enter vahvistaaksesi nimi. Toimittajat siinä järjestyksessä, jossa ne on listattu alkuperäisessä julkaisussa tai lähdetietokannassa.',
           SV: 'Det redigerade verkets redaktörer i följande format: Efternamn, Förnamn. Tryck på Enter för att bekräfta. Redaktörer i samma ordning som de nämns i den ursprungliga publikationen eller källdatabasen.',
-          EN: ' Editors of the parent publication in the following format: Surname, Firstname. Press Enter to confirm. Editors in the same order in which they were listed in the original publication or source database.'
+          EN: 'Editors of the parent publication in the following format: Surname, Firstname. Press Enter to confirm. Editors in the same order in which they were listed in the original publication or source database.'
         }
       },
       lehdenjulkaisusarjannimi: {
@@ -489,7 +453,7 @@ const i18n = {
         },
         lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
         poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
-        picktip: { FI: 'Kirjoita avainsana ja paina Enter-näppäintä tai pilkkua', SV: 'Skriv nyckelordet och tryck enter', EN: 'Type in the keyword and press enter' }
+        picktip: { FI: 'Kirjoita avainsana ja paina Enter-näppäintä tai pilkkua', SV: 'Skriv nyckelordet och tryck enter eller komma', EN: 'Type in the keyword and press enter or comma' }
       },
       julkaisunkieli: {
         FI: 'Julkaisun kieli',
@@ -501,7 +465,7 @@ const i18n = {
           EN: 'The language used to write the publication according to the Languages 2003 classification of Statistics Finland.'
         },
 		tooltipF: {
-          FI: '	Kieli, jolla julkaisu on tehty (jos se on määriteltävissä raportoitavan julkaisun tapauksessa). Vuoden 2003 TK:n kielikoodiston mukainen arvo.',
+          FI: 'Kieli, jolla julkaisu on tehty (jos se on määriteltävissä raportoitavan julkaisun tapauksessa). Vuoden 2003 TK:n kielikoodiston mukainen arvo.',
           SV: '*SV',
           EN: 'Language in which the publication is done (if possible to define in the case of the reported publication). Based on Languages 2003 classification of Statistics Finland'
         },
