@@ -20,7 +20,6 @@ app.directive('isbnDirective', ['JustusService', function(JustusService) {
     link: function(scope, element, attr, mCtrl) {
       function myValidation(issn) {
 
-
         if (!issn) return false; // undefined?
         if (!issn.match(JustusService.pattern.issn)) return false;
         let ret = JustusService.checkISSN(issn);
@@ -51,6 +50,52 @@ app.directive('isbnDirective', ['JustusService', function(JustusService) {
       mCtrl.$parsers.push(myValidation);
     }
   };
+}])
+
+.directive('tekijatDirective', ['JustusService', '$timeout', function(JustusService, $timeout) {
+    return {
+        require: 'ngModel',
+        scope: {
+            lista: '=',
+            lukumaara: '=',
+            ngModel: '='
+        },
+        link: function(scope, element, attr, mCtrl) {
+
+            element.on('keydown', function (e) {
+
+                // Firs reset possible previously added CSS classes
+                angular.element(element).removeClass('invalid-tekija');
+                if (e.code === "Enter" || e.code === "NumpadEnter") {
+                    if (scope.ngModel.match(JustusService.pattern['tekijat']) && scope.ngModel !== "") {
+
+                        // Remove extra whitespaces
+                        scope.ngModel = scope.ngModel.replace(/\s\s+/g, ' ');
+
+                        // Add space after each comma if none entered
+                        if (scope.ngModel && scope.ngModel.indexOf(', ') === -1) {
+                            scope.ngModel = scope.ngModel.replace(',', ', ');
+                        }
+
+                        // Add new value to tekijat list
+                        scope.lista.push({ "nimi": scope.ngModel });
+
+                        // Update julkaisuntekijoidenlukumaara
+                        scope.lukumaara = scope.lista.length;
+
+                        // Empty scope
+                        scope.ngModel = "";
+
+                    } else {
+                        console.log("Value is empty or does not match to tekijat regexp");
+                        angular.element(element).addClass('invalid-tekija');
+                    }
+                }
+
+            })
+
+        }
+    };
 }])
 
 .directive('validateOrganisaatiotekijatDirective',

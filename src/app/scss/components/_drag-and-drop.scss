@@ -1,0 +1,38 @@
+.handle {
+  float:left;
+  font-size: 22px;
+}
+
+.handle-input {
+  margin-left: 30px;
+  margin-bottom: 7px;
+  input {
+    display: inline-block !important;
+    width: 75%;
+    background-color: $brand-primary !important;
+    color: #fff !important;
+    height: 30px !important;
+    cursor: pointer !important;
+  }
+}
+
+.tekijat-box {
+  border: 1px solid $brand-primary;
+  border-radius: 2px;
+}
+
+.tekijat-list {
+  margin-bottom: 0;
+  padding: 17px 15px 10px 15px;
+}
+
+.tekijat-input {
+  font-weight: 300;
+  color: $brand-primary;
+  border-radius: 0;
+  border: 0;
+}
+
+.invalid-tekija {
+  color: $brand-danger !important;
+}

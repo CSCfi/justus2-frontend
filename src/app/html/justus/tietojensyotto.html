@@ -135,41 +135,63 @@
     </div>
   </div>
 
-  <!-- Kenttä: Tekijät -->
-  <div class="row form-group" id="tekijatGroup" data-ng-if="isFieldVisible('tekijat')">
-    <div class="col-sm-4 col-xs-12">
-      <label id="julkaisuntekijat" class="control-label" data-ng-bind="i18n.content.form.tekijat[lang]"></label>
-      <i class="fa fa-info-circle justus-info"
-         data-popover-trigger="'outsideClick'"
-         data-popover-is-open="popoverIsOpen"
-         data-ng-mouseenter="popoverIsOpen = true"
-         data-popover-placement="right"
-         data-uib-popover="{{i18n.content.form.tekijat.tooltip[lang]}}"
-         data-ng-show="i18n.content.form.tekijat.tooltip[lang]">
-      </i>
-       <i data-ng-if="isFieldRequired('tekijat')" class="fa fa-asterisk required-star" aria-hidden="true"></i>
-      <span data-ng-if="isFieldRequired('tekijat')" class="sr-only" data-ng-bind="i18n.content.form.pakollinenkentta[lang]"></span>
-    </div>
-    <div class="col-sm-8 col-xs-12 justus-data"
-         data-ng-model="req_tekijat">
-      <div class="row">
-        <div class="col-xs-12">
-          <tags-input
-                      data-ng-model="tekijatTags"
-                      data-replace-spaces-with-dashes="false"
-                      data-add-on-comma="false"
-                      data-add-on-space="false"
-                      placeholder="{{i18n.content.form.tekijat.picktip[lang]}}"
-                      data-on-tag-added="useTekijat()"
-                      data-on-tag-removed="useTekijat()"
-                      enable-editing-last-tag="true"
-                      allowed-tags-pattern="^[^,\;]+,[^,\;]+$"
-                      data-ng-keydown="resetValidationError('tekijat')">
-          </tags-input>
+    <!-- Kenttä: Tekijät -->
+    <div class="row form-group" id="tekijatGroup" data-ng-if="isFieldVisible('tekijat')">
+      <div class="col-sm-4 col-xs-12">
+        <label for="julkaisuntekijat" class="control-label" data-ng-bind="i18n.content.form.tekijat[lang]"></label>
+        <i class="fa fa-info-circle justus-info"
+           data-popover-trigger="'outsideClick'"
+           data-popover-is-open="popoverIsOpen"
+           data-ng-mouseenter="popoverIsOpen = true"
+           data-popover-placement="right"
+           data-uib-popover="{{i18n.content.form.tekijat.tooltip[lang]}}"
+           data-ng-show="i18n.content.form.tekijat.tooltip[lang]">
+        </i>
+        <i data-ng-if="isFieldRequired('tekijat')" class="fa fa-asterisk required-star" aria-hidden="true"></i>
+        <span data-ng-if="isFieldRequired('tekijat')" class="sr-only"
+              data-ng-bind="i18n.content.form.pakollinenkentta[lang]"></span>
+      </div>
+      <div class="col-sm-8 col-xs-12 justus-data">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="tekijat-box">
+              <ul dnd-list="tekijat"
+                  data-ng-class="{'p-0': tekijat.length < 1}"
+                  class="list-style-none pl-0 tekijat-list">
+                <li
+                    data-ng-repeat="tekija in tekijat"
+                    dnd-draggable="tekija"
+                    dnd-moved="tekijat.splice($index, 1)">
+                  <dnd-nodrag>
+                    <div dnd-handle class="handle cursor-pointer"><i class="fa fa-arrows-alt"></i></div>
+                    <div class="handle-input">
+                      <input aria-label="julkaisuntekijat"
+                             type="text"
+                             data-ng-model="tekija.nimi"
+                             class="form-control focus"
+                             data-ng-disabled="true">
+                      <a data-ng-click="removeTekija($index)" data-ng-hide="tekijat.length === 1"
+                         class="text-danger cursor-pointer text-secondary pt pl-x">
+                        {{i18n.content.form.organisaatiotekija.poista.tooltip[lang]}}
+                        <i class="fa fa-close pl-x"></i>
+                      </a>
+                    </div>
+                  </dnd-nodrag>
+                </li>
+              </ul>
+              <input class="form-control tekijat-input"
+                     placeholder="{{i18n.content.form.tekijat.picktip[lang]}}"
+                     data-ng-keydown="resetValidationError('tekijat')"
+                     data-ng-model="tekija"
+                     id="julkaisuntekijat"
+                     tekijat-directive
+                     lista="tekijat"
+                     lukumaara="justus.julkaisu.julkaisuntekijoidenlukumaara">
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
   <!-- Kenttä: Julkaisun tekijöiden lukumäärä -->
   <div class="row form-group"
@@ -203,10 +225,10 @@
         </div>
         <div class="col-xs-7 text-right">
           <button class="btn btn-primary justus-btn"
-                  role="button"
-                  data-ng-click="useKopioiTekijat(justus.julkaisu.tekijat)"
+                  type="button"
+                  data-ng-click="useKopioiTekijat(tekijat)"
                   data-ng-disabled="isCopyButtonDisabled()"
-                  data-ng-show="justus.julkaisu.tekijat && !justus.julkaisu.id"
+                  data-ng-show="tekijat.length && !justus.julkaisu.id"
                   data-ng-attr-title="{{getDisabledText(isCopyButtonDisabled())}}"
                   data-ng-bind="i18n.content.form.organisaatiotekija.kopioi.tooltip[lang]">
           </button>

@@ -93,11 +93,15 @@
 }
 
 .p-0 {
-  padding: 0;
+  padding: 0 !important;
 }
 
 .pt {
   padding-top:5px;
+}
+
+.pt-0 {
+  padding-top: 0;
 }
 
 .p-t {

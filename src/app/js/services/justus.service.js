@@ -135,7 +135,23 @@ angular.module('JustusService', [])
         return visibleFields;
   };
 
-    this.isPatternValid = function (fieldName) {
+  this.isTekijatEmpty = function (tekijatList) {
+    let empty = false;
+
+    if (!tekijatList[0]) {
+      empty = true;
+      return empty;
+    }
+
+    for (let i = 0; i < tekijatList.length; i++) {
+      if (!tekijatList[i].nimi || tekijatList[i].nimi === "" || tekijatList[i].nimi === null ) {
+        empty = true;
+      }
+    }
+    return empty;
+  }
+
+    this.isPatternValid = function (fieldName, list = undefined) {
       // Assume the field is valid, for performance we will continue validating until the field is first decided as invalid
       let valid = true;
       let fieldIsFilled = false;
@@ -146,6 +162,15 @@ angular.module('JustusService', [])
 
       if (this.isFieldVisible(fieldName) === false) {
         return true;
+      }
+
+      if (list) {
+        for (let key in list) {
+          let value = list[key].nimi;
+          if (!value.match(this.pattern['tekijat'])) {
+            return false;
+          }
+        }
       }
 
       fieldIsFilled = !this.fieldIsEmpty(this.justus.julkaisu[fieldName]);
@@ -204,9 +229,6 @@ angular.module('JustusService', [])
             fieldIsFilled = true;
         }
     }
-
-
-
 
 
     // Validate a field that contains a list of values
@@ -300,7 +322,7 @@ angular.module('JustusService', [])
   };
 
 
-  this.getInvalidFields = function(fields) {
+  this.getInvalidFields = function(fields, tekijat) {
 
     const invalidFields =
       {
@@ -309,23 +331,34 @@ angular.module('JustusService', [])
       };
 
       for (let i = 0; i < fields.length; i++) {
+        if (fields[i] === "tekijat") {
+          if (this.isTekijatEmpty(tekijat) === true) {
+            invalidFields["missingValue"].push("tekijat");
+          }
+          if (this.isPatternValid("tekijat", tekijat) === false) {
+            invalidFields["invalidValue"].push("tekijat");
+          }
+        } else {
           if (this.isValid(fields[i]) === false) {
-              invalidFields["missingValue"].push(fields[i]);
+            invalidFields["missingValue"].push(fields[i]);
           }
           if (this.isPatternValid(fields[i]) === false) {
             invalidFields["invalidValue"].push(fields[i]);
           }
-
+        }
       }
       return invalidFields;
 
   };
 
+
+
   // pattern checkers (for validity)
   this.pattern = {
     'orcid': /^(|[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X])$/g,
     'isbn': /^(?:ISBN(?:-1[03])?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$/g,
-    'issn': /^([0-9]{4}[- ][0-9]{3}[0-9X])$/g
+    'issn': /^([0-9]{4}[- ][0-9]{3}[0-9X])$/g,
+    'tekijat': /^[^,;]+,[^,;]+$/
   };
 
   this.checkISBN = function (isbn) {

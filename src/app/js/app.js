@@ -11,6 +11,7 @@ let app = angular.module('JustusApp', [
   'ngCsv',
   'ngFileUpload',
   'infinite-scroll',
+  'dndLists',
 
   // App modules
   'appConfig',
