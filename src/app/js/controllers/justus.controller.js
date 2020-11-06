@@ -261,12 +261,7 @@ angular.module('JustusController', [])
             $scope.useLehtisarja = function(input) { // jufo_id
 
                 // first clear previous values
-                $scope.justus.julkaisu.jufotunnus = "";
-                $scope.justus.julkaisu.jufoluokitus = "";
-                $scope.justus.julkaisu.issn = [""];
-                $scope.justus.julkaisu.isbn = [""];
-                $scope.justus.julkaisu.kustantaja = "";
-                $scope.issnDescription = [];
+                $scope.resetLehtisarja
 
                 // if input is empty return (jufo_id does not exist)
                 if (input === null || input === "") {
@@ -312,6 +307,15 @@ angular.module('JustusController', [])
                         $scope.useLehtisarja(jufotunnus); // vain issn?
                         $scope.lehtinimet.selected = jobj && jobj.length > 0 ? jobj[0] : null;
                     });
+            };
+
+            $scope.resetLehtisarja = function() {
+                $scope.justus.julkaisu.jufotunnus = "";
+                $scope.justus.julkaisu.jufoluokitus = "";
+                $scope.justus.julkaisu.issn = [""];
+                $scope.justus.julkaisu.isbn = [""];
+                $scope.justus.julkaisu.kustantaja = "";
+                $scope.issnDescription = [];
             };
 
 

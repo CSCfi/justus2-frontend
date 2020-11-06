@@ -730,7 +730,7 @@
                     data-typeahead-wait-ms="2000"
                     placeholder="{{i18n.content.form.lehdenjulkaisusarjannimi.picktip[lang]}}"
                     data-typeahead-on-select="useLehtisarja($item.Jufo_ID)"
-                    data-ng-keydown="resetValidationError('lehdenjulkaisusarjannimi')">
+                    data-ng-keydown="resetLehtisarja();resetValidationError('lehdenjulkaisusarjannimi')">
           </div>
           <div class="col-xs-1">
             <i class='fa fa-spinner fa-spin fa-2x' data-ng-show='jufoLataa'></i>
