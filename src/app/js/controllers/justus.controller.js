@@ -2,9 +2,9 @@
 
 angular.module('JustusController', [])
     .controller('JustusController', [
-        '$rootScope', '$scope', '$log', '$state', '$stateParams', 'ExternalServicesService', 'ModalService',
+        '$rootScope', '$scope', '$log', '$state', '$stateParams', 'ExternalServicesService', 'ModalService', '$sce',
          'KoodistoService', 'JustusService', 'APIService', 'ValidationService', 'DataStoreService', 'AuthService',
-        function($rootScope, $scope, $log, $state, $stateParams, ExternalServicesService, ModalService,
+        function($rootScope, $scope, $log, $state, $stateParams, ExternalServicesService, ModalService, $sce,
                  KoodistoService, JustusService, APIService, ValidationService, DataStoreService, AuthService) {
 
 
@@ -55,6 +55,9 @@ angular.module('JustusController', [])
                 $scope.crossRefServerError = false;
 
             }
+
+            $scope.tieteenalaTooltipText = $sce.trustAsHtml($scope.i18n.content.form.tieteenala.tooltip[$scope.lang] + ' Linkki luokitukseen: <a target="_blank" href=https://www.stat.fi/fi/luokitukset/tieteenala/>www.stat.fi/fi/luokitukset/tieteenala/</a>');
+            $scope.tieteenalaTooltipTextF = $sce.trustAsHtml($scope.i18n.content.form.tieteenala.tooltipF[$scope.lang] + ' Linkki luokitukseen: <a target="_blank" href=https://www.stat.fi/fi/luokitukset/tieteenala/>www.stat.fi/fi/luokitukset/tieteenala/</a>');
 
             $scope.initializeValues = function() {
 

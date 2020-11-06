@@ -1330,7 +1330,7 @@
             data-popover-is-open="popoverIsOpen"
             data-ng-mouseenter="popoverIsOpen = true"
             data-popover-placement="right"
-            data-uib-popover="{{julkaisutyyppi_paa == 'F' ? i18n.content.form.tieteenala.tooltipF[lang] : i18n.content.form.tieteenala.tooltip[lang]}}"
+            data-uib-popover-html="{{julkaisutyyppi_paa == 'F' ? 'tieteenalaTooltipTextF' : 'tieteenalaTooltipText' }}"
             data-ng-show="i18n.content.form.tieteenala.tooltip[lang]">
          </i>
          <i data-ng-if="isFieldRequired('tieteenala')" class="fa fa-asterisk required-star" aria-hidden="true"></i>
