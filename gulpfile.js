@@ -57,7 +57,8 @@ const config = {
       'node_modules/angular-touch/angular-touch.js',
       'node_modules/ng-csv/build/ng-csv.js',
       'node_modules/ng-file-upload/dist/ng-file-upload.js',
-      'node_modules/ng-infinite-scroll/build/ng-infinite-scroll.js'	  
+      'node_modules/ng-infinite-scroll/build/ng-infinite-scroll.js',  
+      'node_modules/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js'  
     ],
 
     // Define lib styles here

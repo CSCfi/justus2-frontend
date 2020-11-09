@@ -46,11 +46,6 @@
         </div>
     </div>
 
-<!--    <div class="row px">-->
-<!--        <div class="col-xs-6">-->
-<!--            <i class="fa fa-spinner fa-spin fa-3x pull-right" data-ng-if="crossrefLataa"></i>-->
-<!--        </div>-->
-<!--    </div>-->
 
     <div class="row px" data-ng-if="crossRefhaettu">
         <div class="col-xs-12">
@@ -198,14 +193,16 @@
         </div>
     </div>
 
-
-</div>
-<div class="row" data-ng-show="valittuJulkaisu.organisation == user.organization.code">
-    <div class="col-xs-12">
-        <h3>
-            *Mahdollinen duplikaatti*
-        </h3>
+    <div class="row p-t px" data-ng-show="valittuJulkaisu.organisation == user.organization.code">
+        <div class="col-xs-12">
+            <div class="alert alert-default">
+                <span class="text-secondary mb-0 text-2xl font-weight-bold">
+                    * Mahdollinen duplikaatti *
+                </span>
+            </div>
+        </div>
     </div>
+
 </div>
 
 <div class="row px" style="margin-top:80px">

@@ -23,7 +23,7 @@ angular.module('ValidationService', [])
     this.setInvalidFieldErrors = function(fieldsWithErrors) {
       fieldsWithErrors.map(function(field) {
         $timeout(function(){
-          var element = angular.element('#' + field + 'Group');
+          let element = angular.element('#' + field + 'Group');
           element.addClass('has-error has-feedback');
           element.find('.invalid-pattern').show();
         }, 50);
