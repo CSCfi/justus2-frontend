@@ -2,9 +2,9 @@
 
 angular.module('JustusController', [])
     .controller('JustusController', [
-        '$rootScope', '$scope', '$log', '$state', '$stateParams', 'ExternalServicesService', 'ModalService',
+        '$rootScope', '$scope', '$log', '$state', '$stateParams', 'ExternalServicesService', 'ModalService', '$sce',
          'KoodistoService', 'JustusService', 'APIService', 'ValidationService', 'DataStoreService', 'AuthService', 'AlayksikkoService',
-        function($rootScope, $scope, $log, $state, $stateParams, ExternalServicesService, ModalService,
+        function($rootScope, $scope, $log, $state, $stateParams, ExternalServicesService, ModalService, $sce,
                  KoodistoService, JustusService, APIService, ValidationService, DataStoreService, AuthService, AlayksikkoService) {
 
             // Parses first- and lastnames from a string of names and returns them in a list of objects [{ firstName: '', lastName: '' }, ...]
@@ -54,6 +54,9 @@ angular.module('JustusController', [])
 
             }
 
+            $scope.tieteenalaTooltipText = $sce.trustAsHtml($scope.i18n.content.form.tieteenala.tooltip[$scope.lang] + ' Linkki luokitukseen: <a target="_blank" href=https://www.stat.fi/fi/luokitukset/tieteenala/>www.stat.fi/fi/luokitukset/tieteenala/</a>');
+            $scope.tieteenalaTooltipTextF = $sce.trustAsHtml($scope.i18n.content.form.tieteenala.tooltipF[$scope.lang] + ' Linkki luokitukseen: <a target="_blank" href=https://www.stat.fi/fi/luokitukset/tieteenala/>www.stat.fi/fi/luokitukset/tieteenala/</a>');
+
             $scope.initializeValues = function() {
 
                 JustusService.clearPublicationForm();
@@ -64,7 +67,7 @@ angular.module('JustusController', [])
                 $scope.justus = JustusService.getPublicationFormData();
                 $scope.julkaisutyyppi = null;
                 $scope.julkaisutyyppi_paa = null;
-                $scope.tekijatTags = [];
+                $scope.tekijat = [];
                 $scope.emojulkaisuntoimittajatTags = [];
                 $scope.avainsanatTags = [];
                 $scope.lehtinimet = [];
@@ -115,24 +118,12 @@ angular.module('JustusController', [])
             };
 
             $scope.useTekijat = function() {
-
-                    // Add space after each comma if none entered
-                    $scope.tekijatTags = $scope.tekijatTags.map(function(tag, index) {
-                        if (tag.text && tag.text.indexOf(', ') === -1) {
-                            tag.text = tag.text.replace(',', ', ');
-                        }
-                        return tag;
-                    });
-
-                    $scope.justus.julkaisu.tekijat = '';
-                    $scope.justus.julkaisu.tekijat = $scope.tekijatTags.map(function(tag, index) {
-                        return tag.text;
-                    }).join('; ');
-                    $scope.justus.julkaisu.julkaisuntekijoidenlukumaara = $scope.tekijatTags.length;
-                    ValidationService.clearError("julkaisuntekijoidenlukumaara");
-
-            };
-
+                $scope.tekijat = [];
+                parseNames($scope.justus.julkaisu.tekijat).map(function(nameObject) {
+                    $scope.tekijat.push( { "nimi": `${nameObject.lastName}, ${nameObject.firstName}` });
+                });
+                $scope.justus.julkaisu.julkaisuntekijoidenlukumaara = $scope.tekijat.length;
+            }
 
             $scope.useEmojulkaisuntoimittajat = function() {
 
@@ -162,67 +153,77 @@ angular.module('JustusController', [])
                 else return null;
             }
 
-            $scope.useKopioiTekijat = function(input) {
+            $scope.useKopioiTekijat = function(tekijat) {
 
                 $scope.multipleMatchNames = [];
-                let tempstr = input;
-                for (let i = 0; i < $scope.justus.julkaisu.julkaisuntekijoidenlukumaara; i++) {
+                for (let i = 0; i < tekijat.length; i++) {
                     let sb = 0;
-                    let se = tempstr.indexOf(',');
-                    let eb = tempstr.indexOf(',') + 1;
-                    let ee = tempstr.indexOf(';') >= 0 ? tempstr.indexOf(';') : tempstr.length;
+                    let se = tekijat[i].nimi.indexOf(',');
+                    let eb = tekijat[i].nimi.indexOf(',') + 1;
+                    let ee = tekijat[i].nimi.length;
 
                     if (!$scope.user.hrDataExists) {
                         $scope.justus.organisaatiotekija[i] = {};
+                        $scope.justus.organisaatiotekija[i].sukunimi = tekijat[i].nimi.substring(sb, se).trim();
+                        $scope.justus.organisaatiotekija[i].etunimet = tekijat[i].nimi.substring(eb, ee).trim();
                         $scope.justus.organisaatiotekija[i].alayksikko = [null];
-                        $scope.justus.organisaatiotekija[i].sukunimi = tempstr.substring(sb, se).trim();
-                        $scope.justus.organisaatiotekija[i].etunimet = tempstr.substring(eb, ee).trim();
                         $scope.justus.organisaatiotekija[i].orcid = "";
                         $scope.justus.organisaatiotekija[i].hrnumero = null;
-                        tempstr = tempstr.substring(ee + 1);
 
                     } else {
-                        let sukunimi = tempstr.substring(sb, se).trim();
-                        let etunimet = tempstr.substring(eb, ee).trim();
-                        tempstr = tempstr.substring(ee + 1);
+
+                        let sukunimi = tekijat[i].nimi.substring(sb, se).trim();
+                        let etunimet = tekijat[i].nimi.substring(eb, ee).trim();
 
                         let personToCopy = $scope.persons.data.filter(obj => obj.sukunimi.toLowerCase() === sukunimi.toLowerCase() && obj.etunimi.toLowerCase() === etunimet.toLowerCase());
 
                         if(personToCopy.length > 0) {
 
-                            for (let i = 0; i < personToCopy.length; i++) {
+                            for (let y = 0; y < personToCopy.length; y++) {
 
                                 let alayksikkoArray = [];
-                                for (let x = 0; x < personToCopy[i].alayksikko.length; x++) {
-                                    alayksikkoArray.push(personToCopy[i].alayksikko[x]);
+                                for (let x = 0; x < personToCopy[y].alayksikko.length; x++) {
+                                    alayksikkoArray.push(personToCopy[y].alayksikko[x]);
                                 }
 
                                 let orgTekijaObj = {
-                                    "etunimet": personToCopy[i].etunimi,
-                                    "sukunimi": personToCopy[i].sukunimi,
+                                    "etunimet": personToCopy[y].etunimi,
+                                    "sukunimi": personToCopy[y].sukunimi,
                                     "alayksikko": alayksikkoArray,
-                                    "orcid": personToCopy[i].orcid,
-                                    "hrnumero": null
+                                    "orcid": personToCopy[y].orcid,
+                                    "useEsitaytto": true
                                 };
 
-                                if ($scope.justus.organisaatiotekija[0].sukunimi === "") {
-                                    $scope.justus.organisaatiotekija[0] = orgTekijaObj;
+                                // For Luonnonvarakeskus prefill also HR-numero field
+                                if ($rootScope.user.jukuriUser) {
+                                    orgTekijaObj["hrnumero"] = personToCopy[y].tunniste;
                                 } else {
-                                    $scope.justus.organisaatiotekija.push(orgTekijaObj);
+                                    orgTekijaObj["hrnumero"] = null;
                                 }
+                                $scope.justus.organisaatiotekija[i] = orgTekijaObj;
+                                $scope.organisaatioTekijaSelected = personToCopy[y].sukunimi;
                             }
 
                             if (personToCopy.length > 1) {
                                 $scope.multipleMatch = true;
 
                                 $scope.multipleMatchNames.push({
-                                    "etunimi": personToCopy[i].etunimi,
-                                    "sukunimi": personToCopy[i].sukunimi,
+                                    "etunimi": personToCopy[y].etunimi,
+                                    "sukunimi": personToCopy[y].sukunimi,
 
                                 });
 
                                 $scope.infoText = "HUOM! Seuraaville tekijöille löytyi useampi kuin yksi vastaavuus: ";
                             }
+
+                        } else {
+                            $scope.justus.organisaatiotekija[i] = {};
+                            $scope.justus.organisaatiotekija[i].sukunimi = tekijat[i].nimi.substring(sb, se).trim();
+                            $scope.justus.organisaatiotekija[i].etunimet = tekijat[i].nimi.substring(eb, ee).trim();
+                            $scope.justus.organisaatiotekija[i].alayksikko = [null];
+                            $scope.justus.organisaatiotekija[i].orcid = "";
+                            $scope.justus.organisaatiotekija[i].hrnumero = null;
+                            $scope.justus.organisaatiotekija[i].useEsitaytto = false;
 
                         }
                     }
@@ -233,6 +234,11 @@ angular.module('JustusController', [])
                 $scope.justus.organisaatiotekija[index].useEsitaytto = !$scope.justus.organisaatiotekija[index].useEsitaytto
             };
 
+
+            $scope.removeTekija = function(index) {
+                $scope.tekijat.splice(index, 1);
+                $scope.justus.julkaisu.julkaisuntekijoidenlukumaara = $scope.tekijat.length;
+            };
 
             $scope.useOrganisaatiotekijaAlayksikko = function(parIndex, index, input) {
                 $scope.justus.organisaatiotekija[parIndex].alayksikko[index] = input;
@@ -334,12 +340,7 @@ angular.module('JustusController', [])
             $scope.useLehtisarja = function(input) { // jufo_id
 
                 // first clear previous values
-                $scope.justus.julkaisu.jufotunnus = "";
-                $scope.justus.julkaisu.jufoluokitus = "";
-                $scope.justus.julkaisu.issn = [""];
-                $scope.justus.julkaisu.isbn = [""];
-                $scope.justus.julkaisu.kustantaja = "";
-                $scope.issnDescription = [];
+                $scope.resetLehtisarja
 
                 // if input is empty return (jufo_id does not exist)
                 if (input === null || input === "") {
@@ -385,6 +386,15 @@ angular.module('JustusController', [])
                         $scope.useLehtisarja(jufotunnus); // vain issn?
                         $scope.lehtinimet.selected = jobj && jobj.length > 0 ? jobj[0] : null;
                     });
+            };
+
+            $scope.resetLehtisarja = function() {
+                $scope.justus.julkaisu.jufotunnus = "";
+                $scope.justus.julkaisu.jufoluokitus = "";
+                $scope.justus.julkaisu.issn = [""];
+                $scope.justus.julkaisu.isbn = [""];
+                $scope.justus.julkaisu.kustantaja = "";
+                $scope.issnDescription = [];
             };
 
 
@@ -442,10 +452,6 @@ angular.module('JustusController', [])
                             $scope.justus.julkaisu.username = $rootScope.user.name;
                             $scope.justus.julkaisu.projektinumero = [""];
 
-                            // Initialize tekijatTags input
-                            parseNames($scope.justus.julkaisu.tekijat).map(function(nameObject) {
-                                $scope.tekijatTags.push({ text: `${nameObject.lastName}, ${nameObject.firstName}` });
-                            });
                             $scope.useTekijat();
 
                             $scope.fetchLehtisarja($scope.justus.julkaisu.issn[0]);
@@ -481,10 +487,6 @@ angular.module('JustusController', [])
                                 $scope.initializeAvainsanatTags();
                             }
 
-                            // Initialize tekijatTags input
-                            parseNames($scope.justus.julkaisu.tekijat).map(function(nameObject) {
-                                $scope.tekijatTags.push({ text: `${nameObject.lastName}, ${nameObject.firstName}` });
-                            });
                             $scope.useTekijat();
 
                             $scope.fetchLehtisarja($scope.justus.julkaisu.issn[0]);
@@ -507,10 +509,6 @@ angular.module('JustusController', [])
                 $scope.justus.julkaisu = cj;
                 $scope.justus.julkaisu.username = $rootScope.user.name;
                 $scope.justus.julkaisu.projektinumero = [""];
-
-                parseNames($scope.justus.julkaisu.tekijat).map(function (nameObject) {
-                    $scope.tekijatTags.push({text: `${nameObject.lastName}, ${nameObject.firstName}`});
-                });
 
                 $scope.useTekijat();
 
@@ -832,15 +830,20 @@ angular.module('JustusController', [])
             $scope.isJustusValid = function() {
 
                 $scope.visibleFields = JustusService.getListOfVisibleFields();
-                $scope.invalidFields = JustusService.getInvalidFields($rootScope.user.visibleFields);
+                $scope.invalidFields = JustusService.getInvalidFields($rootScope.user.visibleFields, $scope.tekijat);
 
                 ValidationService.setValidationErrors($scope.invalidFields.missingValue);
                 ValidationService.setInvalidFieldErrors($scope.invalidFields.invalidValue);
 
+                // After validation add tekijat to julkaisu object, separate with semicolon
+                $scope.justus.julkaisu.tekijat = "";
+                $scope.justus.julkaisu.tekijat = $scope.tekijat.map(e => e.nimi).join("; ");
+                $scope.justus.julkaisuntekijoidenlukumaara = $scope.tekijat.length;
+
                 if ($scope.invalidFields.missingValue.length === 0 && $scope.invalidFields.invalidValue.length === 0) {
                     return true
                 } else {
-                    return false;
+                    return false
                 }
             };
 
@@ -951,13 +954,10 @@ angular.module('JustusController', [])
                             $rootScope.filedata = {};
                             $scope.fileAlreadyExists = false;
                         }
-                        parseNames($scope.justus.julkaisu.tekijat).map((nameObject) => {
-                            $scope.tekijatTags.push({ text: `${nameObject.lastName}, ${nameObject.firstName}` });
-                        });
 
                         $scope.useTekijat();
-                        $scope.initializeAvainsanatTags();
 
+                        $scope.initializeAvainsanatTags();
 
                         parseEmojulkaisuntoimittajat($scope.justus.julkaisu.emojulkaisuntoimittajat).map((nameObject) => {
                             $scope.emojulkaisuntoimittajatTags.push({ text: nameObject.name });

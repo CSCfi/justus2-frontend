@@ -116,7 +116,7 @@ app.directive('isbnDirective', ['JustusService', function(JustusService) {
             if (!scope.validate) return;
 
             if (scope.field === 'orcid') {
-                if (scope.field !== null || scope.field !== '') {
+                if (scope.value !== null || scope.value !== '') {
                     let pattern = JustusService.pattern["orcid"];
                     if (!scope.value.match(pattern)) {
                         element.addClass('has-error has-feedback');
