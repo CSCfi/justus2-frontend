@@ -35,9 +35,9 @@ app.directive('fileReaderDirective', [
                                     "sukunimi": lines[k][2],
                                     "email": lines[k][3],
                                     "orcid": lines[k][4],
-                                    "alayksikko1": lines[k][6],
-                                    "alayksikko2": lines[k][7],
-                                    "alayksikko3": lines[k][8],
+                                    "alayksikko1": lines[k][5],
+                                    "alayksikko2": lines[k][6],
+                                    "alayksikko3": lines[k][7],
                                 })
                             }
 
