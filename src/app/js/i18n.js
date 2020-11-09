@@ -945,7 +945,13 @@ const i18n = {
           email: { FI: 'Sähköposti', SV: 'Email', EN: 'Email' },
           alayksikko: { FI: 'Alayksikkö', SV: 'Enhet', EN: 'Organisational unit' }
         },
-        lisaa: { FI: 'Lisää uusi organisaation tekijä', SV: 'SV Lisää uusi organisaation tekijä', EN: 'EN Lisää uusi organisaation tekijä' },
+        lisaa: { FI: 'Lisää yksittäinen uusi organisaation tekijä', SV: 'SV Lisää uusi yksittäinen organisaation tekijä', EN: 'EN Lisää uusi yksittäinen organisaation tekijä',
+          teksti: { FI: 'Lisää yksittäinen uusi organisaation tekijä. Useamman tekijän tiedot voit tuoda kerralla kohdassa "Tuo päivitetyt tiedot"',
+                    SV: 'Lisää yksittäinen uusi organisaation tekijä. Useamman tekijän tiedot voit tuoda kerralla kohdassa "Tuo päivitetyt tiedot"',
+                    EN: 'Lisää yksittäinen uusi organisaation tekijä. Useamman tekijän tiedot voit tuoda kerralla kohdassa "Tuo päivitetyt tiedot"'
+          }
+        },
+
         form: {
           sulje: { FI: 'Sulje', SV: 'Stäng', EN: 'Close' },
           lisaa: { FI: 'Lisää uusi organisaation tekijä', SV: 'SV Lisää uusi organisaation tekijä', EN: 'EN Lisää uusi organisaation tekijä' },

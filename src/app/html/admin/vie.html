@@ -183,6 +183,8 @@
             </uib-accordion-heading>
             <div class="p-1" data-ng-if="user.visibleFields">
 
+                <p data-ng-bind="i18n.admin.content.lisaa.teksti[lang]"></p>
+
                 <person-form-directive  data-ng-form="personForm" selected-person="personData" lang="lang"></person-form-directive>
 
                 <div class="row"
