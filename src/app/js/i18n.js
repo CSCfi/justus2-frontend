@@ -677,7 +677,7 @@ const i18n = {
         }
       },
       julkaisurinnakkaistallennettu: {
-          FI: 'Julkaisu on rinnakkaistallenne',
+          FI: 'Julkaisu on rinnakkaistallennettu',
           SV: 'Lagrats parallelt publikationen',
           EN: 'Self-archived publication',
               '1': { FI: 'Kyllä', SV: 'Ja', EN: 'Yes' },
@@ -738,6 +738,18 @@ const i18n = {
                   },
                   info: {
                       FI: 'Huom! Vain pdf-tiedostot salllittuja.', SV: 'Huom! Vain pdf-tiedostot salllittuja.', EN: 'NB! Only pdf files are accepted.'
+                  }
+                },
+                rinnakkaistallennus: {
+                  FI: 'Julkaisu on rinnakkaistallenne',
+                  SV: 'Lagrats parallelt publikationen',
+                  EN: 'Self-archived publication',
+                  '1': { FI: 'Kyllä', SV: 'Ja', EN: 'Yes' },
+                  '0': { FI: 'Ei', SV: 'Nej', EN: 'No' },
+                  tooltip: {
+                    FI: 'Rinnakkaistallenne on julkaisuarkistoon rinnakkaistallennettava julkaisun kopio. Valitse ei, mikäli kyseessä on esimerkiksi oman organisaatiosi julkaisusarja.',
+                    SV: 'Lagrats pallelt publikationen är en kopia av publikationen som kommer att lagras i publikationarkivet. Välj nej, om publikationen ingår i din egen organisations publikationsserie.',
+                    EN: 'Self-archived version is a copy of the publication that will be stored in the publication archive. Choose no, if the publication is part of your own organization\'s publication series.'
                   }
                 },
                 abstrakti: {

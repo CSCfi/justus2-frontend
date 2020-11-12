@@ -1868,12 +1868,12 @@
     </div>
   </div>
 
-  <div class="row" data-ng-if="invalidFields.missingValue.length > 0 || invalidFields.invalidValue.length > 0">
+  <div class="row px"
+       data-ng-if="invalidFields.missingValue.length > 0 || invalidFields.invalidValue.length > 0">
     <div class="col-xs-12">
-      <div role="alert" class="alert alert-danger">
+      <div role="alert" class="alert alert-danger m-t">
         <h3 class="text-secondary mt-0">
           Tarkasta seuraavat kentät:
-<!--        {{i18n.content.tietojensyotto.taytaviela[lang]}}:-->
         </h3>
         <div>
           <span class="pxs" data-ng-repeat="o in invalidFields.missingValue">
