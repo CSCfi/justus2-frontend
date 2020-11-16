@@ -44,6 +44,8 @@ angular.module('APIService', [])
             { name: 'jufotunnus', default: '' },
             { name: 'jufoluokitus', default: '' },
             { name: 'julkaisuntila', default: '' },
+            { name: 'julkaisumaksu', default: null },
+            { name: 'julkaisumaksuvuosi', default: null },
             { name: 'username', default: ''},
             { name: 'modified', default: null },
             { name: 'projektinumero', default: null } // array
