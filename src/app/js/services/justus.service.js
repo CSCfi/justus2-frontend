@@ -138,7 +138,7 @@ angular.module('JustusService', [])
   this.isTekijatEmpty = function (tekijatList) {
     let empty = false;
 
-    if (!tekijatList[0]) {
+    if (!tekijatList || !tekijatList[0]) {
       empty = true;
       return empty;
     }
@@ -355,10 +355,13 @@ angular.module('JustusService', [])
 
   // pattern checkers (for validity)
   this.pattern = {
+    'julkaisuvuosi': /^[0-9]{4}$/,
     'orcid': /^(|[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X])$/g,
     'isbn': /^(?:ISBN(?:-1[03])?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$/g,
     'issn': /^([0-9]{4}[- ][0-9]{3}[0-9X])$/g,
-    'tekijat': /^[^,;]+,[^,;]+$/
+    'tekijat': /^[^,;]+,[^,;]+$/,
+    'julkaisumaksu': /^([0-9]+|[0-9]+[,.]?[0-9]{1,2})$/,
+    'julkaisumaksuvuosi': /^[0-9]{4}$/
   };
 
   this.checkISBN = function (isbn) {

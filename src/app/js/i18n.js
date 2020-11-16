@@ -682,11 +682,28 @@ const i18n = {
           EN: 'Self-archived publication',
               '1': { FI: 'Kyllä', SV: 'Ja', EN: 'Yes' },
               '0': { FI: 'Ei', SV: 'Nej', EN: 'No' },
-		  tooltip: {
-			  FI: 'Rinnakkaistallenne on julkaisuarkistoon rinnakkaistallennettava julkaisun kopio. Valitse ei, mikäli kyseessä on esimerkiksi oman organisaatiosi julkaisusarja.',
-			  SV: 'Lagrats pallelt publikationen är en kopia av publikationen som kommer att lagras i publikationarkivet. Välj nej, om publikationen ingår i din egen organisations publikationsserie.',
-			  EN: 'Self-archived version is a copy of the publication that will be stored in the publication archive. Choose no, if the publication is part of your own organization\'s publication series.'
-		  }
+      },
+      julkaisumaksu: {
+        FI: 'Julkaisumaksu',
+        SV: 'Julkaisumaksu',
+        EN: 'Julkaisumaksu',
+        tooltip: {
+          FI: 'Organisaation julkaisun avoimesta saatavuudesta kustantajalle maksaman maksun suuruus euroina. Syötetty arvo voi olla kokonaisuluku tai desimaaliluku kahden desimaalin tarkkuudella. Pakollinen tieto mikäli julkaisumaksuvuosi-kenttä on täytetty.',
+          SV: '',
+          EN: ''
+        },
+        picktip: { FI: 'esim. 1000', SV: '', EN: '' }
+      },
+      julkaisumaksuvuosi: {
+        FI: 'Julkaisumaksuvuosi',
+        SV: 'Julkaisumaksuvuosi',
+        EN: 'Julkaisumaksuvuosi',
+        tooltip: {
+          FI: 'Organisaation julkaisun avoimesta saatavuudesta kustantajalle maksetun maksun maksuvuosi. Pakollinen tieto mikäli julkaisumaksu-kenttä on täytetty.',
+          SV: '',
+          EN: ''
+        },
+        picktip: { FI: 'esim. 2019', SV: '', EN: '' }
       },
       lisatieto: {
         FI: 'Lisätieto',

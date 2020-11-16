@@ -34,9 +34,9 @@ const field_default_config = {
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
-    'pattern': null,
+    'pattern': /^[0-9]{4}$/,
     'subfields': [],
-      'childnode': true
+    'childnode': true
   },
   'julkaisunnimi': {
     'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'F1', 'F2', 'F3', 'G1', 'G2', 'G3', 'G4', 'G5'],
@@ -396,6 +396,26 @@ const field_default_config = {
     'requiredAmount': 0,
     'pattern': null,
     'subfields': []
+  },
+  'julkaisumaksu': {
+    'requiredInPublicationTypes': [],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'F1', 'F2', 'F3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': ['julkaisumaksuvuosi'],
+    'requiredAmount': 0,
+    'pattern': /^([0-9]+|[0-9]+[,.]?[0-9]{1,2})$/,
+    'subfields': [],
+    'childnode': true
+  },
+  'julkaisumaksuvuosi': {
+    'requiredInPublicationTypes': [],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'F1', 'F2', 'F3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': ['julkaisumaksu'],
+    'requiredAmount': 0,
+    'pattern': /^[0-9]{4}$/,
+    'subfields': [],
+    'childnode': true
   },
   'lisatieto': {
     'requiredInPublicationTypes': [],
