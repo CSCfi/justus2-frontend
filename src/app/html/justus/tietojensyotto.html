@@ -456,11 +456,11 @@
                 <div data-ng-show="i.useEsitaytto">
                   <ui-select aria-labelledby="organisaatiokijat organisaatiotekijasukunimi"
                              data-ng-model="organisaatioTekijaSelected"
-                             on-select="useOrganisaatiotekijaEsitaytto($select.selected, $index, resetValidationError('organisaatiotekija', $index))"
+                             on-select="useOrganisaatiotekijaEsitaytto($select.selected, $index)"
                              theme="bootstrap">
                     <ui-select-match class="ui-select-match"
                                      placeholder="Valitse / Kirjoita sukunimi">
-                      {{ i.sukunimi }}
+                      {{ i.sukunimi || "Valitse / Kirjoita sukunimi" }}
                     </ui-select-match>
                     <ui-select-choices
                             repeat="person in persons.data | orderBy: 'sukunimi' | filter: { sukunimi: $select.search }">

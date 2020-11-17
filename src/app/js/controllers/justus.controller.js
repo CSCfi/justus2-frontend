@@ -607,19 +607,27 @@ angular.module('JustusController', [])
 
             $scope.useOrganisaatiotekijaEsitaytto = function(input, index) {
 
-                // reset previous value
-                $scope.justus.organisaatiotekija[index].alayksikko = [null];
+                if (!containsObject($scope.justus.organisaatiotekija, input.id, 'id')) {
 
-                $scope.justus.organisaatiotekija[index].etunimet = input.etunimi;
-                $scope.justus.organisaatiotekija[index].sukunimi = input.sukunimi;
-                $scope.justus.organisaatiotekija[index].orcid = input.orcid;
-                $scope.justus.organisaatiotekija[index].alayksikko = input.alayksikko;
+                    // reset previous value
+                    $scope.justus.organisaatiotekija[index].alayksikko = [null];
 
-                // For Luonnonvarakeskus prefill also HR-numero field
-                if ($rootScope.user.jukuriUser) {
-                    $scope.justus.organisaatiotekija[index].hrnumero = input.tunniste;
+                    $scope.justus.organisaatiotekija[index].etunimet = input.etunimi;
+                    $scope.justus.organisaatiotekija[index].sukunimi = input.sukunimi;
+                    $scope.justus.organisaatiotekija[index].orcid = input.orcid;
+                    $scope.justus.organisaatiotekija[index].alayksikko = input.alayksikko;
+
+                    // this is just for verifying that no duplicate values can be selected
+                    $scope.justus.organisaatiotekija[index].id = input.id;
+
+                    // For Luonnonvarakeskus prefill also HR-numero field
+                    if ($rootScope.user.jukuriUser) {
+                        $scope.justus.organisaatiotekija[index].hrnumero = input.tunniste;
+                    }
+
+                    // update selected value to UI's scope
+                    $scope.organisaatioTekijaSelected = input.sukunimi;
                 }
-
             };
 
             $scope.resetOrg = function() {
