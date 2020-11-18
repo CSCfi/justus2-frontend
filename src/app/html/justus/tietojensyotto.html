@@ -457,13 +457,14 @@
                   <ui-select aria-labelledby="organisaatiokijat organisaatiotekijasukunimi"
                              data-ng-model="organisaatioTekijaSelected"
                              on-select="useOrganisaatiotekijaEsitaytto($select.selected, $index)"
-                             theme="bootstrap">
+                             theme="bootstrap"
+                             limit="50">
                     <ui-select-match class="ui-select-match"
                                      placeholder="Valitse / Kirjoita sukunimi">
                       {{ i.sukunimi || "Valitse / Kirjoita sukunimi" }}
                     </ui-select-match>
                     <ui-select-choices
-                            repeat="person in persons.data | orderBy: 'sukunimi' | filter: { sukunimi: $select.search }">
+                            repeat="person in persons.data | orderBy: 'sukunimi' | filter: { sukunimi: $select.search } | limitTo:$select.limit">
                       <span class="font-weight-bold">{{person.sukunimi}}</span> {{person.etunimi}}
                     </ui-select-choices>
                   </ui-select>
