@@ -31,25 +31,30 @@
         </div>
 
         <div class="px" data-ng-if="persons.data.length">
-            <div class="row m-b m-t">
+            <div class="row m-t">
+                <div class="col-xs-12 p">
+                    <p class="mb-0 font-weight-bold">{{i18n.admin.content.yhteensa[lang]}}<span class="pl-x">{{persons.data.length}}</span></p>
+                    <p class="mb-0">Taulukko näyttää 20 viimeeksi muokattua tekijää. Hakukentässä voit hakea tekijöitä etunimen, sukunimen tai tunnisteen perusteella.</p>
+                    <p>Tekijää voi muokata klikkaamalla riviä halutun tekijän kohdalla.</p>
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="col-sm-12">
+                    <label for="tekijahaku" class="font-weight-bold">Haku tekijöistä</label>
                     <div class="input-group">
                     <span class="input-group-addon bg-primary cursor-pointer border-primary">
                         <i class="fa fa-search text-white"></i>
                     </span>
-                        <input aria-label="search from persons"
+                        <input id="tekijahaku"
                                type="search" class="form-control"
                                data-ng-model="search"
-                               placeholder="{{i18n.admin.content.haku[lang]}}"/>
+                               placeholder="Hae etunimen, sukunimen tai tunnisteen perusteella"/>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs-12 p">
-                    <p>{{i18n.admin.content.yhteensa[lang]}}<span class="pl-x">{{persons.data.length}}</span></p>
-                </div>
-            </div>
-            <div class="row">
+
+            <div class="row pt">
                 <div class="col-xs-12">
                     <table class="table table-striped">
                         <thead>
@@ -63,7 +68,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <tr data-ng-repeat="person in persons.data | filter: search"
+                            <tr data-ng-repeat="person in persons.data | filter: search | limitTo: 20"
                                 class="hover-table-green">
                                 <td data-ng-click="editPerson(person, 'lg')">{{person.tunniste}}</td>
                                 <td data-ng-click="editPerson(person, 'lg')">{{person.etunimi}}</td>
