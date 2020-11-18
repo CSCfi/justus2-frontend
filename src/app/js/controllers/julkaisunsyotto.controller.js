@@ -23,7 +23,8 @@ angular.module('JulkaisunsyottoController', [])
             }
 
             if (!$rootScope.filedata.filename && $scope.justus.julkaisu.julkaisurinnakkaistallennettu === "1"
-            && $scope.justus.julkaisu.rinnakkaistallennetunversionverkkoosoite !== "") {
+                && $scope.justus.julkaisu.rinnakkaistallennetunversionverkkoosoite
+                && $scope.justus.julkaisu.rinnakkaistallennetunversionverkkoosoite !== "") {
                 $scope.selectedValue = "rinnakkaistallennettumuualle";
             }
 
