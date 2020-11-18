@@ -225,7 +225,6 @@ angular.module('AdminController', [])
                 APIService.getPersonData()
                     .then(function (res) {
                         $scope.persons.data = res.persons;
-                        console.log($scope.persons.data);
                     })
             };
 

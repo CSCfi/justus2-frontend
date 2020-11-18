@@ -1019,10 +1019,25 @@ const i18n = {
           },
           tuo: {
             title: { FI: 'Tuo päivitetyt tiedot', SV: 'SV Tuo päivitetyt tiedot', EN: 'EN Tuo päivitetyt tiedot' },
-            text: { FI: 'Tuo päivitetty tiedosto oman organisaatiosi tekijätiedoista Justus-palveluun. Varmista että tiedot ovat oikein ja kaikki vaadittavat kentät täytetty ennen kuin hyväksyt tietojen siirron Justus-palveluun.',
-                    SV: 'Tuo päivitetty tiedosto oman organisaatiosi tekijätiedoista Justus-palveluun. Varmista että tiedot ovat oikein ja kaikki vaadittavat kentät täytetty ennen kuin hyväksyt tietojen siirron Justus-palveluun.',
-                    EN: 'Tuo päivitetty tiedosto oman organisaatiosi tekijätiedoista Justus-palveluun. Varmista että tiedot ovat oikein ja kaikki vaadittavat kentät täytetty ennen kuin hyväksyt tietojen siirron Justus-palveluun.' },
-
+            text1: {
+              FI: 'Tuo päivitetty tiedosto oman organisaatiosi tekijätiedoista Justus-palveluun. Varmista että tiedot ovat oikein ja kaikki vaadittavat kentät täytetty ennen kuin hyväksyt tietojen siirron Justus-palveluun.',
+              SV: 'Tuo päivitetty tiedosto oman organisaatiosi tekijätiedoista Justus-palveluun. Varmista että tiedot ovat oikein ja kaikki vaadittavat kentät täytetty ennen kuin hyväksyt tietojen siirron Justus-palveluun.',
+              EN: 'Tuo päivitetty tiedosto oman organisaatiosi tekijätiedoista Justus-palveluun. Varmista että tiedot ovat oikein ja kaikki vaadittavat kentät täytetty ennen kuin hyväksyt tietojen siirron Justus-palveluun.' },
+            text2: {
+              FI: 'Tekijästä on ilmoitettava vähintään tunniste sekä etunimi ja sukunimi. Tekijöiden välissä ei saa olla tyhjiä rivejä. Mikäli tekijään liittyy alayksikköjä, täytetään ensimmäinen alayksikkökenttä ensimmäisenä. Tekijä poistuu, mikäli CSV:ssä ei ole vastaavaa tunnistetta kuin jo syötetyissä tekijöissä.',
+              SV: 'Tekijästä on ilmoitettava vähintään tunniste sekä etunimi ja sukunimi. Tekijöiden välissä ei saa olla tyhjiä rivejä. Mikäli tekijään liittyy alayksikköjä, täytetään ensimmäinen alayksikkökenttä ensimmäisenä. Tekijä poistuu, mikäli CSV:ssä ei ole vastaavaa tunnistetta kuin jo syötetyissä tekijöissä.',
+              EN: 'Tekijästä on ilmoitettava vähintään tunniste sekä etunimi ja sukunimi. Tekijöiden välissä ei saa olla tyhjiä rivejä. Mikäli tekijään liittyy alayksikköjä, täytetään ensimmäinen alayksikkökenttä ensimmäisenä. Tekijä poistuu, mikäli CSV:ssä ei ole vastaavaa tunnistetta kuin jo syötetyissä tekijöissä.'
+            },
+            text3: {
+              FI: 'Mikäli tekijälle on aiemmin ilmoitettu ORCID-tunniste, tunniste ei poistu tekijän tiedoista, vaikka tietoa ei tuotaisi päivitettävän CSV-tiedoston mukana. ORCID-tunnus kuitenkin päivittyy mikäli se on vaihtunut. Mikäli ORICID-tunnus halutaan poistaa kokonaan, se on mahdollista yksittäisen tekijän muokkausnäkymässä.',
+              SV: 'Mikäli tekijälle on aiemmin ilmoitettu ORCID-tunniste, tunniste ei poistu tekijän tiedoista, vaikka tietoa ei tuotaisi päivitettävän CSV-tiedoston mukana. ORCID-tunnus kuitenkin päivittyy mikäli se on vaihtunut. Mikäli ORICID-tunnus halutaan poistaa kokonaan, se on mahdollista yksittäisen tekijän muokkausnäkymässä.',
+              EN: 'Mikäli tekijälle on aiemmin ilmoitettu ORCID-tunniste, tunniste ei poistu tekijän tiedoista, vaikka tietoa ei tuotaisi päivitettävän CSV-tiedoston mukana. ORCID-tunnus kuitenkin päivittyy mikäli se on vaihtunut. Mikäli ORICID-tunnus halutaan poistaa kokonaan, se on mahdollista yksittäisen tekijän muokkausnäkymässä.',
+            },
+            text4: {
+              FI: 'Tiedoston valitsemisen jälkeen näet esikatselussa tiedoston 10 ensimmäistä tekijää sekä listan kaikista tekijöistä, jotka poistetaan mikäli tiedoston siirtäminen hyväksytään. Varmista että tiedot ovat oikein ennen kuin hyväksyt tietojen siirron Justus-palveluun.',
+              SV: 'Tiedoston valitsemisen jälkeen näet esikatselussa tiedoston 10 ensimmäistä tekijää sekä listan kaikista tekijöistä, jotka poistetaan mikäli tiedoston siirtäminen hyväksytään. Varmista että tiedot ovat oikein ennen kuin hyväksyt tietojen siirron Justus-palveluun.',
+              EN: 'Tiedoston valitsemisen jälkeen näet esikatselussa tiedoston 10 ensimmäistä tekijää sekä listan kaikista tekijöistä, jotka poistetaan mikäli tiedoston siirtäminen hyväksytään. Varmista että tiedot ovat oikein ennen kuin hyväksyt tietojen siirron Justus-palveluun.'
+            },
             button: { FI: 'Valitse tiedosto', SV: 'SV Valitse tiedosto', EN: 'EN Valitse tiedosto' },
             esikatselu: { FI: 'Esikatselu lisättävistä henkilöistä (10 ensimmäistä):', SV: 'SV Esikatselu lisättävistä henkilöistä (10 ensimmäistä):', EN: 'EN Esikatselu lisättävistä henkilöistä (10 ensimmäistä):' },
             poisto: { FI: 'Huom! Seuraavat henkilöt poistetaan tietokannasta:', SV: 'SV Huom! Seuraavat henkilöt poistetaan tietokannasta:', EN: 'EN Huom! Seuraavat henkilöt poistetaan tietokannasta:' },

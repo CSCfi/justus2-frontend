@@ -43,10 +43,12 @@
             </uib-accordion-heading>
 
             <div class="p-1">
-            <div class="">
                 <div data-ng-show="!csvFile.file">
-                    <p data-ng-bind="i18n.admin.content.lataus.tuo.text[lang]"></p>
-                    <div>
+                    <p data-ng-bind="i18n.admin.content.lataus.tuo.text1[lang]"></p>
+                    <p data-ng-bind="i18n.admin.content.lataus.tuo.text2[lang]"></p>
+                    <p data-ng-bind="i18n.admin.content.lataus.tuo.text3[lang]"></p>
+                    <p data-ng-bind="i18n.admin.content.lataus.tuo.text4[lang]"></p>
+                    <div class="m-t">
                         <label for="file-upload" class="custom-file-upload btn btn-primary cursor-pointer"
                                data-ng-bind="i18n.admin.content.lataus.tuo.button[lang]">
                         </label>
@@ -57,7 +59,6 @@
                 <div data-ng-show="csvFile.file">
                     <p>Tiedosto: <span class="font-weight-bold">{{csvFile.file.name}}</span></p>
                 </div>
-            </div>
 
             <div data-ng-if="csvPreviewSuccess">
                 <div data-ng-if="csvData.data.length > 0">
