@@ -59,7 +59,7 @@ angular.module('JustusController', [])
             $scope.tieteenalaTooltipText = $sce.trustAsHtml($scope.i18n.content.form.tieteenala.tooltip[$scope.lang] + ' Linkki luokitukseen: <a target="_blank" href=https://www.stat.fi/fi/luokitukset/tieteenala/>www.stat.fi/fi/luokitukset/tieteenala/</a>');
             $scope.tieteenalaTooltipTextF = $sce.trustAsHtml($scope.i18n.content.form.tieteenala.tooltipF[$scope.lang] + ' Linkki luokitukseen: <a target="_blank" href=https://www.stat.fi/fi/luokitukset/tieteenala/>www.stat.fi/fi/luokitukset/tieteenala/</a>');
 
-            $scope.initializeValues = function() {
+            let initializeValues = function() {
 
                 JustusService.clearPublicationForm();
 
@@ -113,7 +113,7 @@ angular.module('JustusController', [])
                 $scope.fileAlreadyExists = false;
                 $scope.justus = JustusService.getPublicationFormData();
 
-                $scope.initializeValues();
+                initializeValues();
                 fillMissingJustusLists();
                 $scope.useVaihe(1);
 
@@ -885,14 +885,13 @@ angular.module('JustusController', [])
             const populatePublicationForm = () => {
 
                 $scope.justus = JustusService.getPublicationFormData();
+                initializeValues();
 
                 if (!$stateParams.id) {
                     finalizeInit();
                     return;
                 }
 
-                // intialize all scope values before fetching data from database
-                $scope.initializeValues();
                 $scope.loading.publication = true;
 
                   APIService.get('tiedot', $stateParams.id)
@@ -929,13 +928,11 @@ angular.module('JustusController', [])
 
             const finalizeInit = () => {
 
-                if (!$scope.justus.julkaisu || angular.equals({}, $scope.justus.julkaisu)) {
-                    $scope.initializeValues();
-                }
-
                 if (!$rootScope.filedata) {
                     $rootScope.filedata = {};
                 }
+
+                console.log($scope.justus);
 
                 $scope.justus.julkaisu.username = $rootScope.user.name;
                 fillMissingJustusLists();
