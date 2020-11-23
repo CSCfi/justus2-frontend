@@ -943,7 +943,11 @@ const i18n = {
         julkaisu: { FI: 'Julkaisu', SV: 'Publikation', EN: 'Publication' },
         toiminnot: { FI: 'Toiminnot', SV: 'Funktioner', EN: 'Functions' },
         hyvaksy: { FI: 'Hyväksy', SV: 'Godkänd', EN: 'Approve' ,
-          tooltip: { FI: '-1 Hylätty, 0 Kesken, 1 Valmis/Juuli, 2 Valmis/OKM', SV: '-1 Övergiven, 0 Ofullständig, 1 Avslutade/Juuli, 2 Avslutade/UKM', EN: '-1 Rejected, 0 Incomplete, 1 Completed/Juuli, 2 Completed/MinEdu' }
+          tooltip: {
+            FI: '-1 Hylätty, 0 Kesken, 1 Valmis/Juuli, 2 Valmis/OKM, 3 Valmis/TTV',
+            SV: '-1 Övergiven, 0 Ofullständig, 1 Avslutade/Juuli, 2 Avslutade/UKM, 3 Avslutade/TTV',
+            EN: '-1 Rejected, 0 Incomplete, 1 Completed/Juuli, 2 Completed/MinEdu, 3 Completed/RIH'
+        }
         },
         tietue: { FI: 'Tietue', SV: '*SV Tietue', EN: 'Record' }
       },
