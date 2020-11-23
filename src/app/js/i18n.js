@@ -25,6 +25,7 @@ const i18n = {
 
     ohjeet: { FI: 'Palvelun ohjeet', SV: 'Instruktioner', EN: 'Instructions ' },
     sivukartta: { FI: 'Sivukartta', SV: 'Sidkarta', EN: 'Sitemap'  },
+    selosteet: { FI: 'Selosteet ja käytännöt', SV: 'Redegörelser och praxis', EN: 'Statements and practices'  },
     saavutettavuusseloste: { FI: 'Saavutettavuusseloste', SV: 'Tillgänglighetsutlåtande', EN: 'Accessibility statement' },
     tietosuoja: { FI: 'Tietosuoja', SV: 'Dataskydd', EN: 'Privacy' },
     help: {
@@ -37,6 +38,7 @@ const i18n = {
       address: { FI: 'PL 405, 02101 Espoo', SV: 'PL 405, 02101 Espoo', EN: 'P.O. Box 405, FI-02101 Espoo' },
       phone: { FI: 'puh. (09) 457 2001', SV: 'tel. +358 (0)9 457 2001', EN: 'tel. +358 (0)9 457 2001' }
     },
+    kayttokatko: { FI: 'Justus palvelun kuukausittainen huoltokatko on joka kuukauden neljäs torstai klo 9-12. ', SV: 'Justus servicen har ett underhållsavbrott i varje månads fjärde torsdag från 9 till 12.', EN: 'Justus service is under maintenance break on the fourth Thursday of each month from 9-12.' },
     palveluntarjoaa: { FI: 'Palvelun tarjoaa', SV: 'Tjänsten tillhandahålls av', EN: 'The service is provided by' }
   },
   etusivu: {
