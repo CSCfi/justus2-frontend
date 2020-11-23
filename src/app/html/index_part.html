@@ -41,11 +41,21 @@
 
 <div class="row">
     <div class="col-md-12 text-center p-1">
+        <div>
         <p data-ng-bind="i18n.etusivu.help.title[lang]" class="d-inline-block text-muted"></p>
-        <span>
-          <a href="https://wiki.eduuni.fi/display/CscJustus/Ohjeet" target="__blank">
-            <i class="fa fa-external-link pl-x"></i> {{i18n.header.help[lang]}}
-          </a>
+            <span class="text-secondary">
+              <a href="https://wiki.eduuni.fi/display/CscJustus/Ohjeet" target="__blank">
+                <i class="fa fa-external-link pl-x"></i> {{i18n.header.help[lang]}}
+              </a>
+            </span>
+        </div>
+        <div>
+        <p data-ng-bind="i18n.etusivu.tietosuoja.title[lang]" class="d-inline-block text-muted"></p>
+        <span class="text-secondary">
+            <a href="https://wiki.eduuni.fi/pages/viewpage.action?pageId=30310801" target="__blank">
+                <i class="fa fa-external-link pl-x"></i> {{i18n.footer.tietosuoja[lang]}}
+            </a>
         </span>
+        </div>
     </div>
 </div>

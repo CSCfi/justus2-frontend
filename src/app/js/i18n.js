@@ -58,6 +58,9 @@ const i18n = {
         SV: 'Du kan använda Justus om du hör till någon av följande organisationer:',
         EN: 'JUSTUS-service can be used to enter publication information if you belong to one of the following organisations:'
       }
+    },
+    tietosuoja: {
+      title: { FI: 'JUSTUS-palvelun tietosuoja:', SV: 'JUSTUS dataskydd:',  EN: 'Privacy for JUSTUS-service:' }
     }
   },
   content: {
