@@ -177,14 +177,9 @@ button[disabled] {
 }
 
 .approve-btn {
-  border: 1px solid #333;
-  border-radius: 3px;
-
-  &:hover {
-    border: 1px solid #333;
-  }
   button {
     padding: 5px 12px !important;
+    border: 1px solid  $brand-primary-dark;
     &:hover {
       border-color: $brand-primary-dark;
     }

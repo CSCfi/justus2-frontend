@@ -249,7 +249,7 @@
               </td>
               <td data-ng-show="state.name=='hyvaksy'" class="btn-col">
                 <div class="btn-group approve-btn">
-                  <button data-ng-repeat="julkaisuntila in codes.julkaisuntila | orderBy: 'arvo' | limitTo:4"
+                  <button data-ng-repeat="julkaisuntila in codes.julkaisuntila | orderBy: 'arvo' | limitTo:5"
                           title="{{julkaisuntila.selite}}"
                           class="btn btn-primary"
                           data-ng-disabled="hyvaksyBtnDisabled"

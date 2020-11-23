@@ -6,11 +6,12 @@
             </div>
         </div>
         <div class="row p-1">
-            <div class="col-md-6 col-xs-12 text-center">
+            <div class="col-md-3"></div>
+            <div class="col-md-3 col-xs-12 text-center">
                 <div class="d-inline-block text-left">
-                    <p class="text-xl font-weight-bold text-secondary">{{i18n.footer.sivukartta[lang]}}:</p>
+                    <p class="text-xl text-secondary font-weight-bold letter-spacing-1">{{i18n.footer.sivukartta[lang]}}:</p>
                     <nav aria-label="secondary-nav">
-                        <ul class="list-style-none text-xl">
+                        <ul class="list-style-none text-xl text-secondary pl-0">
                             <li>
                                 <a href data-ui-sref="valitse()"
                                    class="link-white"
@@ -22,66 +23,18 @@
                                    class="link-white"
                                    data-ng-bind="i18n.header.navigation.tallenna[lang]">
                                 </a>
-                                <ul class="list-style-none">
-                                    <li>
-                                        <a href data-ui-sref="justus({id:id,vaihe:vaihe||1})"
-                                           class="link-white"
-                                           data-ng-bind="i18n.content.vaihevuo.esitayta[lang]">
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="list-style-none">
-                                    <li>
-                                        <a href data-ui-sref="justus({id:id,vaihe:vaihe||2})"
-                                           class="link-white"
-                                           data-ng-bind="i18n.content.vaihevuo.julkaisutyyppi[lang]">
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
                             <li>
                                 <a href data-ui-sref="omat()"
                                    class="link-white"
                                    data-ng-bind="i18n.header.navigation.omat[lang]">
                                 </a>
-                                <ul class="list-style-none">
-                                    <li>
-                                        <a href data-ui-sref="omat({tila:'odottavat'})"
-                                           class="link-white"
-                                           data-ng-bind="i18n.content.tarkasta.odottavat[lang]">
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="list-style-none">
-                                    <li>
-                                        <a href data-ui-sref="omat({tila:'kasitellyt'})"
-                                           class="link-white"
-                                           data-ng-bind="i18n.content.tarkasta.hyvaksytyt[lang]">
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
                             <li data-ng-show="user.role === 'admin' || user.role === 'owner'">
                                 <a href data-ui-sref="hyvaksy()"
                                    class="link-white"
                                    data-ng-bind="i18n.header.navigation.hyvaksy[lang]">
                                 </a>
-                                <ul class="list-style-none">
-                                    <li>
-                                        <a href data-ui-sref="hyvaksy({tila:'odottavat'})"
-                                           class="link-white"
-                                           data-ng-bind="i18n.content.tarkasta.odottavat[lang]">
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="list-style-none">
-                                    <li>
-                                        <a href data-ui-sref="hyvaksy({tila:'kasitellyt'})"
-                                           class="link-white"
-                                           data-ng-bind="i18n.content.tarkasta.hyvaksytyt[lang]">
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
 						<li data-ng-show="user.role === 'admin' || user.role === 'owner'">
 							<a href data-ui-sref="admin()"
@@ -109,34 +62,46 @@
                     </nav>
                 </div>
             </div>
-            <div class="col-md-6 col-xs-12 text-center text-secondary pl-0">
-                <div class="text-left d-inline-block" style="padding-top:17%;">
-                    <p class="text-xl">
+            <div class="col-md-3 col-xs-12 text-center text-secondary">
+                <div class="text-left d-inline-block">
+                    <p class="text-xl text-secondary font-weight-bold letter-spacing-1">{{i18n.footer.selosteet[lang]}}:</p>
+                    <div class="">
+                    <p class="text-xl mb-0">
                         <a class="link-white" href="https://wiki.eduuni.fi/display/CscJustus/Ohjeet" target="__blank">
                             {{i18n.footer.ohjeet[lang]}}
                             <i class="fa fa-external-link pl-x"></i>
                         </a>
                     </p>
-                    <p class="text-xl">
+                    <p class="text-xl mb-0">
                         <a class="link-white" href="https://wiki.eduuni.fi/display/CscJustus/Saavutettavuusseloste" target="__blank">
                             {{i18n.footer.saavutettavuusseloste[lang]}}
                             <i class="fa fa-external-link pl-x"></i>
                         </a>
                     </p>
-                    <p class="text-xl">
+                    <p class="text-xl mb-0">
                         <a class="link-white" href="https://wiki.eduuni.fi/pages/viewpage.action?pageId=30310801" target="__blank">
                             {{i18n.footer.tietosuoja[lang]}}
                             <i class="fa fa-external-link pl-x"></i>
                         </a>
                     </p>
+                    </div>
                 </div>
             </div>
+            <div class="col-md-3"></div>
         </div>
+
+        <div class="row">
+            <div class="col-xs-12 text-center">
+            <span class="text-secondary d-inline-block"
+                  style="padding: 15px 30px; border:1px solid #fff">{{i18n.footer.kayttokatko[lang]}}</span>
+            </div>
+        </div>
+
     </div>
 
-    <div class="row">
+
+    <div class="row m-t">
         <div class="col-xs-12 text-center text-secondary">
-            <hr data-ng-if="state.name!=='index'" style="width:80%"/>
             <div class="text-xl font-weight-bold" data-ng-bind="i18n.footer.palveluntarjoaa[lang]"></div>
             <div class="p-1">
                 <img src="img/cscnega.png" alt="CSC logo" style="max-height:50px">
