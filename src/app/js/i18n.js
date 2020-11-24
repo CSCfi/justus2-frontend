@@ -46,7 +46,7 @@ const i18n = {
     title: { FI: 'Mikä on JUSTUS – julkaisutietojen tallennuspalvelu?', SV: 'Vad är JUSTUS-service?', EN: 'What is JUSTUS - Publication Information Reporting Service?' },
     paragraphs: [
       {
-        FI: 'JUSTUS – julkaisutietojen tallennuspalveluun syötetään tutkimusjulkaisujen tietoja. Palveluun tallennetut julkaisutiedot ovat selailtavissa JUULI-julkaisutietoportaalissa. Tiedot siirtyvät automaattisesti opetus- ja kulttuuriministeriön (OKM) vuosittaiseen julkaisutiedonkeruuseen ja ne huomioidaan myös korkeakoulujen rahoitusmallissa.',
+        FI: 'JUSTUS – julkaisutietojen tallennuspalveluun syötetään tutkimusjulkaisujen tietoja. Palveluun tallennetut julkaisutiedot ovat selailtavissa tiedejatutkimus.fi-palvelussa sekä JUULI-julkaisutietoportaalissa. Valitut julkaisutiedot siirtyvät automaattisesti opetus- ja kulttuuriministeriön (OKM) vuosittaiseen julkaisutiedonkeruuseen ja ne huomioidaan myös korkeakoulujen rahoitusmallissa.',
         SV: 'I JUSTUS kan du mata in uppgifter om dina vetenskapliga publikationer, som sedan pubilceras i Juuli-portalen. Uppgifterna överförs också automatiskt till Kultur- och undervisningsministeriets årliga insamling av publikationsuppgifter. Uppgifterna beaktas också vid finaniseringen av högskolorna.',
         EN: 'When publication information is entered into JUSTUS-service it can be accessed through JUULI-portal. Data is also automatically transferred to the publication data collection by the Ministry of Education and Culture and taken into consideration in the funding formula of higher education institutions.'
       }
@@ -67,6 +67,12 @@ const i18n = {
     alert: {
       text: {  FI: 'Muokkaat julkaisua', SV: 'Muokkaat julkaisua', EN: 'Muokkaat julkaisua' },
       button: {  FI: 'Keskeytä ja siirry alkuun', SV: 'Keskeytä ja siirry alkuun', EN: 'Keskeytä ja siirry alkuun' }
+    },
+    poistusivulta: {
+      title: {},
+      text: {},
+      peruuta: {},
+      poistu: { FI: 'Poistu sivulta', SV: 'Lämna sidan', EN: 'Leave page'}
     },
     valitse: {
       title: { FI: 'Valitse toiminto', SV: 'Välj funktion', EN: 'Choose function' },
