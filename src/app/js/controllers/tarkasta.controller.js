@@ -212,6 +212,10 @@ angular.module('TarkastaController', [])
                     "value": "2"
                 },
                 {
+                    "name": "3",
+                    "value": "3"
+                },
+                {
                     "name": "-1",
                     "value": "-1"
                 },
