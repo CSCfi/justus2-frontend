@@ -175,7 +175,12 @@ angular.module('JustusController', [])
                         let sukunimi = tekijat[i].nimi.substring(sb, se).trim();
                         let etunimet = tekijat[i].nimi.substring(eb, ee).trim();
 
-                        let personToCopy = $scope.persons.data.filter(obj => obj.sukunimi.toLowerCase() === sukunimi.toLowerCase() && obj.etunimi.toLowerCase() === etunimet.toLowerCase());
+                        // Some names from Virta contains hyphen as unicode format. Value must be replaced, otherwise match is not found
+                        let etunimetCleaned = etunimet.replace('\u{2010}', '-');
+
+                        let personToCopy = $scope.persons.data.filter(function(obj) {
+                           return obj.sukunimi.toLowerCase() === sukunimi.toLowerCase() && obj.etunimi.toLowerCase() === etunimetCleaned.toLowerCase()
+                        });
 
                         if(personToCopy.length > 0) {
 
