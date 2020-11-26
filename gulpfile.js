@@ -1,7 +1,7 @@
 'use strict';
 const gulp = require('gulp');
 const concat = require('gulp-concat');
-const uglify = require('gulp-uglify');
+const uglify = require('gulp-uglify-es').default;
 const sass = require('gulp-sass');
 const cleanCSS = require('gulp-clean-css');
 const gulpNgConfig = require('gulp-ng-config');
@@ -169,22 +169,19 @@ gulp.task('del-lib-css', function () {
   return del([config.assets.libStylesBundleFileSrc]);
 });
 
-gulp.task('app-js', function () {
+gulp.task('app-js',  function () {
+	gutil.log(gutil.colors.magenta('generating app js', isProduction));
   return gulp.src(config.assets.appSrc)
     .pipe(isProduction ? sourcemaps.init() : gutil.noop())
-    .pipe(
-      babel({ presets: ['es2015'], comments: false })
-      .on('error', function(e) {
-        gutil.log(e);
-      })
-    )
     .pipe(concat('app-bundle.js'))
-    .pipe(isProduction ? uglify().on('error', function(e) {
-      gutil.log(e);
+    .pipe(isProduction ? uglify().on('error', async function(e) {
+      gutil.log(gutil.colors.magenta('VIRHE'));
+	  gutil.log(e);	  
     }) : gutil.noop())
     .pipe(isProduction ? sourcemaps.write('/') : gutil.noop())
     .pipe(gulp.dest(buildDestinationPath + '/js'))
-    .on('error', function(e) {
+    .on('error', async function(e) {
+	//	gutil.log('VIRHE');
       gutil.log(e);
     });
 });
@@ -287,8 +284,7 @@ gulp.task('dev', gulp.series(
       'rootAssets', 
       'html',),
   'watch',
- 
-function (done) {
+function (done) { 
   done();  
 }));
 
