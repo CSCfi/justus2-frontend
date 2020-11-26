@@ -151,17 +151,15 @@ angular.module('TarkastaController', [])
             };
 
 
-            $scope.toggleSelection = function(checked) {
-                $scope.hyvaksyBtnDisabled = !checked;
+            $scope.toggleSelection = function(editingEnabled) {
+                if (editingEnabled) {
+                    $scope.hyvaksyBtnDisabled = true;
+                } else {
+                    $scope.hyvaksyBtnDisabled = false;
+                }
             };
 
             let init = function () {
-
-                $scope.hyvaksyBtnDisabled = false;
-
-                if ($rootScope.user.owner) {
-                    $scope.hyvaksyBtnDisabled = true;
-                }
 
                 $scope.publications = new Publications();
                 $scope.searchMode = false;
@@ -184,10 +182,14 @@ angular.module('TarkastaController', [])
                     }
                 }
 
+                $scope.editingEnabled = false;
+                $scope.hyvaksyBtnDisabled = true;
+
                 $timeout(function () {
                     $scope.data = $scope.publications.data;
                     $scope.publications.showSpinner = false;
                 }, 500);
+
 
             };
 

@@ -143,8 +143,8 @@
 
 <div class="row no-gutter" data-ng-if="user.owner && state.name === 'hyvaksy'">
   <div class="pull-right">
-    <input class="form-check-input" type="checkbox" data-ng-model="checked"
-           data-ng-click="toggleSelection(checked)">
+    <input class="form-check-input" type="checkbox" data-ng-model="editingEnabled"
+           data-ng-click="toggleSelection(editingEnabled)">
     <label class="form-check-label">
       Salli muokkaus
     </label>
@@ -252,7 +252,7 @@
                   <button data-ng-repeat="julkaisuntila in codes.julkaisuntila | orderBy: 'arvo' | limitTo:5"
                           title="{{julkaisuntila.selite}}"
                           class="btn btn-primary"
-                          data-ng-disabled="hyvaksyBtnDisabled"
+                          data-ng-disabled="hyvaksyBtnDisabled && user.owner"
                           data-ng-class="{'active': d.julkaisu.ui_julkaisuntila==julkaisuntila.arvo }"
                           data-ng-click="d.julkaisu.ui_julkaisuntila = julkaisuntila.arvo; updatePublication(d.julkaisu, julkaisuntila.arvo)">
                     {{ julkaisuntila.arvo }}
