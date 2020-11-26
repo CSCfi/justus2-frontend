@@ -287,6 +287,10 @@ const i18n = {
           }
         }
       },
+      ensimmainenkirjoittaja: {
+        'k': { FI: 'Kyllä', SV: 'Ja', EN: 'Yes' },
+        'e': { FI: 'Ei', SV: 'Nej', EN: 'No' }
+      },
       projektinumero: {
         FI: "Projektinumero", SV: "Projektnummer", EN: "Project number",
         tooltip: { 

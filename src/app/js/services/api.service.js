@@ -48,7 +48,8 @@ angular.module('APIService', [])
             { name: 'julkaisumaksuvuosi', default: null },
             { name: 'username', default: ''},
             { name: 'modified', default: null },
-            { name: 'projektinumero', default: null } // array
+            { name: 'projektinumero', default: null }, // array
+            { name: 'ensimmainenkirjoittaja', default: null } // visible only for syke
           ]
         },
         // 'avainsana': {

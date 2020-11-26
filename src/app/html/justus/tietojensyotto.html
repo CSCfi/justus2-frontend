@@ -509,6 +509,51 @@
         </div>
       </div>
     </div>
+
+    <div class="row form-group"
+         data-ng-if="isFieldVisible('ensimmainenkirjoittaja')"
+         id="ensimmainenkirjoittajaGroup">
+      <div class="col-sm-4 col-xs-12">
+        <label class="control-label d-inline"
+            >Artikkelin ensimmäinen kirjoittaja on organisaation kirjoittaja
+        </label>
+          <i data-ng-if="isFieldRequired('ensimmainenkirjoittaja')" class="fa fa-asterisk required-star" aria-hidden="true"></i>
+          <span data-ng-if="isFieldRequired('ensimmainenkirjoittaja')" class="sr-only" data-ng-bind="i18n.content.form.pakollinenkentta[lang]"></span>
+      </div>
+      <div class="col-md-8 col-xs-12 justus-data"
+           data-ng-model="req_ensimmainenkirjoittaja"
+           data-ng-required="requiredHighlight && !isValid('ensimmainenkirjoittaja')">
+        <div class="row">
+          <div class="col-xs-10">
+            <input id="ensimmainenkirjoittaja"
+                   aria-labelledby="ensimmainenkirjoittaja"
+                   name="ensimmainenkirjoittaja"
+                   type="radio"
+                   data-ng-model="justus.julkaisu.ensimmainenkirjoittaja"
+                   value="k"
+                   data-ng-change="resetValidationError('ensimmainenkirjoittaja')">
+            <label for="ensimmainenkirjoittaja" data-ng-model="lab1_ensimmainenkirjoittaja"
+                   class="control-label">
+              {{i18n.content.form.ensimmainenkirjoittaja['k'][lang]}}
+            </label>
+            <input type="radio"
+                   id="eiensimmainenkirjoittaja"
+                   aria-labelledby="ensimmainenkirjoittaja"
+                   name="ensimmainenkirjoittaja"
+                   data-ng-model="justus.julkaisu.ensimmainenkirjoittaja"
+                   value="e"
+                   data-ng-change="resetValidationError('ensimmainenkirjoittaja')">
+            <label for="eiensimmainenkirjoittaja"
+                   data-ng-model="lab2_ensimmainenkirjoittaja"
+                   class="control-label">
+              {{i18n.content.form.ensimmainenkirjoittaja['e'][lang]}}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
   </div>
 
   <div class="row px">

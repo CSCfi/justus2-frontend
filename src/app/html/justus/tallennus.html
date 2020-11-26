@@ -84,6 +84,12 @@
         </td>
       </tr>
 
+    <!-- Ensimmäinen kirjoittaja -->
+    <tr data-ng-if="isFieldVisible('ensimmainenkirjoittaja')">
+      <th class="condensed-25 font-weight-bold">Artikkelin ensimmäinen kirjoittaja on organisaation kirjoittaja</th>
+      <td>{{ i18n.content.form.ensimmainenkirjoittaja[justus.julkaisu.ensimmainenkirjoittaja][lang] }}</td>
+    </tr>
+
       <!-- Prjektinumero -->
       <tr data-ng-if="isFieldVisible('projektinumero')">
         <th class="condensed-25 font-weight-bold">{{ i18n.content.form.projektinumero[lang] }}</th>
