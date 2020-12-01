@@ -250,7 +250,7 @@ const i18n = {
       organisaatiotekija: {
         FI: 'Organisaation tekijät',
         SV: 'Organisationens upphovsmän',
-        EN: 'Organisations authors',
+        EN: 'Organisation\'s authors',
 		tooltip: {
           FI: 'Organisaatioon kuuluvat tekijät, jotka ovat osallistuneet julkaisun tekemiseen. Organisaation tiedekunta, osasto, laitos tai yksikkö, jonka henkilöstöön julkaisun tekijä kuuluu. Tekijän ORCID-tunniste esim. 0000-0000-0000-0000, ks. http://www.orcid.org. ORCID-tunniste suositellaan kerrottavaksi aina, jos sellainen on tekijällä olemassa.',
           SV: 'Forskare, som har varit med om att göra publikationen och som hör till organisationen. Organisationens fakulteter, avdelningar, institutioner eller enheter inom vilka publikationens upphovsmän är anställda. ORCID-identifieringsnumren, t.ex. 0000-0000-0000-0000, på den rapporterande organisationens egna upphovsmän, se http://www.orcid.org',
@@ -270,7 +270,6 @@ const i18n = {
             vuosi: {FI: 'Valitse vuosi', SV: 'Välj året', EN: 'Choose year'},
             yksikko: {FI: 'Valitse alayksikkö', SV: 'Välj enhet', EN: 'Select organisational unit'},
           }
-
         },
         orcid: { FI: 'ORCID', SV: 'ORCID', EN: 'ORCID',
           picktip: { FI: 'ORCID-tunniste', SV: 'ORCID iD', EN: 'ORCID iD' },
@@ -278,7 +277,7 @@ const i18n = {
         },
         hrnumero: { FI: 'HRNUMERO', SV: 'HRNUMERO', EN: 'HRNUMERO', picktip: { FI: 'HR-numero', SV: 'HR numret', EN: 'HR number' } },
         tekijanrooli: { FI: 'Rooli', SV: 'Roll', EN: 'Role', picktip: { FI: 'Rooli', SV: 'Roll', EN: 'Role' } },
-        lisaa: { FI: 'Lisää organisaatiotekijä', SV: 'Lägg till ny organisationens upphovsman', EN: 'Add new organisations author', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
+        lisaa: { FI: 'Lisää organisaatiotekijä', SV: 'Lägg till ny organisationens upphovsman', EN: 'Add new organisation\'s author', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
         poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
         kopioi: { FI: 'Kopioi tekijät',
           SV: 'Kopiera författarna',
@@ -286,7 +285,7 @@ const i18n = {
           tooltip: {
             FI: 'Kopioi julkaisun tekijät organisaation tekijöiksi',
             SV: 'Kopiera författarna till organisationens upphovsmän',
-            EN: 'Copy authors as organisations authors'
+            EN: 'Copy authors as organisation\'s authors'
           },
           disabled: {
             FI: 'Tekijöiden kopiointi mahdollista vain kerran. Lisää puuttuvat tekijät manuaalisesti.',
