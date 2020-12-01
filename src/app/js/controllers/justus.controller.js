@@ -601,7 +601,7 @@ angular.module('JustusController', [])
             $scope.useVaihe = function(vaihe) {
                 // When user navigates back to stage one raise warning of possible data loss
                 if (vaihe === 1 && $scope.justus.julkaisu.julkaisutyyppi && !$scope.justus.julkaisu.id) {
-                    ModalService.openWarningModal("justus?vaihe=1");
+                    ModalService.openWarningModal("justus?vaihe=1", $scope.lang);
                     return;
                 }
 

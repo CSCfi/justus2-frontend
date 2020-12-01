@@ -1,10 +1,16 @@
 <div class="modal-header">
-    <h4 class="modal-title font-weight-bold">Vahvista siirtyminen</h4>
+    <h4 class="modal-title font-weight-bold">
+        {{i18n.content.poistusivulta.title[lang]}}
+    </h4>
 </div>
 <div class="modal-body" id="modal-body">
-    <p>Haluatko varmasti poistua sivulta? Mahdolliset muutokset menetetään.</p>
+    <p>{{i18n.content.poistusivulta.text[lang]}}</p>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-default pull-left" data-ng-click="cancel()">Peruuta</button>
-    <button type="button" class="btn btn-primary" data-ng-click="ok()">Poistu sivulta</button>
+    <button type="button" class="btn btn-default pull-left" data-ng-click="cancel()">
+        {{i18n.content.poistusivulta.peruuta[lang]}}
+    </button>
+    <button type="button" class="btn btn-primary" data-ng-click="ok()">
+        {{i18n.content.poistusivulta.poistu[lang]}}
+    </button>
 </div>

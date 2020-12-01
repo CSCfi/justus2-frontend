@@ -1,6 +1,8 @@
-app.controller('InitializeJustusModalInstanceCtrl', ['$scope', '$uibModalInstance',
-    function ($scope, $uibModalInstance) {
-        // $scope.person = person;
+app.controller('InitializeJustusModalInstanceCtrl', ['$scope', '$uibModalInstance', 'lang',
+    function ($scope, $uibModalInstance, lang) {
+        $scope.i18n = (typeof (i18n) !== 'undefined') ? i18n : {};
+        $scope.lang = lang;
+
 
         $scope.ok = function () {
             $uibModalInstance.close();

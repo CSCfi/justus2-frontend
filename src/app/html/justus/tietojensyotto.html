@@ -4,7 +4,8 @@
   <div class="text-center mb-0">
     <button class="btn btn-gray"
             type="button"
-            data-ng-click="cancelAndAndStartOver()">Sulje tallentamatta</button>
+            data-ng-click="cancelAndAndStartOver()"
+            data-ng-bind="i18n.content.form.sulje[lang]"></button>
   </div>
 </div>
 
@@ -353,7 +354,9 @@
             <div data-ng-if="isFieldVisible('alayksikko')" class="row form-group">
               <div  class="col-xs-12">
                 <div class="row form-group no-gutter" data-ng-show="justus.organisaatiotekija[$index].alayksikko[0]">
-                  <label for="unitlist" class="control-label">Alayksikkö / Alayksiköt</label>
+                  <label for="unitlist" class="control-label"
+                         data-ng-bind="i18n.content.form.organisaatiotekija.alayksikko[lang]">
+                  </label>
                   <div data-ng-repeat="ota in justus.organisaatiotekija[$index].alayksikko track by $index"
                        data-ng-init="pIx=$parent.$index">
                     <div class="row no-gutter">
@@ -378,7 +381,8 @@
                   </div>
                 </div>
 
-                <label class="control-label">Lisää alayksiköitä</label>
+                <label class="control-label"
+                       data-ng-bind="i18n.content.form.organisaatiotekija.alayksikko.lisaa[lang]"></label>
                 <i data-ng-if="isFieldRequired('alayksikko')" class="fa fa-asterisk required-star"
                    aria-hidden="true"></i>
                 <span data-ng-if="isFieldRequired('alayksikko')" class="sr-only" data-ng-bind="i18n.content.form.pakollinenkentta[lang]"></span>
@@ -386,7 +390,7 @@
 
                   <div class="col-xs-12 col-sm-5">
 
-                    <label id="valitsevuosi">{{i18n.content.form.organisaatiotekija.alayksikko.placeholder.vuosi[lang]}}</label>
+                    <label id="valitsevuosi">{{i18n.content.form.organisaatiotekija.alayksikko.lisaa.vuosi[lang]}}</label>
                     <ui-select aria-label="valitsevuosi"
                                role="listbox"
 
@@ -394,7 +398,7 @@
                                theme="bootstrap">
                       <ui-select-match class="ui-select-match"
                                        data-ng-value="alayksikkovuosi.selected"
-                                       placeholder="{{i18n.content.form.organisaatiotekija.alayksikkovuosi.picktip[lang]}}">
+                                       placeholder="{{i18n.content.form.organisaatiotekija.alayksikko.lisaa.vuosi[lang]}}">
                         {{ $select.selected.label }}
                       </ui-select-match>
                       <ui-select-choices role="option" repeat="ala in alayksikkovuodet">
@@ -403,7 +407,7 @@
                     </ui-select>
                   </div>
                   <div class="col-xs-12 col-sm-7 alayksikko-error" data-ng-class="['alayksikkoGroup' + $index]">
-                    <label id="valitsealayksikko">{{i18n.content.form.organisaatiotekija.alayksikko.placeholder.lisaa[lang]}}</label>
+                    <label id="valitsealayksikko">{{i18n.content.form.organisaatiotekija.alayksikko.lisaa.yksikko[lang]}}</label>
                     <ui-select aria-labelledby="valitsealayksikko"
                                role="listbox"
                                data-ng-model="alayksikko.selected"
@@ -411,7 +415,7 @@
                                theme="bootstrap"
                                class="dropdown-height-300">
                       <ui-select-match class="ui-select-match"
-                                       placeholder="Valitse alayksikkö">Valitse alayksikkö
+                                       placeholder="{{i18n.content.form.organisaatiotekija.alayksikko.lisaa.yksikko[lang]}}">{{i18n.content.form.organisaatiotekija.alayksikko.lisaa.yksikko[lang]}}
 
                       </ui-select-match>
                       <ui-select-choices
@@ -445,9 +449,8 @@
             <button type="button"
                     class="btn btn-primary"
                     data-ng-click="addOrganisaatiotekija()"
-
-                    title="{{i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]}}">
-              Lisää organisaatiotekijä
+                    title="{{i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]}}"
+                    data-ng-bind="i18n.content.form.organisaatiotekija.lisaa[lang]">
             </button>
           </div>
         </div>
@@ -558,7 +561,7 @@
 
   <div class="row px">
     <div class="col-xs-12">
-      <p class="text-danger font-xl">Pakolliset tiedot merkitty tähdellä  <i class="fa fa-asterisk required-star" ></i>
+      <p class="text-danger font-xl">{{i18n.content.form.pakolliset[lang]}}  <i class="fa fa-asterisk required-star" ></i>
       </p>
     </div>
   </div>
@@ -1085,7 +1088,7 @@
 
   <div class="row px">
     <div class="col-xs-12">
-      <p class="text-danger font-xl">Pakolliset tiedot merkitty tähdellä  <i class="fa fa-asterisk required-star" ></i>
+      <p class="text-danger font-xl">{{i18n.content.form.pakolliset[lang]}}  <i class="fa fa-asterisk required-star" ></i>
       </p>
     </div>
   </div>
@@ -1976,7 +1979,7 @@
    </div>
   <div class="row px">
     <div class="col-xs-12">
-      <p class="text-danger font-xl">Pakolliset tiedot merkitty tähdellä  <i class="fa fa-asterisk required-star" ></i>
+      <p class="text-danger font-xl">{{i18n.content.form.pakolliset[lang]}}  <i class="fa fa-asterisk required-star" ></i>
       </p>
     </div>
   </div>
@@ -1986,7 +1989,7 @@
     <div class="col-xs-12">
       <div role="alert" class="alert alert-danger m-t">
         <h3 class="text-secondary mt-0">
-          Tarkasta seuraavat kentät:
+          {{i18n.content.tietojensyotto.tarkasta[lang]}}
         </h3>
         <div>
           <span class="pxs" data-ng-repeat="o in invalidFields.missingValue">

@@ -3,7 +3,7 @@
 angular.module('ModalService', [])
 .service('ModalService', ['$rootScope', '$state', '$uibModal', 'JustusService', function ($rootScope, $state, $uibModal, JustusService) {
 
-    this.openWarningModal = function(state) {
+    this.openWarningModal = function(state, lang) {
         let modalInstance = $uibModal.open({
             animation: false,
             templateUrl: 'js/shared/initialize-justus-modal.html',
@@ -12,7 +12,7 @@ angular.module('ModalService', [])
             backdrop: 'static',
             resolve: {
                 lang: function () {
-                    return $rootScope.lang
+                    return lang
                 }
             }
         });
