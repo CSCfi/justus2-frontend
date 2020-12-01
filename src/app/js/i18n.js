@@ -708,25 +708,25 @@ const i18n = {
       },
       julkaisumaksu: {
         FI: 'Julkaisumaksu',
-        SV: 'Julkaisumaksu',
-        EN: 'Julkaisumaksu',
+        SV: 'Publiceringssavgiften',
+        EN: 'Publication fee',
         tooltip: {
           FI: 'Organisaation julkaisun avoimesta saatavuudesta kustantajalle maksaman maksun suuruus euroina. Syötetty arvo voi olla kokonaisuluku tai desimaaliluku kahden desimaalin tarkkuudella. Pakollinen tieto mikäli julkaisumaksuvuosi-kenttä on täytetty.',
-          SV: '',
-          EN: ''
+          SV: 'Organisaation julkaisun avoimesta saatavuudesta kustantajalle maksaman maksun suuruus euroina. Syötetty arvo voi olla kokonaisuluku tai desimaaliluku kahden desimaalin tarkkuudella. Pakollinen tieto mikäli julkaisumaksuvuosi-kenttä on täytetty.',
+          EN: 'Organisaation julkaisun avoimesta saatavuudesta kustantajalle maksaman maksun suuruus euroina. Syötetty arvo voi olla kokonaisuluku tai desimaaliluku kahden desimaalin tarkkuudella. Pakollinen tieto mikäli julkaisumaksuvuosi-kenttä on täytetty.'
         },
-        picktip: { FI: 'esim. 1000', SV: '', EN: '' }
+        picktip: { FI: 'esim. 1000', SV: 't.ex 1000', EN: 'e.g. 1000' }
       },
       julkaisumaksuvuosi: {
         FI: 'Julkaisumaksuvuosi',
-        SV: 'Julkaisumaksuvuosi',
-        EN: 'Julkaisumaksuvuosi',
+        SV: 'Publiceringssavgiftens år',
+        EN: 'Year of publication fee',
         tooltip: {
           FI: 'Organisaation julkaisun avoimesta saatavuudesta kustantajalle maksetun maksun maksuvuosi. Pakollinen tieto mikäli julkaisumaksu-kenttä on täytetty.',
-          SV: '',
-          EN: ''
+          SV: 'Organisaation julkaisun avoimesta saatavuudesta kustantajalle maksetun maksun maksuvuosi. Pakollinen tieto mikäli julkaisumaksu-kenttä on täytetty.',
+          EN: 'Organisaation julkaisun avoimesta saatavuudesta kustantajalle maksetun maksun maksuvuosi. Pakollinen tieto mikäli julkaisumaksu-kenttä on täytetty.'
         },
-        picktip: { FI: 'esim. 2019', SV: '', EN: '' }
+        picktip: { FI: 'esim. 2019', SV: 't.ex 2019', EN: 'e.g. 2019' }
       },
       lisatieto: {
         FI: 'Lisätieto',
