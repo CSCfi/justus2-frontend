@@ -8,7 +8,12 @@ angular.module('AuthService', [])
 
             let getUserInfo = function () {
                 return $http.get(AUTH_URL).then(function (response) {
-                   return setUser(response.data);
+                    console.log(response);
+                    if (!response || response.status !== 200) {
+                        return false;
+                    } else {
+                        return setUser(response.data);
+                    }
                 }).catch(function (err) {
                     console.log(err);
                 })

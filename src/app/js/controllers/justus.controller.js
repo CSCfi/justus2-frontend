@@ -949,10 +949,15 @@ angular.module('JustusController', [])
                 } else {
                     AuthService.getUserInfo().then(function (res) {
                         console.log(res);
-                        $scope.user = res;
-                        $rootScope.user = $scope.user;
-                        console.log("User info returned from Auth Service.");
-                        populatePublicationForm();
+                        if (!res) {
+                            console.log("User data not available, redirecting to login age.")
+                            $state.go('index');
+                        } else {
+                            $scope.user = res;
+                            $rootScope.user = $scope.user;
+                            console.log("User info returned from Auth Service.");
+                            populatePublicationForm();
+                        }
                     }).catch(function (err) {
                         console.log("in error");
                         console.log(err);
