@@ -48,7 +48,8 @@ angular.module('APIService', [])
             { name: 'julkaisumaksuvuosi', default: null },
             { name: 'username', default: ''},
             { name: 'modified', default: null },
-            { name: 'projektinumero', default: null } // array
+            { name: 'projektinumero', default: null }, // array
+            { name: 'ensimmainenkirjoittaja', default: null } // visible only for syke
           ]
         },
         // 'avainsana': {
@@ -158,7 +159,7 @@ angular.module('APIService', [])
     this.get = function (api, id) {
       return $http({
         method: 'GET',
-        url:  API_BASE_URL + api + (id ? '/' + id : ''),
+        url:  API_BASE_URL + 'julkaisut' + '/' + api + (id ? '/' + id : ''),
       })
       .then(function (response) {
         return response.data;

@@ -6,7 +6,8 @@
         <div class="text-center mb-0">
           <button class="btn btn-gray"
                   type="button"
-                  data-ng-click="cancelAndAndStartOver()">Sulje tallentamatta</button>
+                  data-ng-click="cancelAndAndStartOver()"
+                  data-ng-bind="i18n.content.form.sulje[lang]"></button>
         </div>
       </div>
 
@@ -235,8 +236,8 @@
                                placeholder="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo.picktip[lang]}}"/>
                         <span role="button"
                               tabindex="0"
-                              aria-label="Valitse päivämäärä kalenterista"
-                              title="Valitse päivämäärä kalenterista"
+                              aria-label="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo.title[lang]}}"
+                              title="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo.title[lang]}}"
                               data-ng-click="openDatepicker()"
                               class="input-group-addon cursor-pointer calendar-icon">
                               <i class="fa fa-calendar"></i>

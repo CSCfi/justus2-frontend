@@ -34,13 +34,12 @@
             data-ng-if="user.role === 'admin' || user.role === 'owner'"
             ng-csv="getCsvExportFile()"
             lazy-load="true"
-            csv-header="csvExportHeader"
+            csv-header="getHeaders()"
             filename="julkaisut.csv"
             field-separator=";"
             quote-strings="true"
             data-ng-disabled="loading.csv === true">
       <span data-ng-bind="i18n.content.tarkasta.csv[lang]"></span>
-
 
       <span data-ng-if="loading.csv">
         &nbsp;<span class="fa fa-spinner fa-spin"></span>
@@ -50,7 +49,7 @@
     <div class="pull-right" data-ng-if="user.role === 'member'">
       <div class="cursor-pointer d-inline-block" data-ng-click="toggleRejectedPublications();">
         <span data-ng-class="member.showRejectedPublications?'active':'text-gray'"
-          class="text-secondary  pt pull-left">Näytä käyttäjän hylätyt julkaisut</span>
+              class="text-secondary pt pull-left">{{i18n.content.tarkasta.hylatyt[lang]}}</span>
         <i class="fa fa-2x fa-toggle-on pull-right pl"
             data-ng-class="member.showRejectedPublications?'active':'fa-rotate-180 inactive'"></i>
       </div>
@@ -67,7 +66,7 @@
              data-ng-class="{'opened': status.open}">
           <uib-accordion-heading class="bg-light">
             <div class="py">
-              Hae julkaisuista
+              {{i18n.content.tarkasta.haku.title[lang]}}
               <i class="pull-right glyphicon"
                  data-ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
             </div>
@@ -77,14 +76,14 @@
               <div class="col-xs-12">
                 <div class="form-group">
                   <label for="vapaasanahaku"
-                         class="control-label">
-                    Vapaasana / ID haku
+                         class="control-label"
+                         data-ng-bind="i18n.content.tarkasta.haku.tekija[lang]">
                   </label>
                   <input id="vapaasanahaku"
                          type="text" class="form-control"
                          data-ng-model="search.vapaasanahaku"
                          data-ng-keyup="$event.keyCode == 13 && searchPublications()"
-                         placeholder="{{i18n.content.tarkasta.haku.tekija[lang]}}"/>
+                         placeholder="{{i18n.content.tarkasta.haku.tekija.picktip[lang]}}"/>
                 </div>
               </div>
             </div>
@@ -92,23 +91,26 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="vuosihaku"
-                         class="control-label">
-                    Julkaisuvuosi
+                         class="control-label"
+                         data-ng-bind="i18n.content.tarkasta.haku.julkaisuvuosi[lang]">
                   </label>
                   <input id="vuosihaku"
                          type="number" class="form-control"
                          data-ng-keyup="$event.keyCode == 13 && searchPublications()"
                          data-ng-model="search.julkaisuvuosi"
-                         placeholder="{{i18n.content.tarkasta.haku.julkaisuvuosi[lang]}}"/>
+                         placeholder="{{i18n.content.tarkasta.haku.julkaisuvuosi.picktip[lang]}}"/>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label class="control-label">Julkaisun tila</label>
+                  <label class="control-label"
+                         data-ng-bind="i18n.content.tarkasta.haku.julkaisuntila[lang]">
+
+                  </label>
                   <ui-select data-ng-model="search.julkaisuntila"
                              theme="bootstrap">
                     <ui-select-match class="ui-select-match no-ellipsis"
-                                     placeholder="{{i18n.content.tarkasta.haku.julkaisuntila[lang]}}">
+                                     placeholder="{{i18n.content.tarkasta.haku.julkaisuntila.picktip[lang]}}">
                       {{ search.julkaisuntila.name || search.julkaisuntila }}
                     </ui-select-match>
                     <ui-select-choices
@@ -143,8 +145,8 @@
 
 <div class="row no-gutter" data-ng-if="user.owner && state.name === 'hyvaksy'">
   <div class="pull-right">
-    <input class="form-check-input" type="checkbox" data-ng-model="checked"
-           data-ng-click="toggleSelection(checked)">
+    <input class="form-check-input" type="checkbox" data-ng-model="editingEnabled"
+           data-ng-click="toggleSelection(editingEnabled)">
     <label class="form-check-label">
       Salli muokkaus
     </label>
@@ -252,7 +254,7 @@
                   <button data-ng-repeat="julkaisuntila in codes.julkaisuntila | orderBy: 'arvo' | limitTo:5"
                           title="{{julkaisuntila.selite}}"
                           class="btn btn-primary"
-                          data-ng-disabled="hyvaksyBtnDisabled"
+                          data-ng-disabled="hyvaksyBtnDisabled && user.owner"
                           data-ng-class="{'active': d.julkaisu.ui_julkaisuntila==julkaisuntila.arvo }"
                           data-ng-click="d.julkaisu.ui_julkaisuntila = julkaisuntila.arvo; updatePublication(d.julkaisu, julkaisuntila.arvo)">
                     {{ julkaisuntila.arvo }}
@@ -267,8 +269,8 @@
   </div>
 
 <div class="row m-b" data-ng-show="data.length < 1 && !publications.showSpinner">
-  <div class="col-xs-12 text-center m-b">
-      <h4>No results with given parameters</h4>
+  <div class="col-xs-12 text-center m-b text-secondary">
+      <h4 data-ng-bind="i18n.content.tarkasta.table.eituloksia[lang]"></h4>
   </div>
 </div>
 

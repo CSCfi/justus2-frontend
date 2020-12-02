@@ -10,7 +10,9 @@
     <button class="btn btn-gray pull-right"
             type="button"
             data-ng-controller="TallennusController"
-            data-ng-click="cancelAndReturnToPublicationListing()">Sulje tallentamatta</button>
+            data-ng-click="cancelAndReturnToPublicationListing()"
+            data-ng-bind="i18n.content.form.sulje[lang]">
+    </button>
   </div>
 </div>
 
@@ -83,6 +85,12 @@
           </div>
         </td>
       </tr>
+
+    <!-- Ensimmäinen kirjoittaja -->
+    <tr data-ng-if="isFieldVisible('ensimmainenkirjoittaja')">
+      <th class="condensed-25 font-weight-bold">Artikkelin ensimmäinen kirjoittaja on organisaation kirjoittaja</th>
+      <td>{{ i18n.content.form.ensimmainenkirjoittaja[justus.julkaisu.ensimmainenkirjoittaja][lang] }}</td>
+    </tr>
 
       <!-- Prjektinumero -->
       <tr data-ng-if="isFieldVisible('projektinumero')">

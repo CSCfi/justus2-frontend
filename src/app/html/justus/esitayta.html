@@ -42,7 +42,9 @@
     <div class="row px" data-ng-if="crossrefLataa">
         <div class="col-xs-12 text-center text-dark">
             <i class="fa fa-spinner fa-spin fa-3x"></i>
-            <p class="text-secondary m-t">Haku käynnissä, odotathan...</p>
+            <p class="text-secondary m-t"
+               data-ng-bind="i18n.content.esitayta.hakukaynnissa[lang]">
+            </p>
         </div>
     </div>
 
@@ -76,7 +78,9 @@
     <div data-ng-show="crossRefServerError" class="row px">
         <div class="col-xs-12">
             <div class="alert alert-danger">
-            <p class="text-secondary text-dark pl-x text-xl">Crossref palvelu ei vastaa, se voi olla esimerkiksi kovan kuormituksen alaisena. Yritä hetken kuluttua uudestaan.</p>
+            <p class="text-secondary text-dark pl-x text-xl"
+               data-ng-bind="i18n.content.esitayta.doihaku.virhe[lang]">
+            </p>
             </div>
         </div>
     </div>
@@ -87,8 +91,11 @@
                    class="h3 text-dark">{{i18n.content.esitayta.etsijulkaisu.title[lang]}}
             </label>
             <p data-ng-bind="i18n.content.esitayta.etsijulkaisu.info[lang]"></p>
-            <p class="text-secondary">VIRTA-palvelun nimihaussa on tiettyjä rajoituksia hakusanojen suhteen:
-                <a class="font-weight-bold" href="https://wiki.eduuni.fi/pages/viewpage.action?pageId=171984994" target="_blank">Tarkemmat ohjeet VIRTA-hakuun<i class="fa fa-external-link pl-x"></i></a>
+            <p class="text-secondary">{{i18n.content.esitayta.etsijulkaisu.virtainfo.text[lang]}}
+                <a class="font-weight-bold" href="https://wiki.eduuni.fi/pages/viewpage.action?pageId=171984994"
+                   target="_blank">{{i18n.content.esitayta.etsijulkaisu.virtainfo.link[lang]}}
+                    <i class="fa fa-external-link pl-x"></i>
+                </a>
             </p>
 
         </div>
@@ -110,7 +117,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="row px">
         <div class="col-xs-11">
@@ -181,14 +187,18 @@
     <div class="row px" data-ng-if="crossrefTaiVirtaLataa">
         <div class="col-xs-12 text-center text-dark">
             <i class="fa fa-spinner fa-spin fa-3x"></i>
-            <p class="text-secondary m-t">Haku käynnissä, odotathan...</p>
+            <p class="text-secondary m-t"
+               data-ng-bind="i18n.content.esitayta.hakukaynnissa[lang]">
+            </p>
         </div>
     </div>
 
     <div data-ng-show="crossRefServerError2" class="row px m-t">
         <div class="col-xs-12">
             <div class="alert alert-danger">
-                <p class="text-secondary text-dark pl-x text-xl">CrossRef palvelu ei vastaa, se voi olla esimerkiksi kovan kuormituksen alaisena. Yritä hetken kuluttua uudestaan.</p>
+                <p class="text-secondary text-dark pl-x text-xl"
+                   data-ng-bind="i18n.content.esitayta.doihaku.virhe[lang]">
+                </p>
             </div>
         </div>
     </div>
@@ -197,7 +207,7 @@
         <div class="col-xs-12">
             <div class="alert alert-danger">
                 <span class="text-secondary mb-0 text-xl font-weight-bold">
-                    * Mahdollinen duplikaatti *
+                    * {{i18n.content.esitayta.duplikaatti[lang]}} *
                 </span>
             </div>
         </div>

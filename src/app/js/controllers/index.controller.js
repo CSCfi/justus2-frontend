@@ -276,10 +276,9 @@ angular.module('IndexController', [])
 
             $scope.changePage = function(state) {
                 let justus = JustusService.getPublicationFormData();
-        
                 // raise warning if user tries to change state after feeding data to form
                 if (justus.julkaisu && justus.julkaisu.julkaisutyyppi && !justus.julkaisu.id ) {
-                    ModalService.openWarningModal(state);
+                    ModalService.openWarningModal(state, $scope.lang);
 
                 } else {
                     $state.go(state);
