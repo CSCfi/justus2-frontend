@@ -40,9 +40,11 @@ angular.module('AuthService', [])
             let isLoggedIn = function () {
 
                 let sessionCookie = $cookies.get("connect.sid");
+                let shibSession = $cookies.get("_shibsession_session.cookie");
                 console.log(sessionCookie);
+                console.log(shibSession);
 
-                if (!sessionCookie) {
+                if (!sessionCookie || !shibSession) {
                     return false;
                 } else {
                     return true;
