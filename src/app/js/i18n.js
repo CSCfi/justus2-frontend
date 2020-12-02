@@ -1050,9 +1050,16 @@ const i18n = {
         lataus: {
           lataa: {
             title: { FI: 'Lataa tiedot CSV-tiedostona', SV: 'SV Lataa tiedot CSV-tiedostona', EN: 'EN Lataa tiedot CSV-tiedostona' },
-            text: { FI: 'Lataa Justus-palveluun tallennetut oman organisaatiosi tekijätiedot CSV-muotoisena tiedostona. Palvelun puolella lisätyt henkilöt ovat mukana tiedostossa. Mikäli organisaation tekijätietoja ei löydy Justus-palvelusta, voit ladata mallipohjan.',
-                    SV: 'Lataa Justus-palveluun tallennetut oman organisaatiosi tekijätiedot CSV-muotoisena tiedostona. Palvelun puolella lisätyt henkilöt ovat mukana tiedostossa. Mikäli organisaation tekijätietoja ei löydy Justus-palvelusta, voit ladata mallipohjan.',
-                    EN: 'Lataa Justus-palveluun tallennetut oman organisaatiosi tekijätiedot CSV-muotoisena tiedostona. Palvelun puolella lisätyt henkilöt ovat mukana tiedostossa. Mikäli organisaation tekijätietoja ei löydy Justus-palvelusta, voit ladata mallipohjan.' },
+            text1: {
+              FI: 'Lataa Justus-palveluun tallennetut oman organisaatiosi tekijätiedot CSV-muotoisena tiedostona. Palvelun puolella lisätyt henkilöt ovat mukana tiedostossa. Mikäli organisaation tekijätietoja ei löydy Justus-palvelusta, voit ladata mallipohjan.',
+              SV: 'Lataa Justus-palveluun tallennetut oman organisaatiosi tekijätiedot CSV-muotoisena tiedostona. Palvelun puolella lisätyt henkilöt ovat mukana tiedostossa. Mikäli organisaation tekijätietoja ei löydy Justus-palvelusta, voit ladata mallipohjan.',
+              EN: 'Lataa Justus-palveluun tallennetut oman organisaatiosi tekijätiedot CSV-muotoisena tiedostona. Palvelun puolella lisätyt henkilöt ovat mukana tiedostossa. Mikäli organisaation tekijätietoja ei löydy Justus-palvelusta, voit ladata mallipohjan.'
+            },
+            text2: {
+              FI: 'Huom! Mikäli tunniste-kenttä sisältää pelkkiä numeroita ja alkaa nollalla, jotkin taulukkolaskentaohjelmat (esim. Excel) konvertoivat kentät automaattisesti numeeriseksi ja pudottavat arvosta ensimmäisen nollan pois. Tällöin kenttä täytyy määrittää tekstikentäksi ennen tiedoston avaamista.',
+              SV: 'Huom! Mikäli tunniste-kenttä sisältää pelkkiä numeroita ja alkaa nollalla, jotkin taulukkolaskentaohjelmat (esim. Excel) konvertoivat kentät automaattisesti numeeriseksi ja pudottavat arvosta ensimmäisen nollan pois. Tällöin kenttä täytyy määrittää tekstikentäksi ennen tiedoston avaamista.',
+              EN: 'Huom! Mikäli tunniste-kenttä sisältää pelkkiä numeroita ja alkaa nollalla, jotkin taulukkolaskentaohjelmat (esim. Excel) konvertoivat kentät automaattisesti numeeriseksi ja pudottavat arvosta ensimmäisen nollan pois. Tällöin kenttä täytyy määrittää tekstikentäksi ennen tiedoston avaamista.'
+            },
             button: { FI: 'Lataa CSV', SV: 'SV Lataa CSV', EN: 'EN Lataa CSV' }
           },
           tuo: {
