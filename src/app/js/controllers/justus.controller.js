@@ -177,9 +177,10 @@ angular.module('JustusController', [])
 
                         // Some names from Virta contains hyphen as unicode format. Value must be replaced, otherwise match is not found
                         let etunimetCleaned = etunimet.replace('\u{2010}', '-');
+                        let sukunimiCleaned = sukunimi.replace('\u{2010}', '-');
 
                         let personToCopy = $scope.persons.data.filter(function(obj) {
-                           return obj.sukunimi.toLowerCase() === sukunimi.toLowerCase() && obj.etunimi.toLowerCase() === etunimetCleaned.toLowerCase()
+                           return obj.sukunimi.toLowerCase() === sukunimiCleaned.toLowerCase() && obj.etunimi.toLowerCase() === etunimetCleaned.toLowerCase()
                         });
 
                         if(personToCopy.length > 0) {
