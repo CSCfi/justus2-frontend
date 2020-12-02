@@ -170,18 +170,15 @@ gulp.task('del-lib-css', function () {
 });
 
 gulp.task('app-js',  function () {
-	gutil.log(gutil.colors.magenta('generating app js', isProduction));
   return gulp.src(config.assets.appSrc)
     .pipe(isProduction ? sourcemaps.init() : gutil.noop())
     .pipe(concat('app-bundle.js'))
     .pipe(isProduction ? uglify().on('error', async function(e) {
-      gutil.log(gutil.colors.magenta('VIRHE'));
 	  gutil.log(e);	  
     }) : gutil.noop())
     .pipe(isProduction ? sourcemaps.write('/') : gutil.noop())
     .pipe(gulp.dest(buildDestinationPath + '/js'))
     .on('error', async function(e) {
-	//	gutil.log('VIRHE');
       gutil.log(e);
     });
 });
