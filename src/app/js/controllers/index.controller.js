@@ -13,7 +13,10 @@ angular.module('IndexController', [])
 
             if (typeof (AUTH_URL) !== 'undefined') {
                 AuthService.getUserInfo().then(function (res) {
-
+                    if (!res) {
+                        console.log("User data not available, redirecting to login page.")
+                        $state.go('index');
+                    } else {
                         // scope.user is reference to AuthService's user object
                         $scope.user = res;
                         $scope.lang = res.lang;
@@ -28,11 +31,11 @@ angular.module('IndexController', [])
 
                         $scope.showPublicationInput = $rootScope.user.organization.showPublicationInput;
                         fetchKoodistoData();
-
-                         }).catch(function (err) {
-                            console.log(err);
-                            $state.go('index');
-                        });
+                    }
+                 }).catch(function (err) {
+                    console.log(err);
+                    $state.go('index');
+                });
 
                 }
 

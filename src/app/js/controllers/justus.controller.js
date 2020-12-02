@@ -950,7 +950,7 @@ angular.module('JustusController', [])
                     AuthService.getUserInfo().then(function (res) {
                         console.log(res);
                         if (!res) {
-                            console.log("User data not available, redirecting to login age.")
+                            console.log("User data not available, redirecting to login page.")
                             $state.go('index');
                         } else {
                             $scope.user = res;
