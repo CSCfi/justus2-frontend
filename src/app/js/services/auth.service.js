@@ -3,12 +3,14 @@
 'use strict';
 
 angular.module('AuthService', [])
-    .service('AuthService', ['$rootScope', '$http', 'AUTH_URL',
-        function($rootScope, $http, AUTH_URL) {
+    .service('AuthService', ['$rootScope', '$http', '$cookies', 'AUTH_URL',
+        function($rootScope, $http, $cookies, AUTH_URL) {
 
             let getUserInfo = function () {
                 return $http.get(AUTH_URL).then(function (response) {
                    return setUser(response.data);
+                }).catch(function (err) {
+                    console.log(err);
                 })
             };
 
@@ -31,7 +33,11 @@ angular.module('AuthService', [])
             };
 
             let isLoggedIn = function () {
-                if (user.name === "") {
+
+                let sessionCookie = $cookies.get("connect.sid");
+                console.log(sessionCookie);
+
+                if (!sessionCookie) {
                     return false;
                 } else {
                     return true;

@@ -944,13 +944,17 @@ angular.module('JustusController', [])
             let verifyAccess = function () {
 
                 if (AuthService.isLoggedIn()) {
+                    console.log("User is logged in");
                     populatePublicationForm();
                 } else {
                     AuthService.getUserInfo().then(function (res) {
+                        console.log(res);
                         $scope.user = res;
                         $rootScope.user = $scope.user;
+                        console.log("User info returned from Auth Service.");
                         populatePublicationForm();
                     }).catch(function (err) {
+                        console.log("in error");
                         console.log(err);
                         $state.go('index');
 

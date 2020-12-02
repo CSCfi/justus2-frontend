@@ -12,6 +12,7 @@ let app = angular.module('JustusApp', [
   'ngFileUpload',
   'infinite-scroll',
   'dndLists',
+  'ngCookies',
 
   // App modules
   'appConfig',
