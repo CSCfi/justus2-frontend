@@ -3,9 +3,9 @@
 angular.module('IndexController', [])
 
     .controller('IndexController', [
-        '$state', '$q', '$scope', '$rootScope', '$http', '$window', '$stateParams', '$transitions', '$location', 'JustusService',
+        '$state', '$q', '$scope', '$rootScope', '$http', '$window', '$stateParams', '$transitions', '$location', '$cookies', 'JustusService',
         'KoodistoService', 'AuthService', 'APIService', 'ModalService', '$uibModal', 'AUTH_URL', 'SITE_URL', 'API_BASE_URL', 'DEMO_ENABLED',
-        function($state, $q, $scope, $rootScope, $http, $window, $stateParams, $transitions, $location, JustusService,
+        function($state, $q, $scope, $rootScope, $http, $window, $stateParams, $transitions, $location, $cookies, JustusService,
                  KoodistoService, AuthService, APIService, ModalService, $uibModal, AUTH_URL, SITE_URL, API_BASE_URL, DEMO_ENABLED) {
             $scope.demoEnabled = DEMO_ENABLED;
             $scope.siteUrl = SITE_URL;
@@ -210,6 +210,10 @@ angular.module('IndexController', [])
 
 
             $scope.login = function() {
+                console.log("Removing old cookies");
+                $cookies.remove("connect.sid");
+                $cookies.remove("_shibsession_session.cookie");
+
                 let target = encodeURIComponent(SITE_URL + '#!/valitse');
                 $window.location.href = SITE_URL + 'Shibboleth.sso/Login?target=' + target;
             };
