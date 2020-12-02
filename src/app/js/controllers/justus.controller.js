@@ -599,6 +599,22 @@ angular.module('JustusController', [])
             };
 
             $scope.useVaihe = function(vaihe) {
+
+                // Before changing stage verify first that user is logged in. If not redirect to login page
+                if (!AuthService.isLoggedIn()) {
+                    console.log("Verify that user is logged in before changing state");
+                    AuthService.getUserInfo().then(function (res){
+                        if (!res) {
+                            console.log("User info not available, redirect to login page.")
+                            $state.go("index");
+                        } else {
+                            $scope.user = res;
+                            console.log($scope.user);
+                            $rootScope.user = $scope.user;
+                        }
+                    })
+                }
+
                 // When user navigates back to stage one raise warning of possible data loss
                 if (vaihe === 1 && $scope.justus.julkaisu.julkaisutyyppi && !$scope.justus.julkaisu.id) {
                     ModalService.openWarningModal("justus?vaihe=1", $scope.lang);
