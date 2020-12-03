@@ -89,7 +89,7 @@ const config = {
     ],
 
     // Bundle files
-    appScriptsBundleFileSrc: buildDestinationPath + '/js/app-bundle.js',
+    appScriptsBundleFileSrc: buildDestinationPath + '/js/app-bundle-v2.js',
     libScriptsBundleFileSrc: buildDestinationPath + '/js/lib-bundle.js',
     appStylesBundleFileSrc: buildDestinationPath + '/css/style-bundle.css',
     libStylesBundleFileSrc: buildDestinationPath + '/css/libstyle-bundle.css'
@@ -173,7 +173,7 @@ gulp.task('del-lib-css', function () {
 gulp.task('app-js',  function () {
   return gulp.src(config.assets.appSrc)
     .pipe(isProduction ? sourcemaps.init() : gutil.noop())
-    .pipe(concat('app-bundle.js'))
+    .pipe(concat('app-bundle-v2.js'))
     .pipe(isProduction ? uglify().on('error', async function(e) {
 	  gutil.log(e);	  
     }) : gutil.noop())
