@@ -172,12 +172,12 @@ gulp.task('del-lib-css', function () {
 
 gulp.task('app-js',  function () {
   return gulp.src(config.assets.appSrc)
-    .pipe(isProduction ? sourcemaps.init() : gutil.noop())
+    .pipe(sourcemaps.init())
     .pipe(concat('app-bundle-v2.js'))
     .pipe(isProduction ? uglify().on('error', async function(e) {
 	  gutil.log(e);	  
     }) : gutil.noop())
-    .pipe(isProduction ? sourcemaps.write('/') : gutil.noop())
+    .pipe(sourcemaps.write('/'))
     .pipe(gulp.dest(buildDestinationPath + '/js'))
     .on('error', async function(e) {
       gutil.log(e);
