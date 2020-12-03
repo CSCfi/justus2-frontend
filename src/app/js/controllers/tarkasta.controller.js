@@ -137,6 +137,8 @@ angular.module('TarkastaController', [])
             let verifyAccess = function () {
                 if (AuthService.isLoggedIn()) {
                     console.log("User is logged in");
+                    console.log($rootScope.user);
+                    console.log($scope.user);
                     init();
                 } else {
                     AuthService.getUserInfo().then(function (res) {
@@ -168,9 +170,12 @@ angular.module('TarkastaController', [])
 
             let init = function () {
 
+                console.log($rootScope.user);
+                console.log($scope.user);
+
                 $scope.publications = new Publications();
                 $scope.searchMode = false;
-                $scope.showPublicationLink = $rootScope.user.organization.showPublicationInput;
+                $scope.showPublicationLink = $scope.user.organization.showPublicationInput;
 
                 if($stateParams.tila === "odottavat") {
                     $scope.publications.odottavat = true;
