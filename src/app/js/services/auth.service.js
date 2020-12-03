@@ -43,8 +43,9 @@ angular.module('AuthService', [])
                 let shibSession = $cookies.get("_shibsession_session.cookie");
                 console.log(sessionCookie);
                 console.log(shibSession);
+                console.log($rootScope.user);
 
-                if (!sessionCookie || !shibSession) {
+                if (!sessionCookie || !shibSession || !$rootScope.user) {
                     return false;
                 } else {
                     return true;

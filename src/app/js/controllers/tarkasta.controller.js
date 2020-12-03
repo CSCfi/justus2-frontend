@@ -147,6 +147,7 @@ angular.module('TarkastaController', [])
                             console.log("User data not available, redirecting to login page.")
                             $state.go('index');
                         } else {
+                            console.log("Setting user data");
                             $scope.user = res;
                             $rootScope.user = $scope.user;
                             init();
