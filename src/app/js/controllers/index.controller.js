@@ -211,8 +211,11 @@ angular.module('IndexController', [])
 
             $scope.login = function() {
                 console.log("Removing old cookies");
-                $cookies.remove("connect.sid");
-                $cookies.remove("_shibsession_session.cookie");
+                let cookies = $cookies.getAll();
+                angular.forEach(cookies, function (v, k) {
+                    console.log("Removing: " + k);
+                    $cookies.remove(k);
+                });
 
                 let target = encodeURIComponent(SITE_URL + '#!/valitse');
                 $window.location.href = SITE_URL + 'Shibboleth.sso/Login?target=' + target;
