@@ -90,7 +90,7 @@ const config = {
 
     // Bundle files
     appScriptsBundleFileSrc: buildDestinationPath + '/js/app-bundle-v2.js',
-    libScriptsBundleFileSrc: buildDestinationPath + '/js/lib-bundle.js',
+    libScriptsBundleFileSrc: buildDestinationPath + '/js/lib-bundle-v2.js',
     appStylesBundleFileSrc: buildDestinationPath + '/css/style-bundle.css',
     libStylesBundleFileSrc: buildDestinationPath + '/css/libstyle-bundle.css'
   }
@@ -197,7 +197,7 @@ gulp.task('app-css', function () {
 gulp.task('lib-js', function () {
   return gulp.src(config.assets.libSrc)
     .pipe(isProduction ? sourcemaps.init() : gutil.noop())
-    .pipe(concat('lib-bundle.js'))
+    .pipe(concat('lib-bundle-v2.js'))
     .pipe(isProduction ? uglify().on('error', function(e) {
       gutil.log(e);
     }) : gutil.noop())
