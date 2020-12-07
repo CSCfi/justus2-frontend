@@ -711,8 +711,8 @@ const i18n = {
         EN: 'Publication fee',
         tooltip: {
           FI: 'Organisaation julkaisun avoimesta saatavuudesta kustantajalle maksaman maksun suuruus euroina. Syötetty arvo voi olla kokonaisuluku tai desimaaliluku kahden desimaalin tarkkuudella. Pakollinen tieto mikäli julkaisumaksuvuosi-kenttä on täytetty.',
-          SV: 'Organisaation julkaisun avoimesta saatavuudesta kustantajalle maksaman maksun suuruus euroina. Syötetty arvo voi olla kokonaisuluku tai desimaaliluku kahden desimaalin tarkkuudella. Pakollinen tieto mikäli julkaisumaksuvuosi-kenttä on täytetty.',
-          EN: 'Organisaation julkaisun avoimesta saatavuudesta kustantajalle maksaman maksun suuruus euroina. Syötetty arvo voi olla kokonaisuluku tai desimaaliluku kahden desimaalin tarkkuudella. Pakollinen tieto mikäli julkaisumaksuvuosi-kenttä on täytetty.'
+          SV: 'Avgiften som betalas till förlaget i euro för öppen tillgång till organisationens publikation. Siffran kan vara ett heltal eller ett decimaltal till två decimaler. Detta är obligatoriskt information om publiceringssavgiftens år har fyllts.',
+          EN: 'The amount of the fee paid by the organization to the publisher for the publication’s open access in euros. The amount entered can be an integer or a decimal number rounded to two decimal places. This is a mandatory piece of information if the year of publication fee  is entered.'
         },
         picktip: { FI: 'esim. 1000', SV: 't.ex 1000', EN: 'e.g. 1000' }
       },
@@ -722,8 +722,8 @@ const i18n = {
         EN: 'Year of publication fee',
         tooltip: {
           FI: 'Organisaation julkaisun avoimesta saatavuudesta kustantajalle maksetun maksun maksuvuosi. Pakollinen tieto mikäli julkaisumaksu-kenttä on täytetty.',
-          SV: 'Organisaation julkaisun avoimesta saatavuudesta kustantajalle maksetun maksun maksuvuosi. Pakollinen tieto mikäli julkaisumaksu-kenttä on täytetty.',
-          EN: 'Organisaation julkaisun avoimesta saatavuudesta kustantajalle maksetun maksun maksuvuosi. Pakollinen tieto mikäli julkaisumaksu-kenttä on täytetty.'
+          SV: 'År då organisationen har betalat förläggaren för publikationens öppen tillgång. Detta är obligatoriskt information om publiceringssavgiften har fyllts.',
+          EN: 'The year of payment of the fee paid to the publisher for the open access to the organization\'s publication. This is a mandatory piece of information if the publication fee is entered.'
         },
         picktip: { FI: 'esim. 2019', SV: 't.ex 2019', EN: 'e.g. 2019' }
       },
