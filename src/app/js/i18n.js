@@ -295,6 +295,9 @@ const i18n = {
         }
       },
       ensimmainenkirjoittaja: {
+        label: {
+          FI: 'Onko ensimmäinen kirjoittaja organisaation kirjoittaja', SV: 'Onko ensimmäinen kirjoittaja organisaation kirjoittaja', EN: 'Onko ensimmäinen kirjoittaja organisaation kirjoittaja'
+        },
         '1': { FI: 'Kyllä', SV: 'Ja', EN: 'Yes' },
         '0': { FI: 'Ei', SV: 'Nej', EN: 'No' }
       },
