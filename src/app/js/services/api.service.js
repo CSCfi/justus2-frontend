@@ -159,7 +159,7 @@ angular.module('APIService', [])
     this.get = function (api, id) {
       return $http({
         method: 'GET',
-        url:  API_BASE_URL + 'julkaisut' + '/' + api + (id ? '/' + id : ''),
+        url:  API_BASE_URL  + '/' + api + (id ? '/' + id : ''),
       })
       .then(function (response) {
         return response.data;

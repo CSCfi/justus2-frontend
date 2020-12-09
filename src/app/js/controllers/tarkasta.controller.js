@@ -379,7 +379,7 @@ angular.module('TarkastaController', [])
 
                 $scope.loading.csv = true;
 
-                return APIService.get("lista/all")
+                return APIService.get("julkaisut/lista/all")
                     .then(async function (response) {
                         $scope.all = response.data;
                         $scope.loading.csv = false;
