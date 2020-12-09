@@ -707,13 +707,12 @@
          data-ng-if="isFieldVisible('ensimmainenkirjoittaja')"
          id="ensimmainenkirjoittajaGroup">
       <div class="col-sm-4 col-xs-12">
-        <label class="control-label d-inline"
-            >Artikkelin ensimmäinen kirjoittaja on organisaation kirjoittaja
+        <label class="control-label d-inline" data-ng-bind="i18n.content.form.ensimmainenkirjoittaja.label[lang]">
         </label>
           <i data-ng-if="isFieldRequired('ensimmainenkirjoittaja')" class="fa fa-asterisk required-star" aria-hidden="true"></i>
           <span data-ng-if="isFieldRequired('ensimmainenkirjoittaja')" class="sr-only" data-ng-bind="i18n.content.form.pakollinenkentta[lang]"></span>
       </div>
-      <div class="col-md-8 col-xs-12 justus-data"
+      <div class="col-sm-8 col-xs-12 justus-data"
            data-ng-model="req_ensimmainenkirjoittaja"
            data-ng-required="requiredHighlight && !isValid('ensimmainenkirjoittaja')">
         <div class="row">

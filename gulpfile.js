@@ -58,7 +58,8 @@ const config = {
       'node_modules/ng-csv/build/ng-csv.js',
       'node_modules/ng-file-upload/dist/ng-file-upload.js',
       'node_modules/ng-infinite-scroll/build/ng-infinite-scroll.js',  
-      'node_modules/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js'  
+      'node_modules/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js',
+      'node_modules/angular-cookies/angular-cookies.js'
     ],
 
     // Define lib styles here
@@ -88,8 +89,8 @@ const config = {
     ],
 
     // Bundle files
-    appScriptsBundleFileSrc: buildDestinationPath + '/js/app-bundle.js',
-    libScriptsBundleFileSrc: buildDestinationPath + '/js/lib-bundle.js',
+    appScriptsBundleFileSrc: buildDestinationPath + '/js/app-bundle-v2.js',
+    libScriptsBundleFileSrc: buildDestinationPath + '/js/lib-bundle-v2.js',
     appStylesBundleFileSrc: buildDestinationPath + '/css/style-bundle.css',
     libStylesBundleFileSrc: buildDestinationPath + '/css/libstyle-bundle.css'
   }
@@ -171,12 +172,12 @@ gulp.task('del-lib-css', function () {
 
 gulp.task('app-js',  function () {
   return gulp.src(config.assets.appSrc)
-    .pipe(isProduction ? sourcemaps.init() : gutil.noop())
-    .pipe(concat('app-bundle.js'))
+    .pipe(sourcemaps.init())
+    .pipe(concat('app-bundle-v2.js'))
     .pipe(isProduction ? uglify().on('error', async function(e) {
 	  gutil.log(e);	  
     }) : gutil.noop())
-    .pipe(isProduction ? sourcemaps.write('/') : gutil.noop())
+    .pipe(sourcemaps.write('/'))
     .pipe(gulp.dest(buildDestinationPath + '/js'))
     .on('error', async function(e) {
       gutil.log(e);
@@ -196,7 +197,7 @@ gulp.task('app-css', function () {
 gulp.task('lib-js', function () {
   return gulp.src(config.assets.libSrc)
     .pipe(isProduction ? sourcemaps.init() : gutil.noop())
-    .pipe(concat('lib-bundle.js'))
+    .pipe(concat('lib-bundle-v2.js'))
     .pipe(isProduction ? uglify().on('error', function(e) {
       gutil.log(e);
     }) : gutil.noop())

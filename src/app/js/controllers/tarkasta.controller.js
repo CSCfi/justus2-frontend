@@ -136,12 +136,22 @@ angular.module('TarkastaController', [])
             // at very first test that user object is accessible
             let verifyAccess = function () {
                 if (AuthService.isLoggedIn()) {
+                    console.log("User is logged in");
+                    console.log($rootScope.user);
+                    console.log($scope.user);
                     init();
                 } else {
                     AuthService.getUserInfo().then(function (res) {
-                        $scope.user = res;
-                        init();
 
+                        if (!res) {
+                            console.log("User data not available, redirecting to login page.")
+                            $state.go('index');
+                        } else {
+                            console.log("Setting user data");
+                            $scope.user = res;
+                            $rootScope.user = $scope.user;
+                            init();
+                        }
                     }).catch(function (err) {
                         console.log(err);
                         $state.go('index');
@@ -161,9 +171,12 @@ angular.module('TarkastaController', [])
 
             let init = function () {
 
+                console.log($rootScope.user);
+                console.log($scope.user);
+
                 $scope.publications = new Publications();
                 $scope.searchMode = false;
-                $scope.showPublicationLink = $rootScope.user.organization.showPublicationInput;
+                $scope.showPublicationLink = $scope.user.organization.showPublicationInput;
 
                 if($stateParams.tila === "odottavat") {
                     $scope.publications.odottavat = true;

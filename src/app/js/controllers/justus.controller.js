@@ -746,6 +746,22 @@ angular.module('JustusController', [])
             };
 
             $scope.useVaihe = function(vaihe) {
+
+                // Before changing stage verify first that user is logged in. If not redirect to login page
+                if (!AuthService.isLoggedIn()) {
+                    console.log("Verify that user is logged in before changing state");
+                    AuthService.getUserInfo().then(function (res){
+                        if (!res) {
+                            console.log("User info not available, redirect to login page.")
+                            $state.go("index");
+                        } else {
+                            $scope.user = res;
+                            console.log($scope.user);
+                            $rootScope.user = $scope.user;
+                        }
+                    })
+                }
+
                 // When user navigates back to stage one raise warning of possible data loss
                 if (vaihe === 1 && $scope.justus.julkaisu.julkaisutyyppi && !$scope.justus.julkaisu.id) {
                     ModalService.openWarningModal("justus?vaihe=1", $scope.lang);
@@ -1010,13 +1026,22 @@ angular.module('JustusController', [])
             let verifyAccess = function () {
 
                 if (AuthService.isLoggedIn()) {
+                    console.log("User is logged in");
                     populatePublicationForm();
                 } else {
                     AuthService.getUserInfo().then(function (res) {
-                        $scope.user = res;
-                        $rootScope.user = $scope.user;
-                        populatePublicationForm();
+                        console.log(res);
+                        if (!res) {
+                            console.log("User data not available, redirecting to login page.")
+                            $state.go('index');
+                        } else {
+                            $scope.user = res;
+                            $rootScope.user = $scope.user;
+                            console.log("User info returned from Auth Service.");
+                            populatePublicationForm();
+                        }
                     }).catch(function (err) {
+                        console.log("in error");
                         console.log(err);
                         $state.go('index');
 

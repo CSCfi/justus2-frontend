@@ -3,9 +3,9 @@
 angular.module('IndexController', [])
 
     .controller('IndexController', [
-        '$state', '$q', '$scope', '$rootScope', '$http', '$window', '$stateParams', '$transitions', '$location', 'JustusService',
+        '$state', '$q', '$scope', '$rootScope', '$http', '$window', '$stateParams', '$transitions', '$location', '$cookies', 'JustusService',
         'KoodistoService', 'AuthService', 'APIService', 'ModalService', '$uibModal', 'AUTH_URL', 'SITE_URL', 'API_BASE_URL', 'DEMO_ENABLED',
-        function($state, $q, $scope, $rootScope, $http, $window, $stateParams, $transitions, $location, JustusService,
+        function($state, $q, $scope, $rootScope, $http, $window, $stateParams, $transitions, $location, $cookies, JustusService,
                  KoodistoService, AuthService, APIService, ModalService, $uibModal, AUTH_URL, SITE_URL, API_BASE_URL, DEMO_ENABLED) {
             $scope.demoEnabled = DEMO_ENABLED;
             $scope.siteUrl = SITE_URL;
@@ -13,7 +13,10 @@ angular.module('IndexController', [])
 
             if (typeof (AUTH_URL) !== 'undefined') {
                 AuthService.getUserInfo().then(function (res) {
-
+                    if (!res) {
+                        console.log("User data not available, redirecting to login page.")
+                        $state.go('index');
+                    } else {
                         // scope.user is reference to AuthService's user object
                         $scope.user = res;
                         $scope.lang = res.lang;
@@ -29,13 +32,12 @@ angular.module('IndexController', [])
                         $scope.showPublicationInput = $rootScope.user.organization.showPublicationInput;
                         fetchKoodistoData();
                         fetchPersonData();
-
-                         }).catch(function (err) {
-                            console.log(err);
-                            $state.go('index');
-                        });
-
-                }
+                    }
+                }).catch(function (err) {
+                    console.log(err);
+                    $state.go('index');
+                });
+            }
 
             let getDemoOrganisationList = function() {
                 $scope.selectedDemoUserRole = "";
@@ -208,6 +210,13 @@ angular.module('IndexController', [])
 
 
             $scope.login = function() {
+                console.log("Removing old cookies");
+                let cookies = $cookies.getAll();
+                angular.forEach(cookies, function (v, k) {
+                    console.log("Removing: " + k);
+                    $cookies.remove(k);
+                });
+
                 let target = encodeURIComponent(SITE_URL + '#!/valitse');
                 $window.location.href = SITE_URL + 'Shibboleth.sso/Login?target=' + target;
             };
@@ -296,6 +305,5 @@ angular.module('IndexController', [])
             };
 
             init();
-
         }
     ]);

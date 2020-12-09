@@ -48,12 +48,12 @@ const i18n = {
     paragraphs: [
       {
         FI: 'JUSTUS – julkaisutietojen tallennuspalveluun syötetään tutkimusjulkaisujen tietoja. Palveluun tallennetut julkaisutiedot ovat selailtavissa tiedejatutkimus.fi-palvelussa sekä JUULI-julkaisutietoportaalissa. Valitut julkaisutiedot siirtyvät automaattisesti opetus- ja kulttuuriministeriön (OKM) vuosittaiseen julkaisutiedonkeruuseen ja ne huomioidaan myös korkeakoulujen rahoitusmallissa.',
-        SV: 'I JUSTUS kan du mata in uppgifter om dina vetenskapliga publikationer, som sedan pubilceras i Juuli-portalen. Uppgifterna överförs också automatiskt till Kultur- och undervisningsministeriets årliga insamling av publikationsuppgifter. Uppgifterna beaktas också vid finaniseringen av högskolorna.',
-        EN: 'When publication information is entered into JUSTUS-service it can be accessed through JUULI-portal. Data is also automatically transferred to the publication data collection by the Ministry of Education and Culture and taken into consideration in the funding formula of higher education institutions.'
+        SV: 'Uppgifter från vetenskapliga publikationer matas in i JUSTUS-tjänsten. Publikationsinformationen som sparas i tjänsten kan också granskas i tjänsten Forskning.fi och Juuli-portalen. De valda publikationsuppgifterna överförs automatiskt till Kultur- och undervisningsministeriets årliga insamling av publikationsuppgifter. Uppgifterna beaktas också vid finaniseringen av högskolorna.',
+        EN: 'JUSTUS - Publication Information Reporting Service is for entering publication information into the service. The publication information saved to JUSTUS can also be accessed through Research.fi service and JUULI-portal. Chosen publication information automatically transfers to the publication data collection by the Ministry of Education and Culture and is taken into consideration in the funding formula of higher education institutions.'
       }
     ],
     help: {
-      title: { FI: 'JUSTUS-palvelun käyttöohjeet:', SV: 'JUSTUS instruktioner:', EN: 'Instructions for JUSTUS-service:' },
+      title: { FI: 'JUSTUS-palvelun käyttöohjeet:', SV: 'JUSTUS-tjänstens instruktioner:', EN: 'Instructions for JUSTUS-service:' },
       organization: {
         FI: 'JUSTUS-palvelua voit käyttää julkaisutietojesi tallentamiseen, jos kuulut johonkin seuraavista organisaatioista:',
         SV: 'Du kan använda Justus om du hör till någon av följande organisationer:',
@@ -61,7 +61,7 @@ const i18n = {
       }
     },
     tietosuoja: {
-      title: { FI: 'JUSTUS-palvelun tietosuoja:', SV: 'JUSTUS tjänstens dataskydd:',  EN: 'Privacy for JUSTUS-service:' }
+      title: { FI: 'JUSTUS-palvelun tietosuoja:', SV: 'JUSTUS-tjänstens dataskydd:',  EN: 'Privacy for JUSTUS-service:' }
     }
   },
   content: {
@@ -228,8 +228,8 @@ const i18n = {
         EN: 'Publication authors',
         tooltip: {
           FI: 'Julkaisun täydelliset tekijätiedot (ml. ulkomaiset tekijät) muodossa Sukunimi, Etunimi. Paina enter vahvistaaksesi nimi. Tekijät siinä järjestyksessä, kuin ne ovat julkaisussa ilmoitettu. 20 ensimmäistä tekijää riittää. Voit vaihtaa tekijöiden järjestystä tarttumalla nimeen ja siirtämällä.',
-          SV: 'Fullständig information om publikationens upphovsmän anges i den form och i den ordning som de nämns i den ursprungliga publikationen eller källdatabasen (högst 20 st.).',
-          EN: 'Authors of the original publication in the following format: Surname, Firstname. Press enter to confirm. Authors in the same order as was in the original publication. Max. 20 authors is sufficient.'
+          SV: 'Fullständig information om publikationens upphovsmän anges i den form och i den ordning som de nämns i den ursprungliga publikationen eller källdatabasen (högst 20 st.). Du kan dra författarna för att ändra deras ordning.',
+          EN: 'Authors of the original publication in the following format: Surname, Firstname. Press enter to confirm. Authors in the same order as was in the original publication. Max. 20 authors is sufficient. You can drag the authors to change their order.'
         },
         picktip: { FI: 'Syötä muodossa Sukunimi, Etunimi ja paina enter', SV: 'Skriv i formatet Efternamn, Förnamn och tryck enter', EN: 'Type in format Lastname, Firstname and press enter' }
       },
@@ -296,6 +296,9 @@ const i18n = {
         }
       },
       ensimmainenkirjoittaja: {
+        label: {
+          FI: 'Onko ensimmäinen kirjoittaja organisaation kirjoittaja', SV: 'Onko ensimmäinen kirjoittaja organisaation kirjoittaja', EN: 'Onko ensimmäinen kirjoittaja organisaation kirjoittaja'
+        },
         '1': { FI: 'Kyllä', SV: 'Ja', EN: 'Yes' },
         '0': { FI: 'Ei', SV: 'Nej', EN: 'No' }
       },
@@ -712,8 +715,8 @@ const i18n = {
         EN: 'Publication fee',
         tooltip: {
           FI: 'Organisaation julkaisun avoimesta saatavuudesta kustantajalle maksaman maksun suuruus euroina. Syötetty arvo voi olla kokonaisuluku tai desimaaliluku kahden desimaalin tarkkuudella. Pakollinen tieto mikäli julkaisumaksuvuosi-kenttä on täytetty.',
-          SV: 'Organisaation julkaisun avoimesta saatavuudesta kustantajalle maksaman maksun suuruus euroina. Syötetty arvo voi olla kokonaisuluku tai desimaaliluku kahden desimaalin tarkkuudella. Pakollinen tieto mikäli julkaisumaksuvuosi-kenttä on täytetty.',
-          EN: 'Organisaation julkaisun avoimesta saatavuudesta kustantajalle maksaman maksun suuruus euroina. Syötetty arvo voi olla kokonaisuluku tai desimaaliluku kahden desimaalin tarkkuudella. Pakollinen tieto mikäli julkaisumaksuvuosi-kenttä on täytetty.'
+          SV: 'Avgiften som betalas till förlaget i euro för öppen tillgång till organisationens publikation. Siffran kan vara ett heltal eller ett decimaltal till två decimaler. Detta är obligatoriskt information om publiceringssavgiftens år har fyllts.',
+          EN: 'The amount of the fee paid by the organization to the publisher for the publication’s open access in euros. The amount entered can be an integer or a decimal number rounded to two decimal places. This is a mandatory piece of information if the year of publication fee  is entered.'
         },
         picktip: { FI: 'esim. 1000', SV: 't.ex 1000', EN: 'e.g. 1000' }
       },
@@ -723,8 +726,8 @@ const i18n = {
         EN: 'Year of publication fee',
         tooltip: {
           FI: 'Organisaation julkaisun avoimesta saatavuudesta kustantajalle maksetun maksun maksuvuosi. Pakollinen tieto mikäli julkaisumaksu-kenttä on täytetty.',
-          SV: 'Organisaation julkaisun avoimesta saatavuudesta kustantajalle maksetun maksun maksuvuosi. Pakollinen tieto mikäli julkaisumaksu-kenttä on täytetty.',
-          EN: 'Organisaation julkaisun avoimesta saatavuudesta kustantajalle maksetun maksun maksuvuosi. Pakollinen tieto mikäli julkaisumaksu-kenttä on täytetty.'
+          SV: 'År då organisationen har betalat förläggaren för publikationens öppen tillgång. Detta är obligatoriskt information om publiceringssavgiften har fyllts.',
+          EN: 'The year of payment of the fee paid to the publisher for the open access to the organization\'s publication. This is a mandatory piece of information if the publication fee is entered.'
         },
         picktip: { FI: 'esim. 2019', SV: 't.ex 2019', EN: 'e.g. 2019' }
       },

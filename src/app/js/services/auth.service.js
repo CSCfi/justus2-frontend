@@ -3,13 +3,19 @@
 'use strict';
 
 angular.module('AuthService', [])
-    .service('AuthService', ['$rootScope', '$http', 'AUTH_URL',
-        function($rootScope, $http, AUTH_URL) {
+    .service('AuthService', ['$rootScope', '$http', '$cookies', 'AUTH_URL',
+        function($rootScope, $http, $cookies, AUTH_URL) {
 
             let getUserInfo = function () {
                 return $http.get(AUTH_URL).then(function (response) {
-                    console.log(response.data);
-                   return setUser(response.data);
+                    console.log(response);
+                    if (!response || response.status !== 200) {
+                        return false;
+                    } else {
+                        return setUser(response.data);
+                    }
+                }).catch(function (err) {
+                    console.log(err);
                 })
             };
 
@@ -36,7 +42,14 @@ angular.module('AuthService', [])
             };
 
             let isLoggedIn = function () {
-                if (user.name === "") {
+
+                let sessionCookie = $cookies.get("connect.sid");
+                let shibSession = $cookies.get("_shibsession_session.cookie");
+                console.log(sessionCookie);
+                console.log(shibSession);
+                console.log($rootScope.user);
+
+                if (!sessionCookie || !shibSession || !$rootScope.user) {
                     return false;
                 } else {
                     return true;
