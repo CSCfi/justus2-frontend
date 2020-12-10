@@ -22,6 +22,7 @@ angular.module('AuthService', [])
             let setUser = function(response) {
                 user.name = response.perustiedot.nimi;
                 user.mail = response.perustiedot.email;
+                user.seloste = response.perustiedot.seloste;
                 user.role = response.perustiedot.rooli;
                 user.organization.code = response.perustiedot.organisaatio;
                 user.organization.name = response.perustiedot.organisaationimi;
