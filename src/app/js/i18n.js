@@ -28,11 +28,13 @@ const i18n = {
     sivukartta: { FI: 'Sivukartta', SV: 'Sidkarta', EN: 'Sitemap'  },
     selosteet: { FI: 'Selosteet ja käytännöt', SV: 'Redegörelser och praxis', EN: 'Statements and practices'  },
     saavutettavuusseloste: { FI: 'Saavutettavuusseloste', SV: 'Tillgänglighetsutlåtande', EN: 'Accessibility statement' },
-    tietosuoja: { FI: 'Tietosuoja', SV: 'Dataskydd', EN: 'Privacy' },
+    tietosuoja: { FI: 'Justus tietosuoja', SV: 'Justus dataskydd', EN: 'Justus privacy' },
+    tietosuojaseloste: { FI: 'Tietosuojaseloste', SV: 'Dataskydd', EN: 'Privacy policy',
+     linkki: { FI: 'Organisaation tietosuojaseloste', SV: 'Organisations dataskydd', EN: 'Organization\'s privacy policy' }
+     },
     help: {
       title: { FI: 'Käyttötuki', SV: 'Användarstöd', EN: 'Support' },
-      email: { FI: 'justus@csc.fi', SV: 'justus@csc.fi', EN: 'justus@csc.fi' },
-      time: { FI: 'ma-pe klo 8.30-16', SV: 'mån-fre 8.30-16', EN: 'Mon-Fri 8.30am-4pm' }
+      email: { FI: 'justus@csc.fi', SV: 'justus@csc.fi', EN: 'justus@csc.fi' }
     },
     csc: {
       name: { FI: 'CSC - TIETEEN TIETOTEKNIIKAN KESKUS OY', SV: 'CSC - TIETEEN TIETOTEKNIIKAN KESKUS OY', EN: 'CSC - IT CENTER FOR SCIENCE LTD' },
