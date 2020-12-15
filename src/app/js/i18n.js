@@ -29,7 +29,7 @@ const i18n = {
     saavutettavuusseloste: { FI: 'Saavutettavuusseloste', SV: 'Tillgänglighetsutlåtande', EN: 'Accessibility statement' },
     tietosuoja: { FI: 'Justus tietosuoja', SV: 'Justus dataskydd', EN: 'Justus privacy' },
     tietosuojaseloste: { FI: 'Tietosuojaseloste', SV: 'Dataskydd', EN: 'Privacy policy',
-     linkki: { FI: 'Linkki organisaation tietosuojaselosteeseen', SV: 'En länk till organisations dataskydd', EN: 'Link to organization\'s privacy policy' }
+     linkki: { FI: 'Organisaation tietosuojaseloste', SV: 'Organisations dataskydd', EN: 'Organization\'s privacy policy' }
      },
     help: {
       title: { FI: 'Käyttötuki', SV: 'Användarstöd', EN: 'Support' },
