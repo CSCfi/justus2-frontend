@@ -2,7 +2,7 @@
 
 angular.module('Publications', [])
     .factory('Publications', [
-        'APIService', '$rootScope', 'DEMO_ENABLED', function(APIService, $rootScope, DEMO_ENABLED) {
+        'APIService', '$rootScope', '$state', function(APIService, $rootScope, $state) {
 
         let Page = function () {
             this.data = [];
@@ -70,6 +70,9 @@ angular.module('Publications', [])
                 }.bind(this))
                     .catch(function (err) {
                         console.log(err);
+                        if (err.status && err.status === -1) {
+                            $state.go('index');
+                        }
                     });
 
             };
