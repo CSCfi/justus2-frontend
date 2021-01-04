@@ -1,10 +1,12 @@
 <div class="modal-header">
-    <h4 class="modal-title font-weight-bold">Vahvista poisto</h4>
+    <h4 class="modal-title font-weight-bold" data-ng-bind="i18n.admin.content.form.poista.modal.title[lang]"></h4>
 </div>
 <div class="modal-body" id="modal-body">
-    <p>Oletko varma että haluat poistaa henkilön {{person.etunimi}} {{person.sukunimi}}?</p>
+    <p>{{i18n.admin.content.form.poista.modal.text[lang]}} {{person.etunimi}} {{person.sukunimi}}?</p>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-default pull-left" data-ng-click="cancel()">Peruuta</button>
-    <button type="button" class="btn btn-danger" data-ng-click="ok()">Poista henkilö</button>
+    <button type="button" class="btn btn-default pull-left" data-ng-click="cancel()"
+            data-ng-bind="i18n.admin.content.form.poista.modal.cancel[lang]"></button>
+    <button type="button" class="btn btn-danger" data-ng-click="ok()"
+            data-ng-bind="i18n.admin.content.form.poista[lang]"></button>
 </div>

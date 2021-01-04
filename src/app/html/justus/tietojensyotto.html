@@ -508,7 +508,7 @@
                        placeholder="{{i18n.content.form.organisaatiotekija.orcid.picktip[lang]}}"
                        data-ng-keydown="resetValidationError('orcid', $index)">
                 <!--                <span data-ng-show="orcidError">No data found for this orcid</span>-->
-                <span class="invalid-pattern text-secondary text-danger" aria-hidden="true">Tarkasta ORCID -numeron muoto</span>
+                <span class="invalid-pattern text-secondary text-danger" aria-hidden="true" data-ng-bind="i18n.content.form.organisaatiotekija.orcid.virhe[lang]"></span>
               </div>
               <!-- Kenttä hr numero, currently visible only for Luonnonvarakeskus -->
               <div data-ng-if="isFieldVisible('hrnumero')" id="hrGroup" class="col-xs-12 col-sm-6">

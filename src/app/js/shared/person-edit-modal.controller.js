@@ -22,6 +22,9 @@ app.controller('PersonModalInstanceCtrl', ['$scope', '$uibModalInstance', 'perso
                 resolve: {
                     person: function () {
                         return $scope.selectedPerson
+                    },
+                    lang: function () {
+                        return $scope.lang
                     }
                 }
             });
