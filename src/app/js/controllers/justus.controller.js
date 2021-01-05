@@ -316,7 +316,6 @@ angular.module('JustusController', [])
                 $scope.justus.julkaisu.jufotunnus = "";
                 $scope.justus.julkaisu.jufoluokitus = "";
                 $scope.justus.julkaisu.issn = [""];
-                $scope.justus.julkaisu.isbn = [""];
                 $scope.justus.julkaisu.kustantaja = "";
                 $scope.issnDescription = [];
             };
