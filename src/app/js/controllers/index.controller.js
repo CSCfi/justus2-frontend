@@ -143,13 +143,7 @@ angular.module('IndexController', [])
             // for ui listing unique organizations ordered by language!
             $scope.getOrganizationList = function() {
 
-                let orgNamesUrl;
-
-                if ($scope.demoEnabled) {
-                    orgNamesUrl = API_BASE_URL + 'organisaationimet?lang=';
-                } else {
-                    orgNamesUrl = API_BASE_URL + 'public/organisaationimet?lang='; 
-                }
+                let orgNamesUrl = API_BASE_URL + 'public/organisaationimet?lang=';
 
                 $http.get(orgNamesUrl + $scope.lang)
                     .then(function(response) {

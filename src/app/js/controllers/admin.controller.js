@@ -245,7 +245,7 @@ angular.module('AdminController', [])
                 APIService.postCsvFile(file)
                     .then(function (res) {
                         console.log(res);
-                        if(res.status === 200) {
+                        if (res.status === 200) {
                             $scope.personsToBeDeleted = res.data;
                             $scope.csvPreviewSuccess = true;
                         } else {
