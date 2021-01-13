@@ -8,7 +8,7 @@ const i18n = {
       justus: {  FI: 'Tallenna julkaisu', SV: 'Spara uppgifter', EN: 'Save publcation' },
       omat:  {  FI: 'Omat tallennukset', SV: 'Mina publikationer', EN: 'My publications' },
       hyvaksy: { FI: 'Hyväksy tallennuksia', SV: 'Godkänn uppgifter', EN: 'Approve publications' },
-      admin: { FI: 'Tekijätietojen hallinta', SV: 'SV Käyttäjien hallinta', EN: 'EN Käyttäjien hallinta' }
+      admin: { FI: 'Tekijätietojen hallinta', SV: 'Hantering av upphovsmanruppgifter', EN: 'Author information management' }
     },
     logotext: { FI: 'JUSTUS - JULKAISUTIETOJEN TALLENNUS', SV: 'JUSTUS - JULKAISUTIETOJEN TALLENNUS', EN: 'JUSTUS - JULKAISUTIETOJEN TALLENNUS' },
     lang: { FI: 'Suomeksi', SV: 'På svenska', EN: 'In English' },
@@ -19,7 +19,7 @@ const i18n = {
       tallenna: { FI: 'Tallenna julkaisu', SV: 'Spara uppgifter', EN: 'Save publication' },
       omat: { FI: 'Omat tallennukset', SV: 'Mina publikationer', EN: 'My publications' },
       hyvaksy: { FI: 'Hyväksy tallennuksia', SV: 'Godkänn uppgifter', EN: 'Approve publications' },
-      admin: { FI: 'Tekijätietojen hallinta', SV: 'Hantering av författaruppgifter', EN: 'Author information management' },
+      admin: { FI: 'Tekijätietojen hallinta', SV: 'Hantering av upphovsmanruppgifter', EN: 'Author information management' },
     }
   },
   footer: {
@@ -105,10 +105,10 @@ const i18n = {
         },
       },
       admin: { 
-        button: {  FI: 'Tekijätietojen hallinta', SV: 'Hantering av författaruppgifter', EN: 'Author information management' },
+        button: {  FI: 'Tekijätietojen hallinta', SV: 'Hantering av upphovsmanuppgifter', EN: 'Author information management' },
         text: { 
           FI: 'Tekijätietojen hallinta osiossa pääsee lisäämään ja muokkaamaan organisaation käyttäjiä. Osiossa on mahdollista tuoda käyttäjät ladata käyttäjät CSV-tiedostona palvelimelta sekä lähettää päivitetyt tiedot CSV:nä.',
-          SV: 'I avdelningen för hanteringen av författaruppgifter kan man tillägga och modifiera organisationens användare. I avdelningen kan man hämta och ladda ner användare från servern som CSV-fil samt skicka uppdaterade uppgifter som CSV.',
+          SV: 'I avdelningen för hanteringen av upphovsmanuppgifter kan man tillägga och modifiera organisationens användare. I avdelningen kan man hämta och ladda ner användare från servern som CSV-fil samt skicka uppdaterade uppgifter som CSV.',
           EN: 'In the Author information management section you can add and edit the organization\'s users. In this section, you can import users, download users as a CSV file, and send updated information as a CSV.'
         },
       }
@@ -230,7 +230,7 @@ const i18n = {
         EN: 'Publication authors',
         tooltip: {
           FI: 'Julkaisun täydelliset tekijätiedot (ml. ulkomaiset tekijät) muodossa Sukunimi, Etunimi. Paina enter vahvistaaksesi nimi. Tekijät siinä järjestyksessä, kuin ne ovat julkaisussa ilmoitettu. 20 ensimmäistä tekijää riittää. Voit vaihtaa tekijöiden järjestystä tarttumalla nimeen ja siirtämällä.',
-          SV: 'Fullständig information om publikationens upphovsmän anges i den form och i den ordning som de nämns i den ursprungliga publikationen eller källdatabasen (högst 20 st.). Du kan dra författarna för att ändra deras ordning.',
+          SV: 'Fullständig information om publikationens upphovsmän anges i den form och i den ordning som de nämns i den ursprungliga publikationen eller källdatabasen (högst 20 st.). Du kan dra upphovsmännen för att ändra deras ordning.',
           EN: 'Authors of the original publication in the following format: Surname, Firstname. Press enter to confirm. Authors in the same order as was in the original publication. Max. 20 authors is sufficient. You can drag the authors to change their order.'
         },
         picktip: { FI: 'Syötä muodossa Sukunimi, Etunimi ja paina enter', SV: 'Skriv i formatet Efternamn, Förnamn och tryck enter', EN: 'Type in format Lastname, Firstname and press enter' }
@@ -283,7 +283,7 @@ const i18n = {
         lisaa: { FI: 'Lisää organisaatiotekijä', SV: 'Lägg till ny organisationens upphovsman', EN: 'Add new organisation\'s author', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
         poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
         kopioi: { FI: 'Kopioi tekijät',
-          SV: 'Kopiera författarna',
+          SV: 'Kopiera upphovsmännen',
           EN: 'Copy authors',
           tooltip: {
             FI: 'Kopioi julkaisun tekijät organisaation tekijöiksi',
@@ -292,7 +292,7 @@ const i18n = {
           },
           disabled: {
             FI: 'Tekijöiden kopiointi mahdollista vain kerran. Lisää puuttuvat tekijät manuaalisesti.',
-            SV: 'Författarna kan kopieras endast en gång. Lägg till författare som saknas manuellt.',
+            SV: 'Upphovsmännen kan kopieras endast en gång. Lägg till upphovsman som saknas manuellt.',
             EN: 'Authors can only be copied once. Add missing authors manually.'
           }
         }
@@ -763,7 +763,7 @@ const i18n = {
                EN: 'Enter publication file',
                tooltip : {
                  FI: 'Syötä julkaisuun liittyvä tiedosto, mikäli mahdollinen kustantaja on sen sallinut sekä kaikilta julkaisun tekoon osallistuneilta tekijöiltä on siihen lupa. Julkaisuun liittyvä tiedosto tulee tällöin avoimesti saataville julkaisuarkistoon organisaation pääkäyttäjän hyväksyttyä sen. Mikäli olet epävarma julkaisun syöttämisestä, ole yhteydessä oman organisaatiosi käyttötukeen.',
-                 SV: 'Du kan ange publikationsfil om den möjliga utgivaren har tillåtit det och du har behörighet från alla författare att göra det. Publiceringsfilen publiceras sedan på publikationsarkivet när administratören har godkänt den. Om du är osäker på möjligheten att skriva in en publikationsfil, kontakta organisations helpdesk.',
+                 SV: 'Du kan ange publikationsfil om den möjliga utgivaren har tillåtit det och du har behörighet från alla upphovsmän att göra det. Publiceringsfilen publiceras sedan på publikationsarkivet när administratören har godkänt den. Om du är osäker på möjligheten att skriva in en publikationsfil, kontakta organisations helpdesk.',
                  EN: 'You can enter publication file if the possible publisher has allowed it and you have permission from all the authors to do so. The publication file will be then be made publicly available at publication archive when administrator has approved it. If you are unsure about the possibility to enter publication file, be in contact with the help desk.'
                }
             },
@@ -1001,30 +1001,46 @@ const i18n = {
     no: { FI: 'Ei', SV: 'Nej', EN: 'No' }
   },
   admin: {
-	  haku: { FI: 'Haku tekijöistä', SV: 'Författarsökning', EN: 'Search authors' },
-      vie: {  FI: 'Tuo tekijöitä', SV: 'Importera författare', EN: 'Import authors' },
+	  haku: { FI: 'Haku tekijöistä', SV: 'Upphovsmansökning', EN: 'Search authors' },
+      vie: {  FI: 'Tuo tekijöitä', SV: 'Importera upphovsmän', EN: 'Import authors' },
 	  content: {
-	    etsi: { FI: 'Hae henkilöä', SV: '', EN: '' },
-        yhteensa: { FI: 'Organisaation tekijöitä yhteensä:', SV: 'Antalet författare:', EN: 'Amount of authors:' },
+        aloita: { FI: 'Aloita lisäämällä tekijöitä Tuo tekijöitä -välilehdellä', SV: 'Börja med att lägga till upphovsmän i fliken Importera upphovsmän', EN: 'Start by adding authors on Import authors tab' },
+        yhteensa: { FI: 'Organisaation tekijöitä yhteensä:', SV: 'Antalet organisationens upphovsmän:', EN: 'Amount of organization\'s authors:',
+          text1: {
+            FI: 'Taulukko näyttää 20 viimeeksi muokattua tekijää. Hakukentässä voit hakea tekijöitä etunimen, sukunimen tai tunnisteen perusteella.',
+            SV: 'Tabellen visar de senaste 20 redigerade upphovsmännen. I sökfältet kan du söka upphovsmän efter förnamn, efternamn eller ORCID iD.',
+            EN: 'The table shows the last 20 edited authors. In the search field, you can search for authors by first name, last name, or identifier.'
+          },
+          text2: {
+            FI: 'Tekijää voi muokata klikkaamalla riviä halutun tekijän kohdalla.',
+            SV: 'Upphovsmannen kan redigeras genom att klicka på raden.',
+            EN: 'The author can be edited by clicking on the row of the desired author.'
+          }
+        },
+	    hae: { FI: 'Hae tekijää', SV: 'Söka upphovsman', EN: 'Search author',
+          text: {
+	        FI: 'Hae etunimen, sukunimen tai tunnisteen perusteella', SV: 'Sök efter förnamn, efternamn eller ORCID iD', EN: 'Search by first name, last name, or identifier'
+          }
+        },
         lista: {
           tunniste: { FI: 'Tunniste / ID', SV: 'Identitetsnummer', EN: 'Identifier'},
           etunimi: { FI: 'Etunimi', SV: 'Förnamn', EN: 'Firstname'},
           sukunimi: { FI: 'Sukunimi', SV: 'Efternamn', EN: 'Lastname'},
-          orcid: { FI: 'Orcid', SV: 'Orcid', EN: 'Orcid'},
+          orcid: { FI: 'Orcid', SV: 'ORCID iD', EN: 'ORCID iD'},
           muokattu: { FI: 'Muokattu', SV: 'Ändrad', EN: 'Modified'},
           nayta: { FI: 'Näytä julkaisut', SV: 'Visa publikationer', EN: 'Show publications'},
           email: { FI: 'Sähköposti', SV: 'E-post', EN: 'Email' },
           alayksikko: { FI: 'Alayksikkö', SV: 'Enhet', EN: 'Organisational unit' }
         },
         form: {
-          sulje: { FI: 'Sulje', SV: 'Stäng', EN: 'Close' },
+          sulje: { FI: 'Sulje tallentamatta', SV: 'Stäng utan att spara', EN: 'Close without saving' },
           lisaa: { FI: 'Lisää uusi organisaation tekijä', SV: 'SV Lisää uusi organisaation tekijä', EN: 'EN Lisää uusi organisaation tekijä' },
-          muokkaa: { FI: 'Muokkaat tekijää:', SV: 'Du modifierar författaren:', EN: 'You are editing author:' },
+          muokkaa: { FI: 'Muokkaat tekijää:', SV: 'Du redigerar upphovsmannen:', EN: 'You are editing author:' },
           firstname: { FI: 'Etunimi', SV: 'Förnamn', EN: 'Firstname' },
           lastname: { FI: 'Sukunimi', SV: 'Efternamn', EN: 'Lastname' },
           tunniste: { FI: 'Tunniste / ID', SV: 'Identitetsnummer', EN: 'Identifier' },
           email: { FI: 'Sähköposti', SV: 'E-post', EN: 'Email' },
-          orcid: { FI: 'Orcid', SV: 'Orcid', EN: 'Orcid' },
+          orcid: { FI: 'Orcid', SV: 'ORCID iD', EN: 'ORCID iD' },
           alayksikko: {
               FI: 'Alayksikko', SV: 'Enhet', EN: 'Organisational unit',
               label: { FI: 'Alayksikko (maks. 3)', SV: 'Enhet (högst 3)', EN: 'Organisational unit (maximum 3)' },
@@ -1037,37 +1053,46 @@ const i18n = {
           tallenna: { FI: 'Tallenna', SV: 'Spara', EN: 'Save'},
           peruuta: { FI: 'Peruuta', SV: 'Avbryt', EN: 'Cancel'},
           poista: {
-            FI: 'Poista tekijä', SV: 'Radera författaren', EN: 'Remove author',
+            FI: 'Poista tekijä', SV: 'Radera upphovsmannen', EN: 'Remove author',
             modal: {
-              title: {FI: 'Vahvista poisto', SV: 'Bekräfta raderingen', EN: 'Confirm removal'},
+              title: { FI: 'Vahvista poisto', SV: 'Bekräfta raderingen', EN: 'Confirm removal' },
               text: {
                 FI: 'Oletko varma että haluat poistaa henkilön',
-                SV: 'Är du säker att du vill radera författaren',
+                SV: 'Är du säker att du vill radera upphovsmannen',
                 EN: 'Are you sure you want to remove author'
               },
               cancel: { FI: 'Peruuta', SV: 'Avbryt', EN: 'Cancel'}
             }
+          },
+          alerts: {
+            update: {
+              success: { FI: 'Muutokset tallennettu', SV: 'Ändringarna har sparats', EN: 'Changes saved' },
+              failure: { FI: '', SV: '', EN: '' }
+            },
+            add: {
+              success: { FI: 'Tekijän lisäys onnistui', SV: 'Upphovsmannen har lagts till', EN: 'Author added successfully' },
+              failure: { FI: 'Tietojen tallennus epäonnistui', SV: 'Lagring har misslyckats', EN: 'Failed to save data'},
+            }
           }
         },
         julkaisut: {
-          title1: { FI: 'Käyttäjän', SV: 'SV Käyttäjän', EN: 'EN Käyttäjän'},
-          title2: { FI: 'julkaisut', SV: 'SV julkaisut', EN: 'EN julkaisut'},
-          id: { FI: 'Julkaisu ID', SV: 'SV Julkaisu ID', EN: 'EN Julkaisu ID' },
+          id: { FI: 'JulkaisuID', SV: 'PublikationID', EN: 'PublicationID' },
           julkaisu: { FI: 'Julkaisu', SV: 'Publikation', EN: 'Publication' },
-          eijulkaisuja: { FI: 'Ei julkaisuja', SV: 'SV Ei julkaisuja', EN: 'No publications' }
+          eijulkaisuja: { FI: 'Ei julkaisuja', SV: 'Ingenting att visa', EN: 'Nothing to show' },
+          sulje: { FI: 'Sulje', SV: 'Stäng', EN: 'Close' },
         },
         lataus: {
           lataa: {
             title: { FI: 'Lataa tiedot CSV-tiedostona', SV: 'Exportera uppgifter som CSV', EN: 'Export data as CSV' },
             text1: {
               FI: 'Lataa Justus-palveluun tallennetut oman organisaatiosi tekijätiedot CSV-muotoisena tiedostona. Palvelun puolella lisätyt henkilöt ovat mukana tiedostossa. Mikäli organisaation tekijätietoja ei löydy Justus-palvelusta, voit ladata mallipohjan.',
-              SV: 'Lataa Justus-palveluun tallennetut oman organisaatiosi tekijätiedot CSV-muotoisena tiedostona. Palvelun puolella lisätyt henkilöt ovat mukana tiedostossa. Mikäli organisaation tekijätietoja ei löydy Justus-palvelusta, voit ladata mallipohjan.',
-              EN: 'Lataa Justus-palveluun tallennetut oman organisaatiosi tekijätiedot CSV-muotoisena tiedostona. Palvelun puolella lisätyt henkilöt ovat mukana tiedostossa. Mikäli organisaation tekijätietoja ei löydy Justus-palvelusta, voit ladata mallipohjan.'
+              SV: 'Exportera din organisations upphovsmäninformation som lagras i Justus som en CSV-fil. Personer som läggs till på tjänsten ingår i filen. Om din organisations upphovsmäninformation kan inte hittas på Justus kan du ladda ner exempelfilen.',
+              EN: 'Export your organization\'s author information stored in JUSTUS as a CSV file. People added in the service are included in the file. If your organization\'s author information cannot be found on JUSTUS, you can download the template.'
             },
             text2: {
               FI: 'Huom! Mikäli tunniste-kenttä sisältää pelkkiä numeroita ja alkaa nollalla, jotkin taulukkolaskentaohjelmat (esim. Excel) konvertoivat kentät automaattisesti numeeriseksi ja pudottavat arvosta ensimmäisen nollan pois. Tällöin kenttä täytyy määrittää tekstikentäksi ennen tiedoston avaamista.',
-              SV: 'Huom! Mikäli tunniste-kenttä sisältää pelkkiä numeroita ja alkaa nollalla, jotkin taulukkolaskentaohjelmat (esim. Excel) konvertoivat kentät automaattisesti numeeriseksi ja pudottavat arvosta ensimmäisen nollan pois. Tällöin kenttä täytyy määrittää tekstikentäksi ennen tiedoston avaamista.',
-              EN: 'Huom! Mikäli tunniste-kenttä sisältää pelkkiä numeroita ja alkaa nollalla, jotkin taulukkolaskentaohjelmat (esim. Excel) konvertoivat kentät automaattisesti numeeriseksi ja pudottavat arvosta ensimmäisen nollan pois. Tällöin kenttä täytyy määrittää tekstikentäksi ennen tiedoston avaamista.'
+              SV: 'OBS! Om taggfältet innehåller bara siffror och börjar med noll konverterar några kalkylprogram (t.ex. Excel) automatiskt fälten till numeriska och släpper den första nollan ur värdet. I så fall måste fältet vara bestämt på ett textfält innan filen öppnas.',
+              EN: 'NB! If the identifier field contains only numbers and starts with zero, some programs (such as Excel) will automatically convert the fields to numeric and drop the first zero out. In this case, the field must be set to a text field before opening the file.'
             },
             button: { FI: 'Lataa CSV', SV: 'Exportera CSV', EN: 'Export CSV' }
           },
@@ -1075,41 +1100,48 @@ const i18n = {
             title: { FI: 'Tuo päivitetyt tiedot', SV: 'Importera updaterade uppgifter', EN: 'Import updated information' },
             text1: {
               FI: 'Tuo päivitetty tiedosto oman organisaatiosi tekijätiedoista Justus-palveluun. Varmista että tiedot ovat oikein ja kaikki vaadittavat kentät täytetty ennen kuin hyväksyt tietojen siirron Justus-palveluun.',
-              SV: 'Tuo päivitetty tiedosto oman organisaatiosi tekijätiedoista Justus-palveluun. Varmista että tiedot ovat oikein ja kaikki vaadittavat kentät täytetty ennen kuin hyväksyt tietojen siirron Justus-palveluun.',
-              EN: 'Tuo päivitetty tiedosto oman organisaatiosi tekijätiedoista Justus-palveluun. Varmista että tiedot ovat oikein ja kaikki vaadittavat kentät täytetty ennen kuin hyväksyt tietojen siirron Justus-palveluun.' },
+              SV: 'Importera en uppdaterad fil med din organisations upphovsmäninformation till Justus. Se till att informationen är korrekt och att alla obligatoriska fält är fyllda innan du accepterar överföringen av data till Justus.',
+              EN: 'Import an updated file of your organization\'s author information into JUSTUS. Remember to make sure that the information is correct and that all required fields are filled in before accepting the transfer of data to JUSTUS-service.' },
             text2: {
               FI: 'Tekijästä on ilmoitettava vähintään tunniste sekä etunimi ja sukunimi. Tekijöiden välissä ei saa olla tyhjiä rivejä. Mikäli tekijään liittyy alayksikköjä, täytetään ensimmäinen alayksikkökenttä ensimmäisenä. Tekijä poistuu, mikäli CSV:ssä ei ole vastaavaa tunnistetta kuin jo syötetyissä tekijöissä.',
-              SV: 'Tekijästä on ilmoitettava vähintään tunniste sekä etunimi ja sukunimi. Tekijöiden välissä ei saa olla tyhjiä rivejä. Mikäli tekijään liittyy alayksikköjä, täytetään ensimmäinen alayksikkökenttä ensimmäisenä. Tekijä poistuu, mikäli CSV:ssä ei ole vastaavaa tunnistetta kuin jo syötetyissä tekijöissä.',
-              EN: 'Tekijästä on ilmoitettava vähintään tunniste sekä etunimi ja sukunimi. Tekijöiden välissä ei saa olla tyhjiä rivejä. Mikäli tekijään liittyy alayksikköjä, täytetään ensimmäinen alayksikkökenttä ensimmäisenä. Tekijä poistuu, mikäli CSV:ssä ei ole vastaavaa tunnistetta kuin jo syötetyissä tekijöissä.'
+              SV: 'Man måste rapportera minst taggen och för- och efternamnet. Det får inte finnas några tomma rader mellan upphovsmännen. Om upphovsmannen är associerad med enheter fylls det förstaenhetsfältet först. Upphovsmannen är raderat om CSV inte har samma tagg som de upphovsmän som redan har matas.',
+              EN: 'The author\'s identifier, first name, and surname must be entered at least. There should not blank lines between the authors. If the author is associated with an organizational unit, the first organizational unit field should be filled in first. The author is deleted if the CSV file does not have a corresponding identifier as the authors already entered to the service.'
             },
             text3: {
               FI: 'Mikäli tekijälle on aiemmin ilmoitettu ORCID-tunniste, tunniste ei poistu tekijän tiedoista, vaikka tietoa ei tuotaisi päivitettävän CSV-tiedoston mukana. ORCID-tunnus kuitenkin päivittyy mikäli se on vaihtunut. Mikäli ORICID-tunnus halutaan poistaa kokonaan, se on mahdollista yksittäisen tekijän muokkausnäkymässä.',
-              SV: 'Mikäli tekijälle on aiemmin ilmoitettu ORCID-tunniste, tunniste ei poistu tekijän tiedoista, vaikka tietoa ei tuotaisi päivitettävän CSV-tiedoston mukana. ORCID-tunnus kuitenkin päivittyy mikäli se on vaihtunut. Mikäli ORICID-tunnus halutaan poistaa kokonaan, se on mahdollista yksittäisen tekijän muokkausnäkymässä.',
-              EN: 'Mikäli tekijälle on aiemmin ilmoitettu ORCID-tunniste, tunniste ei poistu tekijän tiedoista, vaikka tietoa ei tuotaisi päivitettävän CSV-tiedoston mukana. ORCID-tunnus kuitenkin päivittyy mikäli se on vaihtunut. Mikäli ORICID-tunnus halutaan poistaa kokonaan, se on mahdollista yksittäisen tekijän muokkausnäkymässä.',
+              SV: 'Om ORCID iD har tidigare rapporterats till upphovsmännen kommer taggen inte att tas bort från uphovsmannens information, även om informationen inte importeras med CSV-filen för att uppdateras. ORCID kommer dock att uppdateras om det har ändrats. Om du vill radera ORICID helt är det möjligt i redigeringsvyn för en enskild upphovsman.',
+              EN: 'If an ORCID iD has been previously reported to the author,  the identifier will not be removed from the author\'s information, even if the information is not imported with the updated CSV file. The ORCID iD, however, will be updated if it has changed. If you want to delete the ORICID iD completely, it is possible in the single-author edit view.',
             },
             text4: {
               FI: 'Tiedoston valitsemisen jälkeen näet esikatselussa tiedoston 10 ensimmäistä tekijää sekä listan kaikista tekijöistä, jotka poistetaan mikäli tiedoston siirtäminen hyväksytään. Varmista että tiedot ovat oikein ennen kuin hyväksyt tietojen siirron Justus-palveluun.',
-              SV: 'Tiedoston valitsemisen jälkeen näet esikatselussa tiedoston 10 ensimmäistä tekijää sekä listan kaikista tekijöistä, jotka poistetaan mikäli tiedoston siirtäminen hyväksytään. Varmista että tiedot ovat oikein ennen kuin hyväksyt tietojen siirron Justus-palveluun.',
-              EN: 'Tiedoston valitsemisen jälkeen näet esikatselussa tiedoston 10 ensimmäistä tekijää sekä listan kaikista tekijöistä, jotka poistetaan mikäli tiedoston siirtäminen hyväksytään. Varmista että tiedot ovat oikein ennen kuin hyväksyt tietojen siirron Justus-palveluun.'
+              SV: 'När du har valt filen ser du en förhandsgranskning av de första 10 upphovsmännen och en lista över alla upphovsmän som kommer att tas bort om filöverföringen godkänns. Se till att informationen är korrekt innan du accepterar överföringen av data till Justus.',
+              EN: 'After selecting the file, you will see a preview of the first 10 authors of the file, as well as a list of all the authors that will be deleted if the file transfer is approved. Remember to make sure that the information is correct before accepting the transfer of data to JUSTUS-service.'
             },
             button: { FI: 'Valitse tiedosto', SV: 'Välj fil', EN: 'Choose file' },
-            esikatselu: { FI: 'Esikatselu lisättävistä tekijöistä (10 ensimmäistä):', SV: 'SV Esikatselu lisättävistä henkilöistä (10 ensimmäistä):', EN: 'EN Esikatselu lisättävistä henkilöistä (10 ensimmäistä):' },
-            poisto: { FI: 'Huom! Seuraavat tekijät poistetaan tietokannasta:', SV: 'SV Huom! Seuraavat henkilöt poistetaan tietokannasta:', EN: 'EN Huom! Seuraavat henkilöt poistetaan tietokannasta:' },
+            esikatselu: { FI: 'Esikatselu lisättävistä tekijöistä (10 ensimmäistä):', SV: 'Förhandsgranskning av de första 10 upphovsmännen som läggas till:', EN: 'Preview of the first 10 authors of the file:' },
+            poisto: {
+              FI: 'Huom! Seuraavat tekijät poistetaan tietokannasta:',
+              SV: 'OBS! Följande upphovsmän tas bort från databasen:',
+              EN: 'NB! The following authors will be deleted from the service:'
+            },
             info: {
               FI: 'Hyväksy yllä olevat muutokset painamalla "Tallenna" tai hylkää muutokset painamalla "Peruuta"',
-              SV: 'SV Hyväksy yllä olevat muutokset painamalla "Tallenna" tai hylkää muutokset painamalla "Peruuta"',
-              EN: 'EN Hyväksy yllä olevat muutokset painamalla "Tallenna" tai hylkää muutokset painamalla "Peruuta"'
+              SV: 'Klicka på "Spara" för att acceptera ändringarna, eller "Avbryt" för att förkasta ändringarna.',
+              EN: 'Press "Save" to accept the changes above, or "Cancel" to discard the changes.'
             },
-            error: { FI: 'Hylkää ja yritä uudestaan', SV: 'SV Hylkää ja yritä uudestaan', EN: 'EN Hylkää ja yritä uudestaan'},
+            success: { FI: 'Tiedot päivitetty onnistuneesti!', SV: 'Uppgifterna har uppdaterats!', EN: 'Information successfully updated!'},
+            error: { FI: 'Hylkää ja yritä uudestaan', SV: 'Förkasta och försök igen', EN: 'Discard and try again'},
             tallenna: { FI: 'Tallenna', SV: 'Spara', EN: 'Save' },
             peruuta: { FI: 'Peruuta', SV: 'Avbryt', EN: 'Cancel' }
           },
-          lisaa: { FI: 'Lisää yksittäinen uusi organisaation tekijä',
-            SV: 'SV Lisää uusi yksittäinen organisaation tekijä',
-            EN: 'EN Lisää uusi yksittäinen organisaation tekijä',
-            teksti: { FI: 'Lisää yksittäinen uusi organisaation tekijä. Useamman tekijän tiedot voit tuoda kerralla kohdassa "Tuo päivitetyt tiedot"',
-              SV: 'Lisää yksittäinen uusi organisaation tekijä. Useamman tekijän tiedot voit tuoda kerralla kohdassa "Tuo päivitetyt tiedot"',
-              EN: 'Lisää yksittäinen uusi organisaation tekijä. Useamman tekijän tiedot voit tuoda kerralla kohdassa "Tuo päivitetyt tiedot"'
+          lisaa: {
+            FI: 'Lisää yksittäinen uusi organisaation tekijä',
+            SV: 'Lägg till en enda ny organisations upphovsman',
+            EN: 'Add a single new organization\'s author',
+            teksti: {
+              FI: 'Lisää yksittäinen uusi organisaation tekijä. Useamman tekijän tiedot voit tuoda kerralla kohdassa "Tuo päivitetyt tiedot"',
+              SV: 'Lägg till en enda ny organisations upphovsman. Du kan importera data från flera upphovsmän samtidigt under "Importera uppdaterade uppgifter"',
+              EN: 'Add a single new organization\'s author. You can import data of multiple authors at once in the "Import updated information" section."'
             }
           },
         }

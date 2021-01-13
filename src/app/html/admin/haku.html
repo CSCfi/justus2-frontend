@@ -11,12 +11,12 @@
     </div>
 
     <div>
-        <div data-ng-if="showList" style="margin: 30px 15px;">
+        <div class="person-publication-list" data-ng-if="showList">
             <button type="button"
                     class="btn btn-default pull-right "
                     data-ng-click="closeList()"
-                    title="{{i18n.admin.content.form.sulje[lang]}}">
-                {{i18n.admin.content.form.sulje[lang]}}
+                    title="{{i18n.admin.content.julkaisut.sulje[lang]}}">
+                {{i18n.admin.content.julkaisut.sulje[lang]}}
                 <i class="fa fa-close fa-lg pl"></i>
             </button>
             <person-publication-list-directive
@@ -27,21 +27,21 @@
         </div>
 
         <div class="px" data-ng-if="!persons.data.length">
-            <p class="text-secondary text-xl text-center mt-xl">Aloita lisäämällä henkilöitä Tuo henkilöitä -välilehdellä</p>
+            <p class="text-secondary text-xl text-center mt-xl" data-ng-bind="i18n.admin.content.aloita[lang]"></p>
         </div>
 
         <div class="px" data-ng-if="persons.data.length">
             <div class="row m-t">
                 <div class="col-xs-12 p">
                     <p class="mb-0 font-weight-bold">{{i18n.admin.content.yhteensa[lang]}}<span class="pl-x">{{persons.data.length}}</span></p>
-                    <p class="mb-0">Taulukko näyttää 20 viimeeksi muokattua tekijää. Hakukentässä voit hakea tekijöitä etunimen, sukunimen tai tunnisteen perusteella.</p>
-                    <p>Tekijää voi muokata klikkaamalla riviä halutun tekijän kohdalla.</p>
+                    <p class="mb-0" data-ng-bind="i18n.admin.content.yhteensa.text1[lang]"></p>
+                    <p data-ng-bind="i18n.admin.content.yhteensa.text2[lang]"></p>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-12">
-                    <label for="tekijahaku" class="font-weight-bold" data-ng-bind="i18n.admin.haku[lang]"></label>
+                    <label for="tekijahaku" class="font-weight-bold" data-ng-bind="i18n.admin.content.hae[lang]"></label>
                     <div class="input-group">
                     <span class="input-group-addon bg-primary cursor-pointer border-primary">
                         <i class="fa fa-search text-white"></i>
@@ -49,7 +49,7 @@
                         <input id="tekijahaku"
                                type="search" class="form-control"
                                data-ng-model="search"
-                               placeholder="Hae etunimen, sukunimen tai tunnisteen perusteella"/>
+                               placeholder="{{i18n.admin.content.hae.text[lang]}}"/>
                     </div>
                 </div>
             </div>
@@ -96,8 +96,10 @@
 
     <div data-ng-show="showUpdateResponse" class="alert alert-success alert-dismissible alert-absolute"
         data-ng-class="{ 'alert-danger':  updatePersonError }">
-        <a class="custom-close" data-ng-click="closeUpdateAlert()" aria-label="close"><i class="fa fa-times"></i></a>
         <span class="text-xl text-secondary">{{updatePersonAlertText}}</span>
+        <button type="button" data-ng-click="closeUpdateAlert()" class="btn close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
 
 </div>

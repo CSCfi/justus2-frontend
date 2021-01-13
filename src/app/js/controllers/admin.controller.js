@@ -92,7 +92,7 @@ angular.module('AdminController', [])
                                 console.log(response);
                                 $scope.showUpdateResponse = true;
                                 if (response.status === 200) {
-                                    $scope.updatePersonAlertText = "Changes saved";
+                                    $scope.updatePersonAlertText = $scope.i18n.admin.content.form.alerts.update.success[$scope.lang];
                                     fetchPersonData();
                                     $timeout(function () {
                                         $scope.showUpdateResponse = false;
@@ -100,7 +100,7 @@ angular.module('AdminController', [])
                                     }, 3000)
                                 } else {
                                     $scope.updatePersonError = true;
-                                    $scope.updatePersonAlertText = "Saving user failed with response code: " + response.status + " and message: " + response.data;
+                                    $scope.updatePersonAlertText = "Saving author failed with response code: " + response.status + " and message: " + response.data;
                                 }
 
                             }).catch(function (err) {
@@ -195,7 +195,7 @@ angular.module('AdminController', [])
                             // scroll to top
                             $window.scrollTo(0, 0);
                             $scope.savePersonSuccess = true;
-                            $scope.savePersonResponseText = "Käyttäjän lisäys onnistui";
+                            $scope.savePersonResponseText = $scope.i18n.admin.content.form.alerts.add.success[$scope.lang];
 
                             $timeout(function () {
                                 $scope.savePersonSuccess = false;
@@ -211,7 +211,7 @@ angular.module('AdminController', [])
                     }).catch(function (err) {
                         console.log(err);
                         $scope.savePersonError = true;
-                        $scope.savePersonResponseText = "Operation failed";
+                        $scope.savePersonResponseText = $scope.i18n.admin.content.form.alerts.add.failure[$scope.lang];
                     })
                 }
 
@@ -269,7 +269,7 @@ angular.module('AdminController', [])
                                 res.data + " and status: " + res.status
                         } else {
                             $scope.csvUploadError = false;
-                            $scope.csvUploadResponseText = "Tiedot päivitetty onnistuneesti!";
+                            $scope.csvUploadResponseText = $scope.i18n.admin.content.lataus.tuo.success[$scope.lang];
                             fetchPersonData();
                         }
                         $scope.showAlertDialog = true;
