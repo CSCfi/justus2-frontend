@@ -236,7 +236,9 @@ angular.module('JustusController', [])
                                 $scope.lehtinimet = response.data;
                                 return response.data;
                             }
-                        });
+                        }).catch(function (err) {
+                            console.log(err);
+                    });
                 }
 
                 if (tyyppi === 2) {
@@ -246,6 +248,8 @@ angular.module('JustusController', [])
                                 $scope.kustantajanimet = response.data;
                                 return response.data;
                             }
+                        }).catch(function (err) {
+                            console.log(err);
                         });
                 }
 
@@ -256,6 +260,8 @@ angular.module('JustusController', [])
                                 $scope.konferenssinimet = response.data;
                                 return response.data;
                             }
+                        }).catch(function (err) {
+                            console.log(err);
                         });
                 }
             };
