@@ -8,7 +8,6 @@ angular.module('AuthService', [])
 
             let getUserInfo = function () {
                 return $http.get(AUTH_URL).then(function (response) {
-                    console.log(response);
                     if (!response || response.status !== 200) {
                         return false;
                     } else {
@@ -42,9 +41,6 @@ angular.module('AuthService', [])
 
                 let sessionCookie = $cookies.get("connect.sid");
                 let shibSession = $cookies.get("_shibsession_session.cookie");
-                console.log(sessionCookie);
-                console.log(shibSession);
-                console.log($rootScope.user);
 
                 if (!sessionCookie || !shibSession || !$rootScope.user) {
                     return false;
