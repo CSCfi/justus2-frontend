@@ -484,15 +484,16 @@ angular.module('JustusController', [])
               if (input === null) return;
               if (input.length < 3) return [{ prefLabel: input, localname: input }];
                 return ExternalServicesService.etsiAvainsanat(input, $scope.lang)
-                    .then(function(tags) {
+                    .then(function(response) {
+                        const tags = response.data;
                         $scope.avainsanatLataa = false;
                         if (!tags || tags.length === 0) {
                             return [{ prefLabel: input, localname: input }];
                         }
-                        return tags.data;
+                        return tags;
                     })
-                    .catch(function() {
-                        $log.debug('refreshAvainsanat ' + input + ' ei löytynyt!');
+                    .catch(function(error) {
+                        console.log(error);
                         $scope.avainsanatLataa = false;
                         return [{ prefLabel: input, localname: input }];
                     });
