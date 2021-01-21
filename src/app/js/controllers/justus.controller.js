@@ -483,6 +483,7 @@ angular.module('JustusController', [])
             $scope.refreshAvainsanat = function(input) {
               if (input === null) return;
               if (input.length < 3) return [{ prefLabel: input, localname: input }];
+                $scope.avainsanatLataa = true;
                 return ExternalServicesService.etsiAvainsanat(input, $scope.lang)
                     .then(function(response) {
                         const tags = response.data;
