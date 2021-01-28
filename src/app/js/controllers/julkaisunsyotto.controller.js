@@ -10,7 +10,7 @@ angular.module('JulkaisunsyottoController', [])
             $scope.fileAlreadyExists = false;
             $scope.hideRemove = false;
 
-            if ($rootScope.user.jukuriUser && ($scope.justus.julkaisu.julkaisuntila === "1" || $scope.justus.julkaisu.julkaisuntila === "2")) {
+            if ($rootScope.user.jukuriUser && ($scope.justus.julkaisu.julkaisuntila === "1" || $scope.justus.julkaisu.julkaisuntila === "2" || $scope.justus.julkaisu.julkaisuntila === "3")) {
                 $scope.hideRemove = true;
             }
 
@@ -128,7 +128,7 @@ angular.module('JulkaisunsyottoController', [])
                 APIService.delete($stateParams.id)
                     .then((response) => {
                         console.log(response);
-                        if (response.status !== 500) {
+                        if (response.status === 200 || response.status === 404) {
                             JustusService.file = null;
                             $scope.fileAlreadyExists = false;
                             delete $rootScope.filedata.urn;

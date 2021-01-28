@@ -780,7 +780,13 @@ const i18n = {
                     valitse: { FI: 'Valitse tiedosto', SV: 'Välj fil', EN: 'Select file' },
                     eivalittu: { FI: 'Ei valittua tiedostoa', SV: ' Ingen vald fil', EN: 'No file selected' },
                     veda: { FI: 'Tai vedä tiedosto tähän', SV: 'Eller dra filen här', EN: 'Or drag file here' },
-                    poista: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' }
+                    poista: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' },
+                    poistatiedosto: { FI: 'Poista julkaisun tiedosto', SV: 'Ta bort publikation fil', EN: 'Remove publication file',
+                      tooltip: {
+                        FI: 'Poista julkaisun tiedosto ja siihen liittyvät tiedot Theseuksesta sekä Justus palvelusta. Mikäli julkaisu on jo poistettu Theseuksesta, poistetaan tiedot Justus palvelusta.',
+                        SV: 'Poista julkaisun tiedosto ja siihen liittyvät tiedot Theseuksesta sekä Justus palvelusta. Mikäli julkaisu on jo poistettu Theseuksesta, poistetaan tiedot Justus palvelusta.',
+                        EN: 'Poista julkaisun tiedosto ja siihen liittyvät tiedot Theseuksesta sekä Justus palvelusta. Mikäli julkaisu on jo poistettu Theseuksesta, poistetaan tiedot Justus palvelusta.'
+                      }}
                   },
                   info: {
                       FI: 'Huom! Vain pdf-tiedostot salllittuja.', SV: 'Obs! Endast pdf-filer är tillåtna.', EN: 'NB! Only pdf files are accepted.'
