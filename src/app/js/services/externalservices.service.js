@@ -37,7 +37,7 @@ angular.module('ExternalServicesService', [])
             let uri = API_BASE_URL +  'haku/jufo/';
             return $http.get(uri + input)
                 .then(function (response) {
-                    return response.data[0];
+                    return response.data;
                 });
         };
 

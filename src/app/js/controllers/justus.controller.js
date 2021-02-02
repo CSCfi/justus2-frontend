@@ -318,7 +318,9 @@ angular.module('JustusController', [])
                                 $scope.lehtinimet = response.data;
                                 return response.data;
                             }
-                        });
+                        }).catch(function (err) {
+                            console.log(err);
+                    });
                 }
 
                 if (tyyppi === 2) {
@@ -328,6 +330,8 @@ angular.module('JustusController', [])
                                 $scope.kustantajanimet = response.data;
                                 return response.data;
                             }
+                        }).catch(function (err) {
+                            console.log(err);
                         });
                 }
 
@@ -338,6 +342,8 @@ angular.module('JustusController', [])
                                 $scope.konferenssinimet = response.data;
                                 return response.data;
                             }
+                        }).catch(function (err) {
+                            console.log(err);
                         });
                 }
             };
@@ -398,7 +404,6 @@ angular.module('JustusController', [])
                 $scope.justus.julkaisu.jufotunnus = "";
                 $scope.justus.julkaisu.jufoluokitus = "";
                 $scope.justus.julkaisu.issn = [""];
-                $scope.justus.julkaisu.isbn = [""];
                 $scope.justus.julkaisu.kustantaja = "";
                 $scope.issnDescription = [];
             };
@@ -560,16 +565,18 @@ angular.module('JustusController', [])
             $scope.refreshAvainsanat = function(input) {
               if (input === null) return;
               if (input.length < 3) return [{ prefLabel: input, localname: input }];
+                $scope.avainsanatLataa = true;
                 return ExternalServicesService.etsiAvainsanat(input, $scope.lang)
-                    .then(function(tags) {
+                    .then(function(response) {
+                        const tags = response.data;
                         $scope.avainsanatLataa = false;
                         if (!tags || tags.length === 0) {
                             return [{ prefLabel: input, localname: input }];
                         }
-                        return tags.data;
+                        return tags;
                     })
-                    .catch(function() {
-                        $log.debug('refreshAvainsanat ' + input + ' ei löytynyt!');
+                    .catch(function(error) {
+                        console.log(error);
                         $scope.avainsanatLataa = false;
                         return [{ prefLabel: input, localname: input }];
                     });
@@ -1026,7 +1033,6 @@ angular.module('JustusController', [])
             let verifyAccess = function () {
 
                 if (AuthService.isLoggedIn()) {
-                    console.log("User is logged in");
                     populatePublicationForm();
                 } else {
                     AuthService.getUserInfo().then(function (res) {
@@ -1037,7 +1043,6 @@ angular.module('JustusController', [])
                         } else {
                             $scope.user = res;
                             $rootScope.user = $scope.user;
-                            console.log("User info returned from Auth Service.");
                             populatePublicationForm();
                         }
                     }).catch(function (err) {

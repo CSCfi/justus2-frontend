@@ -136,18 +136,13 @@ angular.module('TarkastaController', [])
             // at very first test that user object is accessible
             let verifyAccess = function () {
                 if (AuthService.isLoggedIn()) {
-                    console.log("User is logged in");
-                    console.log($rootScope.user);
-                    console.log($scope.user);
                     init();
                 } else {
                     AuthService.getUserInfo().then(function (res) {
-
                         if (!res) {
                             console.log("User data not available, redirecting to login page.")
                             $state.go('index');
                         } else {
-                            console.log("Setting user data");
                             $scope.user = res;
                             $rootScope.user = $scope.user;
                             init();
@@ -170,9 +165,6 @@ angular.module('TarkastaController', [])
             };
 
             let init = function () {
-
-                console.log($rootScope.user);
-                console.log($scope.user);
 
                 $scope.publications = new Publications();
                 $scope.searchMode = false;
@@ -281,6 +273,8 @@ angular.module('TarkastaController', [])
                     'Rinnakkaistallennetun version verkko-osoite',
                     'Avoin saatavuus',
                     'Avainsanat',
+                    'Julkaisumaksu',
+                    'Julkaisumaksuvuosi',
                     'Lisätieto',
                     'Julkaisuvuoden lisätieto',
                     'Julkaisun tieteenala 1',
@@ -531,6 +525,8 @@ angular.module('TarkastaController', [])
                     'Rinnakkaistallennetun version verkko-osoite': publication.julkaisu.rinnakkaistallennetunversionverkkoosoite,
                     'Avoin saatavuus': publication.julkaisu.avoinsaatavuus,
                     'Avainsanat': publication.avainsanat,
+                    'Julkaisumaksu': publication.julkaisu.julkaisumaksu,
+                    'Julkaisumaksuvuosi': publication.julkaisu.julkaisumaksuvuosi,
                     'Lisätieto': publication.julkaisu.lisatieto,
                     'Julkaisuvuoden lisätieto': getLisatieto(publication, "julkaisuvuodenlisatieto"),
                     'Julkaisun tieteenala 1': getTieteenala(publication.tieteenala, 1),

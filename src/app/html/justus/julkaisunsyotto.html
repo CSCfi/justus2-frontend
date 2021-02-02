@@ -55,10 +55,10 @@
                               <span data-ng-if="filedata.handle !== ''"> {{filedata.filename}} </span>
                             </span>
                         </div>
-                        <div class="col-md-2 text-right mt-x" data-ng-hide="hideRemove">
+                        <div data-ng-if="filedata.handle === ''" class="col-md-2 text-right mt-x" data-ng-hide="hideRemove">
                             <a data-ng-click="removeFileFromServer()"
                                class="text-danger cursor-pointer text-secondary"
-                               title="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.poista[lang]">
+                               title="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.poista[lang]}}">
                                 {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.poista[lang]}}
                                 <i class="fa fa-close" aria-hidden="true"></i>
                             </a>
@@ -295,7 +295,6 @@
                     </ui-select>
                 </div>
                 <div class="col-md-2 mt-x">
-
                     <a data-ng-click="filedata.oikeudet = null"
                        data-ng-if="filedata.oikeudet"
                        class="text-danger cursor-pointer text-secondary"
@@ -303,7 +302,6 @@
                         {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]}}
                         <i class="fa fa-close" aria-hidden="true"></i>
                     </a>
-
                 </div>
             </div>
             <div class="row form-group">
@@ -372,6 +370,25 @@
                                    data-ng-model="filedata.julkaisusarja"
                                    placeholder="">
                         </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div data-ng-if="filedata && filedata.handle" data-ng-hide="hideRemove" class="row">
+                <div class="col-md-12">
+                    <div class="">
+                        <button data-ng-click="removeFileFromServer()"
+                                title="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.poistatiedosto[lang]}}"
+                                class="btn btn-danger">{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.poistatiedosto[lang]}}</button>
+                        <i class="fa fa-info-circle justus-info"
+                           data-popover-trigger="'outsideClick'"
+                           data-popover-is-open="isOpenPoisto"
+                           data-ng-mouseenter="isOpenPoisto = true"
+                           data-popover-placement="right"
+                           data-uib-popover="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.poistatiedosto.tooltip[lang]}}"
+                           data-ng-show="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.julkaisu.tiedosto.poistatiedosto.tooltip[lang]">
+                        </i>
                     </div>
                 </div>
             </div>
