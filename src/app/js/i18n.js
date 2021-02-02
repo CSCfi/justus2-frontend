@@ -783,9 +783,9 @@ const i18n = {
                     poista: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' },
                     poistatiedosto: { FI: 'Poista julkaisun tiedosto', SV: 'Ta bort publikation fil', EN: 'Remove publication file',
                       tooltip: {
-                        FI: 'Poista julkaisun tiedosto ja siihen liittyvät tiedot Theseuksesta sekä Justus palvelusta. Mikäli julkaisu on jo poistettu Theseuksesta, poistetaan tiedot Justus palvelusta.',
-                        SV: 'Poista julkaisun tiedosto ja siihen liittyvät tiedot Theseuksesta sekä Justus palvelusta. Mikäli julkaisu on jo poistettu Theseuksesta, poistetaan tiedot Justus palvelusta.',
-                        EN: 'Poista julkaisun tiedosto ja siihen liittyvät tiedot Theseuksesta sekä Justus palvelusta. Mikäli julkaisu on jo poistettu Theseuksesta, poistetaan tiedot Justus palvelusta.'
+                        FI: 'Poista julkaisun tiedosto ja rinnakkaistallennetta koskevat tiedot julkaisuarkistosta sekä Justus palvelusta. Mikäli julkaisu on jo poistettu julkaisuarkistosta, poistetaan rinnakkasitallennetta koskevat tiedot Justus-palvelusta.',
+                        SV: 'Poista julkaisun tiedosto ja rinnakkaistallennetta koskevat tiedot julkaisuarkistosta sekä Justus palvelusta. Mikäli julkaisu on jo poistettu julkaisuarkistosta, poistetaan rinnakkasitallennetta koskevat tiedot Justus-palvelusta.',
+                        EN: 'Poista julkaisun tiedosto ja rinnakkaistallennetta koskevat tiedot julkaisuarkistosta sekä Justus palvelusta. Mikäli julkaisu on jo poistettu julkaisuarkistosta, poistetaan rinnakkasitallennetta koskevat tiedot Justus-palvelusta.'
                       }}
                   },
                   info: {
