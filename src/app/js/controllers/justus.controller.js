@@ -564,21 +564,21 @@ angular.module('JustusController', [])
 
             $scope.refreshAvainsanat = function(input) {
               if (input === null) return;
-              if (input.length < 3) return [{ prefLabel: input, localname: input }];
+              if (input.length < 3) return [];
                 $scope.avainsanatLataa = true;
                 return ExternalServicesService.etsiAvainsanat(input, $scope.lang)
                     .then(function(response) {
                         const tags = response.data;
                         $scope.avainsanatLataa = false;
                         if (!tags || tags.length === 0) {
-                            return [{ prefLabel: input, localname: input }];
+                            return [];
                         }
                         return tags;
                     })
                     .catch(function(error) {
                         console.log(error);
                         $scope.avainsanatLataa = false;
-                        return [{ prefLabel: input, localname: input }];
+                        return [];
                     });
             };
 
