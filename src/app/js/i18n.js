@@ -474,13 +474,13 @@ const i18n = {
         SV: 'Nyckelord',
         EN: 'Key words',
         tooltip: {
-          FI: 'Julkaisun sisältöä mahdollisimman hyvin kuvailevat avainsanat. Kirjoita avainsana ja paina enter tai pilkku näppäintä.',
-          SV: 'Nyckelord som så bra som möjligt beskriver publikationens innehåll. Skriv nyckelordet och tryck enter',
-          EN: 'Keywords that describe the content of the publication as accurately as possible. Type in the keyword and press enter'
+          FI: 'Julkaisun sisältöä mahdollisimman hyvin kuvailevat avainsanat. Avainsana haetaan Finto:n sanastosta. Haku käynnistyy automaattisesti kun vähintään kolme merkkiä on kirjoitettu. Jos avainsanaa ei löydy Finto:sta, voit syöttää sanan painamalla enter tai pillku näppäintä.',
+          SV: 'Nyckelord som så bra som möjligt beskriver publikationens innehåll. Nyckelordet hämtas från Fintos vokabulär. Sökningen börjar automatiskt när minst tre tecken har matats in. Om nyckelordet inte finns i Finto kan du skriva in ordet genom att trycka enter eller komma.',
+          EN: 'Keywords that describe the content of the publication as accurately as possible. The keyword is retrieved from Finto\'s vocabulary. The search starts automatically when at least three characters have been entered. If the keyword is not found in Finto, you can enter the word by pressing enter or comma.'
         },
         lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
         poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
-        picktip: { FI: 'Kirjoita avainsana ja paina Enter-näppäintä tai pilkkua', SV: 'Skriv nyckelordet och tryck enter eller komma', EN: 'Type in the keyword and press enter or comma' }
+        picktip: { FI: 'Hae avainsana Finto:n sanastosta. Aloita haku kirjoittamalla.', SV: 'Sök nyckelordet från Fintos vokabulär. Börja sökningen genom att skriva.', EN: 'Search for a keyword from Finto\'s vocabulary. Start typing to start the search.' }
       },
       julkaisunkieli: {
         FI: 'Julkaisun kieli',
@@ -781,11 +781,11 @@ const i18n = {
                     eivalittu: { FI: 'Ei valittua tiedostoa', SV: ' Ingen vald fil', EN: 'No file selected' },
                     veda: { FI: 'Tai vedä tiedosto tähän', SV: 'Eller dra filen här', EN: 'Or drag file here' },
                     poista: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' },
-                    poistatiedosto: { FI: 'Poista julkaisun tiedosto', SV: 'Ta bort publikation fil', EN: 'Remove publication file',
+                    poistatiedosto: { FI: 'Poista julkaisun tiedosto', SV: 'Radera publikationsfil', EN: 'Remove publication file',
                       tooltip: {
                         FI: 'Poista julkaisun tiedosto ja rinnakkaistallennetta koskevat tiedot julkaisuarkistosta sekä Justus palvelusta. Mikäli julkaisu on jo poistettu julkaisuarkistosta, poistetaan rinnakkasitallennetta koskevat tiedot Justus-palvelusta.',
-                        SV: 'Poista julkaisun tiedosto ja rinnakkaistallennetta koskevat tiedot julkaisuarkistosta sekä Justus palvelusta. Mikäli julkaisu on jo poistettu julkaisuarkistosta, poistetaan rinnakkasitallennetta koskevat tiedot Justus-palvelusta.',
-                        EN: 'Poista julkaisun tiedosto ja rinnakkaistallennetta koskevat tiedot julkaisuarkistosta sekä Justus palvelusta. Mikäli julkaisu on jo poistettu julkaisuarkistosta, poistetaan rinnakkasitallennetta koskevat tiedot Justus-palvelusta.'
+                        SV: 'Radera publikationsfilen och informationen om den parallellpublicerat versionen från publikationsarkivet och från Justus-tjänsten. Om publikationen redan har raderats från publikationsarkivet kommer informationen om den parallellpublicerat versionen att raderas från Justus-tjänsten.',
+                        EN: 'Delete the publication file and the information on the self-archived version from the publication archive and from Justus service. If the publication has already been deleted from the publication archive, the information on the self-archived version will be deleted from Justus service.'
                       }}
                   },
                   info: {
