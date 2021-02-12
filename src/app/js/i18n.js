@@ -1103,7 +1103,7 @@ const i18n = {
             button: { FI: 'Lataa CSV', SV: 'Exportera CSV', EN: 'Export CSV' }
           },
           tuo: {
-            title: { FI: 'Tuo päivitetyt tiedot', SV: 'Importera updaterade uppgifter', EN: 'Import updated information' },
+            title: { FI: 'Tuo päivitetyt tiedot CSV-tiedostona', SV: 'Importera updaterade uppgifter som CSV', EN: 'Import updated information as CSV' },
             text1: {
               FI: 'Tuo päivitetty tiedosto oman organisaatiosi tekijätiedoista Justus-palveluun. Varmista että tiedot ovat oikein ja kaikki vaadittavat kentät täytetty ennen kuin hyväksyt tietojen siirron Justus-palveluun.',
               SV: 'Importera en uppdaterad fil med din organisations upphovsmäninformation till Justus. Se till att informationen är korrekt och att alla obligatoriska fält är fyllda innan du accepterar överföringen av data till Justus.',
