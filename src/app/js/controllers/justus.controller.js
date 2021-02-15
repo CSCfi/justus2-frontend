@@ -763,22 +763,6 @@ angular.module('JustusController', [])
             // get alayksikkodata based on selected year
             $scope.getAlayksikkoData = function(alayksikkovuosi) {
 
-                if (alayksikkovuosi.id === 2016) {
-                    for (let i = 0; i < $rootScope.user.alayksikot.length; i++) {
-                        if ($rootScope.user.alayksikot[i].vuosi === '2016') {
-                            return $rootScope.user.alayksikot[i].yksikot;
-                        }
-                    }
-                }
-
-                if (alayksikkovuosi.id === 2017) {
-                    for (let i = 0; i < $rootScope.user.alayksikot.length; i++) {
-                        if ($rootScope.user.alayksikot[i].vuosi === '2017') {
-                            return $rootScope.user.alayksikot[i].yksikot;
-                        }
-                    }
-                }
-
                 if (alayksikkovuosi.id === 2018) {
                     for (let i = 0; i < $rootScope.user.alayksikot.length; i++) {
                         if ($rootScope.user.alayksikot[i].vuosi === '2018') {
@@ -802,6 +786,13 @@ angular.module('JustusController', [])
                         }
                     }
                 }
+                if (alayksikkovuosi.id === 2021) {
+                    for (let i = 0; i < $rootScope.user.alayksikot.length; i++) {
+                        if ($rootScope.user.alayksikot[i].vuosi === '2021') {
+                            return $rootScope.user.alayksikot[i].yksikot;
+                        }
+                    }
+                }
             };
 
 
@@ -811,17 +802,9 @@ angular.module('JustusController', [])
             let fillMissingJustusLists = function() {
 
                 for (let i=0; i < $rootScope.user.alayksikot.length; i++) {
-                    if($rootScope.user.alayksikot[i].vuosi === '2020') {
+                    if($rootScope.user.alayksikot[i].vuosi === '2021') {
                         if($rootScope.user.alayksikot[i].yksikot.length < 1) {
                             $scope.alayksikkovuodet = [
-                                {
-                                    id: 2016,
-                                    label: '2016'
-                                },
-                                {
-                                    id: 2017,
-                                    label: '2017'
-                                },
                                 {
                                     id: 2018,
                                     label: '2018'
@@ -829,18 +812,14 @@ angular.module('JustusController', [])
                                 {
                                     id: 2019,
                                     label: '2019'
+                                },
+                                {
+                                    id: 2020,
+                                    label: '2019'
                                 }
                             ];
                         } else {
                             $scope.alayksikkovuodet = [
-                                {
-                                    id: 2016,
-                                    label: '2016'
-                                },
-                                {
-                                    id: 2017,
-                                    label: '2017'
-                                },
                                 {
                                     id: 2018,
                                     label: '2018'
@@ -852,6 +831,10 @@ angular.module('JustusController', [])
                                 {
                                     id: 2020,
                                     label: '2020'
+                                },
+                                {
+                                    id: 2021,
+                                    label: '2021'
                                 }
                             ];
                         }
@@ -861,18 +844,24 @@ angular.module('JustusController', [])
                 $scope.alayksikkovuosi = {};
 
                 if (!$scope.justus.organisaatiotekija[0].alayksikko[0]) {
-                    if ($scope.alayksikkovuodet.length === 5) {
+                    if ($scope.alayksikkovuodet.length === 4) {
+                        $scope.alayksikkovuosi.selected = {
+                            id: 2021,
+                            label: '2021'
+                        };
+                    } else {
                         $scope.alayksikkovuosi.selected = {
                             id: 2020,
                             label: '2020'
                         };
-                    } else {
-                        $scope.alayksikkovuosi.selected = {
-                            id: 2019,
-                            label: '2019'
-                        };
                     }
                 } else {
+                    if ($scope.justus.organisaatiotekija[0].alayksikko[0].indexOf('-2021-') !== -1) {
+                        $scope.alayksikkovuosi.selected = {
+                            id: 2021,
+                            label: '2021'
+                        };
+                    }
                     if ($scope.justus.organisaatiotekija[0].alayksikko[0].indexOf('-2020-') !== -1) {
                         $scope.alayksikkovuosi.selected = {
                             id: 2020,
@@ -890,15 +879,10 @@ angular.module('JustusController', [])
                             id: 2018,
                             label: '2018'
                         };
-                    } else if ($scope.justus.organisaatiotekija[0].alayksikko[0].indexOf('-2017-') !== -1) {
-                        $scope.alayksikkovuosi.selected = {
-                            id: 2017,
-                            label: '2017'
-                        };
                     } else {
                         $scope.alayksikkovuosi.selected = {
-                            id: 2016,
-                            label: '2016'
+                            id: 2020,
+                            label: '2020'
                         };
                     }
                 }
