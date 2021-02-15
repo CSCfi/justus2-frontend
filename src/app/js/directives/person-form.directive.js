@@ -16,20 +16,18 @@ app.directive('personFormDirective', ['$rootScope', 'JustusService', 'Alayksikko
                 scope.isFieldRequired = function(field) {
                     return JustusService.isFieldRequired(field);
                 };
+
                 scope.alayksikkovuodet = AlayksikkoService.getAlayksikkovuodet();
-
                 scope.alayksikkovuosi = {};
+                let userUnits = $rootScope.user.alayksikot;
 
-                if (scope.alayksikkovuodet.length === 5) {
-                    scope.alayksikkovuosi.selected = {
-                        id: 2020,
-                        label: '2020'
-                    };
-                } else {
-                    scope.alayksikkovuosi.selected = {
-                        id: 2019,
-                        label: '2019'
-                    };
+                for (let i = 0; i < userUnits.length; i++) {
+                    if (userUnits[i].yksikot.length) {
+                        scope.alayksikkovuosi.selected = {
+                            id: parseInt(userUnits[i].vuosi),
+                            label: userUnits[i].vuosi
+                        };
+                    }
                 }
 
             // get alayksikkodata based on selected year

@@ -763,7 +763,6 @@ angular.module('JustusController', [])
                             $state.go("index");
                         } else {
                             $scope.user = res;
-                            console.log($scope.user);
                             $rootScope.user = $scope.user;
                         }
                     })
@@ -913,59 +912,35 @@ angular.module('JustusController', [])
             };
 
 
-            // fillMissingJustusLists - for UI setup list fields if otherwise missing
-            // - internal unscoped function
-            // - parameter input is optional
-            let fillMissingJustusLists = function() {
+            const initAlayksikkoData = (julkaisuid) => {
 
                 $scope.alayksikkovuodet = AlayksikkoService.getAlayksikkovuodet();
                 $scope.alayksikkovuosi = {};
+                let userUnits = $rootScope.user.alayksikot;
 
-                if (!$scope.justus.organisaatiotekija[0].alayksikko[0]) {
-                    if ($scope.alayksikkovuodet.length === 4) {
+                for (let i = 0; i < userUnits.length; i++) {
+                    console.log(userUnits[i]);
+                    if (userUnits[i].yksikot.length) {
                         $scope.alayksikkovuosi.selected = {
-                            id: 2021,
-                            label: '2021'
-                        };
-                    } else {
-                        $scope.alayksikkovuosi.selected = {
-                            id: 2020,
-                            label: '2020'
-                        };
-                    }
-                } else {
-                    if ($scope.justus.organisaatiotekija[0].alayksikko[0].indexOf('-2021-') !== -1) {
-                        $scope.alayksikkovuosi.selected = {
-                            id: 2021,
-                            label: '2021'
-                        };
-                    }
-                    if ($scope.justus.organisaatiotekija[0].alayksikko[0].indexOf('-2020-') !== -1) {
-                        $scope.alayksikkovuosi.selected = {
-                            id: 2020,
-                            label: '2020'
-                        };
-                    }
-                    else if ($scope.justus.organisaatiotekija[0].alayksikko[0].indexOf('-2019-') !== -1) {
-                        $scope.alayksikkovuosi.selected = {
-                            id: 2019,
-                            label: '2019'
-                        };
-                    }
-                    else if ($scope.justus.organisaatiotekija[0].alayksikko[0].indexOf('-2018-') !== -1) {
-                        $scope.alayksikkovuosi.selected = {
-                            id: 2018,
-                            label: '2018'
-                        };
-                    } else {
-                        $scope.alayksikkovuosi.selected = {
-                            id: 2020,
-                            label: '2020'
+                            id: parseInt(userUnits[i].vuosi),
+                            label: userUnits[i].vuosi
                         };
                     }
                 }
 
-            };
+                if (julkaisuid) {
+                    // this overrides selected value based on organisational unit year for publication in question (if exists)
+                    for (let i = 0; i < $scope.alayksikkovuodet.length; i++) {
+                        const vuosi = $scope.alayksikkovuodet[i].label;
+                        if ($scope.justus.organisaatiotekija[0].alayksikko[0].indexOf(vuosi) !== -1) {
+                            $scope.alayksikkovuosi.selected = {
+                                id: parseInt(vuosi),
+                                label: vuosi
+                            };
+                        }
+                    }
+                }
+            }
 
             const populatePublicationForm = () => {
 
@@ -978,6 +953,9 @@ angular.module('JustusController', [])
                         $scope.justus.organisaatiotekija[0].useEsitaytto = true;
                     }
 
+                    if ($rootScope.user.alayksikot.length) {
+                        initAlayksikkoData(false);
+                    }
                     finalizeInit();
                     return;
                 }
@@ -1005,6 +983,10 @@ angular.module('JustusController', [])
                             $scope.emojulkaisuntoimittajatTags.push({ text: nameObject.name });
                         });
 
+                        if ($rootScope.user.alayksikot.length) {
+                            initAlayksikkoData(true);
+                        }
+
                         $scope.useEmojulkaisuntoimittajat();
                         $scope.loading.publication = false;
 
@@ -1022,10 +1004,7 @@ angular.module('JustusController', [])
                     $rootScope.filedata = {};
                 }
 
-                console.log($scope.justus);
-
                 $scope.justus.julkaisu.username = $rootScope.user.name;
-                fillMissingJustusLists();
                 JustusService.updatePublicationFormData($scope.justus);
                 $scope.useVaihe($stateParams.vaihe || 1);
 
