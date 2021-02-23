@@ -801,89 +801,65 @@ angular.module('JustusController', [])
             // - parameter input is optional
             let fillMissingJustusLists = function() {
 
-                for (let i=0; i < $rootScope.user.alayksikot.length; i++) {
-                    if($rootScope.user.alayksikot[i].vuosi === '2021') {
-                        if($rootScope.user.alayksikot[i].yksikot.length < 1) {
-                            $scope.alayksikkovuodet = [
-                                {
-                                    id: 2018,
-                                    label: '2018'
-                                },
-                                {
-                                    id: 2019,
-                                    label: '2019'
-                                },
-                                {
-                                    id: 2020,
-                                    label: '2019'
-                                }
-                            ];
-                        } else {
-                            $scope.alayksikkovuodet = [
-                                {
-                                    id: 2018,
-                                    label: '2018'
-                                },
-                                {
-                                    id: 2019,
-                                    label: '2019'
-                                },
-                                {
-                                    id: 2020,
-                                    label: '2020'
-                                },
-                                {
-                                    id: 2021,
-                                    label: '2021'
-                                }
-                            ];
-                        }
+                if ($rootScope.user.visibleFields.indexOf("alayksikko") === -1) {
+                    return;
+                }
+
+                $scope.alayksikkovuodet = [
+                    {
+                        id: 2018,
+                        label: '2018'
+                    },
+                    {
+                        id: 2019,
+                        label: '2019'
+                    },
+                    {
+                        id: 2020,
+                        label: '2020'
+                    },
+                    {
+                        id: 2021,
+                        label: '2021'
+                    }
+                ];
+                $scope.alayksikkovuosi = {};
+                let userUnits = $rootScope.user.alayksikot;
+
+                for (let i = 0; i < userUnits.length; i++) {
+                    console.log(userUnits[i]);
+                    if (userUnits[i].yksikot.length) {
+                        $scope.alayksikkovuosi.selected = {
+                            id: parseInt(userUnits[i].vuosi),
+                            label: userUnits[i].vuosi
+                        };
                     }
                 }
 
-                $scope.alayksikkovuosi = {};
+                if ($stateParams.id) {
 
-                if (!$scope.justus.organisaatiotekija[0].alayksikko[0]) {
-                    if ($scope.alayksikkovuodet.length === 4) {
-                        $scope.alayksikkovuosi.selected = {
-                            id: 2021,
-                            label: '2021'
-                        };
-                    } else {
-                        $scope.alayksikkovuosi.selected = {
-                            id: 2020,
-                            label: '2020'
-                        };
+                    if (!$scope.justus.organisaatiotekija || !$scope.justus.organisaatiotekija.length) {
+                        $scope.justus.organisaatiotekija = [
+                            {
+                                "etunimet": "",
+                                "sukunimi": "",
+                                "orcid": "",
+                                "hrnumero": null,
+                                "rooli": null,
+                                "alayksikko": [null]
+                            }
+                        ];
+                        return;
                     }
-                } else {
-                    if ($scope.justus.organisaatiotekija[0].alayksikko[0].indexOf('-2021-') !== -1) {
-                        $scope.alayksikkovuosi.selected = {
-                            id: 2021,
-                            label: '2021'
-                        };
-                    }
-                    if ($scope.justus.organisaatiotekija[0].alayksikko[0].indexOf('-2020-') !== -1) {
-                        $scope.alayksikkovuosi.selected = {
-                            id: 2020,
-                            label: '2020'
-                        };
-                    }
-                    else if ($scope.justus.organisaatiotekija[0].alayksikko[0].indexOf('-2019-') !== -1) {
-                        $scope.alayksikkovuosi.selected = {
-                            id: 2019,
-                            label: '2019'
-                        };
-                    }
-                    else if ($scope.justus.organisaatiotekija[0].alayksikko[0].indexOf('-2018-') !== -1) {
-                        $scope.alayksikkovuosi.selected = {
-                            id: 2018,
-                            label: '2018'
-                        };
-                    } else {
-                        $scope.alayksikkovuosi.selected = {
-                            id: 2020,
-                            label: '2020'
-                        };
+                    // this overrides selected value based on organisational unit year for publication in question (if exists)
+                    for (let i = 0; i < $scope.alayksikkovuodet.length; i++) {
+                        const vuosi = $scope.alayksikkovuodet[i].label;
+                        if ($scope.justus.organisaatiotekija[0].alayksikko[0].indexOf(vuosi) !== -1) {
+                            $scope.alayksikkovuosi.selected = {
+                                id: parseInt(vuosi),
+                                label: vuosi
+                            };
+                        }
                     }
                 }
 
@@ -938,8 +914,6 @@ angular.module('JustusController', [])
                 if (!$rootScope.filedata) {
                     $rootScope.filedata = {};
                 }
-
-                console.log($scope.justus);
 
                 $scope.justus.julkaisu.username = $rootScope.user.name;
                 fillMissingJustusLists();
