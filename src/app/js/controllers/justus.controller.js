@@ -802,6 +802,18 @@ angular.module('JustusController', [])
             let fillMissingJustusLists = function() {
 
                 if ($rootScope.user.visibleFields.indexOf("alayksikko") === -1) {
+                    if (!$scope.justus.organisaatiotekija || !$scope.justus.organisaatiotekija.length) {
+                        $scope.justus.organisaatiotekija = [
+                            {
+                                "etunimet": "",
+                                "sukunimi": "",
+                                "orcid": "",
+                                "hrnumero": null,
+                                "rooli": null,
+                                "alayksikko": [null]
+                            }
+                        ];
+                    }
                     return;
                 }
 
