@@ -911,8 +911,23 @@ angular.module('JustusController', [])
                 return AlayksikkoService.getAlayksikkoData(alayksikkovuosi);
             };
 
-
             const initAlayksikkoData = (julkaisuid) => {
+
+                if ($rootScope.user.visibleFields.indexOf("alayksikko") === -1) {
+                    if (!$scope.justus.organisaatiotekija || !$scope.justus.organisaatiotekija.length) {
+                        $scope.justus.organisaatiotekija = [
+                            {
+                                "etunimet": "",
+                                "sukunimi": "",
+                                "orcid": "",
+                                "hrnumero": null,
+                                "rooli": null,
+                                "alayksikko": [null]
+                            }
+                        ];
+                    }
+                    return;
+                }
 
                 $scope.alayksikkovuodet = AlayksikkoService.getAlayksikkovuodet();
                 $scope.alayksikkovuosi = {};
@@ -929,6 +944,19 @@ angular.module('JustusController', [])
                 }
 
                 if (julkaisuid) {
+                    if (!$scope.justus.organisaatiotekija || !$scope.justus.organisaatiotekija.length) {
+                        $scope.justus.organisaatiotekija = [
+                            {
+                                "etunimet": "",
+                                "sukunimi": "",
+                                "orcid": "",
+                                "hrnumero": null,
+                                "rooli": null,
+                                "alayksikko": [null]
+                            }
+                        ];
+                        return;
+                    }
                     // this overrides selected value based on organisational unit year for publication in question (if exists)
                     for (let i = 0; i < $scope.alayksikkovuodet.length; i++) {
                         const vuosi = $scope.alayksikkovuodet[i].label;
