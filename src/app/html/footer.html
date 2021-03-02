@@ -5,15 +5,16 @@
                 <span class="font-weight-bold"> {{i18n.footer.help.title[lang]}}:</span> {{user.mail}}
             </div>
             <div data-ng-if="user.seloste && user.seloste.length" class="col-xs-12 text-center text-secondary pt">
-                <a class="link-white text-xl" target="_blank" data-ng-href="{{user.seloste}}">{{i18n.footer.tietosuojaseloste.linkki[lang]}}</a>	                <div>
-                <i class="fa fa-external-link"></i>	                    <a class="link-white text-xl" target="_blank" data-ng-href="{{user.seloste[0]}}">
-                {{i18n.footer.tietosuojaseloste.linkki[lang]}}
-            </a><i class="fa fa-external-link"></i>
-            </div>
-            <div  data-ng-if="user.seloste.length === 2">
-                <a class="link-white text-xl" target="_blank" data-ng-href="{{user.seloste[1]}}">
-                    {{i18n.footer.tietosuojaseloste.linkki[lang]}} (EN)
-                </a><i class="fa fa-external-link"></i>
+                <div>
+                    <a class="link-white text-xl" target="_blank" data-ng-href="{{user.seloste[0]}}">
+                        {{i18n.footer.tietosuojaseloste.linkki[lang]}}</a>
+                    <i class="fa fa-external-link"></i>
+                </div>
+                <div  data-ng-if="user.seloste.length === 2">
+                    <a class="link-white text-xl" target="_blank" data-ng-href="{{user.seloste[1]}}">
+                        {{i18n.footer.tietosuojaseloste.linkki["EN"]}}
+                    </a><i class="fa fa-external-link"></i>
+                </div>
             </div>
         </div>
         <div class="row p-1">
