@@ -224,28 +224,38 @@
                     </i>
                 </div>
                 <div class="col-md-8">
-                    <div class="input-group pb">
-                        <input id="embargo"
-                               name="embargo"
-                               type="text" class="form-control cursor-disabled"
-                               data-uib-datepicker-popup="{{format}}"
-                               data-ng-model="filedata.embargo" is-open="popup.opened"
-                               data-datepicker-options="dateOptions"
-                               data-show-button-bar="false"
-                               data-ng-readonly="true"
-                               placeholder="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo.picktip[lang]}}"/>
-                        <span role="button"
-                              tabindex="0"
-                              aria-label="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo.title[lang]}}"
-                              title="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo.title[lang]}}"
-                              data-ng-click="openDatepicker()"
-                              class="input-group-addon cursor-pointer calendar-icon">
-                              <i class="fa fa-calendar"></i>
-                        </span>
-
-
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="input-group pb">
+                                <input id="embargo"
+                                       name="embargo"
+                                       type="text" class="form-control cursor-disabled"
+                                       data-uib-datepicker-popup="{{format}}"
+                                       data-ng-model="filedata.embargo" is-open="popup.opened"
+                                       data-datepicker-options="dateOptions"
+                                       data-show-button-bar="false"
+                                       data-ng-readonly="true"
+                                       placeholder="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo.picktip[lang]}}"/>
+                                <span role="button"
+                                      tabindex="0"
+                                      aria-label="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo.title[lang]}}"
+                                      title="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.embargo.title[lang]}}"
+                                      data-ng-click="openDatepicker()"
+                                      class="input-group-addon cursor-pointer calendar-icon">
+                                      <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-2  mt-x">
+                            <a data-ng-click="filedata.embargo = null"
+                               data-ng-if="filedata.embargo"
+                               class="text-danger cursor-pointer text-secondary"
+                               title="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]}}">
+                                {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]}}
+                                <i class="fa fa-close" aria-hidden="true"></i>
+                            </a>
+                        </div>
                     </div>
-
                     <div class="py">
                         <button type="button"
                                 aria-label="puolivuotta"
@@ -298,7 +308,7 @@
                     <a data-ng-click="filedata.oikeudet = null"
                        data-ng-if="filedata.oikeudet"
                        class="text-danger cursor-pointer text-secondary"
-                       title="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]">
+                       title="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]}}">
                         {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]}}
                         <i class="fa fa-close" aria-hidden="true"></i>
                     </a>
@@ -340,7 +350,7 @@
                     <a data-ng-click="filedata.versio = null"
                        data-ng-if="filedata.versio"
                        class="text-danger cursor-pointer text-secondary"
-                       title="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]">
+                       title="{{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]}}">
                         {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.tyhjenna[lang]}}
                         <i class="fa fa-close" aria-hidden="true"></i>
                     </a>
