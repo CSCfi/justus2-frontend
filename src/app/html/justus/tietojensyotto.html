@@ -444,8 +444,8 @@
                     <i class="fa fa-2x fa-toggle-on"
                        data-ng-class="i.useEsitaytto?'active':'fa-rotate-180 inactive'"></i>
                     <span data-ng-show="i.useEsitaytto"
-                          class="text-secondary  float-right pt pl">Esitäyttö käytössä</span>
-                    <span data-ng-show="!i.useEsitaytto" class="text-secondary text-gray  float-right pt pl">Esitäyttö pois käytössä</span>
+                          class="text-secondary  float-right pt pl">{{i18n.content.form.organisaatiotekija.esitaytto.kaytossa[lang]}}</span>
+                    <span data-ng-show="!i.useEsitaytto" class="text-secondary text-gray  float-right pt pl">{{i18n.content.form.organisaatiotekija.esitaytto.pois[lang]}}</span>
                   </div>
                 </div>
               </div>
@@ -461,8 +461,8 @@
                              theme="bootstrap"
                              limit="50">
                     <ui-select-match class="ui-select-match"
-                                     placeholder="Valitse / Kirjoita sukunimi">
-                      {{ i.sukunimi || "Valitse / Kirjoita sukunimi" }}
+                                     placeholder="{{i18n.content.form.organisaatiotekija.esitaytto.sukunimi[lang]}}">
+                      {{ i.sukunimi || i18n.content.form.organisaatiotekija.esitaytto.sukunimi[lang] }}
                     </ui-select-match>
                     <ui-select-choices
                             repeat="person in persons.data | orderBy: 'sukunimi' | filter: { sukunimi: $select.search } | limitTo:$select.limit">

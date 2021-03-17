@@ -264,7 +264,6 @@ const i18n = {
           SV: 'Forskare, som har varit med om att göra publikationen och som hör till organisationen. Organisationens fakulteter, avdelningar, institutioner eller enheter inom vilka publikationens upphovsmän är anställda. ORCID-identifieringsnumren, t.ex. 0000-0000-0000-0000, på den rapporterande organisationens egna upphovsmän, se http://www.orcid.org',
           EN: 'Authors at the organisation involved in producing the publication. Faculties, departments or units of the organisation whose staff includes the authors of the publication. The ORCID identifiers of authors from the reporting organisation, e.g. 0000-0000-0000-0000, refer to http://www.orcid.org. Role(s) of the reporting organisations author(s). Especially related to the partial realisations the role of the author is important. For example, scenographer of a play, trustee of a exhibition, singer of a band, etc. '
         },
-	
         sukunimi: { FI: 'Sukunimi', SV: 'Efternamn', EN: 'Surname', picktip: { FI: 'Sukunimi', SV: 'Efternamn', EN: 'Surname' } },
         etunimet: { FI: 'Etunimet', SV: 'Förnamn', EN: 'First names', picktip: { FI: 'Etunimet', SV: 'Förnamn', EN: 'First names' } },
         alayksikko: { FI: 'Alayksikkö / Alayksiköt', SV: 'Enhet / Enheter', EN: 'Organisational unit / units',
@@ -273,6 +272,11 @@ const i18n = {
             vuosi: {FI: 'Valitse vuosi', SV: 'Välj året', EN: 'Choose year'},
             yksikko: {FI: 'Valitse alayksikkö', SV: 'Välj enhet', EN: 'Select organisational unit'},
           }
+        },
+        esitaytto: {
+          kaytossa: { FI: "Esitäyttö käytössä", SV: "Autofyll aktiverat", EN: "Prefill on" },
+          pois: { FI: "Esitäyttö pois käytöstä", SV: "Autofyll inaktiverat", EN: "Prefill off" },
+          sukunimi: { FI: "Valitse / Kirjoita sukunimi", SV: "Välja / skriva efternamn", EN: "Choose / write surname" }
         },
         orcid: { FI: 'ORCID', SV: 'ORCID', EN: 'ORCID',
           picktip: { FI: 'ORCID-tunniste', SV: 'ORCID iD', EN: 'ORCID iD' },
