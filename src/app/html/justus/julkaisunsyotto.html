@@ -185,26 +185,19 @@
                        data-ng-show="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.urn.tooltip[lang]">
                     </i>
                 </div>
-
-                <!-- Jukuri users can edit urn identifier -->
-                <div data-ng-show="user.jukuriUser">
-                    <div class="col-md-6 col-xs-12" data-ng-show="user.jukuriUser">
-                        <input id="urntunnus"
-                               name="unrtunnus"
-                               type="text"
-                               class="form-control"
-                               data-ng-model="filedata.urn"
-                               placeholder="">
-                    </div>
-                    <div class="col-md-2 col-xs-12">
-                        <button type="button" class="btn btn-sm btn-primary"
-                                data-ng-click="getUrn()"
-                                data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.urn.generoi[lang]">
-                        </button>
-                    </div>
+                <div class="col-md-6 col-xs-12">
+                    <input id="urntunnus"
+                           name="unrtunnus"
+                           type="text"
+                           class="form-control"
+                           data-ng-model="filedata.urn"
+                           placeholder="">
                 </div>
-                <div class="col-md-8" data-ng-hide="user.jukuriUser">
-                    <p data-ng-model="filedata.urn">{{filedata.urn}}</p>
+                <div class="col-md-2 col-xs-12">
+                    <button type="button" class="btn btn-sm btn-primary"
+                            data-ng-click="getUrn()"
+                            data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.urn.generoi[lang]">
+                    </button>
                 </div>
             </div>
 
