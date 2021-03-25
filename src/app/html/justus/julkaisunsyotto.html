@@ -124,25 +124,21 @@
                            data-ng-show="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.rinnakkaistallennus.tooltip[lang]">
                         </i>
                     </legend>
-                    <div class="col-md-8 justus-data">
-                        <div class="row">
-                            <div class="col-xs-10">
-                                <input id="rinnakkaistallenne"
-                                       type="radio"
-                                       data-ng-model="justus.julkaisu.julkaisurinnakkaistallennettu"
-                                       value="1">
-                                <label for="rinnakkaistallenne" class="control-label">
-                                    {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.rinnakkaistallennus['1'][lang]}}
-                                </label>
-                                <input id="eirinnakkaistallenne"
-                                       type="radio"
-                                       data-ng-model="justus.julkaisu.julkaisurinnakkaistallennettu"
-                                       value="0">
-                                <label for="eirinnakkaistallenne" class="control-label">
-                                    {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.rinnakkaistallennus['0'][lang]}}
-                                </label>
-                            </div>
-                        </div>
+                    <div class="col-md-8">
+                        <input id="rinnakkaistallenne"
+                               type="radio"
+                               data-ng-model="justus.julkaisu.julkaisurinnakkaistallennettu"
+                               value="1">
+                        <label for="rinnakkaistallenne" class="control-label">
+                            {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.rinnakkaistallennus['1'][lang]}}
+                        </label>
+                        <input id="eirinnakkaistallenne"
+                               type="radio"
+                               data-ng-model="justus.julkaisu.julkaisurinnakkaistallennettu"
+                               value="0">
+                        <label for="eirinnakkaistallenne" class="control-label">
+                            {{i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.rinnakkaistallennus['0'][lang]}}
+                        </label>
                     </div>
                 </fieldset>
             </div>
