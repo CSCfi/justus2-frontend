@@ -264,8 +264,11 @@ angular.module('JustusService', [])
             if (this.justus[fieldName][i].orcid === undefined || !this.justus[fieldName][i].orcid || this.justus[fieldName][i].orcid === '') {
                 validArray.push(true);
             } else {
-              validArray.push(this.justus[fieldName][i].orcid.match(this.pattern["orcid"]) !== null);
-
+              if (this.justus[fieldName][i].orcid === "0000-0000-0000-0000") {
+                validArray.push(false);
+              } else {
+                validArray.push(this.justus[fieldName][i].orcid.match(this.pattern["orcid"]) !== null);
+              }
             }
           }
         }

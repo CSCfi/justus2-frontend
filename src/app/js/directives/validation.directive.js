@@ -43,7 +43,7 @@ app.directive('isbnDirective', ['JustusService', function(JustusService) {
         }
         if (!orcid) return false; // undefined?
 
-        if (!orcid.match(JustusService.pattern.orcid)) {
+        if (!orcid.match(JustusService.pattern.orcid) || orcid === "0000-0000-0000-0000") {
             mCtrl.$setValidity('orcidValid', false);
             return orcid;
         } else {
@@ -118,7 +118,7 @@ app.directive('isbnDirective', ['JustusService', function(JustusService) {
             if (scope.field === 'orcid') {
                 if (scope.value && scope.value !== '') {
                     let pattern = JustusService.pattern["orcid"];
-                    if (!scope.value.match(pattern)) {
+                    if (!scope.value.match(pattern) || scope.value === "0000-0000-0000-0000") {
                         element.addClass('has-error has-feedback');
                         element.find('.invalid-pattern').show();
                     }

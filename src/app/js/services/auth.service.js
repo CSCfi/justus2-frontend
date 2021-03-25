@@ -36,8 +36,6 @@ angular.module('AuthService', [])
                 user.lang = response.perustiedot.kieli;
                 user.owner = response.perustiedot.owner;
 
-                console.log(user);
-
                 return user;
             };
 

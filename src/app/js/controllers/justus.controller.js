@@ -756,10 +756,8 @@ angular.module('JustusController', [])
 
                 // Before changing stage verify first that user is logged in. If not redirect to login page
                 if (!AuthService.isLoggedIn()) {
-                    console.log("Verify that user is logged in before changing state");
                     AuthService.getUserInfo().then(function (res){
                         if (!res) {
-                            console.log("User info not available, redirect to login page.")
                             $state.go("index");
                         } else {
                             $scope.user = res;
@@ -934,7 +932,6 @@ angular.module('JustusController', [])
                 let userUnits = $rootScope.user.alayksikot;
 
                 for (let i = 0; i < userUnits.length; i++) {
-                    console.log(userUnits[i]);
                     if (userUnits[i].yksikot.length) {
                         $scope.alayksikkovuosi.selected = {
                             id: parseInt(userUnits[i].vuosi),
@@ -1044,9 +1041,7 @@ angular.module('JustusController', [])
                     populatePublicationForm();
                 } else {
                     AuthService.getUserInfo().then(function (res) {
-                        console.log(res);
                         if (!res) {
-                            console.log("User data not available, redirecting to login page.")
                             $state.go('index');
                         } else {
                             $scope.user = res;
