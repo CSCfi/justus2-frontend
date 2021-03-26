@@ -507,6 +507,7 @@ angular.module('JustusController', [])
                             $scope.useVaihe(3); // ->tietojen syöttöön
                             $scope.clearPrefillSearchFields(); // clear all search data
                         }, function errorVirta(response) {
+                            console.log(response);
                             $scope.crossrefTaiVirtaLataa = false;
                             return false;
                         });
