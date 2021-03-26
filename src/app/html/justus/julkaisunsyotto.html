@@ -189,7 +189,7 @@
                            data-ng-model="filedata.urn"
                            placeholder="">
                 </div>
-                <div class="col-md-2 col-xs-12">
+                <div data-ng-show="user.jukuriUser" class="col-md-2 col-xs-12">
                     <button type="button" class="btn btn-sm btn-primary"
                             data-ng-click="getUrn()"
                             data-ng-bind="i18n.content.rinnakkaistallennusform.rinnakkaistallennettava.form.urn.generoi[lang]">
