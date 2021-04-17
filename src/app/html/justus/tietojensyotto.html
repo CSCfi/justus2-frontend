@@ -280,8 +280,16 @@
                     <i class="fa fa-2x fa-toggle-on"
                        data-ng-class="i.useEsitaytto?'active':'fa-rotate-180 inactive'"></i>
                     <span data-ng-show="i.useEsitaytto"
-                          class="text-secondary  float-right pt pl">{{i18n.content.form.organisaatiotekija.esitaytto.kaytossa[lang]}}</span>
-                    <span data-ng-show="!i.useEsitaytto" class="text-secondary text-gray  float-right pt pl">{{i18n.content.form.organisaatiotekija.esitaytto.pois[lang]}}</span>
+                          class="text-secondary pt pl vertical-align-super">{{i18n.content.form.organisaatiotekija.esitaytto.kaytossa[lang]}}</span>
+                    <span data-ng-show="!i.useEsitaytto" class="text-secondary text-gray pt pl vertical-align-super">{{i18n.content.form.organisaatiotekija.esitaytto.pois[lang]}}</span>
+                    <i class="fa fa-info-circle justus-info vertical-align-super"
+                        data-popover-trigger="'outsideClick'"
+                        data-popover-is-open="popoverIsOpen"
+                        data-ng-mouseenter="popoverIsOpen = true"
+                        data-popover-placement="right"
+                        data-uib-popover="{{i18n.content.form.organisaatiotekija.esitaytto.tooltip[lang]}}"
+                        data-ng-show="i18n.content.form.organisaatiotekija.esitaytto.tooltip[lang]">
+                    </i>
                   </div>
                 </div>
               </div>

@@ -80,39 +80,39 @@ const i18n = {
     valitse: {
       title: { FI: 'Valitse toiminto', SV: 'Välj funktion', EN: 'Choose function' },
       admintitle: { FI: 'Toiminnallisuudet pääkäyttäjille', SV: 'Funktionaliteten för administratörer', EN: 'Functionalities for administrators' },
-      tallenna: { 
+      tallenna: {
         button: { FI: 'Tallenna julkaisu', SV: 'Spara uppgifter', EN: 'Save publication' },
-        text: { 
+        text: {
           FI: 'Julkaisujen tallennus on viisivaiheinen, ja riippuen organisaatiosta, sisältää myös mahdollisuuden syöttää julkaisun tiedosto. Voit halutessasi esitäyttää julkaisun tiedot Virta tai CrossRef palveluista.',
           SV: 'Spara uppgifter –processen består av fem steg, och beroende på organisation, inkluderar även möjligheten att ange en publikationsfil. Du kan importera publikationsdata från Virta eller CrossRef databas.',
           EN: 'Save publication –function has five steps, and depending on the organization, also includes the option to add a file for the publication. You may also choose to prefill the publication information from the Virta or CrossRef service databases. '
         },
       },
-      omat: { 
+      omat: {
         button: { FI: 'Omat tallennukset', SV: 'Mina publikationer', EN: 'My publications' },
-        text: { 
+        text: {
           FI: 'Kaikki käyttäjän tallentamat julkaisutiedot näkyvät Omat tallennukset -näkymässä. Näkymä jakautuu käsittelyä odottaviin julkaisuihin ja käsiteltyihin julkaisuihin.',
           SV: 'Alla publikationsinformation som sparats av användaren visas I Mina publikationer vy. Vyn är uppdelad i publikationer som väntar på behandlingen och behandlade publikationer.',
           EN: 'All publication information saved by the user are shown in the My publications –section. The section is divided into pending publications and processed publications.'
         },
       },
-      hyvaksy: { 
+      hyvaksy: {
         button: { FI: 'Hyväksy tallennuksia', SV: 'Godkänn uppgifter', EN: 'Approve publications' },
-        text: { 
+        text: {
           FI: 'Hyväksy tallennuksia -näkymässä näkyvät kaikki oman organisaation rivi- ja pääkäyttäjien lisäämät julkaisutiedot. Näkymä jakautuu käsittelyä odottaviin julkaisuihin ja käsiteltyihin julkaisuihin.',
           SV: 'Godkänn uppgifter vy visas alla publikationer som har sparats av organisationens medlemmar. Vyn är uppdelad i publikationer som väntar på behandlingen och behandlade publikationer.',
           EN: 'All publication information saved by all of the organizations users are shown in the Approve publications -section. The section is divided into pending publications and processed publications.'
         },
       },
-      admin: { 
+      admin: {
         button: {  FI: 'Tekijätietojen hallinta', SV: 'Hantering av upphovsmanuppgifter', EN: 'Author information management' },
-        text: { 
+        text: {
           FI: 'Tekijätietojen hallinta osiossa pääsee lisäämään ja muokkaamaan organisaation käyttäjiä. Osiossa on mahdollista tuoda käyttäjät ladata käyttäjät CSV-tiedostona palvelimelta sekä lähettää päivitetyt tiedot CSV:nä.',
           SV: 'I avdelningen för hanteringen av upphovsmanuppgifter kan man tillägga och modifiera organisationens användare. I avdelningen kan man hämta och ladda ner användare från servern som CSV-fil samt skicka uppdaterade uppgifter som CSV.',
           EN: 'In the Author information management section you can add and edit the organization\'s users. In this section, you can import users, download users as a CSV file, and send updated information as a CSV.'
         },
       }
-      
+
     },
     esitayta: {
       doihaku: {
@@ -130,8 +130,8 @@ const i18n = {
         },
         hae: { FI: 'Hae', SV: 'Hämta', EN: 'Search' },
         tulos: { FI: 'Löytyi julkaisu:', SV: 'Publikation hittades:', EN: 'Publication found:' },
-        eituloksia: { 
-          FI: 'DOI-tunnistetta vastaavaa julkaisua ei löytynyt. Tarkista että syöttämäsi tunniste on oikein.', 
+        eituloksia: {
+          FI: 'DOI-tunnistetta vastaavaa julkaisua ei löytynyt. Tarkista että syöttämäsi tunniste on oikein.',
           SV: 'Publikationen som motsvarar DOI-koden hittas inte. Kontrollera att koden är rätt.',
           EN: 'No publications matching the DOI (digital object identifier). Check that the DOI you entered is correct.'
         },
@@ -162,7 +162,7 @@ const i18n = {
         },
         valittuna: { FI: 'Valittuna julkaisu:', SV: 'Utvald publikation:', EN: 'Selected publication:' },
         eituloksia: {
-          FI: 'Ei hakutuloksia annetuilla hakuehdoilla. Tarkasta hakuehdot.', 
+          FI: 'Ei hakutuloksia annetuilla hakuehdoilla. Tarkasta hakuehdot.',
           SV: 'Inga sökresultat med de angivna sökvillkoren. Kontrollera sökvillkor.',
           EN: 'No search results for the entered search terms. Check the search terms.'
         }
@@ -276,7 +276,10 @@ const i18n = {
         esitaytto: {
           kaytossa: { FI: "Esitäyttö käytössä", SV: "Autofyll aktiverat", EN: "Prefill on" },
           pois: { FI: "Esitäyttö pois käytöstä", SV: "Autofyll inaktiverat", EN: "Prefill off" },
-          sukunimi: { FI: "Valitse / Kirjoita sukunimi", SV: "Välja / skriva efternamn", EN: "Choose / write surname" }
+          sukunimi: { FI: "Valitse / Kirjoita sukunimi", SV: "Välja / skriva efternamn", EN: "Choose / write surname" },
+          tooltip: { FI: "Valitsemalla ”Esitäyttö käytössä” voit hyödyntää oman organisaation tekijöiden automaattista esitäyttöä. Tekijän voi valita Sukunimi-kentässä joko pudotusvalikosta tai kirjoittamalla tekijän sukunimen kenttään, jolloin hakutulos näyttää 50 lähintä osumaa. Sukunimen valinnan myötä tekijän etunimi, tunniste, alayksikkötieto ja mahdollinen ORCID-tunniste täyttyvät automaattisesti lomakkeelle.",
+                      SV: "Om man väljer “Autofyll aktiverat” kan man använda den automatiska förfyllningen av organisationens upphovsmanuppgifter. Du kan välja önskad upphovsman i fältet Efternamn från menyn eller genom att skriva upphovsmannen efternamn i fältet. I detta fall kommer sökresultatet att visa upp till 50 närmaste träffar. Med valet av efternamn fylls förnamn, identitetsnummer, enhetsinformation och ORCID iD automatiskt i formuläret.",
+                    EN: "By choosing ”Prefill on” you can utilize the automatic pre-filling of your organization's author information. You can select the author in the Surname field either from the drop-down menu or by typing the author's surname into the field, in which case the search result shows up to 50 closest hits. With the choice of surname, the author’s first names, identifier, organizational unit information, and possible ORCID iD are automatically filled into the form."}
         },
         orcid: { FI: 'ORCID', SV: 'ORCID', EN: 'ORCID',
           picktip: { FI: 'ORCID-tunniste', SV: 'ORCID iD', EN: 'ORCID iD' },
@@ -310,10 +313,10 @@ const i18n = {
       },
       projektinumero: {
         FI: "Projektinumero", SV: "Projektnummer", EN: "Project number",
-        tooltip: { 
-          FI: "Sen projektin numero, jossa julkaisu on tuotettu.", 
-          SV: "Projektnummer där publikationen producerades.", 
-          EN: "Project number in which the publication was produced." 
+        tooltip: {
+          FI: "Sen projektin numero, jossa julkaisu on tuotettu.",
+          SV: "Projektnummer där publikationen producerades.",
+          EN: "Project number in which the publication was produced."
         }
       },
       konferenssinvakiintunutnimi: {
@@ -781,7 +784,7 @@ const i18n = {
                     SV: '*SV Valitse julkaisuun liittyvä tiedosto, joka siirtyy avoimesti saataville julkaisuarkistoon.',
                     EN: 'Choose and upload the correct publication file which will be made publicly available at publication archive.',
                   },
-                  tiedosto: { 
+                  tiedosto: {
                     valitse: { FI: 'Valitse tiedosto', SV: 'Välj fil', EN: 'Select file' },
                     eivalittu: { FI: 'Ei valittua tiedostoa', SV: ' Ingen vald fil', EN: 'No file selected' },
                     veda: { FI: 'Tai vedä tiedosto tähän', SV: 'Eller dra filen här', EN: 'Or drag file here' },
@@ -1156,7 +1159,7 @@ const i18n = {
           },
         }
     }
-	 
+
   }
-  
+
 };
