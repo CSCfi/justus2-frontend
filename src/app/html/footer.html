@@ -74,8 +74,20 @@
                             <i class="fa fa-external-link pl-x"></i>
                         </a>
                     </p>
-                    <p class="text-xl mb-0">
-                        <a class="link-white" href="https://wiki.eduuni.fi/pages/viewpage.action?pageId=192547335" target="__blank">
+                    <p class="text-xl mb-0" data-ng-if="lang === 'FI'">
+                        <a class="link-white" href="https://wiki.eduuni.fi/x/Bwp6Cw" target="__blank">
+                            {{i18n.footer.rekisteroiduninformointi[lang]}}
+                            <i class="fa fa-external-link pl-x"></i>
+                        </a>
+                    </p>
+                    <p class="text-xl mb-0" data-ng-if="lang === 'EN'">
+                        <a class="link-white" href="https://wiki.eduuni.fi/x/FsQID" target="__blank">
+                            {{i18n.footer.rekisteroiduninformointi[lang]}}
+                            <i class="fa fa-external-link pl-x"></i>
+                        </a>
+                    </p>
+                    <p class="text-xl mb-0" data-ng-if="lang === 'SV'">
+                        <a class="link-white" href="https://wiki.eduuni.fi/x/ncMID" target="__blank">
                             {{i18n.footer.rekisteroiduninformointi[lang]}}
                             <i class="fa fa-external-link pl-x"></i>
                         </a>

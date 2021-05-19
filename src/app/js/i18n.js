@@ -28,7 +28,7 @@ const i18n = {
     sivukartta: { FI: 'Sivukartta', SV: 'Sidkarta', EN: 'Sitemap'  },
     selosteet: { FI: 'Selosteet ja käytännöt', SV: 'Redegörelser och praxis', EN: 'Statements and practices'  },
     saavutettavuusseloste: { FI: 'Saavutettavuusseloste', SV: 'Tillgänglighetsutlåtande', EN: 'Accessibility statement' },
-    rekisteroiduninformointi: { FI: 'Justus rekisteröidyn informointi', SV: 'Justus rekisteröidyn informointi', EN: 'Justus rekisteröidyn informointi' },
+    rekisteroiduninformointi: { FI: 'Justus rekisteröidyn informointi', SV: 'Justus information till den registrerade', EN: 'Justus informing the registered' },
     tietosuojaseloste: { FI: 'Tietosuojaseloste', SV: 'Dataskydd', EN: 'Privacy policy',
      linkki: { FI: 'Organisaation tietosuojaseloste', SV: 'Organisations dataskydd', EN: 'Organization\'s privacy policy' }
      },

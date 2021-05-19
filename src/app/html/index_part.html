@@ -50,12 +50,15 @@
             </span>
         </div>
         <div>
-        <p data-ng-bind="i18n.etusivu.tietosuoja.title[lang]" class="d-inline-block text-muted"></p>
-        <span class="text-secondary">
-            <a href="https://wiki.eduuni.fi/pages/viewpage.action?pageId=30310801" target="__blank">
-                <i class="fa fa-external-link pl-x"></i> {{i18n.footer.tietosuoja[lang]}}
-            </a>
-        </span>
+        <a class="text-xl" data-ng-if="lang === 'FI'" href="https://wiki.eduuni.fi/x/Bwp6Cw" target="__blank">
+            {{i18n.footer.rekisteroiduninformointi[lang]}} <i class="fa fa-external-link pl-x"></i>
+        </a>
+        <a class="text-xl" data-ng-if="lang === 'EN'" href="https://wiki.eduuni.fi/x/FsQID" target="__blank">
+            {{i18n.footer.rekisteroiduninformointi[lang]}} <i class="fa fa-external-link pl-x"></i>
+        </a>
+        <a class="text-xl" data-ng-if="lang === 'SV'" href="https://wiki.eduuni.fi/x/ncMID" target="__blank">
+            {{i18n.footer.rekisteroiduninformointi[lang]}} <i class="fa fa-external-link pl-x"></i>
+        </a>
         </div>
     </div>
 </div>
