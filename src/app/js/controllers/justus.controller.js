@@ -958,7 +958,7 @@ angular.module('JustusController', [])
                     // this overrides selected value based on organisational unit year for publication in question (if exists)
                     for (let i = 0; i < $scope.alayksikkovuodet.length; i++) {
                         const vuosi = $scope.alayksikkovuodet[i].label;
-                        if ($scope.justus.organisaatiotekija[0].alayksikko[0].indexOf(vuosi) !== -1) {
+                        if ($scope.justus.organisaatiotekija[0].alayksikko[0] && $scope.justus.organisaatiotekija[0].alayksikko[0].indexOf(vuosi) !== -1) {
                             $scope.alayksikkovuosi.selected = {
                                 id: parseInt(vuosi),
                                 label: vuosi
